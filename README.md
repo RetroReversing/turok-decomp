@@ -28,7 +28,7 @@ uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/Ret
 
 For per-function comparisons on macOS, install LLVM/lld (`brew install llvm lld`) and add their `bin` directories to PATH, as documented by the tool.
 
-Use **Compilers & tools** in decompdecomp to install **IDO 5.3** after accepting its license. IDO 7.1 was also compared, but is not required for this checkpoint. The tools are not included here. The compiler version remains provisional: both versions matched the small-function samples. See [the experiment notes](docs/PROGRESS.md).
+Use **Compilers & tools** in decompdecomp to install **IDO 5.3** after accepting its license. IDO 7.1 was also compared, but is not required for this checkpoint. The tools are not included here. The compiler version remains provisional: both versions matched the small-function samples. `build.json` controls the actual C compiler; the KMC label retained in `splat.yaml` comes from the initial bootstrap split. See [the experiment notes](docs/PROGRESS.md).
 
 Prepare your own European revision 0 ROM, then build:
 
