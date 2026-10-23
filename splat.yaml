@@ -1,0 +1,153 @@
+name: Turok_Dinosaur_Hunte (European (basic spec.))
+sha1: 18af200e1b2492afff5f6dfa7989fe210dc62055
+options:
+  disassemble_all: true
+  auto_decompile_empty_functions: false
+  basename: turok_dinosaur_hunte
+  target_path: baserom.z64
+  elf_path: build/turok_dinosaur_hunte.elf
+  base_path: .
+  platform: n64
+  compiler: KMC
+  ld_script_path: turok_dinosaur_hunte.ld
+  ld_dependencies: true
+  find_file_boundaries: true
+  header_encoding: ASCII
+  o_as_suffix: true
+  use_legacy_include_asm: false
+  mips_abi_float_regs: o32
+  symbol_addrs_path: [symbol_addrs.txt]
+  reloc_addrs_path: [reloc_addrs.txt]
+  extensions_path: tools/splat_ext
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+segments:
+- {name: header, type: header, start: 0}
+- {name: ipl3, type: bin, start: 64}
+- name: entry
+  type: code
+  start: 4096
+  vram: 2147484672
+  subsegments:
+  - [4096, hasm]
+- name: main
+  type: code
+  start: 4176
+  vram: 2147484752
+  follows_vram: entry
+  subsegments:
+  - [4176, c, main]
+- {type: bin, start: 7872, follows_vram: main}
+- name: code_80001300
+  type: code
+  start: 8396800
+  vram: 2147488512
+  subsegments:
+  - [8396800, c, code_80001300]
+- {type: bin, start: 8426384}
+- name: code_80009A38
+  type: code
+  start: 8431416
+  vram: 2147523128
+  subsegments:
+  - [8431416, c, code_80009A38]
+- {type: bin, start: 8485360}
+- name: code_80017F0C
+  type: code
+  start: 8489996
+  vram: 2147581708
+  subsegments:
+  - [8489996, c, code_80017F0C]
+- {type: bin, start: 8531536}
+- name: code_800258D0
+  type: code
+  start: 8545744
+  vram: 2147637456
+  subsegments:
+  - [8545744, c, code_800258D0]
+- {type: bin, start: 8546320}
+- name: code_80026AD0
+  type: code
+  start: 8550352
+  vram: 2147642064
+  subsegments:
+  - [8550352, c, code_80026AD0]
+- {type: bin, start: 8558192}
+- name: code_80029A10
+  type: code
+  start: 8562448
+  vram: 2147654160
+  subsegments:
+  - [8562448, c, code_80029A10]
+- {type: bin, start: 8581616}
+- name: code_8002F784
+  type: code
+  start: 8586372
+  vram: 2147678084
+  subsegments:
+  - [8586372, c, code_8002F784]
+- {type: bin, start: 8730832}
+- name: code_80054AC8
+  type: code
+  start: 8738760
+  vram: 2147830472
+  subsegments:
+  - [8738760, c, code_80054AC8]
+- {type: bin, start: 8758944}
+- name: code_8005A634
+  type: code
+  start: 8762164
+  vram: 2147853876
+  subsegments:
+  - [8762164, c, code_8005A634]
+- {type: bin, start: 8767088}
+- name: code_8005C8BC
+  type: code
+  start: 8771004
+  vram: 2147862716
+  subsegments:
+  - [8771004, c, code_8005C8BC]
+- {type: bin, start: 8793760}
+- name: code_80063630
+  type: code
+  start: 8799024
+  vram: 2147890736
+  subsegments:
+  - [8799024, c, code_80063630]
+- {type: bin, start: 8833424}
+- name: code_80070D48
+  type: code
+  start: 8854088
+  vram: 2147945800
+  subsegments:
+  - [8854088, c, code_80070D48]
+- {type: bin, start: 8871776}
+- name: code_80076218
+  type: code
+  start: 8875800
+  vram: 2147967512
+  subsegments:
+  - [8875800, c, code_80076218]
+- {type: bin, start: 8939264}
+- name: code_80087228
+  type: code
+  start: 8945448
+  vram: 2148037160
+  subsegments:
+  - [8945448, c, code_80087228]
+- {type: bin, start: 8987344}
+- name: code_80093090
+  type: code
+  start: 8994192
+  vram: 2148085904
+  subsegments:
+  - [8994192, c, code_80093090]
+- {type: bin, start: 9009024}
+- name: code_80098440
+  type: code
+  start: 9015616
+  vram: 2148107328
+  subsegments:
+  - [9015616, c, code_80098440]
+- {type: bin, start: 9136592}
+- [9412048]

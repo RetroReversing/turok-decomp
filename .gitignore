@@ -1,0 +1,31 @@
+# Game-derived inputs and output: regenerate locally from your own ROM.
+baserom*
+*.z64
+*.v64
+*.n64
+*.rom
+*.bin
+*.elf
+*.o
+*.a
+*.iso
+build/
+asm/
+assets/
+extract/
+orig/
+toolchains/
+.decomp/
+*.sqlite*
+*.db*
+*.ld
+*_auto.txt
+.splat/
+*.d
+# Local environments and editor state.
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
