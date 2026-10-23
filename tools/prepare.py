@@ -33,6 +33,10 @@ def prepare(path: Path) -> None:
 
     config = json.loads((ROOT / 'build.json').read_text())
     target = config['cartridge']
+    destinations = [ROOT / target['image'], ROOT / config['image']]
+    if any(p.is_symlink() or p.resolve() == path.resolve()
+           or (p.exists() and path.exists() and p.samefile(path)) for p in destinations):
+        raise ValueError('Keep the input ROM separate from the generated baserom files; output symlinks are unsupported.')
     original = normalized(path.read_bytes())
     if hashlib.sha1(original).hexdigest() != target['sha1']:
         raise ValueError('This project needs the NTUP European revision 0 ROM; normalized SHA-1 differs.')
