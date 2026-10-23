@@ -4,17 +4,17 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **419 functions in C**, verified against the original machine code after linking.
-- **26,112 matched bytes**, about **4.2% of the 626,012 bytes identified as candidate code**.
-- **1,950 open candidates** and **35 candidates classified as assembly** in the analysis database.
+- **886 functions in C**, verified against the original machine code after linking.
+- **61,836 matched bytes**, about **9.88% of the 626,012 bytes identified as candidate code**.
+- **1,483 open candidates** and **35 candidates classified as assembly** in the analysis database.
 - **2,405 functions in the standalone export**, including a startup function outside the 2,404-candidate analysis denominator.
-- A full build with all 419 C selections reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program. Other functions remain in assembly regenerated from the user's ROM.
+- A full build with all 886 C selections reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program. Other functions remain in assembly regenerated from the user's ROM.
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
 ## Build
 
-Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested tool revision is `af853d2f0da41ded2a9c9436ab2eb460f915b25b`, from [tool PR #2](https://github.com/RetroReversing/decompdecomp/pull/2).
+Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested tool revision is `72cac6c9df215754aae698283cafc68b3ed26bb3`, from [tool PR #3](https://github.com/RetroReversing/decompdecomp/pull/3).
 
 Clone this project and install that tool revision into a local environment:
 
@@ -22,7 +22,7 @@ Clone this project and install that tool revision into a local environment:
 git clone https://github.com/RetroReversing/turok-decomp.git
 cd turok-decomp
 uv venv --python 3.12
-uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/RetroReversing/decompdecomp.git@af853d2f0da41ded2a9c9436ab2eb460f915b25b"
+uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/RetroReversing/decompdecomp.git@72cac6c9df215754aae698283cafc68b3ed26bb3"
 .venv/bin/decomp setup
 ```
 
@@ -43,7 +43,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (419 of 2405 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (886 of 2405 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.
