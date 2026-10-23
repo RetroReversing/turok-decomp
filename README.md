@@ -1,3 +1,5 @@
+> LOCAL SOURCE-ASSISTED BRANCH: 1,563 C functions / 38.951%. Do not push. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md). Historical ROM-only figures below describe the earlier baseline.
+
 # Turok: Dinosaur Hunter - N64 decompilation
 
 An **unfinished matching decompilation** of the European revision 0 release (`NTUP`), started from a user-supplied ROM with AI assistance. Existing Turok source, decompilation repositories, symbol maps, and source-derived analyses were not consulted.

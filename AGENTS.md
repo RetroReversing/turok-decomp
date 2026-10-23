@@ -1,6 +1,6 @@
 # Working on this decompilation
 
-- Work from the user's own ROM and ROM-derived analysis. Do not consult existing Turok source, leaked code, decompilation repositories, symbol maps, or source-derived articles. Generic hardware/format documentation and tool code are allowed.
+- This local branch contains a user-authorized source-assisted experiment. Existing source on disk may be consulted for this branch. Keep source-assisted provenance separate from ROM-only results. Do not push or publish this branch without explicit user authorization. Generic hardware/format documentation and tool code are allowed.
 - The goal is C that compiles and links to the original bytes. Preserve original target hashes, addresses, comparison gates, and compression validation.
 - Do not change build inputs, target assembly, compiler settings, function selection, or linker placement merely to force a match. Explain legitimate build fixes separately.
 - IDO 5.3 is the provisional working compiler, not a proven identification of the original compiler release. Additional toolchains require license acceptance before installation.
