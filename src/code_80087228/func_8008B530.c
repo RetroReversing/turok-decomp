@@ -1,0 +1,404 @@
+#include "common.h"
+
+typedef unsigned char sa_u8;
+typedef unsigned short sa_u16;
+typedef unsigned long sa_u32;
+typedef unsigned long long sa_u64;
+typedef signed char sa_s8;
+typedef short sa_s16;
+typedef long sa_s32;
+typedef float sa_f32;
+typedef double sa_f64;
+typedef sa_s32 OSPri;
+typedef sa_s32 OSId;
+typedef union {
+    struct {
+        sa_f32 f_odd;
+        sa_f32 f_even;
+    } f;
+    sa_f64 d;
+} __OSfp;
+typedef struct {
+    sa_u64 at, v0, v1, a0, a1, a2, a3;
+    sa_u64 t0, t1, t2, t3, t4, t5, t6, t7;
+    sa_u64 s0, s1, s2, s3, s4, s5, s6, s7;
+    sa_u64 t8, t9;
+    sa_u64 gp, sp, sa_s8, ra;
+    sa_u64 lo, hi;
+    sa_u32 sr, pc, cause, badvaddr, rcp;
+    sa_u32 fpcsr;
+    __OSfp fp0, fp2, fp4, fp6, fp8, fp10, fp12, fp14;
+    __OSfp fp16, fp18, fp20, fp22, fp24, fp26, fp28, fp30;
+} __OSThreadContext;
+typedef struct {
+    sa_u32 flag;
+    sa_u32 count;
+    sa_u64 time;
+} __OSThreadprofile_s;
+typedef struct OSThread_s {
+    struct OSThread_s *next;
+    OSPri priority;
+    struct OSThread_s **queue;
+    struct OSThread_s *tlnext;
+    sa_u16 state;
+    sa_u16 flags;
+    OSId id;
+    int fp;
+    __OSThreadprofile_s *thprof;
+    __OSThreadContext context;
+} OSThread;
+typedef void *OSMesg;
+typedef struct OSMesgQueue_s {
+    OSThread *mtqueue;
+    OSThread *fullqueue;
+    sa_s32 validCount;
+    sa_s32 first;
+    sa_s32 msgCount;
+    OSMesg *msg;
+} OSMesgQueue;
+typedef struct {
+    sa_u32 errStatus;
+    void *dramAddr;
+    void *C2Addr;
+    sa_u32 sectorSize;
+    sa_u32 C1ErrNum;
+    sa_u32 C1ErrSector[4];
+} __OSBlockInfo;
+typedef struct {
+    sa_u32 cmdType;
+    sa_u16 transferMode;
+    sa_u16 blockNum;
+    sa_s32 sectorNum;
+    sa_u32 devAddr;
+    sa_u32 bmCtlShadow;
+    sa_u32 seqCtlShadow;
+    __OSBlockInfo block[2];
+} __OSTranxInfo;
+typedef struct OSPiHandle_s {
+    struct OSPiHandle_s *next;
+    sa_u8 type;
+    sa_u8 latency;
+    sa_u8 pageSize;
+    sa_u8 relDuration;
+    sa_u8 pulse;
+    sa_u8 domain;
+    sa_u32 baseAddress;
+    sa_u32 speed;
+    __OSTranxInfo transferInfo;
+} OSPiHandle;
+typedef struct {
+    sa_s32 active;
+    OSThread *thread;
+    OSMesgQueue *cmdQueue;
+    OSMesgQueue *evtQueue;
+    OSMesgQueue *acsQueue;
+    sa_s32 (*dma)(sa_s32, sa_u32, void *, sa_u32);
+    sa_s32 (*edma)(OSPiHandle *, sa_s32, sa_u32, void *, sa_u32);
+} OSDevMgr;
+typedef short ADPCM_STATE[16];
+typedef sa_s32 ALMicroTime;
+typedef sa_u8 ALPan;
+typedef struct ALLink_s {
+    struct ALLink_s *next;
+    struct ALLink_s *prev;
+} ALLink;
+typedef sa_s32 (*ALDMAproc)(sa_s32 addr, sa_s32 len, void *state);
+typedef ALDMAproc (*ALDMANew)(void *state);
+typedef struct {
+    sa_u8 *base;
+    sa_u8 *cur;
+    sa_s32 len;
+    sa_s32 count;
+} ALHeap;
+typedef sa_u8 ALFxId;
+typedef struct {
+    sa_s32 order;
+    sa_s32 npredictors;
+    sa_s16 book[1];
+} ALADPCMBook;
+typedef struct {
+    sa_u32 start;
+    sa_u32 end;
+    sa_u32 count;
+    ADPCM_STATE state;
+} ALADPCMloop;
+typedef struct {
+    sa_u32 start;
+    sa_u32 end;
+    sa_u32 count;
+} ALRawLoop;
+typedef struct {
+    ALMicroTime attackTime;
+    ALMicroTime decayTime;
+    ALMicroTime releaseTime;
+    sa_u8 attackVolume;
+    sa_u8 decayVolume;
+} ALEnvelope;
+typedef struct {
+    sa_u8 velocityMin;
+    sa_u8 velocityMax;
+    sa_u8 keyMin;
+    sa_u8 keyMax;
+    sa_u8 keyBase;
+    sa_s8 detune;
+} ALKeyMap;
+typedef struct {
+    ALADPCMloop *loop;
+    ALADPCMBook *book;
+} ALADPCMWaveInfo;
+typedef struct {
+    ALRawLoop *loop;
+} ALRAWWaveInfo;
+typedef struct ALWaveTable_s {
+    sa_u8 *base;
+    sa_s32 len;
+    sa_u8 type;
+    sa_u8 flags;
+    union {
+        ALADPCMWaveInfo adpcmWave;
+        ALRAWWaveInfo rawWave;
+    } waveInfo;
+} ALWaveTable;
+typedef struct ALSound_s {
+    ALEnvelope *envelope;
+    ALKeyMap *keyMap;
+    ALWaveTable *wavetable;
+    ALPan samplePan;
+    sa_u8 sampleVolume;
+    sa_u8 flags;
+} ALSound;
+typedef struct {
+    sa_u8 volume;
+    ALPan pan;
+    sa_u8 priority;
+    sa_u8 flags;
+    sa_u8 tremType;
+    sa_u8 tremRate;
+    sa_u8 tremDepth;
+    sa_u8 tremDelay;
+    sa_u8 vibType;
+    sa_u8 vibRate;
+    sa_u8 vibDepth;
+    sa_u8 vibDelay;
+    sa_s16 bendRange;
+    sa_s16 soundCount;
+    ALSound *soundArray[1];
+} ALInstrument;
+typedef struct ALBank_s {
+    sa_s16 instCount;
+    sa_u8 flags;
+    sa_u8 pad;
+    sa_s32 sampleRate;
+    ALInstrument *percussion;
+    ALInstrument *instArray[1];
+} ALBank;
+typedef ALMicroTime (*ALVoiceHandler)(void *);
+typedef struct ALPlayer_s {
+    struct ALPlayer_s *next;
+    void *clientData;
+    ALVoiceHandler handler;
+    ALMicroTime callTime;
+    sa_s32 samplesLeft;
+} ALPlayer;
+typedef struct ALVoice_s {
+    ALLink node;
+    struct PVoice_s *pvoice;
+    ALWaveTable *table;
+    void *clientPrivate;
+    sa_s16 state;
+    sa_s16 priority;
+    sa_s16 fxBus;
+    sa_s16 unityPitch;
+} ALVoice;
+typedef struct {
+    ALPlayer *head;
+    ALLink pFreeList;
+    ALLink pAllocList;
+    ALLink pLameList;
+    sa_s32 paramSamples;
+    sa_s32 curSamples;
+    ALDMANew dma;
+    ALHeap *heap;
+    struct ALParam_s *paramList;
+    struct ALMainBus_s *mainBus;
+    struct ALAuxBus_s *auxBus;
+    struct ALFilter_s *outputFilter;
+    sa_s32 numPVoices;
+    sa_s32 maxAuxBusses;
+    sa_s32 outputRate;
+    sa_s32 maxOutSamples;
+} ALSynth;
+typedef struct {
+    sa_u8 *curPtr;
+    sa_s32 lastTicks;
+    sa_s32 curTicks;
+    sa_s16 lastStatus;
+} ALSeqMarker;
+typedef struct {
+    sa_s32 ticks;
+    sa_u8 status;
+    sa_u8 byte1;
+    sa_u8 byte2;
+    sa_u32 duration;
+} ALMIDIEvent;
+typedef struct {
+    sa_s32 ticks;
+    sa_u8 status;
+    sa_u8 type;
+    sa_u8 len;
+    sa_u8 byte1;
+    sa_u8 byte2;
+    sa_u8 byte3;
+} ALTempoEvent;
+typedef struct {
+    sa_s32 ticks;
+    sa_u8 status;
+    sa_u8 type;
+    sa_u8 len;
+} ALEndEvent;
+typedef struct {
+    struct ALVoice_s *voice;
+} ALNoteEvent;
+typedef struct {
+    struct ALVoice_s *voice;
+    ALMicroTime delta;
+    sa_u8 vol;
+} ALVolumeEvent;
+typedef struct {
+    sa_s16 vol;
+} ALSeqpVolEvent;
+typedef struct {
+    ALSeqMarker *start;
+    ALSeqMarker *end;
+    sa_s32 count;
+} ALSeqpLoopEvent;
+typedef struct {
+    sa_u8 chan;
+    sa_u8 priority;
+} ALSeqpPriorityEvent;
+typedef struct {
+    void *seq;
+} ALSeqpSeqEvent;
+typedef struct {
+    ALBank *bank;
+} ALSeqpBankEvent;
+typedef struct {
+    struct ALVoiceState_s *vs;
+    void *oscState;
+    sa_u8 chan;
+} ALOscEvent;
+typedef struct {
+    sa_s16 type;
+    union {
+        ALMIDIEvent midi;
+        ALTempoEvent tempo;
+        ALEndEvent end;
+        ALNoteEvent note;
+        ALVolumeEvent vol;
+        ALSeqpLoopEvent loop;
+        ALSeqpVolEvent spvol;
+ ALSeqpPriorityEvent sppriority;
+ ALSeqpSeqEvent spseq;
+ ALSeqpBankEvent spbank;
+        ALOscEvent osc;
+    } msg;
+} ALEvent;
+typedef struct {
+    ALLink freeList;
+    ALLink allocList;
+    sa_s32 eventCount;
+} ALEventQueue;
+typedef struct ALVoiceState_s {
+    struct ALVoiceState_s *next;
+    ALVoice voice;
+    ALSound *sound;
+    ALMicroTime envEndTime;
+    sa_f32 pitch;
+    sa_f32 vibrato;
+    sa_u8 envGain;
+    sa_u8 channel;
+    sa_u8 key;
+    sa_u8 velocity;
+    sa_u8 envPhase;
+    sa_u8 phase;
+    sa_u8 tremelo;
+    sa_u8 flags;
+} ALVoiceState;
+typedef struct {
+    ALInstrument *instrument;
+    sa_s16 bendRange;
+    ALFxId fxId;
+    ALPan pan;
+    sa_u8 priority;
+    sa_u8 vol;
+    sa_u8 fxmix;
+    sa_u8 sustain;
+    sa_f32 pitchBend;
+} ALChanState;
+typedef struct {
+    sa_u32 trackOffset[16];
+    sa_u32 division;
+} ALCMidiHdr;
+typedef struct ALCSeq_s {
+    ALCMidiHdr *base;
+    sa_u32 validTracks;
+    sa_f32 qnpt;
+    sa_u32 lastTicks;
+    sa_u32 lastDeltaTicks;
+    sa_u32 deltaFlag;
+    sa_u8 *curLoc[16];
+    sa_u8 *curBUPtr[16];
+    sa_u8 curBULen[16];
+    sa_u8 lastStatus[16];
+    sa_u32 evtDeltaTicks[16];
+} ALCSeq;
+typedef ALMicroTime (*ALOscInit)(void **oscState,sa_f32 *initVal, sa_u8 oscType,
+                                   sa_u8 oscRate, sa_u8 oscDepth, sa_u8 oscDelay);
+typedef ALMicroTime (*ALOscUpdate)(void *oscState, sa_f32 *updateVal);
+typedef void (*ALOscStop)(void *oscState);
+typedef struct {
+    ALPlayer node;
+    ALSynth *drvr;
+    ALCSeq *target;
+    ALMicroTime curTime;
+    ALBank *bank;
+    sa_s32 uspt;
+    sa_s32 nextDelta;
+    sa_s32 state;
+    sa_u16 chanMask;
+    sa_s16 vol;
+    sa_u8 maxChannels;
+    sa_u8 debugFlags;
+    ALEvent nextEvent;
+    ALEventQueue evtq;
+    ALMicroTime frameTime;
+    ALChanState *chanState;
+    ALVoiceState *vAllocHead;
+    ALVoiceState *vAllocTail;
+    ALVoiceState *vFreeList;
+    ALOscInit initOsc;
+    ALOscUpdate updateOsc;
+    ALOscStop stopOsc;
+} ALCSPlayer;
+extern void D_800A4CA0(ALCSPlayer *D_8012EF2C);
+extern void D_800A4C60(ALCSPlayer *D_8012EF2C, sa_s16 vol);
+extern void func_8008B530();
+extern ALCSPlayer *D_8012EF2C;
+extern ALCSeq *seq;
+extern ALCSPlayer *D_8012EF2C;
+extern int D_800ECF60;
+extern int D_8012EF30;
+void func_8008B530();
+void func_8008B530(){
+ if(D_800ECF60 & (1 << 1))
+ {
+  D_800A4C60(D_8012EF2C, D_8012EF30);
+  D_8012EF30 -= 500;
+  if(D_8012EF30 <= 0)
+  {
+   D_8012EF30 = 0;
+   D_800A4CA0(D_8012EF2C);
+   D_800ECF60 |= (1 << 2);
+  }
+ }
+}

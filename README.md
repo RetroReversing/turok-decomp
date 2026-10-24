@@ -1,14 +1,14 @@
 # Turok: Dinosaur Hunter - N64 decompilation
 
-An **unfinished matching decompilation** of the European revision 0 release (`NTUP`), started from a user-supplied ROM with AI assistance. Existing Turok source, decompilation repositories, symbol maps, and source-derived analyses were not consulted.
+An **unfinished matching decompilation** of the European revision 0 release (`NTUP`), started from a user-supplied ROM with AI assistance. The initial work was ROM-only; the current checkpoint also reuses existing original source and headers in source-assisted reconstruction. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md).
 
 ## Current checkpoint
 
-- **886 functions in C**, verified against the original machine code after linking.
-- **61,836 matched bytes**, about **9.88% of the 626,012 bytes identified as candidate code**.
-- **1,483 open candidates** and **35 candidates classified as assembly** in the analysis database.
+- **1,798 functions in C**, verified against the original machine code after linking.
+- **363,040 matched bytes**, about **57.992% of the 626,012 bytes identified as candidate code**.
+- **571 open candidates** and **35 candidates classified as assembly** in the analysis database.
 - **2,405 functions in the standalone export**, including a startup function outside the 2,404-candidate analysis denominator.
-- A full build with all 886 C selections reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program. Other functions remain in assembly regenerated from the user's ROM.
+- A full build with all 1,798 C selections reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program. Other functions remain in assembly regenerated from the user's ROM.
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
@@ -43,7 +43,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (886 of 2405 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (1798 of 2405 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.
@@ -72,4 +72,4 @@ Keep both hashes fixed. `baserom.z64` is the expanded **analysis image**; `baser
 
 The RNC build uses the original stream's coding decisions with literals supplied by newly linked output, then decodes the result and compares the complete cartridge. It rejects edits incompatible with the compression template; this is not a general compressor for mods.
 
-The public walkthrough is being added to the [AI-assisted N64 tutorial](https://github.com/RetroReversing/retroReversing/pull/499). See [provenance and licensing](NOTICE.md) and [contributor instructions](AGENTS.md).
+The [AI-assisted N64 tutorial](https://www.retroreversing.com/ai-assisted-n64-decompilation) documents setup, model trials, and verification. See [provenance and licensing](NOTICE.md) and [contributor instructions](AGENTS.md).
