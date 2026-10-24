@@ -1,4 +1,4 @@
-> LOCAL SOURCE-ASSISTED BRANCH: 1,563 C functions / 38.951%. Do not push. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md). Historical ROM-only figures below describe the earlier baseline.
+> LOCAL SOURCE-ASSISTED BRANCH: 1,798 C functions / 57.992%. Do not push. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md). Historical ROM-only figures below describe the earlier baseline.
 
 # Turok: Dinosaur Hunter - N64 decompilation
 
