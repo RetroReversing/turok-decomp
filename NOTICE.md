@@ -1,6 +1,6 @@
 # Provenance and licensing
 
-This repository contains independently recovered C, address/type metadata, and build tooling for an unfinished ROM-derived decompilation. No original Turok source, existing Turok decompilation, source-derived symbol map, ROM, extracted asset, or compiler binary is included.
+This repository contains recovered and source-assisted C, address/type metadata, and build tooling for an unfinished matching decompilation. The initial checkpoint was recovered from a user-supplied ROM. Later checkpoints reuse and adapt existing original Turok source and headers; they are not independent ROM-only recovery. ROMs, extracted binary assets, and compiler binaries are not included. See docs/SOURCE_ASSISTED_CHECKPOINT.md for provenance.
 
 Turok and the original game code/data belong to their respective rights holders. This repository does not grant rights to the original game or claim a blanket license over recovered game code. Supply your own supported ROM to generate local inputs and output.
 

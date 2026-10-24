@@ -29,3 +29,6 @@ __pycache__/
 .DS_Store
 .env
 .env.*
+
+# Private local tools, active analysis state, and experiment evidence.
+.local/
