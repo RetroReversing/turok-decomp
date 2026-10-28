@@ -178,6 +178,7 @@ void func_80081F58(Gfx **ppDLP,
             float XScale, float YScale);
 void func_80082FA0(Gfx **ppDLP, C16BitGraphic *Graphic, float X, float Y, float XScale, float YScale);
 void func_80082FA0(Gfx **ppDLP, C16BitGraphic *Graphic, float X, float Y, float XScale, float YScale){
+ /* Draw each 16-bit graphic block at the requested scale. */
  float curx, XCount, YCount ;
  unsigned long width, height ;
  void *image, *opacity ;

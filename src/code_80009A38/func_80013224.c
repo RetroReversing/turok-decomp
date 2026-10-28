@@ -3,6 +3,7 @@
 typedef float CMtxF[4][4];
 extern void func_80013224(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight) ;
 void func_80013224(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight);
+/* Multiply two affine matrices and write the result to mfThis. */
 void func_80013224(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight){
  mfThis[0][0] = (mfLeft[0][0] * mfRight[0][0]) + (mfLeft[0][1] * mfRight[1][0]) + (mfLeft[0][2] * mfRight[2][0]) ;
  mfThis[0][1] = (mfLeft[0][0] * mfRight[0][1]) + (mfLeft[0][1] * mfRight[1][1]) + (mfLeft[0][2] * mfRight[2][1]) ;

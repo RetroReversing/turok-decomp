@@ -153,6 +153,7 @@ extern void func_8007FAE0(Gfx **ppDLP, signed long X1, signed long Y1, signed lo
            unsigned char Red, unsigned char Green, unsigned char Blue, unsigned char Alpha) ;
 void func_8007FAE0(Gfx **ppDLP, signed long X1, signed long Y1, signed long X2, signed long Y2, signed long Thickness,
            unsigned char Red, unsigned char Green, unsigned char Blue, unsigned char Alpha);
+/* Draw a colored outline with four filled rectangles. */
 void func_8007FAE0(Gfx **ppDLP, signed long X1, signed long Y1, signed long X2, signed long Y2, signed long Thickness,
            unsigned char Red, unsigned char Green, unsigned char Blue, unsigned char Alpha){
  { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xe7) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = 0; };

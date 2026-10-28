@@ -1987,6 +1987,7 @@ void func_8009373C(CPickupMonitor *pThis, CPickupGenerator *pGenerator)
   signed long HealthWeight;
   CGameRegion *pRegion = pGenerator->m_pRegion;
   int GenerateArrows = 1;
+  /* Refreshes a pickup generator and weights ammo versus health by player health (pickup.c). */
   if ((pRegion && (pRegion->m_wFlags & (1 << 6))) && ((func_80021348(pRegion, pGenerator->m_vPos.x, pGenerator->m_vPos.z) - pGenerator->m_vPos.y) < D_800F6490))
     GenerateArrows = 0;
   if (pPickup && (!func_800912C4(&D_80128C20, func_8001D398(&pPickup->s.ah.ih))))

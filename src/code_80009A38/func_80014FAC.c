@@ -5,19 +5,20 @@ extern void func_80014F28(CMtxF mfThis, CMtxF mfSource);
 extern void func_80014FAC(CMtxF mfThis, CMtxF mfIn);
 void func_80014F28(CMtxF mfThis, CMtxF mfSource);
 void func_80014FAC(CMtxF mfThis, CMtxF mfIn);
+/* Invert an affine 4x4 matrix, copying input if its 3x3 determinant is zero. */
 void func_80014FAC(CMtxF mfThis, CMtxF mfIn){
  float det, invDet;
-                       ;
-                        ;
-                        ;
-                        ;
-                        ;
+
+
+
+
+
    det = mfIn[0][0]*mfIn[1][1]*mfIn[2][2] - mfIn[0][0]*mfIn[2][1]*mfIn[1][2]
        - mfIn[1][0]*mfIn[0][1]*mfIn[2][2] + mfIn[1][0]*mfIn[2][1]*mfIn[0][2]
        + mfIn[2][0]*mfIn[0][1]*mfIn[1][2] - mfIn[2][0]*mfIn[1][1]*mfIn[0][2];
    if (det == 0)
    {
-                   ;
+
   func_80014F28(mfThis, mfIn);
    }
    else

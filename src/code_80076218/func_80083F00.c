@@ -1,5 +1,11 @@
 #include "common.h"
 
+#define AI_TYPE_FLOCKER (1<<9)
+#define AI_TYPE_RANDOMRESURRECTION (1<<11)
+#define AI_TYPE_RANDOMFEIGNDEATH (1<<12)
+#define AI_FLOCKING (1<<15)
+#define AI_RESURRECTION (1<<16)
+#define AI_FEIGNDEATH (1<<17)
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -815,6 +821,7 @@ void func_800842CC(CAIDynamic *pThis, CEnemyAttributes *pEA, int nObjtype);
 void func_80084364(CAIDynamic *pThis, CEnemyAttributes *pEA);
 void func_80084460(CAIDynamic *pThis, CEnemyAttributes *pEA);
 void func_80083F00(CAIDynamic *pThis, CEnemyAttributes *pEA, CVector3 vStartPos, struct CGameObjectInstance_t *pInstance){
+ /* Reset an enemy's dynamic state and configure its randomized behavior and appearance. */
  pThis->m_ViewAngleOffset = 0;
  pThis->m_dwStatusFlags = 0;
  pThis->m_dwStatusFlags2 = 0;
@@ -838,17 +845,17 @@ void func_80083F00(CAIDynamic *pThis, CEnemyAttributes *pEA, CVector3 vStartPos,
  pThis->m_InteractiveTimer = 0;
  pThis->m_vStartPos = pInstance->ah.ih.m_vPos;
  pThis->m_pStartRegion = pInstance->ah.ih.m_pCurrentRegion;
- if (pEA->m_dwTypeFlags & (1<<9))
-  pThis->m_dwStatusFlags |= (1<<15);
- if (pEA->m_dwTypeFlags & (1<<11))
+ if (pEA->m_dwTypeFlags & AI_TYPE_FLOCKER)
+  pThis->m_dwStatusFlags |= AI_FLOCKING;
+ if (pEA->m_dwTypeFlags & AI_TYPE_RANDOMRESURRECTION)
  {
   if ((D_800137A0() % (100)) < 80)
-   pThis->m_dwStatusFlags |= (1<<16);
+   pThis->m_dwStatusFlags |= AI_RESURRECTION;
  }
- if (pEA->m_dwTypeFlags & (1<<12))
+ if (pEA->m_dwTypeFlags & AI_TYPE_RANDOMFEIGNDEATH)
  {
   if ((D_800137A0() % (100)) < 80)
-   pThis->m_dwStatusFlags |= (1<<17);
+   pThis->m_dwStatusFlags |= AI_FEIGNDEATH;
  }
  func_800840C4(pThis, pEA, pInstance) ;
  func_80084460(pThis, pEA);

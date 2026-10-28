@@ -1675,6 +1675,7 @@ void func_8004C158(CGameObjectInstance *pThis, CHumvee *pHumvee);
 int func_8004C49C(CGameObjectInstance *pThis, CHumvee *pHumvee);
 void func_8004C5F0(CFireWeaponState *pThis, CFireWeaponInfo *pInfo);
 void func_8004D07C(CGameObjectInstance *pThis, CHumvee *pHumvee);
+/* Update the Humvee boss effects, death transition, weapons, attack stage and animation speed. */
 void func_8004BE10(CGameObjectInstance *pThis, CHumvee *pHumvee){
  func_8004BACC(pThis, pHumvee) ;
  func_8004BC2C(pThis, pHumvee) ;

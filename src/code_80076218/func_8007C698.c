@@ -1929,7 +1929,7 @@ typedef struct CEngineApp_t
  OSContPad m_AttractPad ;
 } CEngineApp;
 extern sa_u64 dram_stack[];
-extern CTControl *D_800F9E44;
+extern CTControl *pCTControl;
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 typedef struct
@@ -2147,7 +2147,7 @@ extern int func_8005843C (CTMove *pThis, int weapon, int variation);
 extern void func_800587B0 (CTMove *pThis, int status);
 extern void func_80058B6C (CTMove *pThis, int ammo, int next);
 extern void func_8005AFE8 (CTMove *pThis, int Direction);
-extern int func_8007C698 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
+extern int func_8007C698 (CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
 enum SOUND_TYPES
 {
  SOUND_MENU_OPTION_SELECT=0,
@@ -2789,20 +2789,21 @@ enum SOUND_TYPES
  SOUND_TYPES_TOTAL
 };
 extern int D_80128F90;
-int func_8007C698 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-int func_8007C698 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag){
+int func_8007C698 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
+/* Fires Tech Weapon 2 and advances weapon selection when its ammo is empty. */
+int func_8007C698 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag){
  CVector3 vPos;
- if ( func_800510C4 ( D_800F9E44 ) )
+ if ( func_800510C4 ( pCTControl ) )
  {
-  D_800F9E48->AmmoUseCounter=0.0;
-  func_800587B0 ( D_800F9E48, 12 );
-  if ( func_8005843C ( D_800F9E48, 111, 1 ) )
+  pCTMove->AmmoUseCounter=0.0;
+  func_800587B0 ( pCTMove, 12 );
+  if ( func_8005843C ( pCTMove, 111, 1 ) )
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
    return 0;
   }
   vPos = ((pMe)->ah.ih.m_vPos);
@@ -2815,13 +2816,13 @@ int func_8007C698 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_8
  }
  else
  {
-  if (func_8005843C(D_800F9E48, 111, 1))
+  if (func_8005843C(pCTMove, 111, 1))
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
   }
  }
  return 0;

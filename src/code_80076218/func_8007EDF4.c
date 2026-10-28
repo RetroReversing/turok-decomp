@@ -287,6 +287,7 @@ extern int D_801290E8[15] ;
 void func_8007EDF4(Gfx **ppDLP, int index, float x, float y, float xscale, float yscale, int alpha);
 void func_80082FA0(Gfx **ppDLP, C16BitGraphic *Graphic, float X, float Y, float XScale, float YScale);
 void func_8007EDF4(Gfx **ppDLP, int index, float x, float y, float xscale, float yscale, int alpha){
+ /* Tint the selected weapon icon and draw it in the weapon carousel. */
  C16BitGraphic *ppIcon ;
  int xoff, yoff ;
  float mod ;

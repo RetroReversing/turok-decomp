@@ -813,6 +813,7 @@ typedef struct CBossData_t
 } CBossData ;
 int func_80098F20(CCollide *pThis, CGameRegion *pCurrentRegion);
 void func_80098F6C(CCollide *pThis);
+/* Track the region floor and shorten desired movement to follow its slope. */
 void func_80098F6C(CCollide *pThis){
  CAnimInstanceHdr *pInst;
  float currentGroundHeight, desiredGroundHeight,

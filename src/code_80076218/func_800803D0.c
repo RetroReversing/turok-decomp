@@ -267,6 +267,7 @@ void func_800803D0(Gfx **ppDLP,
          int nNumber,
          int nX,
          int nY){
+ /* Draw a signed decimal value on screen with leading zeroes suppressed. */
  int num1000,
    num100,
      num10,

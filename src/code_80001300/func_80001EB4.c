@@ -1822,6 +1822,7 @@ extern CEngineApp D_800F9F10;
 void func_80001E80(CEngineApp *pThis, unsigned char *pR, unsigned char *pG, unsigned char *pB);
 void func_80001EB4(CEngineApp *pThis);
 void func_80001EB4(CEngineApp *pThis){
+ /* Clear depth and color buffers, letterbox borders, and the sun overlay. */
  unsigned char r, g, b;
  CCamera *pCamera = &pThis->m_Camera ;
  D_800239C0(&pThis->m_pDLP, 20);

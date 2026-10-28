@@ -274,8 +274,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -292,7 +292,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -991,10 +991,10 @@ int func_80033638(CScene *pThis, CGameRegion *pRegion){
                               ;
  if (!pRegion)
   return -1;
- func_8002DD28(&isCollision,
-             func_8002D690(pThis->m_pceCollision),
+ CIndexedSet__ConstructFromRawData(&isCollision,
+             CCacheEntry__GetData(pThis->m_pceCollision),
              0);
- pbRegions = D_8002DC68((&isCollision), (&isCollision)->m_pData, (2));
+ pbRegions = CIndexedSet__GetBlock((&isCollision), (&isCollision)->m_pData, (2));
  func_8002DA8C(&usRegions, pbRegions, 0);
  regions = (CGameRegion*) ( (void*) ( ((unsigned char*)((&usRegions)->m_pData)) + (2*sizeof(unsigned long)) ) );
  index = ((unsigned long)pRegion - (unsigned long)regions)/sizeof(CGameRegion);

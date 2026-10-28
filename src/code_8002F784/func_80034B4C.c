@@ -15,7 +15,7 @@ typedef s32 M2C_UNK32;
 #endif
 
 M2C_UNK func_8002DC80(M2C_UNK *, M2C_UNK *, s32 *); /* extern */
-M2C_UNK func_8002DD28(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
+M2C_UNK CIndexedSet__ConstructFromRawData(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
 extern M2C_UNK D_8014F688;
 
 s32 func_80034B4C(s32 arg0) {
@@ -24,7 +24,7 @@ s32 func_80034B4C(s32 arg0) {
     M2C_UNK sp1C;
     s32 sp18;
 
-    func_8002DD28(&sp20, &D_8014F688, 0);
+    CIndexedSet__ConstructFromRawData(&sp20, &D_8014F688, 0);
     func_8002DC80(&sp20, &sp1C, &sp18);
     return sp18;
 }

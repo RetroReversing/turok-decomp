@@ -4488,7 +4488,7 @@ int
 waterFlag);
 extern
 int
-func_8007ADE4
+AI_Update_Weapon_SemiAutomaticPistol
 (CGameObjectInstance
 *pMe,
 CTControl
@@ -5294,7 +5294,7 @@ CTMove
 int
 waterFlag);
 int
-func_8007ADE4
+AI_Update_Weapon_SemiAutomaticPistol
 (
 CGameObjectInstance
 *pMe,
@@ -5393,7 +5393,7 @@ CTMove
 int
 waterFlag);
 int
-func_8007C058(CGameObjectInstance
+update_shockwave_charge(CGameObjectInstance
 *pMe,
 CTControl
 *D_800F9E44,
@@ -5627,7 +5627,7 @@ break;
 case
 103:
 if
-(func_8007ADE4(pMe,
+(AI_Update_Weapon_SemiAutomaticPistol(pMe,
 D_800F9E44,
 D_800F9E48,
 waterFlag))
@@ -5726,7 +5726,7 @@ break;
 case
 113:
 if
-(func_8007C058(pMe,
+(update_shockwave_charge(pMe,
 D_800F9E44,
 D_800F9E48,
 waterFlag))

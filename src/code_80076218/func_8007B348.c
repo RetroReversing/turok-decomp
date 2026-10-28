@@ -1929,7 +1929,7 @@ typedef struct CEngineApp_t
  OSContPad m_AttractPad ;
 } CEngineApp;
 extern sa_u64 dram_stack[];
-extern CTControl *D_800F9E44;
+extern CTControl *pCTControl;
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 typedef struct
@@ -2150,7 +2150,7 @@ extern void func_80058B6C (CTMove *pThis, int ammo, int next);
 extern void func_80059244 (CTMove *pThis, CEngineApp *pApp, float shake, float ang, int rotstyle);
 extern void D_80059994 (CTMove *pThis, int WFired);
 extern void func_8005AFE8 (CTMove *pThis, int Direction);
-extern int func_8007B348 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
+extern int func_8007B348 (CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
 enum SOUND_TYPES
 {
  SOUND_MENU_OPTION_SELECT=0,
@@ -2792,34 +2792,35 @@ enum SOUND_TYPES
  SOUND_TYPES_TOTAL
 };
 extern int D_80128F90;
-int func_8007B348 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-int func_8007B348 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag){
+int func_8007B348 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
+int func_8007B348 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag){
+ /* Fire the riot shotgun, preferring explosive shells, and switch weapons when empty. */
  CVector3 vPos;
  CEngineApp *pApp;
  pApp = (&D_800F9F10);
  if ( pApp == 0 ) return 0;
- if ( func_800510C4 ( D_800F9E44 ) )
+ if ( func_800510C4 ( pCTControl ) )
  {
-  D_800F9E48->AmmoUseCounter=0.0;
-  func_800587B0 ( D_800F9E48, 7 );
-  if ( func_8005843C ( D_800F9E48, 106, 1 ) )
+  pCTMove->AmmoUseCounter=0.0;
+  func_800587B0 ( pCTMove, 7 );
+  if ( func_8005843C ( pCTMove, 106, 1 ) )
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
    return 0;
   }
   vPos = ((pMe)->ah.ih.m_vPos);
   func_80031974(&(&D_800F9F10)->m_Scene, SOUND_RIOT_SHOTGUN_SHOT, 0, 0, &vPos, 0);
   D_80070DA8(&pMe->ah.ih, &pMe->ah.ih, 29, 0xffffffff, ((pMe)->ah.ih.m_vPos), 10);
-  D_80059994(D_800F9E48, 7);
-  if (D_800F9E48->ExpShotgunPool)
-   func_80057DC8(D_800F9E48, &D_800F9E48->ExpShotgunPool, 1);
+  D_80059994(pCTMove, 7);
+  if (pCTMove->ExpShotgunPool)
+   func_80057DC8(pCTMove, &pCTMove->ExpShotgunPool, 1);
   else
-   func_80057DC8(D_800F9E48, &D_800F9E48->ShotgunPool, 1);
-  func_80059244(D_800F9E48, pApp, 5*(1024.0/100.0)/12, -(3.14159265358979323846/80), 1);
+   func_80057DC8(pCTMove, &pCTMove->ShotgunPool, 1);
+  func_80059244(pCTMove, pApp, 5*(1024.0/100.0)/12, -(3.14159265358979323846/80), 1);
   func_8005FCF4(pMe, 45, 1);
   (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
   func_8001E93C(pMe);
@@ -2827,14 +2828,14 @@ int func_8007B348 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_8
  }
  else
  {
-  D_800F9E48->AmmoUseCounter=0.0;
-  if (func_8005843C(D_800F9E48, 106, 1))
+  pCTMove->AmmoUseCounter=0.0;
+  if (func_8005843C(pCTMove, 106, 1))
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
   }
  }
  return 0;

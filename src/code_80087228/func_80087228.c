@@ -928,8 +928,8 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -997,7 +997,7 @@ typedef struct CGamePak_t
 } CGamePak ;
 extern void func_8000C40C(CLoad *pThis, Gfx **ppDLP) ;
 extern void func_8000D554(CSave *pThis, Gfx **ppDLP) ;
-extern void func_8000DFC4(CRequestor *pThis, Gfx **ppDLP) ;
+extern void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP) ;
 extern void func_8000E52C(CMessageBox *pThis, Gfx **ppDLP) ;
 typedef struct CCheatCode_t
 {
@@ -1017,7 +1017,7 @@ typedef struct CGiveCheatCode_t
  signed long m_Selection ;
 } CGiveCheatCode ;
 extern void func_8000F498(CCheatCode *pThis, Gfx **ppDLP) ;
-extern void func_8000F904(CGiveCheatCode *pThis, Gfx **ppDLP) ;
+extern void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP) ;
 typedef struct COption_t
 {
  signed long m_Mode ;
@@ -1064,7 +1064,7 @@ typedef struct CGInst_t
  signed long m_Selection ;
 } CGInst ;
 extern void D_800888D4(CCheat *pThis, Gfx **ppDLP) ;
-extern void func_80088F94(CGInst *pThis, Gfx **ppDLP) ;
+extern void CGInst__Draw(CGInst *pThis, Gfx **ppDLP) ;
 enum PauseSelections
 {
  PAUSE_RESUME,
@@ -1102,8 +1102,8 @@ typedef struct CPause_t
  int m_RealSelection;
 } CPause ;
 extern void func_80087228(CPause *pThis, Gfx **ppDLP) ;
-extern void func_800858A4(Gfx **ppDLP) ;
-extern void D_800859F8(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
+extern void CPause__InitPolygon(Gfx **ppDLP) ;
+extern void CPause__DrawBar(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
 typedef struct CBossVars_t
 {
  signed long m_SwitchesOn ;
@@ -1687,8 +1687,8 @@ extern int D_80084DEC(CPause *pThis);
 extern int D_80084E44(CPause *pThis);
 int D_80084DEC(CPause *pThis);
 int D_80084E44(CPause *pThis);
-void func_800858A4(Gfx **ppDLP);
-void D_800859F8(Gfx **ppDLP, float x, float y, float w, float h, float a);
+void CPause__InitPolygon(Gfx **ppDLP);
+void CPause__DrawBar(Gfx **ppDLP, float x, float y, float w, float h, float a);
 void func_80087228(CPause *pThis, Gfx **ppDLP);
 void func_80087228(CPause *pThis, Gfx **ppDLP){
  int i,
@@ -1730,14 +1730,14 @@ void func_80087228(CPause *pThis, Gfx **ppDLP){
    TITLE_HEIGHT *= 15 ;
    TITLE_HEIGHT += 4*2;
    TITLE_Y = (178 - (TITLE_HEIGHT/2));
-   func_8007F994(ppDLP) ;
-   func_8007FD68(ppDLP,
+   COnScreen__InitBoxDraw(ppDLP) ;
+   COnScreen__DrawHilightBox(ppDLP,
           ((320/2) - ((180)/2)), TITLE_Y,
           ((320/2) - ((180)/2))+(180), TITLE_Y+TITLE_HEIGHT,
           1, 0,
           0,0,0, 150 * pThis->m_Alpha) ;
-   func_800858A4(ppDLP) ;
-   D_800859F8(ppDLP, ((320/2) - ((180)/2))+8, TITLE_Y+4 +(pThis->m_RealSelection*15),
+   CPause__InitPolygon(ppDLP) ;
+   CPause__DrawBar(ppDLP, ((320/2) - ((180)/2))+8, TITLE_Y+4 +(pThis->m_RealSelection*15),
         (180)-16, 15, pThis->m_Alpha) ;
    switch ((&D_800F9F10)->m_Difficulty)
    {
@@ -1751,7 +1751,7 @@ void func_80087228(CPause *pThis, Gfx **ppDLP){
      D_800EC1B8[TITLE_DIFFICULTY] = D_800EC148 ;
      break ;
    }
-   D_800806B4(ppDLP) ;
+   COnScreen__InitFontDraw(ppDLP) ;
    D_8008092C(1.0, D_800F5F98) ;
    D_800808F8(ppDLP, 200*.9, 200*.9, 138*.9, 86*.9, 71*.9, 47*.9) ;
    yStart = TITLE_Y + 4;
@@ -1775,20 +1775,20 @@ void func_80087228(CPause *pThis, Gfx **ppDLP){
    PAUSE_HEIGHT += 48 ;
    PAUSE_HEIGHT += 6 ;
    PAUSE_Y = ((240/2) - (PAUSE_HEIGHT/2)) ;
-   func_8007F994(ppDLP) ;
-   func_8007FD68(ppDLP,
+   COnScreen__InitBoxDraw(ppDLP) ;
+   COnScreen__DrawHilightBox(ppDLP,
           ((320/2) - ((180)/2)), PAUSE_Y,
           ((320/2) - ((180)/2))+(180), PAUSE_Y+PAUSE_HEIGHT,
           1, 0,
           0,0,0, 150 * pThis->m_Alpha) ;
-   func_800858A4(ppDLP) ;
-   D_800859F8(ppDLP, ((320/2) - ((180)/2))+8, PAUSE_Y+48 +(pThis->m_RealSelection*18),
+   CPause__InitPolygon(ppDLP) ;
+   CPause__DrawBar(ppDLP, ((320/2) - ((180)/2))+8, PAUSE_Y+48 +(pThis->m_RealSelection*18),
       (180)-16, 18, pThis->m_Alpha) ;
    func_80081A10(ppDLP, (int)(255 * pThis->m_Alpha)) ;
    func_80082E64(ppDLP,
             (C16BitGraphic *)D_800E07A0,
             320/2 - (((C16BitGraphic *)D_800E07A0)->m_Width/2), PAUSE_Y+8) ;
-   D_800806B4(ppDLP) ;
+   COnScreen__InitFontDraw(ppDLP) ;
    D_8008092C(1.0, 1.0) ;
    D_800808F8(ppDLP, 200*.9, 200*.9, 138*.9, 86*.9, 71*.9, 47*.9) ;
    yStart = PAUSE_Y + 48;
@@ -1819,11 +1819,11 @@ void func_80087228(CPause *pThis, Gfx **ppDLP){
   if ((&D_800F9F10)->m_bCheatCode)
    func_8000F498(&(&D_800F9F10)->m_CheatCode, ppDLP) ;
   if ((&D_800F9F10)->m_bGiveCheatCode)
-   func_8000F904(&(&D_800F9F10)->m_GiveCheatCode, ppDLP) ;
+   CGiveCheatCode__Draw(&(&D_800F9F10)->m_GiveCheatCode, ppDLP) ;
   if ((&D_800F9F10)->m_bGInst)
-   func_80088F94(&(&D_800F9F10)->m_GInst, ppDLP) ;
+   CGInst__Draw(&(&D_800F9F10)->m_GInst, ppDLP) ;
  if ((&D_800F9F10)->m_bRequestor)
-  func_8000DFC4(&(&D_800F9F10)->m_Requestor, ppDLP) ;
+  CRequestor__Draw(&(&D_800F9F10)->m_Requestor, ppDLP) ;
  if ((&D_800F9F10)->m_bMessageBox)
   func_8000E52C(&(&D_800F9F10)->m_MessageBox, ppDLP) ;
 }

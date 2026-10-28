@@ -1619,6 +1619,7 @@ extern OSContPad D_801199C8 ;
 extern CControlState D_801199D0;
 void func_80010E7C(void);
 void func_80010E7C(void){
+ /* Convert controller buttons and calibrated stick motion into player control states. */
  sa_u16 butprev, cnt, mask;
  sa_s8 sx, sy, lsx, lsy;
  float dx, dy,

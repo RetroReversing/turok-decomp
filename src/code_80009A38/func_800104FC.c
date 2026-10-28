@@ -923,8 +923,8 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -1655,13 +1655,13 @@ void func_800104FC(CGamePak *pThis, Gfx **ppDLP){
    }
    break ;
  }
- func_8007F994(ppDLP) ;
- func_8007FD68(ppDLP,
+ COnScreen__InitBoxDraw(ppDLP) ;
+ COnScreen__DrawHilightBox(ppDLP,
         ((320/2) - ((228)/2)), ((240/2) - ((24*8)/2)),
         ((320/2) - ((228)/2))+(228), ((240/2) - ((24*8)/2))+(24*8),
         1, 0,
         50,30,30, 150 * pThis->m_Alpha) ;
- D_800806B4(ppDLP) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  D_8008092C(1.0, 1.0) ;
  func_80080B0C(ppDLP) ;
  (&D_800F9F10)->m_OnScreen.m_ShadowXOff = -4 ;

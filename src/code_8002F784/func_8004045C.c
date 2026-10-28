@@ -805,6 +805,7 @@ typedef struct CBossData_t
 } CBossData ;
 struct CCollisionInfo2_t;
 signed long func_8004045C(CGameObjectInstance *pThis, CVector3 *pvPos, signed long Length);
+/* Returns the index of the closest XZ position to the boss. */
 signed long func_8004045C(CGameObjectInstance *pThis, CVector3 *pvPos, signed long Length){
  signed long i ;
  int Chosen ;

@@ -1615,6 +1615,7 @@ extern Vp D_800BA920[2];
 void func_80038B94(CCamera *pThis, Gfx **ppDLP);
 int func_80039B98(CCamera *pThis);
 void func_80038B94(CCamera *pThis, Gfx **ppDLP){
+ /* Build the camera projection, viewport, scissor, and look-at display list commands. */
  CFrameData *pFData;
  signed short ScaleX, ScaleY ;
  signed short ScissorLeft = 0 ;

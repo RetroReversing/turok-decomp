@@ -835,6 +835,7 @@ void func_80043CF4(CGameObjectInstance *pThis, CHeadTrackInfo *pInfo,
       int TrackTarget, int CanTrackDuringTurn);
 void func_80043FFC(CGameObjectInstance *pThis);
 void func_80043FFC(CGameObjectInstance *pThis){
+ /* Select species-specific head tracking, including boss mode flags for tracking Turok. */
  switch(((pThis)->m_nTypeFlag))
  {
   case 1000:

@@ -18,8 +18,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 extern void* D_8002DC3C(CIndexedSet *pThis, void *pBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
@@ -37,7 +37,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern int D_8002D6BC(CCacheEntry *pThis, int AllocTop);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
@@ -103,16 +103,16 @@ void func_80026B98(CTextureLoader *pThis, CCacheEntry **ppceTarget){
   return;
  if ((((unsigned long)(((pThis->m_pceTextureSet)->m_rpAddress))) >> 30))
  {
-  func_8002DD28(&isTextureSet,
-              func_8002D690(pThis->m_pceTextureSet),
+  CIndexedSet__ConstructFromRawData(&isTextureSet,
+              CCacheEntry__GetData(pThis->m_pceTextureSet),
               0);
-  pFormat = (CROMTextureFormat*) D_8002DC68((&isTextureSet), (&isTextureSet)->m_pData, (0));
+  pFormat = (CROMTextureFormat*) CIndexedSet__GetBlock((&isTextureSet), (&isTextureSet)->m_pData, (0));
   switch (pFormat->m_Format)
   {
    case 0:
    case 1:
-    pbPalettes = D_8002DC68((&isTextureSet), (&isTextureSet)->m_pData, (2));
-    func_8002DD28(&isPalettes, pbPalettes, 0);
+    pbPalettes = CIndexedSet__GetBlock((&isTextureSet), (&isTextureSet)->m_pData, (2));
+    CIndexedSet__ConstructFromRawData(&isPalettes, pbPalettes, 0);
     nPalettes = (((unsigned long*) (&isPalettes)->m_pData)[0]);
     for (cPalette=0; cPalette<nPalettes; cPalette++)
     {

@@ -891,32 +891,33 @@ typedef struct CSwoosh_t
 struct CParticle_t;
 struct CCollisionInfo2_t;
 void func_800418EC(CSwoosh *pThis, CSwooshEdge *pEdge, Vtx *pVertexList);
+/* Set each swoosh edge vertex's position, color and alpha using cosine tweening. Source-assisted: fx.c:659. */
 void func_800418EC(CSwoosh *pThis, CSwooshEdge *pEdge, Vtx *pVertexList){
- signed long i ;
- float t ;
+ signed long remainingVertices ;
+ float tween ;
  CSwooshEdgeVertexInfo *pInfo = pThis->m_pInfo->m_pEdgeVertexList ;
- t = (0.5 - (func_8009E630((pEdge->m_LifeTime / pThis->m_pInfo->m_EdgeLifeTime) * D_800F2498) / 2.0)) ;
+ tween = (0.5 - (func_8009E630((pEdge->m_LifeTime / pThis->m_pInfo->m_EdgeLifeTime) * D_800F2498) / 2.0)) ;
  if (pThis->m_LifeTime <= pThis->m_pInfo->m_FadeOutTime)
-  t *= (0.5 - (func_8009E630((pThis->m_LifeTime / pThis->m_pInfo->m_FadeOutTime) * 3.14159265358979323846) / 2.0)) ;
- t = 1.0 - t ;
- i = pThis->m_pInfo->m_NoOfEdgeVertices ;
+  tween *= (0.5 - (func_8009E630((pThis->m_LifeTime / pThis->m_pInfo->m_FadeOutTime) * 3.14159265358979323846) / 2.0)) ;
+ tween = 1.0 - tween ;
+ remainingVertices = pThis->m_pInfo->m_NoOfEdgeVertices ;
  pInfo = pThis->m_pInfo->m_pEdgeVertexList ;
- while(i--)
+ while(remainingVertices--)
  {
   pVertexList->v.ob[0] = (1000.0 * (pInfo->m_Start.m_vPos.x +
-           (t * (pInfo->m_End.m_vPos.x - pInfo->m_Start.m_vPos.x)))) ;
+           (tween * (pInfo->m_End.m_vPos.x - pInfo->m_Start.m_vPos.x)))) ;
   pVertexList->v.ob[1] = (1000.0 * (pInfo->m_Start.m_vPos.y +
-           (t * (pInfo->m_End.m_vPos.y - pInfo->m_Start.m_vPos.y)))) ;
+           (tween * (pInfo->m_End.m_vPos.y - pInfo->m_Start.m_vPos.y)))) ;
   pVertexList->v.ob[2] = (1000.0 * (pInfo->m_Start.m_vPos.z +
-           (t * (pInfo->m_End.m_vPos.z - pInfo->m_Start.m_vPos.z)))) ;
+           (tween * (pInfo->m_End.m_vPos.z - pInfo->m_Start.m_vPos.z)))) ;
   pVertexList->v.cn[0] = pInfo->m_Start.m_Color.Red +
-           (t * (pInfo->m_End.m_Color.Red - pInfo->m_Start.m_Color.Red)) ;
+           (tween * (pInfo->m_End.m_Color.Red - pInfo->m_Start.m_Color.Red)) ;
   pVertexList->v.cn[1] = pInfo->m_Start.m_Color.Green +
-           (t * (pInfo->m_End.m_Color.Green - pInfo->m_Start.m_Color.Green)) ;
+           (tween * (pInfo->m_End.m_Color.Green - pInfo->m_Start.m_Color.Green)) ;
   pVertexList->v.cn[2] = pInfo->m_Start.m_Color.Blue +
-           (t * (pInfo->m_End.m_Color.Blue - pInfo->m_Start.m_Color.Blue)) ;
+           (tween * (pInfo->m_End.m_Color.Blue - pInfo->m_Start.m_Color.Blue)) ;
   pVertexList->v.cn[3] = pInfo->m_Start.m_Alpha +
-           (t * (pInfo->m_End.m_Alpha - pInfo->m_Start.m_Alpha)) ;
+           (tween * (pInfo->m_End.m_Alpha - pInfo->m_Start.m_Alpha)) ;
   pInfo++ ;
   pVertexList++ ;
  }

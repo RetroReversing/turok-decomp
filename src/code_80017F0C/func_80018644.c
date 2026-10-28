@@ -328,7 +328,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 extern ROMAddress* D_8002DBF8(CIndexedSet *pThis,
                                               ROMAddress *rpBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
@@ -347,7 +347,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -1649,8 +1649,8 @@ void func_80018644(CGameObjectInstance *pThis){
   pThis->m_asCurrent.m_pceAnim = 0;
   pThis->m_asCurrent.m_nAnim = pThis->m_nDesiredAnim;
   ((pThis)->m_dwFlags &= ~(1 << 17));
-  func_8002DD28(&isAnimsIndex,
-               func_8002D690(pThis->m_pceAnimsIndex),
+  CIndexedSet__ConstructFromRawData(&isAnimsIndex,
+               CCacheEntry__GetData(pThis->m_pceAnimsIndex),
                0);
   rpAnimAddress = D_8002DBF8(&isAnimsIndex,
                         pThis->m_rpAnims,

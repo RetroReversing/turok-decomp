@@ -1629,18 +1629,19 @@ extern Mtx D_800F9E90;
 void func_800016A4(CEngineApp *pThis);
 void func_80001B74();
 void func_800016A4(CEngineApp *pThis){
- CMtxF mfRot, mfFlipZ;
- unsigned char *pTest, *pSig;
- unsigned char signature[8] = "TurokRBC";
- static unsigned char testarea[8];
+ CMtxF rotationMatrix, coordinateScaleMatrix;
+ /* Detect a first launch and initialize the engine's persistent startup state. */
+ unsigned char *storedSignaturePtr, *expectedSignaturePtr;
+ unsigned char expectedSignature[8] = "TurokRBC";
+ static unsigned char storedSignature[8];
  pThis->m_FirstRun = 0;
- pTest = testarea;
- pSig = signature;
- while (*pSig)
+ storedSignaturePtr = storedSignature;
+ expectedSignaturePtr = expectedSignature;
+ while (*expectedSignaturePtr)
  {
-  if (*pTest != *pSig)
+  if (*storedSignaturePtr != *expectedSignaturePtr)
    pThis->m_FirstRun = 1;
-  *pTest++ = *pSig++;
+  *storedSignaturePtr++ = *expectedSignaturePtr++;
  }
  if (pThis->m_FirstRun)
   func_80093D48(&pThis->m_Options);
@@ -1654,9 +1655,9 @@ void func_800016A4(CEngineApp *pThis){
  pThis->m_hMusic = -1;
  pThis->m_MusicVolume = 0.0;
  pThis->m_SFXVolume = 0.0;
- func_80012EFC(mfRot, -3.14159265358979323846/2) ;
- D_8001551C(mfFlipZ, 1, 1, -1);
- func_80013224(D_800F9E50, mfRot, mfFlipZ);
+ func_80012EFC(rotationMatrix, -3.14159265358979323846/2) ;
+ D_8001551C(coordinateScaleMatrix, 1, 1, -1);
+ func_80013224(D_800F9E50, rotationMatrix, coordinateScaleMatrix);
  func_80096478(pThis);
  func_8009DF18(&D_800F9E90);
  func_80001B74();

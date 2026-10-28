@@ -539,8 +539,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -1565,6 +1565,7 @@ int func_80031974(CScene *pThis,
 int func_80031974(CScene *pThis,
           int nSoundType, float Volume,
           void *pSource, CVector3 *pvSourcePos, int SndFlags){
+ /* Find a sound effect's elements, reserve one ID atomically, and play each element. */
  CIndexedSet isSoundEffects,
        isSounds;
  CUnindexedSet usTypes,
@@ -1590,20 +1591,20 @@ int func_80031974(CScene *pThis,
  {
   return -1;
  }
- func_8002DD28(&isSoundEffects,
+ CIndexedSet__ConstructFromRawData(&isSoundEffects,
              ((pThis->m_pceSoundEffects)->m_pData),
              0);
- pbTypes = D_8002DC68((&isSoundEffects), (&isSoundEffects)->m_pData, (0));
+ pbTypes = CIndexedSet__GetBlock((&isSoundEffects), (&isSoundEffects)->m_pData, (0));
  func_8002DA8C(&usTypes, pbTypes, 0);
  nSounds = ( (unsigned long) (((unsigned long*) (&usTypes)->m_pData)[1]) );
  types = (unsigned long*) ( (void*) ( ((unsigned char*)((&usTypes)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nIndex = func_80083BF4(types, nSounds, nSoundType);
  if (nIndex != -1)
  {
-  pbSounds = D_8002DC68((&isSoundEffects), (&isSoundEffects)->m_pData, (1));
-  func_8002DD28(&isSounds, pbSounds, 0);
+  pbSounds = CIndexedSet__GetBlock((&isSoundEffects), (&isSoundEffects)->m_pData, (1));
+  CIndexedSet__ConstructFromRawData(&isSounds, pbSounds, 0);
                                                           ;
-  pbSound = D_8002DC68((&isSounds), (&isSounds)->m_pData, (nIndex));
+  pbSound = CIndexedSet__GetBlock((&isSounds), (&isSounds)->m_pData, (nIndex));
   func_8002DA8C(&usSound, pbSound, 0);
   nElements = ( (unsigned long) (((unsigned long*) (&usSound)->m_pData)[1]) );
   elements = (CROMSoundElement*) ( (void*) ( ((unsigned char*)((&usSound)->m_pData)) + (2*sizeof(unsigned long)) ) );

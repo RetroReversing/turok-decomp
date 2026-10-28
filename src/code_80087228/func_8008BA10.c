@@ -27,7 +27,7 @@ typedef struct CROMSoundElement_t
 struct CROMSoundElement_t;
 extern signed short func_80089BF8(signed long VirtualHandle, CVector3 *vPos, int flags);
 extern int func_8008AD08(signed long VirtualHandle, signed long HandleType);
-extern void func_8008ADD8(signed long channel, float X, float Y, float Z, int flags);
+extern void update_spatial_sound(signed long channel, float X, float Y, float Z, int flags);
 extern signed long func_80089858(CROMSoundElement *pElement,
          void *pInstance, CVector3 *vPos,
          float Volume, float Pitch);
@@ -74,7 +74,7 @@ void func_8008BA10(CROMSoundElement *pElement,
   VecPos.y = vPos->y;
   VecPos.z = vPos->z;
   func_8008BC74(cfxnum, &VecPos, SndFlags);
-  func_8008ADD8(channel, VecPos.x, VecPos.y, VecPos.z, 0);
+  update_spatial_sound(channel, VecPos.x, VecPos.y, VecPos.z, 0);
   func_80089BF8(handle, &VecPos, 0);
  }
 }

@@ -928,8 +928,8 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -1089,8 +1089,8 @@ typedef struct CPause_t
  signed long m_Selection ;
  int m_RealSelection;
 } CPause ;
-extern void func_800858A4(Gfx **ppDLP) ;
-extern void D_800859F8(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
+extern void CPause__InitPolygon(Gfx **ppDLP) ;
+extern void CPause__DrawBar(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
 typedef struct CBossVars_t
 {
  signed long m_SwitchesOn ;
@@ -1704,8 +1704,8 @@ void func_80094170(COptions *pThis, Gfx **ppDLP){
  {
   if (pThis->m_Alpha)
   {
-   func_8007F994(ppDLP) ;
-   func_8007FD68(ppDLP,
+   COnScreen__InitBoxDraw(ppDLP) ;
+   COnScreen__DrawHilightBox(ppDLP,
         ((320/2) - ((208)/2)), ((240/2) - ((210)/2)),
         ((320/2) - ((208)/2))+(208), ((240/2) - ((210)/2))+(210),
         1, 0,
@@ -1714,10 +1714,10 @@ void func_80094170(COptions *pThis, Gfx **ppDLP){
    i = 0;
    while (i!=pThis->m_Selection)
     y += D_800ED84C[i++].Spacing ;
-   func_800858A4(ppDLP) ;
-   D_800859F8(ppDLP, ((320/2) - ((208)/2))+8, y-1,
+   CPause__InitPolygon(ppDLP) ;
+   CPause__DrawBar(ppDLP, ((320/2) - ((208)/2))+8, y-1,
       (208)-16, 12, pThis->m_Alpha) ;
-   D_800806B4(ppDLP) ;
+   COnScreen__InitFontDraw(ppDLP) ;
    if (pThis->m_RHControl)
     D_800ED84C[OPTIONS_CONTROL].String = D_800ED7BC ;
    else

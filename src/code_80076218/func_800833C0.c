@@ -1626,8 +1626,8 @@ extern sa_u64 dram_stack[];
 extern float D_800B6B00;
 extern CEngineApp D_80106000;
 struct CCollisionInfo2_t;
-extern void D_800806B4(Gfx **ppDLP) ;
-void D_800806B4(Gfx **ppDLP);
+extern void COnScreen__InitFontDraw(Gfx **ppDLP) ;
+void COnScreen__InitFontDraw(Gfx **ppDLP);
 void D_8008092C(float XScale, float YScale);
 void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -1636,6 +1636,7 @@ void D_800814AC(Gfx **ppDLP,
 extern int D_80128FA0 ;
 extern t_GameText D_80128FA8[8] ;
 void func_800833C0(Gfx **ppDLP);
+/* Animate and draw queued game text, moving it up in cinema mode. */
 void func_800833C0(Gfx **ppDLP){
  int i, index ;
  int y ;
@@ -1645,7 +1646,7 @@ void func_800833C0(Gfx **ppDLP){
  else
   y = 200 - (8*18);
  index = D_80128FA0 ;
- D_800806B4(ppDLP) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  D_800239C0(ppDLP, 21);
  for (i=0; i<8; i++)
  {

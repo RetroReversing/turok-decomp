@@ -808,6 +808,7 @@ typedef struct CBossData_t
 extern float D_800B6B00;
 struct CCollisionInfo2_t;
 void func_8008DF58(CGameObjectInstance *pThis);
+/* Advance a timed action through its on and off phases and repeats. */
 void func_8008DF58(CGameObjectInstance *pThis){
  if (!(pThis->m_AI.m_dwStatusFlags & (1<<18)))
  {

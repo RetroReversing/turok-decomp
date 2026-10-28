@@ -1611,6 +1611,7 @@ extern CCameraTrackInfo D_800BAEDC ;
 extern CCameraTrackInfo D_800BAEFC ;
 void func_8003CE10(CCamera *pThis);
 void func_8003CE10(CCamera *pThis){
+ /* Play Turok's victory idle and orbit the Campaigner defeat camera until fade-out. */
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  func_800329E0(&(&D_800F9F10)->m_Scene, pTurok,
              0, 2817) ;

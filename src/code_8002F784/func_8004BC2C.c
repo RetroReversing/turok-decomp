@@ -863,6 +863,7 @@ typedef struct CHumvee_t
  CFireWeaponState m_RocketsState ;
 } CHumvee ;
 void func_8004BC2C(CGameObjectInstance *pThis, CHumvee *pHumvee);
+/* Updates Humvee wheel spin and steering from its movement and health. */
 void func_8004BC2C(CGameObjectInstance *pThis, CHumvee *pHumvee){
  float Speed, VelAngle, Diff ;
  VelAngle = func_80013A24(&pHumvee->m_Boss.m_LastVel) ;

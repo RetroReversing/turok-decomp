@@ -1639,6 +1639,7 @@ extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 int func_8003AEC0(CCamera *pThis, CGameObjectInstance *pInst, float Radius);
 int func_8003AEC0(CCamera *pThis, CGameObjectInstance *pInst, float Radius){
+ /* Sample nearby collision-free positions in the same region set and move the instance to their average. */
  CROMRegionSet *pInstRegionSet = func_8002E438(&(&D_800F9F10)->m_Scene, pInst->ah.ih.m_pCurrentRegion) ;
  CGameRegion *pRegion ;
  CVector3 vPos, vOutPos ;

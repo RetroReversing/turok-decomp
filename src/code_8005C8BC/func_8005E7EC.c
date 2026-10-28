@@ -1133,7 +1133,7 @@ typedef struct CBossData_t
  float m_ModeMisc1 ;
 } CBossData ;
 extern float D_800B6B00;
-extern CTControl *D_800F9E44;
+extern CTControl *pCTControl;
 struct CCollisionInfo2_t;
 typedef struct
 {
@@ -1346,10 +1346,11 @@ typedef struct
  float InMenuTimer ;
  CCollisionInfo2 *pLastCI;
 } CTMove;
-extern void func_8005E7EC (CTMove *pThis, CTControl *D_800F9E44);
-void func_8005E7EC(CTMove *pThis, CTControl *D_800F9E44);
-void func_8005E7EC(CTMove *pThis, CTControl *D_800F9E44){
- if ((func_80051E74(D_800F9E44)) && (pThis->InMenuTimer == 0.0))
+extern void func_8005E7EC (CTMove *pThis, CTControl *pCTControl);
+void func_8005E7EC(CTMove *pThis, CTControl *pCTControl);
+/* Toggle the map on a tap, or scroll it while the map button is held. */
+void func_8005E7EC(CTMove *pThis, CTControl *pCTControl){
+ if ((func_80051E74(pCTControl)) && (pThis->InMenuTimer == 0.0))
  {
   pThis->MapButtonTimer += D_800B6B00*(1.0/15);
   if (pThis->MapButtonTimer >= 0.3)
@@ -1386,19 +1387,19 @@ void func_8005E7EC(CTMove *pThis, CTControl *D_800F9E44){
  }
  if (pThis->MapScrolling)
  {
-  if (func_80051874(D_800F9E44))
+  if (func_80051874(pCTControl))
   {
    pThis->RealMapOffsetX += 15*(1024.0/100.0) * D_800B6B00;
   }
-  else if (func_800518A4(D_800F9E44))
+  else if (func_800518A4(pCTControl))
   {
    pThis->RealMapOffsetX -= 15*(1024.0/100.0) * D_800B6B00;
   }
-  if (func_800518D4(D_800F9E44))
+  if (func_800518D4(pCTControl))
   {
    pThis->RealMapOffsetZ += 15*(1024.0/100.0) * D_800B6B00;
   }
-  else if (func_80051904(D_800F9E44))
+  else if (func_80051904(pCTControl))
   {
    pThis->RealMapOffsetZ -= 15*(1024.0/100.0) * D_800B6B00;
   }

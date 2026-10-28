@@ -1644,6 +1644,7 @@ void func_8005F3C0(CGameObjectInstance *pAI,
          int DontHurtBigCreatures,
          float ForceMultiplier,
          int AllowDamageToDevices){
+ /* Apply radius-based explosion damage and knockback to an AI instance. */
  float rad2, damage, hits;
  CVector3 vAIPos,
       vExp;

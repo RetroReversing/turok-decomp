@@ -1855,16 +1855,17 @@ enum BossLevels
 extern char D_800BAD90[1] ;
 void func_8003D478(CCamera *pThis);
 void func_8003D478(CCamera *pThis){
- int keylev ;
+ /* Show the key pickup cinematic and choose its exit warp when it finishes. */
+ int keyLevel ;
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  func_800329E0(&(&D_800F9F10)->m_Scene, pTurok,
              0, 2810) ;
  func_8005FCF4(pTurok, 2810, 1) ;
  if (D_80128C20.LastKeyTexture >=0)
-  keylev = D_80128C20.LastKeyTexture+2 ;
+  keyLevel = D_80128C20.LastKeyTexture+2 ;
  else
-  keylev = 8 ;
- D_800BAD90[6] = keylev | 0x30 ;
+  keyLevel = 8 ;
+ D_800BAD90[6] = keyLevel | 0x30 ;
  func_80083288(D_800BAD90, 100) ;
  pThis->m_Time += D_800B6B00 ;
  pThis->m_View.m_vEye.x = pTurok->ah.ih.m_vPos.x - ((6*(1024.0/100.0))*func_8009E7B0(pTurok->m_RotY)) ;

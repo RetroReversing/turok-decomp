@@ -1992,7 +1992,7 @@ typedef struct
 } t_AudioWorld;
 extern signed short func_80089BF8(signed long VirtualHandle, CVector3 *vPos, int flags);
 extern signed short func_80089FA0(signed short cfxnum, signed short sfxnum, signed short Priority, CVector3 *vPos, unsigned short Flags);
-extern void func_8008ADD8(signed long channel, float X, float Y, float Z, int flags);
+extern void update_spatial_sound(signed long channel, float X, float Y, float Z, int flags);
 extern signed short func_8008A3B8(signed long VirtualHandle);
 extern signed long func_80089858(CROMSoundElement *pElement,
          void *pInstance, CVector3 *vPos,
@@ -2225,10 +2225,11 @@ signed short func_80089BF8(signed long VirtualHandle, CVector3 *vPos, int flags)
 signed short func_80089FA0(signed short cfxnum, signed short sfxnum, signed short Priority, CVector3 *vPos, unsigned short Flags);
 signed short func_8008A3B8(signed long VirtualHandle);
 int func_8008AD54(void *pHandle);
-void func_8008ADD8(signed long channel, float X, float Y, float Z, int flags);
+void update_spatial_sound(signed long channel, float X, float Y, float Z, int flags);
 signed long func_80089858(CROMSoundElement *pElement,
          void *pInstance, CVector3 *vPos,
          float Volume, float Pitch){
+ /* Start or refresh an environmental sound, applying distance, occlusion and underwater volume. */
  t_SndObject *sndptr;
  ALSndId *idPtr;
  ALSound *newsndptr;
@@ -2288,14 +2289,14 @@ signed long func_80089858(CROMSoundElement *pElement,
   func_8008C15C(Channel, 0);
   func_8008C250(pElement, Channel, 0);
   func_8008C470(pElement, Channel);
-  func_8008ADD8(Channel, vPos->x, vPos->y, vPos->z, 0);
+  update_spatial_sound(Channel, vPos->x, vPos->y, vPos->z, 0);
   func_80089BF8(pChannel->VirtualHandle, vPos, 0);
  }
  else
  {
   pChannel = &D_80129520.VoiceChannels[Channel];
   sndptr = &D_80129520.VoiceChannels[Channel].theSFX;
-  func_8008ADD8(Channel, vPos->x, vPos->y, vPos->z, 0);
+  update_spatial_sound(Channel, vPos->x, vPos->y, vPos->z, 0);
   if(pChannel->ChannelFlags & (1 << 9))
   {
    pApp = (&D_800F9F10);

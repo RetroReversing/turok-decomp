@@ -1024,6 +1024,7 @@ int func_80058708 ( CTMove *pThis, int weapon );
 void func_80058B6C(CTMove *pThis, int ammo, int next);
 void func_8005ED68(CTMove *pThis);
 void func_80058B6C(CTMove *pThis, int ammo, int next){
+ /* Cycle through owned weapons, optionally requiring ammo, and fall back to the knife. */
  int cnt,
    idx,
    id;

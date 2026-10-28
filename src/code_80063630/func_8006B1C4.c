@@ -1454,6 +1454,7 @@ void func_8005F840(CInstanceHdr *pThis, int nType, CVector3 vPos);
 void D_80060464(CInstanceHdr *pThis, int nType, CVector3 vPos, float MaxYRot);
 int D_8005EED0(CInstanceHdr *pThis, int nSound, float Volume, int SndFlags);
 void func_8006B1C4 (CInstanceHdr *pThis, CVector3 vPos, float Value ){
+ /* Spawn weapon-round particles and sounds according to the attacker's type and event value. */
                                                                            ;
  switch (func_8001D398(pThis))
  {

@@ -1822,6 +1822,7 @@ int func_8004836C(CGameObjectInstance *pThis, CTRex *pTRex);
 void func_80048400(CGameObjectInstance *pThis, CTRex *pTRex);
 void func_80048400(CGameObjectInstance *pThis, CTRex *pTRex)
 {
+  /* Set the T-Rex's movement target and facing angles for its current attack. */
   CGameObjectInstance *pTurok = (&D_800F9F10)->m_Scene.m_pPlayer;
   float rot;
   CVector3 vLookPos;

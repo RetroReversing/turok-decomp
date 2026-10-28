@@ -250,6 +250,7 @@ extern unsigned char D_800CA2E0[] ;
 extern unsigned char D_800CA4D8[] ;
 extern void func_8008000C(Gfx **ppDLP, sa_s16 X, sa_s16 Y, float pos, float opacity) ;
 void func_8008000C(Gfx **ppDLP, sa_s16 X, sa_s16 Y, float pos, float opacity);
+/* Draw a nine-pixel-high gradient status bar filled to the requested fraction. */
 void func_8008000C(Gfx **ppDLP, sa_s16 X, sa_s16 Y, float pos, float opacity){
  sa_s16 width = 108 * pos ;
  if ((width == 0) && (pos !=0.0))

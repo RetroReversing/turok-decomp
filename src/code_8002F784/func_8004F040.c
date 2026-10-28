@@ -1591,6 +1591,7 @@ extern float D_800BDA00[7] ;
 signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode);
 void func_8004F040(CGameObjectInstance *pThis, CCampaigner *pCampaigner);
 void func_8004F040(CGameObjectInstance *pThis, CCampaigner *pCampaigner){
+ /* Periodically place explosions around the Campaigner and return to idle after the animation. */
  float Dist, Rot ;
  CVector3 vDest, vOutPos ;
  pCampaigner->m_Boss.m_MoveTime -= D_800B6B00 ;

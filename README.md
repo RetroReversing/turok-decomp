@@ -4,17 +4,17 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **1,798 functions in C**, verified against the original machine code after linking.
-- **363,040 matched bytes**, about **57.992% of the 626,012 bytes identified as candidate code**.
-- **571 open candidates** and **35 candidates classified as assembly** in the analysis database.
-- **2,405 functions in the standalone export**, including a startup function outside the 2,404-candidate analysis denominator.
-- A full build with all 1,798 C selections reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program. Other functions remain in assembly regenerated from the user's ROM.
+- **1,965 functions in C**, each recompiled and verified against the original machine code after linking.
+- **396,464 matched bytes**, about **63.332% of the 626,012 bytes identified as candidate code**.
+- The live analysis has **382 open candidates** and **59 candidates set aside as assembly** (2,406 classified entries, including padding).
+- The standalone export has **2,407 build entries**, including **two padding labels**; 442 entries use assembly. Padding is not recovered functionality or additional game code.
+- A full build with all 1,965 C selections and **zero automatic fallbacks** reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
 ## Build
 
-Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested tool revision is `72cac6c9df215754aae698283cafc68b3ed26bb3`, from [tool PR #3](https://github.com/RetroReversing/decompdecomp/pull/3).
+Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested tool revision is `4936c84`, with the compiler-consistency repair documented in [the current checkpoint](docs/SOURCE_ASSISTED_CHECKPOINT.md). The generated build script includes the constant-pool address fix; the updated app also guards compiler changes.
 
 Clone this project and install that tool revision into a local environment:
 
@@ -22,7 +22,7 @@ Clone this project and install that tool revision into a local environment:
 git clone https://github.com/RetroReversing/turok-decomp.git
 cd turok-decomp
 uv venv --python 3.12
-uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/RetroReversing/decompdecomp.git@72cac6c9df215754aae698283cafc68b3ed26bb3"
+uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/RetroReversing/decompdecomp.git@4936c84"
 .venv/bin/decomp setup
 ```
 
@@ -43,7 +43,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (1798 of 2405 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (1965 of 2407 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.
@@ -63,7 +63,7 @@ Keep both hashes fixed. `baserom.z64` is the expanded **analysis image**; `baser
 
 ## Working on the decompilation
 
-- Recovered C is under `src/<segment>/<address>.c`; type context is in `include/common.h`.
+- Recovered C is under `src/<segment>/<function>.c`; type context is in `include/common.h`.
 - Read the target under locally generated `asm/nonmatchings/`, propose a small C change, and compare it with `python build.py check FUNCTION_NAME` in the configured environment.
 - `build.py check` records a match; run the complete build to verify that the selected C is included and the original cartridge still matches.
 - `build.json` records selected C, original addresses, compiler settings, and compressed-code mappings. `objdiff.json` supports per-function inspection.

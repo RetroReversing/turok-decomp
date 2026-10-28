@@ -976,6 +976,7 @@ struct CCollisionInfo2_t;
 extern void func_80031630(CScene *pThis, Gfx **ppDLP, CUnindexedSet *pusInstances);
 void func_80031630(CScene *pThis, Gfx **ppDLP, CUnindexedSet *pusInstances);
 void func_80031630(CScene *pThis, Gfx **ppDLP, CUnindexedSet *pusInstances){
+ /* Draw active animated objects, deferring transparent ones and updating culled animations. */
  int cInstance, nInstances;
  CGameObjectInstance *instances, *pInst;
                                      ;

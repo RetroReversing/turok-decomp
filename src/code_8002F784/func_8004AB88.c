@@ -34,7 +34,8 @@ extern f64 D_800F2C28;
 extern f64 D_800F2C30;
 extern s32 D_80128ED4;
 
-void func_8004AB88(s32 arg0, void *arg1) {
+void func_8004AB88(s32 controller, void *motion) {
+    /* Select a movement state from vertical and forward speed bands. */
     f32 temp_fv1;
     f32 sp18;
     f32 sp1C;
@@ -47,26 +48,26 @@ void func_8004AB88(s32 arg0, void *arg1) {
     register f32 temp_fv1_2;
     f64 temp_fv0_2;
 
-    temp_fv1 = M2C_FIELD(arg1, f32 *, 0x114);
+    temp_fv1 = M2C_FIELD(motion, f32 *, 0x114);
     if (D_80128ED4) {
         sp18 = D_800F2BC4;
     } else {
         sp18 = D_800F2BC8;
     }
-    temp_fv0 = M2C_FIELD(arg1, f32 *, 0x124);
-    if ((D_800F2BD0 < (f64) temp_fv0) || (M2C_FIELD(arg1, s32 *, 0x34) & 0x200)) {
+    temp_fv0 = M2C_FIELD(motion, f32 *, 0x124);
+    if ((D_800F2BD0 < (f64) temp_fv0) || (M2C_FIELD(motion, s32 *, 0x34) & 0x200)) {
         sp1C = temp_fv1;
-        if (func_8004A7E8(arg0) == 0) {
-            if (M2C_FIELD(arg1, s32 *, 0x20) != 0xE) {
+        if (func_8004A7E8(controller) == 0) {
+            if (M2C_FIELD(motion, s32 *, 0x20) != 0xE) {
                 sp1C = temp_fv1;
                 temp_fv0_2 = (f64) temp_fv1;
-                func_8004016C(arg0, arg1, 0x3E567750, temp_fv1);
+                func_8004016C(controller, motion, 0x3E567750, temp_fv1);
                 if (temp_fv0_2 < D_800F2BD8) {
-                    M2C_FIELD(arg1, s32 *, (unsigned)0x20) = 0xE;
+                    M2C_FIELD(motion, s32 *, (unsigned)0x20) = 0xE;
                 } else if (temp_fv0_2 < D_800F2BE0) {
-                    M2C_FIELD(arg1, s32 *, 0x20) = 0xF;
+                    M2C_FIELD(motion, s32 *, 0x20) = 0xF;
                 } else if (D_800F2BE8 < temp_fv0_2) {
-                    M2C_FIELD(arg1, s32 *, 0x20) = (unsigned short)0x10;
+                    M2C_FIELD(motion, s32 *, 0x20) = (unsigned short)0x10;
                 }
             }
             if (temp_fv1 < 0.0f) {
@@ -75,22 +76,22 @@ void func_8004AB88(s32 arg0, void *arg1) {
                 var_fv0 = temp_fv1;
             }
             if ((f64) var_fv0 <= D_800F2BF0) {
-                M2C_FIELD(arg1, s32 *, 0x20) = 0xD;
+                M2C_FIELD(motion, s32 *, 0x20) = 0xD;
             }
         }
     } else if (sp18 < temp_fv0) {
         register sp1C = temp_fv1;
-        if (func_8004A7E8(arg0) == 0) {
-            if (M2C_FIELD(arg1, s32 *, 0x20) != 0xA) {
+        if (func_8004A7E8(controller) == 0) {
+            if (M2C_FIELD(motion, s32 *, 0x20) != 0xA) {
                 sp1C = temp_fv1;
                 temp_fv0_3 = (f64) temp_fv1;
-                func_8004016C(arg0, arg1, 0x3DD67750, temp_fv1);
+                func_8004016C(controller, motion, 0x3DD67750, temp_fv1);
                 if (temp_fv0_3 < D_800F2BF8) {
-                    M2C_FIELD(arg1, s32 *, 0x20) = 0xA;
+                    M2C_FIELD(motion, s32 *, 0x20) = 0xA;
                 } else if (temp_fv0_3 < D_800F2C00) {
-                    M2C_FIELD(arg1, s32 *, 0x20) = 0xB;
+                    M2C_FIELD(motion, s32 *, 0x20) = 0xB;
                 } else if (D_800F2C08 < temp_fv0_3) {
-                    M2C_FIELD(arg1, s32 *, 0x20) = 0xC;
+                    M2C_FIELD(motion, s32 *, 0x20) = 0xC;
                 }
             }
             if (temp_fv1 < 0.0f) {
@@ -99,20 +100,20 @@ void func_8004AB88(s32 arg0, void *arg1) {
                 var_fv0_2 = temp_fv1;
             }
             if ((f64) var_fv0_2 <= D_800F2C10) {
-                M2C_FIELD((u32)arg1, s32 *, 0x20) = 9;
+                M2C_FIELD((u32)motion, s32 *, 0x20) = 9;
             }
         }
     }
-    if (M2C_FIELD(arg1, f32 *, 0x124) <= sp18) {
-        temp_fv1_2 = M2C_FIELD(arg1, f32 *, 0x110);
-        if (M2C_FIELD(arg1, s32 *, 0x20) != 5) {
+    if (M2C_FIELD(motion, f32 *, 0x124) <= sp18) {
+        temp_fv1_2 = M2C_FIELD(motion, f32 *, 0x110);
+        if (M2C_FIELD(motion, s32 *, 0x20) != 5) {
             temp_fv0_4 = (f64) temp_fv1_2;
             if (temp_fv0_4 < D_800F2C18) {
-                M2C_FIELD(arg1, s32 *, 0x20) = 5;
+                M2C_FIELD(motion, s32 *, 0x20) = 5;
             } else if (temp_fv0_4 < D_800F2C20) {
-                M2C_FIELD(arg1, s32 *, 0x20) = 6;
+                M2C_FIELD(motion, s32 *, 0x20) = 6;
             } else if (temp_fv0_4 > D_800F2C28) {
-                M2C_FIELD(arg1, s32 *, 0x20) = 7;
+                M2C_FIELD(motion, s32 *, 0x20) = 7;
             }
         }
         if (temp_fv1_2 < 0.0f) {
@@ -121,9 +122,9 @@ void func_8004AB88(s32 arg0, void *arg1) {
             var_fv0_3 = temp_fv1_2;
         }
         if ((f64) var_fv0_3 <= D_800F2C30) {
-            M2C_FIELD(arg1, s32 *, 0x20) = 4;
-            if (M2C_FIELD(arg1, s16 *, 0x108) != 0) {
-                func_8004B024(arg0, arg1);
+            M2C_FIELD(motion, s32 *, 0x20) = 4;
+            if (M2C_FIELD(motion, s16 *, 0x108) != 0) {
+                func_8004B024(controller, motion);
             }
         }
     }

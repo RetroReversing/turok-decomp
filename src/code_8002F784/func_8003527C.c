@@ -1613,6 +1613,7 @@ extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 extern void func_8003505C(CScene *pThis, CCacheEntry **ppceTarget);
+/* Initializes a scene and requests its cartridge index from the cache. */
 void func_8003527C(CScene *pThis, int nWarpID);
 void func_8003505C(CScene *pThis, CCacheEntry **ppceTarget);
 void func_8003527C(CScene *pThis, int nWarpID){

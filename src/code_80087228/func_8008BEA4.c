@@ -463,6 +463,7 @@ extern signed short func_80089FA0(signed short cfxnum, signed short sfxnum, sign
 extern t_AudioWorld D_80129520;
 extern signed long func_8008BEA4(CROMSoundElement *pElement, int cfxnum, int cfxhandle, CVector3 *vPos);
 signed long func_8008BEA4(CROMSoundElement *pElement, int cfxnum, int cfxhandle, CVector3 *vPos);
+/* Allocates a voice for a composite sound element and initializes its channel state. */
 signed long func_8008BEA4(CROMSoundElement *pElement, int cfxnum, int cfxhandle, CVector3 *vPos){
  static int count;
  t_SndObject *sndptr;

@@ -918,6 +918,7 @@ typedef struct CBossData_t
 struct CCollisionInfo2_t;
 signed long func_800402A0(CGameObjectInstance *pThis, CBoss *pBoss, CFlinchInfo *pInfo, CParticle *pParticle);
 float func_80040CB0(float Phi, float Theta);
+/* Selects a boss flinch mode from the particle impact direction and height. */
 signed long func_800402A0(CGameObjectInstance *pThis, CBoss *pBoss, CFlinchInfo *pInfo, CParticle *pParticle)
 {
   float VelAngle;

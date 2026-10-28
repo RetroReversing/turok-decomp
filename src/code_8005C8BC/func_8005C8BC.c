@@ -1814,6 +1814,7 @@ typedef struct
 extern void func_8005C8BC (CTMove *pThis, CEngineApp *pApp);
 void func_8005C8BC(CTMove *pThis, CEngineApp *pApp);
 void func_8005C8BC(CTMove *pThis, CEngineApp *pApp){
+ /* Drain tank oxygen underwater, then apply drowning damage while bypassing armor. */
  CGameObjectInstance *pIns;
  float diff;
  int hits;

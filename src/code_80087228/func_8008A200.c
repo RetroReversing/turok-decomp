@@ -477,6 +477,7 @@ signed short func_80089FA0(signed short cfxnum, signed short sfxnum, signed shor
 void func_8008A200();
 t_WaitQue *func_8008B818(t_WaitQue *Entry);
 void func_8008B838(t_WaitQue *Queue, t_WaitQue *Entry);
+/* Starts queued sound effects on available voices and expires old requests. */
 void func_8008A200(){
  signed short NextVoice;
  ALSndId *idPtr;

@@ -2147,7 +2147,8 @@ extern void func_8005AEDC (CTMove *pThis);
 extern CVector3 func_8005DDE8 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 void func_8005AEDC(CTMove *pThis);
 CVector3 func_8005DDE8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_8005DDE8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos){
+CVector3 func_8005DDE8(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos){
+ /* Adjust climbing movement for left or right sidesteps and ease to a stop. */
  float dm,
         ressl, ressr,
         sinSideY, cosSideY;
@@ -2156,10 +2157,10 @@ CVector3 func_8005DDE8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
  if (pIns == ((void*)0)) return vDesiredPos;
  sinSideY = func_8009E7B0(pIns->m_RotY - D_800F3C18);
  cosSideY = func_8009E630(pIns->m_RotY - 3.14159265358979323846/2);
- ressr = func_80051B14(D_800F9E44);
+ ressr = func_80051B14(pCTControl);
  if ( (ressr < 0)
-    && (!func_80051A84(D_800F9E44))
-    && (!func_80051AB4(D_800F9E44))
+    && (!func_80051A84(pCTControl))
+    && (!func_80051AB4(pCTControl))
     && ((((pThis->MoveSpeed) < 0) ? -(pThis->MoveSpeed) : (pThis->MoveSpeed)) <= 0.2) )
  {
   dm = (0.5*(1024.0/100.0)) - pThis->SideStepSpeed;
@@ -2171,10 +2172,10 @@ CVector3 func_8005DDE8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
   pThis->ClimbSideStepLookAng = ((65)*(3.14159265358979323846/180));
   pThis->ClimbSideStep = 1;
  }
- ressl = func_80051AE4(D_800F9E44);
+ ressl = func_80051AE4(pCTControl);
  if ( (ressl < 0)
-    && (!func_80051A84(D_800F9E44))
-    && (!func_80051AB4(D_800F9E44))
+    && (!func_80051A84(pCTControl))
+    && (!func_80051AB4(pCTControl))
     && ((((pThis->MoveSpeed) < 0) ? -(pThis->MoveSpeed) : (pThis->MoveSpeed)) <= 0.2) )
  {
   dm = -(0.5*(1024.0/100.0)) - pThis->SideStepSpeed;
@@ -2187,8 +2188,8 @@ CVector3 func_8005DDE8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
   pThis->ClimbSideStep = 1;
  }
  if ( (ressr == 0 && ressl == 0)
-    || (func_80051A84(D_800F9E44))
-    || (func_80051AB4(D_800F9E44)) )
+    || (func_80051A84(pCTControl))
+    || (func_80051AB4(pCTControl)) )
  {
   dm = 0 - pThis->SideStepSpeed;
   dm = dm / 4;

@@ -830,6 +830,7 @@ void func_80043CF4(CGameObjectInstance *pThis, CHeadTrackInfo *pInfo,
       int TrackTarget, int CanTrackDuringTurn);
 void func_80043CF4(CGameObjectInstance *pThis, CHeadTrackInfo *pInfo,
       int TrackTarget, int CanTrackDuringTurn){
+ /* Blend head tracking toward a target while limiting turn and tilt speed. */
  float TargetAngle, DeltaAngle ;
  CVector3 vThis, vTarget ;
  CGameObjectInstance *pTarget ;

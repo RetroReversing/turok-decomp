@@ -1619,6 +1619,7 @@ void func_80039E70(CCamera *pThis){
  if (pThis->m_StageTime > ((2.8)*15))
   pThis->m_StageTime = ((2.8)*15) ;
  t = pThis->m_StageTime / ((2.8)*15) ;
+ // Ease the Acclaim logo camera between two position tracks, then advance the intro.
  pThis->m_ViewBlend = (0.5 - (func_8009E630((t*t*t) * D_800F1E88) / 2.0)) ;
  func_800393E0(&pThis->m_ViewA, &D_800BAB68, (0.5 - (func_8009E630((t) * 3.14159265358979323846) / 2.0))) ;
  func_800393E0(&pThis->m_ViewB, &D_800BAB20, (0.5 - (func_8009E630((t) * 3.14159265358979323846) / 2.0))) ;

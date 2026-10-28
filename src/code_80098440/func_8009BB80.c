@@ -1626,6 +1626,7 @@ extern void D_8009BADC(CGameRegion *pRegion);
 void func_8009B370(CGameRegion *pCurrentRegion);
 void D_8009BADC(CGameRegion *pRegion);
 void func_8009BB80(CCollide *pThis);
+/* Test an object's swept wall radius against the current region and its neighbors. */
 void func_8009BB80(CCollide *pThis){
  CGameRegion *pRegion;
  CWallRadiusCollision2 wallCollision;

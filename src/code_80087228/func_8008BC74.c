@@ -2066,6 +2066,7 @@ extern t_AudioWorld D_80129520;
 extern void func_8008BC74(int cfxnum, CVector3 *vPos, int SndFlags);
 void func_8008BC74(int cfxnum, CVector3 *vPos, int SndFlags);
 void func_8008BC74(int cfxnum, CVector3 *vPos, int SndFlags){
+ /* Place randomized ambient sounds around the listener or ahead of the camera. */
  float sinRotY,
         cosRotY;
  static float Angle;

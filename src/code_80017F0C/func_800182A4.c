@@ -275,7 +275,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -858,7 +858,7 @@ void func_800182A4(CGameObjectInstance *pThis, CIndexedSet *pisAnim){
  int cEvent, nEvents;
  CVector3 vWorld;
  CMtxF mfOrient;
- pbEvents = D_8002DC68((pisAnim), (pisAnim)->m_pData, (6));
+ pbEvents = CIndexedSet__GetBlock((pisAnim), (pisAnim)->m_pData, (6));
  func_8002DA8C(&usEvents, pbEvents, 0);
  events = (CROMEventEntry*) ( (void*) ( ((unsigned char*)((&usEvents)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nEvents = ( (unsigned long) (((unsigned long*) (&usEvents)->m_pData)[1]) );

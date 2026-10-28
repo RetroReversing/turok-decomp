@@ -1605,7 +1605,7 @@ extern void func_80096A74(Gfx **ppDLP);
 extern Mtx D_801352A0;
 void func_80096408();
 void func_80096660(CEngineApp *pThis);
-void func_80096A74(Gfx **ppDLP);
+void func_80096A74(Gfx **ppDLP);/* Sets up map display commands, draws the stored map when enabled, then renders map contents. */
 void func_80096660(CEngineApp *pThis){
  func_80001E50(pThis);
  { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((6)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x00)) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)((0)) & ((0x01 << (16)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((D_800BEC58)); };

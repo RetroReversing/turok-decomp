@@ -1839,6 +1839,7 @@ typedef struct
 extern CTMove D_80128C20;
 void func_800986F4(CSun *pThis, Gfx **ppDLP);
 void func_800986F4(CSun *pThis, Gfx **ppDLP){
+ /* Sample sun visibility from the depth buffer through display-list commands. */
  int alignedX;
  unsigned short *pSource, *pDest;
  CVector3 vOffset, vPos;

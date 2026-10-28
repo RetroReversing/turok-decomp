@@ -2150,25 +2150,26 @@ CVector3 func_800559DC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
 CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-void func_80054AC8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
- CGameObjectInstance *pIns;
+void func_80054AC8(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl){
+ CGameObjectInstance *pPlayer;
  CVector3 vDesiredPos;
  float ang, dm;
- pIns = ((pApp)->m_Scene.m_pPlayer);
- if (pIns == 0) return;
- func_800576EC(pThis, pApp, D_800F9E44);
- pThis->RotYPlayer = (func_800514E4(D_800F9E44) - func_800514B4(D_800F9E44))*((90)*(3.14159265358979323846/180))/80;
+ /* Update the player's look angles and position while flying. */
+ pPlayer = ((pApp)->m_Scene.m_pPlayer);
+ if (pPlayer == 0) return;
+ func_800576EC(pThis, pApp, pCTControl);
+ pThis->RotYPlayer = (func_800514E4(pCTControl) - func_800514B4(pCTControl))*((90)*(3.14159265358979323846/180))/80;
  pThis->ActualRotXPlayer = -pThis->JumpLookAng;
  ang = ((90)*(3.14159265358979323846/180)) - pThis->ActualRotXPlayer;
- pThis->ActualRotXPlayer += func_80051484(D_800F9E44)*ang / 80;
+ pThis->ActualRotXPlayer += func_80051484(pCTControl)*ang / 80;
  ang = pThis->ActualRotXPlayer + ((78)*(3.14159265358979323846/180));
- pThis->ActualRotXPlayer -= func_80051454(D_800F9E44)*ang / 80;
+ pThis->ActualRotXPlayer -= func_80051454(pCTControl)*ang / 80;
  dm = (pThis->ActualRotXPlayer - pThis->RotXPlayer) / 6;
  pThis->RotXPlayer += dm * D_800B6B00 * 2;
  pApp->m_RotXOffset = pThis->RotXPlayer;
- vDesiredPos = pIns->ah.ih.m_vPos;
- vDesiredPos = func_80055B88 (pThis, pApp, D_800F9E44, vDesiredPos);
- vDesiredPos = func_80055DEC(pThis, pApp, D_800F9E44, vDesiredPos);
- vDesiredPos = func_800559DC (pThis, pApp, D_800F9E44, vDesiredPos);
- pIns->ah.ih.m_vPos = vDesiredPos;
+ vDesiredPos = pPlayer->ah.ih.m_vPos;
+ vDesiredPos = func_80055B88 (pThis, pApp, pCTControl, vDesiredPos);
+ vDesiredPos = func_80055DEC(pThis, pApp, pCTControl, vDesiredPos);
+ vDesiredPos = func_800559DC (pThis, pApp, pCTControl, vDesiredPos);
+ pPlayer->ah.ih.m_vPos = vDesiredPos;
 }

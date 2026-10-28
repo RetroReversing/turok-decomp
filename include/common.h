@@ -21,3 +21,20 @@ typedef int s32_bool;
 #define TRUE 1
 #define FALSE 0
 #define ARRAY_COUNT(arr) (s32)(sizeof(arr) / sizeof(arr[0]))
+
+/* tcontrol.h: input action types and output limits. */
+#define CTTYPE_DOWN 1
+#define CTTYPE_UP 2
+#define CTTYPE_SINGLE 3
+#define CTTYPE_DBL 4
+#define CTTYPE_DBLHOLD 5
+#define CTTYPE_STICK_FORWARD 6
+#define CTTYPE_STICK_BACKWARD 7
+#define CTTYPE_STICK_LEFT 8
+#define CTTYPE_STICK_RIGHT 9
+#define CTTYPE_STICK_SFORWARD 10
+#define CTTYPE_STICK_SBACKWARD 11
+#define CTTYPE_STICK_SLEFT 12
+#define CTTYPE_STICK_SRIGHT 13
+#define CT_MAX_OUTPUT -1
+#define CT_MAX_STICK 80

@@ -14,8 +14,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80051F18();           /* extern */
+M2C_UNK CTControl__Action();           /* extern */
 
 void func_80051814(void *arg0) {
-    func_80051F18(arg0, M2C_FIELD(arg0, u16 *, 0x5A), M2C_FIELD(arg0, u16 *, 0xF2), M2C_FIELD(arg0, u8 *, 0x1F9), (s32) M2C_FIELD(arg0, u16 *, 0x18A));
+    CTControl__Action(arg0, M2C_FIELD(arg0, u16 *, 0x5A), M2C_FIELD(arg0, u16 *, 0xF2), M2C_FIELD(arg0, u8 *, 0x1F9), (s32) M2C_FIELD(arg0, u16 *, 0x18A));
 }

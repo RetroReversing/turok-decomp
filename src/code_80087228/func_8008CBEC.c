@@ -442,7 +442,7 @@ typedef struct
  signed long sfx_counter;
  signed long cfx_counter;
 } t_AudioWorld;
-extern void func_8008ADD8(signed long channel, float X, float Y, float Z, int flags);
+extern void update_spatial_sound(signed long channel, float X, float Y, float Z, int flags);
 extern int func_80089EC4(signed short Channel);
 extern int func_80089F10(signed short Channel);
 extern void func_80089E70(signed short Channel);
@@ -479,7 +479,7 @@ void func_8008CBEC(t_SoundPlayer *sndplayer, signed short Channel){
    {
   if(pChannel->ChannelFlags & (1 << 10))
   {
-   func_8008ADD8(Channel, pChannel->theSFX.vPos.x, pChannel->theSFX.vPos.y, pChannel->theSFX.vPos.z, 1);
+   update_spatial_sound(Channel, pChannel->theSFX.vPos.x, pChannel->theSFX.vPos.y, pChannel->theSFX.vPos.z, 1);
   }
   func_8008C6D0(Channel);
   func_8008C66C(Channel);

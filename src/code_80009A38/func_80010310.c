@@ -1942,6 +1942,7 @@ extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 extern int D_80119970 ;
 signed long func_80010310(CGamePak *pThis);
+/* Navigate the Controller Pak file list and handle delete confirmation. */
 signed long func_80010310(CGamePak *pThis){
  signed long ReturnValue = -1 ;
  if (D_8000658C((&D_800F9F10)))

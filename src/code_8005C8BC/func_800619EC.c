@@ -815,6 +815,7 @@ void func_800619EC(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPo
 void func_8005F2B8 ( CGameObjectInstance *pAI, short amt, short max );
 float func_8005F34C(CGameObjectInstance *pAI, CVector3 vPos);
 void func_8005F228(CGameObjectInstance *pThis, CInstanceHdr *pOrigin);
+/* Applies a radial weapon impact to an AI character, setting agitation, knockback, and attacker. */
 void func_800619EC(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad){
  float rad2, damage, mag;
  CVector3 vAIPos,

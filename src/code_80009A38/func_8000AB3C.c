@@ -16,7 +16,7 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK func_80004504(void *, M2C_UNK);             /* extern */
 M2C_UNK func_80007654(void *);                      /* extern */
-M2C_UNK func_8000AC00(void *, M2C_UNK);             /* extern */
+M2C_UNK CEngineApp__PrepareFrame(void *, M2C_UNK);             /* extern */
 M2C_UNK func_8000B96C();                            /* extern */
 M2C_UNK func_8001116C();                            /* extern */
 f32 func_800513F4(s32);                             /* extern */
@@ -36,7 +36,7 @@ void func_8000AB3C(void *arg0) {
         func_8001116C();
     }
     func_80007654(arg0);
-    func_8000AC00(arg0, 4);
+    CEngineApp__PrepareFrame(arg0, 4);
     func_8000B96C();
     if ((M2C_FIELD(arg0, s32 *, 0x1F888) != 0) && (func_800513F4(D_800F9E44) != 0.0f)) {
         func_80004504(arg0, 0);

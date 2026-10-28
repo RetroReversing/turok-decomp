@@ -12,6 +12,7 @@ extern sa_u16 D_80130D78;
 extern sa_u16 D_800EE068;
 void func_80095124( int in_code );
 void func_80095124( int in_code ){
+  /* Draw one fault-screen glyph, interpreting control characters as cursor movement. */
   int i,j;
   int code;
   switch( in_code )

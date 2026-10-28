@@ -14,12 +14,12 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_8002D690(s32);                             /* extern */
+s32 CCacheEntry__GetData(s32);                             /* extern */
 M2C_UNK func_8002DA8C(s32 *, s32, M2C_UNK);         /* extern */
 
 void func_80032B10(void *arg0, M2C_UNK arg1) {
     s32 sp24[4];
 
-    func_8002DA8C(sp24 + 1, func_8002D690(M2C_FIELD(arg0, s32 *, 0x6AFC)), 0);
+    func_8002DA8C(sp24 + 1, CCacheEntry__GetData(M2C_FIELD(arg0, s32 *, 0x6AFC)), 0);
     M2C_FIELD(arg0, s32 *, 0x7C54) = (s32) (sp24[1] + 8);
 }

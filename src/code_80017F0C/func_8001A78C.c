@@ -266,7 +266,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -283,7 +283,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -851,8 +851,8 @@ CVector3 func_8001A78C(CGameObjectInstance *pThis, CGameAnimateState *pasAnim, i
  fraction = pasAnim->m_cFrame - ((int) pasAnim->m_cFrame);
  nFrameC = ((0) > ((int) pasAnim->m_cFrame) ? (0) : ((int) pasAnim->m_cFrame));
  nNextFrameC = (int) func_800374D8(pasAnim);
- func_8002DD28(&isAnim,
-             func_8002D690(pasAnim->m_pceAnim),
+ CIndexedSet__ConstructFromRawData(&isAnim,
+             CCacheEntry__GetData(pasAnim->m_pceAnim),
              0);
  vA = D_800169E0(&isAnim, nNode, nFrameC);
  vB = D_800169E0(&isAnim, nNode, nNextFrameC);

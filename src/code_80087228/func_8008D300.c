@@ -394,6 +394,7 @@ void func_8008D300(ALSynConfig *c, OSPri pri, amConfig *amc);
 extern void func_8008D620(void *arg);
 ALDMAproc func_8008DB34(AMDMAState **state);
 void func_8008D300(ALSynConfig *c, OSPri pri, amConfig *amc){
+    /* Configure audio frame sizes, allocate DMA and command buffers, then start the audio thread. */
     sa_u32 i;
     sa_f32 fsize;
     D_8012F518.initialized = 0;

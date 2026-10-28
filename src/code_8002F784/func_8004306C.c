@@ -858,6 +858,7 @@ extern void func_80063AE8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 struct CParticle_t;
 struct CCollisionInfo2_t;
 void func_8004306C(CSpecialFx *pThis);
+/* Advance the active effect fade and interpret subsequent script commands. */
 void func_8004306C(CSpecialFx *pThis){
  int ReadScript ;
  float r,g,b, v,t,a ;

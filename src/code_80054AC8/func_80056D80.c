@@ -2146,12 +2146,13 @@ typedef struct
 } CTMove;
 extern void func_80056D80 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 extern void func_800576EC (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-extern CVector3 func_800568A8 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+extern CVector3 CTMove__ControlSideStep (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 extern CVector3 func_80056050 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 func_80056050(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_800568A8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 void func_80056D80 ( CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44 );
 void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+/* Updates the player's ground roll speed, collision, and brief invulnerability. Source: tmove.c CTMove__GroundRollMovement. */
 void func_80056D80 ( CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44 ){
  float dm, ss, rs;
  float sinSideY, cosSideY;
@@ -2212,7 +2213,7 @@ void func_80056D80 ( CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44 ){
  if (pThis->SideStepSpeed > -(2.5*(1024.0/100.0)) &&
    pThis->SideStepSpeed < (2.5*(1024.0/100.0)))
  {
-  vDesiredPos = func_800568A8(pThis, pApp, D_800F9E44, vDesiredPos);
+  vDesiredPos = CTMove__ControlSideStep(pThis, pApp, D_800F9E44, vDesiredPos);
  }
  vDesiredPos = func_80056050 (pThis, pApp, D_800F9E44, vDesiredPos);
  if (D_8009A4D8(&pIns->ah, vDesiredPos, &D_80135C20))

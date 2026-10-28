@@ -1630,35 +1630,36 @@ extern CCameraPosTrackInfo D_800BAD14 ;
 extern CCameraTrackInfo D_800BAD5C ;
 extern CVector3 D_800BAD7C ;
 void func_8003A9C4(CCamera *pThis);
-void func_8003A9C4(CCamera *pThis){
- func_80039494(&pThis->m_ViewA, &D_800BAD5C, pThis->m_StageTime, &D_800BAD7C, 0) ;
- pThis->m_StageTime += D_800B6B00*0.0035 ;
- if (pThis->m_StageTime > 1)
-  pThis->m_StageTime -= 1 ;
- func_800393E0(&pThis->m_ViewB, &D_800BAD14, pThis->m_ViewB.m_Time / ((6)*15)) ;
- pThis->m_ViewB.m_Time += D_800B6B00 ;
- if (pThis->m_ViewB.m_Time > ((6)*15))
-  pThis->m_ViewB.m_Time = ((6)*15) ;
- func_80039368(&pThis->m_View, (0.5 - (func_8009E630((pThis->m_View.m_Time / ((6)*15)) * 3.14159265358979323846) / 2.0)),
-        &pThis->m_ViewB, &pThis->m_ViewA) ;
- pThis->m_View.m_Time += D_800B6B00 ;
- if (pThis->m_View.m_Time > ((6)*15))
-  pThis->m_View.m_Time = ((6)*15) ;
- if (pThis->m_ViewC.m_Time < ((1)*15))
+void func_8003A9C4(CCamera *pCamera){
+ /* Animate the game intro camera, show hub text, then begin a new life. */
+ func_80039494(&pCamera->m_ViewA, &D_800BAD5C, pCamera->m_StageTime, &D_800BAD7C, 0) ;
+ pCamera->m_StageTime += D_800B6B00*0.0035 ;
+ if (pCamera->m_StageTime > 1)
+  pCamera->m_StageTime -= 1 ;
+ func_800393E0(&pCamera->m_ViewB, &D_800BAD14, pCamera->m_ViewB.m_Time / ((6)*15)) ;
+ pCamera->m_ViewB.m_Time += D_800B6B00 ;
+ if (pCamera->m_ViewB.m_Time > ((6)*15))
+  pCamera->m_ViewB.m_Time = ((6)*15) ;
+ func_80039368(&pCamera->m_View, (0.5 - (func_8009E630((pCamera->m_View.m_Time / ((6)*15)) * 3.14159265358979323846) / 2.0)),
+        &pCamera->m_ViewB, &pCamera->m_ViewA) ;
+ pCamera->m_View.m_Time += D_800B6B00 ;
+ if (pCamera->m_View.m_Time > ((6)*15))
+  pCamera->m_View.m_Time = ((6)*15) ;
+ if (pCamera->m_ViewC.m_Time < ((1)*15))
  {
-  pThis->m_ViewC.m_Time += D_800B6B00 ;
-  if (pThis->m_ViewC.m_Time >= ((1)*15))
+  pCamera->m_ViewC.m_Time += D_800B6B00 ;
+  if (pCamera->m_ViewC.m_Time >= ((1)*15))
   {
    func_80083248(D_800BAAE0,7) ;
    func_80083248(D_800BAAF8,7) ;
    func_80083248(D_800BAB08,7) ;
   }
  }
- pThis->m_Time += D_800B6B00 ;
- if ((pThis->m_Stage == 0) &&
-   ((pThis->m_Time >= ((9.5)*15)) || (pThis->m_StartPressed)))
+ pCamera->m_Time += D_800B6B00 ;
+ if ((pCamera->m_Stage == 0) &&
+   ((pCamera->m_Time >= ((9.5)*15)) || (pCamera->m_StartPressed)))
  {
-  pThis->m_Stage++ ;
+  pCamera->m_Stage++ ;
   D_80009FBC((&D_800F9F10)) ;
  }
 }

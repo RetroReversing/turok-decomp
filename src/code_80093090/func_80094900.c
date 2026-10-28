@@ -171,20 +171,21 @@ typedef struct s_LevelKey
  int *Variable ;
  int Bit ;
 } t_LevelKey ;
-void func_80094900(CKeys *pThis, Gfx **ppDLP, t_LevelKey *Array, int y);
-void func_80094900(CKeys *pThis, Gfx **ppDLP, t_LevelKey *Array, int y){
- float x ;
- int i ;
+void func_80094900(CKeys *pThis, Gfx **ppDLP, t_LevelKey *keys, int y);
+/* Draws the level key icons, tinting collected and missing keys differently. */
+void func_80094900(CKeys *pThis, Gfx **ppDLP, t_LevelKey *keys, int y){
+ float drawX ;
+ int index ;
  func_80081A10(ppDLP, 255 * pThis->m_Alpha) ;
- i = 0 ;
- while (Array->Graphic != 0)
+ index = 0 ;
+ while (keys->Graphic != 0)
  {
-  if (i==0)
-   x = ((320/2) - ((220)/2)) + 60 ;
+  if (index==0)
+   drawX = ((320/2) - ((220)/2)) + 60 ;
   else
-   x = ((320/2) - ((220)/2)) + 68 + (i*20) ;
+   drawX = ((320/2) - ((220)/2)) + 68 + (index*20) ;
   { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xe7) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = 0; };
-  if (*Array->Variable & (1<<Array->Bit))
+  if (*keys->Variable & (1<<keys->Bit))
   {
    { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xfb) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)((((unsigned int) (((unsigned int)(255) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(255) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(255) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(255*pThis->m_Alpha) & ((0x01 << (8)) - 1)) << (0))))); } ;
   }
@@ -193,9 +194,9 @@ void func_80094900(CKeys *pThis, Gfx **ppDLP, t_LevelKey *Array, int y){
    { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xfb) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)((((unsigned int) (((unsigned int)(55) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(55) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(255) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(200*pThis->m_Alpha) & ((0x01 << (8)) - 1)) << (0))))); } ;
   }
   func_80082E64(ppDLP,
-           Array->Graphic,
-           x, y) ;
-  i++ ;
-  Array++ ;
+           keys->Graphic,
+           drawX, y) ;
+  index++ ;
+  keys++ ;
  }
 }

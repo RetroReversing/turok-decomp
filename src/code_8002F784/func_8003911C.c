@@ -876,47 +876,47 @@ struct CCollisionInfo2_t;
 int func_80038F30(CCamera *pThis, CVector3 *pvPos, float Radius);
 void func_8003911C(CCamera *pThis, CVector3 *pvCurrentPos,
             CVector3 *pvOutPos, float EndRadius);
-void func_8003911C(CCamera *pThis, CVector3 *pvCurrentPos,
-            CVector3 *pvOutPos, float EndRadius){
- float Rot, Radius, DeltaRadius ;
- CVector3 vPos ;
- int Found ;
- vPos.y = pvCurrentPos->y ;
- Found = 0 ;
- Rot = 0 ;
- if (EndRadius > 0)
+void func_8003911C(CCamera *pThis, CVector3 *currentPos,
+            CVector3 *outPos, float maxradius){
+ float angle, radius, Deltaradius ;
+ CVector3 candidatePos ;
+ int found ;
+ candidatePos.y = currentPos->y ;
+ found = 0 ;
+ angle = 0 ;
+ if (maxradius > 0)
  {
-  Radius = 0 ;
-  DeltaRadius = 5 * (1024.0/100.0) ;
+  radius = 0 ;
+  Deltaradius = 5 * (1024.0/100.0) ;
  }
  else
  {
-  EndRadius = -EndRadius ;
-  Radius = EndRadius ;
-  DeltaRadius = -5 * (1024.0/100.0) ;
+  maxradius = -maxradius ;
+  radius = maxradius ;
+  Deltaradius = -5 * (1024.0/100.0) ;
  }
- while(!Found)
+ while(!found)
  {
-  vPos.x = Radius* func_8009E7B0(Rot) + pvCurrentPos->x ;
-  vPos.z = Radius * func_8009E630(Rot) + pvCurrentPos->z ;
-  if (func_80038F30(pThis, &vPos, 10*(1024.0/100.0)))
-   Found = 1 ;
+  candidatePos.x = radius* func_8009E7B0(angle) + currentPos->x ;
+  candidatePos.z = radius * func_8009E630(angle) + currentPos->z ;
+  if (func_80038F30(pThis, &candidatePos, 10*(1024.0/100.0)))
+   found = 1 ;
   else
   {
-   Rot += ((360/16)*(3.14159265358979323846/180)) ;
-   if (Rot >= ((360)*(3.14159265358979323846/180)))
+   angle += ((360/16)*(3.14159265358979323846/180)) ;
+   if (angle >= ((360)*(3.14159265358979323846/180)))
    {
-    Rot = 0 ;
-    Radius += DeltaRadius ;
-    if (((DeltaRadius > 0) && (Radius > EndRadius)) ||
-      ((DeltaRadius < 0) && (Radius < 0)))
+    angle = 0 ;
+    radius += Deltaradius ;
+    if (((Deltaradius > 0) && (radius > maxradius)) ||
+      ((Deltaradius < 0) && (radius < 0)))
     {
-     vPos.x = pvCurrentPos->x ;
-     vPos.z = pvCurrentPos->z ;
-     Found = 1 ;
+     candidatePos.x = currentPos->x ;
+     candidatePos.z = currentPos->z ;
+     found = 1 ;
     }
    }
   }
  }
- *pvOutPos = vPos ;
+ *outPos = candidatePos ;
 }

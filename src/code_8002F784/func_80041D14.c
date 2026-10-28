@@ -928,6 +928,7 @@ struct CCollisionInfo2_t;
 extern int func_80041D14(CFxSystem *pThis, CSwoosh *pSwoosh) ;
 int func_80041D14(CFxSystem *pThis, CSwoosh *pSwoosh);
 void func_80042490(CFxSystem *pThis, CSwoosh *pSwoosh, CSwooshEdge *pEdge);
+/* Advance a swoosh and its edges, retiring expired edges and reporting whether it remains active. */
 int func_80041D14(CFxSystem *pThis, CSwoosh *pSwoosh){
  CSwooshEdge *pEdge, *pNextEdge ;
  float PrevFrameIncrement = D_800B6B00 ;

@@ -1758,6 +1758,7 @@ typedef struct CTurretTrackInfo_t
 void func_80090B50(CGameObjectInstance *pThis, CTurretTrackInfo *pInfo);
 void func_80090B50(CGameObjectInstance *pThis, CTurretTrackInfo *pInfo)
 {
+  /* Track the attacker or player with bounded turret turn and tilt, using a death pose when health is exhausted. */
   CGameObjectInstance *pTarget;
   float TargetAngle;
   float DeltaAngle;

@@ -14,14 +14,14 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_8000D060();                                /* extern */
+s32 CSave__UpdateMemory();                                /* extern */
 
 s32 func_8000CE18(void *arg0) {
     s32 var_v1;
 
     var_v1 = -1;
     if (M2C_FIELD(arg0, s16 *, 0xC) == 0) {
-        var_v1 = func_8000D060();
+        var_v1 = CSave__UpdateMemory();
     }
     return var_v1;
 }

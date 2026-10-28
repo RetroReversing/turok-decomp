@@ -820,6 +820,7 @@ void D_80071058(CGameObjectInstance *pAI, int hits, int FlashScreen, int DoSound
 float func_8005F34C(CGameObjectInstance *pAI, CVector3 vPos);
 void func_8005F228(CGameObjectInstance *pThis, CInstanceHdr *pOrigin);
 void func_8006017C(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad){
+ /* Apply distance-scaled shockwave damage and impulse to grounded nearby AI. */
  float rad2, damage,
      ydiff;
  CVector3 vAIPos,

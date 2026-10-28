@@ -1621,6 +1621,7 @@ void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP);
 void func_8007E38C(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
 void func_80081A10(Gfx **ppDLP, int opacity);
 void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP){
+ /* Draw lens flares for visible particles that carry the lens flare behavior flag. */
  CParticle *pParticle;
  CROMBounds bounds;
  float diag, diagD2,

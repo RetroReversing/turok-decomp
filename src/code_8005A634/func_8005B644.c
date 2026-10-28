@@ -2151,16 +2151,17 @@ extern void func_8005AFE8 (CTMove *pThis, int Direction);
 void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 void func_80058B6C(CTMove *pThis, int ammo, int next);
 void func_8005AFE8(CTMove *pThis, int Direction);
-void func_8005B644(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-CVector3 D_8005B964(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos, CCollisionInfo2 *pCollInfo, int Underwater);
-void func_8005B644(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
+void func_8005B644(CTMove *pThis, CEngineApp *pApp, CTControl *pControls);
+CVector3 D_8005B964(CTMove *pThis, CEngineApp *pApp, CTControl *pControls, CVector3 vDesiredPos, CCollisionInfo2 *pCollInfo, int Underwater);
+void func_8005B644(CTMove *pThis, CEngineApp *pApp, CTControl *pControls){
+ /* Update swimming or antigravity movement and collide the player at the desired position. */
  CGameObjectInstance *pIns;
  CVector3 vDesiredPos;
  pIns = ((pApp)->m_Scene.m_pPlayer);
  if (pIns == ((void*)0)) return;
  if (pThis->InAntiGrav)
  {
-  if ( (func_80051274(D_800F9E44))
+  if ( (func_80051274(pControls))
     && (pThis->InMenuTimer == 0.0))
   {
    if (pThis->SelectWeaponTimer == 0.0)
@@ -2172,7 +2173,7 @@ void func_8005B644(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
    if (pThis->SelectWeaponTimer > 0.36)
     pThis->SelectWeaponTimer = 0.0;
   }
-  else if ( (func_80051244(D_800F9E44))
+  else if ( (func_80051244(pControls))
       && (pThis->InMenuTimer == 0.0))
   {
    if (pThis->SelectWeaponTimer == 0.0)
@@ -2192,15 +2193,15 @@ void func_8005B644(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
  vDesiredPos = pIns->ah.ih.m_vPos;
  if (pThis->InAntiGrav)
  {
-  vDesiredPos = D_8005B964(pThis, pApp, D_800F9E44, vDesiredPos, ((void*)0), 1);
-  func_800576EC(pThis, pApp, D_800F9E44);
+  vDesiredPos = D_8005B964(pThis, pApp, pControls, vDesiredPos, ((void*)0), 1);
+  func_800576EC(pThis, pApp, pControls);
   D_8009A4D8(&pIns->ah, vDesiredPos, &D_80135DA0);
   pThis->pLastCI = &D_80135DA0;
  }
  else
  {
-  vDesiredPos = D_8005B964(pThis, pApp, D_800F9E44, vDesiredPos, &D_80135D20, 1);
-  func_800576EC(pThis, pApp, D_800F9E44);
+  vDesiredPos = D_8005B964(pThis, pApp, pControls, vDesiredPos, &D_80135D20, 1);
+  func_800576EC(pThis, pApp, pControls);
   D_8009A4D8(&pIns->ah, vDesiredPos, &D_80135D20);
   pThis->pLastCI = &D_80135D20;
  }

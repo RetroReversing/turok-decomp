@@ -1627,6 +1627,7 @@ extern CCameraTrackInfo D_800BAF1C ;
 extern CCameraTrackInfo D_800BAF3C ;
 void func_8003D948(CCamera *pThis);
 void func_8003D948(CCamera *pThis){
+ /* Animate the end-sequence camera, player and final level transition. */
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  CInstanceHdr *pInst = &pTurok->ah.ih ;
  CVector3 vFoci ;

@@ -274,8 +274,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -292,7 +292,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern int D_8002D6BC(CCacheEntry *pThis, int AllocTop);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
@@ -847,14 +847,14 @@ void func_80029D94(CParticleSystem *pThis, CCacheEntry **ppceTarget){
                                                             ;
  if (!D_8002D6BC(pThis->m_pceParticleEffects, 0))
   return;
- func_8002DD28(&isParticleEffects,
-             func_8002D690(pThis->m_pceParticleEffects),
+ CIndexedSet__ConstructFromRawData(&isParticleEffects,
+             CCacheEntry__GetData(pThis->m_pceParticleEffects),
              0);
- pbParticles = D_8002DC68((&isParticleEffects), (&isParticleEffects)->m_pData, (1));
+ pbParticles = CIndexedSet__GetBlock((&isParticleEffects), (&isParticleEffects)->m_pData, (1));
  func_8002DA8C(&usParticles, pbParticles, 0);
  effects = (CROMParticleEffect*) ( (void*) ( ((unsigned char*)((&usParticles)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nEffects = ( (unsigned long) (((unsigned long*) (&usParticles)->m_pData)[1]) );
- pbImpacts = D_8002DC68((&isParticleEffects), (&isParticleEffects)->m_pData, (2));
+ pbImpacts = CIndexedSet__GetBlock((&isParticleEffects), (&isParticleEffects)->m_pData, (2));
  func_8002DA8C(&usImpacts, pbImpacts, 0);
  impacts = (CROMParticleImpact*) ( (void*) ( ((unsigned char*)((&usImpacts)->m_pData)) + (2*sizeof(unsigned long)) ) );
  for (cEffect=0; cEffect<nEffects; cEffect++)

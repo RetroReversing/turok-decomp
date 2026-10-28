@@ -1,5 +1,6 @@
 #include "common.h"
 
+/* identical to func_80040704 (matched), with its names changed by decompdecomp */
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -309,6 +310,27 @@ typedef struct CQuatern_t
 {
  float x, y, z, t;
 } CQuatern;
+typedef struct CGameAnimateState_t
+{
+ CCacheEntry *m_pceAnim;
+ unsigned long m_nAnim,
+      m_nDesiredAnim,
+      m_nFrames;
+ float m_cFrame;
+ int m_CycleCompleted;
+} CGameAnimateState;
+typedef struct CGeometry_t
+{
+ CCacheEntry *m_pceGeometry,
+         *m_pceTextureSetsIndex;
+} CGeometry;
+struct CCacheEntry_t;
+typedef struct CTextureLoader_t
+{
+ struct CCacheEntry_t *m_pceTextureSet;
+ ROMAddress *m_rpTextureSet;
+ unsigned long m_TextureSetSize;
+} CTextureLoader;
 struct CGameObjectInstance_t;
 struct CGameRegion_t;
 typedef struct CEnemyAttributes_t
@@ -373,27 +395,6 @@ typedef struct CAIDynamic_t
  short m_WeaponModel,
      m_ExtraModel ;
 } CAIDynamic;
-typedef struct CGameAnimateState_t
-{
- CCacheEntry *m_pceAnim;
- unsigned long m_nAnim,
-      m_nDesiredAnim,
-      m_nFrames;
- float m_cFrame;
- int m_CycleCompleted;
-} CGameAnimateState;
-typedef struct CGeometry_t
-{
- CCacheEntry *m_pceGeometry,
-         *m_pceTextureSetsIndex;
-} CGeometry;
-struct CCacheEntry_t;
-typedef struct CTextureLoader_t
-{
- struct CCacheEntry_t *m_pceTextureSet;
- ROMAddress *m_rpTextureSet;
- unsigned long m_TextureSetSize;
-} CTextureLoader;
 struct CCollisionInfo2_t;
 typedef unsigned short SF;
 typedef struct CROMCorner_t
@@ -697,12 +698,6 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-typedef struct CDamage_t
-{
- signed short m_Health ;
- signed char m_Node1, m_Node2 ;
- unsigned long m_Flags ;
-} CDamage ;
 typedef struct t_RGB
 {
  float Red,Green,Blue, Alpha ;
@@ -791,11 +786,8 @@ typedef struct CBossModeInfo_t
  float m_AnimSpeed ;
  signed long m_Flags ;
 } CBossModeInfo ;
-typedef struct CBossScript_t
-{
- signed short *m_pStart ;
- signed short *m_pCurrent ;
-} CBossScript ;
+extern int func_8004826C(CGameObjectInstance *pThis, signed long nNewMode) ;
+extern void func_800495D0(CGameObjectInstance *pThis, CBoss *pBoss) ;
 typedef struct CBossData_t
 {
  CGameObjectInstance *m_pObject ;
@@ -814,59 +806,9 @@ typedef struct CBossData_t
  float m_ModeMisc1 ;
 } CBossData ;
 struct CCollisionInfo2_t;
-typedef struct TRexStageInfo_t
-{
- signed long HealthLimit ;
- float AnimSpeed ;
- signed short HitsBeforeExplode ;
- signed short CaveTailSlams ;
- signed short *pAttackScript ;
- signed short *pCloseAttackScript ;
- signed short *pRunAttackScript ;
- signed short *pTurnAttackScript ;
- signed short *pLedgeAttackScript ;
- signed short *pCaveAttackScript ;
-} CTRexStageInfo ;
-typedef struct CCaveInfo_t
-{
- CVector3 m_Corner1 ;
- CVector3 m_Corner2 ;
- CVector3 m_vTargetPos ;
- CVector3 m_vLookPos ;
-} CCaveInfo ;
-typedef struct CTRex_t
-{
- CBoss m_Boss ;
- signed short m_ScriptStage ;
- CTRexStageInfo *m_pStageInfo ;
- CBossScript m_AttackScript ;
- CBossScript m_CloseAttackScript ;
- CBossScript m_RunAttackScript ;
- CBossScript m_TurnAttackScript ;
- CBossScript m_LedgeAttackScript ;
- CBossScript m_CaveAttackScript ;
- signed short m_ExplosionHits ;
- float m_LookTime ;
- float m_RunTime ;
- float m_TurnTime ;
- float m_TargetDist ;
- float m_AtTargetDist ;
- CCaveInfo *m_pTurokInCave ;
- CCaveInfo *m_pTargetCave ;
- float m_TurokTimeInCave ;
- float m_TurokInCaveWaitTime ;
- signed long m_LaserSoundHandle ;
- CVector3 m_vLaserLastSoundPos ;
- signed long m_FireSoundHandle ;
- signed short m_FireSoundVolume ;
- CDamage *m_pDamage ;
-} CTRex ;
-extern signed long D_8004826C(CGameObjectInstance *pThis, signed long nNewMode) ;
-extern signed long D_8004826C(CGameObjectInstance *pThis, signed long nNewMode) ;
-extern void func_800495D0(CGameObjectInstance *pThis, CTRex *pTRex) ;
-signed long D_8004826C(CGameObjectInstance *pThis, signed long nNewMode);
-void func_800495D0(CGameObjectInstance *pThis, CTRex *pTRex);
-void func_800495D0(CGameObjectInstance *pThis, CTRex *pTRex){
+int func_8004826C(CGameObjectInstance *pThis, signed long nNewMode);
+void func_800495D0(CGameObjectInstance *pThis, CBoss *pBoss);
+void func_800495D0(CGameObjectInstance *pThis, CBoss *pBoss){
  if (pThis->m_asCurrent.m_cFrame >= (pThis->m_asCurrent.m_nFrames - 5))
-  D_8004826C((CGameObjectInstance *)pThis, pTRex->m_Boss.m_Mode + 1) ;
+  func_8004826C(pThis, pBoss->m_Mode + 1) ;
 }

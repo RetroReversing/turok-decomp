@@ -275,7 +275,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 extern ROMAddress* D_8002DBF8(CIndexedSet *pThis,
                                               ROMAddress *rpBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
@@ -294,7 +294,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern void func_8002D784(void *pVoid, CCacheEntry **ppceTarget);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
@@ -1010,7 +1010,7 @@ int func_80034EDC(CScene *pThis, int nBlockType,
  if (!pThis->m_pceBinariesIndex || !pThis->m_pceBinaryTypes)
   return 0;
  func_8002DA8C(&usBinaryTypes,
-             func_8002D690(pThis->m_pceBinaryTypes),
+             CCacheEntry__GetData(pThis->m_pceBinaryTypes),
              0);
  nBinaries = ( (unsigned long) (((unsigned long*) (&usBinaryTypes)->m_pData)[1]) );
  types = (unsigned long*) ( (void*) ( ((unsigned char*)((&usBinaryTypes)->m_pData)) + (2*sizeof(unsigned long)) ) );
@@ -1018,8 +1018,8 @@ int func_80034EDC(CScene *pThis, int nBlockType,
                                         ;
  if (pos == -1)
   return 0;
- func_8002DD28(&isBinaries,
-             func_8002D690(pThis->m_pceBinariesIndex),
+ CIndexedSet__ConstructFromRawData(&isBinaries,
+             CCacheEntry__GetData(pThis->m_pceBinariesIndex),
              0);
    rpBlock = D_8002DBF8(&isBinaries, pThis->m_rpBinaries,
                  pos, &size);

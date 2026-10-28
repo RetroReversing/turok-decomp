@@ -1,0 +1,4 @@
+#include "common.h"
+
+typedef struct{u8 pad[0x682C]; void *head;} Obj; typedef struct{u8 pad[0x20]; u32 tag; u8 p24[4]; void *prev; void *next; u8 p30[4];} Node; extern s32 func_8002DE54(void*,s32,void*); extern void func_80011DDC(s32);
+void func_8002CBEC(Obj *list,Node *n){s32 value;Node *p;Node *q; if(*(s32*)((u8*)n+0x18)!=0)func_8002DE54(list,*(s32*)((u8*)n+8),n); if((void*)n==*(void**)((u8*)list+0x20))*(void**)((u8*)list+0x20)=*(void**)((u8*)n+0x2c);if((void*)n==*(void**)((u8*)list+0x24))*(void**)((u8*)list+0x24)=*(void**)((u8*)n+0x28);p=*(Node**)((u8*)n+0x28);if(p)*(void**)((u8*)p+0x2c)=*(void**)((u8*)n+0x2c);q=*(Node**)((u8*)n+0x2c);if(q)*(void**)((u8*)q+0x28)=*(void**)((u8*)n+0x28);value=*(s32*)n;if(value)func_80011DDC(value);*(u32*)((u8*)n+0x20)=0x15d0b;*(void**)((u8*)n+0x30)=*(void**)((u8*)list+0x682c);*(void**)((u8*)list+0x682c)=n;}

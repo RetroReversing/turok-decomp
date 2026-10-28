@@ -885,6 +885,7 @@ typedef struct CMantis_t
 extern int func_80045678(CGameObjectInstance *pThis, CMantis *pMantis, float Dir) ;
 int func_80045678(CGameObjectInstance *pThis, CMantis *pMantis, float Dir);
 int func_80045678(CGameObjectInstance *pThis, CMantis *pMantis, float Dir){
+ /* Test whether the mantis can land on a nearby side wall with a consistent facing. */
  CVector3 vTarget ;
  CVector3 vTarget2 ;
  float Angle ;

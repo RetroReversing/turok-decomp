@@ -1632,6 +1632,7 @@ void func_80026EC4(CParticle *pThis,
                int *pIntersectWithGround );
 void func_800272F4(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
 void func_8002AFE4(CParticleSystem *pThis, Gfx **ppDLP){
+ /* Draw visible particles and extend swooshes for offscreen particles. */
  CParticle *pParticle;
  CROMBounds bounds;
  float diag, diagD2;

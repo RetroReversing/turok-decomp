@@ -1929,7 +1929,7 @@ typedef struct CEngineApp_t
  OSContPad m_AttractPad ;
 } CEngineApp;
 extern sa_u64 dram_stack[];
-extern CTControl *D_800F9E44;
+extern CTControl *pCTControl;
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 typedef struct
@@ -2149,7 +2149,7 @@ extern void func_80057DC8 (CTMove *pThis, int *pAmt, int nAmt);
 extern void func_80058B6C (CTMove *pThis, int ammo, int next);
 extern void D_80059994 (CTMove *pThis, int WFired);
 extern void func_8005AFE8 (CTMove *pThis, int Direction);
-extern int func_8007BC28 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
+extern int func_8007BC28 (CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
 enum SOUND_TYPES
 {
  SOUND_MENU_OPTION_SELECT=0,
@@ -2791,26 +2791,27 @@ enum SOUND_TYPES
  SOUND_TYPES_TOTAL
 };
 extern int D_80128F90;
-int func_8007BC28 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-int func_8007BC28 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag){
+int func_8007BC28 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
+/* Fires the tech weapon if primary fire is held and energy is available. */
+int func_8007BC28 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag){
  CVector3 vPos;
- if ( func_800510C4 ( D_800F9E44 ) )
+ if ( func_800510C4 ( pCTControl ) )
  {
-  func_800587B0 ( D_800F9E48, 11 );
-  if ( func_8005843C ( D_800F9E48, 110, 1 ) )
+  func_800587B0 ( pCTMove, 11 );
+  if ( func_8005843C ( pCTMove, 110, 1 ) )
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
    return 0;
   }
   vPos = ((pMe)->ah.ih.m_vPos);
   func_80031974(&(&D_800F9F10)->m_Scene, SOUND_TEK_WEAPON_1, 0, 0, &vPos, 0);
   D_80070DA8 (&pMe->ah.ih, &pMe->ah.ih, 29, 0xffffffff, ((pMe)->ah.ih.m_vPos), 10);
-  func_80057DC8 ( D_800F9E48, &D_800F9E48->EnergyPool, 5);
-  D_80059994 ( D_800F9E48, 11 );
+  func_80057DC8 ( pCTMove, &pCTMove->EnergyPool, 5);
+  D_80059994 ( pCTMove, 11 );
   func_8005FCF4 ( pMe, 45, 1 );
   (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
   func_8001E93C(pMe);
@@ -2818,13 +2819,13 @@ int func_8007BC28 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_8
  }
  else
  {
-  if (func_8005843C(D_800F9E48, 110, 1))
+  if (func_8005843C(pCTMove, 110, 1))
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
   }
  }
  return 0;

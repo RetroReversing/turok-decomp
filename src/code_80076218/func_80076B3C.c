@@ -820,6 +820,7 @@ void func_80076824(CGameObjectInstance *pMe, float turnang, int MovementAllowed)
 int func_80076A40(CGameObjectInstance *pAI, float radiusFactor);
 void func_80076B3C(CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_80076B3C(CGameObjectInstance *pMe, CGameObjectInstance *pDest){
+ /* Choose a flying enemy's attack, movement, or projectile behavior. */
  CVector3 vDestPos;
  float turnang,
      dist,

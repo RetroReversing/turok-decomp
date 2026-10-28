@@ -465,6 +465,7 @@ extern signed short D_800ECF7C[];
 void func_8008C250(CROMSoundElement *pElement, signed long channel, int SndFlags);
 float func_8008CB48(float PitchCents);
 void func_8008C250(CROMSoundElement *pElement, signed long channel, int SndFlags){
+ /* Set a channel's pitch envelope, applying random and enemy pitch shifts. */
  CROMEnvelope *pEnv = &D_80129520.VoiceChannels[channel].PitchEnv ;
  t_SndObject *pSound = &D_80129520.VoiceChannels[channel].theSFX;
  t_Channel *pChannel = &D_80129520.VoiceChannels[channel];

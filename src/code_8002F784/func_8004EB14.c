@@ -1687,6 +1687,7 @@ void func_8004E924(CGameObjectInstance *pThis, CCampaigner *pCampaigner);
 void func_8004EB14(CGameObjectInstance *pThis, CCampaigner *pCampaigner);
 void func_8004EB14(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 {
+  /* Run the Campaigner's teleport effects and select its next attack mode. */
   if ((!pCampaigner->m_StartedFx) && (pThis->m_asCurrent.m_cFrame >= 12))
   {
     pCampaigner->m_StartedFx = 1;

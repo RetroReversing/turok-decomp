@@ -36,6 +36,7 @@ void func_80095418( unsigned long num );
 void func_800955BC(const char *s);
 void func_800958B4(void *pStack, int StackSize, __OSThreadContext *pTc);
 void func_800958B4(void *pStack, int StackSize, __OSThreadContext *pTc){
+ /* Display return-address candidates beside raw stack words on the fault screen. */
  int i;
  sa_u32 *pStackEntry;
  sa_u32 *pTopStack = (sa_u32*) ((sa_u32) pStack + StackSize);

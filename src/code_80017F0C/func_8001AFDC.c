@@ -1848,6 +1848,7 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo ;
 extern CCollisionInfo2* func_8001AFDC(CGameObjectInstance *pThis);
 CCollisionInfo2* func_8001AFDC(CGameObjectInstance *pThis);
+/* Select collision rules for the player, bosses, and living or dead enemies in water or on land. */
 CCollisionInfo2* func_8001AFDC(CGameObjectInstance *pThis){
  CCollisionInfo2 *pCI;
  int climber, flyer;

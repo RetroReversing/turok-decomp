@@ -2136,17 +2136,17 @@ typedef struct
  CCollisionInfo2 *pLastCI;
 } CTMove;
 extern CVector3 func_800558F0 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-extern CVector3 func_800568A8 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+extern CVector3 CTMove__ControlSideStep (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 extern CVector3 func_80056050 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 func_800558F0(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 func_80056050(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_800568A8(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 func_800558F0(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos){
  CGameObjectInstance *pIns;
  pIns = ((pApp)->m_Scene.m_pPlayer);
  if ( pIns == ((void*)0) ) return vDesiredPos;
  vDesiredPos = pIns->ah.ih.m_vPos;
  vDesiredPos = func_80056050 (pThis, pApp, D_800F9E44, vDesiredPos);
- vDesiredPos = func_800568A8(pThis, pApp, D_800F9E44, vDesiredPos);
+ vDesiredPos = CTMove__ControlSideStep(pThis, pApp, D_800F9E44, vDesiredPos);
  return vDesiredPos;
 }

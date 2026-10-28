@@ -17,7 +17,7 @@ typedef s32 M2C_UNK32;
 M2C_UNK func_800121B8(s32, M2C_UNK, s32);           /* extern */
 s32 func_8002DC3C(s32 **, s32 *, M2C_UNK, s32 *);   /* extern */
 M2C_UNK *func_8002DC68(s32 **, s32 *, s32);         /* extern */
-M2C_UNK func_8002DD28(s32 **, M2C_UNK *, M2C_UNK);  /* extern */
+M2C_UNK CIndexedSet__ConstructFromRawData(s32 **, M2C_UNK *, M2C_UNK);  /* extern */
 extern s32 D_800BA910;
 extern M2C_UNK D_8014F688;
 
@@ -34,14 +34,14 @@ void func_80034998(void) {
     s32 temp_s2;
 
     if (D_800BA910 != 0) {
-        func_8002DD28(&sp70[10], &D_8014F688, 0);
+        CIndexedSet__ConstructFromRawData(&sp70[10], &D_8014F688, 0);
         func_800121B8(func_8002DC3C(&sp70[10], sp70[10], 0, &sp44), 0, sp44);
-        func_8002DD28(&sp68[5], func_8002DC68(&sp70[10], sp70[10], 1), 0);
+        CIndexedSet__ConstructFromRawData(&sp68[5], func_8002DC68(&sp70[10], sp70[10], 1), 0);
         var_s0 = 0;
         temp_s2 = *sp68[5];
         if (temp_s2 > 0) {
             do {
-                func_8002DD28(&sp60[0], func_8002DC68(&sp68[5], sp68[5], var_s0), 0);
+                CIndexedSet__ConstructFromRawData(&sp60[0], func_8002DC68(&sp68[5], sp68[5], var_s0), 0);
                 func_800121B8(func_8002DC3C(&sp60[0], sp60[0], 0, &sp40), 0, sp40);
                 func_800121B8(func_8002DC3C(&sp60[0], sp60[0], 1, &sp3C), 0, sp3C);
                 var_s0 += 1;

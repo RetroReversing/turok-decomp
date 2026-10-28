@@ -1619,51 +1619,52 @@ extern CSwooshInfo D_800BA628 ;
 extern CSwooshInfo D_800BA8C4 ;
 extern CSwooshInfo D_800BA8E0 ;
 void func_800283EC(CParticle *pThis);
-void func_800283EC(CParticle *pThis){
- switch (pThis->ah.ih.m_nObjType)
+void func_800283EC(CParticle *pParticle){
+ /* Start the swoosh trails assigned to this particle type. */
+ switch (pParticle->ah.ih.m_nObjType)
  {
   case 194:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B99A0) ;
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B99BC) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B99A0) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B99BC) ;
    break ;
   case 310:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B9C58) ;
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B9C74) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9C58) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9C74) ;
    break ;
   case 334:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B9FE4) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9FE4) ;
    break ;
   case 346:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA21C) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA21C) ;
    break ;
   case 336:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA2F8) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA2F8) ;
    break ;
   case 339:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA58C) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA58C) ;
    break ;
   case 345:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA4B0) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA4B0) ;
    break ;
    case 372:
-    func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA140) ;
+    func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA140) ;
     break ;
   case 361:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA3D4) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA3D4) ;
    break ;
   case 139:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B9D90) ;
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B9DAC) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9D90) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9DAC) ;
    break ;
    case 5:
-    func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800B9F08) ;
+    func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9F08) ;
     break ;
   case 116:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA628) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA628) ;
    break ;
   case 20:
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA8C4) ;
-   func_80042800(&(&D_80106000)->m_FxSystem, pThis, &D_800BA8E0) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA8C4) ;
+   func_80042800(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA8E0) ;
    break ;
  }
 }
