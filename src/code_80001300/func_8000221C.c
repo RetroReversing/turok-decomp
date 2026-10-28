@@ -1603,6 +1603,7 @@ extern sa_u64 dram_stack[];
 struct CCollisionInfo2_t;
 void func_8000221C(CEngineApp *pThis, int sx, int ex, int sy, int ey);
 void func_8000221C(CEngineApp *pThis, int sx, int ex, int sy, int ey){
+ /* Clear the specified depth-buffer rectangle, then restore the frame buffer and one-cycle RDP mode. Source: tengine.c, CEngineApp__ClearZBuffer. */
  { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xe7) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = 0; };
  D_800239C0(&pThis->m_pDLP, 20);
  { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xff) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(0) & ((0x01 << (3)) - 1)) << (21))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (2)) - 1)) << (19))) | ((unsigned int) (((unsigned int)((320)-1) & ((0x01 << (12)) - 1)) << (0))); _g->words.w1 = (unsigned int)((D_803DA800)); };

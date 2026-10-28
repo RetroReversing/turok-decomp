@@ -1713,6 +1713,7 @@ extern int func_80048884(CGameObjectInstance *pThis, CTRex *pTRex) ;
 extern CCaveInfo D_800BCBA4[6] ;
 int func_80048884(CGameObjectInstance *pThis, CTRex *pTRex);
 int func_80048884(CGameObjectInstance *pThis, CTRex *pTRex){
+ /* Detect Turok in a cave and trigger its crusher after a timeout or tail slam. */
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer);
  CVector3 *pTurokPos = &pTurok->ah.ih.m_vPos, vDir ;
  CCaveInfo *pCave = D_800BCBA4 ;

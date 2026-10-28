@@ -920,7 +920,7 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
 enum SaveModes
 {
  SAVE_NULL,
@@ -985,7 +985,7 @@ typedef struct CGamePak_t
  signed long m_Timer ;
 } CGamePak ;
 extern void func_8000D554(CSave *pThis, Gfx **ppDLP) ;
-extern void func_8000DFC4(CRequestor *pThis, Gfx **ppDLP) ;
+extern void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP) ;
 extern void func_8000E52C(CMessageBox *pThis, Gfx **ppDLP) ;
 typedef struct CCheatCode_t
 {
@@ -1614,7 +1614,7 @@ struct CCollisionInfo2_t;
 extern void func_8000D6BC(CSave *pThis, Gfx **ppDLP) ;
 void func_8000D554(CSave *pThis, Gfx **ppDLP);
 void func_8000D6BC(CSave *pThis, Gfx **ppDLP);
-void func_8000DFC4(CRequestor *pThis, Gfx **ppDLP);
+void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP);
 void func_8000E52C(CMessageBox *pThis, Gfx **ppDLP);
 void func_8000D554(CSave *pThis, Gfx **ppDLP){
  switch (pThis->m_Mode)
@@ -1638,10 +1638,10 @@ void func_8000D554(CSave *pThis, Gfx **ppDLP){
    }
    break ;
  }
- func_8007F994(ppDLP) ;
+ COnScreen__InitBoxDraw(ppDLP) ;
   func_8000D6BC(pThis, ppDLP) ;
  if ((&D_80106004)->m_bRequestor)
-  func_8000DFC4(&(&D_80106000)->m_Requestor, ppDLP) ;
+  CRequestor__Draw(&(&D_80106000)->m_Requestor, ppDLP) ;
  if ((&D_80106004)->m_bMessageBox)
   func_8000E52C(&(&D_80106000)->m_MessageBox, ppDLP) ;
 }

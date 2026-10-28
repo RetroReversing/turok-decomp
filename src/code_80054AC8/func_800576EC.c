@@ -2144,7 +2144,8 @@ extern void func_800576EC (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E4
 extern int func_8005CE10 (CTMove *pThis);
 void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 int func_8005CE10(CTMove *pThis);
-void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
+void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl){
+ /* Turn Turok using left and right input, with damping for water and low gravity. */
  float resl, resr, dm;
  CGameObjectInstance *pIns;
  int waterFlag;
@@ -2153,7 +2154,7 @@ void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
  waterFlag = D_800027BC(pApp);
  if (func_800028C4(pApp))
   waterFlag = 0;
- resl = func_80051154 ( D_800F9E44 );
+ resl = func_80051154 ( pCTControl );
  if ( resl < 0 )
  {
   dm = -12 - pThis->TurnSpeed;
@@ -2166,7 +2167,7 @@ void func_800576EC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44){
   dm /= 4.5;
   pThis->TurnSpeed = -dm;
  }
- resr = func_80051184 ( D_800F9E44 );
+ resr = func_80051184 ( pCTControl );
  if ( resr < 0 )
  {
   dm = 12 - pThis->TurnSpeed;

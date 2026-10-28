@@ -1608,7 +1608,7 @@ extern float D_800B6B00;
 extern CEngineApp D_800F9F10;
 extern int func_8005FCF4 (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
 struct CCollisionInfo2_t;
-extern void func_8003C050(CCamera *pThis) ;
+extern void func_8003C050(CCamera *camera) ;
 enum MantisModes
 {
  MANTIS_SLEEPING_FLOOR_MODE,
@@ -1676,40 +1676,41 @@ enum MantisModes
 } ;
 extern signed long D_8004463C(CGameObjectInstance *pThis, signed long nNewMode) ;
 extern CCameraTrackInfo D_800BAE7C ;
-void func_8003C050(CCamera *pThis);
-void func_8003C050(CCamera *pThis){
+void func_8003C050(CCamera *camera);
+void func_8003C050(CCamera *camera){
+ /* Play the Mantis kill cinematic, then trigger Turok's death. */
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  CGameObjectInstance *pMantis = (&D_800F9F10)->m_pBossActive ;
  func_800329E0(&(&D_800F9F10)->m_Scene, pTurok,
              0, 200) ;
  func_8005FCF4(pTurok, 200, 1) ;
- switch(pThis->m_Stage)
+ switch(camera->m_Stage)
  {
   case 0:
-   pThis->m_StageTime += D_800B6B00 ;
-   if (pThis->m_StageTime > 80)
-    pThis->m_StageTime = 80 ;
-   func_800395D4(&pThis->m_View, &D_800BAE7C,
-                (0.5 - (func_8009E630((pThis->m_StageTime / 80) * D_800F2028) / 2.0)),
+   camera->m_StageTime += D_800B6B00 ;
+   if (camera->m_StageTime > 80)
+    camera->m_StageTime = 80 ;
+   func_800395D4(&camera->m_View, &D_800BAE7C,
+                (0.5 - (func_8009E630((camera->m_StageTime / 80) * D_800F2028) / 2.0)),
                 pTurok) ;
-   if (pThis->m_Time > 55)
-    pThis->m_Stage++ ;
+   if (camera->m_Time > 55)
+    camera->m_Stage++ ;
    break ;
   case 1:
-   (&pThis->m_View.m_vEye)->x = 0*(1024.0/100.0) ; (&pThis->m_View.m_vEye)->y = 6.5*(1024.0/100.0) ; (&pThis->m_View.m_vEye)->z = -94*(1024.0/100.0) ; ;
-   (&pThis->m_View.m_vFocus)->x = 0*(1024.0/100.0) ; (&pThis->m_View.m_vFocus)->y = 6.5*(1024.0/100.0) ; (&pThis->m_View.m_vFocus)->z = -70*(1024.0/100.0) ; ;
+   (&camera->m_View.m_vEye)->x = 0*(1024.0/100.0) ; (&camera->m_View.m_vEye)->y = 6.5*(1024.0/100.0) ; (&camera->m_View.m_vEye)->z = -94*(1024.0/100.0) ; ;
+   (&camera->m_View.m_vFocus)->x = 0*(1024.0/100.0) ; (&camera->m_View.m_vFocus)->y = 6.5*(1024.0/100.0) ; (&camera->m_View.m_vFocus)->z = -70*(1024.0/100.0) ; ;
    (&pTurok->ah.ih.m_vPos)->x = 0 * (1024.0/100.0) ; (&pTurok->ah.ih.m_vPos)->y = 0 * (1024.0/100.0) ; (&pTurok->ah.ih.m_vPos)->z = -94 * (1024.0/100.0) ; ;
    pTurok->ah.ih.m_pCurrentRegion = func_8002E280(&(&D_800F9F10)->m_Scene, &pTurok->ah.ih.m_vPos) ;
    pTurok->ah.ih.m_vPos.y = func_80019D3C(pTurok->ah.ih.m_pCurrentRegion, pTurok->ah.ih.m_vPos.x, pTurok->ah.ih.m_vPos.z) ;
    pTurok->m_RotY = ((0)*(3.14159265358979323846/180)) ;
    break ;
  }
- if (!pThis->m_CinemaFadingOut)
+ if (!camera->m_CinemaFadingOut)
  {
-  pThis->m_Time += D_800B6B00 ;
-  if ((pThis->m_StartPressed) || (pThis->m_Time > 80))
+  camera->m_Time += D_800B6B00 ;
+  if ((camera->m_StartPressed) || (camera->m_Time > 80))
   {
-   pThis->m_CinemaFadingOut = 1 ;
+   camera->m_CinemaFadingOut = 1 ;
    D_80005350((&D_800F9F10)) ;
    D_8004463C(pMantis, MANTIS_IDLE_FLOOR_MODE) ;
   }

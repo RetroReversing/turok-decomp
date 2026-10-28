@@ -1609,6 +1609,7 @@ typedef struct CEngineApp_t
 extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
+/* Spins the elevator and carries a grounded player through the same rotation. */
 void func_8008EED8(CGameObjectInstance *pThis);
 void func_8008EED8(CGameObjectInstance *pThis){
  CMtxF mRot ;

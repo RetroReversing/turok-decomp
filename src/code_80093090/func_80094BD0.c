@@ -929,8 +929,8 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -1074,8 +1074,8 @@ typedef struct CPause_t
  signed long m_Selection ;
  int m_RealSelection;
 } CPause ;
-extern void func_800858A4(Gfx **ppDLP) ;
-extern void D_800859F8(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
+extern void CPause__InitPolygon(Gfx **ppDLP) ;
+extern void CPause__DrawBar(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
 typedef struct CBossVars_t
 {
  signed long m_SwitchesOn ;
@@ -1651,6 +1651,7 @@ extern t_LevelKey D_800EDA1C[4] ;
 extern t_LevelKey D_800EDA4C[2] ;
 void func_80094900(CKeys *pThis, Gfx **ppDLP, t_LevelKey *Array, int y);
 void func_80094BD0(CKeys *pThis, Gfx **ppDLP);
+/* Fades and draws the keys screen, including each level's key indicators. */
 void func_80094BD0(CKeys *pThis, Gfx **ppDLP){
  int i, y ;
  char buffer[8] ;
@@ -1677,15 +1678,15 @@ void func_80094BD0(CKeys *pThis, Gfx **ppDLP){
  }
  if (pThis->m_Alpha)
  {
-  func_8007F994(ppDLP) ;
-  func_8007FD68(ppDLP,
+  COnScreen__InitBoxDraw(ppDLP) ;
+  COnScreen__DrawHilightBox(ppDLP,
        ((320/2) - ((220)/2)), ((240/2) - ((210)/2)),
        ((320/2) - ((220)/2))+(220), ((240/2) - ((210)/2))+(210),
        1, 0,
        0,0,0, 150 * pThis->m_Alpha) ;
   y = (((240/2) - ((210)/2)) + (210) - 20) ;
-  func_800858A4(ppDLP) ;
-  D_800859F8(ppDLP, ((320/2) - ((220)/2))+8, y-1,
+  CPause__InitPolygon(ppDLP) ;
+  CPause__DrawBar(ppDLP, ((320/2) - ((220)/2))+8, y-1,
      (220)-16, 18, pThis->m_Alpha) ;
   func_80094900(pThis, ppDLP, D_800ED890, ((240/2) - ((210)/2))+24+(20*0)) ;
   func_80094900(pThis, ppDLP, D_800ED8F0, ((240/2) - ((210)/2))+24+(20*1)) ;
@@ -1695,7 +1696,7 @@ void func_80094BD0(CKeys *pThis, Gfx **ppDLP){
   func_80094900(pThis, ppDLP, D_800ED9E0, ((240/2) - ((210)/2))+24+(20*5)) ;
   func_80094900(pThis, ppDLP, D_800EDA1C, ((240/2) - ((210)/2))+24+(20*6)) ;
   func_80094900(pThis, ppDLP, D_800EDA4C, ((240/2) - ((210)/2))+24+(20*7)) ;
-  D_800806B4(ppDLP) ;
+  COnScreen__InitFontDraw(ppDLP) ;
   D_800808F8(ppDLP, 50,255,50, 255,255,50) ;
   D_800814AC(ppDLP,
           D_800ED840,

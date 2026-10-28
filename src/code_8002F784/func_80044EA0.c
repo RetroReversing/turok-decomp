@@ -1681,6 +1681,7 @@ signed long func_80044EA0(CGameObjectInstance *pThis, CMantis *pMantis){
  CVector3 vCentre ;
  vCentre.x = 0 ;
  vCentre.z = 0 ;
+ // Find the intact wall between Mantis and Turok when both are outside the arena center.
  Wall = -1 ;
  if ((func_800449D0(pThis, &vCentre) > (60*(1024.0/100.0))) &&
    (func_800449D0(pTurok, &vCentre) > (60*(1024.0/100.0))))

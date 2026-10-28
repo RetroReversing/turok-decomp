@@ -462,6 +462,7 @@ extern void func_8008C470(CROMSoundElement *pElement, signed long channel);
 extern signed short D_8012F000[91];
 void func_8008C470(CROMSoundElement *pElement, signed long channel);
 void func_8008C470(CROMSoundElement *pElement, signed long channel){
+ /* Convert a CFX sound's decibel volume and initialize its optional envelope. */
    int dbVolume;
  t_SndObject *pSound = &D_80129520.VoiceChannels[channel].theSFX;
  CROMEnvelope *pEnv = &D_80129520.VoiceChannels[channel].VolEnv ;

@@ -71,6 +71,7 @@ extern M2C_UNK D_801368A0;
 extern M2C_UNK D_80136920;
 
 void func_8009C5E4(void) {
+    /* Initialize the 26 fixed-size state records, then clear each record's four working fields. */
     func_8009C884(&D_80135C20);
     func_8009C5D0(&D_80135C20);
     func_8009C8D0(&D_80135CA0);

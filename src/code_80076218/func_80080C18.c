@@ -252,6 +252,7 @@ void func_80080C18(Gfx **ppDLP,
           void *pTexture,
           float XPos, float YPos,
           float XScale, float YScale);
+/* Draws a scaled 16 by 16 font texture rectangle. */
 void func_80080C18(Gfx **ppDLP,
           void *pTexture,
           float XPos, float YPos,

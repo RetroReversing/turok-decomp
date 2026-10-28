@@ -178,6 +178,7 @@ typedef struct s_CBarrel
 } CBarrel ;
 extern void func_800836B8(CBarrel *pThis) ;
 void func_800836B8(CBarrel *pThis);
+/* Spin the selection barrel toward the chosen item and wrap its visible index. */
 void func_800836B8(CBarrel *pThis){
  pThis->m_SelectedAngle = pThis->m_Selected * pThis->m_DisplayStep ;
  if (pThis->m_SelectedAngle != pThis->m_CurrentAngle)

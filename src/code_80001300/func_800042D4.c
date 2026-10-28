@@ -1609,6 +1609,7 @@ extern void func_800042D4(CEngineApp *pThis);
 extern float D_800B6B00 ;
 void D_80003F0C(CEngineApp *pThis, unsigned char Color[4]);
 void func_800042D4(CEngineApp *pThis);
+/* Advances the screen fade and renders its black tint. */
 void func_800042D4(CEngineApp *pThis){
  unsigned char fadecolor[4];
  float FadeDownSpeed, FadeUpSpeed ;

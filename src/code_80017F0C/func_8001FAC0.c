@@ -1625,6 +1625,7 @@ typedef struct CHeadTrackInfo_t
 extern void func_8001FAC0(CGameSimpleInstance *pThis);
 void func_8001FAC0(CGameSimpleInstance *pThis);
 void func_8001FAC0(CGameSimpleInstance *pThis){
+ /* Advance a warp simple's pulse, morph rate and vertical offset. */
  float scaler,
    t, end,
    v;

@@ -1632,7 +1632,7 @@ void func_80002E28(CEngineApp *pThis){
  if (pThis->m_PortraitAlpha)
  {
   Alpha = (unsigned char) (pThis->m_PortraitAlpha*255);
-  D_800806B4(&pThis->m_pDLP) ;
+  COnScreen__InitFontDraw(&pThis->m_pDLP) ;
   D_8008092C(1.0, 1.2) ;
   D_800808F8(&pThis->m_pDLP, 200, 200, 138, 86, 71,47) ;
   switch(pThis->m_PortraitName)

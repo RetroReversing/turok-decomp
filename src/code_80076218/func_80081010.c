@@ -270,6 +270,7 @@ void func_80080C18(Gfx **ppDLP,
           float XPos, float YPos,
           float XScale, float YScale);
 void func_80081010(Gfx **ppDLP, char *String, float nX, float nY, float XScale, float YScale);
+/* Draw fixed-width text from digit, letter and punctuation font textures. */
 void func_80081010(Gfx **ppDLP, char *String, float nX, float nY, float XScale, float YScale){
  int c ;
  CGridGraphic *font ;

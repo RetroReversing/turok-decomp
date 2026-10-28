@@ -2464,6 +2464,7 @@ void func_80059244(CTMove *pThis, CEngineApp *pApp, float shake, float ang, int 
 void func_80059320(CTMove *pThis, int wfired);
 void D_80059994 ( CTMove *pThis, int WFired );
 void func_8005A670 ( CTMove *pThis, int WFired );
+/* Fire repeated weapon effects as the weapon animation advances through its ammo ticks. */
 void func_80059320(CTMove *pThis, int wfired){
  CEngineApp *pApp;
  CGameObjectInstance *pPlayer;

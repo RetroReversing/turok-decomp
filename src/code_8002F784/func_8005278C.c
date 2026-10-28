@@ -1829,6 +1829,7 @@ void func_8005AFA8(CTMove *pThis, float Timer);
 void D_8005EA80(CTMove *pThis, CEngineApp *pApp);
 void func_8005ED10(CTMove *pThis);
 void func_8005278C(CTMove *pThis){
+ /* Resets Turok's movement, weapons, combat, map, and checkpoint state for a new life. */
  CGameObjectInstance *pPlayer;
  pThis->BackPackFlag = 0 ;
  if (pThis->BulletPool > 100)

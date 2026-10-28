@@ -1,5 +1,6 @@
 #include "common.h"
 
+/* identical to func_800900E4 (matched), with its names changed by decompdecomp */
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;

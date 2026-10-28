@@ -243,8 +243,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -284,8 +284,8 @@ typedef struct CSave_t
  int m_ShowAll ;
  signed long m_Selection ;
 } CSave ;
-extern void func_800858A4(Gfx **ppDLP) ;
-extern void D_800859F8(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
+extern void CPause__InitPolygon(Gfx **ppDLP) ;
+extern void CPause__DrawBar(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
 extern char D_800B7EA4[1] ;
 extern char D_800B7F58[1] ;
 extern char *D_800B8174[4];
@@ -293,13 +293,13 @@ extern void func_8000D6BC(CSave *pThis, Gfx **ppDLP) ;
 void func_8000D6BC(CSave *pThis, Gfx **ppDLP);
 void func_8000D6BC(CSave *pThis, Gfx **ppDLP){
  int i, y ;
- func_8007F994(ppDLP) ;
- func_8007FD68(ppDLP,
+ COnScreen__InitBoxDraw(ppDLP) ;
+ COnScreen__DrawHilightBox(ppDLP,
         (20 +120), 64,
         (20 +120)+(320-(20 +120)-20), 64 +150,
         2, 0,
         50,30,30, 200 * pThis->m_Alpha) ;
- func_8007FD68(ppDLP,
+ COnScreen__DrawHilightBox(ppDLP,
         20, 64,
         20 +120, 64 +150,
         2, 0,
@@ -307,36 +307,36 @@ void func_8000D6BC(CSave *pThis, Gfx **ppDLP){
  if (pThis->m_Side == 0)
  {
   y = pThis->m_BSelection *18 ;
-  func_8007FD68(ppDLP,
+  COnScreen__DrawHilightBox(ppDLP,
         20 +4, 64 +7+y,
         20 +120 -4, 64 +7+y+18,
         1, 0,
         30,30,50, 150 * pThis->m_Alpha) ;
-  func_800858A4(ppDLP) ;
+  CPause__InitPolygon(ppDLP) ;
   y = (pThis->m_ASelection - pThis->m_FirstVisible) *8 ;
-  D_800859F8(ppDLP, (20 +120)+2, 64 +8+y,
+  CPause__DrawBar(ppDLP, (20 +120)+2, 64 +8+y,
        (320-(20 +120)-20)-4, 8, pThis->m_Alpha) ;
  }
  else
  {
   y = (pThis->m_ASelection - pThis->m_FirstVisible) *8 ;
-  func_8007FD68(ppDLP,
+  COnScreen__DrawHilightBox(ppDLP,
         (20 +120)+4, 64 +6+y,
         (20 +120)+(320-(20 +120)-20)-4, 64 +6+y+11,
         1, 0,
         50,30,30, 150 * pThis->m_Alpha) ;
-  func_800858A4(ppDLP) ;
+  CPause__InitPolygon(ppDLP) ;
   y = pThis->m_BSelection *18 ;
-  D_800859F8(ppDLP, 20 +2, 64 +8+y,
+  CPause__DrawBar(ppDLP, 20 +2, 64 +8+y,
        120 -4, 18, pThis->m_Alpha) ;
  }
- func_8007F994(ppDLP) ;
- func_8007FD68(ppDLP,
+ COnScreen__InitBoxDraw(ppDLP) ;
+ COnScreen__DrawHilightBox(ppDLP,
        ((320/2) - ((16*14)/2)), 32,
        ((320/2) - ((16*14)/2))+(16*14), 32 +26,
        1, 0,
        50,10,50, 200 * pThis->m_Alpha) ;
- D_800806B4(ppDLP) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  D_8008092C(1.0, 1.0) ;
  D_800808F8(ppDLP, 50, 255, 50, 255, 255, 50) ;
  D_800814AC(ppDLP,
@@ -366,7 +366,7 @@ void func_8000D6BC(CSave *pThis, Gfx **ppDLP){
           (int)(255 * pThis->m_Alpha), 0, 0) ;
   y++ ;
  }
- D_800806B4(ppDLP) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  for (i=0; i<SAVEMEMORY_END_SELECTION; i++)
  {
   if (i==pThis->m_BSelection)

@@ -1613,6 +1613,7 @@ struct CCollisionInfo2_t;
 struct CParticle_t;
 void func_8005F840(CInstanceHdr *pThis, int nType, CVector3 vPos);
 void func_8005F840(CInstanceHdr *pThis, int nType, CVector3 vPos){
+ /* Create a particle near an instance, inheriting its motion and aim and suppressing blood for flagged animated objects. Source: ai.c, AI_DoParticle. */
  CVector3 vParticlePos,
         vVelocity;
  CGameRegion *pParticleRegion;

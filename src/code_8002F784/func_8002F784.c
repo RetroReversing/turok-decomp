@@ -1621,6 +1621,7 @@ void func_8003094C(const void *pA, const void *pB);
 int func_800308F4(const void *pA, const void *pB);
 void func_8002F784(CScene *pThis, Gfx **ppDLP);
 void func_8002F784(CScene *pThis, Gfx **ppDLP){
+ /* Sort transparent scene instances by eye distance, then draw them in order. */
  CInstanceHdr *pInstance;
  CGameStaticInstance *pStatic;
  int cInst, nInsts;

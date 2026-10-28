@@ -9,15 +9,16 @@ typedef struct CBoundsRect_t
  float m_MinX, m_MinZ,
       m_MaxX, m_MaxZ;
 } CBoundsRect;
-extern void func_800188C8(CBoundsRect *pThis, int nPts, CVector3 V[]);
-void func_800188C8(CBoundsRect *pThis, int nPts, CVector3 V[]);
-void func_800188C8(CBoundsRect *pThis, int nPts, CVector3 V[]){
- int p;
- for (p=0; p<nPts; p++)
+extern void func_800188C8(CBoundsRect *bounds, int pointCount, CVector3 points[]);
+void func_800188C8(CBoundsRect *bounds, int pointCount, CVector3 points[]);
+ /* Expand an XZ bounds rectangle to contain each point in the array. */
+void func_800188C8(CBoundsRect *bounds, int pointCount, CVector3 points[]){
+ int point;
+ for (point=0; point<pointCount; point++)
  {
-  pThis->m_MinX = ((pThis->m_MinX) < (V[p].x) ? (pThis->m_MinX) : (V[p].x));
-  pThis->m_MinZ = ((pThis->m_MinZ) < (V[p].z) ? (pThis->m_MinZ) : (V[p].z));
-  pThis->m_MaxX = ((pThis->m_MaxX) > (V[p].x) ? (pThis->m_MaxX) : (V[p].x));
-  pThis->m_MaxZ = ((pThis->m_MaxZ) > (V[p].z) ? (pThis->m_MaxZ) : (V[p].z));
+  bounds->m_MinX = ((bounds->m_MinX) < (points[point].x) ? (bounds->m_MinX) : (points[point].x));
+  bounds->m_MinZ = ((bounds->m_MinZ) < (points[point].z) ? (bounds->m_MinZ) : (points[point].z));
+  bounds->m_MaxX = ((bounds->m_MaxX) > (points[point].x) ? (bounds->m_MaxX) : (points[point].x));
+  bounds->m_MaxZ = ((bounds->m_MaxZ) > (points[point].z) ? (bounds->m_MaxZ) : (points[point].z));
  }
 }

@@ -1608,19 +1608,20 @@ extern void func_80001E80(CEngineApp *pThis, unsigned char *pR, unsigned char *p
 extern CEngineApp D_800F9F10;
 void func_80001E80(CEngineApp *pThis, unsigned char *pR, unsigned char *pG, unsigned char *pB);
 void func_80002B40(CEngineApp *pThis);
-void func_80002B40(CEngineApp *pThis){
+void func_80002B40(CEngineApp *pApp){
+ /* Configure the display list's camera, fog, and texture state, then update drawing systems. */
  unsigned char r, g, b;
- func_80038B94(&pThis->m_Camera, &pThis->m_pDLP);
- { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(12) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((2 << 12)); };
-   { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(6) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((0 << 6)); };
- { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(4) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((1 << 4)); };
- { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)((-65 -8)) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)(0x00010000); };
- { Gfx *_g = (Gfx *)((pThis->m_pDLP++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x00)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x08)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) ((((unsigned int) (((unsigned int)((128000/((1000)-((unsigned short) pThis->m_FogStart)))) & ((0x01 << (16)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(((500-((unsigned short) pThis->m_FogStart))*256/((1000)-((unsigned short) pThis->m_FogStart)))) & ((0x01 << (16)) - 1)) << (0))))); };
- func_80001E80(pThis, &r, &g, &b);
-   { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xf8) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)((((unsigned int) (((unsigned int)(r) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(g) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(b) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(255) & ((0x01 << (8)) - 1)) << (0))))); };
+ func_80038B94(&pApp->m_Camera, &pApp->m_pDLP);
+ { Gfx *_g = (Gfx *)(pApp->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(12) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((2 << 12)); };
+   { Gfx *_g = (Gfx *)(pApp->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(6) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((0 << 6)); };
+ { Gfx *_g = (Gfx *)(pApp->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(4) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((1 << 4)); };
+ { Gfx *_g = (Gfx *)(pApp->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)((-65 -8)) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)(0x00010000); };
+ { Gfx *_g = (Gfx *)((pApp->m_pDLP++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x00)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x08)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) ((((unsigned int) (((unsigned int)((128000/((1000)-((unsigned short) pApp->m_FogStart)))) & ((0x01 << (16)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(((500-((unsigned short) pApp->m_FogStart))*256/((1000)-((unsigned short) pApp->m_FogStart)))) & ((0x01 << (16)) - 1)) << (0))))); };
+ func_80001E80(pApp, &r, &g, &b);
+   { Gfx *_g = (Gfx *)(pApp->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xf8) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)((((unsigned int) (((unsigned int)(r) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(g) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(b) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(255) & ((0x01 << (8)) - 1)) << (0))))); };
  D_80026DB4();
  func_80035724() ;
- func_800424CC(&pThis->m_FxSystem) ;
+ func_800424CC(&pApp->m_FxSystem) ;
  if ((&D_800F9F10)->m_dwCheatFlags & (1<<12))
-    { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(12) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((0 << 12)); };
+    { Gfx *_g = (Gfx *)(pApp->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(12) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((0 << 12)); };
 }

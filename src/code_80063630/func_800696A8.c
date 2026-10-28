@@ -1614,6 +1614,7 @@ extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 struct CParticle_t;
 void func_800696A8(CAnimInstanceHdr *pThis, int nType, CVector3 vPos, int nParticles);
+/* Spread particles along the previous frame of movement, respecting no-blood enemies. */
 void func_800696A8(CAnimInstanceHdr *pThis, int nType, CVector3 vPos, int nParticles){
  int cParticle;
  CVector3 vLastPos, vDistance,

@@ -1984,6 +1984,7 @@ extern t_LevelKey D_800ED9E0[5] ;
 extern t_LevelKey D_800EDA1C[4] ;
 extern t_LevelKey D_800EDA4C[2] ;
 signed long func_80093DF4(COptions *pThis){
+ /* Handle options navigation, sliders and selections from controller input. */
  float delta ;
  signed long ReturnValue = -1 ;
  {

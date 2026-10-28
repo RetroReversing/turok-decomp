@@ -920,8 +920,8 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -1366,7 +1366,8 @@ typedef struct CTraining_t
  float m_Alpha ;
  sa_s32 m_ID ;
 } CTraining ;
-extern void func_80087B94(CTraining *pInst, Gfx **ppDLP) ;
+extern /* Fade and draw the training overlay text for the selected training message. */
+void func_80087B94(CTraining *pTraining, Gfx **ppDLP) ;
 typedef union
 {
  struct
@@ -1637,116 +1638,116 @@ extern char *D_800ECA74[10] ;
 extern char *D_800ECA9C[6] ;
 extern char *D_800ECAB4[6] ;
 extern char *D_800ECACC[7] ;
-void func_80087B94(CTraining *pInst, Gfx **ppDLP);
+void func_80087B94(CTraining *pTraining, Gfx **ppDLP);
 extern CEngineApp D_80106004;
-void func_80087B94(CTraining *pInst, Gfx **ppDLP){
- char **ppText ;
- int i, y ;
- switch (pInst->m_Mode)
+void func_80087B94(CTraining *pTraining, Gfx **ppDLP){
+ char **trainingLines ;
+ int lineIndex, textY ;
+ switch (pTraining->m_Mode)
  {
   case TRAINING_FADEUP:
-   pInst->m_Alpha += D_800F5FA8 * D_800B6B00 ;
-   if (pInst->m_Alpha >= 1.0)
+   pTraining->m_Alpha += D_800F5FA8 * D_800B6B00 ;
+   if (pTraining->m_Alpha >= 1.0)
    {
-    pInst->m_Alpha = 1.0 ;
-    pInst->m_Mode = TRAINING_NORMAL ;
+    pTraining->m_Alpha = 1.0 ;
+    pTraining->m_Mode = TRAINING_NORMAL ;
    }
    break ;
   case TRAINING_FADEDOWN:
-   pInst->m_Alpha -= .2 * D_800B6B00 ;
-   if (pInst->m_Alpha <= 0.0)
+   pTraining->m_Alpha -= .2 * D_800B6B00 ;
+   if (pTraining->m_Alpha <= 0.0)
    {
-    pInst->m_Alpha = 0.0 ;
-    pInst->m_Mode = TRAINING_NULL ;
+    pTraining->m_Alpha = 0.0 ;
+    pTraining->m_Mode = TRAINING_NULL ;
    }
    break ;
  }
- func_8007F994(ppDLP) ;
- func_8007FD68(ppDLP,
+ COnScreen__InitBoxDraw(ppDLP) ;
+ COnScreen__DrawHilightBox(ppDLP,
         ((320/2) - ((280)/2)), ((240/2) - ((180)/2)),
         ((320/2) - ((280)/2))+(280), ((240/2) - ((180)/2))+(180),
         1, 0,
-        0,0,0, 150 * pInst->m_Alpha) ;
- D_800806B4(ppDLP) ;
+        0,0,0, 150 * pTraining->m_Alpha) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  D_8008092C(1.0, 1.0) ;
  D_800808F8(ppDLP, 200*1.25, 200*1.25, 138*1.25, 86*1.25, 71*1.25,47*1.25) ;
- switch (pInst->m_ID)
+ switch (pTraining->m_ID)
  {
   case 10001:
-    ppText = D_800EC890 ;
+    trainingLines = D_800EC890 ;
     break ;
   case 10002:
-    ppText = D_800EC8B0 ;
+    trainingLines = D_800EC8B0 ;
     break ;
   case 10003:
-    ppText = D_800EC8D4 ;
+    trainingLines = D_800EC8D4 ;
     break ;
   case 10004:
-    ppText = D_800EC8F8 ;
+    trainingLines = D_800EC8F8 ;
     break ;
   case 10005:
-    ppText = D_800EC91C ;
+    trainingLines = D_800EC91C ;
     break ;
   case 10006:
-    ppText = D_800EC93C ;
+    trainingLines = D_800EC93C ;
     break ;
   case 10007:
-    ppText = D_800EC954 ;
+    trainingLines = D_800EC954 ;
     break ;
   case 10009:
-    ppText = D_800EC978 ;
+    trainingLines = D_800EC978 ;
     break ;
   case 10010:
-    ppText = D_800EC998 ;
+    trainingLines = D_800EC998 ;
     break ;
   case 10011:
-    ppText = D_800EC9B0 ;
+    trainingLines = D_800EC9B0 ;
     break ;
   case 10012:
-    ppText = D_800EC9D4 ;
+    trainingLines = D_800EC9D4 ;
     break ;
   case 10013:
-    ppText = D_800EC9F0 ;
+    trainingLines = D_800EC9F0 ;
     break ;
   case 10015:
-    ppText = D_800ECA14 ;
+    trainingLines = D_800ECA14 ;
     break ;
   case 10016:
-    ppText = D_800ECA30 ;
+    trainingLines = D_800ECA30 ;
     break ;
   case 10017:
-    ppText = D_800ECA54 ;
+    trainingLines = D_800ECA54 ;
     break ;
   case 10018:
-    ppText = D_800ECA74 ;
+    trainingLines = D_800ECA74 ;
     break ;
   case 10019:
-    ppText = D_800ECA9C ;
+    trainingLines = D_800ECA9C ;
     break ;
   case 10020:
-    ppText = D_800ECAB4 ;
+    trainingLines = D_800ECAB4 ;
     break ;
   case 10021:
     (&D_80106004)->m_bTrainingMode = 2 ;
-    ppText = D_800ECACC ;
+    trainingLines = D_800ECACC ;
     break ;
  }
- i = 0 ;
- y = ((240/2) - ((180)/2))+16 ;
- if (ppText)
+ lineIndex = 0 ;
+ textY = ((240/2) - ((180)/2))+16 ;
+ if (trainingLines)
  {
-  while (ppText[i] != 0)
+  while (trainingLines[lineIndex] != 0)
   {
-   if (ppText[i] == D_800EC1E0)
+   if (trainingLines[lineIndex] == D_800EC1E0)
    {
-    y += 8 ;
+    textY += 8 ;
    }
    else
    {
-    D_800814AC(ppDLP, ppText[i], 320/2, y, (int)(255 * pInst->m_Alpha), 1, 1);
-    y+=18 ;
+    D_800814AC(ppDLP, trainingLines[lineIndex], 320/2, textY, (int)(255 * pTraining->m_Alpha), 1, 1);
+    textY+=18 ;
    }
-   i++;
+   lineIndex++;
   }
  }
 }

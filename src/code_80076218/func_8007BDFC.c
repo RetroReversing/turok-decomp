@@ -2791,34 +2791,35 @@ enum SOUND_TYPES
 };
 extern int D_80128F90;
 int func_8007BDFC ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-int func_8007BDFC ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag){
+int func_8007BDFC ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag){
+ /* Fire Turok's rocket launcher, consume ammo, and update its weapon state. */
  CVector3 vPos;
- if ( func_800510C4 ( D_800F9E44 ) )
+ if ( func_800510C4 ( pCTControl ) )
  {
-  func_800587B0 ( D_800F9E48, 13 );
-  if ( func_8005843C ( D_800F9E48, 112, 1 ) )
+  func_800587B0 ( pCTMove, 13 );
+  if ( func_8005843C ( pCTMove, 112, 1 ) )
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
    return 0;
   }
   vPos = ((pMe)->ah.ih.m_vPos);
   func_80031974(&(&D_800F9F10)->m_Scene, SOUND_MISSILE_LAUNCH, 0, 0, &vPos, 0);
   func_80031974(&(&D_800F9F10)->m_Scene, SOUND_RELOAD_MISSLE_LAUNCHER, 0, 0, &vPos, 0);
   D_80070DA8 (&pMe->ah.ih, &pMe->ah.ih, 29, 0xffffffff, ((pMe)->ah.ih.m_vPos), 10);
-  func_80057DC8 ( D_800F9E48, &D_800F9E48->RocketAmmo, 1);
-  D_80059994 ( D_800F9E48, 13 );
-  if (func_8005843C(D_800F9E48, 112, 1))
+  func_80057DC8 ( pCTMove, &pCTMove->RocketAmmo, 1);
+  D_80059994 ( pCTMove, 13 );
+  if (func_8005843C(pCTMove, 112, 1))
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
-   D_800F9E48->WeaponMode = 4;
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
+   pCTMove->WeaponMode = 4;
    return 1;
   }
   func_8005FCF4 ( pMe, 45, 1 );
@@ -2828,13 +2829,13 @@ int func_8007BDFC ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_8
  }
  else
  {
-  if (func_8005843C(D_800F9E48, 112, 1))
+  if (func_8005843C(pCTMove, 112, 1))
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
   }
  }
  return 0;

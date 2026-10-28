@@ -18,8 +18,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -36,7 +36,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -96,12 +96,12 @@ int func_800374D8(CGameAnimateState *pThis){
  if (cNextFrame >= pThis->m_nFrames)
  {
                           ;
-  func_8002DD28(&isAnim,
-              func_8002D690(pThis->m_pceAnim),
+  CIndexedSet__ConstructFromRawData(&isAnim,
+              CCacheEntry__GetData(pThis->m_pceAnim),
               0);
-  pbTransitionTable = D_8002DC68((&isAnim), (&isAnim)->m_pData, (5));
-  func_8002DD28(&isTransitionTable, pbTransitionTable, 0);
-  pTransition = (CROMTransition*) D_8002DC68((&isTransitionTable), (&isTransitionTable)->m_pData, (0));
+  pbTransitionTable = CIndexedSet__GetBlock((&isAnim), (&isAnim)->m_pData, (5));
+  CIndexedSet__ConstructFromRawData(&isTransitionTable, pbTransitionTable, 0);
+  pTransition = (CROMTransition*) CIndexedSet__GetBlock((&isTransitionTable), (&isTransitionTable)->m_pData, (0));
   cNextFrame = pTransition->m_nExitToFrame;
                                 ;
                                            ;

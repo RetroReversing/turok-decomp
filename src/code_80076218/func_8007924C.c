@@ -1824,6 +1824,7 @@ extern CTMove D_80128C20;
 extern int func_8005CE10 (CTMove *pThis);
 void func_8007924C(CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_8007924C(CGameObjectInstance *pMe, CGameObjectInstance *pDest){
+ /* Retreat from the target, choosing an avoidance heading and movement style. */
  float turnang,
         avoidrad;
  CVector3 vPos;

@@ -1927,7 +1927,7 @@ typedef struct CEngineApp_t
 } CEngineApp;
 extern sa_u64 dram_stack[];
 extern float D_800B6B00;
-extern CTControl *D_800F9E44;
+extern CTControl *pCTControl;
 struct CCollisionInfo2_t;
 typedef struct
 {
@@ -2140,9 +2140,10 @@ typedef struct
  float InMenuTimer ;
  CCollisionInfo2 *pLastCI;
 } CTMove;
-extern CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos){
+extern CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos);
+CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos);
+CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos){
+ /* Accelerate Turok forward or backward while flying, then damp speed when controls are released. */
  float resb, resf, dm,
         sinRotY, cosRotY;
  CGameObjectInstance *pIns;
@@ -2150,7 +2151,7 @@ CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
  if (pIns == ((void*)0)) return vDesiredPos;
  sinRotY = func_8009E7B0(pIns->m_RotY + D_800F31A8);
  cosRotY = func_8009E630(pIns->m_RotY + 3.14159265358979323846);
- resf = func_80051E14(D_800F9E44);
+ resf = func_80051E14(pCTControl);
  if (resf)
  {
   dm = (8*(1024.0/100.0)) - pThis->MoveSpeed;
@@ -2159,7 +2160,7 @@ CVector3 func_80055B88(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
   vDesiredPos.x += pThis->MoveSpeed*D_800B6B00*sinRotY;
   vDesiredPos.z += pThis->MoveSpeed*D_800B6B00*cosRotY;
  }
- resb = func_80051E44(D_800F9E44);
+ resb = func_80051E44(pCTControl);
  if (resb)
  {
   dm = -(7*(1024.0/100.0)) - pThis->MoveSpeed;

@@ -276,8 +276,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -294,7 +294,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -1054,6 +1054,7 @@ extern void func_80034540(CScene *pThis, CCacheEntry **ppceTarget);
 void func_800344F0(CScene *pThis);
 void func_80034540(CScene *pThis, CCacheEntry **ppceTarget);
 void func_80034540(CScene *pThis, CCacheEntry **ppceTarget){
+ /* Build persistent level data from the received pickup, animation, and region counts. */
  CIndexedSet isPersistantCounts,
       isPersistantData,
       isLevels, isLevel;
@@ -1069,22 +1070,22 @@ void func_80034540(CScene *pThis, CCacheEntry **ppceTarget){
       *pMaxRegionCount;
                                                     ;
                                                   ;
- func_8002DD28(&isPersistantCounts,
-             func_8002D690(pThis->m_pcePersistantCounts),
+ CIndexedSet__ConstructFromRawData(&isPersistantCounts,
+             CCacheEntry__GetData(pThis->m_pcePersistantCounts),
              0);
- pbPickupCounts = D_8002DC68((&isPersistantCounts), (&isPersistantCounts)->m_pData, (0));
+ pbPickupCounts = CIndexedSet__GetBlock((&isPersistantCounts), (&isPersistantCounts)->m_pData, (0));
  func_8002DA8C(&usPickupCounts, pbPickupCounts, 0);
  pickupCounts = (unsigned long*) ( (void*) ( ((unsigned char*)((&usPickupCounts)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nLevels = ( (unsigned long) (((unsigned long*) (&usPickupCounts)->m_pData)[1]) );
- pbAnimCounts = D_8002DC68((&isPersistantCounts), (&isPersistantCounts)->m_pData, (1));
+ pbAnimCounts = CIndexedSet__GetBlock((&isPersistantCounts), (&isPersistantCounts)->m_pData, (1));
  func_8002DA8C(&usAnimCounts, pbAnimCounts, 0);
  animCounts = (unsigned long*) ( (void*) ( ((unsigned char*)((&usAnimCounts)->m_pData)) + (2*sizeof(unsigned long)) ) );
                                                                ;
- pMaxRegionCount = (unsigned long*) D_8002DC68((&isPersistantCounts), (&isPersistantCounts)->m_pData, (2));
+ pMaxRegionCount = (unsigned long*) CIndexedSet__GetBlock((&isPersistantCounts), (&isPersistantCounts)->m_pData, (2));
  func_800121B8(D_8014F688, 0, 4200);
  pBytes = (unsigned char*) D_8014F688;
  pbPersistantData = pBytes;
- func_8002DD28(&isPersistantData, pbPersistantData, 0);
+ CIndexedSet__ConstructFromRawData(&isPersistantData, pbPersistantData, 0);
  offset = ( ( ((1*sizeof(unsigned long)) + ((3)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
  ((unsigned long*) ((&isPersistantData)->m_pData))[0] = ((unsigned long) (0));
  ((unsigned long*) ((&isPersistantData)->m_pData))[1 + (((unsigned long*) (&isPersistantData)->m_pData)[0])] = ((unsigned long) (offset));
@@ -1092,14 +1093,14 @@ void func_80034540(CScene *pThis, CCacheEntry **ppceTarget){
  ((unsigned long*) ((&isPersistantData)->m_pData))[0] = ((unsigned long) (1));
  ((unsigned long*) ((&isPersistantData)->m_pData))[1 + (((unsigned long*) (&isPersistantData)->m_pData)[0])] = ((unsigned long) (offset));
  pbLevels = pBytes + offset;
- func_8002DD28(&isLevels, pbLevels, 0);
+ CIndexedSet__ConstructFromRawData(&isLevels, pbLevels, 0);
  levelsOffset = ( ( ((1*sizeof(unsigned long)) + ((nLevels)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
  ((unsigned long*) ((&isLevels)->m_pData))[0] = ((unsigned long) (0));
  ((unsigned long*) ((&isLevels)->m_pData))[1 + (((unsigned long*) (&isLevels)->m_pData)[0])] = ((unsigned long) (levelsOffset));
  for (cLevel=0; cLevel<nLevels; cLevel++)
  {
   pbLevel = pBytes + offset + levelsOffset;
-  func_8002DD28(&isLevel, pbLevel, 0);
+  CIndexedSet__ConstructFromRawData(&isLevel, pbLevel, 0);
   levelOffset = ( ( ((1*sizeof(unsigned long)) + ((2)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
   ((unsigned long*) ((&isLevel)->m_pData))[0] = ((unsigned long) (0));
   ((unsigned long*) ((&isLevel)->m_pData))[1 + (((unsigned long*) (&isLevel)->m_pData)[0])] = ((unsigned long) (levelOffset));

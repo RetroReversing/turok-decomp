@@ -1603,6 +1603,7 @@ extern sa_u64 D_8013C660[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 void func_80096170(CGameRegion *pRegion);
+/* Reveal nearby map regions, following passable neighbors while guarding stack space. */
 void func_80096170(CGameRegion *pRegion){
  if ( (unsigned long)&pRegion < ((unsigned long)D_8013C660 + 0xe000/10) )
   return;

@@ -1332,6 +1332,7 @@ extern int D_8012EF30;
 void func_8008B490();
 int func_8008B5AC(int nTune);
 void func_8008B654();
+/* Advances music fade, load, retry, and play states for the requested sequence. */
 void func_8008B654(){
  int nRequestedSeq = D_80128C20.MusicID;
  static int load_timeout = 0;

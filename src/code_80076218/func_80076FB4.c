@@ -813,6 +813,7 @@ extern float D_800B6B00;
 struct CCollisionInfo2_t;
 int func_80076A40(CGameObjectInstance *pAI, float radiusFactor);
 void func_80076FB4(CGameObjectInstance *pMe, CGameObjectInstance *pDest);
+/* Hold a flying enemy above its target or water and steer around nearby walls. */
 void func_80076FB4(CGameObjectInstance *pMe, CGameObjectInstance *pDest){
  CVector3 vDestPos,
      vFlyPos;

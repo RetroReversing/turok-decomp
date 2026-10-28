@@ -274,8 +274,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -292,7 +292,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -996,10 +996,10 @@ void func_800325D4(CScene *pThis, CCacheEntry **ppceTarget){
  int nGridSections;
                                               ;
                                             ;
- func_8002DD28(&isGridBounds,
-             func_8002D690(pThis->m_pceGridBounds),
+ CIndexedSet__ConstructFromRawData(&isGridBounds,
+             CCacheEntry__GetData(pThis->m_pceGridBounds),
              0);
- pbBounds = D_8002DC68((&isGridBounds), (&isGridBounds)->m_pData, (4));
+ pbBounds = CIndexedSet__GetBlock((&isGridBounds), (&isGridBounds)->m_pData, (4));
  func_8002DA8C(&usBounds, pbBounds, 0);
  nGridSections = ( (unsigned long) (((unsigned long*) (&usBounds)->m_pData)[1]) );
    D_8002D1F8(&pThis->m_Cache,

@@ -346,7 +346,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -1627,7 +1627,7 @@ void func_8003F3DC(CBossesStatus *pThis){
  if (pScene->m_pceInstances)
  {
   func_8002DA8C(&usInstances,
-              func_8002D690(pScene->m_pceInstances),
+              CCacheEntry__GetData(pScene->m_pceInstances),
               0);
   instances = (CGameObjectInstance*) ( (void*) ( ((unsigned char*)((&usInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
   nInstances = ( (unsigned long) (((unsigned long*) (&usInstances)->m_pData)[1]) );

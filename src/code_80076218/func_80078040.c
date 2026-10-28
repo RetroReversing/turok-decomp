@@ -815,8 +815,9 @@ struct CCollisionInfo2_t;
 void D_80077BFC(CGameObjectInstance *pMe);
 void func_80078040(CGameObjectInstance *pMe);
 void func_80078040(CGameObjectInstance *pMe){
- int picked,
-   pickedType = -1;
+ /* Apply an explosion impulse and select the appropriate hit or death animation. */
+ int animationIndex,
+   animationType = -1;
  int exptypes[]={30,
        31,
        33,
@@ -849,9 +850,9 @@ void func_80078040(CGameObjectInstance *pMe){
  }
  if (func_800719B4(pMe) == 1)
  {
-  picked = func_8001C348(pMe, 1, swimtypes, swimweights_storage.values, &pickedType);
+  animationIndex = func_8001C348(pMe, 1, swimtypes, swimweights_storage.values, &animationType);
   (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
-  func_8005FCA0(pMe, picked, 1);
+  func_8005FCA0(pMe, animationIndex, 1);
   func_8001E93C(pMe);
  }
  else
@@ -861,28 +862,28 @@ void func_80078040(CGameObjectInstance *pMe){
   {
    if (((pMe)->ah.ih.m_pEA)->m_dwTypeFlags&(1<<8))
     D_80071058(pMe, 999999, 0, 1);
-   picked = func_8001C348(pMe, 4, exptypes, expweights, &pickedType);
+   animationIndex = func_8001C348(pMe, 4, exptypes, expweights, &animationType);
    (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
-   func_8005FCA0(pMe, picked, 1);
+   func_8005FCA0(pMe, animationIndex, 1);
    func_8001E93C(pMe);
   }
   else if ( (!(((pMe)->ah.ih.m_pEA)->m_dwTypeFlags&(1<<4))) &&
        (&((pMe)->m_AI))->m_Health <= 0 &&
       (!((&((pMe)->m_AI))->m_dwStatusFlags&(1<<14))) )
   {
-   picked = func_8001C348(pMe, 2, dexptypes, dexpweights, &pickedType);
-   if ( (picked == -1)
+   animationIndex = func_8001C348(pMe, 2, dexptypes, dexpweights, &animationType);
+   if ( (animationIndex == -1)
      && (((pMe)->ah.ih.m_pEA)->m_dwTypeFlags & (1<<7)) )
    {
     D_80077BFC(pMe);
     return;
    }
    (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
-   func_8005FCA0(pMe, picked, 1);
+   func_8005FCA0(pMe, animationIndex, 1);
    func_8001E93C(pMe);
    if (((pMe)->ah.ih.m_pEA)->m_dwTypeFlags&(1<<7))
     (&((pMe)->m_AI))->m_dwStatusFlags|=(1<<14);
   }
  }
- (&((pMe)->m_AI))->m_DeathAnimType = pickedType;
+ (&((pMe)->m_AI))->m_DeathAnimType = animationType;
 }

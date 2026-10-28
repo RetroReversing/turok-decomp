@@ -1775,6 +1775,7 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo;
 CQuatern func_8001D464(CGameObjectInstance *pThis);
 CQuatern func_8001D5C8(CInstanceHdr *pThis, CVector3 vPos);
+/* Rotates an instance's forward direction toward its attacker or the player. */
 CQuatern func_8001D5C8(CInstanceHdr *pThis, CVector3 vPos)
 {
   CEngineApp *pApp;

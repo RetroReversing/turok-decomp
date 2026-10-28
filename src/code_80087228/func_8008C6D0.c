@@ -449,7 +449,7 @@ extern int func_80089EC4(signed short Channel);
 extern t_AudioWorld D_80129520;
 extern float D_800ECF4C;
 extern void func_8008C6D0(signed long channel);
-void func_8008C6D0(signed long channel);
+void func_8008C6D0(signed long channel);/* Advances a composite sound's volume envelope and updates the active voice. */
 void func_8008C6D0(signed long channel){
  ALSndPlayer *Sndp = &D_80129520.SndPlayerList.Sndp;
  t_SndObject *pSound = &D_80129520.VoiceChannels[channel].theSFX;

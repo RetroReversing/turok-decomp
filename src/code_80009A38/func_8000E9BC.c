@@ -1815,6 +1815,7 @@ extern CTMove D_80128C20;
 extern void func_8000E9BC(void) ;
 void func_8000E9BC(void);
 void func_8000E9BC(void){
+ /* Copy Turok's equipment and game options into persistent save data. */
  CPersistantData *persist ;
  persist = (CPersistantData *)func_80034AF8(&(&D_800F9F10)->m_Scene) ;
  persist->SemiAutomaticPistolFlag = D_80128C20.SemiAutomaticPistolFlag ;

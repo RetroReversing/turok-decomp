@@ -1451,7 +1451,8 @@ struct CParticle_t;
 void func_80069F94 (CInstanceHdr *pThis, CVector3 vPos, float Value );
 int D_8005EED0(CInstanceHdr *pThis, int nSound, float Volume, int SndFlags);
 void func_80069F94 (CInstanceHdr *pThis, CVector3 vPos, float Value ){
- int n, s;
+ /* Play the species specific grunt or injury sound for an AI event. */
+ int gruntChoice, soundId;
                                                                   ;
  switch (func_8001D398(pThis))
  {
@@ -1474,21 +1475,21 @@ void func_80069F94 (CInstanceHdr *pThis, CVector3 vPos, float Value ){
    }
    else
    {
-    n = (D_800137A0() % (3));
-    switch (n)
+    gruntChoice = (D_800137A0() % (3));
+    switch (gruntChoice)
     {
-     case 0: s = SOUND_HUMAN_EFFORTINJURY_GRUNT_1; break;
-     case 1: s = SOUND_HUMAN_EFFORTINJURY_GRUNT_2; break;
-     default: s = SOUND_HUMAN_EFFORTINJURY_GRUNT_3; break;
+     case 0: soundId = SOUND_HUMAN_EFFORTINJURY_GRUNT_1; break;
+     case 1: soundId = SOUND_HUMAN_EFFORTINJURY_GRUNT_2; break;
+     default: soundId = SOUND_HUMAN_EFFORTINJURY_GRUNT_3; break;
     }
     if ( (pThis->m_pEA->m_AttackStyle >= 28)
       && (pThis->m_pEA->m_AttackStyle <= 29) )
     {
-     D_8005EED0(pThis, s, 1, (1 << 7));
+     D_8005EED0(pThis, soundId, 1, (1 << 7));
     }
     else
     {
-     D_8005EED0(pThis, s, 1, (1 << 1));
+     D_8005EED0(pThis, soundId, 1, (1 << 1));
     }
    }
    break;

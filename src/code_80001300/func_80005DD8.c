@@ -1973,9 +1973,10 @@ void D_80003F0C(CEngineApp *pThis, unsigned char Color[4]);
 void func_80005B7C(CEngineApp *pThis, unsigned long NewMode);
 void func_80005DD8(CEngineApp *pThis);
 void func_80005DD8(CEngineApp *pThis){
- CGameObjectInstance *pTurok;
- pTurok = ((pThis)->m_Scene.m_pPlayer);
- if (!pTurok)
+ /* Advance the warp tint and play the arrival sound after the first incoming frame. */
+ CGameObjectInstance *pPlayer;
+ pPlayer = ((pThis)->m_Scene.m_pPlayer);
+ if (!pPlayer)
   return;
  switch (pThis->m_Warp)
  {
@@ -1998,7 +1999,7 @@ void func_80005DD8(CEngineApp *pThis){
     pThis->m_PlayedSound = 1;
     func_80031974(&pThis->m_Scene,
             pThis->m_WarpSound, 1,
-            pTurok, &D_80129520.Ears.vPos, 0);
+            pPlayer, &D_80129520.Ears.vPos, 0);
    }
    pThis->m_uWarp += D_800B6B00/pThis->m_WarpLength;
    pThis->m_WarpColors[3] = 255 - ((255) < (pThis->m_uWarp*255) ? (255) : (pThis->m_uWarp*255));

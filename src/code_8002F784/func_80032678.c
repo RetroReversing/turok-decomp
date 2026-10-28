@@ -276,8 +276,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 extern void* D_8002DC3C(CIndexedSet *pThis, void *pBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
@@ -295,7 +295,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern void* func_8002D648(CCacheEntry *pThis, unsigned long NewSize, int AllocTop);
 extern void func_8002D604(CCacheEntry *pThis, void *pNewData, unsigned long NewLength);
 extern int D_8002D6BC(CCacheEntry *pThis, int AllocTop);
@@ -999,6 +999,7 @@ struct CCollisionInfo2_t;
 extern void func_80032678(CScene *pThis, CCacheEntry **ppceTarget);
 void func_80032678(CScene *pThis, CCacheEntry **ppceTarget);
 void func_80032678(CScene *pThis, CCacheEntry **ppceTarget){
+ /* Decompress grid bounds and expand the ROM records into runtime bounds arrays. */
  CIndexedSet isGridBounds,
        isNewGridBounds;
  void *pbMinXs, *pbMaxXs,
@@ -1023,14 +1024,14 @@ void func_80032678(CScene *pThis, CCacheEntry **ppceTarget){
                                                       ;
  if (!D_8002D6BC(*ppceTarget, 1))
   return;
- func_8002DD28(&isGridBounds,
-             func_8002D690(pThis->m_pceGridBounds),
+ CIndexedSet__ConstructFromRawData(&isGridBounds,
+             CCacheEntry__GetData(pThis->m_pceGridBounds),
              0);
  pbMinXs = D_8002DC3C((&isGridBounds), (&isGridBounds)->m_pData, (0), (&minXSize));
  pbMaxXs = D_8002DC3C((&isGridBounds), (&isGridBounds)->m_pData, (1), (&maxXSize));
  pbMinZs = D_8002DC3C((&isGridBounds), (&isGridBounds)->m_pData, (2), (&minZSize));
  pbMaxZs = D_8002DC3C((&isGridBounds), (&isGridBounds)->m_pData, (3), (&maxZSize));
- pbBounds = D_8002DC68((&isGridBounds), (&isGridBounds)->m_pData, (4));
+ pbBounds = CIndexedSet__GetBlock((&isGridBounds), (&isGridBounds)->m_pData, (4));
  func_8002DA8C(&usBounds, pbBounds, 0);
  nBounds = ( (unsigned long) (((unsigned long*) (&usBounds)->m_pData)[1]) );
                                                   ;
@@ -1040,7 +1041,7 @@ void func_80032678(CScene *pThis, CCacheEntry **ppceTarget){
  if (pBytes)
  {
   pbNewGridBounds = pBytes;
-  func_8002DD28(&isNewGridBounds, pbNewGridBounds, 0);
+  CIndexedSet__ConstructFromRawData(&isNewGridBounds, pbNewGridBounds, 0);
   offset = ( ( ((1*sizeof(unsigned long)) + ((5)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
   ((unsigned long*) ((&isNewGridBounds)->m_pData))[0] = ((unsigned long) (0));
   ((unsigned long*) ((&isNewGridBounds)->m_pData))[1 + (((unsigned long*) (&isNewGridBounds)->m_pData)[0])] = ((unsigned long) (offset));

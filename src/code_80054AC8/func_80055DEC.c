@@ -2142,7 +2142,8 @@ typedef struct
 } CTMove;
 extern CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos){
+CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos){
+ /* Apply flying sidestep input and smooth its speed into the desired position. */
  float resl, resr, dm,
         sinSideY, cosSideY;
  CGameObjectInstance *pIns;
@@ -2150,7 +2151,7 @@ CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
  if (pIns == ((void*)0)) return vDesiredPos;
  sinSideY = func_8009E7B0(pIns->m_RotY - D_800F31C8);
  cosSideY = func_8009E630(pIns->m_RotY - 3.14159265358979323846/2);
- resl = func_80051DB4(D_800F9E44);
+ resl = func_80051DB4(pCTControl);
  if (resl)
  {
   dm = -(7.8*(1024.0/100.0)) - pThis->SideStepSpeed;
@@ -2159,7 +2160,7 @@ CVector3 func_80055DEC(CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, C
   vDesiredPos.x += pThis->SideStepSpeed*D_800B6B00*sinSideY;
   vDesiredPos.z += pThis->SideStepSpeed*D_800B6B00*cosSideY;
  }
- resr = func_80051DE4(D_800F9E44);
+ resr = func_80051DE4(pCTControl);
  if (resr)
  {
   dm = (7.8*(1024.0/100.0)) - pThis->SideStepSpeed;

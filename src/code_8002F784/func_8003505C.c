@@ -266,7 +266,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 extern ROMAddress* D_8002DC24(CIndexedSet *pThis,
                                        ROMAddress *rpBaseAddress, int nBlock);
 extern ROMAddress* D_8002DBF8(CIndexedSet *pThis,
@@ -287,7 +287,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern void func_8002D784(void *pVoid, CCacheEntry **ppceTarget);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
@@ -993,6 +993,7 @@ void D_80034FD4(CScene *pThis, CCacheEntry **ppceTarget);
 void func_800344F0(CScene *pThis);
 void D_80034540(CScene *pThis, CCacheEntry **ppceTarget);
 void func_8003505C(CScene *pThis, CCacheEntry **ppceTarget){
+ /* Index cartridge resources and request persistent counts, sound effects, and binary types. */
  CIndexedSet isIndex;
  ROMAddress *rpPersistantCounts,
       *rpSoundEffects,
@@ -1002,8 +1003,8 @@ void func_8003505C(CScene *pThis, CCacheEntry **ppceTarget){
       binaryTypesSize;
                                          ;
                                                 ;
-   func_8002DD28(&isIndex,
-             func_8002D690(pThis->m_pceIndex),
+   CIndexedSet__ConstructFromRawData(&isIndex,
+             CCacheEntry__GetData(pThis->m_pceIndex),
              0);
                                                                    ;
    pThis->m_rpLevelsAddress = D_8002DC24(&isIndex,

@@ -1364,67 +1364,68 @@ typedef unsigned char sa_u8;
 ;
  void func_8007A58C(CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
  int func_8007A974 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
- int func_8007A974 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag){
+ int func_8007A974 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag){
+ /* Charge and fire the Tek Bow, including its super-arrow flash and ammo handling. */
  CVector3 vOffset, vParticlePos, vBaseVelocity, vPos;
  CQuatern qRotateDirection;
  CGameRegion *pParticleRegion;
  int bFiring;
- bFiring = func_800510C4(D_800F9E44);
- if (bFiring && D_800F9E48->BowStarted >= 0.0) {
- func_800587B0(D_800F9E48, 3);
- if (func_8005843C(D_800F9E48, 102, 1)) return 0;
- if (D_800F9E48->BowStarted==0.0) {
+ bFiring = func_800510C4(pCTControl);
+ if (bFiring && pCTMove->BowStarted >= 0.0) {
+ func_800587B0(pCTMove, 3);
+ if (func_8005843C(pCTMove, 102, 1)) return 0;
+ if (pCTMove->BowStarted==0.0) {
  vPos = ((pMe)->ah.ih.m_vPos);
  func_80031974(&(&D_800F9F10)->m_Scene, SOUND_BOW_STRETCH, 0, 0, &vPos, 0);
  func_8005FCF4 ( pMe, 45, 1 );
  (&((pMe)->m_AI))->m_dwStatusFlags &= (1<<4);
- D_800F9E48->BowStarted += D_800B6B00*(1.0/15);
+ pCTMove->BowStarted += D_800B6B00*(1.0/15);
  }
  else {
  qRotateDirection = func_8001D464(pMe);
  vBaseVelocity.x = vBaseVelocity.y = vBaseVelocity.z = 0;
- D_800F9E48->BowStarted += D_800B6B00*(1.0/15);
- if ( (D_800F9E48->BowStarted>=1.4) && (D_800F9E48->BowStarted<=2.15) && (!D_800F9E48->BowFlashOccurred) ) {
+ pCTMove->BowStarted += D_800B6B00*(1.0/15);
+ if ( (pCTMove->BowStarted>=1.4) && (pCTMove->BowStarted<=2.15) && (!pCTMove->BowFlashOccurred) ) {
  vOffset.x = 0.07*(1024.0/100.0);
  vOffset.y = -0.6*(1024.0/100.0);
  vOffset.z = 2.9*(1024.0/100.0);
  D_8001DCF8((((&D_800F9F10))->m_Scene.m_pPlayer), vOffset, &vParticlePos, &pParticleRegion);
  D_80028970(&(&D_800F9F10)->m_Scene.m_ParticleSystem, &pMe->ah.ih, 24, vBaseVelocity, qRotateDirection, vParticlePos, pParticleRegion, -1, 1);
- D_800F9E48->BowFlashOccurred = 1;
+ pCTMove->BowFlashOccurred = 1;
  }
- else if (D_800F9E48->BowStarted>2.15) {
+ else if (pCTMove->BowStarted>2.15) {
  }
  }
  return 1;
  }
- else if ( (!bFiring) && (D_800F9E48->BowStarted > 0.0) ) {
+ else if ( (!bFiring) && (pCTMove->BowStarted > 0.0) ) {
  vPos = ((pMe)->ah.ih.m_vPos);
  func_80031974(&(&D_800F9F10)->m_Scene, SOUND_BOW_TWANG, 0, 0, &vPos, 0);
- D_80059994 ( D_800F9E48, 3 );
- if (D_800F9E48->ExpTekBowAmmo) {
- func_80057DC8(D_800F9E48, &D_800F9E48->ExpTekBowAmmo, 1);
+ D_80059994 ( pCTMove, 3 );
+ if (pCTMove->ExpTekBowAmmo) {
+ func_80057DC8(pCTMove, &pCTMove->ExpTekBowAmmo, 1);
  func_80031974(&(&D_800F9F10)->m_Scene, SOUND_ARROW_FLY_TEK, 0, 0, &vPos, 0);
  }
  else {
- func_80057DC8(D_800F9E48, &D_800F9E48->TekBowAmmo, 1);
+ func_80057DC8(pCTMove, &pCTMove->TekBowAmmo, 1);
  func_80031974(&(&D_800F9F10)->m_Scene, SOUND_ARROW_FLY_NORMAL, 0, 0, &vPos, 0);
  }
  func_8005FCF4(pMe, 46, 1);
  (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
  func_8001E93C(pMe);
- D_800F9E48->BowStarted=0.0;
- D_800F9E48->BowFlashOccurred = 0;
- if (func_8005843C(D_800F9E48, 102, 1)) {
- func_8007A58C ( pMe, D_800F9E44, D_800F9E48, waterFlag);
- D_800F9E48->WeaponMode = 4;
- D_800F9E48->WeaponSelect = D_800F9E48->WeaponCurrent;
- func_80058B6C(D_800F9E48, 1, 1);
- func_8005AFE8(D_800F9E48, 1);
+ pCTMove->BowStarted=0.0;
+ pCTMove->BowFlashOccurred = 0;
+ if (func_8005843C(pCTMove, 102, 1)) {
+ func_8007A58C ( pMe, pCTControl, pCTMove, waterFlag);
+ pCTMove->WeaponMode = 4;
+ pCTMove->WeaponSelect = pCTMove->WeaponCurrent;
+ func_80058B6C(pCTMove, 1, 1);
+ func_8005AFE8(pCTMove, 1);
  }
  return 1;
  }
- else if ( (!bFiring) && (D_800F9E48->BowStarted < 0.0) ) {
- D_800F9E48->BowStarted = 0.0;
+ else if ( (!bFiring) && (pCTMove->BowStarted < 0.0) ) {
+ pCTMove->BowStarted = 0.0;
  }
  return 0;
  }

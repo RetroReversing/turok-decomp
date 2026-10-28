@@ -920,8 +920,8 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
-extern void func_8007FD68(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
+extern void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 extern void D_800814AC(Gfx **ppDLP,
          char *String,
@@ -1071,8 +1071,8 @@ typedef struct CPause_t
  signed long m_Selection ;
  int m_RealSelection;
 } CPause ;
-extern void func_800858A4(Gfx **ppDLP) ;
-extern void D_800859F8(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
+extern void CPause__InitPolygon(Gfx **ppDLP) ;
+extern void CPause__DrawBar(Gfx **ppDLP, float x, float y, float w, float h, float a) ;
 typedef struct CBossVars_t
 {
  signed long m_SwitchesOn ;
@@ -1642,6 +1642,7 @@ extern t_CheatCodeEntry D_800B8210[7];
 extern void func_8000FF50(Gfx **ppDLP, int y, int opacity) ;
 void func_8000F498(CCheatCode *pThis, Gfx **ppDLP);
 void func_8000FF50(Gfx **ppDLP, int y, int opacity);
+/* Fade and draw the cheat-code selection panel, entry string, and any message box. */
 void func_8000F498(CCheatCode *pThis, Gfx **ppDLP){
  int i, y ;
  int x, w ;
@@ -1666,8 +1667,8 @@ void func_8000F498(CCheatCode *pThis, Gfx **ppDLP){
    }
    break ;
  }
- func_8007F994(ppDLP) ;
- func_8007FD68(ppDLP,
+ COnScreen__InitBoxDraw(ppDLP) ;
+ COnScreen__DrawHilightBox(ppDLP,
         ((320/2) - ((240)/2)), ((240/2) - ((190)/2)),
         ((320/2) - ((240)/2))+(240), ((240/2) - ((190)/2))+(190),
         2, 0,
@@ -1686,10 +1687,10 @@ void func_8000F498(CCheatCode *pThis, Gfx **ppDLP){
   x = ((320/2) - ((240)/2)) +16 ;
   w = (240)-32 ;
  }
- func_800858A4(ppDLP) ;
- D_800859F8(ppDLP, x, y,
+ CPause__InitPolygon(ppDLP) ;
+ CPause__DrawBar(ppDLP, x, y,
       w, 18, pThis->m_Alpha) ;
- D_800806B4(ppDLP) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  D_800808F8(ppDLP,
          200, 0, 200,
          0, 200, 0) ;
@@ -1698,7 +1699,7 @@ void func_8000F498(CCheatCode *pThis, Gfx **ppDLP){
          320/2, 30,
          (int)(255 * pThis->m_Alpha), 1, 1) ;
  func_8000FF50(ppDLP, 30+20, (int)(255 * pThis->m_Alpha)) ;
- D_800806B4(ppDLP) ;
+ COnScreen__InitFontDraw(ppDLP) ;
  y = (((240/2) - ((190)/2)) + 64-6) ;
  for (i=0; i<CHEATCODE_END_SELECTION; i++)
  {

@@ -1817,6 +1817,7 @@ typedef struct
 } CTMove;
 extern void func_8005E238 (CTMove *pThis, CEngineApp *pApp);
 void func_8005E238(CTMove *pThis, CEngineApp *pApp);
+/* Smooths Turok's duck height and updates collision permission and camera height. */
 void func_8005E238(CTMove *pThis, CEngineApp *pApp){
  int duckFlag;
  float dm;

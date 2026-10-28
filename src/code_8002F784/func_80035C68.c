@@ -576,7 +576,7 @@ typedef struct CDynamicSimple_t
  struct CDynamicSimple_t **m_ppPickup ;
  struct CDynamicSimple_t *m_pLast, *m_pNext;
 } CDynamicSimple;
-extern void func_80035FC0(CDynamicSimple *pThis);
+extern void update_dynamic_simple_instance(CDynamicSimple *pThis);
 typedef struct CSimplePool_t
 {
  CDynamicSimple m_Simples[32],
@@ -850,7 +850,7 @@ extern CBoundsRect D_800F9E20,
 extern void func_800359E4(CSimplePool *pThis, CDynamicSimple *pDyn);
 void func_800359E4(CSimplePool *pThis, CDynamicSimple *pDyn);
 void func_80035C68(CSimplePool *pThis);
-void func_80035FC0(CDynamicSimple *pThis);
+void update_dynamic_simple_instance(CDynamicSimple *pThis);
 void func_80035C68(CSimplePool *pThis){
  CDynamicSimple *pDyn, *pCurrent;
  int deallocate;
@@ -876,6 +876,6 @@ void func_80035C68(CSimplePool *pThis){
   if (deallocate)
    func_800359E4(pThis, pCurrent);
   else
-   func_80035FC0(pCurrent);
+   update_dynamic_simple_instance(pCurrent);
  }
 }

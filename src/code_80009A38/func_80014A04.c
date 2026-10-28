@@ -15,6 +15,7 @@ void func_80014A04(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB){
  float dot, dotN,
      theta, sinTheta, invSinTheta,
      vA, vB;
+ /* Blend between quaternions along the shorter spherical arc (graphu64.c). */
  qBN = *pqB;
  (&qBN)->x = -((&qBN)->x); (&qBN)->y = -((&qBN)->y); (&qBN)->z = -((&qBN)->z); (&qBN)->t = -((&qBN)->t);;
  dot = ((pqA)->x*(pqB)->x + (pqA)->y*(pqB)->y + (pqA)->z*(pqB)->z + (pqA)->t*(pqB)->t);

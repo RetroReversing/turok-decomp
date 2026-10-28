@@ -1817,7 +1817,8 @@ typedef struct
 extern void func_8005901C (CTMove *pThis);
 void func_8005901C(CTMove *pThis);
 void func_8005901C(CTMove *pThis){
- CGameObjectInstance *pIns;
+ /* Apply distance faded tremor motion to the player and decay its timer. */
+ CGameObjectInstance *pPlayer;
  float scaler,
         shake,
         angle,
@@ -1825,23 +1826,23 @@ void func_8005901C(CTMove *pThis){
         distance,
         dx,
         dz;
- pIns = (((&D_800F9F10))->m_Scene.m_pPlayer);
- if (pIns == ((void*)0)) return;
+ pPlayer = (((&D_800F9F10))->m_Scene.m_pPlayer);
+ if (pPlayer == ((void*)0)) return;
  if (pThis->TremorTimer > 0.0)
  {
   scaler = pThis->TremorTimer / pThis->TremorTimerMax;
   shake = (func_80013840(pThis->TremorShake/2) + (pThis->TremorShake/2)) * scaler;
   angle = (func_80013840(pThis->TremorAngle/2) + (pThis->TremorAngle/2)) * scaler;
   zrot = (func_80013840(pThis->TremorZRot) - (pThis->TremorZRot /2)) * scaler;
-  dx = pThis->vTremorPos.x - pIns->ah.ih.m_vPos.x;
-  dz = pThis->vTremorPos.z - pIns->ah.ih.m_vPos.z;
+  dx = pThis->vTremorPos.x - pPlayer->ah.ih.m_vPos.x;
+  dz = pThis->vTremorPos.z - pPlayer->ah.ih.m_vPos.z;
   distance = func_8009E7A0(dx*dx + dz*dz);
   distance = ((0) > (((100*(1024.0/100.0)) - distance)) ? (0) : (((100*(1024.0/100.0)) - distance)));
   shake = shake * distance / (100*(1024.0/100.0));
   angle = angle * distance / (100*(1024.0/100.0));
   zrot = zrot * distance / (100*(1024.0/100.0));
-  if (D_8001BA24(&pIns->ah.ih))
-   pIns->ah.m_vVelocity.y = shake * 15.0;
+  if (D_8001BA24(&pPlayer->ah.ih))
+   pPlayer->ah.m_vVelocity.y = shake * 15.0;
   pThis->GunKickXRot += angle;
   pThis->RotZPlayer += zrot;
   pThis->TremorTimer -= D_800B6B00*(D_800F35C8);

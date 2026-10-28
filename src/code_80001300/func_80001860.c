@@ -1607,6 +1607,7 @@ extern int D_800BA910 ;
 extern void func_80001860(CEngineApp *pThis) ;
 void func_80001860(CEngineApp *pThis);
 void func_80001860(CEngineApp *pThis){
+ /* Reset per-game state and screen defaults when starting a new game. */
  if ( (D_8014F660 == 0x4341524c)
    || (D_8014F660 == 0x4341524d) )
  {

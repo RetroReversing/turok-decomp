@@ -1627,6 +1627,7 @@ extern CCameraTrackInfo D_800BAE3C;
 extern CCameraTrackInfo D_800BAE5C;
 void func_8003B988(CCamera *pThis);
 void func_8003B988(CCamera *pThis){
+ /* Play the Turok resurrection camera track and fade back to the level. */
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  func_800329E0(&(&D_800F9F10)->m_Scene, pTurok,
              0, 2550) ;

@@ -14,21 +14,21 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_8002D690(s32);                             /* extern */
+s32 CCacheEntry__GetData(s32);                             /* extern */
 s32 func_8002DC68(s32 **, s32 *, M2C_UNK);          /* extern */
-M2C_UNK func_8002DD28(s32 **, s32, M2C_UNK);        /* extern */
+M2C_UNK CIndexedSet__ConstructFromRawData(s32 **, s32, M2C_UNK);        /* extern */
 
 void func_80026AD0(s32 *arg0, void *arg1) {
     s32 *sp40[2];
     s32 *sp38[2];
     s32 *sp30[4];
 
-    func_8002DD28(&sp40[0], func_8002D690(*arg0), 0);
+    CIndexedSet__ConstructFromRawData(&sp40[0], CCacheEntry__GetData(*arg0), 0);
     if (*sp40[0] != 0) {
         M2C_FIELD(arg1, s32 *, 8) = func_8002DC68(&sp40[0], sp40[0], 0);
-        func_8002DD28(&sp38[0], func_8002DC68(&sp40[0], sp40[0], 1), 0);
+        CIndexedSet__ConstructFromRawData(&sp38[0], func_8002DC68(&sp40[0], sp40[0], 1), 0);
         M2C_FIELD(arg1, s32 *, 0) = (s32) *sp38[0];
-        func_8002DD28(&sp30[2], func_8002DC68(&sp40[0], sp40[0], 2), 0);
+        CIndexedSet__ConstructFromRawData(&sp30[2], func_8002DC68(&sp40[0], sp40[0], 2), 0);
         M2C_FIELD(arg1, s32 *, 4) = (s32) *sp30[2];
         return;
     }

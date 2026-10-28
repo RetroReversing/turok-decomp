@@ -827,6 +827,7 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo ;
 int D_800186FC(CGameObjectInstance *pThis, int nType);
 int func_8001E9B8(CGameObjectInstance *pThis, int nItems, int Info[][3], int *pPickedType);
+/* Choose an available animation by weight after checking each candidate type. */
 int func_8001E9B8(CGameObjectInstance *pThis, int nItems, int Info[][3], int *pPickedType){
  int indices[64],
    weightStart[64],

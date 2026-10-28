@@ -1668,53 +1668,54 @@ enum CampaignerModes
 } ;
 extern signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode) ;
 void func_8003D1F4(CCamera *pThis);
-void func_8003D1F4(CCamera *pThis){
+void func_8003D1F4(CCamera *pCamera){
+ /* Stage the Campaigner's kill cinematic and end it after timeout or Start. */
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  CGameObjectInstance *pCampaigner = (&D_800F9F10)->m_pBossActive ;
  func_800329E0(&(&D_800F9F10)->m_Scene, pTurok,
              0, 202) ;
  func_8005FCF4(pTurok, 202, 1) ;
- switch (pThis->m_Stage)
+ switch (pCamera->m_Stage)
  {
   case 0:
-   if (pThis->m_StageTime > 40)
+   if (pCamera->m_StageTime > 40)
    {
-    pThis->m_Stage++ ;
-    pThis->m_StageTime = 0 ;
-    pThis->m_View.m_vEye.x = D_800F2168 ;
-    pThis->m_View.m_vEye.y = pTurok->ah.ih.m_vPos.y + (D_800F2170) ;
-    pThis->m_View.m_vEye.z = D_800F2178 ;
+    pCamera->m_Stage++ ;
+    pCamera->m_StageTime = 0 ;
+    pCamera->m_View.m_vEye.x = D_800F2168 ;
+    pCamera->m_View.m_vEye.y = pTurok->ah.ih.m_vPos.y + (D_800F2170) ;
+    pCamera->m_View.m_vEye.z = D_800F2178 ;
    }
-   pThis->m_View.m_vFocus.x = pTurok->ah.ih.m_vPos.x ;
-   pThis->m_View.m_vFocus.y = pTurok->ah.ih.m_vPos.y +(D_800F2180);
-   pThis->m_View.m_vFocus.z = pTurok->ah.ih.m_vPos.z ;
+   pCamera->m_View.m_vFocus.x = pTurok->ah.ih.m_vPos.x ;
+   pCamera->m_View.m_vFocus.y = pTurok->ah.ih.m_vPos.y +(D_800F2180);
+   pCamera->m_View.m_vFocus.z = pTurok->ah.ih.m_vPos.z ;
    break ;
   case 1:
-   if (pThis->m_StageTime > 35)
+   if (pCamera->m_StageTime > 35)
    {
-    pThis->m_Stage++ ;
-    pThis->m_StageTime = 0 ;
-    pThis->m_View.m_vEye.x = pTurok->ah.ih.m_vPos.x - (D_800F2188) ;
-    pThis->m_View.m_vEye.y = pTurok->ah.ih.m_vPos.y + (D_800F2190) ;
-    pThis->m_View.m_vEye.z = pTurok->ah.ih.m_vPos.z ;
+    pCamera->m_Stage++ ;
+    pCamera->m_StageTime = 0 ;
+    pCamera->m_View.m_vEye.x = pTurok->ah.ih.m_vPos.x - (D_800F2188) ;
+    pCamera->m_View.m_vEye.y = pTurok->ah.ih.m_vPos.y + (D_800F2190) ;
+    pCamera->m_View.m_vEye.z = pTurok->ah.ih.m_vPos.z ;
    }
-   pThis->m_View.m_vFocus.x = pCampaigner->ah.ih.m_vPos.x ;
-   pThis->m_View.m_vFocus.y = pCampaigner->ah.ih.m_vPos.y +(D_800F2198);
-   pThis->m_View.m_vFocus.z = pCampaigner->ah.ih.m_vPos.z ;
+   pCamera->m_View.m_vFocus.x = pCampaigner->ah.ih.m_vPos.x ;
+   pCamera->m_View.m_vFocus.y = pCampaigner->ah.ih.m_vPos.y +(D_800F2198);
+   pCamera->m_View.m_vFocus.z = pCampaigner->ah.ih.m_vPos.z ;
    break ;
   case 2:
-   pThis->m_View.m_vFocus.x = pTurok->ah.ih.m_vPos.x ;
-   pThis->m_View.m_vFocus.y = pTurok->ah.ih.m_vPos.y +(D_800F21A0);
-   pThis->m_View.m_vFocus.z = pTurok->ah.ih.m_vPos.z ;
+   pCamera->m_View.m_vFocus.x = pTurok->ah.ih.m_vPos.x ;
+   pCamera->m_View.m_vFocus.y = pTurok->ah.ih.m_vPos.y +(D_800F21A0);
+   pCamera->m_View.m_vFocus.z = pTurok->ah.ih.m_vPos.z ;
    break ;
  }
- pThis->m_StageTime += D_800B6B00 ;
- pThis->m_Time += D_800B6B00 ;
- if (!pThis->m_CinemaFadingOut)
+ pCamera->m_StageTime += D_800B6B00 ;
+ pCamera->m_Time += D_800B6B00 ;
+ if (!pCamera->m_CinemaFadingOut)
  {
-  if ((pThis->m_StartPressed) || (pThis->m_Time > 102))
+  if ((pCamera->m_StartPressed) || (pCamera->m_Time > 102))
   {
-   pThis->m_CinemaFadingOut = 1 ;
+   pCamera->m_CinemaFadingOut = 1 ;
    D_80005350((&D_800F9F10)) ;
    func_8004DACC(pCampaigner, CAMPAIGNER_IDLE_MODE) ;
   }

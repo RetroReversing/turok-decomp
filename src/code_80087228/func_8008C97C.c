@@ -447,16 +447,17 @@ typedef struct
 extern int func_80089EC4(signed short Channel);
 extern t_AudioWorld D_80129520;
 extern void func_8008C97C(signed long channel);
-extern float func_8008CB48(float PitchCents);
+extern float func_8008CB48(float pitch_cents);
 void func_8008C97C(signed long channel);
-float func_8008CB48(float PitchCents);
+float func_8008CB48(float pitch_cents);
 void func_8008C97C(signed long channel){
+ /* Advance the active CFX pitch envelope, clamp its endpoint, and update the sound player. */
  ALSndPlayer *Sndp = &D_80129520.SndPlayerList.Sndp;
  t_SndObject *pSound = &D_80129520.VoiceChannels[channel].theSFX;
  t_Channel *pChannel = &D_80129520.VoiceChannels[channel];
- float PitchCents;
+ float pitch_cents;
  CROMEnvelope *pEnv = &D_80129520.VoiceChannels[channel].PitchEnv ;
- int ramp_up;
+ int pitch_rising;
    if (( pChannel->ChannelFlags & (1 << 1) ) && (pChannel->ChannelFlags & (1 << 3)))
  {
   if(pChannel->PitchEnv.m_EnvStartTime > 0)
@@ -466,19 +467,19 @@ void func_8008C97C(signed long channel){
   else
   {
    if(pChannel->PitchCalc.IncrValue < 0)
-    ramp_up = 1;
+    pitch_rising = 1;
    else
-    ramp_up = 0;
-   if( (ramp_up && (pChannel->PitchCalc.RawValue < func_8001F298(pEnv->m_EndFactor))) ||
-      (!ramp_up && (pChannel->PitchCalc.RawValue > func_8001F298(pEnv->m_EndFactor))))
+    pitch_rising = 0;
+   if( (pitch_rising && (pChannel->PitchCalc.RawValue < func_8001F298(pEnv->m_EndFactor))) ||
+      (!pitch_rising && (pChannel->PitchCalc.RawValue > func_8001F298(pEnv->m_EndFactor))))
    {
     pChannel->PitchCalc.RawValue -= pChannel->PitchCalc.IncrValue ;
-    if(ramp_up && (pChannel->PitchCalc.RawValue > func_8001F298(pEnv->m_EndFactor)))
+    if(pitch_rising && (pChannel->PitchCalc.RawValue > func_8001F298(pEnv->m_EndFactor)))
      pChannel->PitchCalc.RawValue = func_8001F298(pEnv->m_EndFactor);
-    else if(!ramp_up && (pChannel->PitchCalc.RawValue < func_8001F298(pEnv->m_EndFactor)))
+    else if(!pitch_rising && (pChannel->PitchCalc.RawValue < func_8001F298(pEnv->m_EndFactor)))
      pChannel->PitchCalc.RawValue = func_8001F298(pEnv->m_EndFactor);
-    PitchCents = pChannel->PitchCalc.RawValue;
-    pSound->Pitch = func_8008CB48(PitchCents);
+    pitch_cents = pChannel->PitchCalc.RawValue;
+    pSound->Pitch = func_8008CB48(pitch_cents);
     func_80089EC4(channel);
     D_800A3D90(Sndp, pSound->Pitch);
    }

@@ -277,8 +277,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 extern ROMAddress* D_8002DC24(CIndexedSet *pThis,
                                        ROMAddress *rpBaseAddress, int nBlock);
 struct CCartCache_t;
@@ -297,7 +297,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern void* func_8002D648(CCacheEntry *pThis, unsigned long NewSize, int AllocTop);
 extern void func_8002D604(CCacheEntry *pThis, void *pNewData, unsigned long NewLength);
 extern int D_8002D6BC(CCacheEntry *pThis, int AllocTop);
@@ -1042,6 +1042,7 @@ struct CCollisionInfo2_t;
 extern void func_80032124(CScene *pThis, CCacheEntry **ppceTarget);
 int func_800320E4(CScene *pThis, CGameSimpleInstance *pSimple);
 void func_80032124(CScene *pThis, CCacheEntry **ppceTarget);
+/* Convert a cached ROM grid section into live static and simple instances, preserving pickup state. */
 void func_80032124(CScene *pThis, CCacheEntry **ppceTarget){
  CCacheEntry *pceGridSection;
  CIndexedSet isCollision,
@@ -1083,24 +1084,24 @@ void func_80032124(CScene *pThis, CCacheEntry **ppceTarget){
   return;
                                                        ;
  pceGridSection = *ppceTarget;
-   func_8002DD28(&isGridSection,
-             func_8002D690(pceGridSection),
+   CIndexedSet__ConstructFromRawData(&isGridSection,
+             CCacheEntry__GetData(pceGridSection),
              0);
  if (!(((unsigned long*) (&isGridSection)->m_pData)[0]))
  {
                                        ;
   return;
  }
- pbEStaticInstances = D_8002DC68((&isGridSection), (&isGridSection)->m_pData, (0));
+ pbEStaticInstances = CIndexedSet__GetBlock((&isGridSection), (&isGridSection)->m_pData, (0));
  func_8002DA8C(&usEStaticInstances, pbEStaticInstances, 0);
  nEStatics = ( (unsigned long) (((unsigned long*) (&usEStaticInstances)->m_pData)[1]) );
                                                                  ;
- pbStaticInstances = D_8002DC68((&isGridSection), (&isGridSection)->m_pData, (1));
+ pbStaticInstances = CIndexedSet__GetBlock((&isGridSection), (&isGridSection)->m_pData, (1));
  func_8002DA8C(&usStaticInstances, pbStaticInstances, 0);
  nStatics = ( (unsigned long) (((unsigned long*) (&usStaticInstances)->m_pData)[1]) );
                                                       ;
  newStaticSize = ( ( (((2*sizeof(unsigned long)) + (sizeof(CGameStaticInstance))*(nEStatics + nStatics))) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
- pbSimpleInstances = D_8002DC68((&isGridSection), (&isGridSection)->m_pData, (2));
+ pbSimpleInstances = CIndexedSet__GetBlock((&isGridSection), (&isGridSection)->m_pData, (2));
  func_8002DA8C(&usSimpleInstances, pbSimpleInstances, 0);
  nSimples = ( (unsigned long) (((unsigned long*) (&usSimpleInstances)->m_pData)[1]) );
                                                       ;
@@ -1110,7 +1111,7 @@ void func_80032124(CScene *pThis, CCacheEntry **ppceTarget){
  if (pBytes)
  {
   pbNewGridSection = pBytes;
-  func_8002DD28(&isNewGridSection, pbNewGridSection, 0);
+  CIndexedSet__ConstructFromRawData(&isNewGridSection, pbNewGridSection, 0);
   offset = ( ( ((1*sizeof(unsigned long)) + ((2)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
   ((unsigned long*) ((&isNewGridSection)->m_pData))[0] = ((unsigned long) (0));
   ((unsigned long*) ((&isNewGridSection)->m_pData))[1 + (((unsigned long*) (&isNewGridSection)->m_pData)[0])] = ((unsigned long) (offset));
@@ -1128,19 +1129,19 @@ void func_80032124(CScene *pThis, CCacheEntry **ppceTarget){
   romStaticInstances = (CROMStaticInstance*) ( (void*) ( ((unsigned char*)((&usStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
   gameStaticInstances = (CGameStaticInstance*) ( (void*) ( ((unsigned char*)((&usNewStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
                                ;
-  func_8002DD28(&isCollision,
-              func_8002D690(pThis->m_pceCollision),
+  CIndexedSet__ConstructFromRawData(&isCollision,
+              CCacheEntry__GetData(pThis->m_pceCollision),
               0);
-  pbRegions = D_8002DC68((&isCollision), (&isCollision)->m_pData, (2));
+  pbRegions = CIndexedSet__GetBlock((&isCollision), (&isCollision)->m_pData, (2));
   func_8002DA8C(&usRegions, pbRegions, 0);
   regions = (CGameRegion*) ( (void*) ( ((unsigned char*)((&usRegions)->m_pData)) + (2*sizeof(unsigned long)) ) );
                                   ;
-  func_8002DD28(&isObjectsIndex,
-              func_8002D690(pThis->m_pceObjectsIndex),
+  CIndexedSet__ConstructFromRawData(&isObjectsIndex,
+              CCacheEntry__GetData(pThis->m_pceObjectsIndex),
               0);
                                       ;
   func_8002DA8C(&usObjectAttributes,
-              func_8002D690(pThis->m_pceObjectAttributes),
+              CCacheEntry__GetData(pThis->m_pceObjectAttributes),
               0);
   variations = (CEnemyAttributes*) ( (void*) ( ((unsigned char*)((&usObjectAttributes)->m_pData)) + (2*sizeof(unsigned long)) ) );
   for (cEStatic=0; cEStatic<nEStatics; cEStatic++)

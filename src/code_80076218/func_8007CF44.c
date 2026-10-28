@@ -6,6 +6,7 @@ void func_8007CF44(signed char Offset,
 void func_8007CF44(signed char Offset,
       unsigned char inR, unsigned char inG, unsigned char inB,
       unsigned char *pOutR, unsigned char *pOutG, unsigned char *pOutB){
+ /* Rotate hue by Offset while retaining the input's maximum channel level. */
  int l, m, r,
    or, og, ob,
    oldMax, maxColor;

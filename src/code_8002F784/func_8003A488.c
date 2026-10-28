@@ -2278,6 +2278,7 @@ extern CSwooshEdgeVertexInfo D_801272E0[6] ;
 extern CSwooshInfo D_800BACC0[3] ;
 void func_8003A488(CCamera *pThis);
 void func_8003A488(CCamera *pThis){
+ /* Advances the intro logo zoom, starts the arrow swooshes, and places the arrow and player at the blended camera eye. */
  CGameObjectInstance *pArrow = pThis->m_pObject, *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  float Blend, Arc, t ;
  CVector3 vPos ;

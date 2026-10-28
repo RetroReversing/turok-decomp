@@ -336,8 +336,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 extern ROMAddress* D_8002DBF8(CIndexedSet *pThis,
                                               ROMAddress *rpBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
@@ -356,7 +356,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -1912,8 +1912,8 @@ void func_800300DC(CScene *pThis, Gfx **ppDLP){
          &pGridBounds, &indices, &nGrids);
                            ;
                              ;
- func_8002DD28(&isGridSections,
-             func_8002D690(pThis->m_pceGridSectionsIndex),
+ CIndexedSet__ConstructFromRawData(&isGridSections,
+             CCacheEntry__GetData(pThis->m_pceGridSectionsIndex),
              0);
  pApp = (&D_800F9F10);
  xPos2 = -2*((pApp)->m_vTCorners[0]).x;
@@ -1953,12 +1953,12 @@ void func_800300DC(CScene *pThis, Gfx **ppDLP){
                            D_800F1B94);
   if (pBounds->m_pceGridSection)
   {
-   func_8002DD28(&isGridSection,
-               func_8002D690(pBounds->m_pceGridSection),
+   CIndexedSet__ConstructFromRawData(&isGridSection,
+               CCacheEntry__GetData(pBounds->m_pceGridSection),
                0);
    if ((((unsigned long*) (&isGridSection)->m_pData)[0]))
    {
-    pbStaticInstances = D_8002DC68((&isGridSection), (&isGridSection)->m_pData, (0));
+    pbStaticInstances = CIndexedSet__GetBlock((&isGridSection), (&isGridSection)->m_pData, (0));
     func_8002DA8C(&usStaticInstances, pbStaticInstances, 0);
     staticInstances = ( (void*) ( ((unsigned char*)((&usStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
     nStatInsts = ( (unsigned long) (((unsigned long*) (&usStaticInstances)->m_pData)[1]) );
@@ -1993,7 +1993,7 @@ void func_800300DC(CScene *pThis, Gfx **ppDLP){
      func_8001F0AC((CGameStaticInstance*) sorts[cVisInst].p, ppDLP,
                  &pThis->m_Cache, pThis->m_pceTextureSetsIndex);
     }
-    pbSimpleInstances = D_8002DC68((&isGridSection), (&isGridSection)->m_pData, (1));
+    pbSimpleInstances = CIndexedSet__GetBlock((&isGridSection), (&isGridSection)->m_pData, (1));
     func_8002DA8C(&usSimpleInstances, pbSimpleInstances, 0);
     simpleInstances = ( (void*) ( ((unsigned char*)((&usSimpleInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
     nSimpleInsts = ( (unsigned long) (((unsigned long*) (&usSimpleInstances)->m_pData)[1]) );

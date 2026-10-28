@@ -1824,6 +1824,7 @@ extern CTMove D_80128C20;
 void func_80093090(CSelectionList *pThis, signed long Pickup, signed short Weight);
 void func_80093128(CSelectionList *pThis, signed short Weight, int GenerateArrows);
 void func_80093128(CSelectionList *pThis, signed short Weight, int GenerateArrows){
+ /* Add weighted ammo pickups for weapons Turok holds, accounting for active bosses. */
  int Campaigner = (((&D_80106000)->m_pBossActive) &&
          ((((&D_80106000)->m_pBossActive)->m_nTypeFlag) == 1002)) ;
  int TRex = (((&D_80106000)->m_pBossActive) &&

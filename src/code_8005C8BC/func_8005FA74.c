@@ -1614,6 +1614,7 @@ void D_80071058(CGameObjectInstance *pAI, int hits, int FlashScreen, int DoSound
 float func_8005F34C(CGameObjectInstance *pAI, CVector3 vPos);
 void func_8005F228(CGameObjectInstance *pThis, CInstanceHdr *pOrigin);
 int func_8005FA10(CGameObjectInstance *pThis);
+/* Apply a freezing blast to nearby creatures and triple damage to bosses. */
 void func_8005FA74(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad, float ExpHits){
  float rad2, BossHits = rad * 3 ;
                                                          ;

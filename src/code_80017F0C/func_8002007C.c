@@ -328,8 +328,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 extern ROMAddress* D_8002DBF8(CIndexedSet *pThis,
                                               ROMAddress *rpBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
@@ -348,7 +348,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -407,7 +407,7 @@ typedef struct CGeometry_t
 extern void D_800237C0(CGeometry *pThis, CCartCache *pCache,
                 ROMAddress *rpGeometryAddress, unsigned long GeometrySize,
              CCacheEntry *pceTextureSetsIndex);
-extern void func_800258D0(CGeometry *pThis, Gfx **ppDLP, CCartCache *pCache,
+extern void CGeometry__DrawPart(CGeometry *pThis, Gfx **ppDLP, CCartCache *pCache,
            int nNode, int nPart,
            int Inter, int Better, int nFrame);
 extern void func_800220BC(CGeometry *pThis, int nNode, float Increment);
@@ -1705,6 +1705,7 @@ void func_8001F7F8(CGameSimpleInstance *pThis, Gfx **ppDLP);
 int func_8001D398(CInstanceHdr *pThis);
 void func_8002007C(CGameSimpleInstance *pThis, Gfx **ppDLP,
            CCartCache *pCache, CCacheEntry *pceTextureSetsIndex){
+ /* Advance a visible simple object and draw its cached geometry. */
  CIndexedSet isObjectIndex,
       isGeometry,
       isNodes;
@@ -1733,8 +1734,8 @@ void func_8002007C(CGameSimpleInstance *pThis, Gfx **ppDLP,
              "Static Object Index");
     if (pThis->m_pceObjectIndex)
     {
-     func_8002DD28(&isObjectIndex,
-                  func_8002D690(pThis->m_pceObjectIndex),
+     CIndexedSet__ConstructFromRawData(&isObjectIndex,
+                  CCacheEntry__GetData(pThis->m_pceObjectIndex),
                   0);
        rpGeometryAddress = D_8002DBF8(&isObjectIndex,
                          pThis->m_rpObjectIndexAddress,
@@ -1745,11 +1746,11 @@ void func_8002007C(CGameSimpleInstance *pThis, Gfx **ppDLP,
      pceGeometry = ((&pThis->m_Geometry)->m_pceGeometry);
      if (pceGeometry)
      {
-      func_8002DD28(&isGeometry,
-                  func_8002D690(pceGeometry),
+      CIndexedSet__ConstructFromRawData(&isGeometry,
+                  CCacheEntry__GetData(pceGeometry),
                   0);
-      pbNodes = D_8002DC68((&isGeometry), (&isGeometry)->m_pData, (1));
-      func_8002DD28(&isNodes, pbNodes, 0);
+      pbNodes = CIndexedSet__GetBlock((&isGeometry), (&isGeometry)->m_pData, (1));
+      CIndexedSet__ConstructFromRawData(&isNodes, pbNodes, 0);
                                                        ;
       if (pThis->ah.ih.m_pEA->m_dwTypeFlags & (1<<17))
        func_8001F7F8(pThis, ppDLP);
@@ -1758,11 +1759,11 @@ void func_8002007C(CGameSimpleInstance *pThis, Gfx **ppDLP,
       if (func_80071804(nObjType) || func_800717E8(nObjType))
       {
        func_800220BC(&pThis->m_Geometry, 0, pThis->m_MorphInc);
-       func_800258D0(&pThis->m_Geometry, ppDLP, pCache, 0, D_800B6AF4, 0, 0, pThis->ah.ih.m_pEA->m_nTexture);
+       CGeometry__DrawPart(&pThis->m_Geometry, ppDLP, pCache, 0, D_800B6AF4, 0, 0, pThis->ah.ih.m_pEA->m_nTexture);
       }
       else
       {
-       func_800258D0(&pThis->m_Geometry, ppDLP, pCache, 0, 0, 1, 1, pThis->ah.ih.m_pEA->m_nTexture);
+       CGeometry__DrawPart(&pThis->m_Geometry, ppDLP, pCache, 0, 0, 1, 1, pThis->ah.ih.m_pEA->m_nTexture);
       }
                                         ;
                                      ;

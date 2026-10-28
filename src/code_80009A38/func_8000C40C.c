@@ -920,7 +920,7 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007F994(Gfx **ppDLP) ;
+extern void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
 enum LoadTypes
 {
  LOAD_MEMORYCARD,
@@ -1641,7 +1641,7 @@ void func_8000C40C(CLoad *pThis, Gfx **ppDLP){
    }
    break ;
  }
- func_8007F994(ppDLP) ;
+ COnScreen__InitBoxDraw(ppDLP) ;
  if (pThis->m_LoadType == LOAD_MEMORYCARD)
  {
   func_8000C564(pThis, ppDLP) ;

@@ -19,8 +19,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -37,7 +37,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -67,7 +67,7 @@ typedef struct CGeometry_t
  CCacheEntry *m_pceGeometry,
          *m_pceTextureSetsIndex;
 } CGeometry;
-extern void func_80021BC0(CGeometry *pThis, int nNode, float Frame);
+extern void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame);
 extern void func_800220BC(CGeometry *pThis, int nNode, float Increment);
 struct CCacheEntry_t;
 typedef struct CTextureLoader_t
@@ -83,20 +83,20 @@ typedef struct CGameGeometryInfo_t
 } CGameGeometryInfo;
 extern unsigned long D_800B6AF0;
 void func_800220BC(CGeometry *pThis, int nNode, float Increment);
-void func_80021BC0(CGeometry *pThis, int nNode, float Frame);
+void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame);
 void func_800220BC(CGeometry *pThis, int nNode, float Increment){
  CIndexedSet isGeometry;
  CGameGeometryInfo *pInfo;
  if (!pThis->m_pceGeometry)
   return;
- func_8002DD28(&isGeometry,
-             func_8002D690(pThis->m_pceGeometry),
+ CIndexedSet__ConstructFromRawData(&isGeometry,
+             CCacheEntry__GetData(pThis->m_pceGeometry),
              0);
- pInfo = (CGameGeometryInfo*) D_8002DC68((&isGeometry), (&isGeometry)->m_pData, (0));
+ pInfo = (CGameGeometryInfo*) CIndexedSet__GetBlock((&isGeometry), (&isGeometry)->m_pData, (0));
  if (pInfo->m_MorphFrameNumber != D_800B6AF0)
  {
   pInfo->m_cMorph += Increment;
-  func_80021BC0(pThis, nNode, pInfo->m_cMorph);
+  CGeometry__Morph(pThis, nNode, pInfo->m_cMorph);
  }
                                    ;
 }

@@ -919,6 +919,7 @@ struct CCollisionInfo2_t;
 void func_800418EC(CSwoosh *pThis, CSwooshEdge *pEdge, Vtx *pVertexList);
 void func_80041F04(CFxSystem *pThis, CSwoosh *pSwoosh, Gfx **ppDLP);
 Vtx *func_80042530(CFxSystem *pThis, signed long NoOfVertices);
+/* Join successive live swoosh edges with triangles in the display list. */
 void func_80041F04(CFxSystem *pThis, CSwoosh *pSwoosh, Gfx **ppDLP){
  CSwooshEdge *pEdge1 ;
  CSwooshEdge *pEdge2 ;

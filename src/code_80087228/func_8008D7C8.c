@@ -377,6 +377,7 @@ extern sa_u32 func_8008D7C8(AudioInfo *, AudioInfo *);
 extern void func_8008DB6C(void);
 extern sa_u32 func_8008D7C8(AudioInfo *info, AudioInfo *lastInfo);
 extern void func_8008DB6C(void);
+/* Build and queue the audio synthesis task for the next frame. */
 sa_u32 func_8008D7C8(AudioInfo *info, AudioInfo *lastInfo){
     OSScTask *t;
   sa_s16 *audioPtr;

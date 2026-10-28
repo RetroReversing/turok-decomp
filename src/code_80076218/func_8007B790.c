@@ -1928,7 +1928,7 @@ typedef struct CEngineApp_t
  OSContPad m_AttractPad ;
 } CEngineApp;
 extern sa_u64 dram_stack[];
-extern CTControl *D_800F9E44;
+extern CTControl *pCTControl;
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 typedef struct
@@ -2147,8 +2147,8 @@ extern void func_800587B0 (CTMove *pThis, int status);
 extern void func_80058B6C (CTMove *pThis, int ammo, int next);
 extern void func_800598B4 (CTMove *pThis, int nWeapon);
 extern void func_8005AFE8 (CTMove *pThis, int Direction);
-extern void func_8007A58C (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-extern int func_8007B790 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
+extern void func_8007A58C (CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
+extern int func_8007B790 (CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
 extern void func_8008A5C4(signed long VirtualHandle);
 extern void func_8008A4DC(int nType);
 enum SOUND_TYPES
@@ -2792,66 +2792,67 @@ enum SOUND_TYPES
  SOUND_TYPES_TOTAL
 };
 extern int D_80128F90;
-void func_8007A58C(CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-int func_8007B790 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag);
-int func_8007B790 ( CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *D_800F9E48, int waterFlag){
+void func_8007A58C(CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
+int func_8007B790 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
+int func_8007B790 ( CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag){
+ /* Run the minigun while primary fire is held, including barrel sound and empty-weapon transitions. */
  CVector3 vPos;
- if ( func_800510C4 ( D_800F9E44 ) )
+ if ( func_800510C4 ( pCTControl ) )
  {
-  if (!D_800F9E48->MiniGunBarrelSFX)
+  if (!pCTMove->MiniGunBarrelSFX)
   {
-   if (D_800F9E48->hSFXBarrel != -1)
+   if (pCTMove->hSFXBarrel != -1)
    {
-    func_8008A5C4(D_800F9E48->hSFXBarrel);
-    D_800F9E48->hSFXBarrel = -1;
+    func_8008A5C4(pCTMove->hSFXBarrel);
+    pCTMove->hSFXBarrel = -1;
     func_8008A4DC(SOUND_MINI_GUN_WHIR);
    }
    vPos = ((pMe)->ah.ih.m_vPos);
-   D_800F9E48->hSFXBarrel = func_80031974(&(&D_800F9F10)->m_Scene, SOUND_MINI_GUN_WHIR, 0, 0, &vPos, 0);
+   pCTMove->hSFXBarrel = func_80031974(&(&D_800F9F10)->m_Scene, SOUND_MINI_GUN_WHIR, 0, 0, &vPos, 0);
                                     ;
-   D_800F9E48->MiniGunBarrelSFX = 1;
+   pCTMove->MiniGunBarrelSFX = 1;
   }
-  func_800598B4 (D_800F9E48, 108);
-  if ( ! func_8005843C ( D_800F9E48, 108, 1 ) )
+  func_800598B4 (pCTMove, 108);
+  if ( ! func_8005843C ( pCTMove, 108, 1 ) )
   {
-   func_800587B0 ( D_800F9E48, 9 );
+   func_800587B0 ( pCTMove, 9 );
    D_80070DA8 (&pMe->ah.ih, &pMe->ah.ih, 29, 0xffffffff, ((pMe)->ah.ih.m_vPos), 10);
    func_8005FCF4 ( pMe, 49, 1 );
    (&((pMe)->m_AI))->m_dwStatusFlags &= (1<<4);
   }
   else
   {
-   func_8007A58C(pMe, D_800F9E44, D_800F9E48, waterFlag);
-   D_800F9E48->WeaponMode = 2;
+   func_8007A58C(pMe, pCTControl, pCTMove, waterFlag);
+   pCTMove->WeaponMode = 2;
   }
   return 1;
  }
  else
  {
-  D_800F9E48->AmmoUseCounter = 0.0;
-  if(D_800F9E48->MiniGunBarrelSFX)
+  pCTMove->AmmoUseCounter = 0.0;
+  if(pCTMove->MiniGunBarrelSFX)
   {
-   if (D_800F9E48->hSFXBarrel != -1)
+   if (pCTMove->hSFXBarrel != -1)
    {
-    func_8008A5C4(D_800F9E48->hSFXBarrel);
-    D_800F9E48->hSFXBarrel = -1;
+    func_8008A5C4(pCTMove->hSFXBarrel);
+    pCTMove->hSFXBarrel = -1;
     func_8008A4DC(SOUND_MINI_GUN_WHIR);
    }
    vPos = ((pMe)->ah.ih.m_vPos);
    func_80031974(&(&D_800F9F10)->m_Scene, SOUND_MINIGUN_STOP, 0, 0, &vPos, 0);
   }
-  D_800F9E48->MiniGunBarrelSFX = 0;
-  if (func_8005843C(D_800F9E48, 108, 1))
+  pCTMove->MiniGunBarrelSFX = 0;
+  if (func_8005843C(pCTMove, 108, 1))
   {
    if (D_80128F90)
-    func_80058B6C(D_800F9E48, 1, 0);
+    func_80058B6C(pCTMove, 1, 0);
    else
-    func_80058B6C(D_800F9E48, 1, 1);
-   func_8005AFE8(D_800F9E48, 1);
-   if (D_800F9E48->hSFXBarrel != -1)
+    func_80058B6C(pCTMove, 1, 1);
+   func_8005AFE8(pCTMove, 1);
+   if (pCTMove->hSFXBarrel != -1)
    {
-    func_8008A5C4(D_800F9E48->hSFXBarrel);
-    D_800F9E48->hSFXBarrel = -1;
+    func_8008A5C4(pCTMove->hSFXBarrel);
+    pCTMove->hSFXBarrel = -1;
     func_8008A4DC(SOUND_MINI_GUN_WHIR);
    }
   }

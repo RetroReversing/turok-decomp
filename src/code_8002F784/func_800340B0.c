@@ -266,7 +266,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 extern ROMAddress* D_8002DC24(CIndexedSet *pThis,
                                        ROMAddress *rpBaseAddress, int nBlock);
 struct CCartCache_t;
@@ -285,7 +285,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -994,8 +994,8 @@ void func_800340B0(CScene *pThis, int nLevel){
  pThis->m_pceCollision = 0;
  pThis->m_nInstances = pThis->m_nActiveAnimInstances = 0;
  pThis->m_pPlayer = 0;
- func_8002DD28(&isLevels,
-             func_8002D690(pThis->m_pceLevelsIndex),
+ CIndexedSet__ConstructFromRawData(&isLevels,
+             CCacheEntry__GetData(pThis->m_pceLevelsIndex),
              0);
                                               ;
  nLevel %= (((unsigned long*) (&isLevels)->m_pData)[0]);

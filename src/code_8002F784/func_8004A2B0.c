@@ -1860,18 +1860,19 @@ typedef struct CLine_t
 extern void func_80098AA0(CLine *pThis, CVector3 *pvPt1, CVector3 *pvPt2) ;
 extern void func_8004A2B0(CGameObjectInstance *pThis, CLonghunt *pLonghunt) ;
 void func_8004A2B0(CGameObjectInstance *pThis, CLonghunt *pLonghunt);
+/* Choose Longhunt's movement target from his current action and aim toward Turok. */
 void func_8004A2B0(CGameObjectInstance *pThis, CLonghunt *pLonghunt){
  CGameObjectInstance *pTurok ;
- CVector3 vTurokPos, vDir ;
- float rot, radius ;
- CLine Line ;
+ CVector3 vTurokPos, targetPos ;
+ float targetAngle, targetRadius ;
+ CLine targetLine ;
  pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer);
  vTurokPos = (pTurok->ah.ih.m_vPos) ;
  switch(pLonghunt->m_Boss.m_Action)
  {
   case LONGHUNT_WAIT_FOR_HUMVEES_DEATH_ACTION:
-   radius = 168*(1024.0/100.0) ;
-   rot = pLonghunt->m_Boss.m_ActionStage * ((45)*(3.14159265358979323846/180)) ;
+   targetRadius = 168*(1024.0/100.0) ;
+   targetAngle = pLonghunt->m_Boss.m_ActionStage * ((45)*(3.14159265358979323846/180)) ;
    pLonghunt->m_Boss.m_ActionTime += D_800B6B00 ;
    if (pLonghunt->m_Boss.m_ActionTime > ((20)*15))
    {
@@ -1879,38 +1880,38 @@ void func_8004A2B0(CGameObjectInstance *pThis, CLonghunt *pLonghunt){
     pLonghunt->m_Boss.m_ActionStage++ ;
     pLonghunt->m_Boss.m_ActionStage &= 7 ;
    }
-   vDir.x = - (radius * func_8009E7B0(rot)) ;
-   vDir.y = vTurokPos.y ;
-   vDir.z = - (radius * func_8009E630(rot)) ;
+   targetPos.x = - (targetRadius * func_8009E7B0(targetAngle)) ;
+   targetPos.y = vTurokPos.y ;
+   targetPos.z = - (targetRadius * func_8009E630(targetAngle)) ;
    break ;
   case LONGHUNT_ATTACK_ACTION:
-   radius = 0 ;
-   rot = 0 ;
-   vDir.x = vTurokPos.x - (radius * func_8009E7B0(rot)) ;
-   vDir.y = vTurokPos.y ;
-   vDir.z = vTurokPos.z - (radius * func_8009E630(rot)) ;
-   radius = (func_8009E7A0(func_8005F34C(pThis, pTurok->ah.ih.m_vPos)) - (15*(1024.0/100.0))) * 2 ;
-   if (radius > (80*(1024.0/100.0)))
-    radius = (80*(1024.0/100.0)) ;
+   targetRadius = 0 ;
+   targetAngle = 0 ;
+   targetPos.x = vTurokPos.x - (targetRadius * func_8009E7B0(targetAngle)) ;
+   targetPos.y = vTurokPos.y ;
+   targetPos.z = vTurokPos.z - (targetRadius * func_8009E630(targetAngle)) ;
+   targetRadius = (func_8009E7A0(func_8005F34C(pThis, pTurok->ah.ih.m_vPos)) - (15*(1024.0/100.0))) * 2 ;
+   if (targetRadius > (80*(1024.0/100.0)))
+    targetRadius = (80*(1024.0/100.0)) ;
    else
-   if (radius < 0)
-    radius = 0 ;
-   func_80098AA0(&Line, &pThis->ah.ih.m_vPos, &pTurok->ah.ih.m_vPos) ;
-   func_80013B2C(&Line.m_vNormal) ;
-   vDir.x += Line.m_vNormal.x * radius * func_8009E7B0(pLonghunt->m_RunAngle) ;
-   vDir.z += Line.m_vNormal.z * radius * func_8009E630(pLonghunt->m_RunAngle) ;
+   if (targetRadius < 0)
+    targetRadius = 0 ;
+   func_80098AA0(&targetLine, &pThis->ah.ih.m_vPos, &pTurok->ah.ih.m_vPos) ;
+   func_80013B2C(&targetLine.m_vNormal) ;
+   targetPos.x += targetLine.m_vNormal.x * targetRadius * func_8009E7B0(pLonghunt->m_RunAngle) ;
+   targetPos.z += targetLine.m_vNormal.z * targetRadius * func_8009E630(pLonghunt->m_RunAngle) ;
    pLonghunt->m_RunAngle += ((5)*(3.14159265358979323846/180)) ;
    break ;
   case LONGHUNT_VICTORY_ACTION:
-   radius = 15*(1024.0/100.0) ;
-   rot = pTurok->m_RotY ;
-   vDir.x = vTurokPos.x - (radius * func_8009E7B0(rot)) ;
-   vDir.y = vTurokPos.y ;
-   vDir.z = vTurokPos.z - (radius * func_8009E630(rot)) ;
+   targetRadius = 15*(1024.0/100.0) ;
+   targetAngle = pTurok->m_RotY ;
+   targetPos.x = vTurokPos.x - (targetRadius * func_8009E7B0(targetAngle)) ;
+   targetPos.y = vTurokPos.y ;
+   targetPos.z = vTurokPos.z - (targetRadius * func_8009E630(targetAngle)) ;
    break ;
  }
- pLonghunt->m_Boss.m_vTarget = vDir ;
- pLonghunt->m_Boss.m_DistFromTargetSqr = func_8005F34C(pThis, vDir) ;
+ pLonghunt->m_Boss.m_vTarget = targetPos ;
+ pLonghunt->m_Boss.m_DistFromTargetSqr = func_8005F34C(pThis, targetPos) ;
  if (pLonghunt->m_Boss.m_DistFromTargetSqr)
   pLonghunt->m_Boss.m_DistFromTarget = func_8009E7A0(pLonghunt->m_Boss.m_DistFromTargetSqr) ;
  else

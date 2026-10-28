@@ -275,7 +275,7 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 extern ROMAddress* D_8002DBF8(CIndexedSet *pThis,
                                               ROMAddress *rpBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
@@ -294,7 +294,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -876,6 +876,7 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo ;
 void func_8001EEB0(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantRateFrame);
 void func_8001EEB0(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantRateFrame){
+ /* Send static instance events on constant rate frames or when the event is unconditional. */
  CIndexedSet isObjectIndex;
  ROMAddress *rpStaticEvents;
  unsigned long staticEventsSize;
@@ -894,8 +895,8 @@ void func_8001EEB0(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantR
           D_800F0D98);
  if (pThis->m_pceObjectIndex)
  {
-  func_8002DD28(&isObjectIndex,
-               func_8002D690(pThis->m_pceObjectIndex),
+  CIndexedSet__ConstructFromRawData(&isObjectIndex,
+               CCacheEntry__GetData(pThis->m_pceObjectIndex),
                0);
     rpStaticEvents = D_8002DBF8(&isObjectIndex,
                      pThis->m_rpObjectIndexAddress,
@@ -909,7 +910,7 @@ void func_8001EEB0(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantR
   if (pThis->m_pceStaticEvents)
   {
    func_8002DA8C(&usStaticEvents,
-                func_8002D690(pThis->m_pceStaticEvents),
+                CCacheEntry__GetData(pThis->m_pceStaticEvents),
                 0);
    nEvents = ( (unsigned long) (((unsigned long*) (&usStaticEvents)->m_pData)[1]) );
                   ;

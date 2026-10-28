@@ -284,7 +284,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -982,7 +982,7 @@ int func_80032970(CScene *pThis, int nType){
       foundObject;
                                 ;
  func_8002DA8C(&usObjectTypes,
-             func_8002D690(pThis->m_pceObjectTypes),
+             CCacheEntry__GetData(pThis->m_pceObjectTypes),
              0);
  objectTypes = (unsigned short*) ( (void*) ( ((unsigned char*)((&usObjectTypes)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nObjs = ( (unsigned long) (((unsigned long*) (&usObjectTypes)->m_pData)[1]) );

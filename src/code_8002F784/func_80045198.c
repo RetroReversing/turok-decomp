@@ -1688,6 +1688,7 @@ signed long func_80044908(CGameObjectInstance *pThis);
 extern CVector3 D_800BC604[5] ;
 extern CVector3 D_800BC640[8] ;
 void func_80045198(CGameObjectInstance *pThis, CMantis *pMantis);
+/* Chooses the Mantis boss target and updates its facing and distance. */
 void func_80045198(CGameObjectInstance *pThis, CMantis *pMantis){
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  float rot ;

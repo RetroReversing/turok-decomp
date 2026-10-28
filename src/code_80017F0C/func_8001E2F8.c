@@ -336,8 +336,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -354,7 +354,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 typedef void (*pfnCACHENOTIFY)(void *pNotifyPtr, CCacheEntry **ppceTarget);
 typedef struct CNotifyEntry_t
 {
@@ -1648,7 +1648,8 @@ extern CGameRegion* func_8001E2F8(CGameRegion *pThis, CVector3 vPos);
 float func_80019D3C(CGameRegion *pThis, float X, float Z);
 int D_8001E21C(CGameRegion *pThis, float X, float Z);
 CGameRegion* func_8001E2F8(CGameRegion *pThis, CVector3 vPos);
-CGameRegion* func_8001E2F8(CGameRegion *pThis, CVector3 vPos){
+CGameRegion* func_8001E2F8(CGameRegion *pCurrentRegion, CVector3 vPos){
+ /* Find the closest other region whose ground lies below this position. */
  CGameRegion *pDesired;
  float distance, closestDistance,
        groundHeight;
@@ -1663,13 +1664,13 @@ CGameRegion* func_8001E2F8(CGameRegion *pThis, CVector3 vPos){
        i, cRegion;
  if (!D_800B6B38)
   return ((void*)0);
- func_8002DD28(&isCollision,
-             func_8002D690((&D_800F9F10)->m_Scene.m_pceCollision),
+ CIndexedSet__ConstructFromRawData(&isCollision,
+             CCacheEntry__GetData((&D_800F9F10)->m_Scene.m_pceCollision),
              0);
- pbRegions = D_8002DC68((&isCollision), (&isCollision)->m_pData, (2));
+ pbRegions = CIndexedSet__GetBlock((&isCollision), (&isCollision)->m_pData, (2));
  func_8002DA8C(&usRegions, pbRegions, 0);
  regions = (CGameRegion*) ( (void*) ( ((unsigned char*)((&usRegions)->m_pData)) + (2*sizeof(unsigned long)) ) );
- pbBlocks = D_8002DC68((&isCollision), (&isCollision)->m_pData, (3));
+ pbBlocks = CIndexedSet__GetBlock((&isCollision), (&isCollision)->m_pData, (3));
  func_8002DA8C(&usBlocks, pbBlocks, 0);
  blocks = (CROMRegionBlock*) ( (void*) ( ((unsigned char*)((&usBlocks)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nBlocks = ( (unsigned long) (((unsigned long*) (&usBlocks)->m_pData)[1]) );
@@ -1684,7 +1685,7 @@ CGameRegion* func_8001E2F8(CGameRegion *pThis, CVector3 vPos){
    for (i=0; i<pBlock->m_nRegions; i++)
    {
     pRegion = &regions[cRegion];
-    if (D_8001E21C(pRegion, vPos.x, vPos.z) && (pRegion != pThis))
+    if (D_8001E21C(pRegion, vPos.x, vPos.z) && (pRegion != pCurrentRegion))
     {
      groundHeight = func_80019D3C(pRegion, vPos.x, vPos.z);
      if (groundHeight < vPos.y)

@@ -362,7 +362,7 @@ typedef struct CFrameData_t
        m_nPredictFields;
  int m_DrawMap;
 } CFrameData;
-extern CFrameData *D_80119924;
+extern CFrameData *pFrameData;
 extern sa_u64 dram_stack[];
 extern unsigned long D_800F9D50;
 extern unsigned long D_800F9D68;
@@ -374,28 +374,29 @@ extern void *D_800F9D88;
 extern void func_8002BCAC(OSSched *s);
 extern void func_8002BF28(OSSched *s);
 extern void func_8002C5D4(OSSched *s, OSScTask *t);
-extern void func_8002C63C(OSSched *D_800F95E0, OSScTask *sp, OSScTask *dp);
+extern void func_8002C63C(OSSched *sc, OSScTask *sp, OSScTask *dp);
 extern void func_8002C7A0(OSSched *s);
-extern sa_s32 func_8002C7DC(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp,
+extern sa_s32 func_8002C7DC(OSSched *sc, OSScTask **sp, OSScTask **dp,
                              sa_s32 availRCP);
 extern int D_800BA900 ;
-void func_8002BCAC(OSSched *D_800F95E0);
-void func_8002BF28(OSSched *D_800F95E0);
-void func_8002C5D4(OSSched *D_800F95E0, OSScTask *t);
-void func_8002C63C(OSSched *D_800F95E0, OSScTask *sp, OSScTask *dp);
-extern void func_8002C7A0(OSSched *D_800F95E0);
-sa_s32 func_8002C7DC(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
-void func_8002BCAC(OSSched *D_800F95E0){
+void func_8002BCAC(OSSched *sc);
+void func_8002BF28(OSSched *sc);
+void func_8002C5D4(OSSched *sc, OSScTask *t);
+void func_8002C63C(OSSched *sc, OSScTask *sp, OSScTask *dp);
+extern void func_8002C7A0(OSSched *sc);
+sa_s32 func_8002C7DC(OSSched *sc, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
+/* Process a video retrace, advance frame buffers, schedule tasks, and notify clients. */
+void func_8002BCAC(OSSched *sc){
  OSScTask *rspTask = 0;
  OSScClient *client;
  sa_s32 state;
  OSScTask *sp = 0;
  OSScTask *dp = 0;
- CFrameData *D_80119924;
+ CFrameData *pFrameData;
  char buffer[50];
-  D_800F95E0->frameCount++;
- while (func_8009D0B0(&D_800F95E0->cmdQ, (OSMesg*) &rspTask, 0) != -1)
-  func_8002C5D4(D_800F95E0, rspTask);
+  sc->frameCount++;
+ while (func_8009D0B0(&sc->cmdQ, (OSMesg*) &rspTask, 0) != -1)
+  func_8002C5D4(sc, rspTask);
  D_800F9D50++;
                                              ;
  if (D_800F9D70)
@@ -407,11 +408,11 @@ void func_8002BCAC(OSSched *D_800F95E0){
  }
  if (D_800F9D68)
  {
-  D_80119924 = D_800F9D78[D_800F9D6C];
-  if ((D_800F9D50 + 1) >= D_80119924->m_nPredictFields)
+  pFrameData = D_800F9D78[D_800F9D6C];
+  if ((D_800F9D50 + 1) >= pFrameData->m_nPredictFields)
   {
-   D_800F9D88 = D_80119924->m_pFrameBuffer;
-   func_8009DD40(D_80119924->m_pFrameBuffer);
+   D_800F9D88 = pFrameData->m_pFrameBuffer;
+   func_8009DD40(pFrameData->m_pFrameBuffer);
    D_800F9D68--;
    D_800F9D70++;
    if (++D_800F9D6C == 3)
@@ -424,17 +425,17 @@ void func_8002BCAC(OSSched *D_800F95E0){
  else
  {
  }
- if (!D_800F95E0->curRSPTask && !D_800F95E0->curRDPTask && D_800F95E0->gfxListHead)
+ if (!sc->curRSPTask && !sc->curRDPTask && sc->gfxListHead)
  {
-  if ( (D_800F95E0->gfxListHead->list.t.type == 1)
-    && (D_800F95E0->gfxListHead->state == (0x0010 | 0x0020 | 0x0002)) )
+  if ( (sc->gfxListHead->list.t.type == 1)
+    && (sc->gfxListHead->state == (0x0010 | 0x0020 | 0x0002)) )
   {
-   D_800F95E0->gfxListHead->state &= ~(0x0010 | 0x0020);
-   D_800F95E0->curRSPTask = D_800F95E0->gfxListHead;
-   D_800F95E0->gfxListHead = D_800F95E0->gfxListHead->next;
-   if (!D_800F95E0->gfxListHead)
-    D_800F95E0->gfxListTail = 0;
-   func_8002BF28(D_800F95E0);
+   sc->gfxListHead->state &= ~(0x0010 | 0x0020);
+   sc->curRSPTask = sc->gfxListHead;
+   sc->gfxListHead = sc->gfxListHead->next;
+   if (!sc->gfxListHead)
+    sc->gfxListTail = 0;
+   func_8002BF28(sc);
   }
  }
                         ;
@@ -442,16 +443,16 @@ void func_8002BCAC(OSSched *D_800F95E0){
  {
   *((char*)(0)) = 0;
  }
- if (D_800F95E0->doAudio && D_800F95E0->curRSPTask)
+ if (sc->doAudio && sc->curRSPTask)
  {
-  func_8002C7A0(D_800F95E0);
+  func_8002C7A0(sc);
  }
  else
  {
-  state = ((D_800F95E0->curRSPTask == 0) << 1) | (D_800F95E0->curRDPTask == 0);
-  if (func_8002C7DC (D_800F95E0, &sp, &dp, state) != state)
-   func_8002C63C(D_800F95E0, sp, dp);
+  state = ((sc->curRSPTask == 0) << 1) | (sc->curRDPTask == 0);
+  if (func_8002C7DC (sc, &sp, &dp, state) != state)
+   func_8002C63C(sc, sp, dp);
  }
- for (client=D_800F95E0->clientList; client!=0; client=client->next)
-  func_800A1180(client->msgQ, (OSMesg) &D_800F95E0->retraceMsg, 0);
+ for (client=sc->clientList; client!=0; client=client->next)
+  func_800A1180(client->msgQ, (OSMesg) &sc->retraceMsg, 0);
 }

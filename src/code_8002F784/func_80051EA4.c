@@ -1249,7 +1249,7 @@ typedef struct
        TypeFlyBackward;
 } CTControl;
 extern float func_80051EA4 (CTControl *pThis);
-extern float func_80051F18 ( CTControl *pThis,
+extern float CTControl__Action ( CTControl *pThis,
                    sa_u16 Action,
                      sa_u16 Pre,
                      sa_u16 Type,
@@ -1933,10 +1933,10 @@ typedef struct CEngineApp_t
 extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10; extern CEngineApp D_80106000; extern CEngineApp D_80106004;
 float func_80051EA4 (CTControl *pThis );
-float func_80051F18 ( CTControl *pThis, sa_u16 Action, sa_u16 Pre, sa_u16 Type, sa_u16 Not );
+float CTControl__Action ( CTControl *pThis, sa_u16 Action, sa_u16 Pre, sa_u16 Type, sa_u16 Not );
 float func_80051EA4 (CTControl *pThis ){
  float State ;
- State = func_80051F18 ( pThis, pThis->UseMenu, pThis->PreUseMenu, pThis->TypeUseMenu, pThis->NotUseMenu );
+ State = CTControl__Action ( pThis, pThis->UseMenu, pThis->PreUseMenu, pThis->TypeUseMenu, pThis->NotUseMenu );
  if (State)
   func_80031974(&(&D_800F9F10)->m_Scene, 21, 0, 0, &(&D_80106000)->m_Camera.m_vPos, 0);
  return State ;

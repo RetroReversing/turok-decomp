@@ -15,10 +15,10 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK func_80026DA4(u8 *, s32, s32);            /* extern */
 M2C_UNK func_8002D1F8(u8 *, u8 *, M2C_UNK *, M2C_UNK *, u8 *, s32, s32, M2C_UNK *); /* extern */
-s32 func_8002D690(s32);                             /* extern */
+s32 CCacheEntry__GetData(s32);                             /* extern */
 s32 func_8002DBF8(M2C_UNK *, s32, M2C_UNK, s32 *);  /* extern */
 s32 func_8002DC24(M2C_UNK *, s32, M2C_UNK);         /* extern */
-M2C_UNK func_8002DD28(M2C_UNK *, s32, M2C_UNK);     /* extern */
+M2C_UNK CIndexedSet__ConstructFromRawData(M2C_UNK *, s32, M2C_UNK);     /* extern */
 extern M2C_UNK D_800F1B40;
 extern M2C_UNK D_800F1B4C;
 extern M2C_UNK func_800336C0;
@@ -31,7 +31,7 @@ void func_80033F64(u8 *arg0, M2C_UNK arg1) {
     s32 sp3C;
     s32 sp38;
 
-    func_8002DD28(sp50 + 3, func_8002D690(M2C_FIELD(arg0, s32 *, 0x6B10)), 0);
+    CIndexedSet__ConstructFromRawData(sp50 + 3, CCacheEntry__GetData(M2C_FIELD(arg0, s32 *, 0x6B10)), 0);
     func_8002D1F8(arg0, arg0, &func_800337BC, &func_800336C0, arg0 + 0x6AF8, func_8002DBF8(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 1, &sp3C), sp3C, &D_800F1B40);
     M2C_FIELD(arg0, s32 *, 0x6ADC) = func_8002DBF8(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 3, arg0 + 0x6B44);
     M2C_FIELD(arg0, s32 *, 0x6ACC) = func_8002DC24(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 4);

@@ -1636,7 +1636,8 @@ extern void func_80084D70(CPause *pThis);
 void func_80084BB0(CPause *pThis);
 void func_80084D70(CPause *pThis);
 void func_80084BB0(CPause *pThis){
- int e, i ;
+ int eye, vertex ;
+ /* Reset pause state and initialize the overlay's projection and vertices. */
  if (pThis->m_Mode == PAUSE_NULL)
   pThis->m_Alpha = 0 ;
  pThis->m_Mode = PAUSE_FADEUP ;
@@ -1670,20 +1671,20 @@ void func_80084BB0(CPause *pThis){
     0, 240 -1,
     -200, 200,
     32);
- for (e=0; e<2; e++)
+ for (eye=0; eye<2; eye++)
  {
-  for (i=0; i<16; i++)
+  for (vertex=0; vertex<16; vertex++)
   {
-   D_80129140[e][i].v.ob[0] = 0;
-   D_80129140[e][i].v.ob[1] = 0;
-   D_80129140[e][i].v.ob[2] = 0;
-   D_80129140[e][i].v.flag = 0;
-   D_80129140[e][i].v.tc[0] = 0;
-   D_80129140[e][i].v.tc[1] = 0;
-   D_80129140[e][i].v.cn[0] = 0;
-   D_80129140[e][i].v.cn[1] = 200;
-   D_80129140[e][i].v.cn[2] = 0;
-   D_80129140[e][i].v.cn[3] = 255;
+   D_80129140[eye][vertex].v.ob[0] = 0;
+   D_80129140[eye][vertex].v.ob[1] = 0;
+   D_80129140[eye][vertex].v.ob[2] = 0;
+   D_80129140[eye][vertex].v.flag = 0;
+   D_80129140[eye][vertex].v.tc[0] = 0;
+   D_80129140[eye][vertex].v.tc[1] = 0;
+   D_80129140[eye][vertex].v.cn[0] = 0;
+   D_80129140[eye][vertex].v.cn[1] = 200;
+   D_80129140[eye][vertex].v.cn[2] = 0;
+   D_80129140[eye][vertex].v.cn[3] = 255;
   }
  }
 }

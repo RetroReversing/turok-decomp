@@ -1617,6 +1617,7 @@ struct CParticle_t;
 extern void func_800636A8(CInstanceHdr *pThis, CVector3 vPos, int nType) ;
 void func_800636A8(CInstanceHdr *pThis, CVector3 vPos, int nType);
 void func_800636A8(CInstanceHdr *pThis, CVector3 vPos, int nType){
+ /* Spawns a bouncing rock or body part with random launch velocity, scale, and spin. */
  CVector3 vUp, vRandom, vScaled,
      vOutPos;
  CVector3 vFinal ;

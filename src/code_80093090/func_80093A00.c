@@ -1613,6 +1613,7 @@ struct CCollisionInfo2_t;
 extern void func_80093A00(CGameSimpleInstance *pWarp);
 void func_80093A00(CGameSimpleInstance *pWarp);
 void func_80093A00(CGameSimpleInstance *pWarp){
+ /* Activate a visible warp, saving a return point behind it when requested. */
  int returnWarp;
  CVector3 vPrevPos;
  CGameRegion *pPrevRegion;

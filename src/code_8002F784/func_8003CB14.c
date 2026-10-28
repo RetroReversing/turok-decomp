@@ -877,7 +877,8 @@ extern void func_8003CB14(CCamera *pThis) ;
 extern CCameraTrackInfo D_800BAEBC ;
 void func_8003CB14(CCamera *pThis);
 void func_8003CB14(CCamera *pThis){
- CVector3 vDir ;
+ CVector3 viewDirection ;
+ /* Advance the cinematic camera, then switch to a wide view when its object is absent. */
  pThis->m_StageTime += D_800B6B00 ;
  pThis->m_Time += D_800B6B00 ;
  if (pThis->m_StageTime > 50)
@@ -893,13 +894,13 @@ void func_8003CB14(CCamera *pThis){
   if (pThis->m_Stage == 0)
   {
    pThis->m_Stage = 1 ;
-   vDir = pThis->m_View.m_vEye ;
-   vDir.y = 0 ;
-   func_80013B2C(&vDir) ;
-   vDir.x *= 50*(1024.0/100.0) ;
-   vDir.y = 10 * (1024.0/100.0) ;
-   vDir.z *= 50*(1024.0/100.0) ;
-   pThis->m_View.m_vEye = vDir ;
+   viewDirection = pThis->m_View.m_vEye ;
+   viewDirection.y = 0 ;
+   func_80013B2C(&viewDirection) ;
+   viewDirection.x *= 50*(1024.0/100.0) ;
+   viewDirection.y = 10 * (1024.0/100.0) ;
+   viewDirection.z *= 50*(1024.0/100.0) ;
+   pThis->m_View.m_vEye = viewDirection ;
    (&pThis->m_View.m_vFocus)->x = 0 * (1024.0/100.0) ; (&pThis->m_View.m_vFocus)->y = 0 * (1024.0/100.0) ; (&pThis->m_View.m_vFocus)->z = 0 * (1024.0/100.0) ; ;
   }
  }

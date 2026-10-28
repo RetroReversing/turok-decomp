@@ -278,8 +278,8 @@ typedef struct CIndexedSet_t
    void *m_pData;
    int m_AutoDeleteData;
 } CIndexedSet;
-extern void func_8002DD28(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* D_8002DC68(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
+extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 extern void* D_8002DC3C(CIndexedSet *pThis, void *pBaseAddress, int nBlock, unsigned long *pLength);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
@@ -297,7 +297,7 @@ typedef struct CCacheEntry_t
    struct CCacheEntry_t *m_pLast, *m_pNext,
          *m_pNextFree;
 } CCacheEntry;
-extern void* func_8002D690(CCacheEntry *pThis);
+extern void* CCacheEntry__GetData(CCacheEntry *pThis);
 extern void* func_8002D648(CCacheEntry *pThis, unsigned long NewSize, int AllocTop);
 extern void func_8002D604(CCacheEntry *pThis, void *pNewData, unsigned long NewLength);
 extern int D_8002D6BC(CCacheEntry *pThis, int AllocTop);
@@ -886,8 +886,8 @@ void func_800365F0(CGameObjectInstance *pThis, CCacheEntry **ppceTarget){
  if (!D_8002D6BC(pThis->m_asCurrent.m_pceAnim, 1))
   return;
  allocSize = 0;
- func_8002DD28(&isAnim,
-             func_8002D690(pThis->m_asCurrent.m_pceAnim),
+ CIndexedSet__ConstructFromRawData(&isAnim,
+             CCacheEntry__GetData(pThis->m_asCurrent.m_pceAnim),
              0);
  allocSize += ( ( ((1*sizeof(unsigned long)) + ((7)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
  pbYRots = D_8002DC3C((&isAnim), (&isAnim)->m_pData, (0), (&yRotsSize));
@@ -898,11 +898,11 @@ void func_800365F0(CGameObjectInstance *pThis, CCacheEntry **ppceTarget){
  allocSize += nodeAnimIndicesSize;
  pbInitialOrients = D_8002DC3C((&isAnim), (&isAnim)->m_pData, (2), (&initialOrientsSize));
  allocSize += initialOrientsSize;
- pbTranslationSets = D_8002DC68((&isAnim), (&isAnim)->m_pData, (3));
+ pbTranslationSets = CIndexedSet__GetBlock((&isAnim), (&isAnim)->m_pData, (3));
  func_8002DA8C(&usTranslationSets, pbTranslationSets, 0);
  nTranslationSets = ( (unsigned long) (((unsigned long*) (&usTranslationSets)->m_pData)[1]) );
  allocSize += ( ( (((2*sizeof(unsigned long)) + (((2*sizeof(unsigned long)) + (sizeof(CPosFrame))*(nFrames)))*(nTranslationSets))) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
- pbRotationSets = D_8002DC68((&isAnim), (&isAnim)->m_pData, (4));
+ pbRotationSets = CIndexedSet__GetBlock((&isAnim), (&isAnim)->m_pData, (4));
  func_8002DA8C(&usRotationSets, pbRotationSets, 0);
  nRotationSets = ( (unsigned long) (((unsigned long*) (&usRotationSets)->m_pData)[1]) );
  allocSize += ( ( (((2*sizeof(unsigned long)) + (((2*sizeof(unsigned long)) + (sizeof(CRotFrame))*(nFrames)))*(nRotationSets))) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
@@ -921,7 +921,7 @@ void func_800365F0(CGameObjectInstance *pThis, CCacheEntry **ppceTarget){
   if (scratchAreaSize > D_800B6B40)
    pScratchArea = pBytes + allocSize - scratchAreaSize;
   pbNewAnim = pBytes;
-  func_8002DD28(&isNewAnim, pbNewAnim, 0);
+  CIndexedSet__ConstructFromRawData(&isNewAnim, pbNewAnim, 0);
   offset = ( ( ((1*sizeof(unsigned long)) + ((7)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (0));
   ((unsigned long*) ((&isNewAnim)->m_pData))[1 + (((unsigned long*) (&isNewAnim)->m_pData)[0])] = ((unsigned long) (offset));

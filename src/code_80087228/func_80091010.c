@@ -1828,7 +1828,7 @@ extern char D_800ED4D0[1] ;
 extern char D_800ED4E0[1] ;
 extern char D_800ED4F0[1] ;
 extern char D_800ED4FC[1] ;
-void func_80091010(void);
+void func_80091010(void);/* Displays how many level keys remain, using the player's collected key flags. */
 void func_80091010(void){
  int keys = 0 ;
  t_GameText *txtA, *txtB ;
