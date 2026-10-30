@@ -1,7 +1,7 @@
 #include "common.h"
 
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CQuatern_t;
 typedef struct CVector3_t
@@ -48,7 +48,7 @@ CQuatern func_80013C58(CVector3 *pvThis){
   theta = func_8001349C(cosTheta);
   func_80013BBC(&vAxis, &vZ, &vUnitVelocity);
   func_80013B2C(&vAxis);
-  D_80119CB0 = func_8009E7B0((theta)/2); (&qRot)->x = (vAxis.x)*D_80119CB0; (&qRot)->y = (vAxis.y)*D_80119CB0; (&qRot)->z = (vAxis.z)*D_80119CB0; (&qRot)->t = func_8009E630((theta)/2);;
+  D_80119CB0 = __sinf((theta)/2); (&qRot)->x = (vAxis.x)*D_80119CB0; (&qRot)->y = (vAxis.y)*D_80119CB0; (&qRot)->z = (vAxis.z)*D_80119CB0; (&qRot)->t = __cosf((theta)/2);;
  }
  return qRot;
 }

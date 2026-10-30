@@ -55,7 +55,7 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern void func_8009E4A0(OSMesgQueue *, OSMesg *, sa_s32);
+extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, sa_s32);
 typedef struct {
     sa_u32 errStatus;
     void *dramAddr;
@@ -1622,7 +1622,7 @@ typedef struct {
 } OSSched;
 extern void func_8002B830(OSSched *s, void *stack, OSPri priority,
                                   sa_u8 mode, sa_u8 numFields);
-extern void func_8002B960(OSSched *s, OSScClient *c, OSMesgQueue *msgQ);
+extern void osScAddClient(OSSched *s, OSScClient *c, OSMesgQueue *msgQ);
 typedef struct CCameraTrackInfo_t
 {
  float m_StartYRotOffset, m_FinalYRotOffset ;
@@ -1981,11 +1981,11 @@ void func_80006BFC(CEngineApp *pThis){
                                           ;
                                    ;
                                     ;
- func_8009E4A0(&D_800F9BC8, &D_800F9BE0, 1);
+ osCreateMesgQueue(&D_800F9BC8, &D_800F9BE0, 1);
                                   ;
- func_8009E4A0(&D_800F9BE8, &D_800F9C00, 1);
+ osCreateMesgQueue(&D_800F9BE8, &D_800F9C00, 1);
                                   ;
- func_8009E4A0(&D_800F9C20, D_800F9C38, 64);
+ osCreateMesgQueue(&D_800F9C20, D_800F9C38, 64);
  if (func_80000300 == 0)
   viMode = 16;
  else if (func_80000300 == 1)
@@ -1996,7 +1996,7 @@ void func_80006BFC(CEngineApp *pThis){
        14,
        viMode,
        1);
- func_8002B960(&D_800F95E0, &D_800F9868, &D_800F9C20);
+ osScAddClient(&D_800F95E0, &D_800F9868, &D_800F9C20);
  D_800016A4(pThis);
  func_80006D68(pThis);
  D_800F9E44 = ((void*)0);

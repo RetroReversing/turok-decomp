@@ -15,11 +15,11 @@ typedef s32 M2C_UNK32;
 #endif
 
 s32 func_80089EC4(s16);                             /* extern */
-M2C_UNK func_800A3F10(M2C_UNK *);                   /* extern */
+M2C_UNK alSndpStop(M2C_UNK *);                   /* extern */
 extern M2C_UNK D_801295A4;
 
 void func_80089E38(s16 arg0) {
     if (func_80089EC4(arg0) != 0) {
-        func_800A3F10(&D_801295A4);
+        alSndpStop(&D_801295A4);
     }
 }

@@ -243,7 +243,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E630(float angle);
+extern float __cosf(float angle);
 extern unsigned long D_800B6AF0;
 typedef struct C16BitGraphic_t
 {
@@ -291,7 +291,7 @@ void func_8007EDF4(Gfx **ppDLP, int index, float x, float y, float xscale, float
  C16BitGraphic *ppIcon ;
  int xoff, yoff ;
  float mod ;
- mod = 64.0*func_8009E630((float)D_800B6AF0/2.0) ;
+ mod = 64.0*__cosf((float)D_800B6AF0/2.0) ;
  if (D_80129090.m_Selected == index)
  {
   { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xfb) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)((((unsigned int) (((unsigned int)(192+mod) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(192+mod) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)(192+mod) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(alpha) & ((0x01 << (8)) - 1)) << (0))))); };

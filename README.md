@@ -4,17 +4,17 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **1,965 functions in C**, each recompiled and verified against the original machine code after linking.
-- **396,464 matched bytes**, about **63.332% of the 626,012 bytes identified as candidate code**.
-- The live analysis has **382 open candidates** and **59 candidates set aside as assembly** (2,406 classified entries, including padding).
-- The standalone export has **2,407 build entries**, including **two padding labels**; 442 entries use assembly. Padding is not recovered functionality or additional game code.
-- A full build with all 1,965 C selections and **zero automatic fallbacks** reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
+- **2,036 functions selected in C**, covering **445,672 bytes**, or **71.192% of the fixed 626,012 candidate-code bytes**.
+- The live analysis checkpoint has **2,051 isolated matches / 455,372 bytes**, **296 open candidates** and **59 candidates set aside as assembly**. Its displayed **73.90%** uses a smaller 616,180-byte denominator that excludes assembly candidates.
+- The standalone export has **2,407 build entries**, including two padding labels; **371 entries use assembly**. Fifteen isolated matches were excluded conservatively because they failed export replay or data placement.
+- A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
+- The latest one-hour source-assisted session added **33 isolated matches / 27,564 bytes**; 31 of those are selected in this build. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
 ## Build
 
-Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested tool revision is `4936c84`, with the compiler-consistency repair documented in [the current checkpoint](docs/SOURCE_ASSISTED_CHECKPOINT.md). The generated build script includes the constant-pool address fix; the updated app also guards compiler changes.
+Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested tool revision is `4936c84`, with the compiler-consistency repair documented in [the current checkpoint](docs/SOURCE_ASSISTED_CHECKPOINT.md). The checked-in build script also includes constant-pool placement, guarded empty-relocation extraction, and IDO inline-placeholder handling. The 30 October verification used a private repaired tool copy for relocation-order replay; see [checkpoint notes](docs/SOURCE_ASSISTED_CHECKPOINT.md).
 
 Clone this project and install that tool revision into a local environment:
 
@@ -43,7 +43,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (1965 of 2407 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2036 of 2407 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.

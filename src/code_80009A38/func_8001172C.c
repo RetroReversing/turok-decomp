@@ -77,8 +77,8 @@ typedef struct {
    char ext_name[4];
    char game_name[16];
 } OSPfsState;
-extern sa_s32 func_8009FAF0(OSPfs *, sa_u16, sa_u32, sa_u8 *, sa_u8 *);
-extern sa_s32 func_8009F760(OSPfs *, sa_s32, OSPfsState *);
+extern sa_s32 osPfsDeleteFile(OSPfs *, sa_u16, sa_u32, sa_u8 *, sa_u8 *);
+extern sa_s32 osPfsFileState(OSPfs *, sa_s32, OSPfsState *);
 extern OSPfs D_80119A08 ;
 extern OSPfsState D_80119A90 ;
 typedef struct s_File
@@ -98,10 +98,10 @@ int func_8001172C(int index);
 int func_8001172C(int index){
  int ret ;
  func_80011194() ;
- ret = func_8009F760(&D_80119A08, D_80119AC8[index].index, &D_80119A90) ;
+ ret = osPfsFileState(&D_80119A08, D_80119AC8[index].index, &D_80119A90) ;
  if (ret == 0)
  {
-  func_8009FAF0(&D_80119A08,
+  osPfsDeleteFile(&D_80119A08,
         D_80119A90.company_code,
         D_80119A90.game_code,
         D_80119A90.game_name,

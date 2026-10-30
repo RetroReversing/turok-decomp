@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -1880,16 +1880,16 @@ void func_8004A2B0(CGameObjectInstance *pThis, CLonghunt *pLonghunt){
     pLonghunt->m_Boss.m_ActionStage++ ;
     pLonghunt->m_Boss.m_ActionStage &= 7 ;
    }
-   targetPos.x = - (targetRadius * func_8009E7B0(targetAngle)) ;
+   targetPos.x = - (targetRadius * __sinf(targetAngle)) ;
    targetPos.y = vTurokPos.y ;
-   targetPos.z = - (targetRadius * func_8009E630(targetAngle)) ;
+   targetPos.z = - (targetRadius * __cosf(targetAngle)) ;
    break ;
   case LONGHUNT_ATTACK_ACTION:
    targetRadius = 0 ;
    targetAngle = 0 ;
-   targetPos.x = vTurokPos.x - (targetRadius * func_8009E7B0(targetAngle)) ;
+   targetPos.x = vTurokPos.x - (targetRadius * __sinf(targetAngle)) ;
    targetPos.y = vTurokPos.y ;
-   targetPos.z = vTurokPos.z - (targetRadius * func_8009E630(targetAngle)) ;
+   targetPos.z = vTurokPos.z - (targetRadius * __cosf(targetAngle)) ;
    targetRadius = (func_8009E7A0(func_8005F34C(pThis, pTurok->ah.ih.m_vPos)) - (15*(1024.0/100.0))) * 2 ;
    if (targetRadius > (80*(1024.0/100.0)))
     targetRadius = (80*(1024.0/100.0)) ;
@@ -1898,16 +1898,16 @@ void func_8004A2B0(CGameObjectInstance *pThis, CLonghunt *pLonghunt){
     targetRadius = 0 ;
    func_80098AA0(&targetLine, &pThis->ah.ih.m_vPos, &pTurok->ah.ih.m_vPos) ;
    func_80013B2C(&targetLine.m_vNormal) ;
-   targetPos.x += targetLine.m_vNormal.x * targetRadius * func_8009E7B0(pLonghunt->m_RunAngle) ;
-   targetPos.z += targetLine.m_vNormal.z * targetRadius * func_8009E630(pLonghunt->m_RunAngle) ;
+   targetPos.x += targetLine.m_vNormal.x * targetRadius * __sinf(pLonghunt->m_RunAngle) ;
+   targetPos.z += targetLine.m_vNormal.z * targetRadius * __cosf(pLonghunt->m_RunAngle) ;
    pLonghunt->m_RunAngle += ((5)*(3.14159265358979323846/180)) ;
    break ;
   case LONGHUNT_VICTORY_ACTION:
    targetRadius = 15*(1024.0/100.0) ;
    targetAngle = pTurok->m_RotY ;
-   targetPos.x = vTurokPos.x - (targetRadius * func_8009E7B0(targetAngle)) ;
+   targetPos.x = vTurokPos.x - (targetRadius * __sinf(targetAngle)) ;
    targetPos.y = vTurokPos.y ;
-   targetPos.z = vTurokPos.z - (targetRadius * func_8009E630(targetAngle)) ;
+   targetPos.z = vTurokPos.z - (targetRadius * __cosf(targetAngle)) ;
    break ;
  }
  pLonghunt->m_Boss.m_vTarget = targetPos ;

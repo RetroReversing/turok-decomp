@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -897,8 +897,8 @@ void func_8003911C(CCamera *pThis, CVector3 *currentPos,
  }
  while(!found)
  {
-  candidatePos.x = radius* func_8009E7B0(angle) + currentPos->x ;
-  candidatePos.z = radius * func_8009E630(angle) + currentPos->z ;
+  candidatePos.x = radius* __sinf(angle) + currentPos->x ;
+  candidatePos.z = radius * __cosf(angle) + currentPos->z ;
   if (func_80038F30(pThis, &candidatePos, 10*(1024.0/100.0)))
    found = 1 ;
   else

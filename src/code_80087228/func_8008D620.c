@@ -55,7 +55,7 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern sa_s32 func_8009D0B0(OSMesgQueue *, OSMesg *, sa_s32);
+extern sa_s32 osRecvMesg(OSMesgQueue *, OSMesg *, sa_s32);
 typedef struct {
     sa_u32 errStatus;
     void *dramAddr;
@@ -293,7 +293,7 @@ typedef struct {
 typedef struct {
     ALSynth drvr;
 } ALGlobals;
-extern void func_800A4EB4(ALGlobals *glob);
+extern void alClose(ALGlobals *glob);
 typedef struct {
     short type;
     char misc[30];
@@ -331,7 +331,7 @@ typedef struct {
     sa_u32 frameCount;
     sa_s32 doAudio;
 } OSSched;
-extern void func_8002B960(OSSched *s, OSScClient *c, OSMesgQueue *msgQ);
+extern void osScAddClient(OSSched *s, OSScClient *c, OSMesgQueue *msgQ);
 extern sa_u64 dram_stack[];
 typedef union {
     struct
@@ -378,10 +378,10 @@ void func_8008D620(void *arg){
  AudioInfo *lastInfo = 0;
  OSScClient client;
  sa_u32 RetraceCount=0;
-    func_8002B960(&D_800F95E0, &client, &D_8012F0D0.audioFrameMsgQ);
+    osScAddClient(&D_800F95E0, &client, &D_8012F0D0.audioFrameMsgQ);
     while (!done)
     {
-  func_8009D0B0(&D_8012F0D0.audioFrameMsgQ, (OSMesg *)&msg, 1);
+  osRecvMesg(&D_8012F0D0.audioFrameMsgQ, (OSMesg *)&msg, 1);
         switch (msg->gen.type)
         {
    case (1):
@@ -402,7 +402,7 @@ void func_8008D620(void *arg){
               if(validTask)
               {
       RetraceCount=0;
-      func_8009D0B0(&D_8012F0D0.audioReplyMsgQ, (OSMesg *)&msg,1);
+      osRecvMesg(&D_8012F0D0.audioReplyMsgQ, (OSMesg *)&msg,1);
        func_8008D978(msg->done.info);
       lastInfo = msg->done.info;
      }
@@ -421,5 +421,5 @@ void func_8008D620(void *arg){
                 break;
         }
     }
-    func_800A4EB4(&D_8012F0D0.g);
+    alClose(&D_8012F0D0.g);
 }

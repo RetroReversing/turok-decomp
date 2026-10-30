@@ -55,7 +55,7 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern sa_s32 func_8009D0B0(OSMesgQueue *, OSMesg *, sa_s32);
+extern sa_s32 osRecvMesg(OSMesgQueue *, OSMesg *, sa_s32);
 typedef struct {
     sa_u32 errStatus;
     void *dramAddr;
@@ -99,7 +99,7 @@ typedef struct {
     sa_u32 size;
     OSPiHandle *piHandle;
 } OSIoMesg;
-extern sa_s32 func_800A1810(OSIoMesg *, sa_s32, sa_s32, sa_u32, void *, sa_u32, OSMesgQueue *);
+extern sa_s32 osPiStartDma(OSIoMesg *, sa_s32, sa_s32, sa_u32, void *, sa_u32, OSMesgQueue *);
 extern void func_800A1760(void *, sa_s32);
 extern void func_800A16E0(void *, sa_s32);
 typedef ROMAddress;
@@ -117,12 +117,12 @@ void func_8002D020(void *pRAM, ROMAddress *rpROM, unsigned long Length){
  while (remainLength)
  {
   transferLength = ((8192) < (remainLength) ? (8192) : (remainLength));
-  func_800A1810(&D_800F9D38, 0, 0,
+  osPiStartDma(&D_800F9D38, 0, 0,
        (unsigned long)rpROM + Length - remainLength,
        (void*) ((unsigned long) pRAM + Length - remainLength),
        transferLength,
        &D_800F9BC8);
-  func_8009D0B0(&D_800F9BC8, ((void*)0), 1);
+  osRecvMesg(&D_800F9BC8, ((void*)0), 1);
   remainLength -= transferLength;
  }
  func_800A1760(pRAM, Length);

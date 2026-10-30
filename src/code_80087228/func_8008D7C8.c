@@ -98,7 +98,7 @@ typedef struct {
 extern sa_u32 func_800A4F20(void);
 extern sa_s32 func_800A4FB0(void *, sa_u32);
 typedef sa_u64 OSTime;
-extern sa_u32 func_800A4F30(void *);
+extern sa_u32 osVirtualToPhysical(void *);
 typedef struct {
  sa_u32 type;
  sa_u32 flags;
@@ -295,7 +295,7 @@ typedef struct {
 typedef struct {
     ALSynth drvr;
 } ALGlobals;
-extern Acmd *func_800A51A8(Acmd *cmdList, sa_s32 *cmdLen, sa_s16 *outBuf, sa_s32 outLen);
+extern Acmd *alAudioFrame(Acmd *cmdList, sa_s32 *cmdLen, sa_s16 *outBuf, sa_s32 outLen);
 extern long long int D_800B2380[], D_800B2450[];
 extern long long int D_800B5B70[], aspMainTextEnd[];
 extern long long int D_800F8E10[], aspMainDataEnd[];
@@ -385,7 +385,7 @@ sa_u32 func_8008D7C8(AudioInfo *info, AudioInfo *lastInfo){
     sa_s32 cmdLen;
   int check = 0;
     func_8008DB6C();
-    audioPtr = (sa_s16 *) func_800A4F30(info->data);
+    audioPtr = (sa_s16 *) osVirtualToPhysical(info->data);
  if (lastInfo)
  {
   check = func_800A4FB0(lastInfo->data, lastInfo->frameSamples<<2);
@@ -401,7 +401,7 @@ sa_u32 func_8008D7C8(AudioInfo *info, AudioInfo *lastInfo){
   info->frameSamples = D_8012FA2C;
     if(info->frameSamples < D_8012FA28)
         info->frameSamples = D_8012FA28;
- cmdp = func_800A51A8(D_8012F0D0.ACMDList[D_800ED458], &cmdLen, audioPtr,
+ cmdp = alAudioFrame(D_8012F0D0.ACMDList[D_800ED458], &cmdLen, audioPtr,
        info->frameSamples);
                               ;
     if(cmdLen == 0)

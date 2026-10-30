@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1920,7 +1920,7 @@ void update_object_orientation_bounds(CGameObjectInstance *object, int followVie
    tempRotation2 = object->m_pCalculateOrientation(object) ;
   else
   {
-   D_80119CB0 = func_8009E7B0((object->m_RotY)/2); (&yawRotation)->x = (0)*D_80119CB0; (&yawRotation)->y = (1)*D_80119CB0; (&yawRotation)->z = (0)*D_80119CB0; (&yawRotation)->t = func_8009E630((object->m_RotY)/2);;
+   D_80119CB0 = __sinf((object->m_RotY)/2); (&yawRotation)->x = (0)*D_80119CB0; (&yawRotation)->y = (1)*D_80119CB0; (&yawRotation)->z = (0)*D_80119CB0; (&yawRotation)->t = __cosf((object->m_RotY)/2);;
    func_80014CB8(&tempRotation1, &object->m_qRot, &yawRotation);
    func_80014CB8(&tempRotation2, &tempRotation1, &object->m_qGround);
   }

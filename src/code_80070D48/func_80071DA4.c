@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -822,8 +822,8 @@ float func_80071DA4(CGameObjectInstance *pAI, CVector3 vPos){
  magDelta = func_8009E7A0(dx*dx + dz*dz);
  if (magDelta == 0)
   return 0;
- sinRotY = func_8009E7B0(pAI->m_RotY);
- cosRotY = func_8009E630(pAI->m_RotY);
+ sinRotY = __sinf(pAI->m_RotY);
+ cosRotY = __cosf(pAI->m_RotY);
  fx = -sinRotY;
  fz = -cosRotY;
  rx = -cosRotY;

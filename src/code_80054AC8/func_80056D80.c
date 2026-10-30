@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -2162,8 +2162,8 @@ void func_80056D80 ( CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44 ){
  if ( pIns == ((void*)0) ) return;
  func_800576EC ( pThis, pApp, D_800F9E44 );
  vDesiredPos = pIns->ah.ih.m_vPos;
- sinSideY = func_8009E7B0(pIns->m_RotY - D_800F32A8);
- cosSideY = func_8009E630(pIns->m_RotY - 3.14159265358979323846/2);
+ sinSideY = __sinf(pIns->m_RotY - D_800F32A8);
+ cosSideY = __cosf(pIns->m_RotY - 3.14159265358979323846/2);
  rs = func_80051574 ( D_800F9E44 ) + func_800515A4 ( D_800F9E44 );
  if (rs < 0)
  {

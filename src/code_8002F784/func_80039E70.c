@@ -310,7 +310,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E630(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1620,9 +1620,9 @@ void func_80039E70(CCamera *pThis){
   pThis->m_StageTime = ((2.8)*15) ;
  t = pThis->m_StageTime / ((2.8)*15) ;
  // Ease the Acclaim logo camera between two position tracks, then advance the intro.
- pThis->m_ViewBlend = (0.5 - (func_8009E630((t*t*t) * D_800F1E88) / 2.0)) ;
- func_800393E0(&pThis->m_ViewA, &D_800BAB68, (0.5 - (func_8009E630((t) * 3.14159265358979323846) / 2.0))) ;
- func_800393E0(&pThis->m_ViewB, &D_800BAB20, (0.5 - (func_8009E630((t) * 3.14159265358979323846) / 2.0))) ;
+ pThis->m_ViewBlend = (0.5 - (__cosf((t*t*t) * D_800F1E88) / 2.0)) ;
+ func_800393E0(&pThis->m_ViewA, &D_800BAB68, (0.5 - (__cosf((t) * 3.14159265358979323846) / 2.0))) ;
+ func_800393E0(&pThis->m_ViewB, &D_800BAB20, (0.5 - (__cosf((t) * 3.14159265358979323846) / 2.0))) ;
  pThis->m_Time += D_800B6B00 ;
  if (((&D_80106004)->m_WarpID == 32000) &&
    ((pThis->m_Time > ((7)*15)) || (pThis->m_StartPressed)))

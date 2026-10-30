@@ -1,7 +1,7 @@
 #include "common.h"
 
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 typedef struct CVector3_t
 {
  float x, y, z;
@@ -38,9 +38,9 @@ void func_80039494(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time, CVec
  pThis->m_EyeYOffset = ((pInfo->m_StartEyeYOffset) + (Time)*(((float)(pInfo->m_FinalEyeYOffset)) - (pInfo->m_StartEyeYOffset))) ;
  pThis->m_FocusYOffset = ((pInfo->m_StartFocusYOffset) + (Time)*(((float)(pInfo->m_FinalFocusYOffset)) - (pInfo->m_StartFocusYOffset))) ;
  Rot = RotYOffset + pThis->m_YRotOffset ;
- pThis->m_vEye.x = pvPos->x - (pThis->m_Radius * func_8009E7B0(Rot)) ;
+ pThis->m_vEye.x = pvPos->x - (pThis->m_Radius * __sinf(Rot)) ;
  pThis->m_vEye.y = pvPos->y + pThis->m_EyeYOffset ;
- pThis->m_vEye.z = pvPos->z - (pThis->m_Radius * func_8009E630(Rot)) ;
+ pThis->m_vEye.z = pvPos->z - (pThis->m_Radius * __cosf(Rot)) ;
  pThis->m_vFocus.x = pvPos->x ;
  pThis->m_vFocus.y = pvPos->y + pThis->m_FocusYOffset ;
  pThis->m_vFocus.z = pvPos->z ;

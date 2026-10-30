@@ -14,11 +14,11 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-f32 func_8009E630(f32);                             /* extern */
+f32 __cosf(f32);                             /* extern */
 extern f32 D_800B6B00;
 extern f64 D_800F2890;
 
 void func_80046934(void *arg0, void *arg1) {
-    M2C_FIELD(arg0, f32 *, 0x20) = (f32) ((f64) func_8009E630(M2C_FIELD(arg1, f32 *, 0x1EC)) * -4.0 * 15.0);
+    M2C_FIELD(arg0, f32 *, 0x20) = (f32) ((f64) __cosf(M2C_FIELD(arg1, f32 *, 0x1EC)) * -4.0 * 15.0);
     M2C_FIELD(arg1, f32 *, 0x1EC) = (f32) ((f64) M2C_FIELD(arg1, f32 *, 0x1EC) + (D_800F2890 * (f64) D_800B6B00));
 }

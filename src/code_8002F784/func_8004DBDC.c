@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -1900,9 +1900,9 @@ void func_8004DBDC(CGameObjectInstance *pThis, CCampaigner *pCampaigner){
  else
   Radius = D_800F2DA8 ;
  rot = pTurok->m_RotY ;
- vPos.x = vTurokPos.x - (Radius * func_8009E7B0(rot)) ;
+ vPos.x = vTurokPos.x - (Radius * __sinf(rot)) ;
  vPos.y = vTurokPos.y ;
- vPos.z = vTurokPos.z - (Radius * func_8009E630(rot)) ;
+ vPos.z = vTurokPos.z - (Radius * __cosf(rot)) ;
  pCampaigner->m_Boss.m_vTarget = vPos ;
  pCampaigner->m_Boss.m_DistFromTargetSqr = func_8005F34C(pThis, vPos) ;
  if (pCampaigner->m_Boss.m_DistFromTargetSqr)

@@ -27,3 +27,8 @@ After the 419-function checkpoint, Terra added 23 functions / 1,852 bytes. A 30-
 The timed function judge initially accepted 891 functions. Five new jump-table candidates (820 bytes) failed the full expanded-image comparison and were excluded without source repairs after the deadline. Their original assembly remains in the build. Only the 886-function fully verified selection is published here. The sources retain provisional types and compiler-specific stack expressions and require readability/semantic review. Most code remains assembly; this is not a full decompilation.
 
 This commit copies the exact C selections, shared context, and build files from the passing standalone export. No ROMs, generated disassembly/assets, databases, or proprietary compiler binaries are included.
+
+
+## 30 October source-assisted checkpoint
+
+The current standalone build selects **2,036 C functions / 445,672 bytes (71.192% of the fixed candidate-code total)** and reproduces the original cartridge byte for byte. The latest one-hour session added 33 isolated matches / 27,564 bytes; 31 are selected C, while two require further data-placement work. The live app has 2,051 isolated matches, a separate measurement from the standalone selection. See [source-assisted provenance](SOURCE_ASSISTED_CHECKPOINT.md#source-assisted-integration-30-october-2026) for denominators, fallbacks and verification details.

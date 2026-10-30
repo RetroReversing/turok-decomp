@@ -311,7 +311,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E630(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1649,7 +1649,7 @@ void func_8003B988(CCamera *pThis){
    if (pThis->m_StageTime > ((2)*15))
     pThis->m_StageTime = ((2)*15) ;
    func_8003960C(&pThis->m_View, &D_800BAE5C,
-                (0.5 - (func_8009E630(((1.0 - ((1.0-(pThis->m_StageTime / ((2)*15)))*(1.0-(pThis->m_StageTime / ((2)*15)))))) * D_800F1FC0) / 2.0))) ;
+                (0.5 - (__cosf(((1.0 - ((1.0-(pThis->m_StageTime / ((2)*15)))*(1.0-(pThis->m_StageTime / ((2)*15)))))) * D_800F1FC0) / 2.0))) ;
    break ;
  }
  pThis->m_Time += D_800B6B00 ;

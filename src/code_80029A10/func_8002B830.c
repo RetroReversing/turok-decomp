@@ -46,8 +46,8 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E000(OSThread *, OSId, void (*)(void *), void *, void *, OSPri);
-extern void func_8009E150(OSThread *);
+extern void osCreateThread(OSThread *, OSId, void (*)(void *), void *, void *, OSPri);
+extern void osStartThread(OSThread *);
 typedef sa_u32 OSEvent;
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -58,8 +58,8 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern void func_8009E4A0(OSMesgQueue *, OSMesg *, sa_s32);
-extern void func_8009D020(OSEvent, OSMesgQueue *, OSMesg);
+extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, sa_s32);
+extern void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
 typedef struct {
     sa_u32 ctrl;
     sa_u32 width;
@@ -84,10 +84,10 @@ typedef struct {
     OSViFieldRegs fldRegs[2];
 } OSViMode;
 extern OSViMode func_800EE4F0[];
-extern void func_8009DB10(OSViMode *);
-extern void func_800A1110(OSMesgQueue *, OSMesg, sa_u32);
-extern void func_8009E2A0(sa_u8);
-extern void func_800A0DB0(OSPri);
+extern void osViSetMode(OSViMode *);
+extern void osViSetEvent(OSMesgQueue *, OSMesg, sa_u32);
+extern void osViBlack(sa_u8);
+extern void osCreateViManager(OSPri);
 typedef sa_u64 OSTime;
 typedef struct {
  sa_u32 type;
@@ -168,15 +168,15 @@ void func_8002B830(OSSched *D_800F95E0, void *stack, OSPri priority,
   D_800F95E0->doAudio = 0;
     D_800F95E0->retraceMsg.type = 1;
     D_800F95E0->prenmiMsg.type = 4;
-    func_8009E4A0(&D_800F95E0->interruptQ, D_800F95E0->intBuf, 8);
-    func_8009E4A0(&D_800F95E0->cmdQ, D_800F95E0->cmdMsgBuf, 8);
-    func_800A0DB0(254);
-    func_8009DB10(&func_800EE4F0[mode]);
-    func_8009E2A0(1);
-    func_8009D020(4, &D_800F95E0->interruptQ, (OSMesg)667);
-    func_8009D020(9, &D_800F95E0->interruptQ, (OSMesg)668);
-    func_8009D020(14, &D_800F95E0->interruptQ, (OSMesg)669);
-    func_800A1110(&D_800F95E0->interruptQ, (OSMesg)666, numFields);
-    func_8009E000(&D_800F95E0->thread, 4, func_8002BA48, (void *)D_800F95E0, stack, priority);
-    func_8009E150(&D_800F95E0->thread);
+    osCreateMesgQueue(&D_800F95E0->interruptQ, D_800F95E0->intBuf, 8);
+    osCreateMesgQueue(&D_800F95E0->cmdQ, D_800F95E0->cmdMsgBuf, 8);
+    osCreateViManager(254);
+    osViSetMode(&func_800EE4F0[mode]);
+    osViBlack(1);
+    osSetEventMesg(4, &D_800F95E0->interruptQ, (OSMesg)667);
+    osSetEventMesg(9, &D_800F95E0->interruptQ, (OSMesg)668);
+    osSetEventMesg(14, &D_800F95E0->interruptQ, (OSMesg)669);
+    osViSetEvent(&D_800F95E0->interruptQ, (OSMesg)666, numFields);
+    osCreateThread(&D_800F95E0->thread, 4, func_8002BA48, (void *)D_800F95E0, stack, priority);
+    osStartThread(&D_800F95E0->thread);
 }

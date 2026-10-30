@@ -55,8 +55,8 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern sa_s32 func_800A1180(OSMesgQueue *, OSMesg, sa_s32);
-extern sa_s32 func_8009D0B0(OSMesgQueue *, OSMesg *, sa_s32);
+extern sa_s32 osSendMesg(OSMesgQueue *, OSMesg, sa_s32);
+extern sa_s32 osRecvMesg(OSMesgQueue *, OSMesg *, sa_s32);
 typedef struct {
     sa_u32 errStatus;
     void *dramAddr;
@@ -96,7 +96,7 @@ typedef struct {
     sa_s32 (*dma)(sa_s32, sa_u32, void *, sa_u32);
     sa_s32 (*edma)(OSPiHandle *, sa_s32, sa_u32, void *, sa_u32);
 } OSDevMgr;
-extern void func_8009DD40(void *);
+extern void osViSwapBuffer(void *);
 typedef sa_u64 OSTime;
 typedef struct {
  sa_u32 type;
@@ -375,16 +375,16 @@ extern void func_8002BCAC(OSSched *s);
 extern void func_8002BF28(OSSched *s);
 extern void func_8002C5D4(OSSched *s, OSScTask *t);
 extern void func_8002C63C(OSSched *sc, OSScTask *sp, OSScTask *dp);
-extern void func_8002C7A0(OSSched *s);
-extern sa_s32 func_8002C7DC(OSSched *sc, OSScTask **sp, OSScTask **dp,
+extern void __scYield(OSSched *s);
+extern sa_s32 __scSchedule(OSSched *sc, OSScTask **sp, OSScTask **dp,
                              sa_s32 availRCP);
 extern int D_800BA900 ;
 void func_8002BCAC(OSSched *sc);
 void func_8002BF28(OSSched *sc);
 void func_8002C5D4(OSSched *sc, OSScTask *t);
 void func_8002C63C(OSSched *sc, OSScTask *sp, OSScTask *dp);
-extern void func_8002C7A0(OSSched *sc);
-sa_s32 func_8002C7DC(OSSched *sc, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
+extern void __scYield(OSSched *sc);
+sa_s32 __scSchedule(OSSched *sc, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
 /* Process a video retrace, advance frame buffers, schedule tasks, and notify clients. */
 void func_8002BCAC(OSSched *sc){
  OSScTask *rspTask = 0;
@@ -395,7 +395,7 @@ void func_8002BCAC(OSSched *sc){
  CFrameData *pFrameData;
  char buffer[50];
   sc->frameCount++;
- while (func_8009D0B0(&sc->cmdQ, (OSMesg*) &rspTask, 0) != -1)
+ while (osRecvMesg(&sc->cmdQ, (OSMesg*) &rspTask, 0) != -1)
   func_8002C5D4(sc, rspTask);
  D_800F9D50++;
                                              ;
@@ -412,7 +412,7 @@ void func_8002BCAC(OSSched *sc){
   if ((D_800F9D50 + 1) >= pFrameData->m_nPredictFields)
   {
    D_800F9D88 = pFrameData->m_pFrameBuffer;
-   func_8009DD40(pFrameData->m_pFrameBuffer);
+   osViSwapBuffer(pFrameData->m_pFrameBuffer);
    D_800F9D68--;
    D_800F9D70++;
    if (++D_800F9D6C == 3)
@@ -445,14 +445,14 @@ void func_8002BCAC(OSSched *sc){
  }
  if (sc->doAudio && sc->curRSPTask)
  {
-  func_8002C7A0(sc);
+  __scYield(sc);
  }
  else
  {
   state = ((sc->curRSPTask == 0) << 1) | (sc->curRDPTask == 0);
-  if (func_8002C7DC (sc, &sp, &dp, state) != state)
+  if (__scSchedule (sc, &sp, &dp, state) != state)
    func_8002C63C(sc, sp, dp);
  }
  for (client=sc->clientList; client!=0; client=client->next)
-  func_800A1180(client->msgQ, (OSMesg) &sc->retraceMsg, 0);
+  osSendMesg(client->msgQ, (OSMesg) &sc->retraceMsg, 0);
 }

@@ -46,8 +46,8 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E000(OSThread *, OSId, void (*)(void *), void *, void *, OSPri);
-extern void func_8009E150(OSThread *);
+extern void osCreateThread(OSThread *, OSId, void (*)(void *), void *, void *, OSPri);
+extern void osStartThread(OSThread *);
 typedef sa_u32 OSEvent;
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -58,8 +58,8 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern void func_8009E4A0(OSMesgQueue *, OSMesg *, sa_s32);
-extern void func_8009D020(OSEvent, OSMesgQueue *, OSMesg);
+extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, sa_s32);
+extern void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
 typedef struct {
     sa_u32 errStatus;
     void *dramAddr;
@@ -428,11 +428,11 @@ void func_8008D300(ALSynConfig *c, OSPri pri, amConfig *amc){
         D_8012F0D0.audioInfo[i]->msg.done.info = D_8012F0D0.audioInfo[i];
         D_8012F0D0.audioInfo[i]->data = D_800A2100(0, 0,(c->heap),(1),(4*D_8012FA30));
     }
-    func_8009E4A0(&D_8012F0D0.audioReplyMsgQ, D_8012F0D0.audioReplyMsgBuf, 64);
-    func_8009E4A0(&D_8012F0D0.audioFrameMsgQ, D_8012F0D0.audioFrameMsgBuf, 64);
-    func_8009E4A0(&D_80130058, D_80130070, 64);
- func_8009D020(6, &D_8012F0D0.audioFrameMsgQ, &D_8012FA38);
-    func_8009E000(&D_8012F0D0.thread, 3, func_8008D620, 0,
+    osCreateMesgQueue(&D_8012F0D0.audioReplyMsgQ, D_8012F0D0.audioReplyMsgBuf, 64);
+    osCreateMesgQueue(&D_8012F0D0.audioFrameMsgQ, D_8012F0D0.audioFrameMsgBuf, 64);
+    osCreateMesgQueue(&D_80130058, D_80130070, 64);
+ osSetEventMesg(6, &D_8012F0D0.audioFrameMsgQ, &D_8012FA38);
+    osCreateThread(&D_8012F0D0.thread, 3, func_8008D620, 0,
                    (void *)(D_8014B660+0x4000/sizeof(sa_u64)), pri);
-    func_8009E150(&D_8012F0D0.thread);
+    osStartThread(&D_8012F0D0.thread);
 }

@@ -34,3 +34,34 @@ A conservative intermediate build selected 1,940 C functions and used 25 explici
 The six fresh matches are separate from the older live-app work incorporated into this checkout: the standalone selection rises from 1,798 to 1,965, but this repair did not newly discover all 167 functions. The app now permits source-assisted matching as well as polishing. Private reference headers correct the archive's debug PARTICLES_MAX_COUNT from 2 to the retail value 128; the original archive is read only. Provisional source-location notes and data-placement follow-ups guide the remaining work. This remains an unfinished, source-assisted decompilation.
 
 App fixes were committed locally as cc9e2d2 in RetroReversing/decompdecomp. Private repair evidence and backups are under /Volumes/Data/Decomps/.turok-repair-20261028; ROMs, original reference headers, databases and evidence are not committed. No changes were pushed as part of this repair.
+
+
+## Source-assisted integration: 30 October 2026
+
+This checkpoint integrates the latest verified standalone selection: **2,036 C functions / 445,672 bytes**, **71.1922455161% of the fixed 626,012 candidate-code bytes**, with **371 assembly entries out of 2,407 build entries**. It replaces the earlier 1,965-C selection, 81 newly selected addresses and 10 older C selections replaced by assembly, a net increase of 71 selected functions. Some older selections are conservatively replaced by assembly where the latest export could not verify them; this is not a claim that all 71 were discovered in one session. Original source and headers were reused throughout this work.
+
+The one-hour session ran **18:07:26–19:07:26 UTC on 30 October**. Its live baseline was 2,018 isolated matches / 427,808 bytes; the ending snapshot had **2,051 / 455,372 bytes**: **33 new exact matches / 27,564 bytes**. All 33 were read back and independently recompiled and linked with initialized-data checks. The app rose from **69.4291% to 73.9024%**, using 616,180 candidate C bytes; the fixed-total ending figure is 72.7417%. Two matches made before the timed baseline are excluded from the session gain. Other background workers were active, so their draft improvements are not attributed to this session.
+
+The live checkpoint retains 296 open candidates and 59 assembly candidates. Its isolated-match count is distinct from the standalone C count. Fifteen isolated matches fall back during export:
+
+- Replay mismatch: `func_800016A4`, `func_80026DC0`, `func_80039030`, `func_80049BE0`, `func_8004F884`, `func_80057B58`, `func_8005F100`, `func_80071B18`, `func_80076218`, `AI_Standard_Idle`.
+- Unsupported owned-data placement: `func_800036B0`, `func_800587B8`, `func_8008CD1C`, `func_8008CFC0`, `func_80095AD0`.
+
+The first and last data-placement entries were new in the one-hour session: **31 of its 33 matches are selected C here**. Assembly fallback preserves the target; it is not recovered C. Improved but unmatched drafts remain private and are not selected.
+
+### Repairs that unlocked matches
+
+- Restored graphics macros that declarations-only source preparation had mistaken for function bodies.
+- Preserved file-owned globals and original inline wrappers, whose treatment changes IDO scheduling and address generation.
+- Corrected particle-deletion arguments and SDK parameter types from source and ROM evidence.
+- Recovered retail differences: 400 matrices per half, and crash-report build 50 dated January 20, 1997. An additional engine word is retained without inventing its gameplay meaning.
+
+### Build and verification
+
+The generated builder now handles one observed IDO discarded-inline prefix: an unreferenced `jr ra; nop` before the named function entry. It removes only that exact prefix, rebases supported internal references, and rejects unknown forms. It also omits `.rel.dyn` from binary extraction only when every entry is `R_MIPS_NONE`; real dynamic relocations remain an error. Neither change alters target bytes or comparison gates. Source and header line layout and whitespace are preserved from the passing export because formatting can affect period-compiler scheduling. Current compiler ranges and symbol names come from the verified app export; the broad IDO 5.3 -O2 profile remains unchanged.
+
+Independent function replay used a private repaired decompdecomp library that preserves ELF relocation-table order when pairing HI16/LO16 relocations and ignores invalid special section indexes in function-symbol discovery. These verification-library changes are not installed into the running app by this commit. The checked-in standalone builder contains the export fixes needed by this selection.
+
+The full expanded-image and reconstructed-cartridge comparisons passed. The original cartridge is **8,388,608 bytes**, SHA-1 **88916d5d2e2470f395ad8f4245d34138ef2d156a**. This remains an unfinished source-assisted decompilation, not a portable game or complete C recovery.
+
+Private evidence is under `.local/sol-hour-20261030/`: `RUN-REPORT.md`, `independent-new-matches.json`, `final-export-result.json`, `final-export.log`, and `commit-build.log`. ROMs, databases, generated assembly/assets, proprietary tools and private research evidence are excluded from the commit.

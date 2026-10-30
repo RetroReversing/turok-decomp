@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -2464,8 +2464,8 @@ void func_80052608(CTMove *pThis){
  if ((WarpID >= 9000) && (WarpID < 9999))
  {
   vWarpPos = pTurok->ah.ih.m_vPos ;
-  vWarpPos.x += 15*(1024.0/100.0) * func_8009E7B0(((D_800B6AF8*6)*(3.14159265358979323846/180)) + pTurok->m_RotY) ;
-  vWarpPos.z += 15*(1024.0/100.0) * func_8009E630(((D_800B6AF8*7)*(3.14159265358979323846/180)) + pTurok->m_RotY) ;
+  vWarpPos.x += 15*(1024.0/100.0) * __sinf(((D_800B6AF8*6)*(3.14159265358979323846/180)) + pTurok->m_RotY) ;
+  vWarpPos.z += 15*(1024.0/100.0) * __cosf(((D_800B6AF8*7)*(3.14159265358979323846/180)) + pTurok->m_RotY) ;
   func_80031974(&(&D_800F9F10)->m_Scene,
           SOUND_GENERIC_185, 0,
           pTurok, &vWarpPos, 0) ;

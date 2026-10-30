@@ -55,7 +55,7 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern sa_s32 func_8009D0B0(OSMesgQueue *, OSMesg *, sa_s32);
+extern sa_s32 osRecvMesg(OSMesgQueue *, OSMesg *, sa_s32);
 typedef struct {
     sa_u32 errStatus;
     void *dramAddr;
@@ -103,7 +103,7 @@ typedef struct ALLink_s {
     struct ALLink_s *next;
     struct ALLink_s *prev;
 } ALLink;
-extern void func_800A4E60(ALLink *element);
+extern void alUnlink(ALLink *element);
 extern void D_800A4E90(ALLink *element, ALLink *after);
 typedef struct
 {
@@ -131,7 +131,7 @@ void func_8008DB6C(void){
     static int DMAbuffers = 0;
  for (i=0; i<D_800ED454; i++)
  {
-  if (func_8009D0B0(&D_80130058,(OSMesg *)&iomsg,0) == -1)
+  if (osRecvMesg(&D_80130058,(OSMesg *)&iomsg,0) == -1)
   {
                            ;
   }
@@ -146,7 +146,7 @@ void func_8008DB6C(void){
         {
             if (D_8012F518.firstUsed == dmaPtr)
                 D_8012F518.firstUsed = (AMDMABuffer*)dmaPtr->node.next;
-    func_800A4E60((ALLink*)dmaPtr);
+    alUnlink((ALLink*)dmaPtr);
     if (D_8012F518.firstFree)
     {
                 D_800A4E90((ALLink*)dmaPtr,(ALLink*)D_8012F518.firstFree);

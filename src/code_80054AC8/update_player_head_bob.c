@@ -392,7 +392,7 @@ typedef union
   Gloadtlut loadtlut;
   long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
+extern float __sinf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1982,21 +1982,21 @@ void update_player_head_bob(CTMove *move)
     delta = move->SpdChgX - move->SpdChgXOffset;
     delta = delta / 8;
     move->SpdChgXOffset += delta;
-    delta = func_8009E7B0(((move->MoveCnt * 2) * 3.14159265358979323846) / 7);
+    delta = __sinf(((move->MoveCnt * 2) * 3.14159265358979323846) / 7);
     move->HeadXRot = delta / (62 + ((D_800137A0() % 5) - 2));
     move->HeadYPosCFrame += (2 * D_800B6B00) / 15;
     while (move->HeadYPosCFrame > 1)
       move->HeadYPosCFrame -= 1;
 
-    move->HeadYPos = 0.7 * func_8009E7B0((move->HeadYPosCFrame * 2) * 3.14159265358979323846);
+    move->HeadYPos = 0.7 * __sinf((move->HeadYPosCFrame * 2) * 3.14159265358979323846);
     if (isDucking == 0)
     {
-      delta = func_8009E7B0(((move->YRotCnt * 2) * 3.14159265358979323846) / (7 * 2));
+      delta = __sinf(((move->YRotCnt * 2) * 3.14159265358979323846) / (7 * 2));
       move->HeadYRot = delta / (54 + ((D_800137A0() % 5) - 2));
     }
     else
     {
-      delta = func_8009E7B0(((move->YRotCnt * 2) * 3.14159265358979323846) / (7 * 2));
+      delta = __sinf(((move->YRotCnt * 2) * 3.14159265358979323846) / (7 * 2));
       move->HeadYRot = delta / 30.0;
     }
     move->HeadZRot = delta / (300 + ((D_800137A0() % 5) - 2));

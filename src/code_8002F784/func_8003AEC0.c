@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1655,9 +1655,9 @@ int func_8003AEC0(CCamera *pThis, CGameObjectInstance *pInst, float Radius){
  i = 360/32 ;
  while(i--)
  {
-  vPos.x = (Radius * func_8009E7B0(Rot)) + pInst->ah.ih.m_vPos.x ;
+  vPos.x = (Radius * __sinf(Rot)) + pInst->ah.ih.m_vPos.x ;
   vPos.y = pInst->ah.ih.m_vPos.y ;
-  vPos.z = (Radius * func_8009E630(Rot)) + pInst->ah.ih.m_vPos.z ;
+  vPos.z = (Radius * __cosf(Rot)) + pInst->ah.ih.m_vPos.z ;
   func_80017F0C(&pInst->ah.ih,
                vPos,
                &vOutPos,

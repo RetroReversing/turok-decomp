@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -1699,9 +1699,9 @@ void func_80045198(CGameObjectInstance *pThis, CMantis *pMantis){
  {
   case MANTIS_ATTACK_ACTION:
    pMantis->m_Boss.m_AtTargetDist = (50*(1024.0/100.0)) ;
-   vTarget.x = pTurok->ah.ih.m_vPos.x - ((0*(1024.0/100.0)) * func_8009E7B0(rot)) ;
+   vTarget.x = pTurok->ah.ih.m_vPos.x - ((0*(1024.0/100.0)) * __sinf(rot)) ;
    vTarget.y = (pThis->ah.ih.m_vPos).y ;
-   vTarget.z = pTurok->ah.ih.m_vPos.z - ((0*(1024.0/100.0)) * func_8009E630(rot)) ;
+   vTarget.z = pTurok->ah.ih.m_vPos.z - ((0*(1024.0/100.0)) * __cosf(rot)) ;
    pMantis->m_Boss.m_DeltaAngle = func_800747C0(pThis, vTarget, pTurok, 1.5) ;
    pMantis->m_Boss.m_LookDeltaAngle = pMantis->m_Boss.m_DeltaAngle ;
    break ;

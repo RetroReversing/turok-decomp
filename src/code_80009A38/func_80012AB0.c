@@ -1,12 +1,12 @@
 #include "common.h"
 
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 typedef float CMtxF[4][4];
 extern void func_80012AB0(CMtxF mfThis, float RotY) ;
 void func_80012AB0(CMtxF mfThis, float RotY);
 void func_80012AB0(CMtxF mfThis, float RotY){
- float SinRotY = func_8009E7B0(RotY), CosRotY = func_8009E630(RotY) ;
+ float SinRotY = __sinf(RotY), CosRotY = __cosf(RotY) ;
  float a ;
  a = mfThis[0][0] ;
  mfThis[0][0] = (a * CosRotY) + (mfThis[0][2] * SinRotY) ;

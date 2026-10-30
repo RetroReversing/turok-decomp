@@ -16,8 +16,8 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK func_80011194();                            /* extern */
 M2C_UNK func_800111F4();                            /* extern */
-s32 func_8009EF90(M2C_UNK *, u8 *);                 /* extern */
-s32 func_8009F300(M2C_UNK *, M2C_UNK *, s32);       /* extern */
+s32 osPfsIsPlug(M2C_UNK *, u8 *);                 /* extern */
+s32 osPfsInit(M2C_UNK *, M2C_UNK *, s32);       /* extern */
 extern u8 D_800B86D4;
 extern s32 D_800F9E40;
 extern M2C_UNK D_80119A08;
@@ -31,12 +31,12 @@ s32 func_80011224(void) {
     s32 sp1C;
 
     func_80011194();
-    func_8009EF90(&D_80119A70, &D_800B86D4);
-    temp_v0 = func_8009EF90(&D_80119A70, &D_800B86D4);
+    osPfsIsPlug(&D_80119A70, &D_800B86D4);
+    temp_v0 = osPfsIsPlug(&D_80119A70, &D_800B86D4);
     var_v1 = temp_v0;
     if (temp_v0 == 0) {
         if (D_800B86D4 & (1 << D_800F9E40)) {
-            var_v1 = func_8009F300(&D_80119A70, &D_80119A08, D_800F9E40);
+            var_v1 = osPfsInit(&D_80119A70, &D_80119A08, D_800F9E40);
         } else {
             D_800B86D4 = 0;
         }

@@ -14,15 +14,15 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-f32 func_8009E630(f32);                             /* extern */
-f32 func_8009E7B0(f32);                             /* extern */
+f32 __cosf(f32);                             /* extern */
+f32 __sinf(f32);                             /* extern */
 
 void func_80012DE0(void *arg0, f32 arg1) {
     f32 sp1C;
     f32 temp_fv0;
 
-    sp1C = func_8009E7B0(arg1);
-    temp_fv0 = func_8009E630(arg1);
+    sp1C = __sinf(arg1);
+    temp_fv0 = __cosf(arg1);
     M2C_FIELD(arg0, f32 *, 0) = temp_fv0;
     M2C_FIELD(arg0, f32 *, 0x14) = temp_fv0;
     M2C_FIELD(arg0, f32 *, 0x10) = (f32) -sp1C;

@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern float func_8009E7B0(float angle);
+extern float __sinf(float angle);
 struct CQuatern_t;
 typedef struct CQuatern_t
 {
@@ -26,7 +26,7 @@ void func_80014A04(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB){
   pqB = &qBN;
  }
  theta = func_8001349C(dot);
- sinTheta = func_8009E7B0(theta);
+ sinTheta = __sinf(theta);
    if (sinTheta == 0)
    {
   *pqThis = *pqA;
@@ -34,8 +34,8 @@ void func_80014A04(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB){
    else
    {
       invSinTheta = 1/sinTheta;
-  vA = func_8009E7B0((1-u)*theta) * invSinTheta;
-  vB = func_8009E7B0(u*theta) * invSinTheta;
+  vA = __sinf((1-u)*theta) * invSinTheta;
+  vB = __sinf(u*theta) * invSinTheta;
   if (dot < dotN)
    pqB = &qBN;
   pqThis->x = vA*pqA->x + vB*pqB->x;

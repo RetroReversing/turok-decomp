@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -818,7 +818,7 @@ void func_8004C6D4(CGameObjectInstance *pThis, CVector3 *pvPos, CVector3 *pvWorl
 void func_8004C6D4(CGameObjectInstance *pThis, CVector3 *pvPos, CVector3 *pvWorld){
  CMtxF mfBoundsOrient, mfOrient ;
  CQuatern qRotY, qTemp1, qTemp2 ;
- D_80119CB0 = func_8009E7B0((pThis->m_RotY)/2); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = func_8009E630((pThis->m_RotY)/2); ;
+ D_80119CB0 = __sinf((pThis->m_RotY)/2); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = __cosf((pThis->m_RotY)/2); ;
  func_80014CB8(&qTemp1, &pThis->m_qRot, &qRotY) ;
  func_80014CB8(&qTemp2, &qTemp1, &pThis->m_qGround) ;
  func_80014DC4(&qTemp2, mfBoundsOrient) ;

@@ -311,8 +311,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1670,7 +1670,7 @@ void func_800104FC(CGamePak *pThis, Gfx **ppDLP){
  y = 0 ;
  for (i=0; i<16; i++)
  {
-  intensity = 192+(63 * func_8009E630((float)pThis->m_Timer/8)) ;
+  intensity = 192+(63 * __cosf((float)pThis->m_Timer/8)) ;
   if (i==pThis->m_Selection)
    D_800808F8(ppDLP, intensity, intensity, intensity, intensity, intensity, intensity) ;
   else
@@ -1708,7 +1708,7 @@ void func_800104FC(CGamePak *pThis, Gfx **ppDLP){
          buffer,
          ((320/2) - ((228)/2))+8, (((240/2) - ((24*8)/2)) + 20)+(17*8),
          (int)(255 * pThis->m_Alpha), 0, 1) ;
- intensity = 192+(63 * func_8009E7B0((float)pThis->m_Timer/8)) ;
+ intensity = 192+(63 * __sinf((float)pThis->m_Timer/8)) ;
  switch (D_80119970)
  {
   case 0:
