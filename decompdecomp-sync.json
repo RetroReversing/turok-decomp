@@ -10,19 +10,39 @@
     "src/code_80098440/__osClearPage.c": "52a3f73beb853cc2a5850eed11699b870e5818ac8393bab9ee42d3fc26cf76a1",
     "src/code_80098440/func_800AFF50.c": "e533539e1dfd798bafca2e70bb4132f0a2312b7f50d0fae2f270aebd92aaebb4",
     "src/code_80098440/func_800AFDD0.c": "278b5e66534742415ecce7622ebd7f6a88d34e53ea541bb995e99d15a97e67f8",
-    "src/code_80098440/func_800AAFA0.c": "4b57690aa38f820a34100ef77c2d5db4871d74972d73cef3d9b409b09d592992"
+    "src/code_80098440/func_800AAFA0.c": "4b57690aa38f820a34100ef77c2d5db4871d74972d73cef3d9b409b09d592992",
+    "src/code_80098440/osYieldThread.c": "1a10791a3e6e95cacb423b7f63d40b640291ae19d94bfbb7dc97fd7391d59b6e",
+    "src/code_80098440/__ull_to_d.c": "4451ba061137f25419117d45464d7c57e4a05c13fb12ee4d179b64f9dc331e33",
+    "src/code_80098440/init_lpfilter.c": "ee04269abeaa5d94bde9a5ecc26fb52f1a53411a37903d5a86c71bb5fd23f398",
+    "src/code_80098440/func_8009D430.c": "5e8cbb02a71ea524422d7cd156752bae84d46899141728b1244797babf19817e",
+    "src/code_80098440/func_8009DA4C.c": "9132d3ee3dc46c31be8522a7df0a915fd9466d4b8fadcd335854d3ce54038459",
+    "src/code_80098440/__ll_lshift.c": "6ae84d23658e05fb93eb51aadb3dde48ba13c888024afef56f08331b01ce02ed",
+    "src/code_80098440/__ll_mul.c": "1c7967f1753462711313aec045c84e7772f6096be43b5d013dfc3d7c033c5f90",
+    "src/code_80098440/func_8009D38C.c": "1641dcb1798cfe4793224de62c6edfdf847adbe2fa240b0d7f6be52ed7c943d6",
+    "src/code_80098440/__osResetGlobalIntMask.c": "a2ebfe3b7d9f1c9fbb08476b263f005d19cea4d614dc654a08d43e62eb76c0d3",
+    "src/code_80098440/__ull_rshift.c": "dc9fac9aec8cc0045ad1ed747d296571b2d1f5a866d52637446ac9694667ade8"
   },
   "accepted": [
+    "__ll_lshift",
+    "__ll_mul",
     "__osClearPage",
+    "__osResetGlobalIntMask",
+    "__ull_rshift",
+    "__ull_to_d",
     "func_800119F4",
     "func_8002FBD0",
+    "func_8009D38C",
+    "func_8009D430",
+    "func_8009DA4C",
     "func_800A7090",
     "func_800AAEA0",
     "func_800AAF70",
     "func_800AAFA0",
     "func_800AD680",
     "func_800AFDD0",
-    "func_800AFF50"
+    "func_800AFF50",
+    "init_lpfilter",
+    "osYieldThread"
   ],
   "skipped": [
     {
@@ -31,5 +51,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2114
+  "matched_app": 2124
 }

@@ -286,3 +286,38 @@ The verified standalone selection is **2,113 C functions / 483,348 bytes (77.210
 The next live-API pass recovered runtime helpers whose original instructions use MIPS III while their callers use the game's O32 ABI. IDO 5.3 `-mips3 -32` emits ELF32 objects with flags `0x20000000` but no explicit O32 ABI tag. The pinned GNU linker guesses a 64-bit ABI and rejects mixing them with the game's MIPS II objects. A two-object relocation-link experiment reproduces this failure; adding only `EF_MIPS_ABI_O32` (`0x1000`) permits the link.
 
 `build.py` now adds that missing metadata only for explicitly selected IDO 5.3/7.1 `-mips3 -32` profiles and ELF32 MIPS III relocatable objects without another ABI. It rejects conflicting ABI flags and preserves every instruction, section, relocation and other header byte. No linker mismatch checks or final cartridge comparisons are disabled. Five regression tests cover exact byte changes, endianness, idempotence, profile guards and rejected ABIs. This build-only change adds no selected C functions or claimed matching bytes; the ten recoveries remain subject to the following full cartridge rebuild.
+
+
+## Runtime and SDK live-API continuation — 31 October 2026
+
+Starting from `6ba4ada`, this source-assisted continuation recovered **ten previously unmatched functions / 656 bytes** through the running app. Existing target code and data, addresses, original-cartridge hashes and comparison gates were unchanged. The supplied game source and local SDK reference sources were consulted.
+
+| Function | Bytes | Starting score | Final score | Repair |
+| --- | ---: | ---: | ---: | --- |
+| `func_8009DA4C` | 24 | 360 | 0 | Signed 64-bit to float conversion; MIPS III, 32-bit ABI, `-O1`. |
+| `__ull_rshift` | 44 | 1031 | 0 | 64-bit logical right shift; MIPS III, 32-bit ABI, `-O2`. |
+| `__ll_lshift` | 44 | 700 | 0 | 64-bit left shift; MIPS III, 32-bit ABI, `-O2`. |
+| `__ll_mul` | 48 | 800 | 0 | 64-bit multiplication; MIPS III, 32-bit ABI, `-O2`. |
+| `__ull_to_d` | 52 | 510 | 0 | Unsigned 64-bit to double conversion; MIPS III, 32-bit ABI, `-O1`. |
+| `func_8009D430` | 60 | 980 | 0 | Second 64-bit unsigned-remainder helper; same profile. |
+| `func_8009D38C` | 60 | 980 | 0 | 64-bit unsigned remainder; MIPS III, 32-bit ABI, `-O2`. |
+| `osYieldThread` | 76 | 508 | 0 | SDK register local and runnable-state write before enqueue/yield; `-O1`. |
+| `__osResetGlobalIntMask` | 88 | 324 | 0 | SDK register local and interrupt-mask expression after disabling interrupts; `-O1`. |
+| `init_lpfilter` | 160 | 140 | 0 | Restore the typed, eight-byte-aligned coefficient union and original SDK locals/body. |
+
+### What this establishes
+
+The runtime targets contain `ld`, `dsrlv`/`dsllv`, `dmultu` and 64-bit floating-point conversions. Compiling their C as MIPS II generated helper calls instead. A verified working IDO 5.3 profile is `-O2 -mips3 -32 -G 0 -non_shared -Xcpluscomm` for the integer helpers; the two conversions match with the same profile at `-O1`. Under `-O2`, the signed conversion scored 100 and the unsigned conversion 260; switching those saved candidates to `-O1` made them exact. These observations identify useful per-function settings, not the original compiler release uniquely.
+
+The two thread routines use IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. Correct register-local storage and statement order matter alongside the compiler profile. The filter retains its prior compiler settings; restoring the SDK record, aligned coefficient union and local declarations replaces an over-mutated untyped draft.
+
+A separate source check found that `__osEnqueueThread` and the tiny pop-thread helper are explicitly handwritten in the reference SDK exception assembly. Their nearby commented C describes behavior; it does not promise that the published assembly is compiler output. They were not counted as C matches or reclassified in this session.
+
+The app restarted during the run, interrupting some requests. Each recovery was checked against the starting inventory and final matched state; scratch score-zero attempts on functions already matched by compiler-profile application were not counted again. All ten are distinct new recoveries.
+
+
+### Verified integration
+
+With the separately documented O32 metadata fix in `83ae9c3`, the app repository-sync job accepted all ten additions. The full expanded image and original 8,388,608-byte cartridge rebuilt byte for byte, retaining SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. No new assembly fallback was introduced.
+
+The standalone selection is **2,123 C functions / 484,004 bytes (77.315451% of the fixed 626,012 code bytes)**, a gain of **0.104790 percentage points**. The app has **2,124 saved matches / 484,784 bytes (77.440049%)**. Its older `func_800587B8` match remains outside standalone selection because of non-contiguous constant-pool placement. All selected C functions have matching persisted app sources and headers, and app revalidation has finished.

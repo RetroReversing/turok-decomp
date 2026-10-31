@@ -18580,17 +18580,19 @@
       "name": "code_80098440/__ull_rshift",
       "target_path": "build/asm/nonmatchings/code_80098440/__ull_rshift.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__ull_rshift.c"
+      },
+      "base_path": "build/src/code_80098440/__ull_rshift.o"
     },
     {
       "name": "code_80098440/func_8009D38C",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D38C.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D38C.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D38C.o"
     },
     {
       "name": "code_80098440/func_8009D3C8",
@@ -18604,17 +18606,19 @@
       "name": "code_80098440/__ll_lshift",
       "target_path": "build/asm/nonmatchings/code_80098440/__ll_lshift.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__ll_lshift.c"
+      },
+      "base_path": "build/src/code_80098440/__ll_lshift.o"
     },
     {
       "name": "code_80098440/func_8009D430",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D430.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D430.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D430.o"
     },
     {
       "name": "code_80098440/func_8009D46C",
@@ -18628,9 +18632,10 @@
       "name": "code_80098440/__ll_mul",
       "target_path": "build/asm/nonmatchings/code_80098440/__ll_mul.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__ll_mul.c"
+      },
+      "base_path": "build/src/code_80098440/__ll_mul.o"
     },
     {
       "name": "code_80098440/func_8009D4F8",
@@ -18708,17 +18713,19 @@
       "name": "code_80098440/func_8009DA4C",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009DA4C.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009DA4C.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009DA4C.o"
     },
     {
       "name": "code_80098440/__ull_to_d",
       "target_path": "build/asm/nonmatchings/code_80098440/__ull_to_d.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__ull_to_d.c"
+      },
+      "base_path": "build/src/code_80098440/__ull_to_d.o"
     },
     {
       "name": "code_80098440/func_8009DA98",
@@ -20849,9 +20856,10 @@
       "name": "code_80098440/init_lpfilter",
       "target_path": "build/asm/nonmatchings/code_80098440/init_lpfilter.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/init_lpfilter.c"
+      },
+      "base_path": "build/src/code_80098440/init_lpfilter.o"
     },
     {
       "name": "code_80098440/alFxNew",
@@ -21069,9 +21077,10 @@
       "name": "code_80098440/__osResetGlobalIntMask",
       "target_path": "build/asm/nonmatchings/code_80098440/__osResetGlobalIntMask.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osResetGlobalIntMask.c"
+      },
+      "base_path": "build/src/code_80098440/__osResetGlobalIntMask.o"
     },
     {
       "name": "code_80098440/func_800AFF50",
@@ -21086,9 +21095,10 @@
       "name": "code_80098440/osYieldThread",
       "target_path": "build/asm/nonmatchings/code_80098440/osYieldThread.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osYieldThread.c"
+      },
+      "base_path": "build/src/code_80098440/osYieldThread.o"
     },
     {
       "name": "code_80098440/_Litob",
