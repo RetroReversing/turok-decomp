@@ -18931,9 +18931,10 @@
       "name": "code_80098440/osContInit",
       "target_path": "build/asm/nonmatchings/code_80098440/osContInit.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osContInit.c"
+      },
+      "base_path": "build/src/code_80098440/osContInit.o"
     },
     {
       "name": "code_80098440/func_8009EDC8",
@@ -18947,9 +18948,10 @@
       "name": "code_80098440/__osPackRequestData",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPackRequestData.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPackRequestData.c"
+      },
+      "base_path": "build/src/code_80098440/__osPackRequestData.o"
     },
     {
       "name": "code_80098440/osPfsIsPlug",
@@ -18997,25 +18999,28 @@
       "name": "code_80098440/osPfsNumFiles",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsNumFiles.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsNumFiles.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsNumFiles.o"
     },
     {
       "name": "code_80098440/osPfsFreeBlocks",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsFreeBlocks.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsFreeBlocks.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsFreeBlocks.o"
     },
     {
       "name": "code_80098440/osPfsFileState",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsFileState.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsFileState.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsFileState.o"
     },
     {
       "name": "code_80098440/func_8009FA50",
@@ -19048,17 +19053,19 @@
       "name": "code_80098440/osPfsDeleteFile",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsDeleteFile.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsDeleteFile.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsDeleteFile.o"
     },
     {
       "name": "code_80098440/__osPfsReleasePages",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPfsReleasePages.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPfsReleasePages.c"
+      },
+      "base_path": "build/src/code_80098440/__osPfsReleasePages.o"
     },
     {
       "name": "code_80098440/__osBlockSum",
@@ -19073,9 +19080,10 @@
       "name": "code_80098440/__osPfsGetNextPage",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPfsGetNextPage.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPfsGetNextPage.c"
+      },
+      "base_path": "build/src/code_80098440/__osPfsGetNextPage.o"
     },
     {
       "name": "code_80098440/osPfsReadWriteFile",
@@ -19089,9 +19097,10 @@
       "name": "code_80098440/osPfsAllocateFile",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsAllocateFile.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsAllocateFile.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsAllocateFile.o"
     },
     {
       "name": "code_80098440/__osPfsDeclearPage",
@@ -20347,9 +20356,10 @@
       "name": "code_80098440/osPfsFindFile",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsFindFile.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsFindFile.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsFindFile.o"
     },
     {
       "name": "code_80098440/__osContRamWrite",

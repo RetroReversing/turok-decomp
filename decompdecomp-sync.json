@@ -50,7 +50,17 @@
     "src/code_80098440/osContGetReadData.c": "d6f99ed9ff286c8aff7ed808f961721846e5f8376cc11266097b25490b2d9627",
     "src/code_80098440/__osPackReadData.c": "8bedfa68dc9e2e99f2bbbe10ba0c194d19fc3798079cc8624e6d1f8ad9df4c06",
     "src/code_80098440/osCreateViManager.c": "070d9b5ac333c1774cb2a22afce5e55b6fd12376194bd0c225760bdea6643a8a",
-    "src/code_80098440/guMtxL2F.c": "d89c7be610114a9b02a8d4984712cfc718f83e4fcad1f40f5f1604c3d755b160"
+    "src/code_80098440/guMtxL2F.c": "d89c7be610114a9b02a8d4984712cfc718f83e4fcad1f40f5f1604c3d755b160",
+    "src/code_80098440/__osPackRequestData.c": "bb7bd8e23981e951417f72d796e9ca9ed608817cfea5c9f315db8dbc71619cac",
+    "src/code_80098440/osPfsFreeBlocks.c": "d0dacb31936e66494b1e4da9fac1a9b8bedd66258a6b7c8444578b875d261dec",
+    "src/code_80098440/osPfsFileState.c": "03b9457561fa600307ebec453e06014ab943a84ca5dfb7a02ada3b339983a913",
+    "src/code_80098440/osPfsAllocateFile.c": "7ebf90e642d64f5a87a753134d8b8514b24fb960ad842409d86518d517c1751f",
+    "src/code_80098440/__osPfsReleasePages.c": "cf4daafde31274bb4114b9b36e75fb3aa31198ad2a1676bc5683596fe77d5352",
+    "src/code_80098440/osPfsFindFile.c": "52f0b3592637db860f5799e06a12c1f276c7d5bb647af443c05f662fa747afb9",
+    "src/code_80098440/__osPfsGetNextPage.c": "8dd8ffebcb9cb9836785bcf7bc6c8132c0339adc4cec0fb655ba09459ff00a5e",
+    "src/code_80098440/osPfsNumFiles.c": "83ebb36a20e0105009cd8d435dd6387eee495145f125bb38b4ec1a3e6ab4e88c",
+    "src/code_80098440/osContInit.c": "e7a6d3d367ac0dc51d5f47e0b52f3bb65d264863aba628f3ccacdf7296289fbc",
+    "src/code_80098440/osPfsDeleteFile.c": "0be41d28056247719a48b2d3ba42f4307d4a17b828a6f5f1e74b1d538fc02970"
   },
   "accepted": [
     "__d_to_ull",
@@ -61,6 +71,9 @@
     "__osClearPage",
     "__osInsertTimer",
     "__osPackReadData",
+    "__osPackRequestData",
+    "__osPfsGetNextPage",
+    "__osPfsReleasePages",
     "__osResetGlobalIntMask",
     "__osSetTimerIntr",
     "__osTimerInterrupt",
@@ -93,6 +106,7 @@
     "guMtxL2F",
     "init_lpfilter",
     "osContGetReadData",
+    "osContInit",
     "osContStartReadData",
     "osCreatePiManager",
     "osCreateThread",
@@ -100,6 +114,12 @@
     "osDestroyThread",
     "osGetTime",
     "osJamMesg",
+    "osPfsAllocateFile",
+    "osPfsDeleteFile",
+    "osPfsFileState",
+    "osPfsFindFile",
+    "osPfsFreeBlocks",
+    "osPfsNumFiles",
     "osSendMesg",
     "osStartThread",
     "osYieldThread"
@@ -111,5 +131,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2154
+  "matched_app": 2164
 }

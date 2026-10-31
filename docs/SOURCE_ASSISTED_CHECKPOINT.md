@@ -401,3 +401,31 @@ The controller drafts contained mutated loop indices and unnecessary volatile ac
 A source extraction encountered conditional compilation whose alternate branches contain different brace counts. The first timer-interrupt extraction omitted its final closing brace and did not compile. Restoring that closing brace from the original source, with the final-ROM branch selected, produced the exact match; no compiler failure is counted as progress.
 
 The standalone selection is **2,153 C functions / 491,280 bytes (78.477729% of 626,012 code bytes)**, up **0.435774 percentage points**. The app has **2,154 persisted matches / 492,060 bytes (78.602327%)**. All ten new sources passed repository sync and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). The saved matched sources and required contexts were audited, and app revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
+
+
+## Controller setup and memory-pack live-API continuation — 31 October 2026
+
+Starting from `8b143ff`, ten previously unmatched functions were recovered through the running app API, adding **5,304 bytes**. This source-assisted session consulted the authorized local SDK reference sources. Target bytes, addresses, hashes, and exact comparison gates were unchanged.
+
+| Function | Bytes | Starting score | Final score |
+| --- | ---: | ---: | ---: |
+| `__osPackRequestData` | 244 | 1209 | 0 |
+| `__osPfsGetNextPage` | 252 | 1015 | 0 |
+| `osPfsNumFiles` | 324 | 3107 | 0 |
+| `osPfsFreeBlocks` | 332 | 3598 | 0 |
+| `osPfsFindFile` | 436 | 1181 | 0 |
+| `osContInit` | 504 | 2410 | 0 |
+| `__osPfsReleasePages` | 568 | 10246 | 0 |
+| `osPfsDeleteFile` | 736 | 7006 | 0 |
+| `osPfsFileState` | 752 | 9725 | 0 |
+| `osPfsAllocateFile` | 1156 | 8067 | 0 |
+
+All ten use IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. These are verified working settings, not a unique identification of the original compiler release.
+
+Original SDK record types, union copies, locals, macros and function bodies recovered these routines directly. In particular, the inode's overlaid bank/page bytes and halfword restore the original aggregate-copy instruction and load order. The file and directory records retain the original sizes and field ordering. No arbitrary padding in the target or data relocation changes were introduced.
+
+Controller initialization first reached score 20: every instruction matched except two unresolved compiler-generated unsigned division calls. The ROM already calls `func_8009D3C8` at those two sites. An explicitly declared unsigned 64-bit call to that existing helper in the microseconds-to-cycles macro resolved both relocations and passed the normal byte judge. No symbol addresses were guessed or renamed. The controller packet routine uses the non-prototype hardware branch from the SDK source.
+
+Reference function bodies were retained with explicit source-line directives; selected hardware branches were extracted from their original conditional context. No broad permutation or random search was needed for this batch. The newly implemented app source-preparation feature is in a separate PR and was not installed or used to claim these results.
+
+The standalone selection is **2,163 C functions / 496,584 bytes (79.324997% of 626,012 code bytes)**, up **0.847268 percentage points**. The app has **2,164 persisted matches / 497,364 bytes (79.449595%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved matched sources and required headers were audited, with app revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.

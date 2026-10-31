@@ -92,3 +92,8 @@ Ten more exact live-API matches add **2,560 bytes**, bringing standalone selecti
 ## 31 October 2026 — ten controller, timer and matrix matches
 
 Ten new live-API matches add **2,728 bytes**, bringing standalone selection to **2,153 C functions / 491,280 bytes (78.478%)**. Original SDK packet/pad/timer records and loops recovered controller and timer routines; both matrix converters matched at their existing `-O2` settings. Device managers and timer initialization needed their original global definitions, whose extern-only replacements emitted different address-load sequences. The complete cartridge remains byte-identical. All ten sources are persisted in the app and selected in the repo; the older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#controller-timer-and-matrix-live-api-continuation--31-october-2026).
+
+
+## 31 October 2026 — ten controller setup and memory-pack matches
+
+Ten new live-API matches add **5,304 bytes**, bringing standalone selection to **2,163 C functions / 496,584 bytes (79.325%)**. Original SDK directory, inode and controller records, function bodies and `-O1` recovered controller initialization and memory-pack file operations. Controller initialization also needed its existing ROM division helper explicitly identified at the call sites. The complete cartridge remains byte-identical. All ten sources and contexts are persisted in the app, with all ten selected in the repo. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#controller-setup-and-memory-pack-live-api-continuation--31-october-2026).
