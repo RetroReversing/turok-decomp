@@ -123,8 +123,8 @@ typedef struct {
    char ext_name[4];
    char game_name[16];
 } OSPfsState;
-extern sa_s32 func_800A01FC(OSPfs *, sa_s32, sa_u8, int, int, sa_u8 *);
-extern sa_s32 func_8009F760(OSPfs *, sa_s32, OSPfsState *);
+extern sa_s32 osPfsReadWriteFile(OSPfs *, sa_s32, sa_u8, int, int, sa_u8 *);
+extern sa_s32 osPfsFileState(OSPfs *, sa_s32, OSPfsState *);
 typedef struct {
  sa_u32 type;
  sa_u32 flags;
@@ -1653,12 +1653,12 @@ int func_800117C0(int index){
  size /= 256 ;
  size++ ;
  size *= 256 ;
- ret = func_8009F760(&D_80119A08, D_80119AC8[index].index, &D_80119A90) ;
+ ret = osPfsFileState(&D_80119A08, D_80119AC8[index].index, &D_80119A90) ;
  if (ret == 0)
  {
   if ((D_80119A90.company_code == D_800B86D8) && (D_80119A90.game_code == D_800B86DC) && (D_80119A90.file_size == size))
   {
-   ret = func_800A01FC(&D_80119A08,
+   ret = osPfsReadWriteFile(&D_80119A08,
          D_80119AC8[index].index,
          0,
          0,

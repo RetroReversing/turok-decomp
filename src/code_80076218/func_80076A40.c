@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -814,8 +814,8 @@ int func_80076A40(CGameObjectInstance *pAI, float radiusFactor){
  CVector3 vCurrentPos,
       vPos;
  vCurrentPos = pAI->ah.ih.m_vPos;
- vPos.x = pAI->ah.ih.m_vPos.x + func_8009E7B0(pAI->m_RotY + 3.14159265358979323846)*(radiusFactor*pAI->ah.ih.m_pEA->m_CollisionRadius);
- vPos.z = pAI->ah.ih.m_vPos.z + func_8009E630(pAI->m_RotY + 3.14159265358979323846)*(radiusFactor*pAI->ah.ih.m_pEA->m_CollisionRadius);
+ vPos.x = pAI->ah.ih.m_vPos.x + __sinf(pAI->m_RotY + 3.14159265358979323846)*(radiusFactor*pAI->ah.ih.m_pEA->m_CollisionRadius);
+ vPos.z = pAI->ah.ih.m_vPos.z + __cosf(pAI->m_RotY + 3.14159265358979323846)*(radiusFactor*pAI->ah.ih.m_pEA->m_CollisionRadius);
  vPos.y = vCurrentPos.y;
  if (func_8001DF50(&pAI->ah, vPos, ((void*)0)))
  {

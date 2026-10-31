@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1608,7 +1608,7 @@ extern CQuatern func_8003A8D0(CGameObjectInstance *pThis) ;
 CQuatern func_8003A8D0(CGameObjectInstance *pThis);
 CQuatern func_8003A8D0(CGameObjectInstance *pThis){
  CQuatern qRot ;
- D_80119CB0 = func_8009E7B0(((&D_80106000)->m_Camera.m_ViewC.m_vRotation.z)/2); (&qRot)->x = (0)*D_80119CB0; (&qRot)->y = (0)*D_80119CB0; (&qRot)->z = (1)*D_80119CB0; (&qRot)->t = func_8009E630(((&D_80106000)->m_Camera.m_ViewC.m_vRotation.z)/2); ;
+ D_80119CB0 = __sinf(((&D_80106000)->m_Camera.m_ViewC.m_vRotation.z)/2); (&qRot)->x = (0)*D_80119CB0; (&qRot)->y = (0)*D_80119CB0; (&qRot)->z = (1)*D_80119CB0; (&qRot)->t = __cosf(((&D_80106000)->m_Camera.m_ViewC.m_vRotation.z)/2); ;
  func_8005FCF4(pThis, 45, 1) ;
  return qRot ;
 }

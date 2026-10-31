@@ -14,7 +14,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_800A461C(s32, M2C_UNK *);              /* extern */
+M2C_UNK alCSeqNew(s32, M2C_UNK *);              /* extern */
 M2C_UNK func_800A4B80(s32, s32);                    /* extern */
 M2C_UNK func_800A4BC0(s32, s32);                    /* extern */
 M2C_UNK func_800A4C00(s32, s32, M2C_UNK);           /* extern */
@@ -28,7 +28,7 @@ extern s32 D_8012EF2C;
 void func_8008B490(void) {
     s32 var_s0;
 
-    func_800A461C(D_8012EF28, &D_8012AF28);
+    alCSeqNew(D_8012EF28, &D_8012AF28);
     func_800A4B80(D_8012EF2C, D_8012EF28);
     func_800A4BC0(D_8012EF2C, M2C_FIELD(D_8012AF0C, s32 *, 4));
     var_s0 = 0;

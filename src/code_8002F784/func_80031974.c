@@ -47,7 +47,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -1609,9 +1609,9 @@ int func_80031974(CScene *pThis,
   nElements = ( (unsigned long) (((unsigned long*) (&usSound)->m_pData)[1]) );
   elements = (CROMSoundElement*) ( (void*) ( ((unsigned char*)((&usSound)->m_pData)) + (2*sizeof(unsigned long)) ) );
   ospri = func_800A1920(((void*)0));
-  func_8009E4D0(((void*)0), 13);
+  osSetThreadPri(((void*)0), 13);
   cFX = ++D_80129520.cfx_counter;
-  func_8009E4D0(((void*)0), ospri);
+  osSetThreadPri(((void*)0), ospri);
   for (cElement=0; cElement<nElements; cElement++)
   {
    pElement = &elements[cElement];

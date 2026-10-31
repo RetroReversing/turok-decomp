@@ -650,7 +650,7 @@ typedef struct CParticleSystem_t
    CCacheEntry *m_pceParticleEffects,
      *m_pceTextureSetsIndex;
 } CParticleSystem;
-extern void func_8002864C(CParticleSystem *pThis, CParticle *pParticle);
+extern void CParticleSystem__DeallocateParticle(CParticleSystem *pThis, CParticle *pParticle);
 typedef struct COverlay_t
 {
  int m_OnScreen ;
@@ -817,7 +817,7 @@ struct CCollisionInfo2_t;
 struct CParticle_t;
 extern void func_800287CC(CParticleSystem *pThis, unsigned char Priority);
 void func_800287CC(CParticleSystem *pThis, unsigned char Priority);
-void func_8002864C(CParticleSystem *pThis, CParticle *pParticle);
+void CParticleSystem__DeallocateParticle(CParticleSystem *pThis, CParticle *pParticle);
 void func_800287CC(CParticleSystem *pThis, unsigned char Priority){
  CParticle *pParticle;
  pParticle = pThis->m_pActiveTail;
@@ -825,7 +825,7 @@ void func_800287CC(CParticleSystem *pThis, unsigned char Priority){
  {
   if (pParticle->m_pEffect->m_Priority <= Priority)
   {
-   func_8002864C(pThis, pParticle);
+   CParticleSystem__DeallocateParticle(pThis, pParticle);
    break;
   }
   pParticle = pParticle->m_pLast;

@@ -13,27 +13,26 @@ void *func_80026DC0(u8 *arg0, s32 mode) {
     void *p;
     mode = *(s16 *)(arg0 + 0x16C);
     switch (mode + 6) {
-        case 0:
+        case 1:
             p = D_8011A030;
             break;
-        case 1:
+        case 3:
             func_80020B28(a, *(void **)(arg0 + 0x14));
             func_80014DC4(a, b);
             func_80013224(D_8011A0D8, D_8011A030, b);
             p = D_8011A0D8;
             break;
-        case 2:
+        case 4:
             func_800209A4(a, *(void **)(arg0 + 0x14));
             func_80014DC4(a, b);
             func_80013224(D_8011A0D8, D_8011A030, b);
             p = D_8011A0D8;
             break;
-        case 3:
+        case 6:case 7:case 8:
             func_80012E6C(D_8011A0D8, func_800206E4(*(void **)(arg0 + 0x14)));
             p = D_8011A0D8;
             break;
-        case 4:
-        case 8:
+        case 0:
             p = D_80119FF0;
             break;
         default:

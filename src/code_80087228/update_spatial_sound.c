@@ -589,8 +589,8 @@ typedef struct {
     ALMicroTime curTime;
 } ALSndPlayer;
 typedef sa_s16 ALSndId;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -1997,8 +1997,8 @@ void update_spatial_sound(signed long channelIndex, float soundX, float soundY, 
  invDist = 1 / dist;
  udx = dx*invDist;
  udz = dz*invDist;
- rightX = -func_8009E630(D_80129520.Ears.YRot);
- rightZ = func_8009E7B0(D_80129520.Ears.YRot);
+ rightX = -__cosf(D_80129520.Ears.YRot);
+ rightZ = __sinf(D_80129520.Ears.YRot);
  dot = rightX*udx + rightZ*udz;
                             ;
  if ((pChannel->theSFX.pEnvSound) || (pChannel->ChannelFlags & (1 << 12)))

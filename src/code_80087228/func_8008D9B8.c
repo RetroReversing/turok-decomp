@@ -98,13 +98,13 @@ typedef struct {
     sa_u32 size;
     OSPiHandle *piHandle;
 } OSIoMesg;
-extern sa_s32 func_800A1810(OSIoMesg *, sa_s32, sa_s32, sa_u32, void *, sa_u32, OSMesgQueue *);
-extern sa_u32 func_800A4F30(void *);
+extern sa_s32 osPiStartDma(OSIoMesg *, sa_s32, sa_s32, sa_u32, void *, sa_u32, OSMesgQueue *);
+extern sa_u32 osVirtualToPhysical(void *);
 typedef struct ALLink_s {
     struct ALLink_s *next;
     struct ALLink_s *prev;
 } ALLink;
-extern void func_800A4E60(ALLink *element);
+extern void alUnlink(ALLink *element);
 extern void D_800A4E90(ALLink *element, ALLink *after);
 typedef struct
 {
@@ -142,7 +142,7 @@ sa_s32 func_8008D9B8(sa_s32 addr, sa_s32 len, void *state){
         {
             dmaPtr->lastFrame = D_800ED450;
             foundBuffer = dmaPtr->ptr + addr - dmaPtr->startAddr;
-            return (int) func_800A4F30(foundBuffer);
+            return (int) osVirtualToPhysical(foundBuffer);
         }
         lastDmaPtr = dmaPtr;
         dmaPtr = (AMDMABuffer*)dmaPtr->node.next;
@@ -150,7 +150,7 @@ sa_s32 func_8008D9B8(sa_s32 addr, sa_s32 len, void *state){
     dmaPtr = D_8012F518.firstFree;
                 ;
     D_8012F518.firstFree = (AMDMABuffer*)dmaPtr->node.next;
-    func_800A4E60((ALLink*)dmaPtr);
+    alUnlink((ALLink*)dmaPtr);
     if(lastDmaPtr)
     {
         D_800A4E90((ALLink*)dmaPtr,(ALLink*)lastDmaPtr);
@@ -175,7 +175,7 @@ sa_s32 func_8008D9B8(sa_s32 addr, sa_s32 len, void *state){
     dmaPtr->startAddr = addr;
     dmaPtr->lastFrame = D_800ED450;
                                    ;
- func_800A1810(&D_8012FA58[D_800ED454++], 1, 0,
+ osPiStartDma(&D_8012FA58[D_800ED454++], 1, 0,
                  (sa_u32)addr, foundBuffer, 0x800, &D_80130058);
-    return (int) func_800A4F30(foundBuffer) + delta;
+    return (int) osVirtualToPhysical(foundBuffer) + delta;
 }

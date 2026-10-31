@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -856,7 +856,7 @@ CQuatern func_80020B28(CGameRegion *pThis){
   func_80013C2C(&vAxis, &vAxis, 1/mag);
   cosTheta = ((&vUp)->x*(&vNormal)->x + (&vUp)->y*(&vNormal)->y + (&vUp)->z*(&vNormal)->z);
   theta = func_8001349C(cosTheta);
-  D_80119CB0 = func_8009E7B0((theta)/2); (&qGround)->x = (vAxis.x)*D_80119CB0; (&qGround)->y = (vAxis.y)*D_80119CB0; (&qGround)->z = (vAxis.z)*D_80119CB0; (&qGround)->t = func_8009E630((theta)/2);;
+  D_80119CB0 = __sinf((theta)/2); (&qGround)->x = (vAxis.x)*D_80119CB0; (&qGround)->y = (vAxis.y)*D_80119CB0; (&qGround)->z = (vAxis.z)*D_80119CB0; (&qGround)->t = __cosf((theta)/2);;
  }
  return qGround;
 }

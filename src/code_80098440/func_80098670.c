@@ -45,7 +45,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef struct CVector3_t
 {
@@ -64,10 +64,10 @@ void func_80098670(CSun *pThis, int *pVisible, float *pX, float *pY, float *pOpa
 void func_80098670(CSun *pThis, int *pVisible, float *pX, float *pY, float *pOpacity){
  OSPri ospri;
  ospri = func_800A1920(((void*)0));
- func_8009E4D0(((void*)0), 15);
+ osSetThreadPri(((void*)0), 15);
  *pVisible = pThis->m_Visible;
  *pOpacity = pThis->m_Opacity;
- func_8009E4D0(((void*)0), ospri);
+ osSetThreadPri(((void*)0), ospri);
  *pX = pThis->m_ScreenX;
  *pY = pThis->m_ScreenY;
 }

@@ -266,7 +266,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E630(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -896,9 +896,9 @@ void func_800418EC(CSwoosh *pThis, CSwooshEdge *pEdge, Vtx *pVertexList){
  signed long remainingVertices ;
  float tween ;
  CSwooshEdgeVertexInfo *pInfo = pThis->m_pInfo->m_pEdgeVertexList ;
- tween = (0.5 - (func_8009E630((pEdge->m_LifeTime / pThis->m_pInfo->m_EdgeLifeTime) * D_800F2498) / 2.0)) ;
+ tween = (0.5 - (__cosf((pEdge->m_LifeTime / pThis->m_pInfo->m_EdgeLifeTime) * D_800F2498) / 2.0)) ;
  if (pThis->m_LifeTime <= pThis->m_pInfo->m_FadeOutTime)
-  tween *= (0.5 - (func_8009E630((pThis->m_LifeTime / pThis->m_pInfo->m_FadeOutTime) * 3.14159265358979323846) / 2.0)) ;
+  tween *= (0.5 - (__cosf((pThis->m_LifeTime / pThis->m_pInfo->m_FadeOutTime) * 3.14159265358979323846) / 2.0)) ;
  tween = 1.0 - tween ;
  remainingVertices = pThis->m_pInfo->m_NoOfEdgeVertices ;
  pInfo = pThis->m_pInfo->m_pEdgeVertexList ;

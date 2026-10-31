@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1868,9 +1868,9 @@ void func_8003D478(CCamera *pThis){
  D_800BAD90[6] = keyLevel | 0x30 ;
  func_80083288(D_800BAD90, 100) ;
  pThis->m_Time += D_800B6B00 ;
- pThis->m_View.m_vEye.x = pTurok->ah.ih.m_vPos.x - ((6*(1024.0/100.0))*func_8009E7B0(pTurok->m_RotY)) ;
+ pThis->m_View.m_vEye.x = pTurok->ah.ih.m_vPos.x - ((6*(1024.0/100.0))*__sinf(pTurok->m_RotY)) ;
  pThis->m_View.m_vEye.y = pTurok->ah.ih.m_vPos.y + (6*(1024.0/100.0)) ;
- pThis->m_View.m_vEye.z = pTurok->ah.ih.m_vPos.z - ((6*(1024.0/100.0))*func_8009E630(pTurok->m_RotY)) ;
+ pThis->m_View.m_vEye.z = pTurok->ah.ih.m_vPos.z - ((6*(1024.0/100.0))*__cosf(pTurok->m_RotY)) ;
  pThis->m_View.m_vFocus.x = pTurok->ah.ih.m_vPos.x ;
  pThis->m_View.m_vFocus.y = pTurok->ah.ih.m_vPos.y +(7*(1024.0/100.0));
  pThis->m_View.m_vFocus.z = pTurok->ah.ih.m_vPos.z ;

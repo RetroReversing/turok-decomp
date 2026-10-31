@@ -47,7 +47,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -475,7 +475,7 @@ void func_8008A750(void){
  t_Channel *pChannel;
  OSPri ospri;
  ospri = func_800A1920(((void*)0));
- func_8009E4D0(((void*)0), 13);
+ osSetThreadPri(((void*)0), 13);
  sndplayer = &D_80129520.SndPlayerList;
  pChannel = &D_80129520.VoiceChannels[0];
  for(i = 0; i < 16; i++)
@@ -489,5 +489,5 @@ void func_8008A750(void){
   }
   pChannel++;
  }
- func_8009E4D0(((void*)0), ospri);
+ osSetThreadPri(((void*)0), ospri);
 }

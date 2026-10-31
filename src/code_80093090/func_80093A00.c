@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1642,9 +1642,9 @@ void func_80093A00(CGameSimpleInstance *pWarp){
       vPrevPos = pPlayer->ah.ih.m_vPos;
       pPrevRegion = pPlayer->ah.ih.m_pCurrentRegion;
       prevRotY = pPlayer->m_RotY;
-      vDesired.x = pWarp->ah.ih.m_vPos.x + func_8009E7B0(pWarp->m_RotAngle)*-(12*(1024.0/100.0));
+      vDesired.x = pWarp->ah.ih.m_vPos.x + __sinf(pWarp->m_RotAngle)*-(12*(1024.0/100.0));
       vDesired.y = pPlayer->ah.ih.m_vPos.y;
-      vDesired.z = pWarp->ah.ih.m_vPos.z + func_8009E630(pWarp->m_RotAngle)*-(12*(1024.0/100.0));
+      vDesired.z = pWarp->ah.ih.m_vPos.z + __cosf(pWarp->m_RotAngle)*-(12*(1024.0/100.0));
       func_800144C8(&vDelta, &pWarp->ah.ih.m_vPos, &vDesired);
       pPlayer->m_RotY = func_80013A24(&vDelta);
       func_80017F0C(&pWarp->ah.ih, vDesired, &vFinal, &pFinal, 2, 0);

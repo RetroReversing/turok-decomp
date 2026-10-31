@@ -27,3 +27,28 @@ After the 419-function checkpoint, Terra added 23 functions / 1,852 bytes. A 30-
 The timed function judge initially accepted 891 functions. Five new jump-table candidates (820 bytes) failed the full expanded-image comparison and were excluded without source repairs after the deadline. Their original assembly remains in the build. Only the 886-function fully verified selection is published here. The sources retain provisional types and compiler-specific stack expressions and require readability/semantic review. Most code remains assembly; this is not a full decompilation.
 
 This commit copies the exact C selections, shared context, and build files from the passing standalone export. No ROMs, generated disassembly/assets, databases, or proprietary compiler binaries are included.
+
+
+## 30 October source-assisted checkpoint
+
+The current standalone build selects **2,036 C functions / 445,672 bytes (71.192% of the fixed candidate-code total)** and reproduces the original cartridge byte for byte. The latest one-hour session added 33 isolated matches / 27,564 bytes; 31 are selected C, while two require further data-placement work. The live app has 2,051 isolated matches, a separate measurement from the standalone selection. See [source-assisted provenance](SOURCE_ASSISTED_CHECKPOINT.md#source-assisted-integration-30-october-2026) for denominators, fallbacks and verification details.
+
+
+## Three-function repair and source names
+
+Particle advance, standard follow and the sequence marker now match exactly: three additional selected C functions / 1,972 bytes. The full standalone selection is **2,039 C functions / 447,644 bytes (71.507% of the fixed candidate-code total)**. Twenty-one address-based functions receive source names; all 121 located source-candidate entries are indexed with confidence and conflicting alternatives. See [repair provenance](SOURCE_ASSISTED_CHECKPOINT.md#source-naming-and-three-function-repair-30-october-2026).
+
+
+## 31 October SDK and handler recovery
+
+Fifteen additional selected C functions / 744 bytes bring the full-cartridge-verified selection to **2,054 C functions / 448,388 bytes (71.626% of the fixed candidate-code total)**, a gain of 0.119 percentage points. Three SDK functions and twelve tiny handler stubs passed independent checks and the full original-cartridge build. See the source-assisted checkpoint document for provenance, timing and concurrent-worker attribution.
+
+
+## Thirty-minute continuation, 31 October
+
+The verified standalone selection is now **2,066 C functions / 455,668 bytes (72.789% of the fixed candidate-code total)**. This adds **12 C selections / 7,280 bytes**, or **1.163 percentage points**: six new recoveries or repairs and six existing app matches integrated with verified data placement. The complete original cartridge rebuild remains byte identical. The source-assisted checkpoint document separates new recoveries, carried-over work, app acceptance and verification.
+
+
+## Focused thirty-minute continuation, 31 October
+
+The standalone selection reaches **2,077 C functions / 461,364 bytes (73.699% of the fixed candidate-code total)**, adding **11 selections / 5,696 bytes**, or **0.910 percentage points**, over commit `4082329`. The pass repaired switch selectors and constant-pool boundaries in existing drafts and recovered the audio initializer, graphics-task routine and Controller Pak file listing. The complete original cartridge remains byte identical. See [the focused-session report](SOURCE_ASSISTED_CHECKPOINT.md#focused-thirty-minute-continuation--31-october-2026) for attribution, source differences and verification.

@@ -37,7 +37,7 @@ typedef struct B
   char p11[0x1fc - 0x1e4];
   char *p1fc;
 } B;
-extern void func_80047F54(A *, B *);
+extern void chBottlesBonus_func_802DD158(A *, B *);
 extern int func_80039B98(void *);
 extern void func_80042740(void *, A *);
 extern void func_80048CFC(A *, B *);
@@ -57,7 +57,7 @@ void func_80047F84(A *trexObject, B *trex)
   char *sp24;
   int n;
   void (*callback)(A *, B *);
-  func_80047F54(trexObject, trex);
+  chBottlesBonus_func_802DD158(trexObject, trex);
   if (!(trex->f34 & 0x02000000))
   {
     func_80042740(&D_80112E10, trexObject);

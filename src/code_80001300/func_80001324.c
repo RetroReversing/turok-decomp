@@ -14,9 +14,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80001D30(M2C_UNK *, s32);              /* extern */
+M2C_UNK CEngineApp__Idle(M2C_UNK *, s32);              /* extern */
 extern M2C_UNK D_800F9F10;
 
 void func_80001324(s32 arg0) {
-    func_80001D30(&D_800F9F10, arg0);
+    CEngineApp__Idle(&D_800F9F10, arg0);
 }

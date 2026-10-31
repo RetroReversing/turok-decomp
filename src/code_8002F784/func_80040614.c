@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1616,9 +1616,9 @@ int func_80040614(CGameObjectInstance *pThis, float Radius, float AngleOffset, C
  float Angle ;
  int Result ;
  Angle = pTurok->m_RotY + AngleOffset ;
- vDesiredPos.x = pTurok->ah.ih.m_vPos.x - (Radius * func_8009E7B0(Angle)) ;
+ vDesiredPos.x = pTurok->ah.ih.m_vPos.x - (Radius * __sinf(Angle)) ;
  vDesiredPos.y = pTurok->ah.ih.m_vPos.y ;
- vDesiredPos.z = pTurok->ah.ih.m_vPos.z - (Radius * func_8009E630(Angle)) ;
+ vDesiredPos.z = pTurok->ah.ih.m_vPos.z - (Radius * __cosf(Angle)) ;
  Result = func_8001DF50(&pTurok->ah, vDesiredPos, ((void*)0)) ;
  func_80017F0C(&pTurok->ah.ih,
               vDesiredPos,

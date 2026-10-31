@@ -47,7 +47,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -487,7 +487,7 @@ void func_8008A5C4(signed long VirtualHandle){
  if (VirtualHandle == -1)
   return;
  ospri = func_800A1920(((void*)0));
- func_8009E4D0(((void*)0), 13);
+ osSetThreadPri(((void*)0), 13);
  queue=D_80129410.Next;
  while (queue!=&D_80129410)
  {
@@ -533,5 +533,5 @@ void func_8008A5C4(signed long VirtualHandle){
    }
   }
  }
- func_8009E4D0(((void*)0), ospri);
+ osSetThreadPri(((void*)0), ospri);
 }

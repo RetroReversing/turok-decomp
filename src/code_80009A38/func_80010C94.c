@@ -56,14 +56,14 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern void func_8009E4A0(OSMesgQueue *, OSMesg *, sa_s32);
-extern void func_8009D020(OSEvent, OSMesgQueue *, OSMesg);
+extern void osCreateMesgQueue(OSMesgQueue *, OSMesg *, sa_s32);
+extern void osSetEventMesg(OSEvent, OSMesgQueue *, OSMesg);
 typedef struct {
  sa_u16 type;
  sa_u8 status;
  sa_u8 errno;
 }OSContStatus;
-extern sa_s32 func_8009EBD0(OSMesgQueue *, sa_u8 *, OSContStatus *);
+extern sa_s32 osContInit(OSMesgQueue *, sa_u8 *, OSContStatus *);
 typedef struct CControlState_t
 {
  sa_u16 BDown,
@@ -97,9 +97,9 @@ int func_80010C94 ( void );
 int func_80010C94 ( void ){
  sa_u16 i, cnt;
  sa_u16 controller ;
- func_8009E4A0(&D_80119A70, &D_80119A88, 1);
- func_8009D020(5, &D_80119A70, (OSMesg)1);
- func_8009EBD0(&D_80119A70, &D_800B86D0, &D_80119980[0]) ;
+ osCreateMesgQueue(&D_80119A70, &D_80119A88, 1);
+ osSetEventMesg(5, &D_80119A70, (OSMesg)1);
+ osContInit(&D_80119A70, &D_800B86D0, &D_80119980[0]) ;
  if (D_800B86D0)
  {
   controller = -1 ;
@@ -112,7 +112,7 @@ int func_80010C94 ( void ){
    }
   }
   D_801199A8.type = (4 + 1);
-  func_8009D020(5, &D_800F9C20, (OSMesg)&D_801199A8);
+  osSetEventMesg(5, &D_800F9C20, (OSMesg)&D_801199A8);
   D_801199D0.BUp = 0;
   D_801199D0.BDown = 0;
   D_801199D0.BSingle = 0;

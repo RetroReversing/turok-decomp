@@ -310,7 +310,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
+extern float __sinf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -2320,9 +2320,9 @@ void func_80040EA4(CShield *pThis){
    pParticle->ah.ih.m_vPos = vPos ;
    pParticle->m_cFrame = 0 ;
    pParticle->m_nFrames = 999 ;
-   pParticle->m_RotationInc = 0.3 + (0.2 * func_8009E7B0(((D_800B6AF8*2)*(3.14159265358979323846/180)))) ;
+   pParticle->m_RotationInc = 0.3 + (0.2 * __sinf(((D_800B6AF8*2)*(3.14159265358979323846/180)))) ;
    pParticle->m_Size = (15*(1024.0/100.0)) +
-           (2*(1024.0/100.0) * func_8009E7B0(((D_800B6AF8*16)*(3.14159265358979323846/180)))) ;
+           (2*(1024.0/100.0) * __sinf(((D_800B6AF8*16)*(3.14159265358979323846/180)))) ;
    Index = ((pThis->m_StartHealth - pThis->m_Health) * pThis->m_TotalColors) /
         (pThis->m_StartHealth+1) ;
    pColor = &pThis->m_pColors[Index] ;
@@ -2332,7 +2332,7 @@ void func_80040EA4(CShield *pThis){
    pParticle->m_BlackColor[0] = pColor->m_BlackColor.Red ;
    pParticle->m_BlackColor[1] = pColor->m_BlackColor.Green ;
    pParticle->m_BlackColor[2] = pColor->m_BlackColor.Blue ;
-   pParticle->m_AlphaScaler = ((128 + (100 * func_8009E7B0(((D_800B6AF8*16)*(3.14159265358979323846/180))))) *
+   pParticle->m_AlphaScaler = ((128 + (100 * __sinf(((D_800B6AF8*16)*(3.14159265358979323846/180))))) *
             pThis->m_Alpha) * pColor->m_WhiteColor.Alpha ;
   }
  }

@@ -7,13 +7,13 @@ s32 func_800A4F20(void)
 }
 
 s32 func_800AD5C0(u32);
-s32 func_800A4F30(u32 arg0);
+s32 osVirtualToPhysical(u32 arg0);
 struct Node_800A4E90
 {
   struct Node_800A4E90 *next;
   struct Node_800A4E90 *prev;
 };
-void func_800A4E90(struct Node_800A4E90 *arg0, struct Node_800A4E90 **arg1);
+void alLink(struct Node_800A4E90 *arg0, struct Node_800A4E90 **arg1);
 s32 func_800AD680(void);
 extern u8 D_800EF270;
 extern s32 D_A4500000;

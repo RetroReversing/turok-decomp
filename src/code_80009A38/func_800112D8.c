@@ -16,8 +16,8 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK func_80011194();                            /* extern */
 M2C_UNK func_800111F4();                            /* extern */
-s32 func_8009F4C0(M2C_UNK *, M2C_UNK *, M2C_UNK *); /* extern */
-s32 func_8009F610(M2C_UNK *, s32 *);                /* extern */
+s32 osPfsNumFiles(M2C_UNK *, M2C_UNK *, M2C_UNK *); /* extern */
+s32 osPfsFreeBlocks(M2C_UNK *, s32 *);                /* extern */
 extern M2C_UNK D_80119A08;
 extern M2C_UNK D_80119AB0;
 extern M2C_UNK D_80119AB4;
@@ -29,10 +29,10 @@ s32 func_800112D8(void) {
     s32 sp18;
 
     func_80011194();
-    sp1C = func_8009F4C0(&D_80119A08, &D_80119AB4, &D_80119AB0);
+    sp1C = osPfsNumFiles(&D_80119A08, &D_80119AB4, &D_80119AB0);
     
     if (sp1C == 0) {
-        sp1C = func_8009F610(&D_80119A08, &sp18);
+        sp1C = osPfsFreeBlocks(&D_80119A08, &sp18);
         
         if (sp1C == 0) {
             D_80119AC4 = sp18 / 256;

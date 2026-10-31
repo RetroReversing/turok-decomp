@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1837,14 +1837,14 @@ void func_8007924C(CGameObjectInstance *pMe, CGameObjectInstance *pDest){
   if (rightHanded)
   {
    turnang = pDest->m_RotY + 3.14159265358979323846 + (3.14159265358979323846/4);
-   vPos.x += func_8009E7B0(turnang) * (30*(1024.0/100.0));
-   vPos.z += func_8009E630(turnang) * (30*(1024.0/100.0));
+   vPos.x += __sinf(turnang) * (30*(1024.0/100.0));
+   vPos.z += __cosf(turnang) * (30*(1024.0/100.0));
   }
   else
   {
    turnang = pDest->m_RotY + 3.14159265358979323846 - (3.14159265358979323846/4);
-   vPos.x += func_8009E7B0(turnang) * (30*(1024.0/100.0));
-   vPos.z += func_8009E630(turnang) * (30*(1024.0/100.0));
+   vPos.x += __sinf(turnang) * (30*(1024.0/100.0));
+   vPos.z += __cosf(turnang) * (30*(1024.0/100.0));
   }
   (&((pMe)->m_AI))->m_AvoidanceAngle =
   turnang = func_800747C0(pMe, vPos, pDest, avoidrad);
@@ -1852,8 +1852,8 @@ void func_8007924C(CGameObjectInstance *pMe, CGameObjectInstance *pDest){
  else
  {
   turnang = pDest->m_RotY + 3.14159265358979323846;
-  vPos.x += func_8009E7B0(turnang)*(60*(1024.0/100.0));
-  vPos.z += func_8009E630(turnang)*(60*(1024.0/100.0));
+  vPos.x += __sinf(turnang)*(60*(1024.0/100.0));
+  vPos.z += __cosf(turnang)*(60*(1024.0/100.0));
   turnang = func_80071DA4(pMe, vPos);
  }
  if (!( (pDest == (((&D_800F9F10))->m_Scene.m_pPlayer))

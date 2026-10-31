@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -892,31 +892,31 @@ int func_80045678(CGameObjectInstance *pThis, CMantis *pMantis, float Dir){
  float WallAngle1, WallAngle2, WallAngle3 ;
  CCollisionInfo2 *pCollisionInfo = &D_80136620 ;
  Angle = pThis->m_RotY + Dir ;
- vTarget.x = (pThis->ah.ih.m_vPos).x - ((5 * (1024.0/100.0))) * func_8009E7B0(Angle) ;
+ vTarget.x = (pThis->ah.ih.m_vPos).x - ((5 * (1024.0/100.0))) * __sinf(Angle) ;
  vTarget.y = (pThis->ah.ih.m_vPos).y + (60*(1024.0/100.0)) ;
- vTarget.z = (pThis->ah.ih.m_vPos).z - ((5 * (1024.0/100.0))) * func_8009E630(Angle) ;
+ vTarget.z = (pThis->ah.ih.m_vPos).z - ((5 * (1024.0/100.0))) * __cosf(Angle) ;
  func_8001DF50(&pThis->ah, vTarget, &pCollisionInfo);
  if (pCollisionInfo->pWallCollisionRegion)
   return 0 ;
- vTarget.x = (pThis->ah.ih.m_vPos).x - ((150 * (1024.0/100.0))) * func_8009E7B0(Angle) ;
+ vTarget.x = (pThis->ah.ih.m_vPos).x - ((150 * (1024.0/100.0))) * __sinf(Angle) ;
  vTarget.y = (pThis->ah.ih.m_vPos).y + (60*(1024.0/100.0)) ;
- vTarget.z = (pThis->ah.ih.m_vPos).z - ((150 * (1024.0/100.0))) * func_8009E630(Angle) ;
+ vTarget.z = (pThis->ah.ih.m_vPos).z - ((150 * (1024.0/100.0))) * __cosf(Angle) ;
  func_8001DF50(&pThis->ah, vTarget, &pCollisionInfo);
  if (!pCollisionInfo->pWallCollisionRegion)
   return 0 ;
  WallAngle1 = func_800206E4(pCollisionInfo->pWallCollisionRegion, pCollisionInfo->nWallCollisionEdge) ;
  vTarget2 = vTarget ;
  Angle += ((90)*(3.14159265358979323846/180)) ;
- vTarget2.x += - ((20 * (1024.0/100.0))) * func_8009E7B0(Angle) ;
- vTarget2.z += - ((20 * (1024.0/100.0))) * func_8009E630(Angle) ;
+ vTarget2.x += - ((20 * (1024.0/100.0))) * __sinf(Angle) ;
+ vTarget2.z += - ((20 * (1024.0/100.0))) * __cosf(Angle) ;
  func_8001DF50(&pThis->ah, vTarget2, &pCollisionInfo);
  if (!pCollisionInfo->pWallCollisionRegion)
   return 0 ;
  WallAngle2 = func_800206E4(pCollisionInfo->pWallCollisionRegion, pCollisionInfo->nWallCollisionEdge) ;
  vTarget2 = vTarget ;
  Angle += ((180)*(3.14159265358979323846/180)) ;
- vTarget2.x += - ((20 * (1024.0/100.0))) * func_8009E7B0(Angle) ;
- vTarget2.z += - ((20 * (1024.0/100.0))) * func_8009E630(Angle) ;
+ vTarget2.x += - ((20 * (1024.0/100.0))) * __sinf(Angle) ;
+ vTarget2.z += - ((20 * (1024.0/100.0))) * __cosf(Angle) ;
  func_8001DF50(&pThis->ah, vTarget2, &pCollisionInfo);
  if (!pCollisionInfo->pWallCollisionRegion)
   return 0 ;

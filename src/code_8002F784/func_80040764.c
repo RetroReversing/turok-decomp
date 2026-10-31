@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -814,9 +814,9 @@ CQuatern func_80040764(CGameObjectInstance *pThis){
  CBoss *pBoss = pThis->m_pBoss ;
  CQuatern qRotX, qRotY, qRotZ,
      qTemp1, qTemp2;
- D_80119CB0 = func_8009E7B0((pBoss->m_RotX)/2); (&qRotX)->x = (1)*D_80119CB0; (&qRotX)->y = (0)*D_80119CB0; (&qRotX)->z = (0)*D_80119CB0; (&qRotX)->t = func_8009E630((pBoss->m_RotX)/2);;
- D_80119CB0 = func_8009E7B0((pThis->m_RotY)/2); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = func_8009E630((pThis->m_RotY)/2);;
- D_80119CB0 = func_8009E7B0((pBoss->m_RotZ)/2); (&qRotZ)->x = (0)*D_80119CB0; (&qRotZ)->y = (0)*D_80119CB0; (&qRotZ)->z = (1)*D_80119CB0; (&qRotZ)->t = func_8009E630((pBoss->m_RotZ)/2);;
+ D_80119CB0 = __sinf((pBoss->m_RotX)/2); (&qRotX)->x = (1)*D_80119CB0; (&qRotX)->y = (0)*D_80119CB0; (&qRotX)->z = (0)*D_80119CB0; (&qRotX)->t = __cosf((pBoss->m_RotX)/2);;
+ D_80119CB0 = __sinf((pThis->m_RotY)/2); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = __cosf((pThis->m_RotY)/2);;
+ D_80119CB0 = __sinf((pBoss->m_RotZ)/2); (&qRotZ)->x = (0)*D_80119CB0; (&qRotZ)->y = (0)*D_80119CB0; (&qRotZ)->z = (1)*D_80119CB0; (&qRotZ)->t = __cosf((pBoss->m_RotZ)/2);;
  func_80014CB8(&qTemp1, &pThis->m_qRot, &qRotX);
  func_80014CB8(&qTemp2, &qTemp1, &qRotZ);
  func_80014CB8(&qTemp1, &qTemp2, &qRotY);

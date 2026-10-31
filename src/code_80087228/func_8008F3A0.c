@@ -310,7 +310,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E630(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1612,7 +1612,7 @@ void func_8008F3A0(CGameObjectInstance *pThis, float startpos, float maxpos){
  if (!pRegion)
   return;
  time = pThis->m_AI.m_Time1 ;
- pThis->ah.ih.m_vPos.y = (((startpos) + (((func_8009E630((1.0-(time))*D_800F6238) + 1.0)/2.0))*(((float)(maxpos)) - (startpos)))) ;
+ pThis->ah.ih.m_vPos.y = (((startpos) + (((__cosf((1.0-(time))*D_800F6238) + 1.0)/2.0))*(((float)(maxpos)) - (startpos)))) ;
  func_80021508(pRegion, pThis->m_AI.m_TeleportTime + (pThis->ah.ih.m_vPos.y - startpos)) ;
  if (pPlayer->ah.ih.m_pCurrentRegion)
  {

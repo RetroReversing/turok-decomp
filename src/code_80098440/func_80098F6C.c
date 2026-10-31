@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -844,8 +844,8 @@ void func_80098F6C(CCollide *pThis){
   {
    if (pInst->ih.m_Type == 1)
    {
-    sinTheta = func_8009E7B0(((CGameObjectInstance*)pInst)->m_RotY);
-    cosTheta = func_8009E630(((CGameObjectInstance*)pInst)->m_RotY);
+    sinTheta = __sinf(((CGameObjectInstance*)pInst)->m_RotY);
+    cosTheta = __cosf(((CGameObjectInstance*)pInst)->m_RotY);
     dot = vNormal.x*(-sinTheta) + vNormal.z*(-cosTheta);
     if (dot >= 0.0)
     {

@@ -1093,7 +1093,7 @@ enum MantisActions
  MANTIS_END_ACTION
 } ;
 extern void func_80045060(CGameObjectInstance *pThis, CMantis *pMantis) ;
-signed long func_80044BDC(CGameObjectInstance *pThis, CMantis *pMantis);
+signed long Mantis_ClosestWall(CGameObjectInstance *pThis, CMantis *pMantis);
 signed long func_80044EA0(CGameObjectInstance *pThis, CMantis *pMantis);
 void func_80045060(CGameObjectInstance *pThis, CMantis *pMantis);
 void func_80045060(CGameObjectInstance *pThis, CMantis *pMantis){
@@ -1114,7 +1114,7 @@ void func_80045060(CGameObjectInstance *pThis, CMantis *pMantis){
     pMantis->m_ChoosePosition = 1 ;
    }
    else
-   if ((pMantis->m_Boss.m_Stage > 1) && (func_80044BDC(pThis, pMantis) != -1))
+   if ((pMantis->m_Boss.m_Stage > 1) && (Mantis_ClosestWall(pThis, pMantis) != -1))
    {
     pMantis->m_Boss.m_Action = MANTIS_BREAK_WALL_ACTION ;
    }

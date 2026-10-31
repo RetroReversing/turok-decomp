@@ -755,7 +755,7 @@ typedef struct CParticle_t
  struct CParticle_t *m_pLast, *m_pNext,
         *m_pDrawLast, *m_pDrawNext;
 } CParticle;
-extern void func_800272F4(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
+extern void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
 typedef struct CParticleSystem_t
 {
  CParticle m_Particles[128],
@@ -1630,7 +1630,7 @@ void func_8002AFE4(CParticleSystem *pThis, Gfx **ppDLP);
 void func_80026EC4(CParticle *pThis,
                float *pDistanceFromPlayer ,
                int *pIntersectWithGround );
-void func_800272F4(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
+void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
 void func_8002AFE4(CParticleSystem *pThis, Gfx **ppDLP){
  /* Draw visible particles and extend swooshes for offscreen particles. */
  CParticle *pParticle;
@@ -1662,7 +1662,7 @@ void func_8002AFE4(CParticleSystem *pThis, Gfx **ppDLP){
    if ( (((&D_800F9E20)->m_MaxX > (&bounds)->m_vMin.x) && ((&D_800F9E20)->m_MinX < (&bounds)->m_vMax.x) && ((&D_800F9E20)->m_MaxZ > (&bounds)->m_vMin.z) && ((&D_800F9E20)->m_MinZ < (&bounds)->m_vMax.z))
      && func_80084ACC(&D_800F9D90, &bounds) )
    {
-    func_800272F4(pParticle, ppDLP, pThis->m_pCache);
+    CParticle__Draw(pParticle, ppDLP, pThis->m_pCache);
    }
    else if (pParticle->m_ActiveSwooshes)
    {

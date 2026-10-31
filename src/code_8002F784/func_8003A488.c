@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -2293,7 +2293,7 @@ void func_8003A488(CCamera *pThis){
    }
    else
    {
-    (&D_801272E0[i].m_Start.m_vPos)->x = 0 ; (&D_801272E0[i].m_Start.m_vPos)->y = (0.5*(1024.0/100.0)) * func_8009E7B0((((i*120)+15)*(3.14159265358979323846/180))) ; (&D_801272E0[i].m_Start.m_vPos)->z = (0.5*(1024.0/100.0)) * func_8009E630((((i*120)+15)*(3.14159265358979323846/180))) ; ;
+    (&D_801272E0[i].m_Start.m_vPos)->x = 0 ; (&D_801272E0[i].m_Start.m_vPos)->y = (0.5*(1024.0/100.0)) * __sinf((((i*120)+15)*(3.14159265358979323846/180))) ; (&D_801272E0[i].m_Start.m_vPos)->z = (0.5*(1024.0/100.0)) * __cosf((((i*120)+15)*(3.14159265358979323846/180))) ; ;
    }
    (&D_801272E0[i].m_End.m_vPos)->x = 0 ; (&D_801272E0[i].m_End.m_vPos)->y = 0 ; (&D_801272E0[i].m_End.m_vPos)->z = 0 ; ;
    D_801272E0[i].m_Start.m_Color.Red = 10 ;
@@ -2349,7 +2349,7 @@ void func_8003A488(CCamera *pThis){
  t *= t ;
  t *= t ;
  func_80039368(&pThis->m_ViewC, t, &pThis->m_ViewA, &pThis->m_ViewB) ;
- Arc = (-((func_8009E630(((Blend*360)*(3.14159265358979323846/180))) - 1) * 0.5)) * 15 * (1024.0/100.0) ;
+ Arc = (-((__cosf(((Blend*360)*(3.14159265358979323846/180))) - 1) * 0.5)) * 15 * (1024.0/100.0) ;
  pThis->m_View.m_vEye.y += Arc ;
  pThis->m_ViewC.m_vEye.y += Arc ;
  if (pArrow)

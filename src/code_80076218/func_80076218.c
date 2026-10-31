@@ -1632,3 +1632,5 @@ CGameObjectInstance *func_80076218(CGameObjectInstance *pMe){
  func_8005FCA0(pMe, picked, 1);
  return pMe;
 }
+
+u32 D_800BE06C=3;

@@ -248,8 +248,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -837,16 +837,16 @@ void func_8004A138(CGameObjectInstance *pThis, CLonghunt *pLonghunt){
  signed long i ;
  radius = 150*(1024.0/100.0) ;
  rot = pThis->m_RotY + ((D_800F2B68)) ;
- vDest.x = pThis->ah.ih.m_vPos.x - (radius * func_8009E7B0(rot)) ;
- vDest.z = pThis->ah.ih.m_vPos.z - (radius * func_8009E630(rot)) ;
+ vDest.x = pThis->ah.ih.m_vPos.x - (radius * __sinf(rot)) ;
+ vDest.z = pThis->ah.ih.m_vPos.z - (radius * __cosf(rot)) ;
  radius = 168*(1024.0/100.0) ;
  closestdist = ((500*(1024.0/100.0)) * (500*(1024.0/100.0))) ;
  for (i = 0 ; i < 8 ; i++)
  {
   rot = i * ((45)*(3.14159265358979323846/180)) ;
-  vPos.x = vDest.x - (radius * func_8009E7B0(rot)) ;
+  vPos.x = vDest.x - (radius * __sinf(rot)) ;
   vPos.y = pThis->ah.ih.m_vPos.y ;
-  vPos.z = vDest.z - (radius * func_8009E630(rot)) ;
+  vPos.z = vDest.z - (radius * __cosf(rot)) ;
   dist = func_8005F34C(pThis, vPos) ;
   if (dist < closestdist)
   {

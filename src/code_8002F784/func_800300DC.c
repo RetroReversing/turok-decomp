@@ -1868,11 +1868,11 @@ extern void func_80035438 (
   void (*swap)(const void *, const void *)
     );
 extern void func_800300DC(CScene *pThis, Gfx **ppDLP);
-extern void func_8002FBD0(CScene *pThis, CBoundsRect *pBoundsRect,
+extern void CScene__GetGridSections(CScene *pThis, CBoundsRect *pBoundsRect,
            CGameGridBounds **ppGrids[], int *pIndices[], int *pnGrids);
 extern void func_80032124(CScene *pThis, CCacheEntry **ppceTarget);
 void func_80032124(CScene *pThis, CCacheEntry **ppceTarget);
-void func_8002FBD0(CScene *pThis, CBoundsRect *pBoundsRect,
+void CScene__GetGridSections(CScene *pThis, CBoundsRect *pBoundsRect,
            CGameGridBounds **ppGrids[], int *pIndices[], int *pnGrids);
 typedef struct SortStruct_t
 {
@@ -1908,7 +1908,7 @@ void func_800300DC(CScene *pThis, Gfx **ppDLP){
                                       ;
                                      ;
  pThis->m_nTransparentInstances = 0;
- func_8002FBD0(pThis, &D_800F9E20,
+ CScene__GetGridSections(pThis, &D_800F9E20,
          &pGridBounds, &indices, &nGrids);
                            ;
                              ;

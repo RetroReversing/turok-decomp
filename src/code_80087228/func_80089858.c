@@ -62,7 +62,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -2245,14 +2245,14 @@ signed long func_80089858(CROMSoundElement *pElement,
  int sfxnum = pElement->m_nSampleNum;
  static int ObstructedFadeVol = 32000;
  ospri = func_800A1920(0);
- func_8009E4D0(0, 13);
+ osSetThreadPri(0, 13);
  Channel = func_8008AD54(pInstance);
  if(Channel == -1)
  {
   Channel = func_80089FA0(-1, sfxnum, pElement->m_Priority, vPos, 0);
   if ( (Channel == -1) || (Channel == 16) )
   {
-   func_8009E4D0(0, ospri);
+   osSetThreadPri(0, ospri);
    return -1;
   }
   inst = D_80129520.SndPlayerList.sfxBank->instArray[0];
@@ -2268,7 +2268,7 @@ signed long func_80089858(CROMSoundElement *pElement,
    pChannel->PhysicalHandle = -1;
    pChannel->theSFX.Priority = 0;
    D_80129520.ChannelLock = -1;
-   func_8009E4D0(0, ospri);
+   osSetThreadPri(0, ospri);
    return -1;
   }
   PlayerInfo->SoundCount++;
@@ -2332,6 +2332,6 @@ signed long func_80089858(CROMSoundElement *pElement,
   func_8008A3B8(D_80129520.VoiceChannels[Channel].VirtualHandle);
   sndptr->StartTime = D_80129520.sfx_timer;
  }
- func_8009E4D0(0, ospri);
+ osSetThreadPri(0, ospri);
  return D_80129520.VoiceChannels[Channel].VirtualHandle;
 }

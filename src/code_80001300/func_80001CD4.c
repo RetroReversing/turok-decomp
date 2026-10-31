@@ -15,14 +15,14 @@ typedef s32 M2C_UNK32;
 #endif
 
 M2C_UNK func_8009D620();                            /* extern */
-M2C_UNK func_8009E000(M2C_UNK *, M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *, s32); /* extern */
-M2C_UNK func_8009E150(M2C_UNK *);                   /* extern */
+M2C_UNK osCreateThread(M2C_UNK *, M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *, s32); /* extern */
+M2C_UNK osStartThread(M2C_UNK *);                   /* extern */
 extern M2C_UNK D_800F90D0;
 extern M2C_UNK D_8013C660;
 extern M2C_UNK func_80001324;
 
 void func_80001CD4(s32 arg0) {
     func_8009D620();
-    func_8009E000(&D_800F90D0, 1, &func_80001324, 0, &D_8013C660, 0xA);
-    func_8009E150(&D_800F90D0);
+    osCreateThread(&D_800F90D0, 1, &func_80001324, 0, &D_8013C660, 0xA);
+    osStartThread(&D_800F90D0);
 }

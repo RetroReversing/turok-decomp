@@ -7,9 +7,9 @@ extern void func_8004463C(void *, s32);
 extern s32 func_80045624(void *, void *);
 extern void func_80046934(void *, void *);
 extern void func_8004016C(void *, void *, u32, f32);
-extern f32 func_8009E630(f32);
+extern f32 __cosf(f32);
 extern f32 func_8009E7A0(f32);
-extern f32 func_8009E7B0(f32);
+extern f32 __sinf(f32);
 extern f32 D_800B6B00;
 extern f32 D_800F28A0;
 extern f32 D_800F28B0;
@@ -84,8 +84,8 @@ void func_80046AC4(MantisObject *object, MantisState *mantis)
     {
       mantis->flySpeed = func_80040A0C(mantis->flySpeed, stageFlySpeed / ((f32) 8));
     }
-    object->velX = ((func_8009E7B0(object->rotY) * (-mantis->flySpeed)) * D_800B6B00) * 15.0f;
-    object->velZ = ((func_8009E630(object->rotY) * (-mantis->flySpeed)) * D_800B6B00) * 15.0f;
+    object->velX = ((__sinf(object->rotY) * (-mantis->flySpeed)) * D_800B6B00) * 15.0f;
+    object->velZ = ((__cosf(object->rotY) * (-mantis->flySpeed)) * D_800B6B00) * 15.0f;
   }
   func_80046934(object, mantis);
   func_8004016C(object, mantis, 0x3DD67750, deltaAngle);

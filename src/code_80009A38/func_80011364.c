@@ -16,7 +16,7 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK func_80011194();                            /* extern */
 M2C_UNK func_800111F4();                            /* extern */
-s32 func_8009F760(M2C_UNK *, s32, M2C_UNK *);       /* extern */
+s32 osPfsFileState(M2C_UNK *, s32, M2C_UNK *);       /* extern */
 extern M2C_UNK D_80119A08;
 extern M2C_UNK D_80119A90;
 
@@ -25,7 +25,7 @@ s32 func_80011364(s32 arg0) {
     s32 sp1C;
 
     func_80011194();
-    temp_v0 = func_8009F760(&D_80119A08, arg0, &D_80119A90);
+    temp_v0 = osPfsFileState(&D_80119A08, arg0, &D_80119A90);
     sp1C = temp_v0;
     func_800111F4();
     return temp_v0;

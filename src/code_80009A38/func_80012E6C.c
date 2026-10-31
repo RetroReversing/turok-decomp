@@ -1,15 +1,15 @@
 #include "common.h"
 
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 typedef float CMtxF[4][4];
 extern void func_80012E6C(CMtxF mfThis, float Theta) ;
 void func_80012E6C(CMtxF mfThis, float Theta);
 void func_80012E6C(CMtxF mfThis, float Theta){
  float sine ;
  float cosine ;
- sine = func_8009E7B0(Theta) ;
- cosine = func_8009E630(Theta) ;
+ sine = __sinf(Theta) ;
+ cosine = __cosf(Theta) ;
  mfThis[0][3] = mfThis[1][3] = mfThis[2][3] =
  mfThis[3][0] = mfThis[3][1] = mfThis[3][2] =
  mfThis[2][1] = mfThis[1][2] = mfThis[1][0] = mfThis[0][1] = 0 ;

@@ -14,14 +14,14 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8009E4A0(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
-M2C_UNK func_800A1180(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK osCreateMesgQueue(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
+M2C_UNK osSendMesg(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 extern s32 D_800EF3A0;
 extern M2C_UNK D_80139F90;
 extern M2C_UNK D_80139F98;
 
 void func_800A84D0(void) {
     D_800EF3A0 = 1;
-    func_8009E4A0(&D_80139F98, &D_80139F90, 1);
-    func_800A1180(&D_80139F98, 0, 0);
+    osCreateMesgQueue(&D_80139F98, &D_80139F90, 1);
+    osSendMesg(&D_80139F98, 0, 0);
 }

@@ -310,8 +310,8 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1631,12 +1631,12 @@ CQuatern func_8001D464(CGameObjectInstance *pThis){
  pApp = (&D_800F9F10);
  if (pThis == ((pApp)->m_Scene.m_pPlayer))
  {
-  D_80119CB0 = func_8009E7B0(D_800F14F8); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = func_8009E630(D_800F14FC);;
+  D_80119CB0 = __sinf(D_800F14F8); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = __cosf(D_800F14FC);;
   func_80014CB8(&qRot, &qRotY, &pApp->m_qViewAlign);
  }
  else
  {
-  D_80119CB0 = func_8009E7B0((pThis->m_RotY + D_800F1500)/2); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = func_8009E630((pThis->m_RotY + D_800F1508)/2);;
+  D_80119CB0 = __sinf((pThis->m_RotY + D_800F1500)/2); (&qRotY)->x = (0)*D_80119CB0; (&qRotY)->y = (1)*D_80119CB0; (&qRotY)->z = (0)*D_80119CB0; (&qRotY)->t = __cosf((pThis->m_RotY + D_800F1508)/2);;
   func_80014CB8(&qRot, &qRotY, &pThis->m_qGround);
  }
  return qRot;

@@ -14,11 +14,11 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_800ACBAC(s32, s16 *, M2C_UNK);         /* extern */
+M2C_UNK alEvtqPostEvent(s32, s16 *, M2C_UNK);         /* extern */
 
 void func_800A4CD0(s32 arg0) {
     s16 sp18[7];
 
     sp18[0] = 0xF;
-    func_800ACBAC(arg0 + 0x48, sp18, 0);
+    alEvtqPostEvent(arg0 + 0x48, sp18, 0);
 }

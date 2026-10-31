@@ -14,10 +14,10 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8009D020(M2C_UNK, M2C_UNK *, M2C_UNK *); /* extern */
+M2C_UNK osSetEventMesg(M2C_UNK, M2C_UNK *, M2C_UNK *); /* extern */
 extern M2C_UNK D_800F9C20;
 extern M2C_UNK D_801199A8;
 
 void func_800111F4(void) {
-    func_8009D020(5, &D_800F9C20, &D_801199A8);
+    osSetEventMesg(5, &D_800F9C20, &D_801199A8);
 }

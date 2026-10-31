@@ -14,9 +14,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8009EA34(M2C_UNK *);                   /* extern */
+M2C_UNK osContGetReadData(M2C_UNK *);                   /* extern */
 extern M2C_UNK D_80119990;
 
 void func_80010C70(void) {
-    func_8009EA34(&D_80119990);
+    osContGetReadData(&D_80119990);
 }

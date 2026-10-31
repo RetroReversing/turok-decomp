@@ -173,6 +173,51 @@ def targets() -> None:
     print(f"assembled {len(B['functions'])} functions' targets for objdiff")
 
 
+import struct
+from io import BytesIO
+from elftools.elf.elffile import ELFFile
+from decompnet.elfobj import _function_symbols
+
+def normalize_prefix(path):
+ data=bytearray(path.read_bytes());e=ELFFile(BytesIO(data));fs=_function_symbols(e)
+ if len(fs)!=1:return False
+ shidx,start,size=next(iter(fs.values()))
+ if start==0:return False
+ sec=e.get_section(shidx)
+ # The observed IDO discarded-inline placeholder is jr ra; nop, never arbitrary code.
+ if sec.data()[:start] != bytes.fromhex('03e0000800000000'):raise ValueError('unexpected code prefix')
+ sy=e.get_section_by_name('.symtab');endian='>' if data[5]==2 else '<'
+ for s in sy.iter_symbols():
+  if s['st_shndx']==shidx and s['st_info']['type']!='STT_SECTION' and s['st_value']<start:
+   raise ValueError('prefix contains a named definition')
+ for rs in e.iter_sections():
+  if rs['sh_type'] not in ('SHT_REL','SHT_RELA'):continue
+  for i,r in enumerate(rs.iter_relocations()):
+   sym=e.get_section(rs['sh_link']).get_symbol(r['r_info_sym'])
+   if sym['st_shndx']==shidx:
+    if sym['st_info']['type']=='STT_SECTION':
+     at=elf_at= e.get_section(rs['sh_info'])['sh_offset']+r['r_offset']
+     word=struct.unpack_from(endian+'I',data,at)[0]
+     kind=r['r_info_type']
+     addend=(word&0x03ffffff)*4 if kind==4 else word
+     if kind not in (2,4) or not start<=addend<start+size:raise ValueError('unsupported or discarded text reference')
+     replacement=((word&0xfc000000)|((addend-start)//4)) if kind==4 else addend-start
+     struct.pack_into(endian+'I',data,at,replacement)
+    elif sym['st_value']<start:raise ValueError('reference to discarded text prefix')
+   if rs['sh_info']==shidx:
+    if r['r_offset']<start:raise ValueError('prefix has relocation')
+    struct.pack_into(endian+'I',data,rs['sh_offset']+i*rs['sh_entsize'],r['r_offset']-start)
+ for i,s in enumerate(sy.iter_symbols()):
+  if s['st_shndx']==shidx:
+   at=sy['sh_offset']+i*sy['sh_entsize']
+   struct.pack_into(endian+'I',data,at+4,max(0,s['st_value']-start))
+   if s['st_info']['type']=='STT_SECTION':struct.pack_into(endian+'I',data,at+8,sec['sh_size']-start)
+ shoff=struct.unpack_from(endian+'I',data,0x20)[0];stride=struct.unpack_from(endian+'H',data,0x2e)[0]
+ struct.pack_into(endian+'I',data,shoff+shidx*stride+16,sec['sh_offset']+start)
+ struct.pack_into(endian+'I',data,shoff+shidx*stride+20,sec['sh_size']-start)
+ path.write_bytes(data);return True
+
+
 def trim(path: Path) -> None:
     """Shrink a compiled object's code section to where its last function ends. Period assemblers pad sections to
     16 bytes; with every function placed at its own address, that padding would run into the next function."""
@@ -183,6 +228,7 @@ def trim(path: Path) -> None:
 
     from decompnet.elfobj import _function_symbols
 
+    normalize_prefix(path)
     data = bytearray(path.read_bytes())
     elf = ELFFile(BytesIO(bytes(data)))
     ends: dict[int, int] = {}
@@ -359,6 +405,23 @@ def linker_script(provides: dict[str, str], placed: list[tuple[int, int, str]], 
     return "\n".join(lines) + "\n"
 
 
+def binary_image_options(path: Path) -> list[str]:
+    """A static MIPS link can leave reserved R_NONE slots at a RAM-only load address.
+
+    They contain no fixups or game bytes, but objcopy otherwise tries to include them at a
+    negative ROM offset. Real dynamic relocations must never be silently dropped.
+    """
+    from elftools.elf.elffile import ELFFile
+
+    with path.open("rb") as stream:
+        section = ELFFile(stream).get_section_by_name(".rel.dyn")
+        if section is None:
+            return []
+        if any(rel["r_info_type"] != 0 for rel in section.iter_relocations()):
+            raise ValueError("The linked game still has dynamic relocations; use a static link before making a ROM.")
+    return ["-R", ".rel.dyn"]
+
+
 def build() -> bool:
     setup()
     todo, provides, placed = objects()
@@ -369,7 +432,8 @@ def build() -> bool:
     # the objects in a response file: a PSP game with its modules has 48,000 functions, past the command line's limit
     (ROOT / "build" / "objects.txt").write_text("\n".join(objs) + "\n", encoding="utf-8")
     run([binutils("ld"), *B["ld_flags"], "-T", "build/game.ld", "-o", "build/game.elf", "@build/objects.txt"])
-    run([binutils("objcopy"), "-O", "binary", "build/game.elf", B["output"]])
+    run([binutils("objcopy"), "-O", "binary", *binary_image_options(ROOT / "build/game.elf"),
+         "build/game.elf", B["output"]])
     out, base = (ROOT / B["output"]).read_bytes(), (ROOT / B["image"]).read_bytes()
     c_count = sum(1 for fn in B["functions"] if c_source(fn))
     if out == base:

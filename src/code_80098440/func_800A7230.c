@@ -14,7 +14,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8009D0B0(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
+M2C_UNK osRecvMesg(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
 M2C_UNK func_800A71E0();                            /* extern */
 extern s32 D_800EF340;
 extern M2C_UNK D_80139F78;
@@ -25,5 +25,5 @@ void func_800A7230(void) {
     if (D_800EF340 == 0) {
         func_800A71E0();
     }
-    func_8009D0B0(&D_80139F78, &sp1C, 1);
+    osRecvMesg(&D_80139F78, &sp1C, 1);
 }

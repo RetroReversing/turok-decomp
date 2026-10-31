@@ -689,8 +689,8 @@ typedef struct {
     ALMicroTime curTime;
 } ALSndPlayer;
 typedef sa_s16 ALSndId;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -2082,15 +2082,15 @@ void func_8008BC74(int cfxnum, CVector3 *vPos, int SndFlags){
    randpos = ((D_80013888() % (1000))/1000.0)*(10*(1024.0/100.0));
    Angle = (((D_80013888() % (360)))*(3.14159265358979323846/180));
   }
-  vPos->x += (40*(1024.0/100.0)+randpos)*func_8009E7B0(Angle);
-  vPos->z += (40*(1024.0/100.0)+randpos)*func_8009E630(Angle);
+  vPos->x += (40*(1024.0/100.0)+randpos)*__sinf(Angle);
+  vPos->z += (40*(1024.0/100.0)+randpos)*__cosf(Angle);
   if(SndFlags & (1 << 5))
   {
    vPos->x = D_80129520.Ears.vPos.x;
    vPos->z = D_80129520.Ears.vPos.z;
    vPos->z = D_80129520.Ears.vPos.z;
-   sinRotY = func_8009E7B0((&D_800F9F10)->m_RotY + 3.14159265358979323846);
-   cosRotY = func_8009E630((&D_800F9F10)->m_RotY + 3.14159265358979323846);
+   sinRotY = __sinf((&D_800F9F10)->m_RotY + 3.14159265358979323846);
+   cosRotY = __cosf((&D_800F9F10)->m_RotY + 3.14159265358979323846);
    vPos->x += sinRotY*((40*(1024.0/100.0)+20*(1024.0/100.0))*(1024.0/100.0));
    vPos->z += cosRotY*((40*(1024.0/100.0)+20*(1024.0/100.0))*(1024.0/100.0));
   }

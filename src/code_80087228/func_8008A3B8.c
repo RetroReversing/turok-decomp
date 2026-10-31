@@ -47,7 +47,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -490,7 +490,7 @@ signed short func_8008A3B8(signed long VirtualHandle){
  if((Channel == -1) || (Channel == 16))
   return -1;
  ospri = func_800A1920(((void*)0));
- func_8009E4D0(((void*)0), 13);
+ osSetThreadPri(((void*)0), 13);
  sndplayer = &D_80129520.SndPlayerList;
  Sndp = &D_80129520.SndPlayerList.Sndp;
  sndptr = &D_80129520.VoiceChannels[Channel].theSFX;
@@ -499,13 +499,13 @@ signed short func_8008A3B8(signed long VirtualHandle){
                                                  ;
  if (func_80089EC4(Channel) == 0)
  {
-  func_8009E4D0(((void*)0), ospri);
+  osSetThreadPri(((void*)0), ospri);
   return 0;
  }
  D_800A3D90(Sndp, sndptr->Pitch);
    D_800A3DF0(Sndp, sndptr->FXmix);
    D_800A3E50(Sndp, sndptr->Pan);
    D_800A3EB0(Sndp, sndptr->Vol*D_800ECF4C);
- func_8009E4D0(((void*)0), ospri);
+ osSetThreadPri(((void*)0), ospri);
  return 0;
 }

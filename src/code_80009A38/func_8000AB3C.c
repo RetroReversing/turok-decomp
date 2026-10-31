@@ -20,7 +20,7 @@ M2C_UNK CEngineApp__PrepareFrame(void *, M2C_UNK);             /* extern */
 M2C_UNK func_8000B96C();                            /* extern */
 M2C_UNK func_8001116C();                            /* extern */
 f32 func_800513F4(s32);                             /* extern */
-M2C_UNK func_8009E970(M2C_UNK *);                   /* extern */
+M2C_UNK osContStartReadData(M2C_UNK *);                   /* extern */
 extern u8 D_800B86D0;
 extern M2C_UNK D_800F9C20;
 extern s32 D_800F9E44;
@@ -30,7 +30,7 @@ extern s32 D_8011990C;
 void func_8000AB3C(void *arg0) {
     if ((D_800B86D0 != 0) && (D_80119908 == 0)) {
         D_80119908 = 1;
-        func_8009E970(&D_800F9C20);
+        osContStartReadData(&D_800F9C20);
     }
     if (D_8011990C != 0) {
         func_8001116C();

@@ -8,3 +8,9 @@
 - Function boundaries and inferred semantics require review. Keep address-based names until ROM-derived evidence supports a stronger name.
 - Never commit ROMs, extracted binaries, generated assembly/assets, build output, compiler binaries, credentials or local databases.
 - Report detected candidates, matching bytes, C selected in the build, assembly fallbacks, and original-cartridge verification separately. Never equate a byte-identical partial build with full decompilation.
+
+- Keep the live decompdecomp Turok project and this standalone repository synchronized after every matching session. Promote verified sources and their required contexts through the app’s normal judging/promotion paths, preserve claims and history, and verify the repository build. Audit both directions for concurrent app matches. Flush verified progress to the app’s saved files and wait for any revalidation to finish; a temporary database count alone is not proof of a persisted sync. Report any remaining synchronization blockers explicitly; a repository-only recovery is not finished work. Commit and push only when authorized.
+
+- Mutate the running app through its authenticated API/tools. Do not create another `RomNetwork` writer against its live database: separate progress caches can race the app’s autosave. Read-only database audits are allowed. Verify saved source files and context, not only match totals.
+
+- When updating the app, preserve the tested ELF relocation-table-order HI16/LO16 fix. The repair source is in `/Volumes/Data/Codex/worktrees/decompdecomp-turok-sync-20261031` (`fix/turok-live-sync-relocations`). Recheck known multi-address relocation cases before replacing the working app bundle.

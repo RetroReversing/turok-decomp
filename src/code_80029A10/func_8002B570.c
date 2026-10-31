@@ -14,7 +14,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8002864C(void *, void *);              /* extern */
+M2C_UNK CParticleSystem__DeallocateParticle(void *, void *);              /* extern */
 
 void func_8002B570(void *arg0) {
     void *temp_a1;
@@ -25,7 +25,7 @@ void func_8002B570(void *arg0) {
         do {
             temp_a1 = var_s0;
             var_s0 = M2C_FIELD(var_s0, void **, 0x178);
-            func_8002864C(arg0, temp_a1);
+            CParticleSystem__DeallocateParticle(arg0, temp_a1);
         } while (var_s0 != NULL);
     }
 }

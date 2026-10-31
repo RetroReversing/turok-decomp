@@ -47,7 +47,7 @@ typedef struct OSThread_s {
     __OSThreadprofile_s *thprof;
     __OSThreadContext context;
 } OSThread;
-extern void func_8009E4D0(OSThread *, OSPri);
+extern void osSetThreadPri(OSThread *, OSPri);
 extern OSPri func_800A1920(OSThread *);
 typedef void *OSMesg;
 typedef struct OSMesgQueue_s {
@@ -480,7 +480,7 @@ void func_8008A0EC(int Channel, signed long VirtualHandle, CVector3 *vPos){
  sa_s32 Priority;
  OSPri ospri;
  ospri = func_800A1920(((void*)0));
- func_8009E4D0(((void*)0), 13);
+ osSetThreadPri(((void*)0), 13);
  if (D_80129498.Next!=&D_80129498)
  {
   pQue = func_8008B818(D_80129498.Next);
@@ -503,5 +503,5 @@ void func_8008A0EC(int Channel, signed long VirtualHandle, CVector3 *vPos){
  D_80129520.VoiceChannels[16].theSFX.SfxNum = -1;
  D_80129520.VoiceChannels[16].VirtualHandle = -1;
  D_80129520.VoiceChannels[16].PhysicalHandle = -1;
- func_8009E4D0(((void*)0), ospri);
+ osSetThreadPri(((void*)0), ospri);
 }

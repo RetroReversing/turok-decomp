@@ -392,8 +392,8 @@ typedef union
   Gloadtlut loadtlut;
   long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 extern float func_8009E7A0(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -1862,9 +1862,9 @@ void func_80048400(CGameObjectInstance *pThis, CTRex *pTRex)
 
     case TREX_LEDGE_ATTACK_ACTION:
       rot = func_80013A24(&pTurok->ah.ih.m_vPos) + D_800F29A8;
-      pTRex->m_Boss.m_vTarget.x = pTurok->ah.ih.m_vPos.x - (pTRex->m_TargetDist * func_8009E7B0(rot));
+      pTRex->m_Boss.m_vTarget.x = pTurok->ah.ih.m_vPos.x - (pTRex->m_TargetDist * __sinf(rot));
       pTRex->m_Boss.m_vTarget.y = pThis->ah.ih.m_vPos.y;
-      pTRex->m_Boss.m_vTarget.z = pTurok->ah.ih.m_vPos.z - (pTRex->m_TargetDist * func_8009E630(rot));
+      pTRex->m_Boss.m_vTarget.z = pTurok->ah.ih.m_vPos.z - (pTRex->m_TargetDist * __cosf(rot));
       break;
 
     case TREX_ATTACK_ACTION:
@@ -1894,9 +1894,9 @@ void func_80048400(CGameObjectInstance *pThis, CTRex *pTRex)
     else
     {
       rot = pTurok->m_RotY;
-      pTRex->m_Boss.m_vTarget.x = pTurok->ah.ih.m_vPos.x - (pTRex->m_TargetDist * func_8009E7B0(rot));
+      pTRex->m_Boss.m_vTarget.x = pTurok->ah.ih.m_vPos.x - (pTRex->m_TargetDist * __sinf(rot));
       pTRex->m_Boss.m_vTarget.y = pThis->ah.ih.m_vPos.y;
-      pTRex->m_Boss.m_vTarget.z = pTurok->ah.ih.m_vPos.z - (pTRex->m_TargetDist * func_8009E630(rot));
+      pTRex->m_Boss.m_vTarget.z = pTurok->ah.ih.m_vPos.z - (pTRex->m_TargetDist * __cosf(rot));
     }
       break;
 

@@ -392,8 +392,8 @@ typedef union
   Gloadtlut loadtlut;
   long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
-extern float func_8009E630(float angle);
+extern float __sinf(float angle);
+extern float __cosf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1846,11 +1846,11 @@ CQuatern func_8001D5C8(CInstanceHdr *pThis, CVector3 vPos)
   func_80013B2C(&vAxis);
   dot = (((&vZ)->x * (&vDelta)->x) + ((&vZ)->y * (&vDelta)->y)) + ((&vZ)->z * (&vDelta)->z);
   theta = func_8001349C(dot);
-  D_80119CB0 = func_8009E7B0(theta / 2);
+  D_80119CB0 = __sinf(theta / 2);
   (&qAim)->x = vAxis.x * D_80119CB0;
   (&qAim)->y = vAxis.y * D_80119CB0;
   (&qAim)->z = vAxis.z * D_80119CB0;
-  (&qAim)->t = func_8009E630(theta / 2);
+  (&qAim)->t = __cosf(theta / 2);
   ;
   if (pThis->m_Type == 1)
     func_80014CB8(&qFinal, &qRot, &qAim);

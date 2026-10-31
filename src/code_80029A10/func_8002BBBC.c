@@ -54,7 +54,7 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern sa_s32 func_8009D0B0(OSMesgQueue *, OSMesg *, sa_s32);
+extern sa_s32 osRecvMesg(OSMesgQueue *, OSMesg *, sa_s32);
 typedef sa_u64 OSTime;
 typedef struct {
  sa_u32 type;
@@ -118,30 +118,30 @@ typedef struct {
 extern sa_u64 dram_stack[];
 extern void func_8002C5D4(OSSched *s, OSScTask *t);
 extern void func_8002C63C(OSSched *D_800F95E0, OSScTask *sp, OSScTask *dp);
-extern void func_8002C7A0(OSSched *s);
-extern sa_s32 func_8002C7DC(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp,
+extern void __scYield(OSSched *s);
+extern sa_s32 __scSchedule(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp,
                              sa_s32 availRCP);
 extern void func_8002BBBC(OSSched *D_800F95E0);
 void func_8002BBBC(OSSched *D_800F95E0);
 void func_8002C5D4(OSSched *D_800F95E0, OSScTask *t);
 void func_8002C63C(OSSched *D_800F95E0, OSScTask *sp, OSScTask *dp);
-extern void func_8002C7A0(OSSched *D_800F95E0);
-sa_s32 func_8002C7DC(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
+extern void __scYield(OSSched *D_800F95E0);
+sa_s32 __scSchedule(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
 void func_8002BBBC(OSSched *D_800F95E0){
  OSScTask *rspTask = 0;
  OSScTask *sp = 0;
  OSScTask *dp = 0;
  sa_u32 state;
- while (func_8009D0B0(&D_800F95E0->cmdQ, (OSMesg*) &rspTask, 0) != -1)
+ while (osRecvMesg(&D_800F95E0->cmdQ, (OSMesg*) &rspTask, 0) != -1)
   func_8002C5D4(D_800F95E0, rspTask);
  if (D_800F95E0->doAudio && D_800F95E0->curRSPTask)
  {
-  func_8002C7A0(D_800F95E0);
+  __scYield(D_800F95E0);
  }
  else
  {
   state = ((D_800F95E0->curRSPTask == 0) << 1) | (D_800F95E0->curRDPTask == 0);
-  if (func_8002C7DC (D_800F95E0, &sp, &dp, state) != state)
+  if (__scSchedule (D_800F95E0, &sp, &dp, state) != state)
    func_8002C63C(D_800F95E0, sp, dp);
  }
 }

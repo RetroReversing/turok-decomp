@@ -54,7 +54,7 @@ typedef struct OSMesgQueue_s {
     sa_s32 msgCount;
     OSMesg *msg;
 } OSMesgQueue;
-extern void func_8009DD40(void *);
+extern void osViSwapBuffer(void *);
 typedef sa_u64 OSTime;
 typedef struct {
  sa_u32 type;
@@ -126,7 +126,7 @@ sa_s32 func_8002C56C(OSSched *D_800F95E0, OSScTask *t){
   {
    if ((t->flags & 0x0040) && (t->flags & 0x0020))
    {
-    func_8009DD40(t->framebuffer);
+    osViSwapBuffer(t->framebuffer);
    }
   }
   return 1;

@@ -1861,3 +1861,4 @@ void AI_Standard_Idle(CGameObjectInstance *pMe)
     }
   }
 }
+u32 D_800BE5EC=1;

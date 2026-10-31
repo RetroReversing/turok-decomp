@@ -310,7 +310,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7B0(float angle);
+extern float __sinf(float angle);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -1663,7 +1663,7 @@ void func_800833C0(Gfx **ppDLP){
       active->Mode = GAMETEXT_DISPLAY ;
       active->Time = active->DisplayTime ;
      }
-     active->Scale = func_8009E7B0(active->Alpha * (3.14159265358979323846/2)/255) ;
+     active->Scale = __sinf(active->Alpha * (3.14159265358979323846/2)/255) ;
      break ;
     case GAMETEXT_DISPLAY:
      active->Scale = 1.0 ;
@@ -1672,7 +1672,7 @@ void func_800833C0(Gfx **ppDLP){
       active->Mode = GAMETEXT_FADEDOWN ;
      break ;
     case GAMETEXT_FADEDOWN:
-     active->Scale -= func_8009E7B0(255-(active->Alpha * 3.14159265358979323846/255))/3 ;
+     active->Scale -= __sinf(255-(active->Alpha * 3.14159265358979323846/255))/3 ;
      if (active->Scale <0)
       active->Scale = 0 ;
      active->Alpha -= 24 ;
