@@ -1913,9 +1913,10 @@
       "name": "code_80009A38/CVector3__ProjectCrease",
       "target_path": "build/asm/nonmatchings/code_80009A38/CVector3__ProjectCrease.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80009A38/CVector3__ProjectCrease.c"
+      },
+      "base_path": "build/src/code_80009A38/CVector3__ProjectCrease.o"
     },
     {
       "name": "code_80009A38/func_80014074",
@@ -2445,9 +2446,10 @@
       "name": "code_80017F0C/func_80019300",
       "target_path": "build/asm/nonmatchings/code_80017F0C/func_80019300.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80017F0C/func_80019300.c"
+      },
+      "base_path": "build/src/code_80017F0C/func_80019300.o"
     },
     {
       "name": "code_80017F0C/func_80019C78",
@@ -4155,9 +4157,10 @@
       "name": "code_80029A10/func_8002DB18",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002DB18.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002DB18.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002DB18.o"
     },
     {
       "name": "code_80029A10/func_8002DB84",
@@ -19216,9 +19219,10 @@
       "name": "code_80098440/guLookAt",
       "target_path": "build/asm/nonmatchings/code_80098440/guLookAt.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/guLookAt.c"
+      },
+      "base_path": "build/src/code_80098440/guLookAt.o"
     },
     {
       "name": "code_80098440/guPerspectiveF",
@@ -20852,9 +20856,10 @@
       "name": "code_80098440/alSynAllocFX",
       "target_path": "build/asm/nonmatchings/code_80098440/alSynAllocFX.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSynAllocFX.c"
+      },
+      "base_path": "build/src/code_80098440/alSynAllocFX.o"
     },
     {
       "name": "code_80098440/func_800ADEF0",
@@ -20869,9 +20874,10 @@
       "name": "code_80098440/alMainBusPull",
       "target_path": "build/asm/nonmatchings/code_80098440/alMainBusPull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alMainBusPull.c"
+      },
+      "base_path": "build/src/code_80098440/alMainBusPull.o"
     },
     {
       "name": "code_80098440/alLoadParam",

@@ -62,3 +62,8 @@ Ten additional selected C functions / 1,636 bytes bring the selection to **2,087
 ## User optimization-check checkpoint, 31 October
 
 Ten user-discovered app matches add 14,728 selected C bytes: **2,097 C functions / 477,728 bytes (76.313%)**. All ten pass per-function checks and the complete original-cartridge rebuild. The 44 partially improved candidates are retained separately under `drafts/optimization-20261031` and excluded from coverage. See the source-assisted report for attribution and the particle constant-pool integration repair.
+
+
+## Ten-function live-API pass, 31 October
+
+Ten unmatched functions were tried through the live app API after `a7a06b6`: **six matched / 3,248 bytes**, one improved without matching, and three retained their previous near-match scores. Selection is **2,103 C functions / 480,976 bytes (76.832%)**, with a byte-identical full cartridge rebuild and saved app-project audit. See [the live-API report](SOURCE_ASSISTED_CHECKPOINT.md#ten-function-live-api-pass--31-october-2026) for individual results and source-assisted provenance.

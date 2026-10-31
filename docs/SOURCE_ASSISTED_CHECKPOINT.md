@@ -234,3 +234,25 @@ The complete expanded image and reconstructed 8,388,608-byte cartridge both pass
 The user's live-app compiler check supplied ten additional exact matches / 14,728 bytes beyond `d9381c1`. Standalone integration selects 2,097 C functions / 477,728 bytes (76.313% of the fixed 626,012 candidate-code bytes). All ten passed standalone per-function checks with their saved app contexts and profiles. The 44 still-unmatched candidates with lower scores than the preceding checkpoint are preserved under `drafts/optimization-20261031`, with source, context, score and compiler profile; they are not selected C or credited as recovered bytes. These results precede the following live-API matching session and must not be attributed to that session.
 
 The complete expanded image and reconstructed 8 MiB cartridge pass byte for byte, retaining SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The particle draw routine uses an external reference to the original string to keep its numeric/jump-table pool contiguous; the live API verifies this equivalent representation at score zero without replacing its already-matched source.
+
+
+## Ten-function live-API pass — 31 October 2026
+
+After the user optimization checkpoint (`a7a06b6`), ten distinct unmatched functions were attempted directly through the running app's authenticated API. Candidate judging and history used `/api/function`, `/api/diff` and `/api/try`; no isolated analysis database or second live writer was used. Standalone checks were performed only to integrate accepted results into this repository.
+
+| App function | Before score | After score | Result / repair |
+| --- | ---: | ---: | --- |
+| `guLookAt` | 5 | 0 | Correct SDK argument order. |
+| `func_8002DB18` | 20 | 0 | Typed inline setters and their pointer locals. |
+| `func_80019300` | 20 | 0 | Resolve glare color to target address `0x8011A0CC`. |
+| `func_80013FD8` / `CVector3__ProjectCrease` | 50 | 0 | Return a structure, preserving IDO's hidden result-pointer ABI. |
+| `alSynAllocFX` | 110 | 0 | Typed auxiliary-bus layout and SDK expressions. |
+| `alMainBusPull` | 140 | 0 | SDK command macros, source indexing and original body layout. |
+| `func_800B13E8` | 20 | 20 | Still differs in register allocation. |
+| `func_800B0F18` | 20 | 20 | Still differs in register allocation. |
+| `func_800A5F34` | 10 | 10 | One temporary-register choice still differs. |
+| `func_8002DD90` | 155 | 115 | Correct pointer scaling; not matched. |
+
+This pass adds **six exact matches / 3,248 selected C bytes**, not ten matches. Selection becomes **2,103 C functions / 480,976 bytes (76.831754% of 626,012)**. The unmatched iterator's best source is retained in the app and under `drafts/live-api-20261031`; worse trial candidates are not selected. The source-assisted reference archives were consulted. Existing compiler profiles were retained throughout these ten attempts.
+
+The complete expanded image and reconstructed 8,388,608-byte original cartridge pass byte for byte, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. All six additions remain selected C with no assembly fallback. The saved-app audit finds all 2,103 repository selections matched, saved sources and headers present, and no saved-source discrepancies; revalidation is finished. The app has 2,104 isolated matches, including the old unexported `func_800587B8`. No push was requested for these results.
