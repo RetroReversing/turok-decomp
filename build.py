@@ -184,8 +184,9 @@ def normalize_prefix(path):
  shidx,start,size=next(iter(fs.values()))
  if start==0:return False
  sec=e.get_section(shidx)
- # The observed IDO discarded-inline placeholder is jr ra; nop, never arbitrary code.
- if sec.data()[:start] != bytes.fromhex('03e0000800000000'):raise ValueError('unexpected code prefix')
+ # Each observed IDO discarded-inline placeholder is jr ra; nop; several inlines emit several stubs.
+ stub=bytes.fromhex('03e0000800000000')
+ if start % len(stub) or sec.data()[:start] != stub * (start // len(stub)):raise ValueError('unexpected code prefix')
  sy=e.get_section_by_name('.symtab');endian='>' if data[5]==2 else '<'
  for s in sy.iter_symbols():
   if s['st_shndx']==shidx and s['st_info']['type']!='STT_SECTION' and s['st_value']<start:

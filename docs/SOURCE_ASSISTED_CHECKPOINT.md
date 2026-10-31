@@ -201,3 +201,29 @@ The saved-file audit found 1,657 missing or outdated source files despite the ma
 The final bidirectional audit finds **all 2,077 standalone C selections matched in the app**, with **zero missing saved sources/headers and zero saved-source/database discrepancies**. The app's one additional isolated match is `func_800587B8`; it remains excluded from the standalone build for the documented constant-pool placement reason. Three equivalent source representations remain as described above; these are not missing recoveries. The saved manifest is revision **396**, with all **2,078 matching C files** present.
 
 The standalone cartridge was checked again after synchronization: all 2,077 selected C objects are in the link, the complete image remains byte identical, and SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The app window was checked after restart and left open on Turok. App/database backups are under `/Volumes/Data/Codex/app-backups/turok-sync-20261031/`. Future checkpoints must pass both the live and saved-file audits, not merely report a database match count.
+
+
+## Ten additional source-assisted matches — 31 October 2026
+
+Starting from `401c373` (2,077 selected C functions / 461,364 bytes), this pass adds **10 selected C functions / 1,636 bytes**. The selection is **2,087 C functions / 463,000 bytes**, **73.960244%** of the fixed 626,012 candidate-code bytes, a gain of **0.261337 percentage points**. The other 320 build entries remain assembly. This is partial, source-assisted reconstruction, not a complete decompilation.
+
+| Function | Bytes | IDO 5.3 optimization | Main repair |
+| --- | ---: | --- | --- |
+| `func_800016A4` | 444 | `-O2` | Typed eight-byte signature object copied into the local record, separating actual data from pool padding. |
+| `func_80013DC8` | 156 | `-O3` | Archived vector clamp body and macros. |
+| `func_8002D978` | 96 | `-O3` | Typed stream-set attach body and correct free prototype. |
+| `func_8002DA9C` | 124 | `-O3` | Archived preallocation body, including inline setters' pointer locals. |
+| `func_8002DCCC` | 92 | `-O3` | Typed indexed-set attach body. |
+| `alSndpSetFXMix` | 88 | `-O3` | SDK event body and typed byte payload. |
+| `alSndpSetVol` | 88 | `-O3` | SDK event body and typed short payload. |
+| `alCSeqSetLoc` | 160 | `-O2` | Sequence/marker record layout and 16-track loop. |
+| `alCSeqSecToTicks` | 252 | `-O2` | SDK expression with literal `1000000.0` and direct division-field access. |
+| `alResampleNew` | 136 | `-O3` | Typed initializer and zero-store ordering. |
+
+The authorized Turok and SDK source archives supplied the reference bodies. Seven functions require individually verified `-O3` profiles instead of the provisional broad `-O2` profile. Those exceptions cover only the seven functions' exact address ranges, and agree between the repository and app. Every previously selected C function retains its compiler profile. IDO 5.3 remains a working toolchain rather than proof of the original release. Four bounded app permutation searches under `-O2` found no improvements; they are not credited with these recoveries.
+
+A separate standalone export fix accepts repeated unreferenced eight-byte `jr ra; nop` discarded-inline stubs before the sole function. The preallocation object contains two such stubs. Arbitrary instructions and relocations into discarded prefixes remain rejected; named prefixes remain intact. Synthetic MIPS-object checks cover these cases. Original function addresses, target bytes, cartridge hashes and comparison gates are unchanged.
+
+The live app accepts all ten through its normal compile/link judge. A read-only audit finds all 2,087 selected functions matched in the app, with saved sources and headers present and saved source equal to the matched database source. Saved revision 408 contains 2,088 matches: the additional old `func_800587B8` is still excluded from standalone selection because its data placement is unresolved. Three pre-existing equivalent source/context representations remain documented differences. No extra writer was opened against the live database.
+
+The complete expanded image and reconstructed 8,388,608-byte cartridge both pass their unchanged byte comparisons. Cartridge SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`. All 2,087 C selections are retained with no new assembly fallback. Local ROMs, generated objects, databases and private evidence are excluded from Git.

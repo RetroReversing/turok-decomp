@@ -52,3 +52,8 @@ The verified standalone selection is now **2,066 C functions / 455,668 bytes (72
 ## Focused thirty-minute continuation, 31 October
 
 The standalone selection reaches **2,077 C functions / 461,364 bytes (73.699% of the fixed candidate-code total)**, adding **11 selections / 5,696 bytes**, or **0.910 percentage points**, over commit `4082329`. The pass repaired switch selectors and constant-pool boundaries in existing drafts and recovered the audio initializer, graphics-task routine and Controller Pak file listing. The complete original cartridge remains byte identical. See [the focused-session report](SOURCE_ASSISTED_CHECKPOINT.md#focused-thirty-minute-continuation--31-october-2026) for attribution, source differences and verification.
+
+
+## Ten-match source-assisted continuation, 31 October
+
+Ten additional selected C functions / 1,636 bytes bring the selection to **2,087 C functions / 463,000 bytes (73.960% of the fixed candidate-code total)**, up **0.261 percentage points**. The app has accepted and persisted all ten; all repository selections have saved app sources and headers. Seven narrowly scoped `-O3` profiles and source/type repairs account for the new matches. The complete original cartridge rebuild passes byte for byte, with no fallback among the ten additions. See [the ten-match report](SOURCE_ASSISTED_CHECKPOINT.md#ten-additional-source-assisted-matches--31-october-2026).

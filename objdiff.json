@@ -139,9 +139,10 @@
       "name": "code_80001300/func_800016A4",
       "target_path": "build/asm/nonmatchings/code_80001300/func_800016A4.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80001300/func_800016A4.c"
+      },
+      "base_path": "build/src/code_80001300/func_800016A4.o"
     },
     {
       "name": "code_80001300/func_80001860",
@@ -1885,9 +1886,10 @@
       "name": "code_80009A38/func_80013DC8",
       "target_path": "build/asm/nonmatchings/code_80009A38/func_80013DC8.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80009A38/func_80013DC8.c"
+      },
+      "base_path": "build/src/code_80009A38/func_80013DC8.o"
     },
     {
       "name": "code_80009A38/func_80013E64",
@@ -4087,9 +4089,10 @@
       "name": "code_80029A10/func_8002D978",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002D978.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002D978.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002D978.o"
     },
     {
       "name": "code_80029A10/func_8002D9D8",
@@ -4139,9 +4142,10 @@
       "name": "code_80029A10/func_8002DA9C",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002DA9C.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002DA9C.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002DA9C.o"
     },
     {
       "name": "code_80029A10/func_8002DB18",
@@ -4227,9 +4231,10 @@
       "name": "code_80029A10/func_8002DCCC",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002DCCC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002DCCC.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002DCCC.o"
     },
     {
       "name": "code_80029A10/CIndexedSet__ConstructFromRawData",
@@ -19441,9 +19446,10 @@
       "name": "code_80098440/alSndpSetFXMix",
       "target_path": "build/asm/nonmatchings/code_80098440/alSndpSetFXMix.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSndpSetFXMix.c"
+      },
+      "base_path": "build/src/code_80098440/alSndpSetFXMix.o"
     },
     {
       "name": "code_80098440/alSndpSetPan",
@@ -19458,9 +19464,10 @@
       "name": "code_80098440/alSndpSetVol",
       "target_path": "build/asm/nonmatchings/code_80098440/alSndpSetVol.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSndpSetVol.c"
+      },
+      "base_path": "build/src/code_80098440/alSndpSetVol.o"
     },
     {
       "name": "code_80098440/alSndpStop",
@@ -19538,9 +19545,10 @@
       "name": "code_80098440/alCSeqSetLoc",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSeqSetLoc.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSeqSetLoc.c"
+      },
+      "base_path": "build/src/code_80098440/alCSeqSetLoc.o"
     },
     {
       "name": "code_80098440/func_800A4200",
@@ -19604,9 +19612,10 @@
       "name": "code_80098440/alCSeqSecToTicks",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSeqSecToTicks.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSeqSecToTicks.c"
+      },
+      "base_path": "build/src/code_80098440/alCSeqSecToTicks.o"
     },
     {
       "name": "code_80098440/alCSeqTicksToSec",
@@ -20790,9 +20799,10 @@
       "name": "code_80098440/alResampleNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alResampleNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alResampleNew.c"
+      },
+      "base_path": "build/src/code_80098440/alResampleNew.o"
     },
     {
       "name": "code_80098440/alLoadNew",
