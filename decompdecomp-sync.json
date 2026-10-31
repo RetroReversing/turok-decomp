@@ -40,7 +40,17 @@
     "src/code_80098440/__d_to_ull.c": "2c8d2a5d608945bb9809e31ccb3216ed288f76554191a88585fe92ee413cafcc",
     "src/code_80098440/osSendMesg.c": "e1e4d00496df2bab440c5ec4e2429ca2477050889f28b4a7352d442217f5ccd5",
     "src/code_80098440/osJamMesg.c": "00b48f4acebd4a3dc20e073d82b68f3b5a694e4ff5f91b26ca6248017af7ce48",
-    "src/code_80098440/__voiceNeedsNoteKill.c": "086b26c31ff7625c21f6299af91ceeea1e34be999234e80bc8af455539845360"
+    "src/code_80098440/__voiceNeedsNoteKill.c": "086b26c31ff7625c21f6299af91ceeea1e34be999234e80bc8af455539845360",
+    "src/code_80098440/__osTimerInterrupt.c": "ba1644cf8b55b3f6bfe8c063349a6662c734fd26a58090314368a4a0bffd5169",
+    "src/code_80098440/osContStartReadData.c": "bfbac17009634cef369a6df5cb13071c77ea6a867c84458369d004062fbce74a",
+    "src/code_80098440/osCreatePiManager.c": "c94e30d9384e5c9655a863d3d094203e6c86a31f89e7af8429ac373d84ce4dfd",
+    "src/code_80098440/guMtxF2L.c": "c08e5dfd29f29b84f1790bdf5a9d64aaa1c739b6302bae928fcf5bf315a10809",
+    "src/code_80098440/__osTimerServicesInit.c": "71f32e03d391c2392783fe58d2c1c779a9d29bb58bb575fb0c8d200a7df088dd",
+    "src/code_80098440/__osInsertTimer.c": "daf5e8948f540daef22c1db7f9e3bd81383bd3457ccd57273f2c6edcc2c8b40d",
+    "src/code_80098440/osContGetReadData.c": "d6f99ed9ff286c8aff7ed808f961721846e5f8376cc11266097b25490b2d9627",
+    "src/code_80098440/__osPackReadData.c": "8bedfa68dc9e2e99f2bbbe10ba0c194d19fc3798079cc8624e6d1f8ad9df4c06",
+    "src/code_80098440/osCreateViManager.c": "070d9b5ac333c1774cb2a22afce5e55b6fd12376194bd0c225760bdea6643a8a",
+    "src/code_80098440/guMtxL2F.c": "d89c7be610114a9b02a8d4984712cfc718f83e4fcad1f40f5f1604c3d755b160"
   },
   "accepted": [
     "__d_to_ull",
@@ -49,8 +59,12 @@
     "__ll_mul",
     "__osCheckId",
     "__osClearPage",
+    "__osInsertTimer",
+    "__osPackReadData",
     "__osResetGlobalIntMask",
     "__osSetTimerIntr",
+    "__osTimerInterrupt",
+    "__osTimerServicesInit",
     "__ull_rshift",
     "__ull_to_d",
     "__voiceNeedsNoteKill",
@@ -75,8 +89,14 @@
     "func_800AD680",
     "func_800AFDD0",
     "func_800AFF50",
+    "guMtxF2L",
+    "guMtxL2F",
     "init_lpfilter",
+    "osContGetReadData",
+    "osContStartReadData",
+    "osCreatePiManager",
     "osCreateThread",
+    "osCreateViManager",
     "osDestroyThread",
     "osGetTime",
     "osJamMesg",
@@ -91,5 +111,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2144
+  "matched_app": 2154
 }

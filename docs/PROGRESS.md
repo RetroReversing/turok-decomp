@@ -87,3 +87,8 @@ Ten additional live-API matches add **1,988 bytes**, bringing standalone selecti
 ## 31 October 2026 — ten thread, messaging and runtime matches
 
 Ten more exact live-API matches add **2,560 bytes**, bringing standalone selection to **2,143 C functions / 488,552 bytes (78.042%)**. Original SDK types, register locals and `-O1` recovered timer, thread and message routines. Two runtime helpers needed MIPS III/O32, the voice-kill routine needed `-O3`, and the sequence-player constructor matched at `-O2`. The complete cartridge remains byte-identical; all ten are persisted in the app and selected in the repo. The older app-only constant-pool match remains the sole export gap. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#thread-message-and-runtime-live-api-continuation--31-october-2026).
+
+
+## 31 October 2026 — ten controller, timer and matrix matches
+
+Ten new live-API matches add **2,728 bytes**, bringing standalone selection to **2,153 C functions / 491,280 bytes (78.478%)**. Original SDK packet/pad/timer records and loops recovered controller and timer routines; both matrix converters matched at their existing `-O2` settings. Device managers and timer initialization needed their original global definitions, whose extern-only replacements emitted different address-load sequences. The complete cartridge remains byte-identical. All ten sources are persisted in the app and selected in the repo; the older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#controller-timer-and-matrix-live-api-continuation--31-october-2026).

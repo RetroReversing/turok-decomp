@@ -18771,9 +18771,10 @@
       "name": "code_80098440/guMtxF2L",
       "target_path": "build/asm/nonmatchings/code_80098440/guMtxF2L.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/guMtxF2L.c"
+      },
+      "base_path": "build/src/code_80098440/guMtxF2L.o"
     },
     {
       "name": "code_80098440/guMtxIdentF",
@@ -18797,9 +18798,10 @@
       "name": "code_80098440/guMtxL2F",
       "target_path": "build/asm/nonmatchings/code_80098440/guMtxL2F.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/guMtxL2F.c"
+      },
+      "base_path": "build/src/code_80098440/guMtxL2F.o"
     },
     {
       "name": "code_80098440/osCreateThread",
@@ -18832,9 +18834,10 @@
       "name": "code_80098440/osCreatePiManager",
       "target_path": "build/asm/nonmatchings/code_80098440/osCreatePiManager.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osCreatePiManager.c"
+      },
+      "base_path": "build/src/code_80098440/osCreatePiManager.o"
     },
     {
       "name": "code_80098440/osCreateMesgQueue",
@@ -18901,25 +18904,28 @@
       "name": "code_80098440/osContStartReadData",
       "target_path": "build/asm/nonmatchings/code_80098440/osContStartReadData.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osContStartReadData.c"
+      },
+      "base_path": "build/src/code_80098440/osContStartReadData.o"
     },
     {
       "name": "code_80098440/osContGetReadData",
       "target_path": "build/asm/nonmatchings/code_80098440/osContGetReadData.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osContGetReadData.c"
+      },
+      "base_path": "build/src/code_80098440/osContGetReadData.o"
     },
     {
       "name": "code_80098440/__osPackReadData",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPackReadData.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPackReadData.c"
+      },
+      "base_path": "build/src/code_80098440/__osPackReadData.o"
     },
     {
       "name": "code_80098440/osContInit",
@@ -19108,9 +19114,10 @@
       "name": "code_80098440/osCreateViManager",
       "target_path": "build/asm/nonmatchings/code_80098440/osCreateViManager.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osCreateViManager.c"
+      },
+      "base_path": "build/src/code_80098440/osCreateViManager.o"
     },
     {
       "name": "code_80098440/func_800A0F38",
@@ -19974,17 +19981,19 @@
       "name": "code_80098440/__osTimerServicesInit",
       "target_path": "build/asm/nonmatchings/code_80098440/__osTimerServicesInit.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osTimerServicesInit.c"
+      },
+      "base_path": "build/src/code_80098440/__osTimerServicesInit.o"
     },
     {
       "name": "code_80098440/__osTimerInterrupt",
       "target_path": "build/asm/nonmatchings/code_80098440/__osTimerInterrupt.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osTimerInterrupt.c"
+      },
+      "base_path": "build/src/code_80098440/__osTimerInterrupt.o"
     },
     {
       "name": "code_80098440/__osSetTimerIntr",
@@ -19999,9 +20008,10 @@
       "name": "code_80098440/__osInsertTimer",
       "target_path": "build/asm/nonmatchings/code_80098440/__osInsertTimer.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osInsertTimer.c"
+      },
+      "base_path": "build/src/code_80098440/__osInsertTimer.o"
     },
     {
       "name": "code_80098440/func_800A64E0",

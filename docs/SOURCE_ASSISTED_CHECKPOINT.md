@@ -371,3 +371,33 @@ Thread creation initially scored 225 with the correct SDK body. Expressing the c
 Static helper experiments in the sequence readers remained unmatched. Their target call conventions and clobbers can depend on their original translation unit; adding extra static bodies did not produce an acceptable isolated match. They are not included in this result. The previous better standalone draft was rejudged after temporary profile experiments. The timer-services initializer improved as a draft but remains unmatched and is not counted.
 
 The verified standalone selection is **2,143 C functions / 488,552 bytes (78.041954% of 626,012 code bytes)**, up **0.408938 percentage points**. The app has **2,144 persisted matches / 489,332 bytes (78.166553%)**. All ten new matches passed repository sync and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved matched sources and their contexts were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains separate from these ten.
+
+
+## Controller, timer and matrix live-API continuation — 31 October 2026
+
+Starting from `06b61e3`, ten distinct previously unmatched functions were recovered through the running app API, adding **2,728 bytes**. This source-assisted session consulted local SDK reference sources. Target bytes, addresses, hashes and exact comparison gates were unchanged.
+
+| Function | Bytes | Starting score | Final score | Repair |
+| --- | ---: | ---: | ---: | --- |
+| `__osTimerServicesInit` | 140 | 515 | 0 | Restore the original current-time global definition, not only an extern declaration; typed timer list; -O1. |
+| `osContGetReadData` | 168 | 1272 | 0 | Original controller packet/pad records and body; -O1. |
+| `guMtxL2F` | 180 | 1177 | 0 | Original matrix union, integer word unpacking and nested loops; existing -O2. |
+| `osContStartReadData` | 196 | 1162 | 0 | Original PIF RAM record, resource-access sequence and loop; -O1. |
+| `__osPackReadData` | 236 | 1531 | 0 | Original read-packet record and request-packing loops; -O1. |
+| `guMtxF2L` | 256 | 1055 | 0 | Original matrix union and nested fixed-point packing loops; existing -O2. |
+| `__osTimerInterrupt` | 376 | 3177 | 0 | Original typed 64-bit timer body and final-ROM branch; -O1. |
+| `__osInsertTimer` | 392 | 2369 | 0 | Original 64-bit sorted-list insertion, comparison and locals; -O1. |
+| `osCreatePiManager` | 392 | 2989 | 0 | Original device-manager record, body and local global definition; -O1. |
+| `osCreateViManager` | 392 | 2827 | 0 | Original device-manager/message records and local global definitions; -O1. |
+
+Eight SDK routines use IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. Both matrix converters retain that MIPS II profile at `-O2`. These are verified working settings, not unique identification of the original compiler release.
+
+### Definitions versus extern declarations
+
+The device-manager routines were not fixed by their original function bodies and typed records alone: the PI candidate scored 2,110 and the VI candidate 2,950 at `-O1`. Restoring the original global definitions produced exact code. The extern-only candidates emitted additional LUI address loads between global-field stores; the definitions recovered the target address-load grouping and scheduling. The timer-services initializer likewise went from score 515 to zero after restoring its current-time global definition. These observations do not uniquely establish the compiler/assembler mechanism; source-local definition and layout knowledge should be retained as a hypothesis rather than replacing every global with extern prematurely.
+
+The controller drafts contained mutated loop indices and unnecessary volatile accesses. Original packet/pad/PIF RAM records and SDK loops matched directly at `-O1`. Both matrix converters matched their original typed nested loops without changing their existing compiler profile.
+
+A source extraction encountered conditional compilation whose alternate branches contain different brace counts. The first timer-interrupt extraction omitted its final closing brace and did not compile. Restoring that closing brace from the original source, with the final-ROM branch selected, produced the exact match; no compiler failure is counted as progress.
+
+The standalone selection is **2,153 C functions / 491,280 bytes (78.477729% of 626,012 code bytes)**, up **0.435774 percentage points**. The app has **2,154 persisted matches / 492,060 bytes (78.602327%)**. All ten new sources passed repository sync and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). The saved matched sources and required contexts were audited, and app revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
