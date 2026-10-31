@@ -37,3 +37,8 @@ The current standalone build selects **2,036 C functions / 445,672 bytes (71.192
 ## Three-function repair and source names
 
 Particle advance, standard follow and the sequence marker now match exactly: three additional selected C functions / 1,972 bytes. The full standalone selection is **2,039 C functions / 447,644 bytes (71.507% of the fixed candidate-code total)**. Twenty-one address-based functions receive source names; all 121 located source-candidate entries are indexed with confidence and conflicting alternatives. See [repair provenance](SOURCE_ASSISTED_CHECKPOINT.md#source-naming-and-three-function-repair-30-october-2026).
+
+
+## 31 October SDK and handler recovery
+
+Fifteen additional selected C functions / 744 bytes bring the full-cartridge-verified selection to **2,054 C functions / 448,388 bytes (71.626% of the fixed candidate-code total)**, a gain of 0.119 percentage points. Three SDK functions and twelve tiny handler stubs passed independent checks and the full original-cartridge build. See the source-assisted checkpoint document for provenance, timing and concurrent-worker attribution.

@@ -14013,57 +14013,64 @@
       "name": "code_80063630/func_80069EE0",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069EE0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069EE0.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069EE0.o"
     },
     {
       "name": "code_80063630/func_80069EF0",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069EF0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069EF0.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069EF0.o"
     },
     {
       "name": "code_80063630/func_80069F00",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F00.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F00.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F00.o"
     },
     {
       "name": "code_80063630/func_80069F10",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F10.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F10.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F10.o"
     },
     {
       "name": "code_80063630/func_80069F20",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F20.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F20.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F20.o"
     },
     {
       "name": "code_80063630/func_80069F30",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F30.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F30.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F30.o"
     },
     {
       "name": "code_80063630/func_80069F40",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F40.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F40.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F40.o"
     },
     {
       "name": "code_80063630/func_80069F50",
@@ -14078,25 +14085,28 @@
       "name": "code_80063630/func_80069F64",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F64.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F64.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F64.o"
     },
     {
       "name": "code_80063630/func_80069F74",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F74.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F74.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F74.o"
     },
     {
       "name": "code_80063630/func_80069F84",
       "target_path": "build/asm/nonmatchings/code_80063630/func_80069F84.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_80069F84.c"
+      },
+      "base_path": "build/src/code_80063630/func_80069F84.o"
     },
     {
       "name": "code_80063630/func_80069F94",
@@ -14281,9 +14291,10 @@
       "name": "code_80063630/func_8006AB24",
       "target_path": "build/asm/nonmatchings/code_80063630/func_8006AB24.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_8006AB24.c"
+      },
+      "base_path": "build/src/code_80063630/func_8006AB24.o"
     },
     {
       "name": "code_80063630/func_8006AB34",
@@ -14370,9 +14381,10 @@
       "name": "code_80063630/func_8006B1B4",
       "target_path": "build/asm/nonmatchings/code_80063630/func_8006B1B4.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_8006B1B4.c"
+      },
+      "base_path": "build/src/code_80063630/func_8006B1B4.o"
     },
     {
       "name": "code_80063630/func_8006B1C4",
@@ -18808,9 +18820,10 @@
       "name": "code_80098440/__cosf",
       "target_path": "build/asm/nonmatchings/code_80098440/__cosf.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__cosf.c"
+      },
+      "base_path": "build/src/code_80098440/__cosf.o"
     },
     {
       "name": "code_80098440/func_8009E7A0",
@@ -19459,9 +19472,10 @@
       "name": "code_80098440/alSndpGetState",
       "target_path": "build/asm/nonmatchings/code_80098440/alSndpGetState.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSndpGetState.c"
+      },
+      "base_path": "build/src/code_80098440/alSndpGetState.o"
     },
     {
       "name": "code_80098440/alSndpDeallocate",
@@ -19493,9 +19507,10 @@
       "name": "code_80098440/alCSeqGetLoc",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSeqGetLoc.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSeqGetLoc.c"
+      },
+      "base_path": "build/src/code_80098440/alCSeqGetLoc.o"
     },
     {
       "name": "code_80098440/alCSeqSetLoc",

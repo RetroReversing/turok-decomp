@@ -100,3 +100,20 @@ The live snapshot has **2,056 isolated matches / 459,016 bytes, 291 open candida
 Before the decisive source repairs, separate five-minute app permutation passes tested 164 Follow and 102 marker candidates with no improvement. That result is retained in the evidence rather than attributed to the final manual repairs. All jobs started for this repair have completed.
 
 Private candidates, diagnostics, normal app acceptance, rename planning and complete build/extraction logs are under `.local/three-stack-fixes-20261030/`. No ROMs, databases, reference objects or private research inputs are included in the tracked changes.
+
+## Source-assisted SDK and handler recovery — 31 October 2026
+
+This pass selects **15 additional C functions / 744 bytes**, bringing the selection to **2,054 C functions / 448,388 bytes (71.626103014% of the fixed 626,012-byte candidate-code total)**. There are **353 assembly entries among 2,407 build entries**. The gain is **0.118848 percentage points**; twelve new functions are only 16 bytes each. The complete 8,388,608-byte cartridge rebuilt byte for byte, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The final build used four compiler workers and a short temporary directory on the Data volume after earlier disk-space and interruption failures; compiler options and comparison gates were unchanged.
+
+| Recovery | Functions | Bytes | Decisive change |
+| --- | ---: | ---: | --- |
+| `__cosf` | 1 | 360 | Restored the archived SDK body's local declarations and expression order, using ROM-addressed constants. This resolved floating-point register allocation differences. |
+| `alSndpGetState` | 1 | 32 | Restored a typed, 48-byte sound-state record and array indexing instead of anonymous byte-pointer arithmetic. |
+| `alCSeqGetLoc` | 1 | 160 | Restored typed sequence and marker records and the original 16-track loop; the compiler produced the retail unrolling. Recovered after the planned matching window, during build troubleshooting. |
+| Identical event-handler stubs | 12 | 192 | A typed three-float argument plus an empty condition on the first parameter reproduced the three argument stores. Identical bodies do not establish unique handler names; address names are retained. |
+
+The supplied local source archive was consulted. These are matching reconstructions, not proof of the original C spelling. Original target bytes, boundaries, compiler profiles and comparison gates were preserved. Each candidate passed independent compilation and linked-byte/data checks before selection.
+
+An earlier live-app snapshot changed from **2,056 isolated matches / 459,016 bytes** to **2,070 / 459,600 bytes**, with **277 open** and **59 assembly** candidates, before the final SDK recovery. These are historical app measurements; background rechecks can change the live counts independently of the standalone selection. Background workers were active: six handler candidates were accepted directly during this pass, and the remaining six were already matched or claimed when acceptance was attempted. All three SDK functions were accepted directly through the normal app API. All fifteen independently verified sources are selected in the standalone build; the live increase should not be credited wholly to foreground work.
+
+The requested matching window started at 08:47 UTC and targeted 09:47 UTC. Verification and integration continued later. This session was not measured as an uninterrupted hour of model computation and should not be used as a controlled model/cost benchmark. Private candidates, diagnostics, app acceptance and build logs remain under `.local/sol-hour-20261031/`.

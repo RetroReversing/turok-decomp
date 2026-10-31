@@ -15422,49 +15422,63 @@
    "seg": "code_80063630",
    "vram": 2147917536,
    "rom": 8825824,
-   "asm": "asm/nonmatchings/code_80063630/func_80069EE0.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069EE0.s",
+   "c": "src/code_80063630/func_80069EE0.c",
+   "own": {}
   },
   {
    "name": "func_80069EF0",
    "seg": "code_80063630",
    "vram": 2147917552,
    "rom": 8825840,
-   "asm": "asm/nonmatchings/code_80063630/func_80069EF0.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069EF0.s",
+   "c": "src/code_80063630/func_80069EF0.c",
+   "own": {}
   },
   {
    "name": "func_80069F00",
    "seg": "code_80063630",
    "vram": 2147917568,
    "rom": 8825856,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F00.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F00.s",
+   "c": "src/code_80063630/func_80069F00.c",
+   "own": {}
   },
   {
    "name": "func_80069F10",
    "seg": "code_80063630",
    "vram": 2147917584,
    "rom": 8825872,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F10.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F10.s",
+   "c": "src/code_80063630/func_80069F10.c",
+   "own": {}
   },
   {
    "name": "func_80069F20",
    "seg": "code_80063630",
    "vram": 2147917600,
    "rom": 8825888,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F20.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F20.s",
+   "c": "src/code_80063630/func_80069F20.c",
+   "own": {}
   },
   {
    "name": "func_80069F30",
    "seg": "code_80063630",
    "vram": 2147917616,
    "rom": 8825904,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F30.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F30.s",
+   "c": "src/code_80063630/func_80069F30.c",
+   "own": {}
   },
   {
    "name": "func_80069F40",
    "seg": "code_80063630",
    "vram": 2147917632,
    "rom": 8825920,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F40.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F40.s",
+   "c": "src/code_80063630/func_80069F40.c",
+   "own": {}
   },
   {
    "name": "func_80069F50",
@@ -15480,21 +15494,27 @@
    "seg": "code_80063630",
    "vram": 2147917668,
    "rom": 8825956,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F64.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F64.s",
+   "c": "src/code_80063630/func_80069F64.c",
+   "own": {}
   },
   {
    "name": "func_80069F74",
    "seg": "code_80063630",
    "vram": 2147917684,
    "rom": 8825972,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F74.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F74.s",
+   "c": "src/code_80063630/func_80069F74.c",
+   "own": {}
   },
   {
    "name": "func_80069F84",
    "seg": "code_80063630",
    "vram": 2147917700,
    "rom": 8825988,
-   "asm": "asm/nonmatchings/code_80063630/func_80069F84.s"
+   "asm": "asm/nonmatchings/code_80063630/func_80069F84.s",
+   "c": "src/code_80063630/func_80069F84.c",
+   "own": {}
   },
   {
    "name": "func_80069F94",
@@ -15685,7 +15705,9 @@
    "seg": "code_80063630",
    "vram": 2147920676,
    "rom": 8828964,
-   "asm": "asm/nonmatchings/code_80063630/func_8006AB24.s"
+   "asm": "asm/nonmatchings/code_80063630/func_8006AB24.s",
+   "c": "src/code_80063630/func_8006AB24.c",
+   "own": {}
   },
   {
    "name": "func_8006AB34",
@@ -15779,7 +15801,9 @@
    "seg": "code_80063630",
    "vram": 2147922356,
    "rom": 8830644,
-   "asm": "asm/nonmatchings/code_80063630/func_8006B1B4.s"
+   "asm": "asm/nonmatchings/code_80063630/func_8006B1B4.s",
+   "c": "src/code_80063630/func_8006B1B4.c",
+   "own": {}
   },
   {
    "name": "func_8006B1C4",
@@ -20280,7 +20304,9 @@
    "seg": "code_80098440",
    "vram": 2148132400,
    "rom": 9040688,
-   "asm": "asm/nonmatchings/code_80098440/__cosf.s"
+   "asm": "asm/nonmatchings/code_80098440/__cosf.s",
+   "c": "src/code_80098440/__cosf.c",
+   "own": {}
   },
   {
    "name": "func_8009E7A0",
@@ -20889,7 +20915,9 @@
    "seg": "code_80098440",
    "vram": 2148155376,
    "rom": 9063664,
-   "asm": "asm/nonmatchings/code_80098440/alSndpGetState.s"
+   "asm": "asm/nonmatchings/code_80098440/alSndpGetState.s",
+   "c": "src/code_80098440/alSndpGetState.c",
+   "own": {}
   },
   {
    "name": "alSndpDeallocate",
@@ -20921,7 +20949,9 @@
    "seg": "code_80098440",
    "vram": 2148155584,
    "rom": 9063872,
-   "asm": "asm/nonmatchings/code_80098440/alCSeqGetLoc.s"
+   "asm": "asm/nonmatchings/code_80098440/alCSeqGetLoc.s",
+   "c": "src/code_80098440/alCSeqGetLoc.c",
+   "own": {}
   },
   {
    "name": "alCSeqSetLoc",
