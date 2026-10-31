@@ -18652,9 +18652,10 @@
       "name": "code_80098440/__ll_mod",
       "target_path": "build/asm/nonmatchings/code_80098440/__ll_mod.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__ll_mod.c"
+      },
+      "base_path": "build/src/code_80098440/__ll_mod.o"
     },
     {
       "name": "code_80098440/func_8009D5F4",
@@ -18692,9 +18693,10 @@
       "name": "code_80098440/__d_to_ull",
       "target_path": "build/asm/nonmatchings/code_80098440/__d_to_ull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__d_to_ull.c"
+      },
+      "base_path": "build/src/code_80098440/__d_to_ull.o"
     },
     {
       "name": "code_80098440/func_8009D998",
@@ -18803,17 +18805,19 @@
       "name": "code_80098440/osCreateThread",
       "target_path": "build/asm/nonmatchings/code_80098440/osCreateThread.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osCreateThread.c"
+      },
+      "base_path": "build/src/code_80098440/osCreateThread.o"
     },
     {
       "name": "code_80098440/osStartThread",
       "target_path": "build/asm/nonmatchings/code_80098440/osStartThread.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osStartThread.c"
+      },
+      "base_path": "build/src/code_80098440/osStartThread.o"
     },
     {
       "name": "code_80098440/osViBlack",
@@ -19129,9 +19133,10 @@
       "name": "code_80098440/osSendMesg",
       "target_path": "build/asm/nonmatchings/code_80098440/osSendMesg.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osSendMesg.c"
+      },
+      "base_path": "build/src/code_80098440/osSendMesg.o"
     },
     {
       "name": "code_80098440/osSpTaskYielded",
@@ -19985,9 +19990,10 @@
       "name": "code_80098440/__osSetTimerIntr",
       "target_path": "build/asm/nonmatchings/code_80098440/__osSetTimerIntr.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osSetTimerIntr.c"
+      },
+      "base_path": "build/src/code_80098440/__osSetTimerIntr.o"
     },
     {
       "name": "code_80098440/__osInsertTimer",
@@ -20434,9 +20440,10 @@
       "name": "code_80098440/osJamMesg",
       "target_path": "build/asm/nonmatchings/code_80098440/osJamMesg.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osJamMesg.c"
+      },
+      "base_path": "build/src/code_80098440/osJamMesg.o"
     },
     {
       "name": "code_80098440/osPiGetCmdQueue",
@@ -20514,9 +20521,10 @@
       "name": "code_80098440/__voiceNeedsNoteKill",
       "target_path": "build/asm/nonmatchings/code_80098440/__voiceNeedsNoteKill.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__voiceNeedsNoteKill.c"
+      },
+      "base_path": "build/src/code_80098440/__voiceNeedsNoteKill.o"
     },
     {
       "name": "code_80098440/__unmapVoice",
@@ -20626,9 +20634,10 @@
       "name": "code_80098440/alSeqpNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alSeqpNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSeqpNew.c"
+      },
+      "base_path": "build/src/code_80098440/alSeqpNew.o"
     },
     {
       "name": "code_80098440/alEvtqFlushType",
@@ -21054,9 +21063,10 @@
       "name": "code_80098440/osDestroyThread",
       "target_path": "build/asm/nonmatchings/code_80098440/osDestroyThread.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osDestroyThread.c"
+      },
+      "base_path": "build/src/code_80098440/osDestroyThread.o"
     },
     {
       "name": "code_80098440/func_800AFDC0",

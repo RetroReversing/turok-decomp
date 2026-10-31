@@ -345,3 +345,29 @@ The existing IDO 5.3 MIPS II profiles remain in use, with function-scoped optimi
 Restoring real types and bodies mattered alongside optimization: the pool constructor draft mistook its integer size for a pointer; the volume helper needed the original multiplication order; the sound wrapper needed the proper four-argument signature. The retail free-voice routine clears the voice after either release path, while the supplied source places that clear inside one branch, so source availability alone does not guarantee a match.
 
 The standalone selection is **2,133 C functions / 485,992 bytes (77.633017% of 626,012 code bytes)**, up **0.317566 percentage points**. The app has **2,134 saved matches / 486,772 bytes (77.757615%)**. The older `func_800587B8` constant-pool export blocker remains; all ten new matches are selected in the standalone build. The repository sync passed the complete original-cartridge byte comparison, preserving SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved sources and their contexts were audited against the live matched state.
+
+
+## Thread, message and runtime live-API continuation — 31 October 2026
+
+Starting from `1337979`, the running app recovered **ten previously unmatched functions / 2,560 bytes**. This source-assisted session consulted the supplied source and local SDK reference sources. All candidates used the ordinary live API judging path; target bytes, addresses, hashes and comparison gates were preserved.
+
+| Function | Bytes | Starting score | Final score | Repair |
+| --- | ---: | ---: | ---: | --- |
+| `__osSetTimerIntr` | 116 | 925 | 0 | Original timer body: u64 NewTime, u32 savedMask and count/compare sequence; MIPS II -O1. |
+| `__ll_mod` | 156 | 3075 | 0 | Signed 64-bit modulo with sign adjustment; MIPS III / O32 -O1. |
+| `__d_to_ull` | 160 | 1830 | 0 | Actual unsigned 64-bit return and native double conversion; MIPS III / O32 -O1. |
+| `__voiceNeedsNoteKill` | 168 | 510 | 0 | Typed event/link records, original char result and cleanup flow; MIPS II -O3. |
+| `osDestroyThread` | 248 | 798 | 0 | Original register locals and active-thread removal; MIPS II -O1. |
+| `osCreateThread` | 324 | 1153 | 0 | Correct thread-context layout, register mask local and actual cleanup entry symbol; MIPS II -O1. |
+| `osSendMesg` | 332 | 3400 | 0 | Original typed message queue and register locals; MIPS II -O1. |
+| `osStartThread` | 336 | 1777 | 0 | Original thread states, queue selection and scheduling body; MIPS II -O1. |
+| `osJamMesg` | 336 | 3656 | 0 | Original front-of-queue message body and register locals; MIPS II -O1. |
+| `alSeqpNew` | 384 | 1507 | 0 | Original SDK player, configuration, event and voice records; original locals/body; MIPS II -O2. |
+
+The timer, thread and messaging matches use IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. The two runtime helpers use `-O1 -mips3 -32 -G 0 -non_shared -Xcpluscomm`; the existing guarded O32 ELF metadata normalization remains necessary for standalone linking. The voice-kill routine requires the MIPS II profile at `-O3`, while the sequence-player constructor retains `-O2`. These are verified working function profiles, not unique identification of the original toolchain.
+
+Thread creation initially scored 225 with the correct SDK body. Expressing the cleanup address as dispatch-entry-plus-offset emitted an extra address addition. The target itself proves the cleanup entry at `0x800A60C0`; referencing that entry directly yielded score zero. This changes source symbol spelling, not placement or target bytes.
+
+Static helper experiments in the sequence readers remained unmatched. Their target call conventions and clobbers can depend on their original translation unit; adding extra static bodies did not produce an acceptable isolated match. They are not included in this result. The previous better standalone draft was rejudged after temporary profile experiments. The timer-services initializer improved as a draft but remains unmatched and is not counted.
+
+The verified standalone selection is **2,143 C functions / 488,552 bytes (78.041954% of 626,012 code bytes)**, up **0.408938 percentage points**. The app has **2,144 persisted matches / 489,332 bytes (78.166553%)**. All ten new matches passed repository sync and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved matched sources and their contexts were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains separate from these ten.

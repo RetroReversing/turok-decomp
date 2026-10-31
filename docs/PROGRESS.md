@@ -82,3 +82,8 @@ Ten further exact matches add **656 selected C bytes**, bringing the verified se
 ## 31 October 2026 — ten audio and game-source matches
 
 Ten additional live-API matches add **1,988 bytes**, bringing standalone selection to **2,133 C functions / 485,992 bytes (77.633%)**. Typed original SDK records, source-body repairs and verified per-function optimization settings recovered audio setup, volume, release, controller-pak checking, timekeeping, a memory-pool constructor and the sound wrapper. The full cartridge remains byte-identical. The app has 2,134 persisted matches; its older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#audio-and-game-source-live-api-continuation--31-october-2026).
+
+
+## 31 October 2026 — ten thread, messaging and runtime matches
+
+Ten more exact live-API matches add **2,560 bytes**, bringing standalone selection to **2,143 C functions / 488,552 bytes (78.042%)**. Original SDK types, register locals and `-O1` recovered timer, thread and message routines. Two runtime helpers needed MIPS III/O32, the voice-kill routine needed `-O3`, and the sequence-player constructor matched at `-O2`. The complete cartridge remains byte-identical; all ten are persisted in the app and selected in the repo. The older app-only constant-pool match remains the sole export gap. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#thread-message-and-runtime-live-api-continuation--31-october-2026).

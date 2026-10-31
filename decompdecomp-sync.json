@@ -30,20 +30,35 @@
     "src/code_80098440/__vsVol.c": "7662e04b0c51f993fe879ac70619f389f88b4c0aab9de32d2294b3ea2839f7b2",
     "src/code_80098440/__osCheckId.c": "c063348392fef30d24d613fe2d39d2c366c77b66dbce770657ef39420018ef7d",
     "src/code_80098440/alCSeqNewMarker.c": "1dcdfbe1116d2575275e8355425348c27529ea2c8bdee20bbdc84eaca98d30a3",
-    "src/code_80098440/alCSPNew.c": "ec6de0639ee30837df94c8e6a1d2ec66bfabf40f528ad9828068953a573e57f8"
+    "src/code_80098440/alCSPNew.c": "ec6de0639ee30837df94c8e6a1d2ec66bfabf40f528ad9828068953a573e57f8",
+    "src/code_80098440/osCreateThread.c": "c6def7e8d4aec57a65ec732a26bd25dfe6e0bb0d0c07092fe57af1fe39b62b04",
+    "src/code_80098440/__ll_mod.c": "e46a732685f0e2e60c6c44fc9e7e7ae1b1c1051ed379ffb8c497a3dd8f18f0e1",
+    "src/code_80098440/alSeqpNew.c": "80e1d2afe909aca93968e5d65b0936af95657265c2ea4d4496a03bba31f4ef0f",
+    "src/code_80098440/osStartThread.c": "56a5d66cee31014736fd4fe9e492162ae81d095dd2c4529534037e79f36b7094",
+    "src/code_80098440/__osSetTimerIntr.c": "609535d98c6a8f828e3f84dbc99ba331fb9e1da9b836c2b4a7cf2a669e9ee66f",
+    "src/code_80098440/osDestroyThread.c": "9955ceb59c17c49b1ade60fd96307778fbe6fc959c40df3b2023850fd22a57e5",
+    "src/code_80098440/__d_to_ull.c": "2c8d2a5d608945bb9809e31ccb3216ed288f76554191a88585fe92ee413cafcc",
+    "src/code_80098440/osSendMesg.c": "e1e4d00496df2bab440c5ec4e2429ca2477050889f28b4a7352d442217f5ccd5",
+    "src/code_80098440/osJamMesg.c": "00b48f4acebd4a3dc20e073d82b68f3b5a694e4ff5f91b26ca6248017af7ce48",
+    "src/code_80098440/__voiceNeedsNoteKill.c": "086b26c31ff7625c21f6299af91ceeea1e34be999234e80bc8af455539845360"
   },
   "accepted": [
+    "__d_to_ull",
     "__ll_lshift",
+    "__ll_mod",
     "__ll_mul",
     "__osCheckId",
     "__osClearPage",
     "__osResetGlobalIntMask",
+    "__osSetTimerIntr",
     "__ull_rshift",
     "__ull_to_d",
+    "__voiceNeedsNoteKill",
     "__vsVol",
     "alAuxBusPull",
     "alCSPNew",
     "alCSeqNewMarker",
+    "alSeqpNew",
     "alSynFreeVoice",
     "func_800119F4",
     "func_800120DC",
@@ -61,7 +76,12 @@
     "func_800AFDD0",
     "func_800AFF50",
     "init_lpfilter",
+    "osCreateThread",
+    "osDestroyThread",
     "osGetTime",
+    "osJamMesg",
+    "osSendMesg",
+    "osStartThread",
     "osYieldThread"
   ],
   "skipped": [
@@ -71,5 +91,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2134
+  "matched_app": 2144
 }
