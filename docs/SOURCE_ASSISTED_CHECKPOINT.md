@@ -256,3 +256,26 @@ After the user optimization checkpoint (`a7a06b6`), ten distinct unmatched funct
 This pass adds **six exact matches / 3,248 selected C bytes**, not ten matches. Selection becomes **2,103 C functions / 480,976 bytes (76.831754% of 626,012)**. The unmatched iterator's best source is retained in the app and under `drafts/live-api-20261031`; worse trial candidates are not selected. The source-assisted reference archives were consulted. Existing compiler profiles were retained throughout these ten attempts.
 
 The complete expanded image and reconstructed 8,388,608-byte original cartridge pass byte for byte, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. All six additions remain selected C with no assembly fallback. The saved-app audit finds all 2,103 repository selections matched, saved sources and headers present, and no saved-source discrepancies; revalidation is finished. The app has 2,104 isolated matches, including the old unexported `func_800587B8`. No push was requested for these results.
+
+## Ten additional live-API matches — 31 October 2026
+
+Starting from `54dcc9c`, this source-assisted continuation recovered **ten previously unmatched functions / 2,372 bytes** through the running app's authenticated `/api/try` judge. Function targets, symbol addresses, cartridge hashes and comparison gates were retained. Source archives were consulted; these are not ROM-only results.
+
+| Function | Bytes | Starting score | Final score | Repair |
+| --- | ---: | ---: | ---: | --- |
+| `func_8002FBD0` | 1,292 | 52 | 0 | Restore output argument/order consistency and reference the original grid/index tables separately. |
+| `func_800119F4` | 248 | 185 | 0 | Restore the save-size calculation before filename updates; initialize the file number once. |
+| `__osClearPage` | 192 | 234 | 0 | Consolidate the result local and restore declaration order for the original stack slots. |
+| `func_800A7090` | 332 | 45 | 0 | Correct a byte offset previously scaled as an integer-pointer offset; use direct volatile video-register reads. |
+| `func_800AAF70` | 44 | 210 | 0 | SDK-style register local and direct volatile hardware-address read. |
+| `func_800AAFA0` | 44 | 190 | 0 | Same hardware-register repair. |
+| `func_800AD680` | 48 | 230 | 0 | Same hardware-register repair. |
+| `func_800AFDD0` | 44 | 245 | 0 | Same hardware-register repair. |
+| `func_800AAEA0` | 52 | 545 | 0 | Restore the hardware status test and program-counter write. |
+| `func_800AFF50` | 76 | 695 | 0 | Restore the status polling loop and device-address write. |
+
+The six small hardware routines match with IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`; the video initializer already used that profile. A plain local or named external MMIO global can produce different register choices despite equivalent behaviour. The exact source, compiler and address-expression shape matter together. This does not prove which original IDO release built the cartridge. The three other additions retain their established profiles.
+
+Four two-minute app deep searches produced no new matches; two encountered internal database-lock errors. No partial score was counted as a match. A later app process restart retained all ten saved recoveries. All ten matched sources and required headers were audited against the saved project, rather than relying only on transient database counts.
+
+The verified standalone selection is **2,113 C functions / 483,348 bytes (77.210660% of the fixed 626,012 code bytes)**, up **0.378906 percentage points**. The live app has **2,114 isolated matches / 484,128 bytes (77.335259%)**; its additional old `func_800587B8` remains outside the standalone C selection because of its unresolved data placement. The app repository-sync job accepted all ten additions, and the complete expanded image and reconstructed 8 MiB cartridge passed byte for byte. Cartridge SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`. All ten remain selected C, with no new assembly fallback. The repository-sync report retains the single older constant-pool blocker separately.

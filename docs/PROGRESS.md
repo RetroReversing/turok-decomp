@@ -67,3 +67,8 @@ Ten user-discovered app matches add 14,728 selected C bytes: **2,097 C functions
 ## Ten-function live-API pass, 31 October
 
 Ten unmatched functions were tried through the live app API after `a7a06b6`: **six matched / 3,248 bytes**, one improved without matching, and three retained their previous near-match scores. Selection is **2,103 C functions / 480,976 bytes (76.832%)**, with a byte-identical full cartridge rebuild and saved app-project audit. See [the live-API report](SOURCE_ASSISTED_CHECKPOINT.md#ten-function-live-api-pass--31-october-2026) for individual results and source-assisted provenance.
+
+
+## Ten additional live-API matches, 31 October
+
+Ten previously unmatched functions add **2,372 selected C bytes**, bringing the full-cartridge-verified selection to **2,113 C functions / 483,348 bytes (77.211%)**. The live app has **2,114 saved matches / 484,128 bytes (77.335%)**; its older unexported constant-pool candidate accounts for the difference. All ten additions passed the app judge, saved-file audit, standalone checks and complete cartridge rebuild. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#ten-additional-live-api-matches--31-october-2026) for source and compiler repairs.

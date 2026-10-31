@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "owned": {
+    "src/code_80009A38/SaveNew.c": "489b098b1055c841c4323ce70c1b0bf478ba36f7ca6a8d5afe221c156d8db508",
+    "src/code_8002F784/CScene__GetGridSections.c": "36ad32b4169b09a7bf3cfe8d241a8123102dc409c2e98e6097ea643e17214c10",
+    "src/code_80098440/func_800A7090.c": "cb0009233cf8d96328546b8ee31bc6542161f6d5a78258600158cf2480309aa0",
+    "src/code_80098440/func_800AAF70.c": "5b04786ee69b828f19e6da4dc3c5a70aa0357a8eb43e8ec434b54c898531bb41",
+    "src/code_80098440/func_800AD680.c": "313adae2eb4d4993ecc11cb77c4ac80f5569a83ee71f66a213c251ac6472e2eb",
+    "src/code_80098440/func_800AAEA0.c": "805e72b63b780cae52ff39e64d84e589503038d85a1fef2151261173242cde29",
+    "src/code_80098440/__osClearPage.c": "52a3f73beb853cc2a5850eed11699b870e5818ac8393bab9ee42d3fc26cf76a1",
+    "src/code_80098440/func_800AFF50.c": "e533539e1dfd798bafca2e70bb4132f0a2312b7f50d0fae2f270aebd92aaebb4",
+    "src/code_80098440/func_800AFDD0.c": "278b5e66534742415ecce7622ebd7f6a88d34e53ea541bb995e99d15a97e67f8",
+    "src/code_80098440/func_800AAFA0.c": "4b57690aa38f820a34100ef77c2d5db4871d74972d73cef3d9b409b09d592992"
+  },
+  "accepted": [
+    "__osClearPage",
+    "func_800119F4",
+    "func_8002FBD0",
+    "func_800A7090",
+    "func_800AAEA0",
+    "func_800AAF70",
+    "func_800AAFA0",
+    "func_800AD680",
+    "func_800AFDD0",
+    "func_800AFF50"
+  ],
+  "skipped": [
+    {
+      "function": "func_800587B8",
+      "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
+    }
+  ],
+  "verified_build": true,
+  "matched_app": 2114
+}

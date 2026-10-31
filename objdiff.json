@@ -1359,9 +1359,10 @@
       "name": "code_80009A38/SaveNew",
       "target_path": "build/asm/nonmatchings/code_80009A38/SaveNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80009A38/SaveNew.c"
+      },
+      "base_path": "build/src/code_80009A38/SaveNew.o"
     },
     {
       "name": "code_80009A38/func_80011AF0",
@@ -3585,9 +3586,9 @@
       "target_path": "build/asm/nonmatchings/code_80029A10/CParticle__Advance.o",
       "metadata": {
         "complete": true,
-        "source_path": "src/code_80076218/AI_Standard_Follow.c"
+        "source_path": "src/code_80029A10/CParticle__Advance.c"
       },
-      "base_path": "build/src/code_80076218/AI_Standard_Follow.o"
+      "base_path": "build/src/code_80029A10/CParticle__Advance.o"
     },
     {
       "name": "code_80029A10/func_8002AFE4",
@@ -4425,9 +4426,10 @@
       "name": "code_8002F784/CScene__GetGridSections",
       "target_path": "build/asm/nonmatchings/code_8002F784/CScene__GetGridSections.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/CScene__GetGridSections.c"
+      },
+      "base_path": "build/src/code_8002F784/CScene__GetGridSections.o"
     },
     {
       "name": "code_8002F784/func_800300DC",
@@ -15183,9 +15185,10 @@
       "name": "code_80076218/AI_Standard_Follow",
       "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_Follow.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80076218/AI_Standard_Follow.c"
+      },
+      "base_path": "build/src/code_80076218/AI_Standard_Follow.o"
     },
     {
       "name": "code_80076218/func_80077B34",
@@ -19082,9 +19085,10 @@
       "name": "code_80098440/__osClearPage",
       "target_path": "build/asm/nonmatchings/code_80098440/__osClearPage.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osClearPage.c"
+      },
+      "base_path": "build/src/code_80098440/__osClearPage.o"
     },
     {
       "name": "code_80098440/osCreateViManager",
@@ -20084,9 +20088,10 @@
       "name": "code_80098440/func_800A7090",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A7090.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A7090.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A7090.o"
     },
     {
       "name": "code_80098440/func_800A71E0",
@@ -20379,9 +20384,10 @@
       "name": "code_80098440/func_800AAEA0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AAEA0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AAEA0.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AAEA0.o"
     },
     {
       "name": "code_80098440/func_800AAEE0",
@@ -20396,17 +20402,19 @@
       "name": "code_80098440/func_800AAF70",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AAF70.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AAF70.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AAF70.o"
     },
     {
       "name": "code_80098440/func_800AAFA0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AAFA0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AAFA0.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AAFA0.o"
     },
     {
       "name": "code_80098440/osJamMesg",
@@ -20778,9 +20786,10 @@
       "name": "code_80098440/func_800AD680",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AD680.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AD680.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AD680.o"
     },
     {
       "name": "code_80098440/alSaveNew",
@@ -21043,9 +21052,10 @@
       "name": "code_80098440/func_800AFDD0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AFDD0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AFDD0.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AFDD0.o"
     },
     {
       "name": "code_80098440/func_800AFE00",
@@ -21067,9 +21077,10 @@
       "name": "code_80098440/func_800AFF50",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AFF50.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AFF50.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AFF50.o"
     },
     {
       "name": "code_80098440/osYieldThread",

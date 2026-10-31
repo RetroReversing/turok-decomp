@@ -14,3 +14,5 @@
 - Mutate the running app through its authenticated API/tools. Do not create another `RomNetwork` writer against its live database: separate progress caches can race the app’s autosave. Read-only database audits are allowed. Verify saved source files and context, not only match totals.
 
 - When updating the app, preserve the tested ELF relocation-table-order HI16/LO16 fix. The repair source is in `/Volumes/Data/Codex/worktrees/decompdecomp-turok-sync-20261031` (`fix/turok-live-sync-relocations`). Recheck known multi-address relocation cases before replacing the working app bundle.
+
+- Commit Turok repository changes directly on `main`, as requested by the user. decompdecomp application changes belong on branches with pull requests.
