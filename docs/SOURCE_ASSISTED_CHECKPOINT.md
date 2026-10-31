@@ -488,3 +488,36 @@ All use IDO 5.3 with `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`, plus
 Prepared declarations were derived from selected local SDK headers (including the original audio-state array types); only preprocessing was used, with no reference build scripts executed. The live app's preparation path performed the ordinary compile/link/data judge and private-context promotion. Its previous machine-local preparation settings were restored. Unsuccessful bank-file compiler trials were also restored; the bank-file and event-queue routines remain unmatched and are not counted.
 
 The standalone selection is **2,183 C functions / 508,672 bytes (81.255950% of 626,012 code bytes)**, up **0.959726 percentage points**. The app has **2,184 persisted matches / 509,452 bytes (81.380549%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required contexts were audited, with app revalidation complete. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
+
+
+## Effects, playback and math live-API continuation — 31 October 2026
+
+Starting from `f545e93`, ten previously unmatched functions were recovered through the authenticated live app API, adding **5,688 bytes**. This source-assisted session used authorized local game/SDK reference sources and headers. Target bytes, addresses, hashes and exact comparison gates were unchanged.
+
+| Function | Bytes | Starting score | Final score | Optimization |
+| --- | ---: | ---: | ---: | --- |
+| `_filterBuffer` | 184 | 845 | 0 | `-O3` |
+| `__osLeoResume` | 236 | 1848 | 0 | `-O1` |
+| `alEvtqPostEvent` | 292 | 710 | 0 | `-O3` |
+| `__sinf` | 448 | 1445 | 0 | `-O2` |
+| `alResamplePull` | 520 | 2848 | 0 | `-O3` |
+| `_loadOutputBuffer` | 548 | 2960 | 0 | `-O3` |
+| `alFxParamHdl` | 604 | 2060 | 0 | `-O3` |
+| `alFxPull` | 832 | 1892 | 0 | `-O3` |
+| `alRaw16Pull` | 940 | 16247 | 0 | `-O3` |
+| `alFxNew` | 1084 | 8403 | 0 | `-O3` |
+
+All use IDO 5.3 with `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`, plus the optimization shown above. These are verified working profiles, not unique identification of the original compiler release.
+
+### Source and context findings
+
+- Original SDK filter/delay/resampler records, private helper prototypes and ABI command macros recovered filtering, delay-buffer loading, resampling, raw playback and the effects mixer. The source-file `SWAP` macro was necessary; omitting it produces an unintended call. Raw playback and event posting matched after their repaired source/context was checked at `-O3`.
+- The SDK effect initializer and parameter handler match a revision that includes a trailing `ALSetFXParam paramHdl` callback in `ALFx`; the game-source header lacks it. This documented SDK member explains the four-byte size discrepancy observed in the preceding batch without inventing padding. Target switch references and existing entry symbols identify the candidate-local parameter-table/callback aliases. No global symbols were renamed.
+- The disk-interrupt resume routine matched original SDK message/thread records at `-O1`. Its event state is entry eight, offset `0x40`, in the existing table at `D_801369A0`; the base and entry were checked against the target instruction sequence.
+- The sine routine matched the SDK polynomial/reduction implementation, original bit-exact coefficient unions and rounding macro at `-O2`. Its quiet-NaN reference uses the existing target symbol. Constant/data placement remains subject to standalone export and full-cartridge verification.
+
+The ordinary app preparation/judging path performed context promotion and persisted the accepted sources. The previous machine-local preparation configuration was restored. ADPCM playback, envelope mixing and the main audio-frame routine improved without matching and remain separate app drafts (scores 12,966, 9,307 and 270 respectively); they are not included in coverage. The ADPCM and audio-frame drafts retain their measured `-O3` profile, while envelope mixing uses `-O2`. Source extraction and missing-declaration failures are not counted as progress.
+
+App improvements are proposed separately in decompdecomp PR #212 (130 focused regression tests passed). This matching session did not install or restart the app, and does not attribute its matches to uninstalled code.
+
+The standalone selection is **2,193 C functions / 514,360 bytes (82.164559% of 626,012 code bytes)**, up **0.908609 percentage points**. The app has **2,194 persisted matches / 515,140 bytes (82.289157%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required contexts were audited, with app revalidation complete. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.

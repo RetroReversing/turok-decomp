@@ -18896,9 +18896,10 @@
       "name": "code_80098440/__sinf",
       "target_path": "build/asm/nonmatchings/code_80098440/__sinf.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__sinf.c"
+      },
+      "base_path": "build/src/code_80098440/__sinf.o"
     },
     {
       "name": "code_80098440/osContStartReadData",
@@ -20126,9 +20127,10 @@
       "name": "code_80098440/__osLeoResume",
       "target_path": "build/asm/nonmatchings/code_80098440/__osLeoResume.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osLeoResume.c"
+      },
+      "base_path": "build/src/code_80098440/__osLeoResume.o"
     },
     {
       "name": "code_80098440/func_800A7090",
@@ -20698,9 +20700,10 @@
       "name": "code_80098440/alEvtqPostEvent",
       "target_path": "build/asm/nonmatchings/code_80098440/alEvtqPostEvent.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alEvtqPostEvent.c"
+      },
+      "base_path": "build/src/code_80098440/alEvtqPostEvent.o"
     },
     {
       "name": "code_80098440/alEvtqNextEvent",
@@ -20921,9 +20924,10 @@
       "name": "code_80098440/alFxNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alFxNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alFxNew.c"
+      },
+      "base_path": "build/src/code_80098440/alFxNew.o"
     },
     {
       "name": "code_80098440/alSynAllocFX",
@@ -20965,9 +20969,10 @@
       "name": "code_80098440/alRaw16Pull",
       "target_path": "build/asm/nonmatchings/code_80098440/alRaw16Pull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alRaw16Pull.c"
+      },
+      "base_path": "build/src/code_80098440/alRaw16Pull.o"
     },
     {
       "name": "code_80098440/func_800AE5C0",
@@ -20998,9 +21003,10 @@
       "name": "code_80098440/alResamplePull",
       "target_path": "build/asm/nonmatchings/code_80098440/alResamplePull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alResamplePull.c"
+      },
+      "base_path": "build/src/code_80098440/alResamplePull.o"
     },
     {
       "name": "code_80098440/_ldexpf",
@@ -21360,9 +21366,10 @@
       "name": "code_80098440/_filterBuffer",
       "target_path": "build/asm/nonmatchings/code_80098440/_filterBuffer.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_filterBuffer.c"
+      },
+      "base_path": "build/src/code_80098440/_filterBuffer.o"
     },
     {
       "name": "code_80098440/_saveBuffer",
@@ -21386,17 +21393,19 @@
       "name": "code_80098440/_loadOutputBuffer",
       "target_path": "build/asm/nonmatchings/code_80098440/_loadOutputBuffer.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_loadOutputBuffer.c"
+      },
+      "base_path": "build/src/code_80098440/_loadOutputBuffer.o"
     },
     {
       "name": "code_80098440/alFxParamHdl",
       "target_path": "build/asm/nonmatchings/code_80098440/alFxParamHdl.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alFxParamHdl.c"
+      },
+      "base_path": "build/src/code_80098440/alFxParamHdl.o"
     },
     {
       "name": "code_80098440/func_800B1E94",
@@ -21411,9 +21420,10 @@
       "name": "code_80098440/alFxPull",
       "target_path": "build/asm/nonmatchings/code_80098440/alFxPull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alFxPull.c"
+      },
+      "base_path": "build/src/code_80098440/alFxPull.o"
     },
     {
       "name": "code_80098440/lldiv",
