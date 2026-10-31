@@ -19250,9 +19250,10 @@
       "name": "code_80098440/guLookAtF",
       "target_path": "build/asm/nonmatchings/code_80098440/guLookAtF.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/guLookAtF.c"
+      },
+      "base_path": "build/src/code_80098440/guLookAtF.o"
     },
     {
       "name": "code_80098440/guLookAt",
@@ -19267,9 +19268,10 @@
       "name": "code_80098440/guPerspectiveF",
       "target_path": "build/asm/nonmatchings/code_80098440/guPerspectiveF.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/guPerspectiveF.c"
+      },
+      "base_path": "build/src/code_80098440/guPerspectiveF.o"
     },
     {
       "name": "code_80098440/guPerspective",
@@ -19474,9 +19476,10 @@
       "name": "code_80098440/alSndpNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alSndpNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSndpNew.c"
+      },
+      "base_path": "build/src/code_80098440/alSndpNew.o"
     },
     {
       "name": "code_80098440/alSndpAllocate",
@@ -19888,9 +19891,10 @@
       "name": "code_80098440/alSynNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alSynNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSynNew.c"
+      },
+      "base_path": "build/src/code_80098440/alSynNew.o"
     },
     {
       "name": "code_80098440/func_800A5740",
@@ -20322,25 +20326,28 @@
       "name": "code_80098440/osPfsChecker",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsChecker.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsChecker.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsChecker.o"
     },
     {
       "name": "code_80098440/corrupted_init",
       "target_path": "build/asm/nonmatchings/code_80098440/corrupted_init.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/corrupted_init.c"
+      },
+      "base_path": "build/src/code_80098440/corrupted_init.o"
     },
     {
       "name": "code_80098440/corrupted",
       "target_path": "build/asm/nonmatchings/code_80098440/corrupted.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/corrupted.c"
+      },
+      "base_path": "build/src/code_80098440/corrupted.o"
     },
     {
       "name": "code_80098440/__osContRamRead",
@@ -20762,9 +20769,10 @@
       "name": "code_80098440/_allocatePVoice",
       "target_path": "build/asm/nonmatchings/code_80098440/_allocatePVoice.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_allocatePVoice.c"
+      },
+      "base_path": "build/src/code_80098440/_allocatePVoice.o"
     },
     {
       "name": "code_80098440/alSynAllocVoice",
@@ -21360,17 +21368,19 @@
       "name": "code_80098440/_saveBuffer",
       "target_path": "build/asm/nonmatchings/code_80098440/_saveBuffer.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_saveBuffer.c"
+      },
+      "base_path": "build/src/code_80098440/_saveBuffer.o"
     },
     {
       "name": "code_80098440/_loadBuffer",
       "target_path": "build/asm/nonmatchings/code_80098440/_loadBuffer.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_loadBuffer.c"
+      },
+      "base_path": "build/src/code_80098440/_loadBuffer.o"
     },
     {
       "name": "code_80098440/_loadOutputBuffer",

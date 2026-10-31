@@ -70,7 +70,17 @@
     "src/code_80098440/__osPfsRWInode.c": "5524eb282d8cfe8968a250a2ffa2cc04a25139dd8b27efe4689cfd93536165c2",
     "src/code_80098440/osPfsReadWriteFile.c": "efefc8c879ec67d5bc0848101828cd9848be4470a7c78fef5badeb3592a4a779",
     "src/code_80098440/__osPackRamWriteData.c": "7ef31caf5813cd7e1d9e279ce821504bb3e8c0a38c1a0fcf4dfcf24befe4c759",
-    "src/code_80098440/__osContRamWrite.c": "22d5381b753bd003465eaadcbba844c8222843505d23076d01874d7f2b949b8f"
+    "src/code_80098440/__osContRamWrite.c": "22d5381b753bd003465eaadcbba844c8222843505d23076d01874d7f2b949b8f",
+    "src/code_80098440/alSndpNew.c": "badcde13643cb2dd9e25ff4521747bbc1e08693bef4e005716d5ac4e0784fee3",
+    "src/code_80098440/_loadBuffer.c": "e0ece900341897dedd64e108d47adf55f603ec710591b3a7808197bea8f8baf6",
+    "src/code_80098440/osPfsChecker.c": "32e60b742374e841fad3d7c0651e04d919d139f2ef41bc67ae2efc763e4f875e",
+    "src/code_80098440/alSynNew.c": "9e818e782927a2fbeff0ae959506cea106a645c033f3be184af8711e412d1c29",
+    "src/code_80098440/guPerspectiveF.c": "a2cddb26b1b9bcff6a1b8db0ec54629ce2fc2566a46e84a02b58fc8053fb24d3",
+    "src/code_80098440/corrupted_init.c": "937ea716e78e0d072f044baa99191cecb5736c4a054f88d289f1584358c88f7e",
+    "src/code_80098440/_saveBuffer.c": "b7372b8632ebb27e539482fa3bccb2479039401c4cedc25ab6c148063bdb1afb",
+    "src/code_80098440/guLookAtF.c": "d78ad94fb9691eb60096ce90844da4ae38f41b89e4568ed3add127de3a7643a7",
+    "src/code_80098440/_allocatePVoice.c": "31431d2082691d350cdc67250468fe6c2270214768944859feaab634101b0973",
+    "src/code_80098440/corrupted.c": "cbd0194e4add3867f1ef80f4cc30c34cf9aeb9e57da9c4a35cbe9725cf4f1931"
   },
   "accepted": [
     "__d_to_ull",
@@ -100,11 +110,18 @@
     "__ull_to_d",
     "__voiceNeedsNoteKill",
     "__vsVol",
+    "_allocatePVoice",
+    "_loadBuffer",
+    "_saveBuffer",
     "alAuxBusPull",
     "alCSPNew",
     "alCSeqNewMarker",
     "alSeqpNew",
+    "alSndpNew",
     "alSynFreeVoice",
+    "alSynNew",
+    "corrupted",
+    "corrupted_init",
     "func_800119F4",
     "func_800120DC",
     "func_8002FBD0",
@@ -120,8 +137,10 @@
     "func_800AD680",
     "func_800AFDD0",
     "func_800AFF50",
+    "guLookAtF",
     "guMtxF2L",
     "guMtxL2F",
+    "guPerspectiveF",
     "init_lpfilter",
     "osContGetReadData",
     "osContInit",
@@ -133,6 +152,7 @@
     "osGetTime",
     "osJamMesg",
     "osPfsAllocateFile",
+    "osPfsChecker",
     "osPfsDeleteFile",
     "osPfsFileState",
     "osPfsFindFile",
@@ -151,5 +171,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2174
+  "matched_app": 2184
 }

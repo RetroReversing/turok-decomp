@@ -457,3 +457,34 @@ The GUI manual-edit identity had an active claim in another game. That claim was
 Application improvements from the prior batch are proposed separately in decompdecomp PR #209; this session did not install or restart the app, or attribute its matches to uninstalled code.
 
 The standalone selection is **2,173 C functions / 502,664 bytes (80.296224% of 626,012 code bytes)**, up **0.971227 percentage points**. The app has **2,174 persisted matches / 503,444 bytes (80.420823%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required contexts were audited, with app revalidation complete. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
+
+
+## Checker, matrix and audio source-preparation continuation — 31 October 2026
+
+Starting from `652c6bf`, ten previously unmatched functions were recovered through the authenticated live app API, adding **6,008 bytes**. This source-assisted session used authorized local SDK/game reference sources and headers. Target bytes, addresses, hashes and exact comparison gates were unchanged.
+
+| Function | Bytes | Starting score | Final score | Optimization |
+| --- | ---: | ---: | ---: | --- |
+| `_allocatePVoice` | 232 | 685 | 0 | `-O3` |
+| `alSndpNew` | 308 | 2401 | 0 | `-O3` |
+| `_saveBuffer` | 392 | 4807 | 0 | `-O3` |
+| `_loadBuffer` | 396 | 4226 | 0 | `-O3` |
+| `corrupted_init` | 436 | 3060 | 0 | `-O1` |
+| `corrupted` | 488 | 3953 | 0 | `-O1` |
+| `guPerspectiveF` | 560 | 2290 | 0 | `-O2` |
+| `guLookAtF` | 696 | 661 | 0 | `-O2` |
+| `alSynNew` | 768 | 2122 | 0 | `-O2` |
+| `osPfsChecker` | 1732 | 7666 | 0 | `-O1` |
+
+All use IDO 5.3 with `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`, plus the optimization shown above. These are working verified profiles, not unique identification of the original compiler release.
+
+### Repairs and limits
+
+- The Controller Pak checker and corruption helpers matched with the original inode-cache records, distribution-map constants, union accesses and loops at `-O1`. The checker's final unresolved `__osGetId` call was mapped locally to the existing `func_800A8D94` shown by the target call site.
+- Both floating-point matrix builders matched original SDK formulas and local ordering at `-O2`. Their remaining differences were unresolved math calls: the target identifies `func_8009E7A0`, `__sinf` and `__cosf`. Candidate-local aliases with correct floating-point prototypes resolved them. An alias without the correct declaration did not suffice.
+- Physical-voice allocation and sound-player construction matched with original SDK types and `-O3`. Reverb buffer loading matched at its existing `-O3`; saving required `-O3` after its source/header repair. All command macros were retained from the SDK ABI header.
+- Synthesizer initialization reached score 10 with only one allocation immediate different: the retail call requests **76 bytes**, whereas `sizeof(ALAuxBus)` in the reference headers produces **72 bytes**. The source now explicitly requests the ROM-observed `0x4c` extent. No unknown field or padding was invented, and existing field offsets were retained. This is an observed reference/retail allocation difference, not proof of the reason for it.
+
+Prepared declarations were derived from selected local SDK headers (including the original audio-state array types); only preprocessing was used, with no reference build scripts executed. The live app's preparation path performed the ordinary compile/link/data judge and private-context promotion. Its previous machine-local preparation settings were restored. Unsuccessful bank-file compiler trials were also restored; the bank-file and event-queue routines remain unmatched and are not counted.
+
+The standalone selection is **2,183 C functions / 508,672 bytes (81.255950% of 626,012 code bytes)**, up **0.959726 percentage points**. The app has **2,184 persisted matches / 509,452 bytes (81.380549%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required contexts were audited, with app revalidation complete. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
