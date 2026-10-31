@@ -16722,8 +16722,8 @@ extern CCampaigner CampaignerBoss ;
 
 typedef void(*CampaignerSetupFunction)(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 
-CBoss *func_8004D218(CGameObjectInstance *pThis) ;
-void func_8004D6FC(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
+CBoss *Campaigner_Initialise(CGameObjectInstance *pThis) ;
+void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode) ;
 
 

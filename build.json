@@ -1346,11 +1346,11 @@
    "own": {}
   },
   {
-   "name": "func_80001D30",
+   "name": "CEngineApp__Idle",
    "seg": "code_80001300",
    "vram": 2147491120,
    "rom": 8399408,
-   "asm": "asm/nonmatchings/code_80001300/func_80001D30.s"
+   "asm": "asm/nonmatchings/code_80001300/CEngineApp__Idle.s"
   },
   {
    "name": "func_80001E50",
@@ -2512,11 +2512,11 @@
    "own": {}
   },
   {
-   "name": "func_800113A8",
+   "name": "ScanFileList",
    "seg": "code_80009A38",
    "vram": 2147554216,
    "rom": 8462504,
-   "asm": "asm/nonmatchings/code_80009A38/func_800113A8.s"
+   "asm": "asm/nonmatchings/code_80009A38/ScanFileList.s"
   },
   {
    "name": "func_8001172C",
@@ -2544,11 +2544,11 @@
    "asm": "asm/nonmatchings/code_80009A38/func_800118EC.s"
   },
   {
-   "name": "func_800119F4",
+   "name": "SaveNew",
    "seg": "code_80009A38",
    "vram": 2147555828,
    "rom": 8464116,
-   "asm": "asm/nonmatchings/code_80009A38/func_800119F4.s"
+   "asm": "asm/nonmatchings/code_80009A38/SaveNew.s"
   },
   {
    "name": "func_80011AF0",
@@ -3101,11 +3101,11 @@
    "own": {}
   },
   {
-   "name": "func_80013FD8",
+   "name": "CVector3__ProjectCrease",
    "seg": "code_80009A38",
    "vram": 2147565528,
    "rom": 8473816,
-   "asm": "asm/nonmatchings/code_80009A38/func_80013FD8.s"
+   "asm": "asm/nonmatchings/code_80009A38/CVector3__ProjectCrease.s"
   },
   {
    "name": "func_80014074",
@@ -3453,11 +3453,11 @@
    }
   },
   {
-   "name": "func_80016730",
+   "name": "CGameObjectInstance__GetModelIndex",
    "seg": "code_80009A38",
    "vram": 2147575600,
    "rom": 8483888,
-   "asm": "asm/nonmatchings/code_80009A38/func_80016730.s"
+   "asm": "asm/nonmatchings/code_80009A38/CGameObjectInstance__GetModelIndex.s"
   },
   {
    "name": "func_8001697C",
@@ -3916,11 +3916,11 @@
    "own": {}
   },
   {
-   "name": "func_8001E21C",
+   "name": "CGameRegion__InRegion",
    "seg": "code_80017F0C",
    "vram": 2147607068,
    "rom": 8515356,
-   "asm": "asm/nonmatchings/code_80017F0C/func_8001E21C.s"
+   "asm": "asm/nonmatchings/code_80017F0C/CGameRegion__InRegion.s"
   },
   {
    "name": "func_8001E2F8",
@@ -4137,11 +4137,11 @@
    }
   },
   {
-   "name": "func_800203B0",
+   "name": "CGameSimpleInstance__TakeFromROMSimpleInstance",
    "seg": "code_80017F0C",
    "vram": 2147615664,
    "rom": 8523952,
-   "asm": "asm/nonmatchings/code_80017F0C/func_800203B0.s"
+   "asm": "asm/nonmatchings/code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance.s"
   },
   {
    "name": "func_80020600",
@@ -4568,11 +4568,11 @@
    }
   },
   {
-   "name": "func_800272F4",
+   "name": "CParticle__Draw",
    "seg": "code_80026AD0",
    "vram": 2147644148,
    "rom": 8552436,
-   "asm": "asm/nonmatchings/code_80026AD0/func_800272F4.s"
+   "asm": "asm/nonmatchings/code_80026AD0/CParticle__Draw.s"
   },
   {
    "name": "func_800280A8",
@@ -4611,11 +4611,11 @@
    }
   },
   {
-   "name": "func_8002864C",
+   "name": "CParticleSystem__DeallocateParticle",
    "seg": "code_80026AD0",
    "vram": 2147649100,
    "rom": 8557388,
-   "asm": "asm/nonmatchings/code_80026AD0/func_8002864C.s"
+   "asm": "asm/nonmatchings/code_80026AD0/CParticleSystem__DeallocateParticle.s"
   },
   {
    "name": "func_800287CC",
@@ -4760,11 +4760,15 @@
    "asm": "asm/nonmatchings/code_80029A10/func_8002AA38.s"
   },
   {
-   "name": "func_8002AB68",
+   "name": "CParticle__Advance",
    "seg": "code_80029A10",
    "vram": 2147658600,
    "rom": 8566888,
-   "asm": "asm/nonmatchings/code_80029A10/func_8002AB68.s"
+   "asm": "asm/nonmatchings/code_80029A10/CParticle__Advance.s",
+   "c": "src/code_80029A10/CParticle__Advance.c",
+   "own": {
+    ".rodata": 2148473304
+   }
   },
   {
    "name": "func_8002AFE4",
@@ -5577,11 +5581,11 @@
    "own": {}
   },
   {
-   "name": "func_8002FBD0",
+   "name": "CScene__GetGridSections",
    "seg": "code_8002F784",
    "vram": 2147679184,
    "rom": 8587472,
-   "asm": "asm/nonmatchings/code_8002F784/func_8002FBD0.s"
+   "asm": "asm/nonmatchings/code_8002F784/CScene__GetGridSections.s"
   },
   {
    "name": "func_800300DC",
@@ -5874,11 +5878,11 @@
    "own": {}
   },
   {
-   "name": "func_800337BC",
+   "name": "CScene__DecompressCollision",
    "seg": "code_8002F784",
    "vram": 2147694524,
    "rom": 8602812,
-   "asm": "asm/nonmatchings/code_8002F784/func_800337BC.s"
+   "asm": "asm/nonmatchings/code_8002F784/CScene__DecompressCollision.s"
   },
   {
    "name": "func_80033B48",
@@ -8392,11 +8396,11 @@
    "own": {}
   },
   {
-   "name": "func_80044BDC",
+   "name": "Mantis_ClosestWall",
    "seg": "code_8002F784",
    "vram": 2147765212,
    "rom": 8673500,
-   "asm": "asm/nonmatchings/code_8002F784/func_80044BDC.s"
+   "asm": "asm/nonmatchings/code_8002F784/Mantis_ClosestWall.s"
   },
   {
    "name": "func_80044EA0",
@@ -9954,11 +9958,11 @@
    "own": {}
   },
   {
-   "name": "func_8004D218",
+   "name": "Campaigner_Initialise",
    "seg": "code_8002F784",
    "vram": 2147799576,
    "rom": 8707864,
-   "asm": "asm/nonmatchings/code_8002F784/func_8004D218.s"
+   "asm": "asm/nonmatchings/code_8002F784/Campaigner_Initialise.s"
   },
   {
    "name": "func_8004D404",
@@ -10017,11 +10021,11 @@
    "own": {}
   },
   {
-   "name": "func_8004D6FC",
+   "name": "Campaigner_Update",
    "seg": "code_8002F784",
    "vram": 2147800828,
    "rom": 8709116,
-   "asm": "asm/nonmatchings/code_8002F784/func_8004D6FC.s"
+   "asm": "asm/nonmatchings/code_8002F784/Campaigner_Update.s"
   },
   {
    "name": "func_8004DACC",
@@ -12460,11 +12464,11 @@
    "own": {}
   },
   {
-   "name": "func_8005FD28",
+   "name": "AI_MEvent_PressurePlate",
    "seg": "code_8005C8BC",
    "vram": 2147876136,
    "rom": 8784424,
-   "asm": "asm/nonmatchings/code_8005C8BC/func_8005FD28.s"
+   "asm": "asm/nonmatchings/code_8005C8BC/AI_MEvent_PressurePlate.s"
   },
   {
    "name": "func_8006017C",
@@ -15099,11 +15103,11 @@
    "own": {}
   },
   {
-   "name": "func_8006905C",
+   "name": "AI_SEvent_DamageNudge_Target",
    "seg": "code_80063630",
    "vram": 2147913820,
    "rom": 8822108,
-   "asm": "asm/nonmatchings/code_80063630/func_8006905C.s"
+   "asm": "asm/nonmatchings/code_80063630/AI_SEvent_DamageNudge_Target.s"
   },
   {
    "name": "func_80069158",
@@ -16521,18 +16525,18 @@
    }
   },
   {
-   "name": "func_8007719C",
+   "name": "AI_Standard_Sniper",
    "seg": "code_80076218",
    "vram": 2147971484,
    "rom": 8879772,
-   "asm": "asm/nonmatchings/code_80076218/func_8007719C.s"
+   "asm": "asm/nonmatchings/code_80076218/AI_Standard_Sniper.s"
   },
   {
-   "name": "func_80077368",
+   "name": "AI_Standard_DeadBodyRiddle",
    "seg": "code_80076218",
    "vram": 2147971944,
    "rom": 8880232,
-   "asm": "asm/nonmatchings/code_80076218/func_80077368.s"
+   "asm": "asm/nonmatchings/code_80076218/AI_Standard_DeadBodyRiddle.s"
   },
   {
    "name": "func_80077904",
@@ -16544,11 +16548,15 @@
    "own": {}
   },
   {
-   "name": "func_8007791C",
+   "name": "AI_Standard_Follow",
    "seg": "code_80076218",
    "vram": 2147973404,
    "rom": 8881692,
-   "asm": "asm/nonmatchings/code_80076218/func_8007791C.s"
+   "asm": "asm/nonmatchings/code_80076218/AI_Standard_Follow.s",
+   "c": "src/code_80076218/AI_Standard_Follow.c",
+   "own": {
+    ".rodata": 2148490208
+   }
   },
   {
    "name": "func_80077B34",
@@ -16560,11 +16568,11 @@
    "own": {}
   },
   {
-   "name": "func_80077BFC",
+   "name": "AI_Standard_Death",
    "seg": "code_80076218",
    "vram": 2147974140,
    "rom": 8882428,
-   "asm": "asm/nonmatchings/code_80076218/func_80077BFC.s"
+   "asm": "asm/nonmatchings/code_80076218/AI_Standard_Death.s"
   },
   {
    "name": "func_80078040",
@@ -22445,7 +22453,9 @@
    "seg": "code_80098440",
    "vram": 2148208872,
    "rom": 9117160,
-   "asm": "asm/nonmatchings/code_80098440/alSeqNewMarker.s"
+   "asm": "asm/nonmatchings/code_80098440/alSeqNewMarker.s",
+   "c": "src/code_80098440/alSeqNewMarker.c",
+   "own": {}
   },
   {
    "name": "alSeqSecToTicks",

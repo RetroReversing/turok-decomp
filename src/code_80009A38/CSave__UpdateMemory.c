@@ -944,7 +944,7 @@ typedef struct s_File
 extern t_File D_80119AC8[] ;
 extern int D_800113A8 (int showall) ;
 extern int func_8001172C(int index) ;
-extern int func_800119F4(void) ;
+extern int SaveNew(void) ;
 extern int func_800118EC(int index) ;
 typedef struct
 {
@@ -2123,7 +2123,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
     if ( (pThis->m_ASelection == 0)
      || (D_80119AC8[pThis->m_ASelection-1].pages == 0))
     {
-     ret = func_800119F4() ;
+     ret = SaveNew() ;
      func_8000CE50(ret) ;
      D_800113A8(pThis->m_ShowAll);
      ReturnValue = -1 ;

@@ -65,3 +65,38 @@ Independent function replay used a private repaired decompdecomp library that pr
 The full expanded-image and reconstructed-cartridge comparisons passed. The original cartridge is **8,388,608 bytes**, SHA-1 **88916d5d2e2470f395ad8f4245d34138ef2d156a**. This remains an unfinished source-assisted decompilation, not a portable game or complete C recovery.
 
 Private evidence is under `.local/sol-hour-20261030/`: `RUN-REPORT.md`, `independent-new-matches.json`, `final-export-result.json`, `final-export.log`, and `commit-build.log`. ROMs, databases, generated assembly/assets, proprietary tools and private research evidence are excluded from the commit.
+
+
+## Source naming and three-function repair: 30 October 2026
+
+The follow-up audit inventoried 294 open functions and located 121 source-candidate entries, including tentative/conflicting identities. The [source symbol index](SOURCE_SYMBOLS.md) records every located candidate and its alternatives. Twenty-one address-based function names were changed in the standalone project using source and ROM evidence, with original addresses retained. Existing SDK canonical spellings remain unchanged. Ambiguous candidates were not promoted into conflicting canonical symbols. Identifier replacement preserves comments, string literals, whitespace and line counts. A duplicate provisional `void *` particle-system declaration was removed in two contexts in favour of the existing typed declaration, preserving line positions.
+
+All three shortlisted functions now pass the corrected private byte/data judge and have also been accepted normally by the running app:
+
+| Original symbol | Canonical source symbol | Bytes | Decisive repair |
+| --- | --- | ---: | --- |
+| `func_8002AB68` | `CParticle__Advance` | 1,148 | Reconstructed an inline magnitude helper with four bytes of unused local scratch storage and removed the main function's unused vector. This places the two magnitude spills at the retail stack offsets. |
+| `func_8007791C` | `AI_Standard_Follow` | 536 | Restored the typed source context and the original helper signature `IsPlayerAlive()`. An otherwise identical `IsPlayerAlive(void)` reproduces the stack mismatch. |
+| `alSeqNewMarker` | `alSeqNewMarker` | 288 | Restored the full event record and SDK body, added the retail marker `curTicks` updates, and preserved separate source lines for the zero assignments. |
+
+These are matching reconstructions; the scratch/helper spelling is not proof of the exact original source text. Compiler profiles, original target bytes, boundaries and comparison gates were unchanged.
+
+### Controlled compiler observations
+
+Follow's helper was replayed in a two-by-two check: `()` versus `(void)`, each with a one-line or multiline body. Both `()` versions matched exactly; both `(void)` versions scored 14 under the typed source context. The decisive difference here is the C function signature, not line breaks. This corrects the initial interpretation during the repair.
+
+For the sequence marker, the private replay of the adapted SDK body differed only in the ordering of two zero stores. Keeping `m->lastTicks = 0;` and `m->curTicks = 0;` on separate source lines produced an exact match. The supplied archive's older body omitted the `curTicks` updates. The later implementation in [n64decomp/libreultra](https://github.com/n64decomp/libreultra/blob/master/src/audio/seq.c) provides corroborating SDK revision evidence; the reconstruction starts from the supplied local archive and ROM-derived layout.
+
+### App acceptance and standalone verification
+
+Particle advance initially exposed the installed app's older HI16/LO16 relocation pairing issue. Expressing the verified retail cheat-flags address as `extern u32 D_801195EC` preserves the exact linked bytes and passes both judges. Particle advance and the sequence marker were accepted through the normal attempt API. Follow's verified private typed header, including its helper, was promoted through the app's normal source-preparation pass. Previous preparation settings were restored afterwards. No app restart was required.
+
+The live app retains the address-based names for particle advance and follow; their canonical source names are applied in this standalone checkout. No direct live-database renames were performed. The source-symbol index distinguishes verified project names from tentative candidates rather than treating all 121 source leads as established identities.
+
+The standalone selection is now **2,039 C functions / 447,644 candidate-code bytes (71.5072554520% of the fixed 626,012-byte total)**, with **368 assembly entries out of 2,407 entries**. This repair adds **three C functions / 1,972 bytes** over the 2,036-C checkpoint. The complete 8,388,608-byte cartridge rebuilt byte for byte, SHA-1 **88916d5d2e2470f395ad8f4245d34138ef2d156a**. A fresh splat extraction using the renamed symbol map also produced every function-assembly path required by the manifest.
+
+The live snapshot has **2,056 isolated matches / 459,016 bytes, 291 open candidates and 59 assembly candidates**. These remain separate from the standalone C selection. Two background matches had arrived before this repair's baseline; they are not credited to these three fixes or newly selected in this checkout.
+
+Before the decisive source repairs, separate five-minute app permutation passes tested 164 Follow and 102 marker candidates with no improvement. That result is retained in the evidence rather than attributed to the final manual repairs. All jobs started for this repair have completed.
+
+Private candidates, diagnostics, normal app acceptance, rename planning and complete build/extraction logs are under `.local/three-stack-fixes-20261030/`. No ROMs, databases, reference objects or private research inputs are included in the tracked changes.

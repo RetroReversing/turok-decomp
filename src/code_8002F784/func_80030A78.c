@@ -998,11 +998,11 @@ extern CBoundsRect D_800F9E20,
        D_800F9E30;
 struct CCollisionInfo2_t;
 extern void func_80030A78(CScene *pThis, CUnindexedSet *pusAnimInstances);
-extern void func_8002FBD0(CScene *pThis, CBoundsRect *pBoundsRect,
+extern void CScene__GetGridSections(CScene *pThis, CBoundsRect *pBoundsRect,
            CGameGridBounds **ppGrids[], int *pIndices[], int *pnGrids);
 extern void func_80032124(CScene *pThis, CCacheEntry **ppceTarget);
 void func_80032124(CScene *pThis, CCacheEntry **ppceTarget);
-void func_8002FBD0(CScene *pThis, CBoundsRect *pBoundsRect,
+void CScene__GetGridSections(CScene *pThis, CBoundsRect *pBoundsRect,
            CGameGridBounds **ppGrids[], int *pIndices[], int *pnGrids);
 void func_80030A78(CScene *pThis, CUnindexedSet *pusAnimInstances);
 void func_80030A78(CScene *pThis, CUnindexedSet *pusAnimInstances){
@@ -1050,7 +1050,7 @@ void func_80030A78(CScene *pThis, CUnindexedSet *pusAnimInstances){
  }
  if (pThis->m_pceGridBounds && pThis->m_pceGridSectionsIndex)
  {
-  func_8002FBD0(pThis, &D_800F9E30,
+  CScene__GetGridSections(pThis, &D_800F9E30,
           &pGridBounds, &indices, &nGrids);
   CIndexedSet__ConstructFromRawData(&isGridSections,
               CCacheEntry__GetData(pThis->m_pceGridSectionsIndex),

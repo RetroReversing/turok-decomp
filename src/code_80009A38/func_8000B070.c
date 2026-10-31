@@ -15,7 +15,7 @@ typedef s32 M2C_UNK32;
 #endif
 
 s32 func_80011224();                                /* extern */
-M2C_UNK func_800113A8(M2C_UNK);                     /* extern */
+M2C_UNK ScanFileList(M2C_UNK);                     /* extern */
 extern u8 D_800B86D4;
 extern s32 D_80119814;
 extern s32 D_80119940;
@@ -36,7 +36,7 @@ void func_8000B070(void) {
     if ((temp_v0 == 4) || (temp_v0 == 0xB) || (temp_v0 == 0xA)) {
         D_80119940 = 3;
     } else {
-        func_800113A8(0);
+        ScanFileList(0);
         if ((D_80119AB8 == 0) && (D_80119AC4 < 0x10)) {
             D_80119940 = 1;
         } else if (D_800B86D4 == 0) {

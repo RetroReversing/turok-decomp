@@ -486,7 +486,7 @@ typedef struct CGameSimpleInstance_t
        m_nID;
  float m_Time, m_MorphInc;
 } CGameSimpleInstance;
-extern void func_800203B0(CGameSimpleInstance *pThis, CROMSimpleInstance *pSource,
+extern void CGameSimpleInstance__TakeFromROMSimpleInstance(CGameSimpleInstance *pThis, CROMSimpleInstance *pSource,
                     ROMAddress *rpObjectAddress,
                     CGameRegion Regions[], CEnemyAttributes Variations[]);
 typedef struct CROMEfficientStaticInstance_t
@@ -1183,7 +1183,7 @@ void func_80032124(CScene *pThis, CCacheEntry **ppceTarget){
    rpObjectAddress = D_8002DC24(&isObjectsIndex,
                   pThis->m_rpObjectsAddress,
                   romSimpleInstances[cSimple].m_nObjType);
-   func_800203B0(&gameSimpleInstances[cSimple],
+   CGameSimpleInstance__TakeFromROMSimpleInstance(&gameSimpleInstances[cSimple],
                     &romSimpleInstances[cSimple],
                     rpObjectAddress,
                     regions, variations);

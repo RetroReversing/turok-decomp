@@ -32,3 +32,8 @@ This commit copies the exact C selections, shared context, and build files from 
 ## 30 October source-assisted checkpoint
 
 The current standalone build selects **2,036 C functions / 445,672 bytes (71.192% of the fixed candidate-code total)** and reproduces the original cartridge byte for byte. The latest one-hour session added 33 isolated matches / 27,564 bytes; 31 are selected C, while two require further data-placement work. The live app has 2,051 isolated matches, a separate measurement from the standalone selection. See [source-assisted provenance](SOURCE_ASSISTED_CHECKPOINT.md#source-assisted-integration-30-october-2026) for denominators, fallbacks and verification details.
+
+
+## Three-function repair and source names
+
+Particle advance, standard follow and the sequence marker now match exactly: three additional selected C functions / 1,972 bytes. The full standalone selection is **2,039 C functions / 447,644 bytes (71.507% of the fixed candidate-code total)**. Twenty-one address-based functions receive source names; all 121 located source-candidate entries are indexed with confidence and conflicting alternatives. See [repair provenance](SOURCE_ASSISTED_CHECKPOINT.md#source-naming-and-three-function-repair-30-october-2026).

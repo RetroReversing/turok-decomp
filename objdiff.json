@@ -171,8 +171,8 @@
       "base_path": "build/src/code_80001300/func_80001CD4.o"
     },
     {
-      "name": "code_80001300/func_80001D30",
-      "target_path": "build/asm/nonmatchings/code_80001300/func_80001D30.o",
+      "name": "code_80001300/CEngineApp__Idle",
+      "target_path": "build/asm/nonmatchings/code_80001300/CEngineApp__Idle.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -1318,8 +1318,8 @@
       "base_path": "build/src/code_80009A38/func_80011364.o"
     },
     {
-      "name": "code_80009A38/func_800113A8",
-      "target_path": "build/asm/nonmatchings/code_80009A38/func_800113A8.o",
+      "name": "code_80009A38/ScanFileList",
+      "target_path": "build/asm/nonmatchings/code_80009A38/ScanFileList.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -1352,8 +1352,8 @@
       }
     },
     {
-      "name": "code_80009A38/func_800119F4",
-      "target_path": "build/asm/nonmatchings/code_80009A38/func_800119F4.o",
+      "name": "code_80009A38/SaveNew",
+      "target_path": "build/asm/nonmatchings/code_80009A38/SaveNew.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -1905,8 +1905,8 @@
       "base_path": "build/src/code_80009A38/func_80013EF0.o"
     },
     {
-      "name": "code_80009A38/func_80013FD8",
-      "target_path": "build/asm/nonmatchings/code_80009A38/func_80013FD8.o",
+      "name": "code_80009A38/CVector3__ProjectCrease",
+      "target_path": "build/asm/nonmatchings/code_80009A38/CVector3__ProjectCrease.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -2245,8 +2245,8 @@
       "base_path": "build/src/code_80009A38/func_800165E0.o"
     },
     {
-      "name": "code_80009A38/func_80016730",
-      "target_path": "build/asm/nonmatchings/code_80009A38/func_80016730.o",
+      "name": "code_80009A38/CGameObjectInstance__GetModelIndex",
+      "target_path": "build/asm/nonmatchings/code_80009A38/CGameObjectInstance__GetModelIndex.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -2710,8 +2710,8 @@
       "base_path": "build/src/code_80017F0C/func_8001E080.o"
     },
     {
-      "name": "code_80017F0C/func_8001E21C",
-      "target_path": "build/asm/nonmatchings/code_80017F0C/func_8001E21C.o",
+      "name": "code_80017F0C/CGameRegion__InRegion",
+      "target_path": "build/asm/nonmatchings/code_80017F0C/CGameRegion__InRegion.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -2930,8 +2930,8 @@
       "base_path": "build/src/code_80017F0C/func_8002007C.o"
     },
     {
-      "name": "code_80017F0C/func_800203B0",
-      "target_path": "build/asm/nonmatchings/code_80017F0C/func_800203B0.o",
+      "name": "code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance",
+      "target_path": "build/asm/nonmatchings/code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -3365,8 +3365,8 @@
       "base_path": "build/src/code_80026AD0/func_80026EC4.o"
     },
     {
-      "name": "code_80026AD0/func_800272F4",
-      "target_path": "build/asm/nonmatchings/code_80026AD0/func_800272F4.o",
+      "name": "code_80026AD0/CParticle__Draw",
+      "target_path": "build/asm/nonmatchings/code_80026AD0/CParticle__Draw.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -3408,8 +3408,8 @@
       "base_path": "build/src/code_80026AD0/func_800283EC.o"
     },
     {
-      "name": "code_80026AD0/func_8002864C",
-      "target_path": "build/asm/nonmatchings/code_80026AD0/func_8002864C.o",
+      "name": "code_80026AD0/CParticleSystem__DeallocateParticle",
+      "target_path": "build/asm/nonmatchings/code_80026AD0/CParticleSystem__DeallocateParticle.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -3568,12 +3568,13 @@
       }
     },
     {
-      "name": "code_80029A10/func_8002AB68",
-      "target_path": "build/asm/nonmatchings/code_80029A10/func_8002AB68.o",
+      "name": "code_80029A10/CParticle__Advance",
+      "target_path": "build/asm/nonmatchings/code_80029A10/CParticle__Advance.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80076218/AI_Standard_Follow.c"
+      },
+      "base_path": "build/src/code_80076218/AI_Standard_Follow.o"
     },
     {
       "name": "code_80029A10/func_8002AFE4",
@@ -4402,8 +4403,8 @@
       "base_path": "build/src/code_8002F784/func_8002F784.o"
     },
     {
-      "name": "code_8002F784/func_8002FBD0",
-      "target_path": "build/asm/nonmatchings/code_8002F784/func_8002FBD0.o",
+      "name": "code_8002F784/CScene__GetGridSections",
+      "target_path": "build/asm/nonmatchings/code_8002F784/CScene__GetGridSections.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -4696,8 +4697,8 @@
       "base_path": "build/src/code_8002F784/func_80033790.o"
     },
     {
-      "name": "code_8002F784/func_800337BC",
-      "target_path": "build/asm/nonmatchings/code_8002F784/func_800337BC.o",
+      "name": "code_8002F784/CScene__DecompressCollision",
+      "target_path": "build/asm/nonmatchings/code_8002F784/CScene__DecompressCollision.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -7119,8 +7120,8 @@
       "base_path": "build/src/code_8002F784/func_80044A34.o"
     },
     {
-      "name": "code_8002F784/func_80044BDC",
-      "target_path": "build/asm/nonmatchings/code_8002F784/func_80044BDC.o",
+      "name": "code_8002F784/Mantis_ClosestWall",
+      "target_path": "build/asm/nonmatchings/code_8002F784/Mantis_ClosestWall.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -8636,8 +8637,8 @@
       "base_path": "build/src/code_8002F784/func_8004D1EC.o"
     },
     {
-      "name": "code_8002F784/func_8004D218",
-      "target_path": "build/asm/nonmatchings/code_8002F784/func_8004D218.o",
+      "name": "code_8002F784/Campaigner_Initialise",
+      "target_path": "build/asm/nonmatchings/code_8002F784/Campaigner_Initialise.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -8698,8 +8699,8 @@
       "base_path": "build/src/code_8002F784/func_8004D65C.o"
     },
     {
-      "name": "code_8002F784/func_8004D6FC",
-      "target_path": "build/asm/nonmatchings/code_8002F784/func_8004D6FC.o",
+      "name": "code_8002F784/Campaigner_Update",
+      "target_path": "build/asm/nonmatchings/code_8002F784/Campaigner_Update.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -11063,8 +11064,8 @@
       "base_path": "build/src/code_8005C8BC/func_8005FCF4.o"
     },
     {
-      "name": "code_8005C8BC/func_8005FD28",
-      "target_path": "build/asm/nonmatchings/code_8005C8BC/func_8005FD28.o",
+      "name": "code_8005C8BC/AI_MEvent_PressurePlate",
+      "target_path": "build/asm/nonmatchings/code_8005C8BC/AI_MEvent_PressurePlate.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -13695,8 +13696,8 @@
       "base_path": "build/src/code_80063630/func_80069010.o"
     },
     {
-      "name": "code_80063630/func_8006905C",
-      "target_path": "build/asm/nonmatchings/code_80063630/func_8006905C.o",
+      "name": "code_80063630/AI_SEvent_DamageNudge_Target",
+      "target_path": "build/asm/nonmatchings/code_80063630/AI_SEvent_DamageNudge_Target.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -15111,16 +15112,16 @@
       "base_path": "build/src/code_80076218/func_80076FB4.o"
     },
     {
-      "name": "code_80076218/func_8007719C",
-      "target_path": "build/asm/nonmatchings/code_80076218/func_8007719C.o",
+      "name": "code_80076218/AI_Standard_Sniper",
+      "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_Sniper.o",
       "metadata": {
         "complete": false,
         "source_path": null
       }
     },
     {
-      "name": "code_80076218/func_80077368",
-      "target_path": "build/asm/nonmatchings/code_80076218/func_80077368.o",
+      "name": "code_80076218/AI_Standard_DeadBodyRiddle",
+      "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_DeadBodyRiddle.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -15136,8 +15137,8 @@
       "base_path": "build/src/code_80076218/func_80077904.o"
     },
     {
-      "name": "code_80076218/func_8007791C",
-      "target_path": "build/asm/nonmatchings/code_80076218/func_8007791C.o",
+      "name": "code_80076218/AI_Standard_Follow",
+      "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_Follow.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -15153,8 +15154,8 @@
       "base_path": "build/src/code_80076218/func_80077B34.o"
     },
     {
-      "name": "code_80076218/func_80077BFC",
-      "target_path": "build/asm/nonmatchings/code_80076218/func_80077BFC.o",
+      "name": "code_80076218/AI_Standard_Death",
+      "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_Death.o",
       "metadata": {
         "complete": false,
         "source_path": null
@@ -21121,9 +21122,10 @@
       "name": "code_80098440/alSeqNewMarker",
       "target_path": "build/asm/nonmatchings/code_80098440/alSeqNewMarker.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSeqNewMarker.c"
+      },
+      "base_path": "build/src/code_80098440/alSeqNewMarker.o"
     },
     {
       "name": "code_80098440/alSeqSecToTicks",

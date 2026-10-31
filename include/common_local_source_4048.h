@@ -8123,7 +8123,7 @@ float func_80021138(CGameRegion *pThis,
 float func_8001AA68(CGameRegion *pThis,
                float StartX, float StartZ,
                float EndX, float EndZ);
-int func_8001E21C(CGameRegion *pThis, float X, float Z);
+int CGameRegion__InRegion(CGameRegion *pThis, float X, float Z);
 
 
 
@@ -8324,7 +8324,7 @@ typedef struct CGameSimpleInstance_t
 
 
 
-void func_800203B0(CGameSimpleInstance *pThis, CROMSimpleInstance *pSource,
+void CGameSimpleInstance__TakeFromROMSimpleInstance(CGameSimpleInstance *pThis, CROMSimpleInstance *pSource,
                     ROMAddress *rpObjectAddress,
                     CGameRegion Regions[], CEnemyAttributes Variations[]);
 void func_8002007C(CGameSimpleInstance *pThis, Gfx **ppDLP,
@@ -9208,15 +9208,15 @@ extern CParticle *D_8011A0D0;
 
 void func_8002B5BC (CParticle *pThis);
 
-void func_800272F4(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
+void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
 
-void func_8002864C(void *, CParticle *);
+/* The typed declaration follows the CParticleSystem definition below. */
 void CParticle__Spawn (CParticle *pThis, int nType, int Blood);
 void CParticle__SpawnWallCollision (CParticle *pThis, int nType);
 void CParticle__SpawnGroundCollision (CParticle *pThis, int nType);
 void CParticle__SpawnCeilingCollision (CParticle *pThis, int nType);
 void CParticle__SpawnWaterSurfaceCollision(CParticle *pThis, int nType);
-void func_8002AB68 (CParticle *pThis);
+void CParticle__Advance (CParticle *pThis);
 void func_8002AA38 (CParticle *pThis);
 void func_8002A5C8 (CParticle *pThis);
 void func_8002A3B0 (CParticle *pThis);
@@ -10157,7 +10157,7 @@ void func_8001116C ( void );
 int SetupFileSystem (void) ;
 int func_800112D8 (void) ;
 int func_80011364 (int file) ;
-int func_800113A8 (int showall) ;
+int ScanFileList (int showall) ;
 
 int func_8001172C(int index) ;
 int func_800117C0(int index) ;
@@ -15921,14 +15921,14 @@ void AI_Standard_Death (CGameObjectInstance *pMe);
 void func_80078378 (CGameObjectInstance *pMe);
 void func_80078040 (CGameObjectInstance *pMe);
 void func_80076824 (CGameObjectInstance *pMe, float turnang, int MovementAllowed);
-void func_8007791C (CGameObjectInstance *pMe, CGameObjectInstance *pLeader);
+void AI_Standard_Follow (CGameObjectInstance *pMe, CGameObjectInstance *pLeader);
 void AI_Standard_DeadBodyRiddle (CGameObjectInstance *pMe);
 void func_8007924C (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_800784B0 (CGameObjectInstance *pMe);
 void func_800783AC (CGameObjectInstance *pMe);
 int func_800791F0 (CGameObjectInstance *pMe);
 void AI_Standard_TeleportMoveSlow (CGameObjectInstance *pMe);
-void func_8007719C (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
+void AI_Standard_Sniper (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_80076B3C (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_80076FB4 (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_80077B34 (CGameObjectInstance *pMe, int waterFlag);
@@ -16717,8 +16717,8 @@ extern CCampaigner CampaignerBoss ;
 
 typedef void(*CampaignerSetupFunction)(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 
-CBoss *func_8004D218(CGameObjectInstance *pThis) ;
-void func_8004D6FC(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
+CBoss *Campaigner_Initialise(CGameObjectInstance *pThis) ;
+void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode) ;
 
 

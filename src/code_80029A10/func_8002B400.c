@@ -640,7 +640,7 @@ typedef struct CParticle_t
  struct CParticle_t *m_pLast, *m_pNext,
         *m_pDrawLast, *m_pDrawNext;
 } CParticle;
-extern void func_8002AB68 (CParticle *pThis);
+extern void CParticle__Advance (CParticle *pThis);
 extern void func_80029C48 (CParticle *pThis);
 typedef struct CParticleSystem_t
 {
@@ -652,7 +652,7 @@ typedef struct CParticleSystem_t
    CCacheEntry *m_pceParticleEffects,
      *m_pceTextureSetsIndex;
 } CParticleSystem;
-extern void func_8002864C(CParticleSystem *pThis, CParticle *pParticle);
+extern void CParticleSystem__DeallocateParticle(CParticleSystem *pThis, CParticle *pParticle);
 typedef struct COverlay_t
 {
  int m_OnScreen ;
@@ -821,9 +821,9 @@ extern CBoundsRect D_800F9E20,
        D_800F9E30;
 struct CCollisionInfo2_t;
 struct CParticle_t;
-void func_8002864C(CParticleSystem *pThis, CParticle *pParticle);
+void CParticleSystem__DeallocateParticle(CParticleSystem *pThis, CParticle *pParticle);
 void func_8002B400(CParticleSystem *pThis);
-void func_8002AB68(CParticle *pThis);
+void CParticle__Advance(CParticle *pThis);
 void func_80029C48(CParticle *pThis);
 void func_8002B400(CParticleSystem *pThis){
  CParticle *pParticle, *pCurrent;
@@ -840,18 +840,18 @@ void func_8002B400(CParticleSystem *pThis){
   {
    if ((((&pCurrent->ah.ih.m_vPos)->x >= (&D_800F9E30)->m_MinX) && ((&pCurrent->ah.ih.m_vPos)->x <= (&D_800F9E30)->m_MaxX) && ((&pCurrent->ah.ih.m_vPos)->z >= (&D_800F9E30)->m_MinZ) && ((&pCurrent->ah.ih.m_vPos)->z <= (&D_800F9E30)->m_MaxZ)))
    {
-    func_8002AB68(pCurrent);
+    CParticle__Advance(pCurrent);
     pCurrent->m_cFrame += D_800B6B00;
    }
    else
    {
-    func_8002864C(pThis, pCurrent);
+    CParticleSystem__DeallocateParticle(pThis, pCurrent);
    }
   }
   else
   {
    func_80029C48(pCurrent);
-   func_8002864C(pThis, pCurrent);
+   CParticleSystem__DeallocateParticle(pThis, pCurrent);
   }
  }
  D_800B6B00 = prevFrameInc;

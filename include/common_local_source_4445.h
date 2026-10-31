@@ -16716,8 +16716,8 @@ extern CCampaigner CampaignerBoss ;
 
 typedef void(*CampaignerSetupFunction)(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 
-CBoss *func_8004D218(CGameObjectInstance *pThis) ;
-void func_8004D6FC(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
+CBoss *Campaigner_Initialise(CGameObjectInstance *pThis) ;
+void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode) ;
 
 
@@ -17764,7 +17764,7 @@ CVector3 WallPositions[] =
 signed long func_80044A34(CGameObjectInstance *pThis, CMantis *pMantis)
 ;
 
-INT32 func_80044BDC(CGameObjectInstance *pThis, CMantis *pMantis)
+INT32 Mantis_ClosestWall(CGameObjectInstance *pThis, CMantis *pMantis)
 ;
            
                 

@@ -13444,7 +13444,7 @@ void func_80061568 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vP
 void func_800614D8 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void func_80061448 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void func_8006017C (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_8005FD28 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_PressurePlate (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void func_8005FC64 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void AI_MEvent_Pillar (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void AI_MEvent_SlideWall (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
@@ -15917,7 +15917,7 @@ void func_8004FD0C(void) ;
 void AI_Standard_Idle (CGameObjectInstance *pMe);
 void AI_Standard_Agitated (CGameObjectInstance *pMe);
 void AI_Standard_Attack (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
-void func_80077BFC (CGameObjectInstance *pMe);
+void AI_Standard_Death (CGameObjectInstance *pMe);
 void func_80078378 (CGameObjectInstance *pMe);
 void func_80078040 (CGameObjectInstance *pMe);
 void func_80076824 (CGameObjectInstance *pMe, float turnang, int MovementAllowed);
@@ -16717,8 +16717,8 @@ extern CCampaigner CampaignerBoss ;
 
 typedef void(*CampaignerSetupFunction)(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 
-CBoss *func_8004D218(CGameObjectInstance *pThis) ;
-void func_8004D6FC(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
+CBoss *Campaigner_Initialise(CGameObjectInstance *pThis) ;
+void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
 signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode) ;
 
 

@@ -90,5 +90,5 @@ void func_80029F14(CParticle *pThis)
 
 	// ?
 	if ((pThis->m_CI.InstanceBehavior == INTERSECT_BEHAVIOR_STICK) || func_8007636C(EventNumber))
-		func_8002864C(&GetApp()->m_Scene.m_ParticleSystem, pThis);
+		CParticleSystem__DeallocateParticle(&GetApp()->m_Scene.m_ParticleSystem, pThis);
 }
