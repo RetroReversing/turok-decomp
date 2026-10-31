@@ -18957,17 +18957,19 @@
       "name": "code_80098440/osPfsIsPlug",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsIsPlug.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsIsPlug.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsIsPlug.o"
     },
     {
       "name": "code_80098440/__osPfsRequestData",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPfsRequestData.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPfsRequestData.c"
+      },
+      "base_path": "build/src/code_80098440/__osPfsRequestData.o"
     },
     {
       "name": "code_80098440/func_8009F22C",
@@ -19089,9 +19091,10 @@
       "name": "code_80098440/osPfsReadWriteFile",
       "target_path": "build/asm/nonmatchings/code_80098440/osPfsReadWriteFile.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osPfsReadWriteFile.c"
+      },
+      "base_path": "build/src/code_80098440/osPfsReadWriteFile.o"
     },
     {
       "name": "code_80098440/osPfsAllocateFile",
@@ -19106,9 +19109,10 @@
       "name": "code_80098440/__osPfsDeclearPage",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPfsDeclearPage.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPfsDeclearPage.c"
+      },
+      "base_path": "build/src/code_80098440/__osPfsDeclearPage.o"
     },
     {
       "name": "code_80098440/__osClearPage",
@@ -20265,17 +20269,19 @@
       "name": "code_80098440/__osRepairPackId",
       "target_path": "build/asm/nonmatchings/code_80098440/__osRepairPackId.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osRepairPackId.c"
+      },
+      "base_path": "build/src/code_80098440/__osRepairPackId.o"
     },
     {
       "name": "code_80098440/__osCheckPackId",
       "target_path": "build/asm/nonmatchings/code_80098440/__osCheckPackId.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osCheckPackId.c"
+      },
+      "base_path": "build/src/code_80098440/__osCheckPackId.o"
     },
     {
       "name": "code_80098440/func_800A8D94",
@@ -20298,9 +20304,10 @@
       "name": "code_80098440/__osPfsRWInode",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPfsRWInode.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPfsRWInode.c"
+      },
+      "base_path": "build/src/code_80098440/__osPfsRWInode.o"
     },
     {
       "name": "code_80098440/__osPfsSelectBank",
@@ -20339,9 +20346,10 @@
       "name": "code_80098440/__osContRamRead",
       "target_path": "build/asm/nonmatchings/code_80098440/__osContRamRead.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osContRamRead.c"
+      },
+      "base_path": "build/src/code_80098440/__osContRamRead.o"
     },
     {
       "name": "code_80098440/__osPackRamReadData",
@@ -20365,17 +20373,19 @@
       "name": "code_80098440/__osContRamWrite",
       "target_path": "build/asm/nonmatchings/code_80098440/__osContRamWrite.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osContRamWrite.c"
+      },
+      "base_path": "build/src/code_80098440/__osContRamWrite.o"
     },
     {
       "name": "code_80098440/__osPackRamWriteData",
       "target_path": "build/asm/nonmatchings/code_80098440/__osPackRamWriteData.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osPackRamWriteData.c"
+      },
+      "base_path": "build/src/code_80098440/__osPackRamWriteData.o"
     },
     {
       "name": "code_80098440/func_800AA800",

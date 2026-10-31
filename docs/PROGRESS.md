@@ -97,3 +97,8 @@ Ten new live-API matches add **2,728 bytes**, bringing standalone selection to *
 ## 31 October 2026 — ten controller setup and memory-pack matches
 
 Ten new live-API matches add **5,304 bytes**, bringing standalone selection to **2,163 C functions / 496,584 bytes (79.325%)**. Original SDK directory, inode and controller records, function bodies and `-O1` recovered controller initialization and memory-pack file operations. Controller initialization also needed its existing ROM division helper explicitly identified at the call sites. The complete cartridge remains byte-identical. All ten sources and contexts are persisted in the app, with all ten selected in the repo. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#controller-setup-and-memory-pack-live-api-continuation--31-october-2026).
+
+
+## 31 October 2026 — ten Controller Pak matches through source preparation
+
+Ten new live-API matches add **6,080 bytes**, bringing standalone selection to **2,173 C functions / 502,664 bytes (80.296%)**. Original SDK record layouts, function bodies, macros and existing `-O1` settings recovered packet, RAM-transfer, inode, file-I/O and pack-ID routines. One candidate needed its missing bounds-check macro; another needed a call-site-supported alias for the count-register helper. The complete cartridge remains byte-identical. All ten sources and contexts are persisted in the app and selected in the repo; the older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#controller-pak-source-preparation-api-continuation--31-october-2026).

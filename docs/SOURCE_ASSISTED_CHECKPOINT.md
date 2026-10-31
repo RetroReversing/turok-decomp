@@ -429,3 +429,31 @@ Controller initialization first reached score 20: every instruction matched exce
 Reference function bodies were retained with explicit source-line directives; selected hardware branches were extracted from their original conditional context. No broad permutation or random search was needed for this batch. The newly implemented app source-preparation feature is in a separate PR and was not installed or used to claim these results.
 
 The standalone selection is **2,163 C functions / 496,584 bytes (79.324997% of 626,012 code bytes)**, up **0.847268 percentage points**. The app has **2,164 persisted matches / 497,364 bytes (79.449595%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved matched sources and required headers were audited, with app revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
+
+
+## Controller Pak source-preparation API continuation — 31 October 2026
+
+Starting from `9f2dbd6`, ten previously unmatched functions were recovered through the running app's authenticated source-preparation API, adding **6,080 bytes**. This source-assisted session used authorized local SDK references. No target bytes, addresses, hashes or comparison gates were changed.
+
+| Function | Bytes | Starting score | Final score |
+| --- | ---: | ---: | ---: |
+| `__osPfsRequestData` | 252 | 1703 | 0 |
+| `__osPackRamWriteData` | 380 | 3499 | 0 |
+| `__osCheckPackId` | 408 | 970 | 0 |
+| `osPfsIsPlug` | 416 | 2615 | 0 |
+| `__osContRamWrite` | 560 | 2468 | 0 |
+| `__osContRamRead` | 580 | 3597 | 0 |
+| `__osPfsDeclearPage` | 612 | 5135 | 0 |
+| `__osPfsRWInode` | 800 | 4463 | 0 |
+| `osPfsReadWriteFile` | 1024 | 8782 | 0 |
+| `__osRepairPackId` | 1048 | 3119 | 0 |
+
+All ten retain IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. The original SDK packet, inode and pack-ID records, local declarations and selected hardware branches were restored rather than broadly permuting mutated drafts.
+
+The pack-ID repair routine reached score 10 with only an unresolved `osGetCount` call. The target calls the existing `func_800A60D0`; a candidate-local macro alias to that target symbol produced an exact match. No global symbol identity was changed. The read/write-file candidate initially omitted its source-file `CHECK_IPAGE` macro, causing an implicit call and by-value struct argument expansion; restoring the original bounds-check macro produced the exact code. Missing constants/types and compiler failures were corrected and are not counted as progress.
+
+The GUI manual-edit identity had an active claim in another game. That claim was left untouched. Prepared candidates and a private declarations header were submitted through the live source-preparation API, whose autopilot identity handles its own claims, ordinary byte/data judging and guarded header promotion. Short bounded rounds were continued until all ten were accepted. The project's previous machine-local source-preparation configuration was restored afterwards.
+
+Application improvements from the prior batch are proposed separately in decompdecomp PR #209; this session did not install or restart the app, or attribute its matches to uninstalled code.
+
+The standalone selection is **2,173 C functions / 502,664 bytes (80.296224% of 626,012 code bytes)**, up **0.971227 percentage points**. The app has **2,174 persisted matches / 503,444 bytes (80.420823%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required contexts were audited, with app revalidation complete. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.

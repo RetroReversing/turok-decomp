@@ -60,7 +60,17 @@
     "src/code_80098440/__osPfsGetNextPage.c": "8dd8ffebcb9cb9836785bcf7bc6c8132c0339adc4cec0fb655ba09459ff00a5e",
     "src/code_80098440/osPfsNumFiles.c": "83ebb36a20e0105009cd8d435dd6387eee495145f125bb38b4ec1a3e6ab4e88c",
     "src/code_80098440/osContInit.c": "e7a6d3d367ac0dc51d5f47e0b52f3bb65d264863aba628f3ccacdf7296289fbc",
-    "src/code_80098440/osPfsDeleteFile.c": "0be41d28056247719a48b2d3ba42f4307d4a17b828a6f5f1e74b1d538fc02970"
+    "src/code_80098440/osPfsDeleteFile.c": "0be41d28056247719a48b2d3ba42f4307d4a17b828a6f5f1e74b1d538fc02970",
+    "src/code_80098440/__osRepairPackId.c": "785d974936ce42657bec42ba5b3e9c4d12991d41fa2808fbf959fa0801de592d",
+    "src/code_80098440/__osContRamRead.c": "8eff8104527c3b5dd2f81046e2a2a93be9fa49ca9c0b309bccd86c9e5a74d607",
+    "src/code_80098440/__osPfsRequestData.c": "85228f1afcbfc813237e610fd245badca909a9507271ace76990c3a79d7d1639",
+    "src/code_80098440/__osPfsDeclearPage.c": "bf7f13ed606aa7b80a8cfad6d7c413678c7f00042a363ddb4c5cb1262edb03b4",
+    "src/code_80098440/__osCheckPackId.c": "fb91394f106bc6eae627c0486974982ac5aa04dcd2b7d5a65847c38fbedd2c26",
+    "src/code_80098440/osPfsIsPlug.c": "fe25ce32d5dcc1bcfafc0568b959f239d3053ba1441abed70da191e09a6f4043",
+    "src/code_80098440/__osPfsRWInode.c": "5524eb282d8cfe8968a250a2ffa2cc04a25139dd8b27efe4689cfd93536165c2",
+    "src/code_80098440/osPfsReadWriteFile.c": "efefc8c879ec67d5bc0848101828cd9848be4470a7c78fef5badeb3592a4a779",
+    "src/code_80098440/__osPackRamWriteData.c": "7ef31caf5813cd7e1d9e279ce821504bb3e8c0a38c1a0fcf4dfcf24befe4c759",
+    "src/code_80098440/__osContRamWrite.c": "22d5381b753bd003465eaadcbba844c8222843505d23076d01874d7f2b949b8f"
   },
   "accepted": [
     "__d_to_ull",
@@ -68,12 +78,20 @@
     "__ll_mod",
     "__ll_mul",
     "__osCheckId",
+    "__osCheckPackId",
     "__osClearPage",
+    "__osContRamRead",
+    "__osContRamWrite",
     "__osInsertTimer",
+    "__osPackRamWriteData",
     "__osPackReadData",
     "__osPackRequestData",
+    "__osPfsDeclearPage",
     "__osPfsGetNextPage",
+    "__osPfsRWInode",
     "__osPfsReleasePages",
+    "__osPfsRequestData",
+    "__osRepairPackId",
     "__osResetGlobalIntMask",
     "__osSetTimerIntr",
     "__osTimerInterrupt",
@@ -119,7 +137,9 @@
     "osPfsFileState",
     "osPfsFindFile",
     "osPfsFreeBlocks",
+    "osPfsIsPlug",
     "osPfsNumFiles",
+    "osPfsReadWriteFile",
     "osSendMesg",
     "osStartThread",
     "osYieldThread"
@@ -131,5 +151,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2164
+  "matched_app": 2174
 }
