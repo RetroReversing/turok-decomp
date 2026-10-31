@@ -227,3 +227,10 @@ A separate standalone export fix accepts repeated unreferenced eight-byte `jr ra
 The live app accepts all ten through its normal compile/link judge. A read-only audit finds all 2,087 selected functions matched in the app, with saved sources and headers present and saved source equal to the matched database source. Saved revision 408 contains 2,088 matches: the additional old `func_800587B8` is still excluded from standalone selection because its data placement is unresolved. Three pre-existing equivalent source/context representations remain documented differences. No extra writer was opened against the live database.
 
 The complete expanded image and reconstructed 8,388,608-byte cartridge both pass their unchanged byte comparisons. Cartridge SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`. All 2,087 C selections are retained with no new assembly fallback. Local ROMs, generated objects, databases and private evidence are excluded from Git.
+
+
+## User optimization check — 31 October 2026
+
+The user's live-app compiler check supplied ten additional exact matches / 14,728 bytes beyond `d9381c1`. Standalone integration selects 2,097 C functions / 477,728 bytes (76.313% of the fixed 626,012 candidate-code bytes). All ten passed standalone per-function checks with their saved app contexts and profiles. The 44 still-unmatched candidates with lower scores than the preceding checkpoint are preserved under `drafts/optimization-20261031`, with source, context, score and compiler profile; they are not selected C or credited as recovered bytes. These results precede the following live-API matching session and must not be attributed to that session.
+
+The complete expanded image and reconstructed 8 MiB cartridge pass byte for byte, retaining SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The particle draw routine uses an external reference to the original string to keep its numeric/jump-table pool contiguous; the live API verifies this equivalent representation at score zero without replacing its already-matched source.

@@ -1,0 +1,838 @@
+[
+  {
+    "name": "func_8002DB18",
+    "vram": 2147670808,
+    "before_score": 180,
+    "score": 20,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "guLookAt",
+    "vram": 2148146168,
+    "before_score": 481,
+    "score": 5,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002B2E8",
+    "vram": 2147660520,
+    "before_score": 1079,
+    "score": 375,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "alSynAllocFX",
+    "vram": 2148195920,
+    "before_score": 400,
+    "score": 110,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80013FD8",
+    "vram": 2147565528,
+    "before_score": 180,
+    "score": 50,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "__d_to_ull",
+    "vram": 2148129016,
+    "before_score": 2030,
+    "score": 1830,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002DD90",
+    "vram": 2147671440,
+    "before_score": 405,
+    "score": 155,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "_filterBuffer",
+    "vram": 2148210248,
+    "before_score": 937,
+    "score": 845,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8009F22C",
+    "vram": 2148135468,
+    "before_score": 2412,
+    "score": 1718,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "alAuxBusPull",
+    "vram": 2148203296,
+    "before_score": 310,
+    "score": 280,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "_allocatePVoice",
+    "vram": 2148192384,
+    "before_score": 920,
+    "score": 685,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8006905C",
+    "vram": 2147913820,
+    "before_score": 1055,
+    "score": 523,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002A1A0",
+    "vram": 2147656096,
+    "before_score": 1209,
+    "score": 515,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80029C48",
+    "vram": 2147654728,
+    "before_score": 1113,
+    "score": 902,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "alMainBusPull",
+    "vram": 2148196128,
+    "before_score": 425,
+    "score": 140,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80020CAC",
+    "vram": 2147617964,
+    "before_score": 1666,
+    "score": 970,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002A5C8",
+    "vram": 2147657160,
+    "before_score": 789,
+    "score": 458,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002AA38",
+    "vram": 2147658296,
+    "before_score": 1222,
+    "score": 873,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "_loadBuffer",
+    "vram": 2148210824,
+    "before_score": 4571,
+    "score": 4226,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002D1F8",
+    "vram": 2147668472,
+    "before_score": 3682,
+    "score": 2119,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "osContInit",
+    "vram": 2148133840,
+    "before_score": 2831,
+    "score": 2410,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "alResamplePull",
+    "vram": 2148199548,
+    "before_score": 3619,
+    "score": 2848,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "_loadOutputBuffer",
+    "vram": 2148211220,
+    "before_score": 2976,
+    "score": 2960,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "__osPfsReleasePages",
+    "vram": 2148138448,
+    "before_score": 11878,
+    "score": 10246,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002B5E0",
+    "vram": 2147661280,
+    "before_score": 3873,
+    "score": 3667,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "__osPfsDeclearPage",
+    "vram": 2148141700,
+    "before_score": 10785,
+    "score": 5135,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8006A654",
+    "vram": 2147919444,
+    "before_score": 1177,
+    "score": 810,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80033CDC",
+    "vram": 2147695836,
+    "before_score": 3025,
+    "score": 1617,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "osPfsDeleteFile",
+    "vram": 2148137712,
+    "before_score": 13218,
+    "score": 7006,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "osPfsFileState",
+    "vram": 2148136800,
+    "before_score": 13402,
+    "score": 9725,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8001F4E0",
+    "vram": 2147611872,
+    "before_score": 4244,
+    "score": 3124,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002BF28",
+    "vram": 2147663656,
+    "before_score": 115,
+    "score": 35,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O2",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_800AA810",
+    "vram": 2148182032,
+    "before_score": 15918,
+    "score": 13320,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-g",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_800A7460",
+    "vram": 2148168800,
+    "before_score": 15325,
+    "score": 11016,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "osPfsReadWriteFile",
+    "vram": 2148139516,
+    "before_score": 15876,
+    "score": 8782,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_800727E0",
+    "vram": 2147952608,
+    "before_score": 9424,
+    "score": 2473,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8005FD28",
+    "vram": 2147876136,
+    "before_score": 3954,
+    "score": 874,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "osPfsAllocateFile",
+    "vram": 2148140544,
+    "before_score": 26190,
+    "score": 8067,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8002FBD0",
+    "vram": 2147679184,
+    "before_score": 692,
+    "score": 52,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80099208",
+    "vram": 2148110856,
+    "before_score": 8356,
+    "score": 6108,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_8007223C",
+    "vram": 2147951164,
+    "before_score": 5809,
+    "score": 5799,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O2",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_800A67D0",
+    "vram": 2148165584,
+    "before_score": 30345,
+    "score": 14646,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O1",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80060AE4",
+    "vram": 2147879652,
+    "before_score": 4554,
+    "score": 1210,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  },
+  {
+    "name": "func_80019300",
+    "vram": 2147586816,
+    "before_score": 1835,
+    "score": 20,
+    "compiler": {
+      "toolchain": "ido-5.3",
+      "flags": [
+        "-O3",
+        "-mips2",
+        "-G",
+        "0",
+        "-non_shared",
+        "-Xcpluscomm",
+        "-Wab,-r4300_mul"
+      ],
+      "timeout": 20
+    }
+  }
+]

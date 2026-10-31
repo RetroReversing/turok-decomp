@@ -57,3 +57,8 @@ The standalone selection reaches **2,077 C functions / 461,364 bytes (73.699% of
 ## Ten-match source-assisted continuation, 31 October
 
 Ten additional selected C functions / 1,636 bytes bring the selection to **2,087 C functions / 463,000 bytes (73.960% of the fixed candidate-code total)**, up **0.261 percentage points**. The app has accepted and persisted all ten; all repository selections have saved app sources and headers. Seven narrowly scoped `-O3` profiles and source/type repairs account for the new matches. The complete original cartridge rebuild passes byte for byte, with no fallback among the ten additions. See [the ten-match report](SOURCE_ASSISTED_CHECKPOINT.md#ten-additional-source-assisted-matches--31-october-2026).
+
+
+## User optimization-check checkpoint, 31 October
+
+Ten user-discovered app matches add 14,728 selected C bytes: **2,097 C functions / 477,728 bytes (76.313%)**. All ten pass per-function checks and the complete original-cartridge rebuild. The 44 partially improved candidates are retained separately under `drafts/optimization-20261031` and excluded from coverage. See the source-assisted report for attribution and the particle constant-pool integration repair.

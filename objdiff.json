@@ -2489,9 +2489,10 @@
       "name": "code_80017F0C/func_80019F64",
       "target_path": "build/asm/nonmatchings/code_80017F0C/func_80019F64.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80017F0C/func_80019F64.c"
+      },
+      "base_path": "build/src/code_80017F0C/func_80019F64.o"
     },
     {
       "name": "code_80017F0C/func_8001A78C",
@@ -2542,9 +2543,10 @@
       "name": "code_80017F0C/func_8001B1C0",
       "target_path": "build/asm/nonmatchings/code_80017F0C/func_8001B1C0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80017F0C/func_8001B1C0.c"
+      },
+      "base_path": "build/src/code_80017F0C/func_8001B1C0.o"
     },
     {
       "name": "code_80017F0C/func_8001BA24",
@@ -2939,9 +2941,10 @@
       "name": "code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance",
       "target_path": "build/asm/nonmatchings/code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance.c"
+      },
+      "base_path": "build/src/code_80017F0C/CGameSimpleInstance__TakeFromROMSimpleInstance.o"
     },
     {
       "name": "code_80017F0C/func_80020600",
@@ -3375,9 +3378,10 @@
       "name": "code_80026AD0/CParticle__Draw",
       "target_path": "build/asm/nonmatchings/code_80026AD0/CParticle__Draw.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80026AD0/CParticle__Draw.c"
+      },
+      "base_path": "build/src/code_80026AD0/CParticle__Draw.o"
     },
     {
       "name": "code_80026AD0/func_800280A8",
@@ -11102,17 +11106,19 @@
       "name": "code_8005C8BC/func_80060464",
       "target_path": "build/asm/nonmatchings/code_8005C8BC/func_80060464.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8005C8BC/func_80060464.c"
+      },
+      "base_path": "build/src/code_8005C8BC/func_80060464.o"
     },
     {
       "name": "code_8005C8BC/func_800607AC",
       "target_path": "build/asm/nonmatchings/code_8005C8BC/func_800607AC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8005C8BC/func_800607AC.c"
+      },
+      "base_path": "build/src/code_8005C8BC/func_800607AC.o"
     },
     {
       "name": "code_8005C8BC/func_80060A54",
@@ -11216,9 +11222,10 @@
       "name": "code_8005C8BC/func_80061CC4",
       "target_path": "build/asm/nonmatchings/code_8005C8BC/func_80061CC4.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8005C8BC/func_80061CC4.c"
+      },
+      "base_path": "build/src/code_8005C8BC/func_80061CC4.o"
     },
     {
       "name": "code_8005C8BC/func_80061FA8",
@@ -15147,9 +15154,10 @@
       "name": "code_80076218/AI_Standard_Sniper",
       "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_Sniper.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80076218/AI_Standard_Sniper.c"
+      },
+      "base_path": "build/src/code_80076218/AI_Standard_Sniper.o"
     },
     {
       "name": "code_80076218/AI_Standard_DeadBodyRiddle",
@@ -15189,9 +15197,10 @@
       "name": "code_80076218/AI_Standard_Death",
       "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_Death.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80076218/AI_Standard_Death.c"
+      },
+      "base_path": "build/src/code_80076218/AI_Standard_Death.o"
     },
     {
       "name": "code_80076218/func_80078040",
@@ -18150,9 +18159,10 @@
       "name": "code_80098440/func_80099744",
       "target_path": "build/asm/nonmatchings/code_80098440/func_80099744.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_80099744.c"
+      },
+      "base_path": "build/src/code_80098440/func_80099744.o"
     },
     {
       "name": "code_80098440/func_8009A158",
