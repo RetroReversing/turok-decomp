@@ -15,4 +15,4 @@
 
 - When updating the app, preserve the tested ELF relocation-table-order HI16/LO16 fix. The repair source is in `/Volumes/Data/Codex/worktrees/decompdecomp-turok-sync-20261031` (`fix/turok-live-sync-relocations`). Recheck known multi-address relocation cases before replacing the working app bundle.
 
-- Commit Turok repository changes directly on `main`, as requested by the user. decompdecomp application changes belong on branches with pull requests.
+- Always commit and push Turok repository changes directly on `main`, as requested by the user. decompdecomp application changes belong on branches with pull requests.

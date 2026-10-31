@@ -219,6 +219,35 @@ def normalize_prefix(path):
  path.write_bytes(data);return True
 
 
+def declare_o32_abi(path: Path, profile: dict) -> None:
+    """Tag legacy IDO MIPS III objects with the explicitly requested O32 ABI.
+
+    IDO's old assembler emits ELF32 with no ABI tag even with -32. GNU ld then
+    guesses a 64-bit ABI from the ISA and rejects the game's O32 objects. Set
+    only EF_MIPS_ABI_O32; instructions, sections and relocations stay untouched.
+    """
+    flags = profile.get("flags", [])
+    if profile.get("toolchain") not in ("ido-5.3", "ido-7.1") or not {"-mips3", "-32"} <= set(flags):
+        return
+    import struct
+
+    data = bytearray(path.read_bytes())
+    if len(data) < 52 or data[:5] != b"\x7fELF\x01" or data[5] not in (1, 2):
+        raise ValueError("O32 tagging requires a 32-bit ELF object")
+    order = ">" if data[5] == 2 else "<"
+    kind = struct.unpack_from(order + "H", data, 16)[0]
+    machine = struct.unpack_from(order + "H", data, 18)[0]
+    elf_flags = struct.unpack_from(order + "I", data, 36)[0]
+    if kind != 1 or machine != 8 or elf_flags & 0xF0000000 != 0x20000000:
+        raise ValueError("O32 tagging requires a MIPS III object")
+    if {"-n32", "-64"} & set(flags) or elf_flags & 0x20 or elf_flags & 0xF000 not in (0, 0x1000):
+        raise ValueError("Refusing to replace another MIPS ABI")
+    if elf_flags & 0x1000:
+        return
+    struct.pack_into(order + "I", data, 36, elf_flags | 0x1000)
+    path.write_bytes(data)
+
+
 def trim(path: Path) -> None:
     """Shrink a compiled object's code section to where its last function ends. Period assemblers pad sections to
     16 bytes; with every function placed at its own address, that padding would run into the next function."""
@@ -271,6 +300,7 @@ def build_objects(todo: list[tuple[str, str, str]]) -> None:
             if src.endswith(".cpp"):  # C++ names back to the game's, as decompdecomp judged it
                 names = {*B["symbols"], *(f["name"] for f in B["functions"])}
                 target.write_bytes(unmangle(target.read_bytes(), lambda n: n in names or bool(AUTO_NAME.match(n))))  # noqa: B023  called within this pass of the loop
+            declare_o32_abi(target, compiler)
             trim(target)
             weaken_data(obj)
 
