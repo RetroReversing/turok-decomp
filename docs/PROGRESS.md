@@ -42,3 +42,8 @@ Particle advance, standard follow and the sequence marker now match exactly: thr
 ## 31 October SDK and handler recovery
 
 Fifteen additional selected C functions / 744 bytes bring the full-cartridge-verified selection to **2,054 C functions / 448,388 bytes (71.626% of the fixed candidate-code total)**, a gain of 0.119 percentage points. Three SDK functions and twelve tiny handler stubs passed independent checks and the full original-cartridge build. See the source-assisted checkpoint document for provenance, timing and concurrent-worker attribution.
+
+
+## Thirty-minute continuation, 31 October
+
+The verified standalone selection is now **2,066 C functions / 455,668 bytes (72.789% of the fixed candidate-code total)**. This adds **12 C selections / 7,280 bytes**, or **1.163 percentage points**: six new recoveries or repairs and six existing app matches integrated with verified data placement. The complete original cartridge rebuild remains byte identical. The source-assisted checkpoint document separates new recoveries, carried-over work, app acceptance and verification.

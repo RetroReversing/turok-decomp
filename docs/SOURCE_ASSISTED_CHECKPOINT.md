@@ -117,3 +117,42 @@ The supplied local source archive was consulted. These are matching reconstructi
 An earlier live-app snapshot changed from **2,056 isolated matches / 459,016 bytes** to **2,070 / 459,600 bytes**, with **277 open** and **59 assembly** candidates, before the final SDK recovery. These are historical app measurements; background rechecks can change the live counts independently of the standalone selection. Background workers were active: six handler candidates were accepted directly during this pass, and the remaining six were already matched or claimed when acceptance was attempted. All three SDK functions were accepted directly through the normal app API. All fifteen independently verified sources are selected in the standalone build; the live increase should not be credited wholly to foreground work.
 
 The requested matching window started at 08:47 UTC and targeted 09:47 UTC. Verification and integration continued later. This session was not measured as an uninterrupted hour of model computation and should not be used as a controlled model/cost benchmark. Private candidates, diagnostics, app acceptance and build logs remain under `.local/sol-hour-20261031/`.
+
+
+## Thirty-minute source-assisted continuation — 31 October 2026
+
+The matching window ran from **12:35:15 to 13:05:15 UTC**; final integration and cartridge verification continued afterwards. Relative to `df9d440`, this checkpoint adds **12 selected C functions / 7,280 bytes**, reaching **2,066 C functions / 455,668 bytes (72.789020019% of the fixed 626,012-byte candidate-code total)**. This is a gain of **1.162917 percentage points**. There are **341 assembly entries among 2,407 build entries**; these figures do not imply a complete decompilation.
+
+### Six new recoveries or repairs
+
+| Function | Bytes | What resolved the mismatch |
+| --- | ---: | --- |
+| `alSndpDeallocate` | 80 | Restored the SDK's typed, 48-byte sound-state record and array indexing. |
+| `alEvtqNextEvent` | 140 | Restored typed queue links, the 16-byte event and the original control flow. |
+| `func_8002DEF0` | 176 | Reconstructed `CHashTable__NewAssoc` with its inline allocation helper and pointer return. The final source needs no artificial scratch array. |
+| `func_8002D950` | 40 | Restored the inline size helper followed by header-size subtraction. This reproduces the otherwise unexplained `addiu ..., 0` instruction. Its address name remains pending a separate symbol review. |
+| `func_80039030` | 236 | Replaced a guessed angle increment with the exact retail constant `0.19198621771937624`. The previous draft's instructions matched but its owned constant differed from the ROM. |
+| `func_80093D48` | 144 | Restored the typed `COptions__SetDefaults` source context, using the retail opacity value of 184. The archived body used 255. |
+
+These six total **816 bytes**. Four were submitted and accepted through the app's normal attempt API: the SDK pair, the hash allocator and the inline-size routine. The angle-constant and options repairs are selected in the standalone checkout; this session did not promote their separate prepared contexts into the running app.
+
+### Six existing app matches integrated into the standalone build
+
+The live app already held exact instruction drafts for the following **6,464 bytes**. They are carried-over work, not six additional foreground discoveries:
+
+| Function | Bytes |
+| --- | ---: |
+| `func_800036B0` (`CEngineApp__DrawGAME` candidate) | 1,736 |
+| `func_8001EB64` | 844 |
+| `func_80034BA0` | 828 |
+| `func_8008CD1C` | 676 |
+| `func_8008CFC0` | 692 |
+| `func_80095AD0` (`printFaultData` candidate) | 1,688 |
+
+Each source was independently recompiled and linked with the corrected private judge. Placement repairs keep shared ambient-audio tables at their verified ROM addresses and preserve the functions' private static state. Duplicate format strings were bound to their individual verified ROM copies. Shared data remains provided by the existing data assembly, rather than being duplicated inside each function's C object. Original targets, compiler profiles and comparison gates were unchanged.
+
+`func_800587B8` remains deferred: it matches in isolation, but its constant pool cannot yet be exported at one proven section base. A separate six-minute local permutation search on particle drawing tested 342 variants, skipped 39 and retained no improvement; it is not counted as a recovery.
+
+### Verification
+
+The final build uses all **2,066 C selections** and rebuilds the complete **8,388,608-byte cartridge byte for byte**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The earlier full build recompiled the existing selection; the final build compiled the changed objects, regenerated assembly runs and relinked the whole image using unchanged objects from that passing build. Four compiler workers and temporary storage on the Data volume were used. Private trials, acceptance results, placement evidence and build logs are under `.local/sol-halfhour-20261031-1235/`.
