@@ -321,3 +321,27 @@ The app restarted during the run, interrupting some requests. Each recovery was 
 With the separately documented O32 metadata fix in `83ae9c3`, the app repository-sync job accepted all ten additions. The full expanded image and original 8,388,608-byte cartridge rebuilt byte for byte, retaining SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. No new assembly fallback was introduced.
 
 The standalone selection is **2,123 C functions / 484,004 bytes (77.315451% of the fixed 626,012 code bytes)**, a gain of **0.104790 percentage points**. The app has **2,124 saved matches / 484,784 bytes (77.440049%)**. Its older `func_800587B8` match remains outside standalone selection because of non-contiguous constant-pool placement. All selected C functions have matching persisted app sources and headers, and app revalidation has finished.
+
+
+## Audio and game-source live-API continuation — 31 October 2026
+
+Starting from `de70235`, ten distinct previously unmatched functions were recovered through the running app API, adding **1,988 bytes**. Original game and SDK sources on disk were consulted; this is a source-assisted result. Target bytes, addresses, hashes and comparison gates are unchanged.
+
+| Function | Bytes | Starting score | Final score | Repair |
+| --- | ---: | ---: | ---: | --- |
+| `func_800A4C00` | 88 | 175 | 0 | Identify alCSPSetChlFXMix: compiler-profile application makes the saved candidate exact at -O3. |
+| `func_800120DC` | 124 | 543 | 0 | Identify i3D_addPool: integer size argument and actual pool/node records. |
+| `osGetTime` | 132 | 534 | 0 | SDK local lifetimes and register saved interrupt mask; -O1. |
+| `__vsVol` | 136 | 215 | 0 | Typed voice/player/channel records and original volume multiplication order. |
+| `func_8005EED0` | 136 | 210 | 0 | Identify AI_DoSound: four-argument ABI, integer return and -O3. |
+| `alSynFreeVoice` | 176 | 335 | 0 | Original voice/free-parameter records, allocation-failure early return, clear voice after both branches; -O3. |
+| `alAuxBusPull` | 216 | 280 | 0 | Original SDK audio-command macro and typed filter/bus records; -O3. |
+| `__osCheckId` | 252 | 525 | 0 | Older SDK controller-pak body and original comparison operand order; -O1. |
+| `alCSeqNewMarker` | 364 | 475 | 0 | Typed compact-sequence, marker and event records; original SDK body. |
+| `alCSPNew` | 364 | 455 | 0 | Typed player/configuration/event/voice records and distinct SDK locals. |
+
+The existing IDO 5.3 MIPS II profiles remain in use, with function-scoped optimization settings judged against retail bytes. These working settings do not uniquely prove the original compiler release. In particular, compiler-profile application matched the saved FX-mix candidate before the following scratch attempt; it is counted once.
+
+Restoring real types and bodies mattered alongside optimization: the pool constructor draft mistook its integer size for a pointer; the volume helper needed the original multiplication order; the sound wrapper needed the proper four-argument signature. The retail free-voice routine clears the voice after either release path, while the supplied source places that clear inside one branch, so source availability alone does not guarantee a match.
+
+The standalone selection is **2,133 C functions / 485,992 bytes (77.633017% of 626,012 code bytes)**, up **0.317566 percentage points**. The app has **2,134 saved matches / 486,772 bytes (77.757615%)**. The older `func_800587B8` constant-pool export blocker remains; all ten new matches are selected in the standalone build. The repository sync passed the complete original-cartridge byte comparison, preserving SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved sources and their contexts were audited against the live matched state.

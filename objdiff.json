@@ -1511,9 +1511,10 @@
       "name": "code_80009A38/func_800120DC",
       "target_path": "build/asm/nonmatchings/code_80009A38/func_800120DC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80009A38/func_800120DC.c"
+      },
+      "base_path": "build/src/code_80009A38/func_800120DC.o"
     },
     {
       "name": "code_80009A38/func_80012158",
@@ -10960,9 +10961,10 @@
       "name": "code_8005C8BC/func_8005EED0",
       "target_path": "build/asm/nonmatchings/code_8005C8BC/func_8005EED0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8005C8BC/func_8005EED0.c"
+      },
+      "base_path": "build/src/code_8005C8BC/func_8005EED0.o"
     },
     {
       "name": "code_8005C8BC/func_8005EF58",
@@ -18572,9 +18574,10 @@
       "name": "code_80098440/osGetTime",
       "target_path": "build/asm/nonmatchings/code_80098440/osGetTime.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/osGetTime.c"
+      },
+      "base_path": "build/src/code_80098440/osGetTime.o"
     },
     {
       "name": "code_80098440/__ull_rshift",
@@ -19403,9 +19406,10 @@
       "name": "code_80098440/alCSPNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSPNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSPNew.c"
+      },
+      "base_path": "build/src/code_80098440/alCSPNew.o"
     },
     {
       "name": "code_80098440/func_800A35E0",
@@ -19620,9 +19624,10 @@
       "name": "code_80098440/alCSeqNewMarker",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSeqNewMarker.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSeqNewMarker.c"
+      },
+      "base_path": "build/src/code_80098440/alCSeqNewMarker.o"
     },
     {
       "name": "code_80098440/func_800A489C",
@@ -19681,9 +19686,10 @@
       "name": "code_80098440/func_800A4C00",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A4C00.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A4C00.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A4C00.o"
     },
     {
       "name": "code_80098440/func_800A4C60",
@@ -20258,9 +20264,10 @@
       "name": "code_80098440/__osCheckId",
       "target_path": "build/asm/nonmatchings/code_80098440/__osCheckId.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__osCheckId.c"
+      },
+      "base_path": "build/src/code_80098440/__osCheckId.o"
     },
     {
       "name": "code_80098440/__osPfsRWInode",
@@ -20489,9 +20496,10 @@
       "name": "code_80098440/__vsVol",
       "target_path": "build/asm/nonmatchings/code_80098440/__vsVol.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__vsVol.c"
+      },
+      "base_path": "build/src/code_80098440/__vsVol.o"
     },
     {
       "name": "code_80098440/__seqpReleaseVoice",
@@ -20688,9 +20696,10 @@
       "name": "code_80098440/alSynFreeVoice",
       "target_path": "build/asm/nonmatchings/code_80098440/alSynFreeVoice.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSynFreeVoice.c"
+      },
+      "base_path": "build/src/code_80098440/alSynFreeVoice.o"
     },
     {
       "name": "code_80098440/alSynSetVol",
@@ -21018,9 +21027,10 @@
       "name": "code_80098440/alAuxBusPull",
       "target_path": "build/asm/nonmatchings/code_80098440/alAuxBusPull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alAuxBusPull.c"
+      },
+      "base_path": "build/src/code_80098440/alAuxBusPull.o"
     },
     {
       "name": "code_80098440/alSaveParam",

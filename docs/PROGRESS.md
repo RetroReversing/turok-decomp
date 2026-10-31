@@ -77,3 +77,8 @@ Ten previously unmatched functions add **2,372 selected C bytes**, bringing the 
 ## Runtime and SDK continuation, 31 October
 
 Ten further exact matches add **656 selected C bytes**, bringing the verified selection to **2,123 C functions / 484,004 bytes (77.315%)**. Seven runtime helpers need MIPS III with the O32 ABI; two thread routines need SDK register locals and `-O1`; the filter initializer matches with its original aligned record and local declarations. A guarded ELF ABI metadata fix permits the runtime objects to link without changing their code. All ten pass the complete original-cartridge comparison and are persisted in the app, which has 2,124 matches. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#runtime-and-sdk-live-api-continuation--31-october-2026).
+
+
+## 31 October 2026 — ten audio and game-source matches
+
+Ten additional live-API matches add **1,988 bytes**, bringing standalone selection to **2,133 C functions / 485,992 bytes (77.633%)**. Typed original SDK records, source-body repairs and verified per-function optimization settings recovered audio setup, volume, release, controller-pak checking, timekeeping, a memory-pool constructor and the sound wrapper. The full cartridge remains byte-identical. The app has 2,134 persisted matches; its older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#audio-and-game-source-live-api-continuation--31-october-2026).

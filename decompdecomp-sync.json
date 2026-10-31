@@ -20,20 +20,39 @@
     "src/code_80098440/__ll_mul.c": "1c7967f1753462711313aec045c84e7772f6096be43b5d013dfc3d7c033c5f90",
     "src/code_80098440/func_8009D38C.c": "1641dcb1798cfe4793224de62c6edfdf847adbe2fa240b0d7f6be52ed7c943d6",
     "src/code_80098440/__osResetGlobalIntMask.c": "a2ebfe3b7d9f1c9fbb08476b263f005d19cea4d614dc654a08d43e62eb76c0d3",
-    "src/code_80098440/__ull_rshift.c": "dc9fac9aec8cc0045ad1ed747d296571b2d1f5a866d52637446ac9694667ade8"
+    "src/code_80098440/__ull_rshift.c": "dc9fac9aec8cc0045ad1ed747d296571b2d1f5a866d52637446ac9694667ade8",
+    "src/code_80098440/func_800A4C00.c": "599d1e7f027cfeb31ee86a82fbab9638f42a0e32b98ca707451a09219d93b593",
+    "src/code_80098440/alSynFreeVoice.c": "cb26d4edae30bbde442cf9e6028c3cdc4bfa2bb53879a311e7eb23a303311342",
+    "src/code_80098440/osGetTime.c": "361eea93d1e92283d450c7a1164230a0606e0451801f51f737536cc77b83e3fb",
+    "src/code_80098440/alAuxBusPull.c": "dc6c61fd9568c771d64b216936dc47e2ed3ed164e3cad80610887c72b5c82beb",
+    "src/code_80009A38/func_800120DC.c": "60ec3c93130cbbd8ca7e224e2572bcac7b9d7d3674478e4dfa621385150e9182",
+    "src/code_8005C8BC/func_8005EED0.c": "09032000d1aab44eca7f71438db154e3bf1c5e237d8b8115acdcbf61cfc2e138",
+    "src/code_80098440/__vsVol.c": "7662e04b0c51f993fe879ac70619f389f88b4c0aab9de32d2294b3ea2839f7b2",
+    "src/code_80098440/__osCheckId.c": "c063348392fef30d24d613fe2d39d2c366c77b66dbce770657ef39420018ef7d",
+    "src/code_80098440/alCSeqNewMarker.c": "1dcdfbe1116d2575275e8355425348c27529ea2c8bdee20bbdc84eaca98d30a3",
+    "src/code_80098440/alCSPNew.c": "ec6de0639ee30837df94c8e6a1d2ec66bfabf40f528ad9828068953a573e57f8"
   },
   "accepted": [
     "__ll_lshift",
     "__ll_mul",
+    "__osCheckId",
     "__osClearPage",
     "__osResetGlobalIntMask",
     "__ull_rshift",
     "__ull_to_d",
+    "__vsVol",
+    "alAuxBusPull",
+    "alCSPNew",
+    "alCSeqNewMarker",
+    "alSynFreeVoice",
     "func_800119F4",
+    "func_800120DC",
     "func_8002FBD0",
+    "func_8005EED0",
     "func_8009D38C",
     "func_8009D430",
     "func_8009DA4C",
+    "func_800A4C00",
     "func_800A7090",
     "func_800AAEA0",
     "func_800AAF70",
@@ -42,6 +61,7 @@
     "func_800AFDD0",
     "func_800AFF50",
     "init_lpfilter",
+    "osGetTime",
     "osYieldThread"
   ],
   "skipped": [
@@ -51,5 +71,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2124
+  "matched_app": 2134
 }

@@ -4,11 +4,11 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **2,123 functions selected in C**, covering **484,004 bytes**, or **77.315% of the fixed 626,012 candidate-code bytes**.
-- The live app has **2,124 saved isolated matches / 484,784 bytes (77.440%)**, **223 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
-- The standalone export has **2,407 build entries**, including two padding labels; **284 entries use assembly**.
+- **2,133 functions selected in C**, covering **485,992 bytes**, or **77.633% of the fixed 626,012 candidate-code bytes**.
+- The live app has **2,134 saved isolated matches / 486,772 bytes (77.758%)**, **213 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
+- The standalone export has **2,407 build entries**, including two padding labels; **274 entries use assembly**.
 - A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- The latest live-API session added **ten matches / 656 bytes**. All ten passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#runtime-and-sdk-live-api-continuation--31-october-2026).
+- The latest live-API session added **ten matches / 1,988 bytes**. All ten passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#audio-and-game-source-live-api-continuation--31-october-2026).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
