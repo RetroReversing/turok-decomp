@@ -156,3 +156,48 @@ Each source was independently recompiled and linked with the corrected private j
 ### Verification
 
 The final build uses all **2,066 C selections** and rebuilds the complete **8,388,608-byte cartridge byte for byte**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The earlier full build recompiled the existing selection; the final build compiled the changed objects, regenerated assembly runs and relinked the whole image using unchanged objects from that passing build. Four compiler workers and temporary storage on the Data volume were used. Private trials, acceptance results, placement evidence and build logs are under `.local/sol-halfhour-20261031-1235/`.
+
+
+## Focused thirty-minute continuation — 31 October 2026
+
+The previous checkpoint was committed and pushed as `4082329` before this pass. The allocated matching window was **13:25:30–13:55:30 UTC**; integration and final verification continued afterwards. This is source-assisted work using the authorized archive, existing app drafts and the ROM, rather than a controlled model/cost benchmark.
+
+This checkpoint adds **11 selected C functions / 5,696 bytes**, moving from **2,066 / 455,668 bytes (72.789%)** to **2,077 / 461,364 bytes (73.698906730% of the fixed 626,012-byte candidate-code total)**. The gain is **0.909887 percentage points**. There are **330 assembly entries among 2,407 build entries**. These are standalone build figures, not a claim that the live app has accepted all eleven repairs.
+
+| Recovery or repair | Functions | Code bytes | What resolved it |
+| --- | ---: | ---: | --- |
+| `AI_Standard_Idle`, `func_80076218` | 2 | 1,600 | Their instruction bodies and table values already matched. Representing the verified adjacent ROM word as a C datum established the correct end of the constant pool, instead of treating compiler padding as owned game data. |
+| `func_80049BE0`, `func_8004F884`, `func_80057B58`, `func_80026DC0`, `func_8005F100`, `func_80071B18` | 6 | 1,848 | Existing instruction drafts had incorrect switch selectors. Reconstructed the C case labels from the retail jump tables, preserving the block bodies. Both instructions and owned data now match. |
+| `func_800894B0` | 1 | 824 | Bound the typed audio initializer to verified retail globals and segment symbols. Distinct linker labels at the same address must remain distinct C symbols to reproduce register allocation. |
+| `func_80008060` | 1 | 524 | Bound the graphics-task source to the retail microcode/runtime symbols and used the retail command FIFO size of **128 KiB**, versus 64 KiB in the supplied archive. |
+| `ScanFileList` (`func_800113A8`) | 1 | 900 | Bound the Controller Pak file-state record correctly and restored the retail eight-byte copy on the invalid-pack path; the archived version used a formatting call. |
+
+The first eight are repairs to existing drafts or their data ownership, not eight entirely new instruction-body discoveries. The constant-pool repair represents the actual neighbouring words (`D_800BE5EC = 1` and `D_800BE06C = 3`); it does not establish the original source spelling. The switch repairs change C selectors, not target jump-table bytes. Three verified linker aliases preserve distinct source labels at shared addresses. Original targets, compiler profiles, boundaries and comparison gates remain unchanged.
+
+### Verification and remaining leads
+
+Each accepted candidate passed independent compilation and the corrected private linked-byte/data judge before selection. A full build recompiled all 2,076 selections after the first ten additions and reproduced the original cartridge. The final build retained those unchanged verified objects, compiled `ScanFileList`, regenerated assembly runs and relinked the complete image. All **2,077 selected C objects** are present in the final link. The expanded-image and reconstructed-cartridge comparisons pass: the complete **8,388,608-byte cartridge** is byte identical, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`.
+
+`func_800587B8` remains excluded despite an isolated match because its constant pool still lacks one proven exportable section base. Particle drawing improved in private trials but did not reach an exact match. Neither is counted as a recovery. The remaining mismatch work increasingly concerns compiler context, data layout and differences between the archive and retail revision; possession of source alone does not settle these.
+
+Private candidates, jump-table proofs, symbol bindings, integration reports and build logs are under `.local/sol-focused-20261031-1325/`. Local binaries, databases, generated assembly/assets and proprietary research inputs remain excluded from Git.
+
+
+## App/repository synchronization audit — 31 October 2026
+
+The audit initially found 21 cartridge-verified repository selections still open in the app, including the three larger recoveries from the focused session. Initial promotion and matched-source repairs passed, but a saved-progress revalidation subsequently demoted many historical app matches. The repository's selected sources and byte-identical cartridge result were unaffected. Restoration was moved to the running app's authenticated API. Do not use a second engine writer against the live database: independent progress caches can race autosave. The standing project rule now requires checking saved files and contexts as well as database totals.
+
+The API restoration tested 260 sources: 249 passed immediately. Ten further candidates exposed the installed app's older HI16/LO16 relocation pairing bug; one also needed its repository declarations. The corrected implementation preserves ELF relocation-table order rather than instruction order. All **11 remaining candidates pass code/data checks in an isolated replay** with that fix; nine focused relocation/data regression tests pass. After explicit restart approval, the tested relocation fix was installed. The working bundle preserves the previous installed app and its local customisations, replacing only `elfobj.py` and `rom/match.py`; its prepared copy is `/Volumes/Data/Codex/app-builds/turok-sync-minimal-20261031/decompdecomp.app`. All eleven candidates subsequently passed the live app judge; the sound-scene routine also received its verified repository declarations through the source-preparation API.
+
+The current standalone selection remains **2,077 C functions / 461,364 bytes (73.699%)**. `func_800016A4` is excluded because its owned string data differs; `func_800587B8` is excluded because its constant pool still lacks one proven exportable section base. Neither may be copied into the build merely to equalize app and repository counts. Three remaining source-text differences are equivalent representations requiring contextual comparison: Follow keeps an inline helper in its app header; ambient sound uses named globals in the app; fault display uses literals where the standalone export binds the verified individual ROM copies.
+
+Private synchronization reports, restoration logs and isolated replay evidence are under `.local/app-repo-sync-20261031/`. This synchronization changes no standalone C selections or target bytes.
+
+
+### Completed persistence verification
+
+The saved-file audit found 1,657 missing or outdated source files despite the manifest's matched records. With the app stopped, those files were materialized from its already-verified matched sources using read-only database access; saved headers were checked against the judged contexts. No database rows were edited by that recovery. The app was restarted and completed its normal saved-project revalidation: **2,078 matched functions, 291 best attempts, zero lost matches** (log completion **14:59:12 UTC**).
+
+The final bidirectional audit finds **all 2,077 standalone C selections matched in the app**, with **zero missing saved sources/headers and zero saved-source/database discrepancies**. The app's one additional isolated match is `func_800587B8`; it remains excluded from the standalone build for the documented constant-pool placement reason. Three equivalent source representations remain as described above; these are not missing recoveries. The saved manifest is revision **396**, with all **2,078 matching C files** present.
+
+The standalone cartridge was checked again after synchronization: all 2,077 selected C objects are in the link, the complete image remains byte identical, and SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`. The app window was checked after restart and left open on Turok. App/database backups are under `/Volumes/Data/Codex/app-backups/turok-sync-20261031/`. Future checkpoints must pass both the live and saved-file audits, not merely report a database match count.

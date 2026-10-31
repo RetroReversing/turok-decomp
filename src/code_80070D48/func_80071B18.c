@@ -1,0 +1,3 @@
+#include "common.h"
+
+extern s32 func_8001D398(void); s32 func_80071B18(void *a){s32 v=func_8001D398(); if(v>=100&&v<115)v=0; switch(v){case 2:{s32 q=*(s8 *)(*(u8 **)((u8 *)a+24)+78); if(q==25||q==26||q==27)return 2;return 4;}case 0:case 1:case 3:case 4:case 5:case 6:case 7:case 9:case 11:case 13:case 14:case 15:case 20:case 208:case 1001:case 1002:case 1003:return 4;case 8:case 10:case 16:case 21:case 209:case 1000:return 5;case 205:return 3;case 203:return 1;case 12:case 22:case 204:case 309:case 1004:case 2000:case 2001:return 2;case 201:return 0;case 17:case 18:case 19:case 202:case 206:case 207:default:return 0;}}

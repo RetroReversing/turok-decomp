@@ -47,3 +47,8 @@ Fifteen additional selected C functions / 744 bytes bring the full-cartridge-ver
 ## Thirty-minute continuation, 31 October
 
 The verified standalone selection is now **2,066 C functions / 455,668 bytes (72.789% of the fixed candidate-code total)**. This adds **12 C selections / 7,280 bytes**, or **1.163 percentage points**: six new recoveries or repairs and six existing app matches integrated with verified data placement. The complete original cartridge rebuild remains byte identical. The source-assisted checkpoint document separates new recoveries, carried-over work, app acceptance and verification.
+
+
+## Focused thirty-minute continuation, 31 October
+
+The standalone selection reaches **2,077 C functions / 461,364 bytes (73.699% of the fixed candidate-code total)**, adding **11 selections / 5,696 bytes**, or **0.910 percentage points**, over commit `4082329`. The pass repaired switch selectors and constant-pool boundaries in existing drafts and recovered the audio initializer, graphics-task routine and Controller Pak file listing. The complete original cartridge remains byte identical. See [the focused-session report](SOURCE_ASSISTED_CHECKPOINT.md#focused-thirty-minute-continuation--31-october-2026) for attribution, source differences and verification.
