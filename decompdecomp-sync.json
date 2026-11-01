@@ -136,7 +136,17 @@
     "src/code_80029A10/func_8002D4EC.c": "70ea5104a8de31c24b245cf595468135dece191852417edef4e0bdc949e7eb82",
     "src/code_80017F0C/func_80020CAC.c": "83feb1c74e12331da9c67304702e9edcd7319daedb6b956d9b498092a6f0df7b",
     "src/code_80026AD0/func_800281F0.c": "4db99f529ebd72fd9cc26273e856ff001277768229e02842a0af58841ae1359e",
-    "src/code_80026AD0/CParticleSystem__DeallocateParticle.c": "d6eb40f6ea5324c4addc7ab59ae9a5663f5e38d1c2a1851151b7f9daf17a61b2"
+    "src/code_80026AD0/CParticleSystem__DeallocateParticle.c": "d6eb40f6ea5324c4addc7ab59ae9a5663f5e38d1c2a1851151b7f9daf17a61b2",
+    "src/code_80017F0C/func_8001F0AC.c": "1fab1f736546ab74acde8b0ea2f0b0540245b3b3b2bbc7c12a95bcec774622cf",
+    "src/code_80017F0C/func_800207C0.c": "c80080709f4fd1e5035828039c0546d903a05fc578a56d2f83a399772cd41e72",
+    "src/code_80009A38/CGameObjectInstance__GetModelIndex.c": "8ce136c86ff432d448b3ce4464f3f24b0ba2fdd57b60ed4b1ce977a26b7f9fee",
+    "src/code_80009A38/func_800153B4.c": "7a806c54fe7de04962dc32f2e470ab15039b589824b27f96c07438ded1508b53",
+    "src/code_80029A10/func_8002B5E0.c": "6837c466a8547b60f705cb08dfbff340fa64889fe6b58402afa480e7b4d393e1",
+    "src/code_80029A10/__scSchedule.c": "b29d39222f4bc71b8dcad1252b2b131a4b2f66961cd1af76663ceed70865dec8",
+    "src/code_80017F0C/func_8001F2B4.c": "50d247a9c343c13e7c03e3cc4be791304fb54494e21c938ce776941d773d7026",
+    "src/code_80029A10/func_8002A6F4.c": "a9af1ea4e93dbca91ecc798a14fa49633fa2799c906497fc117a608f3b3ce316",
+    "src/code_80009A38/func_80016AF4.c": "d2cad98a1b768a619e0ba04651290a11d6bcaaedc0c3c672ca82c2a65a3e2e72",
+    "src/code_80009A38/func_800169E0.c": "18b3078391d12e2f07c75209ded2e227fec8145bdd2029db9a7572ed33cd5cdc"
   },
   "accepted": [
     "_Litob",
@@ -166,6 +176,7 @@
     "__osSetTimerIntr",
     "__osTimerInterrupt",
     "__osTimerServicesInit",
+    "__scSchedule",
     "__sinf",
     "__ull_rshift",
     "__ull_to_d",
@@ -195,9 +206,16 @@
     "func_800118EC",
     "func_800119F4",
     "func_800120DC",
+    "func_800153B4",
+    "func_80016730",
+    "func_800169E0",
+    "func_80016AF4",
     "func_800181A0",
     "func_8001DE20",
     "func_8001E21C",
+    "func_8001F0AC",
+    "func_8001F2B4",
+    "func_800207C0",
     "func_80020CAC",
     "func_80020DD4",
     "func_800281F0",
@@ -208,10 +226,12 @@
     "func_8002A3B0",
     "func_8002A4BC",
     "func_8002A5C8",
+    "func_8002A6F4",
     "func_8002A800",
     "func_8002A8F0",
     "func_8002AA38",
     "func_8002B2E8",
+    "func_8002B5E0",
     "func_8002BF28",
     "func_8002C280",
     "func_8002C63C",
@@ -283,5 +303,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2240
+  "matched_app": 2250
 }

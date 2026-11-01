@@ -8,6 +8,16 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x8002A6F4` | `CParticle__SpawnWaterSurfaceCollision`, `tengine/particle.c:809` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x800207C0` | `CGameRegion__GetCeilingNormal`, `tengine/romstruc.c:479` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x8001F2B4` | `CGameStaticInstance__TakeFromROMStaticInstance`, `tengine/romstruc.c:2154` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x8001F0AC` | `CGameStaticInstance__Draw`, `tengine/romstruc.c:2230` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x80016730` | `CGameObjectInstance__GetModelIndex`, `tengine/romstruc.c:9762` | Exact original typed context at `-O2`; retail table checked for model selector |
+| `0x800169E0` | `CGameObjectInstance__GetNodePos`, `tengine/romstruc.c:3858` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x80016AF4` | `CGameObjectInstance__GetNodeRot`, `tengine/romstruc.c:3907` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x800153B4` | `CMtxF__Rotate`, `tengine/graphu64.c:265` | Exact original typed context at `-O3`; retail table checked for model selector |
+| `0x8002C7DC` | `__scSchedule`, `tengine/sched.c:744` | Exact original typed context at `-O2`; retail table checked for model selector |
+| `0x8002B5E0` | `CParticleSystem__Construct`, `tengine/particle.c:850` | Exact original typed context at `-O3`; retail table checked for model selector |
 | `0x80020CAC` | `CGameRegion__CalculateWaterIntersection`, `tengine/romstruc.c:829` | Exact typed source/context at `-O3` |
 | `0x80020DD4` | `CGameRegion__GetCeilingIntersection`, `tengine/romstruc.c:795` | Exact typed source/context at `-O3` |
 | `0x800281F0` | `CParticleSystem__AddParticleToDrawList`, `tengine/particle.c:1033` | Exact typed source/context at `-O3` |

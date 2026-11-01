@@ -147,3 +147,13 @@ Eight source-assisted live-API matches add **2,228 bytes**, reaching **2,231 C f
 ## 1 November 2026 — eight cache, scheduler and intersection matches
 
 Eight source-assisted live-API matches add **3,344 bytes**, reaching **2,239 C functions / 532,088 bytes (84.996%)**, up **0.534 percentage points**. Original typed records, local static cache scope, aggregate calls, 64-bit buffer size and timing-object definitions recovered the matches at verified per-function `-O2`/`-O3` profiles. The decompression draft improves 1340 to 780 but remains excluded from coverage; the bank initializer is unchanged. All eight pass individual checks and the complete original-cartridge rebuild; saved app sources/contexts were audited. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#cache-scheduler-and-local-static-context--1-november-2026).
+
+
+## 1 November 2026 — ten animation, particle and static-instance matches
+
+Ten source-assisted live-API matches add **4,424 bytes**, reaching **2,249 selected C functions /
+536,512 bytes (85.703%)**, up **0.707 percentage points**. Original aggregate calls, SDK macros,
+local static storage, a typed application-object view and retail switch-table evidence recovered
+the batch. All ten pass individual checks and the full original-cartridge rebuild. Live app and
+saved progress are synchronized; the older constant-pool export gap remains separate.
+See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#animation-static-instances-and-object-identity--1-november-2026).

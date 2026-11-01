@@ -768,3 +768,59 @@ The cache request matched with original cache/notify records and callback types,
 Failed experiments are noted in the live project. Neither draft contributes matching bytes.
 
 Standalone selection is **2,239 C functions / 532,088 bytes (84.996454% of 626,012 candidate-code bytes)**, up **0.534175 percentage points**. The app has **2,240 persisted exact matches / 532,868 bytes (85.121052%)**, **107 open** and **59 assembly candidates**. All eight additions passed individual repository checks and the complete original 8,388,608-byte cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited in both directions with no revalidation pending. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+
+## Animation, static instances and object identity — 1 November 2026
+
+All ten selected candidates now pass the installed app's authenticated live-API byte judge,
+adding **4,424 bytes**. This batch used original source and headers. It is separate from
+[decompdecomp PR #244](https://github.com/RetroReversing/decompdecomp/pull/244)'s new advisory
+diagnostics and resumable profile checks; that app change was not installed for these matches.
+
+| Entry | Verified source identity | Bytes | IDO 5.3 profile |
+|---|---|---:|---|
+| `func_8002A6F4` | `CParticle__SpawnWaterSurfaceCollision` (`particle.c:809`) | 268 | `-O3` |
+| `func_800207C0` | `CGameRegion__GetCeilingNormal` (`romstruc.c:479`) | 316 | `-O3` |
+| `func_8001F2B4` | `CGameStaticInstance__TakeFromROMStaticInstance` (`romstruc.c:2154`) | 556 | `-O3` |
+| `func_8001F0AC` | `CGameStaticInstance__Draw` (`romstruc.c:2230`) | 492 | `-O3` |
+| `func_80016730` | `CGameObjectInstance__GetModelIndex` (`romstruc.c:9762`) | 588 | `-O2` |
+| `func_800169E0` | `CGameObjectInstance__GetNodePos` (`romstruc.c:3858`) | 276 | `-O3` |
+| `func_80016AF4` | `CGameObjectInstance__GetNodeRot` (`romstruc.c:3907`) | 500 | `-O3` |
+| `func_800153B4` | `CMtxF__Rotate` (`graphu64.c:265`) | 360 | `-O3` |
+| `__scSchedule` | `__scSchedule` (`sched.c:744`) | 484 | `-O2` |
+| `func_8002B5E0` | `CParticleSystem__Construct` (`particle.c:850`) | 584 | `-O3` |
+
+Every profile also uses `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+IDO 5.3 remains the provisional compiler release.
+
+### What recovered these matches
+
+- **Original ABI and macros:** animation readers return their original vector/quaternion records.
+  Their indexed-block macro passes the set, its data pointer and the block index. A two-argument
+  function substitute put values in the wrong registers. Original frame records and the macro
+  recovered both readers at `-O3`.
+- **Original local storage:** the ceiling-normal function retains its function-local static caches,
+  with target-supported aliases and original corner/vector types.
+- **Original conversion behavior:** static-instance preparation retains the short-float bit conversion
+  helper and the matrix macro's address-of operation, not a scalar arithmetic substitute.
+- **Object identity:** static drawing needed a typed view of the existing large application object.
+  Byte-array arithmetic folded its large offsets into a different base symbol. The typed object
+  and original display-list write order recovered the exact `-O3` instruction sequence. The view
+  is not a claim that every field of the full application structure is reconstructed.
+- **Helper expansion:** the particle constructor stayed at score 860 with a static helper.
+  Expanding the original four initialization statements in the loop reached zero. The target's
+  already-established retail particle limit remains 128; the archive's debug value is not used.
+- **Retail revision evidence:** the model selector needs an additional independent return-zero arm
+  for case 314, confirmed from the retail jump table. Archived source alone omits this arm.
+- **Importer repair:** parenthesized `case (...)` labels were mistakenly extracted as helper
+  declarations. PR #244 excludes the keyword and adds a regression test. A local macro workaround
+  allowed this session to continue without restarting the running app.
+
+The standalone repository selects **2,249 C functions / 536,512 bytes (85.703149%)**,
+an increase of **0.706696 percentage points**. Its **158 assembly entries** include padding.
+The app has **2,250 persisted matches / 537,292 bytes (85.827748%)**, **97 open** and
+**59 assembly candidates**. The older 780-byte `func_800587B8` constant-pool export gap remains.
+
+All ten passed individual repository checks and the complete **8,388,608-byte original-cartridge
+comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved sources and required private
+headers were audited against the live project, with no progress revalidation pending.
