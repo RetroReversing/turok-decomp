@@ -702,3 +702,34 @@ The particle candidate improved from 438 to 200 with typed source at `-O3`, then
 Failed-experiment notes are saved in the app. The working drafts and profiles remain intact; none of these misses contributes matching bytes.
 
 Standalone selection is **2,223 C functions / 526,516 bytes (84.106375% of 626,012 candidate-code bytes)**, up **0.216609 percentage points**. The app has **2,224 persisted exact matches / 527,296 bytes (84.230973%)**, **123 open** and **59 assembly candidates**. All five additions passed individual repository checks and the complete original 8,388,608-byte cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). All selected sources and required saved app contexts were audited, with no revalidation pending. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+
+## Particle records and aggregate calls — 1 November 2026
+
+Ten source-assisted candidates were tested through the running app's authenticated API and source-preparation jobs. **Eight exact matches add 2,228 bytes**. Original particle/impact/collision records, original function bodies, by-value vector/quaternion calls and correctly typed material/sound helpers recovered the particle routines. The source line layout is preserved; target-supported aliases reuse the existing scene and particle-system objects. These are manual live-app results, separate from synthetic tests for the not-yet-installed PR #232.
+
+| Address-based entry | Source identity | Bytes | Profile |
+|---|---|---:|---|
+| `80029C48` | `CParticle__EndLife` (`particle.c:2238`) | 260 | IDO 5.3 `-O3` |
+| `8002A1A0` | `CParticle__EveryFrame` (`particle.c:2274`) | 260 | IDO 5.3 `-O3` |
+| `8002A2A4` | `CParticle__SpawnCeilingCollision` (`particle.c:785`) | 268 | IDO 5.3 `-O3` |
+| `8002A4BC` | `CParticle__SpawnGroundCollision` (`particle.c:761`) | 268 | IDO 5.3 `-O3` |
+| `8002A5C8` | `CParticle__GroundCollision` (`particle.c:2166`) | 300 | IDO 5.3 `-O3` |
+| `8002A800` | `CParticle__WaterSurfaceCollision` (`particle.c:2134`) | 240 | IDO 5.3 `-O3` |
+| `8002A8F0` | `CParticle__SpawnWallCollision` (`particle.c:720`) | 328 | IDO 5.3 `-O3` |
+| `8002AA38` | `CParticle__WallCollision` (`particle.c:2095`) | 304 | IDO 5.3 `-O3` |
+
+All use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`; compiler identification remains provisional. Several original contexts first failed under `-O2`, but private `-O3` probes were exact and then freshly rejudged through normal promotion. The aggregate-return direction helper and by-value particle-creation arguments replace damaged drafts with unset temporaries; no comparison or data gate was weakened.
+
+Repeated scratch source/header concatenation accumulated blank padding and exhausted some 20-second preparation rounds before compilation. Reconstructing those scratch inputs from the original bodies and declarations allowed fresh judgments. The separate tool PR fixes quadratic blank-line scans and reports this timeout explicitly. It does not retroactively account for these manual matches.
+
+### Two candidates still unmatched
+
+| Candidate | Retained score | Finding |
+|---|---:|---|
+| `alCSeqNew` | 988 | Original compact-sequence source/context scored 1054 at `-O2` and `-O3`, and 9407 at `-O1`. The target passes the sequence/track to its static reader in `t2`/`t3`, unlike an exposed external C declaration using ordinary argument registers. Original same-unit helper context remains a lead, not proof of a different algorithm. |
+| `func_8002BA48` | 1200 | Original non-logging `__scMain` body and queue/client context did not improve at `-O2` or `-O3`; `-O1` scored 8221. Original compilation context remains unresolved. |
+
+Both retain their starting best scores and `-O2` profiles; failed experiments are noted in the live project. Neither contributes matching bytes.
+
+Standalone selection is **2,231 C functions / 528,744 bytes (84.462279% of 626,012 candidate-code bytes)**, up **0.355904 percentage points**. The app has **2,232 persisted exact matches / 529,524 bytes (84.586877%)**, **115 open** and **59 assembly candidates**. All eight additions passed individual repository checks and the complete original 8,388,608-byte cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited in both directions with no revalidation pending. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

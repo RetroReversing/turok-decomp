@@ -8,6 +8,14 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x80029C48` | `CParticle__EndLife`, `tengine/particle.c:2238` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002A1A0` | `CParticle__EveryFrame`, `tengine/particle.c:2274` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002A2A4` | `CParticle__SpawnCeilingCollision`, `tengine/particle.c:785` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002A4BC` | `CParticle__SpawnGroundCollision`, `tengine/particle.c:761` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002A5C8` | `CParticle__GroundCollision`, `tengine/particle.c:2166` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002A800` | `CParticle__WaterSurfaceCollision`, `tengine/particle.c:2134` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002A8F0` | `CParticle__SpawnWallCollision`, `tengine/particle.c:720` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
+| `0x8002AA38` | `CParticle__WallCollision`, `tengine/particle.c:2095` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
 | `0x800118EC` | `SaveCurrent`-derived retail overwrite handler, `tengine/control.c:616` | Exact after ROM-verified delete/save replacement; reference name remains qualified |
 | `0x800181A0` | `CGameObjectInstance__GetAnimType`, `tengine/romstruc.c:2636` | Exact original typed context at `-O3` |
 | `0x8002A3B0` | `CParticle__CeilingCollision`, `tengine/particle.c:2204` | Exact typed context and corrected material/sound helper prototypes at `-O3` |

@@ -120,7 +120,15 @@
     "src/code_80098440/__alCSeqNextDelta.c": "bd5766a982b763efbb43bc47a0be1dc5c5aa3e681aa7123278e75368dfe2c3fc",
     "src/code_80017F0C/func_800181A0.c": "bc635f4a828da926fe7ec087d7879e30d97091dce3e8b36a9b972cab49826c82",
     "src/code_80009A38/func_800118EC.c": "2f78784100c0354554179ceeacb2a3f9dcb1342b2f84c7f9b9fa0dacdf3ef5c9",
-    "src/code_80098440/__lookupSoundQuick.c": "38d3f096f43a4619f48d3d5b75c6088190aca57b812363a8b68a2d14dba30797"
+    "src/code_80098440/__lookupSoundQuick.c": "38d3f096f43a4619f48d3d5b75c6088190aca57b812363a8b68a2d14dba30797",
+    "src/code_80029A10/func_8002A2A4.c": "64f84ed08f1bdcdfb28b464cdbac620dd168271d93b863a55dc07491d567ddd2",
+    "src/code_80029A10/func_80029C48.c": "be9bb0917a39b26a22462e01faefd8e3176723935224efb4a793d55873e55e48",
+    "src/code_80029A10/func_8002A4BC.c": "7d43906fa5d3f1121392e63e3cebcef482d7673ccbd34f2286abaadb15238732",
+    "src/code_80029A10/func_8002A8F0.c": "91e425c325ae4714c4c480f7076fa2a26205688477f024c1bad49f1fbd458a01",
+    "src/code_80029A10/func_8002AA38.c": "6166bfa725990c5a676a2af960736c2f3b8067d9eb75d22f2fd3c45a332392c3",
+    "src/code_80029A10/func_8002A1A0.c": "b83dd1bb1ba627dd243ce4afdfd80e66641853b4b067af926c7116ed90319cff",
+    "src/code_80029A10/func_8002A5C8.c": "621cc2552f5f7e711ff67b20e7d54e3f906079fb8805574b32bbbf55fca372af",
+    "src/code_80029A10/func_8002A800.c": "b9f359207d727f24ddf872d3ecb276720b25a29ecafaea44bc7600d54a9c1b65"
   },
   "accepted": [
     "_Litob",
@@ -182,7 +190,15 @@
     "func_800181A0",
     "func_8001DE20",
     "func_8001E21C",
+    "func_80029C48",
+    "func_8002A1A0",
+    "func_8002A2A4",
     "func_8002A3B0",
+    "func_8002A4BC",
+    "func_8002A5C8",
+    "func_8002A800",
+    "func_8002A8F0",
+    "func_8002AA38",
     "func_8002B2E8",
     "func_8002BF28",
     "func_8002DD90",
@@ -251,5 +267,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2224
+  "matched_app": 2232
 }

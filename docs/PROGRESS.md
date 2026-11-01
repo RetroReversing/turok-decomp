@@ -137,3 +137,8 @@ The source-assisted live-API batch recovered **three exact matches / 1,392 bytes
 ## 1 November 2026 — five typed-source and helper-prototype matches
 
 Ten source-assisted live-API candidates yielded **five exact matches / 1,356 bytes**, reaching **2,223 C functions / 526,516 bytes (84.106%)**, up **0.217 percentage points**. Original records, verified `-O3` profiles, ROM-supported filesystem behavior and corrected material/sound helper prototypes recovered the matches. Five misses retain their starting best scores. Complete original-cartridge verification passed, and all selected sources and required app contexts were audited. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#typed-source-profiles-and-helper-prototypes--1-november-2026).
+
+
+## 1 November 2026 — eight particle matches from ten candidates
+
+Eight source-assisted live-API matches add **2,228 bytes**, reaching **2,231 C functions / 528,744 bytes (84.462%)**, up **0.356 percentage points**. Original particle records, vector/quaternion aggregate calling conventions and corrected helper declarations matched at `-O3`. The compact-sequence constructor and scheduler main loop retain their starting scores and `-O2` profiles. All eight pass individual checks and the complete original-cartridge rebuild; saved app sources and required contexts were audited. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#particle-records-and-aggregate-calls--1-november-2026).
