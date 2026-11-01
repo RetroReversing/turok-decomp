@@ -122,3 +122,8 @@ Ten new source-assisted live-API matches add **4,928 bytes**, bringing standalon
 ## 1 November 2026 — five matches from ten main candidates
 
 The source-assisted live-API batch recovered **five exact matches / 2,600 bytes** and improved five other drafts. Standalone selection reaches **2,208 C functions / 521,888 bytes (83.367%)**, up **0.415 percentage points**. Original SDK object definitions, a symbolic NMI-buffer address, typed integer-runtime helpers, VI context records at `-O1`, and original hash records/loops recovered the matches. All five pass individual checks and the complete original-cartridge rebuild; app source/header persistence is audited. The five partial drafts remain excluded from coverage. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#ten-candidate-sdk-and-typed-context-continuation--1-november-2026).
+
+
+## 1 November 2026 — seven typed-source matches from ten candidates
+
+The source-assisted live-API batch recovered **seven exact matches / 1,880 bytes** and improved one other draft (score 457 to 60); two candidates did not improve. Standalone selection reaches **2,215 C functions / 523,768 bytes (83.667%)**, up **0.300 percentage points**. Original instance/vector/graphics records, callback types, local arrays and per-function `-O3` profiles recovered the matches. An instruction-identical draft still failed anonymous-array padding checks; referencing the existing named ROM arrays resolved it without changing the judge. All seven pass individual checks and the complete original-cartridge rebuild; app source/header persistence is audited. Partial drafts remain excluded from coverage. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#typed-original-source-and-profile-continuation--1-november-2026).

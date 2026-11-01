@@ -4,11 +4,11 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **2,208 functions selected in C**, covering **521,888 bytes**, or **83.367% of the fixed 626,012 candidate-code bytes**.
-- The live app has **2,209 saved isolated matches / 522,668 bytes (83.492%)**, **138 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
-- The standalone export has **2,407 build entries**, including two padding labels; **199 entries use assembly**.
+- **2,215 functions selected in C**, covering **523,768 bytes**, or **83.667% of the fixed 626,012 candidate-code bytes**.
+- The live app has **2,216 saved isolated matches / 524,548 bytes (83.792%)**, **131 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
+- The standalone export has **2,407 build entries**, including two padding labels; **192 entries use assembly**.
 - A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- The latest ten-candidate live-API session added **five matches / 2,600 bytes**. All five passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#ten-candidate-sdk-and-typed-context-continuation--1-november-2026).
+- The latest ten-candidate live-API session added **seven matches / 1,880 bytes**. All seven passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#typed-original-source-and-profile-continuation--1-november-2026).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
@@ -43,7 +43,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2208 of 2407 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2215 of 2407 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.

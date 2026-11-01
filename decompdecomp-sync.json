@@ -105,7 +105,14 @@
     "src/code_80029A10/func_8002DD90.c": "eff8c565652668501d516a02b2bdab9c297110108d63aaef54f8526150459c3e",
     "src/code_80098440/func_800AFE00.c": "ed20df9e955b26fcd73f00eeab988302647767e7f4876ff1918ea820c99279ce",
     "src/code_80098440/func_8009D620.c": "8bda7ddd2716325623ac0a87e340672b1c08974b3bc2981be260bc4444c6369d",
-    "src/code_80098440/_Litob.c": "afa4094b6c3eab242364dec40e99c2282f0072847d5892e995f5038e673d95d7"
+    "src/code_80098440/_Litob.c": "afa4094b6c3eab242364dec40e99c2282f0072847d5892e995f5038e673d95d7",
+    "src/code_80029A10/func_8002B2E8.c": "41fc1dd1ffacdacc7e9e31c3d20e99998c105572885606bfde3c2fa691a549ce",
+    "src/code_80070D48/func_80072D08.c": "3e1ad5becb7f3a8ea51f5f424baa99ae8e806050ad0387ddc5822cd947ce25ac",
+    "src/code_80070D48/func_80074A74.c": "d0c4efb8918e55470ef4370a17d4184947aed3d7f8708febcdbad60301084c4c",
+    "src/code_8002F784/func_800318D0.c": "117b481904ab5a804428951211e6302ca111f0fb475ef234365a71538cbd534a",
+    "src/code_80017F0C/func_8001DE20.c": "eecebf11b536ca45e78db33eb0ba31d8dacd0b0b07d6fe21a5869cf2a6cf8c41",
+    "src/code_80063630/AI_SEvent_DamageNudge_Target.c": "cbeaaa1f93e7f6da97937724068c196ac5f4695a379cf155e27d6467ebc95db3",
+    "src/code_80076218/func_80079540.c": "de6526bdd541c5391a78417f38acaa902bec44254be27fa611ef819e7e3380ff"
   },
   "accepted": [
     "_Litob",
@@ -160,9 +167,16 @@
     "corrupted_init",
     "func_800119F4",
     "func_800120DC",
+    "func_8001DE20",
+    "func_8002B2E8",
     "func_8002DD90",
     "func_8002FBD0",
+    "func_800318D0",
     "func_8005EED0",
+    "func_8006905C",
+    "func_80072D08",
+    "func_80074A74",
+    "func_80079540",
     "func_8009D38C",
     "func_8009D430",
     "func_8009D620",
@@ -221,5 +235,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2209
+  "matched_app": 2216
 }

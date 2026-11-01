@@ -590,3 +590,41 @@ These scores describe partial drafts, not recovered C selections. Bounded deep s
 Application changes are proposed in [decompdecomp PR #217](https://github.com/RetroReversing/decompdecomp/pull/217): target-supported I/O profile priorities, proven MMIO/local-storage candidates, existing byte-record aggregate-copy hypotheses and reference-discrepancy advisories. The 108 focused tests and lint pass after merging main. This session did not install/restart the app; these manual matches are not attributed to the uninstalled PR.
 
 The standalone selection is **2,208 C functions / 521,888 bytes (83.367092% of 626,012 code bytes)**, up **0.415328 percentage points**. The app has **2,209 persisted matches / 522,668 bytes (83.491690%)**, **138 open** and **59 assembly candidates**. All five additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+## Typed original-source and profile continuation — 1 November 2026
+
+Ten main candidates were attempted through the installed app's authenticated API. Seven became exact
+matches, covering **1,880 bytes**. One other draft improved from score 457 to 60; two did not improve.
+Partial drafts are excluded from matching coverage.
+
+| Address | Source identity | Bytes | Verified profile | Main change |
+|---|---|---:|---|---|
+| `8006905C` | `AI_SEvent_DamageNudge_Target` | 252 | IDO 5.3 `-O3` | Original switch and typed instance/particle pointers |
+| `8002B2E8` | `CParticleSystem__RequestData` | 120 | IDO 5.3 `-O3` | Original cache/callback fields and particle-system layout |
+| `80074A74` | `AI_DoTeleport` | 448 | IDO 5.3 `-O2` | By-value vector ABI, original locals and rotation helper |
+| `8001DE20` | `CAnimInstanceHdr__CastYeThyRay` | 304 | IDO 5.3 `-O3` | Shared instance records and original vector aggregate copy |
+| `800318D0` | `CScene__DrawParticles` | 152 | IDO 5.3 `-O3` | Correct graphics record and particle-draw prototype |
+| `80072D08` | `AI_Make_Swim` | 272 | IDO 5.3 `-O3` | Original local arrays and typed rotation helper |
+| `80079540` | `AI_Standard_Agitated` | 332 | IDO 5.3 `-O3` | Original local arrays copied from existing ROM objects |
+
+All use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. Compiler identification remains
+provisional. Local source identities guide reconstruction; address-based entry names remain intact.
+
+Several original typed candidates performed worse at the existing `-O2` setting but matched under
+`-O3`. Source preparation therefore needs to probe profiles even when its current-profile source
+has not earned promotion. The app enhancement retains private source/header/profile evidence for
+review; it does not bypass settings approval or count an unpromoted candidate as progress.
+
+The agitated-animation function initially had identical instructions but failed the data judge:
+compiler-generated anonymous-array padding overlapped the following ROM object. Copying the existing
+named ROM array records removed that anonymous padding. The ordinary data judge remained intact.
+The analogous swimming-retreat candidate improved to score 60 but remains unmatched.
+
+`COnScreen__WriteSmallText` and the campaigner death handler still differ after typed-source and
+profile probes. Failed probes were restored to their working profiles and best drafts. The swimming
+retreat improvement retains its verified better `-O3` draft, but contributes no matching bytes.
+
+These are manual source-assisted results from the installed app, not a claim that uninstalled PR #220
+produced these matches. This work did not install or restart the app.
+
+The standalone selection is **2,215 C functions / 523,768 bytes (83.667406% of 626,012 code bytes)**, up **0.300314 percentage points**. The app has **2,216 persisted matches / 524,548 bytes (83.792004%)**, **131 open** and **59 assembly candidates**. All seven additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

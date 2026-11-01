@@ -21,6 +21,111 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147980608,
+   "end": 2147980609
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147961460,
+   "end": 2147961461
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147953928,
+   "end": 2147953929
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147913820,
+   "end": 2147913821
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147686608,
+   "end": 2147686609
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147660520,
+   "end": 2147660521
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147606048,
+   "end": 2147606049
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O2",
     "-mips2",
     "-G",
@@ -5826,7 +5931,11 @@
    "seg": "code_80017F0C",
    "vram": 2147606048,
    "rom": 8514336,
-   "asm": "asm/nonmatchings/code_80017F0C/func_8001DE20.s"
+   "asm": "asm/nonmatchings/code_80017F0C/func_8001DE20.s",
+   "c": "src/code_80017F0C/func_8001DE20.c",
+   "own": {
+    ".rodata": 2148472104
+   }
   },
   {
    "name": "func_8001DF50",
@@ -6733,7 +6842,9 @@
    "seg": "code_80029A10",
    "vram": 2147660520,
    "rom": 8568808,
-   "asm": "asm/nonmatchings/code_80029A10/func_8002B2E8.s"
+   "asm": "asm/nonmatchings/code_80029A10/func_8002B2E8.s",
+   "c": "src/code_80029A10/func_8002B2E8.c",
+   "own": {}
   },
   {
    "name": "func_8002B360",
@@ -7656,7 +7767,9 @@
    "seg": "code_8002F784",
    "vram": 2147686608,
    "rom": 8594896,
-   "asm": "asm/nonmatchings/code_8002F784/func_800318D0.s"
+   "asm": "asm/nonmatchings/code_8002F784/func_800318D0.s",
+   "c": "src/code_8002F784/func_800318D0.c",
+   "own": {}
   },
   {
    "name": "func_80031968",
@@ -17108,7 +17221,9 @@
    "seg": "code_80063630",
    "vram": 2147913820,
    "rom": 8822108,
-   "asm": "asm/nonmatchings/code_80063630/AI_SEvent_DamageNudge_Target.s"
+   "asm": "asm/nonmatchings/code_80063630/AI_SEvent_DamageNudge_Target.s",
+   "c": "src/code_80063630/AI_SEvent_DamageNudge_Target.c",
+   "own": {}
   },
   {
    "name": "func_80069158",
@@ -18307,7 +18422,12 @@
    "seg": "code_80070D48",
    "vram": 2147953928,
    "rom": 8862216,
-   "asm": "asm/nonmatchings/code_80070D48/func_80072D08.s"
+   "asm": "asm/nonmatchings/code_80070D48/func_80072D08.s",
+   "c": "src/code_80070D48/func_80072D08.c",
+   "own": {
+    ".data": 2148262920,
+    ".rodata": 2148488968
+   }
   },
   {
    "name": "func_80072E18",
@@ -18366,7 +18486,11 @@
    "seg": "code_80070D48",
    "vram": 2147961460,
    "rom": 8869748,
-   "asm": "asm/nonmatchings/code_80070D48/func_80074A74.s"
+   "asm": "asm/nonmatchings/code_80070D48/func_80074A74.s",
+   "c": "src/code_80070D48/func_80074A74.c",
+   "own": {
+    ".rodata": 2148489304
+   }
   },
   {
    "name": "func_80074C34",
@@ -18709,7 +18833,9 @@
    "seg": "code_80076218",
    "vram": 2147980608,
    "rom": 8888896,
-   "asm": "asm/nonmatchings/code_80076218/func_80079540.s"
+   "asm": "asm/nonmatchings/code_80076218/func_80079540.s",
+   "c": "src/code_80076218/func_80079540.c",
+   "own": {}
   },
   {
    "name": "AI_Standard_Idle",
