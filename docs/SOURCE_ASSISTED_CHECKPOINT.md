@@ -628,3 +628,46 @@ These are manual source-assisted results from the installed app, not a claim tha
 produced these matches. This work did not install or restart the app.
 
 The standalone selection is **2,215 C functions / 523,768 bytes (83.667406% of 626,012 code bytes)**, up **0.300314 percentage points**. The app has **2,216 persisted matches / 524,548 bytes (83.792004%)**, **131 open** and **59 assembly candidates**. All seven additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+## Typed records, retail branches and scheduler continuation — 1 November 2026
+
+Ten main candidates were attempted through the live app's authenticated API. **Three exact matches /
+1,392 bytes** were recovered; the other seven retain their starting best scores and working profiles.
+
+| Address | Source identity | Bytes | Profile | What recovered it |
+|---|---|---:|---|---|
+| `8000BEF0` | `CLoad__Construct` (`loadsave.c:509`) | 316 | IDO 5.3 `-O2` | Original load/message-box record types, real string-pointer prototypes, and ROM-verified retail setup/error branches |
+| `8001E21C` | `CGameRegion__InRegion` (`romstruc.c:5161`) | 220 | IDO 5.3 `-O3` | Original corner/vector records, loop and local declaration order |
+| `8002BF28` | `__scHandleRSP` (`sched.c:400`) | 856 | IDO 5.3 `-O2` | Original scheduler/task records, unsigned timers, helper prototypes and original statement order |
+
+All use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`; compiler identification remains
+provisional. The region candidate was not an improvement under `-O2`, but its prepared context matched
+at `-O3`; that complete combination was then judged and promoted through the live API.
+
+The load constructor's source is not retail-identical: the ROM calls setup twice and handles specific
+error codes rather than the reference's broad nonzero-error condition. These differences were derived
+from the target and verified by the ordinary byte judge. Original fields place the message box's active
+flag and global message-box flag correctly; no target or data-comparison gate was changed.
+
+The scheduler was an important identity correction. The historical nearest-neighbour inventory called
+it `initAudio`; original RSP completion logic and its typed context now match exactly. Existing ROM
+aliases for timing globals and integer-runtime helpers were retained. No new addresses were guessed.
+
+### Seven candidates still unmatched
+
+| Candidate | Retained score | Finding |
+|---|---:|---|
+| `800A5F34` | 10 | Queue-pop semantics; remaining temporary-register choice differs. Returning the popped pointer and IDO 7.1 did not recover a match. |
+| `8002DA18` | 20 | Five arguments and inline attach/size/count operations suggest `CUnindexedSet__ConstructWithAllocatedBlock`, superseding the older `PreAllocate` lead. Original context/debug-profile probes did not improve it. |
+| `800B0F18` | 20 | SDK `readVarLen`: matching control flow with remaining register differences. Word aliases, IDO 7.1 and explicit debug profiles did not settle them. |
+| `800B13E8` | 20 | SDK `read16`: original source scored 30, leaving the better existing draft intact. Compiler/debug/context alternatives did not match. |
+| `800A2420` | 25 | Compact-player `__setUsptFromTempo` lead. Target uses an incoming pointer in `a0` and float in `f12`, unlike the exposed ordinary-C signature. |
+| `80072144` | 51 | `AI_Make_TeleportMoveSlow` and its original inline rotation helper tried; the typed candidate/profile was worse than the saved draft. |
+| `800AF4EC` | 110 | SDK `_getVol`: ordinary float-first C shifts integer argument slots relative to the target's `f12` plus `a0/a1/a2` helper entry. Original static-helper/caller context needs investigation. |
+
+Failed IDO 7.1 and debug-flag probes were restored. Notes on these experiments and ABI blockers were
+saved in the live project so subsequent workers can avoid repeating them. None contributes matching
+bytes. These are manual source-assisted results; they are separate from synthetic tests for PR #226,
+which adds joint prepared-bundle approval, data diagnostics and bounded named-array hypotheses.
+
+The standalone selection is **2,218 C functions / 525,160 bytes (83.889766% of 626,012 code bytes)**, up **0.222360 percentage points**. The app has **2,219 persisted matches / 525,940 bytes (84.014364%)**, **128 open** and **59 assembly candidates**. All three additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

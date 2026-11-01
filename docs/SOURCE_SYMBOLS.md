@@ -2,6 +2,19 @@
 
 All 121 located source-candidate entries from the 30 October audit are recorded here, including competing alternatives. Candidate names are distinct from verified canonical identities. Twenty-one address-based symbols are given source names in the build; existing SDK spellings are preserved, and ambiguous/conflicting candidates remain research leads. ROM-visible strings and source formatting are preserved.
 
+## Verified corrections — 1 November 2026
+
+Subsequent live byte judging resolves or supersedes several historical leads below. Address-based entry symbols remain unchanged.
+
+| Address | Current source identity | Evidence |
+| --- | --- | --- |
+| `0x8000BEF0` | `CLoad__Construct`, `tengine/loadsave.c:509` | Exact after original types and ROM-verified retail branch changes |
+| `0x8001E21C` | `CGameRegion__InRegion`, `tengine/romstruc.c:5161` | Exact original typed context at `-O3` |
+| `0x8002BF28` | `__scHandleRSP`, `tengine/sched.c:400` | Exact; the older `initAudio` nearest-neighbour lead is superseded |
+| `0x8002DA18` | `CUnindexedSet__ConstructWithAllocatedBlock`, `tengine/cart.c:702` | New tentative lead from five arguments and inline helpers; still unmatched, superseding the `PreAllocate` lead |
+
+## Original audit candidate inventory (historical)
+
 | Address | Previous symbol | Source name | Source location | Action |
 | --- | --- | --- | --- | --- |
 | `0x8000134C` | `func_8000134C` | `faultproc` | `tengine/tengine.c:430` | Tentative identity; preserve candidate name without declaring it canonical |

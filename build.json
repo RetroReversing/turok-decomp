@@ -21,6 +21,51 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147663656,
+   "end": 2147663657
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147607068,
+   "end": 2147607069
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147532528,
+   "end": 2147532529
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O3",
     "-mips2",
     "-G",
@@ -4092,7 +4137,9 @@
    "seg": "code_80009A38",
    "vram": 2147532528,
    "rom": 8440816,
-   "asm": "asm/nonmatchings/code_80009A38/func_8000BEF0.s"
+   "asm": "asm/nonmatchings/code_80009A38/func_8000BEF0.s",
+   "c": "src/code_80009A38/func_8000BEF0.c",
+   "own": {}
   },
   {
    "name": "func_8000C02C",
@@ -5960,7 +6007,9 @@
    "seg": "code_80017F0C",
    "vram": 2147607068,
    "rom": 8515356,
-   "asm": "asm/nonmatchings/code_80017F0C/CGameRegion__InRegion.s"
+   "asm": "asm/nonmatchings/code_80017F0C/CGameRegion__InRegion.s",
+   "c": "src/code_80017F0C/CGameRegion__InRegion.c",
+   "own": {}
   },
   {
    "name": "func_8001E2F8",
@@ -6989,7 +7038,11 @@
    "seg": "code_80029A10",
    "vram": 2147663656,
    "rom": 8571944,
-   "asm": "asm/nonmatchings/code_80029A10/func_8002BF28.s"
+   "asm": "asm/nonmatchings/code_80029A10/func_8002BF28.s",
+   "c": "src/code_80029A10/func_8002BF28.c",
+   "own": {
+    ".rodata": 2148473344
+   }
   },
   {
    "name": "func_8002C280",

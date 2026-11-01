@@ -889,9 +889,10 @@
       "name": "code_80009A38/func_8000BEF0",
       "target_path": "build/asm/nonmatchings/code_80009A38/func_8000BEF0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80009A38/func_8000BEF0.c"
+      },
+      "base_path": "build/src/code_80009A38/func_8000BEF0.o"
     },
     {
       "name": "code_80009A38/func_8000C02C",
@@ -2725,9 +2726,10 @@
       "name": "code_80017F0C/CGameRegion__InRegion",
       "target_path": "build/asm/nonmatchings/code_80017F0C/CGameRegion__InRegion.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80017F0C/CGameRegion__InRegion.c"
+      },
+      "base_path": "build/src/code_80017F0C/CGameRegion__InRegion.o"
     },
     {
       "name": "code_80017F0C/func_8001E2F8",
@@ -3755,9 +3757,10 @@
       "name": "code_80029A10/func_8002BF28",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002BF28.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002BF28.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002BF28.o"
     },
     {
       "name": "code_80029A10/func_8002C280",
