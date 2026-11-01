@@ -521,3 +521,34 @@ The ordinary app preparation/judging path performed context promotion and persis
 App improvements are proposed separately in decompdecomp PR #212 (130 focused regression tests passed). This matching session did not install or restart the app, and does not attribute its matches to uninstalled code.
 
 The standalone selection is **2,193 C functions / 514,360 bytes (82.164559% of 626,012 code bytes)**, up **0.908609 percentage points**. The app has **2,194 persisted matches / 515,140 bytes (82.289157%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required contexts were audited, with app revalidation complete. The older `func_800587B8` non-contiguous constant-pool export blocker remains the separate app/repository gap.
+
+
+## SDK I/O and controller live-API continuation — 31 October 2026
+
+Starting from `b13e6f2`, ten new exact matches add **4,928 bytes**. This source-assisted batch used authorized local SDK reference source/types through the running app's authenticated source-preparation and compiler APIs. Original target bytes, addresses and comparison gates were preserved. Source identities below are supported by the reference bodies, target operations and call sites; address-based entry names remain unchanged. The second controller decoder uses a different ROM-proven buffer, so it is not assigned the first decoder's canonical name.
+
+| Entry | SDK source identity / role | Bytes | Starting score | Final score | Optimization |
+| --- | --- | ---: | ---: | ---: | --- |
+| `func_8009EDC8` | `__osContGetInitData` | 208 | 1335 | 0 | `-O1` |
+| `func_8009F22C` | `response decoder, second buffer` | 208 | 1718 | 0 | `-O1` |
+| `func_800A4D00` | `osAiSetFrequency` | 352 | 2565 | 0 | `-O1` |
+| `func_800A4FB0` | `osAiSetNextBuffer` | 168 | 1320 | 0 | `-O1` |
+| `func_800A67D0` | `__osLeoInterrupt` | 1764 | 14646 | 0 | `-O1` |
+| `func_800A6EB4` | `__osLeoAbnormalResume` | 232 | 3035 | 0 | `-O1` |
+| `func_800A72A0` | `osPiRawStartDma` | 224 | 725 | 0 | `-O1` |
+| `func_800A7380` | `osEPiRawStartDma` | 224 | 2322 | 0 | `-O1` |
+| `func_800A7460` | `__osDevMgrMain` | 944 | 11016 | 0 | `-O1` |
+| `func_800A8D94` | `__osGetId` | 604 | 2489 | 0 | `-O1` |
+
+All ten use IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. These are verified working profiles, not a unique identification of the original compiler release. Several older drafts had been tested at `-O2`; optimization alone did not recover them.
+
+### What recovered the matches
+
+- Original numeric volatile MMIO macros preserve the compiler's address materialization. Two symbolic alternatives emitted an extra address instruction or used a different base register. Linked bytes, rather than symbolic diff spelling, decided exactness. DMA routines retain busy-loop reloads and the target's register-local status variable.
+- Controller response records retain the SDK's byte alignment and aggregate-copy shape. The two otherwise identical decoders reference their distinct observed buffers. The pack ID reader uses original `OSPfs` and `__OSPackId` layouts and the existing checksum/repair helpers.
+- The enhanced DMA routine does not contain the reference revision's handle-timing reconfiguration block in retail. The device-manager function likewise lacks the newer disk-overrun block and its associated pointer recomputation. These removals follow the target control flow, not a blanket assumption that reference source is exact.
+- The disk interrupt handler requires retail error values (75, 3, 6 and 17), an explicit DMA-busy recovery path, and the target's recipient for a recovery status store. Its polling waits test I/O-busy alone. The small abnormal-resume helper matches with the same polling condition and a volatile stack status local; the interrupt handler retains the ordinary cached BM-status local where the target reuses it.
+
+The disk initializer improved to score 260 but remains unmatched and is excluded from coverage. Broad optimization probes and bounded deep searches did not produce these matches; source/context reconstruction did. Previous preparation settings were restored. No app installation/restart was performed by this session, and these manual live-API results are not attributed to the uninstalled changes in decompdecomp PR #214.
+
+The standalone selection is **2,203 C functions / 519,288 bytes (82.951765% of 626,012 code bytes)**, up **0.787205 percentage points**. The app has **2,204 persisted matches / 520,068 bytes (83.076363%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

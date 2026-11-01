@@ -18941,9 +18941,10 @@
       "name": "code_80098440/func_8009EDC8",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009EDC8.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009EDC8.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009EDC8.o"
     },
     {
       "name": "code_80098440/__osPackRequestData",
@@ -18976,9 +18977,10 @@
       "name": "code_80098440/func_8009F22C",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009F22C.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009F22C.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009F22C.o"
     },
     {
       "name": "code_80098440/osPfsInit",
@@ -19751,9 +19753,10 @@
       "name": "code_80098440/func_800A4D00",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A4D00.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A4D00.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A4D00.o"
     },
     {
       "name": "code_80098440/alUnlink",
@@ -19813,9 +19816,10 @@
       "name": "code_80098440/func_800A4FB0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A4FB0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A4FB0.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A4FB0.o"
     },
     {
       "name": "code_80098440/func_800A5060",
@@ -20111,17 +20115,19 @@
       "name": "code_80098440/func_800A67D0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A67D0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A67D0.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A67D0.o"
     },
     {
       "name": "code_80098440/func_800A6EB4",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A6EB4.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A6EB4.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A6EB4.o"
     },
     {
       "name": "code_80098440/__osLeoResume",
@@ -20172,25 +20178,28 @@
       "name": "code_80098440/func_800A72A0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A72A0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A72A0.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A72A0.o"
     },
     {
       "name": "code_80098440/func_800A7380",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A7380.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A7380.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A7380.o"
     },
     {
       "name": "code_80098440/func_800A7460",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A7460.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A7460.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A7460.o"
     },
     {
       "name": "code_80098440/gl_func_0006E224",
@@ -20293,9 +20302,10 @@
       "name": "code_80098440/func_800A8D94",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800A8D94.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800A8D94.c"
+      },
+      "base_path": "build/src/code_80098440/func_800A8D94.o"
     },
     {
       "name": "code_80098440/__osCheckId",

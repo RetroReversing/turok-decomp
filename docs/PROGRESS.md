@@ -112,3 +112,8 @@ Ten new live-API matches add **6,008 bytes**, bringing standalone selection to *
 ## 31 October 2026 — ten effects, playback and math matches
 
 Ten new live-API matches add **5,688 bytes**, bringing standalone selection to **2,193 C functions / 514,360 bytes (82.165%)**. Original SDK types, helper declarations and ABI macros recovered effects, resampling, raw playback and event posting; the SDK revision's trailing effect callback explains the earlier four-byte allocation discrepancy. Disk resume and sine matched their original SDK implementations. Three improved audio drafts remain unmatched and are excluded from coverage. The complete cartridge remains byte-identical. All ten sources and contexts are persisted in the app and selected in the repo; the older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#effects-playback-and-math-live-api-continuation--31-october-2026).
+
+
+## 31 October 2026 — ten SDK I/O and controller matches
+
+Ten new source-assisted live-API matches add **4,928 bytes**, bringing standalone selection to **2,203 C functions / 519,288 bytes (82.952%)**. All ten match IDO 5.3 at `-O1` with the recorded common flags. Original SDK declarations, numeric volatile MMIO macros, response-record alignment and target-supported retail disk recovery changes recovered the functions. Whole-cartridge verification passed, and app source/header persistence was audited. The disk initializer remains a partial draft, excluded from coverage. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#sdk-io-and-controller-live-api-continuation--31-october-2026).

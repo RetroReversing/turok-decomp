@@ -90,7 +90,17 @@
     "src/code_80098440/alResamplePull.c": "a3100c7298cfc311949b412bffd0b79c6a52842345c79c9bb9da49f5a11cecd6",
     "src/code_80098440/__osLeoResume.c": "ec42bf3ce283b148829064c7f054db0a61b0059f0460a42ee0e46a0314655311",
     "src/code_80098440/alEvtqPostEvent.c": "145e01ddb06e2cb3b7c20ce8ddc7a2fc7ccd1c298e7f29dc4de97e23290c4ef7",
-    "src/code_80098440/alFxParamHdl.c": "cb7896a1be1492ee0fe9aa2b5380c9f744a28465b85bccb74755966d0575247e"
+    "src/code_80098440/alFxParamHdl.c": "cb7896a1be1492ee0fe9aa2b5380c9f744a28465b85bccb74755966d0575247e",
+    "src/code_80098440/func_8009EDC8.c": "ecd2805b792165fe525b124d9fcb103a533e78ddbd7646a5ff991b1c736ef0b1",
+    "src/code_80098440/func_800A7460.c": "6a48d455e89e62458931018c1efe76d0bf300b5d588fdf31084a1682a681668b",
+    "src/code_80098440/func_800A72A0.c": "e205d8166e00d697e6329fe0907ed65ea8ee5b7ae6243f4bc3981a8f551dd901",
+    "src/code_80098440/func_800A4FB0.c": "de0d89c775aafc4652a6bae47fe238cadf93e8266377f493695defa95e709fa1",
+    "src/code_80098440/func_800A7380.c": "187494393cd4024616b346e1879fe165b562392170102bc4b90de98c159b246e",
+    "src/code_80098440/func_800A8D94.c": "11207b706df3d821d6dd1450b42b5e818f69ce81322c2aaa526c4dd59cff160a",
+    "src/code_80098440/func_800A67D0.c": "776a7e9b0e4f39158cb47c472f1191f8c8b30e49b5f99f86711d6efdde05a102",
+    "src/code_80098440/func_800A6EB4.c": "16a2b7c3f28eb7a945d6b0bd014107d61d82c5e32eb5b1088154cd201a08c2ed",
+    "src/code_80098440/func_800A4D00.c": "92c026941ede8b46787d780688bcaf97ef296daf2b319257f7efde73fc6f400d",
+    "src/code_80098440/func_8009F22C.c": "fd439e90f2d8e8d05145ac74d8b72f84f1a58f6e0ce52b1efa8be87d08617d44"
   },
   "accepted": [
     "__d_to_ull",
@@ -149,8 +159,18 @@
     "func_8009D38C",
     "func_8009D430",
     "func_8009DA4C",
+    "func_8009EDC8",
+    "func_8009F22C",
     "func_800A4C00",
+    "func_800A4D00",
+    "func_800A4FB0",
+    "func_800A67D0",
+    "func_800A6EB4",
     "func_800A7090",
+    "func_800A72A0",
+    "func_800A7380",
+    "func_800A7460",
+    "func_800A8D94",
     "func_800AAEA0",
     "func_800AAF70",
     "func_800AAFA0",
@@ -191,5 +211,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2194
+  "matched_app": 2204
 }
