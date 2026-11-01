@@ -552,3 +552,41 @@ All ten use IDO 5.3 `-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. T
 The disk initializer improved to score 260 but remains unmatched and is excluded from coverage. Broad optimization probes and bounded deep searches did not produce these matches; source/context reconstruction did. Previous preparation settings were restored. No app installation/restart was performed by this session, and these manual live-API results are not attributed to the uninstalled changes in decompdecomp PR #214.
 
 The standalone selection is **2,203 C functions / 519,288 bytes (82.951765% of 626,012 code bytes)**, up **0.787205 percentage points**. The app has **2,204 persisted matches / 520,068 bytes (83.076363%)**. All ten additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+## Ten-candidate SDK and typed-context continuation — 1 November 2026
+
+Starting from `76331ba`, this source-assisted batch worked on ten main candidates through the running app's authenticated source-preparation, compilation and compiler-profile APIs. **Five became byte-identical / 2,600 bytes; five improved without matching.** Additional bounded reader/layout probes did not add matches. Local game and SDK source use was authorized. Original target bytes, addresses, hashes and exact comparison gates were unchanged.
+
+| Entry | Located source identity | Bytes | Starting score | Final score | Optimization |
+| --- | --- | ---: | ---: | ---: | --- |
+| `func_8002DD90` | `CHashTable__GetNextAssoc` | 168 | 115 | 0 | `-O3` |
+| `func_8009D620` | `osInitialize` | 672 | 6720 | 0 | `-O1` |
+| `func_800AA810` | `__osViSwapContext` | 860 | 13320 | 0 | `-O1` |
+| `func_800AFE00` | `osLeoDiskInit` | 236 | 260 | 0 | `-O1` |
+| `_Litob` | SDK integer formatting | 664 | 7841 | 0 | `-O2` |
+
+All use IDO 5.3 with `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul` and the optimization above. These are verified working settings, not unique identification of the original compiler release. Address-based entry names remain unchanged.
+
+### What recovered the matches
+
+- The disk initializer needed the actual original handle definition in its private context, rather than only an `extern`. The target still lacks the reference revision's domain assignment, as established in the preceding batch. Original definition knowledge changed address setup/scheduling.
+- OS initialization needed the original initialized clock-rate definition and an existing named NMI-buffer reference. The latter emitted the target's `addiu` address expression instead of the literal cast's `ori`. The exception-vector shape, hardware access widths and runtime multiplication/division calls were retained from verified target/source evidence.
+- VI context swapping recovered the original mode/context records, scaling/state operations, volatile hardware writes and aggregate context copy. Its repaired source then matched at `-O1`; optimization alone had not recovered the old draft.
+- Integer formatting needed the original formatter layout and digit-array definitions. Typed calls to the already located unsigned 64-bit division/remainder helpers resolved the remaining helper-call mismatch; the memory-copy call uses the existing target entry.
+- The hash iterator matched the original association/table records, pointer outputs and loop structure. Replacing the raw-offset draft with these original declarations resolved register-allocation differences without padding or assembly changes.
+
+### Improved drafts, excluded from coverage
+
+| Entry | Starting score | Best score | Remaining evidence |
+| --- | ---: | ---: | --- |
+| `func_800A0F38` | 3545 | 600 | Video-manager body matches apart from unreachable NOPs; debug-flag probes did not fix it. |
+| `func_8000BEF0` | 325 | 30 | Application-field context fixed address grouping; base-register choices still differ. |
+| `func_80044BDC` | 360 | 300 | Resolved the wall-position array definition; load scheduling still differs. |
+| `func_800AB6AC` | 655 | 315 | Original tempo-expression context and two iterative permutation improvements; byte-load/register differences remain. |
+| `func_800181A0` | 557 | 437 | Corrected container-local layout; located `CGameObjectInstance__GetAnimType` as the source candidate, but original typed reconstruction is not exact. |
+
+These scores describe partial drafts, not recovered C selections. Bounded deep searches did not turn them into exact matches; one animation-type preflight failed before variants were tested. Some additional SDK/helper fragments enter with live saved/floating registers, so isolated ordinary-C prototypes are not sufficient evidence of their private ABI. No padding instructions, forced register assembly, target changes or weakened judgments were used.
+
+Application changes are proposed in [decompdecomp PR #217](https://github.com/RetroReversing/decompdecomp/pull/217): target-supported I/O profile priorities, proven MMIO/local-storage candidates, existing byte-record aggregate-copy hypotheses and reference-discrepancy advisories. The 108 focused tests and lint pass after merging main. This session did not install/restart the app; these manual matches are not attributed to the uninstalled PR.
+
+The standalone selection is **2,208 C functions / 521,888 bytes (83.367092% of 626,012 code bytes)**, up **0.415328 percentage points**. The app has **2,209 persisted matches / 522,668 bytes (83.491690%)**, **138 open** and **59 assembly candidates**. All five additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

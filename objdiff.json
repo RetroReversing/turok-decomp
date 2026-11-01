@@ -4267,9 +4267,10 @@
       "name": "code_80029A10/func_8002DD90",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002DD90.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002DD90.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002DD90.o"
     },
     {
       "name": "code_80029A10/func_8002DE38",
@@ -18669,9 +18670,10 @@
       "name": "code_80098440/func_8009D620",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D620.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D620.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D620.o"
     },
     {
       "name": "code_80098440/func_8009D8C0",
@@ -20419,9 +20421,10 @@
       "name": "code_80098440/func_800AA810",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AA810.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AA810.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AA810.o"
     },
     {
       "name": "code_80098440/func_800AAB70",
@@ -21143,9 +21146,10 @@
       "name": "code_80098440/func_800AFE00",
       "target_path": "build/asm/nonmatchings/code_80098440/func_800AFE00.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_800AFE00.c"
+      },
+      "base_path": "build/src/code_80098440/func_800AFE00.o"
     },
     {
       "name": "code_80098440/__osResetGlobalIntMask",
@@ -21178,9 +21182,10 @@
       "name": "code_80098440/_Litob",
       "target_path": "build/asm/nonmatchings/code_80098440/_Litob.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_Litob.c"
+      },
+      "base_path": "build/src/code_80098440/_Litob.o"
     },
     {
       "name": "code_80098440/gl_func_00073904",

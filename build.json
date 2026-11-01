@@ -21,6 +21,81 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148204528,
+   "end": 2148204529
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O1",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148204032,
+   "end": 2148204033
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul",
+    "-O1"
+   ],
+   "timeout": 20,
+   "start": 2148182032,
+   "end": 2148182033
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O1",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148128288,
+   "end": 2148128289
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147671440,
+   "end": 2147671441
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O1",
     "-mips2",
     "-G",
@@ -7311,7 +7386,9 @@
    "seg": "code_80029A10",
    "vram": 2147671440,
    "rom": 8579728,
-   "asm": "asm/nonmatchings/code_80029A10/func_8002DD90.s"
+   "asm": "asm/nonmatchings/code_80029A10/func_8002DD90.s",
+   "c": "src/code_80029A10/func_8002DD90.c",
+   "own": {}
   },
   {
    "name": "func_8002DE38",
@@ -22096,7 +22173,9 @@
    "seg": "code_80098440",
    "vram": 2148128288,
    "rom": 9036576,
-   "asm": "asm/nonmatchings/code_80098440/func_8009D620.s"
+   "asm": "asm/nonmatchings/code_80098440/func_8009D620.s",
+   "c": "src/code_80098440/func_8009D620.c",
+   "own": {}
   },
   {
    "name": "func_8009D8C0",
@@ -23819,7 +23898,9 @@
    "seg": "code_80098440",
    "vram": 2148182032,
    "rom": 9090320,
-   "asm": "asm/nonmatchings/code_80098440/func_800AA810.s"
+   "asm": "asm/nonmatchings/code_80098440/func_800AA810.s",
+   "c": "src/code_80098440/func_800AA810.c",
+   "own": {}
   },
   {
    "name": "func_800AAB70",
@@ -24535,7 +24616,9 @@
    "seg": "code_80098440",
    "vram": 2148204032,
    "rom": 9112320,
-   "asm": "asm/nonmatchings/code_80098440/func_800AFE00.s"
+   "asm": "asm/nonmatchings/code_80098440/func_800AFE00.s",
+   "c": "src/code_80098440/func_800AFE00.c",
+   "own": {}
   },
   {
    "name": "__osResetGlobalIntMask",
@@ -24569,7 +24652,9 @@
    "seg": "code_80098440",
    "vram": 2148204528,
    "rom": 9112816,
-   "asm": "asm/nonmatchings/code_80098440/_Litob.s"
+   "asm": "asm/nonmatchings/code_80098440/_Litob.s",
+   "c": "src/code_80098440/_Litob.c",
+   "own": {}
   },
   {
    "name": "gl_func_00073904",

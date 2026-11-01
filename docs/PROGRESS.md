@@ -117,3 +117,8 @@ Ten new live-API matches add **5,688 bytes**, bringing standalone selection to *
 ## 31 October 2026 — ten SDK I/O and controller matches
 
 Ten new source-assisted live-API matches add **4,928 bytes**, bringing standalone selection to **2,203 C functions / 519,288 bytes (82.952%)**. All ten match IDO 5.3 at `-O1` with the recorded common flags. Original SDK declarations, numeric volatile MMIO macros, response-record alignment and target-supported retail disk recovery changes recovered the functions. Whole-cartridge verification passed, and app source/header persistence was audited. The disk initializer remains a partial draft, excluded from coverage. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#sdk-io-and-controller-live-api-continuation--31-october-2026).
+
+
+## 1 November 2026 — five matches from ten main candidates
+
+The source-assisted live-API batch recovered **five exact matches / 2,600 bytes** and improved five other drafts. Standalone selection reaches **2,208 C functions / 521,888 bytes (83.367%)**, up **0.415 percentage points**. Original SDK object definitions, a symbolic NMI-buffer address, typed integer-runtime helpers, VI context records at `-O1`, and original hash records/loops recovered the matches. All five pass individual checks and the complete original-cartridge rebuild; app source/header persistence is audited. The five partial drafts remain excluded from coverage. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#ten-candidate-sdk-and-typed-context-continuation--1-november-2026).

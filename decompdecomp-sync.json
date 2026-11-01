@@ -100,9 +100,15 @@
     "src/code_80098440/func_800A67D0.c": "776a7e9b0e4f39158cb47c472f1191f8c8b30e49b5f99f86711d6efdde05a102",
     "src/code_80098440/func_800A6EB4.c": "16a2b7c3f28eb7a945d6b0bd014107d61d82c5e32eb5b1088154cd201a08c2ed",
     "src/code_80098440/func_800A4D00.c": "92c026941ede8b46787d780688bcaf97ef296daf2b319257f7efde73fc6f400d",
-    "src/code_80098440/func_8009F22C.c": "fd439e90f2d8e8d05145ac74d8b72f84f1a58f6e0ce52b1efa8be87d08617d44"
+    "src/code_80098440/func_8009F22C.c": "fd439e90f2d8e8d05145ac74d8b72f84f1a58f6e0ce52b1efa8be87d08617d44",
+    "src/code_80098440/func_800AA810.c": "37c15ddc3379f884234c921a3632791fdb1ec8f87ff98fca6af2494feab610ec",
+    "src/code_80029A10/func_8002DD90.c": "eff8c565652668501d516a02b2bdab9c297110108d63aaef54f8526150459c3e",
+    "src/code_80098440/func_800AFE00.c": "ed20df9e955b26fcd73f00eeab988302647767e7f4876ff1918ea820c99279ce",
+    "src/code_80098440/func_8009D620.c": "8bda7ddd2716325623ac0a87e340672b1c08974b3bc2981be260bc4444c6369d",
+    "src/code_80098440/_Litob.c": "afa4094b6c3eab242364dec40e99c2282f0072847d5892e995f5038e673d95d7"
   },
   "accepted": [
+    "_Litob",
     "__d_to_ull",
     "__ll_lshift",
     "__ll_mod",
@@ -154,10 +160,12 @@
     "corrupted_init",
     "func_800119F4",
     "func_800120DC",
+    "func_8002DD90",
     "func_8002FBD0",
     "func_8005EED0",
     "func_8009D38C",
     "func_8009D430",
+    "func_8009D620",
     "func_8009DA4C",
     "func_8009EDC8",
     "func_8009F22C",
@@ -171,11 +179,13 @@
     "func_800A7380",
     "func_800A7460",
     "func_800A8D94",
+    "func_800AA810",
     "func_800AAEA0",
     "func_800AAF70",
     "func_800AAFA0",
     "func_800AD680",
     "func_800AFDD0",
+    "func_800AFE00",
     "func_800AFF50",
     "guLookAtF",
     "guMtxF2L",
@@ -211,5 +221,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2204
+  "matched_app": 2209
 }
