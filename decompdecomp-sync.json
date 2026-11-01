@@ -128,7 +128,15 @@
     "src/code_80029A10/func_8002AA38.c": "6166bfa725990c5a676a2af960736c2f3b8067d9eb75d22f2fd3c45a332392c3",
     "src/code_80029A10/func_8002A1A0.c": "b83dd1bb1ba627dd243ce4afdfd80e66641853b4b067af926c7116ed90319cff",
     "src/code_80029A10/func_8002A5C8.c": "621cc2552f5f7e711ff67b20e7d54e3f906079fb8805574b32bbbf55fca372af",
-    "src/code_80029A10/func_8002A800.c": "b9f359207d727f24ddf872d3ecb276720b25a29ecafaea44bc7600d54a9c1b65"
+    "src/code_80029A10/func_8002A800.c": "b9f359207d727f24ddf872d3ecb276720b25a29ecafaea44bc7600d54a9c1b65",
+    "src/code_80029A10/func_8002C63C.c": "d062b47b130565eb377a0893b5343f114032796aa59dde6b6661d1927488e945",
+    "src/code_80029A10/func_8002D1F8.c": "8f8d6f5f53ee624d90d8228114767ac43111650d75afde35b6f594103c4df7a2",
+    "src/code_80017F0C/func_80020DD4.c": "64a68cbd1743b6c69799a939e7cf443832028cbdfbcfa5419a3e1bf5e325dedd",
+    "src/code_80029A10/func_8002C280.c": "39eab65d368df7d53a16b4f3d7e6a7da3ebfe7976094109a4066f2b7232503c2",
+    "src/code_80029A10/func_8002D4EC.c": "70ea5104a8de31c24b245cf595468135dece191852417edef4e0bdc949e7eb82",
+    "src/code_80017F0C/func_80020CAC.c": "83feb1c74e12331da9c67304702e9edcd7319daedb6b956d9b498092a6f0df7b",
+    "src/code_80026AD0/func_800281F0.c": "4db99f529ebd72fd9cc26273e856ff001277768229e02842a0af58841ae1359e",
+    "src/code_80026AD0/CParticleSystem__DeallocateParticle.c": "d6eb40f6ea5324c4addc7ab59ae9a5663f5e38d1c2a1851151b7f9daf17a61b2"
   },
   "accepted": [
     "_Litob",
@@ -190,6 +198,10 @@
     "func_800181A0",
     "func_8001DE20",
     "func_8001E21C",
+    "func_80020CAC",
+    "func_80020DD4",
+    "func_800281F0",
+    "func_8002864C",
     "func_80029C48",
     "func_8002A1A0",
     "func_8002A2A4",
@@ -201,6 +213,10 @@
     "func_8002AA38",
     "func_8002B2E8",
     "func_8002BF28",
+    "func_8002C280",
+    "func_8002C63C",
+    "func_8002D1F8",
+    "func_8002D4EC",
     "func_8002DD90",
     "func_8002FBD0",
     "func_800318D0",
@@ -267,5 +283,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2232
+  "matched_app": 2240
 }

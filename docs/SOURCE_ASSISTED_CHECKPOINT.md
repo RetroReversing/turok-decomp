@@ -733,3 +733,38 @@ Repeated scratch source/header concatenation accumulated blank padding and exhau
 Both retain their starting best scores and `-O2` profiles; failed experiments are noted in the live project. Neither contributes matching bytes.
 
 Standalone selection is **2,231 C functions / 528,744 bytes (84.462279% of 626,012 candidate-code bytes)**, up **0.355904 percentage points**. The app has **2,232 persisted exact matches / 529,524 bytes (84.586877%)**, **115 open** and **59 assembly candidates**. All eight additions passed individual repository checks and the complete original 8,388,608-byte cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited in both directions with no revalidation pending. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+
+## Cache, scheduler and local static context — 1 November 2026
+
+Ten source-assisted candidates were tested through the running app's authenticated API and source-preparation jobs. **Eight exact matches add 3,344 bytes**. A ninth draft improved but remains unmatched; the final candidate did not improve. These are manual results from the installed app, separate from synthetic tests for decompdecomp PR #237's context-reuse and separate-pair UI/API work.
+
+| Entry | Source identity | Bytes | Verified profile |
+|---|---|---:|---|
+| `80020CAC` | `CGameRegion__CalculateWaterIntersection` (`romstruc.c:829`) | 296 | IDO 5.3 `-O3` |
+| `80020DD4` | `CGameRegion__GetCeilingIntersection` (`romstruc.c:795`) | 368 | IDO 5.3 `-O3` |
+| `800281F0` | `CParticleSystem__AddParticleToDrawList` (`particle.c:1033`) | 508 | IDO 5.3 `-O3` |
+| `8002864C` | `CParticleSystem__DeallocateParticle` (`particle.c:1180`) | 384 | IDO 5.3 `-O3` |
+| `8002C280` | `__scHandleRDP` (`sched.c:491`) | 652 | IDO 5.3 `-O2` |
+| `8002C63C` | `__scExec` (`sched.c:657`) | 356 | IDO 5.3 `-O2` |
+| `8002D1F8` | `CCartCache__RequestBlock` (`cart.c:1597`) | 500 | IDO 5.3 `-O3` |
+| `8002D4EC` | `CCartCache__Construct` (`cart.c:1293`) | 280 | IDO 5.3 `-O3` |
+
+All use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`; the original compiler release remains provisional. Prepared source/header combinations and per-function profiles were judged together. A broader current-toolchain flag comparison found the cache constructor's exact `-O3` result after the bounded follow-up had left it as a draft.
+
+The water routine needed its original function-local static caches. Replacing these with external/global pointers changed the generated loads and register reuse. Its accepted body retains the local static declarations, bound to the existing target data through supported aliases. The ceiling routine required its original aggregate-return normal helper and vector/corner types.
+
+Particle routines reuse the original particle/system records with the already-established retail count of 128 rather than the archive's debug count of 2. The draw routine uses a view of the player's instance header; it does not claim a complete player-object layout. The scheduler RDP handler uses verified frame/task layouts and a view of the existing frame-data array. The executor needed the 64-bit output-buffer-size parameter, the target-supported cache-writeback helper alias, and original timing-object definitions instead of extern-only replacements. All resulting code and data still use the ordinary byte judge.
+
+The cache request matched with original cache/notify records and callback types, the original inline free-list helper, and the header's `0xc0000000` ROM-version mask. An early incomplete scratch header was corrected before acceptance; only the verified final combination is counted.
+
+### Two candidates still unmatched
+
+| Candidate | Before → retained | Finding |
+|---|---:|---|
+| `func_8002D6BC` / `CCacheEntry__DoDecompress` candidate | 1340 → 780 | Original typed cache records and preserved private getter/replacement helper bodies improve at `-O3`. Remaining register/call-context differences are unresolved; the improved source/header/profile is saved in the app. |
+| `alBnkfNew` | 878 → 878 | Original bank records and inline bank-patcher context did not improve. `-O3` scored 1858 and `-O1` 7651; `-O2` is retained. Target instrument-patcher calls pass the table in `a3`, unlike the exposed ordinary three-argument declaration. Same-unit specialization remains a lead. |
+
+Failed experiments are noted in the live project. Neither draft contributes matching bytes.
+
+Standalone selection is **2,239 C functions / 532,088 bytes (84.996454% of 626,012 candidate-code bytes)**, up **0.534175 percentage points**. The app has **2,240 persisted exact matches / 532,868 bytes (85.121052%)**, **107 open** and **59 assembly candidates**. All eight additions passed individual repository checks and the complete original 8,388,608-byte cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited in both directions with no revalidation pending. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

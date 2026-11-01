@@ -142,3 +142,8 @@ Ten source-assisted live-API candidates yielded **five exact matches / 1,356 byt
 ## 1 November 2026 — eight particle matches from ten candidates
 
 Eight source-assisted live-API matches add **2,228 bytes**, reaching **2,231 C functions / 528,744 bytes (84.462%)**, up **0.356 percentage points**. Original particle records, vector/quaternion aggregate calling conventions and corrected helper declarations matched at `-O3`. The compact-sequence constructor and scheduler main loop retain their starting scores and `-O2` profiles. All eight pass individual checks and the complete original-cartridge rebuild; saved app sources and required contexts were audited. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#particle-records-and-aggregate-calls--1-november-2026).
+
+
+## 1 November 2026 — eight cache, scheduler and intersection matches
+
+Eight source-assisted live-API matches add **3,344 bytes**, reaching **2,239 C functions / 532,088 bytes (84.996%)**, up **0.534 percentage points**. Original typed records, local static cache scope, aggregate calls, 64-bit buffer size and timing-object definitions recovered the matches at verified per-function `-O2`/`-O3` profiles. The decompression draft improves 1340 to 780 but remains excluded from coverage; the bank initializer is unchanged. All eight pass individual checks and the complete original-cartridge rebuild; saved app sources/contexts were audited. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#cache-scheduler-and-local-static-context--1-november-2026).

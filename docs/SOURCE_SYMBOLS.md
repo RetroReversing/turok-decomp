@@ -8,6 +8,15 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x80020CAC` | `CGameRegion__CalculateWaterIntersection`, `tengine/romstruc.c:829` | Exact typed source/context at `-O3` |
+| `0x80020DD4` | `CGameRegion__GetCeilingIntersection`, `tengine/romstruc.c:795` | Exact typed source/context at `-O3` |
+| `0x800281F0` | `CParticleSystem__AddParticleToDrawList`, `tengine/particle.c:1033` | Exact typed source/context at `-O3` |
+| `0x8002864C` | `CParticleSystem__DeallocateParticle`, `tengine/particle.c:1180` | Exact typed source/context at `-O3` |
+| `0x8002C280` | `__scHandleRDP`, `tengine/sched.c:491` | Exact typed source/context at `-O2` |
+| `0x8002C63C` | `__scExec`, `tengine/sched.c:657` | Exact typed source/context at `-O2` |
+| `0x8002D1F8` | `CCartCache__RequestBlock`, `tengine/cart.c:1597` | Exact typed source/context at `-O3` |
+| `0x8002D4EC` | `CCartCache__Construct`, `tengine/cart.c:1293` | Exact typed source/context at `-O3` |
+| `0x8002D6BC` | `CCacheEntry__DoDecompress` candidate, `tengine/cart.c:1233` | Original typed body and private helper context improve 1340 to 780 at `-O3`; still unmatched |
 | `0x80029C48` | `CParticle__EndLife`, `tengine/particle.c:2238` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
 | `0x8002A1A0` | `CParticle__EveryFrame`, `tengine/particle.c:2274` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
 | `0x8002A2A4` | `CParticle__SpawnCeilingCollision`, `tengine/particle.c:785` | Exact original typed context and by-value aggregate/helper declarations at `-O3` |
