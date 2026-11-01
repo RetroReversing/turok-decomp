@@ -132,3 +132,8 @@ The source-assisted live-API batch recovered **seven exact matches / 1,880 bytes
 ## 1 November 2026 — three typed-record matches from ten candidates
 
 The source-assisted live-API batch recovered **three exact matches / 1,392 bytes**. Standalone selection reaches **2,218 C functions / 525,160 bytes (83.890%)**, up **0.222 percentage points**. The load constructor required its original records and verified retail error branches; the region test matched original declarations at `-O3`; the scheduler matched original records, timer widths and helper prototypes at `-O2`. All three pass individual checks and the complete original-cartridge rebuild; app source/header persistence is audited. The seven misses retain their starting best scores and working profiles, with failed-experiment notes saved. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#typed-records-retail-branches-and-scheduler-continuation--1-november-2026).
+
+
+## 1 November 2026 — five typed-source and helper-prototype matches
+
+Ten source-assisted live-API candidates yielded **five exact matches / 1,356 bytes**, reaching **2,223 C functions / 526,516 bytes (84.106%)**, up **0.217 percentage points**. Original records, verified `-O3` profiles, ROM-supported filesystem behavior and corrected material/sound helper prototypes recovered the matches. Five misses retain their starting best scores. Complete original-cartridge verification passed, and all selected sources and required app contexts were audited. The older constant-pool export blocker remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#typed-source-profiles-and-helper-prototypes--1-november-2026).

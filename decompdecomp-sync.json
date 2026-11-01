@@ -115,14 +115,21 @@
     "src/code_80076218/func_80079540.c": "de6526bdd541c5391a78417f38acaa902bec44254be27fa611ef819e7e3380ff",
     "src/code_80017F0C/CGameRegion__InRegion.c": "5e335713b372133c83624e4a87866ab7aead31b46aab78a01c57b33e8601e5ef",
     "src/code_80009A38/func_8000BEF0.c": "169df1ab550a686bfe5cc4868f4e41c91b2f712f0e19594b5b120cef699425aa",
-    "src/code_80029A10/func_8002BF28.c": "e19ef515a3ff932c2926420ca85ec217c79292ef97b2b6a59ebb05624e953076"
+    "src/code_80029A10/func_8002BF28.c": "e19ef515a3ff932c2926420ca85ec217c79292ef97b2b6a59ebb05624e953076",
+    "src/code_80029A10/func_8002A3B0.c": "9966ed4955fa5637e345742823cbe6f8741c727eb962a683086f67d3345af3b1",
+    "src/code_80098440/__alCSeqNextDelta.c": "bd5766a982b763efbb43bc47a0be1dc5c5aa3e681aa7123278e75368dfe2c3fc",
+    "src/code_80017F0C/func_800181A0.c": "bc635f4a828da926fe7ec087d7879e30d97091dce3e8b36a9b972cab49826c82",
+    "src/code_80009A38/func_800118EC.c": "2f78784100c0354554179ceeacb2a3f9dcb1342b2f84c7f9b9fa0dacdf3ef5c9",
+    "src/code_80098440/__lookupSoundQuick.c": "38d3f096f43a4619f48d3d5b75c6088190aca57b812363a8b68a2d14dba30797"
   },
   "accepted": [
     "_Litob",
+    "__alCSeqNextDelta",
     "__d_to_ull",
     "__ll_lshift",
     "__ll_mod",
     "__ll_mul",
+    "__lookupSoundQuick",
     "__osCheckId",
     "__osCheckPackId",
     "__osClearPage",
@@ -169,10 +176,13 @@
     "corrupted",
     "corrupted_init",
     "func_8000BEF0",
+    "func_800118EC",
     "func_800119F4",
     "func_800120DC",
+    "func_800181A0",
     "func_8001DE20",
     "func_8001E21C",
+    "func_8002A3B0",
     "func_8002B2E8",
     "func_8002BF28",
     "func_8002DD90",
@@ -241,5 +251,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2219
+  "matched_app": 2224
 }

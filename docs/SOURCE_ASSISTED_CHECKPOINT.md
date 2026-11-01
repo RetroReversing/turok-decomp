@@ -671,3 +671,34 @@ bytes. These are manual source-assisted results; they are separate from syntheti
 which adds joint prepared-bundle approval, data diagnostics and bounded named-array hypotheses.
 
 The standalone selection is **2,218 C functions / 525,160 bytes (83.889766% of 626,012 code bytes)**, up **0.222360 percentage points**. The app has **2,219 persisted matches / 525,940 bytes (84.014364%)**, **128 open** and **59 assembly candidates**. All three additions passed individual repository checks and the complete original-cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). Saved sources and required headers were audited, and revalidation finished. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.
+
+
+## Typed source, profiles and helper prototypes — 1 November 2026
+
+Ten source-assisted candidates were tested through the running app's authenticated API and source-preparation jobs. **Five exact matches add 1,356 bytes**; the other five retain their starting best scores. These manual results do not measure the new, not-yet-installed source-lead UI in decompdecomp PR #230.
+
+| Function | Bytes | Verified profile | Recovery |
+|---|---:|---|---|
+| `__alCSeqNextDelta` | 360 | IDO 5.3 `-O3` | Original compact-sequence layout, unsigned loop and delta-tick fields |
+| `__lookupSoundQuick` | 252 | IDO 5.3 `-O3` | Original instrument, sound, key-map and channel records plus binary-search locals |
+| `func_800181A0` | 212 | IDO 5.3 `-O3` | `CGameObjectInstance__GetAnimType`, original indexed/unindexed set helpers, locals and non-WIN32 macros |
+| `func_800118EC` | 264 | IDO 5.3 `-O2` | `SaveCurrent`-derived retail overwrite handler, original filesystem records and void queue-helper prototypes |
+| `func_8002A3B0` | 268 | IDO 5.3 `-O3` | `CParticle__CeilingCollision`, original records, by-value vectors and corrected helper prototypes |
+
+All use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`; compiler identification remains provisional. Profiles were verified for the complete source/context combination before promotion. The overwrite handler differs from the reference: retail records the extension byte, deletes the selected file and calls `SaveNew` instead of the reference write call. Existing ROM data symbols were used rather than inventing string placement or a complete application layout.
+
+The particle candidate improved from 438 to 200 with typed source at `-O3`, then matched after material and sound helper prototypes were corrected together. The sound volume is a float, and the material helper returns an unsigned word. Incorrect prototypes can alter argument-register and instruction choices even for a zero argument; this session did not independently ablate those two corrections.
+
+### Five candidates still unmatched
+
+| Candidate | Retained score | Finding |
+|---|---:|---|
+| `alSeqNew` | 185 | Original sequence layout and reader declarations did not improve the draft; specialized reader/caller context remains a lead. |
+| `alAudioFrame` | 270 | The bundled older SDK lacks the retained draft's newer timing logic. Replaying that older source and neighboring profiles did not help. |
+| `__alSeqNextDelta` | 350 | Original saved-pointer restoration and sequence context did not improve it. |
+| `func_800AB6AC` | 315 | Original `__handleMetaMsg` and inline tempo helper did not improve it; target argument order differs from the reference entry. |
+| `func_80044BDC` | 300 | Original `Mantis_ClosestWall` body/context remained at 300; `-O3` worsened it to 1828, so `-O2` was restored and reverified. |
+
+Failed-experiment notes are saved in the app. The working drafts and profiles remain intact; none of these misses contributes matching bytes.
+
+Standalone selection is **2,223 C functions / 526,516 bytes (84.106375% of 626,012 candidate-code bytes)**, up **0.216609 percentage points**. The app has **2,224 persisted exact matches / 527,296 bytes (84.230973%)**, **123 open** and **59 assembly candidates**. All five additions passed individual repository checks and the complete original 8,388,608-byte cartridge comparison (SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`). All selected sources and required saved app contexts were audited, with no revalidation pending. The older `func_800587B8` non-contiguous constant-pool export blocker remains the one app/repository difference.

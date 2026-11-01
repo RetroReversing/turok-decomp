@@ -1352,9 +1352,10 @@
       "name": "code_80009A38/func_800118EC",
       "target_path": "build/asm/nonmatchings/code_80009A38/func_800118EC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80009A38/func_800118EC.c"
+      },
+      "base_path": "build/src/code_80009A38/func_800118EC.o"
     },
     {
       "name": "code_80009A38/SaveNew",
@@ -2316,9 +2317,10 @@
       "name": "code_80017F0C/func_800181A0",
       "target_path": "build/asm/nonmatchings/code_80017F0C/func_800181A0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80017F0C/func_800181A0.c"
+      },
+      "base_path": "build/src/code_80017F0C/func_800181A0.o"
     },
     {
       "name": "code_80017F0C/func_80018274",
@@ -3533,9 +3535,10 @@
       "name": "code_80029A10/func_8002A3B0",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002A3B0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002A3B0.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002A3B0.o"
     },
     {
       "name": "code_80029A10/func_8002A4BC",
@@ -19703,9 +19706,10 @@
       "name": "code_80098440/__alCSeqNextDelta",
       "target_path": "build/asm/nonmatchings/code_80098440/__alCSeqNextDelta.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__alCSeqNextDelta.c"
+      },
+      "base_path": "build/src/code_80098440/__alCSeqNextDelta.o"
     },
     {
       "name": "code_80098440/func_800A4B80",
@@ -20645,9 +20649,10 @@
       "name": "code_80098440/__lookupSoundQuick",
       "target_path": "build/asm/nonmatchings/code_80098440/__lookupSoundQuick.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__lookupSoundQuick.c"
+      },
+      "base_path": "build/src/code_80098440/__lookupSoundQuick.o"
     },
     {
       "name": "code_80098440/func_800AB94C",

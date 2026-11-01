@@ -8,6 +8,9 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x800118EC` | `SaveCurrent`-derived retail overwrite handler, `tengine/control.c:616` | Exact after ROM-verified delete/save replacement; reference name remains qualified |
+| `0x800181A0` | `CGameObjectInstance__GetAnimType`, `tengine/romstruc.c:2636` | Exact original typed context at `-O3` |
+| `0x8002A3B0` | `CParticle__CeilingCollision`, `tengine/particle.c:2204` | Exact typed context and corrected material/sound helper prototypes at `-O3` |
 | `0x8000BEF0` | `CLoad__Construct`, `tengine/loadsave.c:509` | Exact after original types and ROM-verified retail branch changes |
 | `0x8001E21C` | `CGameRegion__InRegion`, `tengine/romstruc.c:5161` | Exact original typed context at `-O3` |
 | `0x8002BF28` | `__scHandleRSP`, `tengine/sched.c:400` | Exact; the older `initAudio` nearest-neighbour lead is superseded |
