@@ -161,7 +161,14 @@
     "src/code_80070D48/func_80074F20.c": "d54134b5dcc16aa8bb60b9ee58330b1a3ec180191ad965b502dcdeb70ffe4983",
     "src/code_80009A38/func_8000EC10.c": "ba529fa9f18027b797c06342977f1ad6e4f12dde5ce16c6c086d8c0bfb2e30d8",
     "src/code_80009A38/func_8000CE50.c": "780ea9d7330af9ce3155dda396e4d3790b12dd788645667fa1d66ebf0e3bc45b",
-    "src/code_80076218/func_8007CDC0.c": "a516f323985733c409a0f7d3d64800669656f91beaac7c35b65383781b12cbc8"
+    "src/code_80076218/func_8007CDC0.c": "a516f323985733c409a0f7d3d64800669656f91beaac7c35b65383781b12cbc8",
+    "src/code_80001300/func_80006770.c": "a2cb00ad9bfcd6500eeb2f48dc6d20f61620d048a3b4508bff00d98a7dd4f6fb",
+    "src/code_8002F784/func_8004F74C.c": "ff7a97a38cd3c37231b7f0622e2c080b1ea3c1383b750c7e633b0fec8337a949",
+    "src/code_80076218/func_80081210.c": "678dc5e52797374d26a87120944168448fbb177fa4d3f607ee5e70b28f1bac4d",
+    "src/code_80001300/func_800061C4.c": "be2d1e32d762c184916428b7dc90e112771fb0d213a1f6596e4ff6ad433cf131",
+    "src/code_80009A38/func_80009B24.c": "0f471b219bf39e361598b2d84634d146c4bafcbd4de2bc801774e271bc47b6cf",
+    "src/code_80009A38/func_8000C04C.c": "7246cd515f7977c25d53022fbcff224b6c3c260d0180059e38bd9c3561b16056",
+    "src/code_80001300/func_8000658C.c": "7eab3ecc326a711fe1961737be5c57fcf9866631a10f0214107b9491bf967562"
   },
   "accepted": [
     "_Litob",
@@ -217,7 +224,12 @@
     "alSynNew",
     "corrupted",
     "corrupted_init",
+    "func_800061C4",
+    "func_8000658C",
+    "func_80006770",
+    "func_80009B24",
     "func_8000BEF0",
+    "func_8000C04C",
     "func_8000CCE4",
     "func_8000CE50",
     "func_8000EC10",
@@ -264,6 +276,7 @@
     "func_8002FBD0",
     "func_800318D0",
     "func_800474F8",
+    "func_8004F74C",
     "func_8005EED0",
     "func_8006905C",
     "func_80070DA8",
@@ -274,6 +287,7 @@
     "func_80075090",
     "func_80079540",
     "func_8007CDC0",
+    "func_80081210",
     "func_80087FC0",
     "func_8009D38C",
     "func_8009D430",
@@ -333,5 +347,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2265
+  "matched_app": 2272
 }

@@ -176,3 +176,13 @@ The standalone selection is **2,264 C functions / 543,208 bytes (86.772778%)**, 
 **2,265 persisted exact matches / 543,988 bytes (86.897376%)**, **82 open** and **59 assembly candidates**.
 The existing 780-byte constant-pool export blocker is unchanged. Full original-cartridge verification
 and saved app/repository source/context audits pass. See [provenance and remaining near misses](SOURCE_ASSISTED_CHECKPOINT.md#save-errors-aggregate-abi-and-retail-layout--1-november-2026).
+
+
+## Menus, legal screen and retail error handling — 1 November 2026
+
+Seven of ten live-API candidates match exactly, adding **3,608 bytes** and **0.576347 percentage points**.
+Standalone selection reaches **2,271 C functions / 546,816 bytes (87.349124%)**. Original typed contexts,
+retail menu sound calls, a timer-offset correction, controller-pak error cases and a float helper
+prototype recovered the batch at `-O2`. Three SDK ABI/register-allocation candidates remain unmatched.
+Full original-cartridge verification and persisted app/repository audits pass; the older 780-byte
+constant-pool export gap is unchanged. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#menus-legal-screen-and-retail-error-handling--1-november-2026).

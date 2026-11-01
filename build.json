@@ -21,6 +21,111 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148012560,
+   "end": 2148012561
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147809100,
+   "end": 2147809101
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147532876,
+   "end": 2147532877
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147523364,
+   "end": 2147523365
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147510128,
+   "end": 2147510129
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147509644,
+   "end": 2147509645
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147508676,
+   "end": 2147508677
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O3",
     "-mips2",
     "-G",
@@ -4492,7 +4597,11 @@
    "seg": "code_80001300",
    "vram": 2147508676,
    "rom": 8416964,
-   "asm": "asm/nonmatchings/code_80001300/func_800061C4.s"
+   "asm": "asm/nonmatchings/code_80001300/func_800061C4.s",
+   "c": "src/code_80001300/func_800061C4.c",
+   "own": {
+    ".rodata": 2148465064
+   }
   },
   {
    "name": "func_800063A8",
@@ -4508,14 +4617,22 @@
    "seg": "code_80001300",
    "vram": 2147509644,
    "rom": 8417932,
-   "asm": "asm/nonmatchings/code_80001300/func_8000658C.s"
+   "asm": "asm/nonmatchings/code_80001300/func_8000658C.s",
+   "c": "src/code_80001300/func_8000658C.c",
+   "own": {
+    ".rodata": 2148465096
+   }
   },
   {
    "name": "func_80006770",
    "seg": "code_80001300",
    "vram": 2147510128,
    "rom": 8418416,
-   "asm": "asm/nonmatchings/code_80001300/func_80006770.s"
+   "asm": "asm/nonmatchings/code_80001300/func_80006770.s",
+   "c": "src/code_80001300/func_80006770.c",
+   "own": {
+    ".rodata": 2148465112
+   }
   },
   {
    "name": "func_80006954",
@@ -4683,7 +4800,9 @@
    "seg": "code_80009A38",
    "vram": 2147523364,
    "rom": 8431652,
-   "asm": "asm/nonmatchings/code_80009A38/func_80009B24.s"
+   "asm": "asm/nonmatchings/code_80009A38/func_80009B24.s",
+   "c": "src/code_80009A38/func_80009B24.c",
+   "own": {}
   },
   {
    "name": "func_80009CAC",
@@ -4845,7 +4964,11 @@
    "seg": "code_80009A38",
    "vram": 2147532876,
    "rom": 8441164,
-   "asm": "asm/nonmatchings/code_80009A38/func_8000C04C.s"
+   "asm": "asm/nonmatchings/code_80009A38/func_8000C04C.s",
+   "c": "src/code_80009A38/func_8000C04C.c",
+   "own": {
+    ".rodata": 2148469688
+   }
   },
   {
    "name": "func_8000C40C",
@@ -13366,7 +13489,9 @@
    "seg": "code_8002F784",
    "vram": 2147809100,
    "rom": 8717388,
-   "asm": "asm/nonmatchings/code_8002F784/func_8004F74C.s"
+   "asm": "asm/nonmatchings/code_8002F784/func_8004F74C.s",
+   "c": "src/code_8002F784/func_8004F74C.c",
+   "own": {}
   },
   {
    "name": "func_8004F7D4",
@@ -20331,7 +20456,11 @@
    "seg": "code_80076218",
    "vram": 2148012560,
    "rom": 8920848,
-   "asm": "asm/nonmatchings/code_80076218/func_80081210.s"
+   "asm": "asm/nonmatchings/code_80076218/func_80081210.s",
+   "c": "src/code_80076218/func_80081210.c",
+   "own": {
+    ".rodata": 2148490800
+   }
   },
   {
    "name": "draw_onscreen_text",

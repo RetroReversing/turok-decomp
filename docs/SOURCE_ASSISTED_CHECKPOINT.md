@@ -944,3 +944,62 @@ non-contiguous constant-pool export blocker remains separate.
 All eight additions passed individual repository checks and the full **8,388,608-byte original-cartridge
 comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app sources and required contexts
 were checked against live state and standalone selections, with no progress revalidation pending.
+
+
+## Menus, legal screen and retail error handling — 1 November 2026
+
+Ten candidates were investigated through the live app's authenticated API. **Seven new exact matches
+add 3,608 bytes**, or **0.576347 percentage points** of the fixed 626,012-byte candidate-code total.
+These are source-assisted recoveries; no target bytes, boundaries or judging gates were changed.
+
+| Entry | Located source | Bytes | IDO 5.3 profile |
+|---|---|---:|---|
+| `func_800061C4` | `CEngineApp__MenuLeft` (`tengine.c:2541`) | 484 | `-O2` |
+| `func_8000658C` | `CEngineApp__MenuDown` (`tengine.c:2630`) | 484 | `-O2` |
+| `func_80006770` | `CEngineApp__MenuUp` (`tengine.c:2675`) | 484 | `-O2` |
+| `func_80009B24` | `CEngineApp__UpdateLEGALSCREEN` (`tengine.c:4384`) | 392 | `-O2` |
+| `func_8000C04C` | `CLoad__UpdateMemory` (`loadsave.c:586`) | 960 | `-O2` |
+| `func_8004F74C` | `Campaigner_Code_DEATH` (`campaign.c:2484`) | 136 | `-O2` |
+| `func_80081210` | `COnScreen__WriteSmallText` (`onscrn.c:2820`) | 668 | `-O2` |
+
+All profiles also use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+IDO 5.3 remains a provisional identification of the original compiler release.
+
+### What recovered the matches
+
+- **Menu input:** restore the original scene-sound calls commented out in the archive, using
+  the original application, camera and controller records and sound-helper prototype.
+- **Legal screen:** retail tests the old timer value against 4, tests the start-button bit,
+  gates bypass on its flag, and selects the intro using `IntroFirstRun`. Its timer access is
+  four bytes later than the reference record; the function-specific view moves it after the
+  adjacent float. Only the timer's accessed offset is established by this function, not the
+  unused float's identity. Other application fields retain their verified positions.
+- **Load menu:** the retail error switch includes a grouped 3/5/10 controller-pak error arm.
+  Its 12-entry ROM jump table and actual message addresses establish the cases and bindings.
+  The earlier historical `CCheatCode__Update` lead at this address is superseded.
+- **Campaigner death:** the available source omits a retail branch that tests animation-played,
+  clears the word at offset `0x168` and sets status bit `0x1000` on the instance. The context
+  retains explicit byte-offset accesses where the field meaning is not established.
+- **Small text:** preserve the archive's punctuation mapping, verified against the ROM table;
+  add the retail upper-bound and fallback-glyph branches. An explicit float-argument draw-helper
+  prototype prevents C default promotions to double and recovers the target frame and calls.
+
+### Three SDK candidates remain unmatched
+
+| Candidate | Retained score | Finding |
+|---|---:|---|
+| `func_800A2420` / `__setUsptFromTempo` | 25 | The static SDK helper uses a private pointer/float register convention in retail. An isolated original body does not reproduce that ABI. Full translation-unit compilation is a follow-up, not a reason to change its target extent or insert assembly. |
+| `__osEnqueueThread` | 660 | A correctly typed priority-queue insertion body still differs in instruction/register allocation. C equivalence alone does not establish the original implementation or make it a match. |
+| `alSeqNew` | 185 | Original sequence records and parser prototypes do not reproduce the retail caller keeping its sequence pointer in a caller-saved register across internal calls. The original helper definitions and translation-unit optimizer context need investigation. |
+
+Those three retain their starting best scores and working profiles and contribute no new coverage.
+Failed source/context/profile trials are recorded locally through the live app's normal paths.
+
+The standalone repository selects **2,271 C functions / 546,816 bytes (87.349124%)**, with
+**136 assembly entries** including padding. The app has **2,272 persisted exact matches / 547,596 bytes
+(87.473723%)**, **75 open** and **59 assembly candidates**. The existing `func_800587B8` / 780-byte
+non-contiguous constant-pool export gap remains separate.
+
+All seven additions passed individual repository checks and the full **8,388,608-byte original-cartridge
+comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app sources and required contexts
+were audited against live state and standalone selections, with no progress revalidation pending.

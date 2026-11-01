@@ -8,6 +8,13 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x800061C4` | `CEngineApp__MenuLeft`, `tengine/tengine.c:2541` | Exact typed source/context at `-O2`; retail differences checked |
+| `0x8000658C` | `CEngineApp__MenuDown`, `tengine/tengine.c:2630` | Exact typed source/context at `-O2`; retail differences checked |
+| `0x80006770` | `CEngineApp__MenuUp`, `tengine/tengine.c:2675` | Exact typed source/context at `-O2`; retail differences checked |
+| `0x80009B24` | `CEngineApp__UpdateLEGALSCREEN`, `tengine/tengine.c:4384` | Exact typed source/context at `-O2`; retail differences checked |
+| `0x8000C04C` | `CLoad__UpdateMemory`, `tengine/loadsave.c:586` | Exact typed source/context at `-O2`; retail differences checked |
+| `0x8004F74C` | `Campaigner_Code_DEATH`, `tengine/campaign.c:2484` | Exact typed source/context at `-O2`; retail differences checked |
+| `0x80081210` | `COnScreen__WriteSmallText`, `tengine/onscrn.c:2820` | Exact typed source/context at `-O2`; retail differences checked |
 | `0x8000CE50` | `CSave__HandleError`, `tengine/loadsave.c:1369` | Exact typed source/context at `-O2`; retail behavior checked |
 | `0x8000EC10` | `CLoad__ExtractData`, `tengine/loadsave.c:2837` | Exact typed source/context at `-O2`; retail behavior checked |
 | `0x8000F108` | `CCheatCode__Update`, `tengine/loadsave.c:3303` | Exact typed source/context at `-O2`; retail behavior checked |
