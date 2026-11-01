@@ -824,3 +824,61 @@ The app has **2,250 persisted matches / 537,292 bytes (85.827748%)**, **97 open*
 All ten passed individual repository checks and the complete **8,388,608-byte original-cartridge
 comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved sources and required private
 headers were audited against the live project, with no progress revalidation pending.
+
+
+## Menus, memory and inline animation context — 1 November 2026
+
+Ten selected candidates were tested through the installed app's authenticated API. **Seven exact matches
+add 2,756 bytes**. These are source-assisted manual results. [decompdecomp PR #251](https://github.com/RetroReversing/decompdecomp/pull/251)
+implements the preceding batch's app improvements; it was not installed during these trials.
+
+| Entry | Source identity | Bytes | IDO 5.3 profile |
+|---|---|---:|---|
+| `func_80012F8C` | `CMtxF__PostMultScale` (`graphu64.c:1922`) | 160 | `-O3` |
+| `func_80011BD8` | `i3D_freePool` (`memory.c:469`) | 404 | `-O3` |
+| `func_8001F4E0` | `CGameStaticInstance__TakeFromROMEfficientStaticInstance` (`romstruc.c:2046`) | 792 | `-O3` |
+| `func_800474F8` | `Mantis_Setup_DEATH` (`mantis.c:2969`) | 184 | `-O2` |
+| `func_8000CCE4` | `CSave__Construct` (`loadsave.c:1290`) | 308 | `-O2` |
+| `func_800183C4` | `CGameObjectInstance__AnimReceived` (`romstruc.c:3243`) | 640 | `-O3` |
+| `func_80087FC0` | `CCheat__Construct` (`cheats.c:335`) | 268 | `-O2` |
+
+All profiles also use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+IDO 5.3 remains a provisional compiler-release identification.
+
+### What mattered
+
+- Original matrix and memory-pool bodies remove damaged arithmetic/control flow from old drafts.
+- Efficient static-instance preparation reuses the previous batch's typed instance records and
+  matrix macros, with the original `1024.0/100.0` scale and rotation constants.
+- The boss death routine uses typed application fields and an aggregate position argument.
+  Its retail pressure-plate event is absent from the archived death body and was confirmed
+  from the target call and arguments before adding it.
+- Save-menu setup needs the retail double file-system setup call, errors 4/11/10, and the
+  no-Pak-or-error-1 branch. These differ from the archive's broader nonzero-error test.
+  Original menu records and a typed application view preserve target address construction.
+- The animation callback initially improved 3418 to 1449. Its original same-unit
+  `IsAbsoluteAnim` predicate calls the animation-type helper and checks the 230–249 range.
+  Replacing that predicate with a Boolean declaration of the callee loses the range checks.
+  Restoring its body, original field offsets and inline context recovered the `-O3` match.
+- The cheat menu needed the original **unsigned** enabled-flags word. A signed substitute
+  left score 1520; restoring unsigned context recovered the exact `-O2` loop.
+
+### Three unresolved candidates
+
+| Candidate | Retained score | Findings |
+|---|---:|---|
+| `func_8002DA18` / `CUnindexedSet__ConstructWithAllocatedBlock` | 20 | Two adjacent loads differ in order. Original helper bodies, direct expansion, original helper-line directives and debug-flag trials did not recover it. Original `-O3` restored. |
+| `func_80044BDC` / `Mantis_ClosestWall` | 300 | Original body/context and corrected entry line retain a load-scheduling/address-high-reuse miss. `-O3` and debug flags worsen it; original `-O2` restored. |
+| `func_8002BA48` / `__scMain` | 1200 | First 256 target bytes agree, but the candidate emits an additional unreachable register-restore/return epilogue. `pad_8002BB48` contains two NOPs and that original epilogue through `0x8002BB80`. Boundary and layout need review; no extent, target or byte gate changed. |
+
+No unresolved candidate contributes new matching coverage. Failed trials and the boundary lead are
+recorded in the live project to avoid repeating them.
+
+The standalone repository selects **2,256 C functions / 539,268 bytes (86.143397%)**,
+up **0.440247 percentage points**, with **151 assembly entries** including padding.
+The app has **2,257 persisted exact matches / 540,048 bytes (86.267995%)**, **90 open**
+and **59 assembly candidates**. The older 780-byte constant-pool export gap remains separate.
+
+All seven additions passed individual repository checks and the full **8,388,608-byte original-cartridge
+comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app source/header files were
+audited against the live matches and all standalone selections, with no revalidation pending.

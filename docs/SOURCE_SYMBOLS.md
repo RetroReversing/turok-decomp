@@ -8,6 +8,13 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x80012F8C` | `CMtxF__PostMultScale`, `tengine/graphu64.c:1922` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x80011BD8` | `i3D_freePool`, `tengine/memory.c:469` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x8001F4E0` | `CGameStaticInstance__TakeFromROMEfficientStaticInstance`, `tengine/romstruc.c:2046` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x800474F8` | `Mantis_Setup_DEATH`, `tengine/mantis.c:2969` | Exact typed source/context at `-O2`; retail behavior checked |
+| `0x8000CCE4` | `CSave__Construct`, `tengine/loadsave.c:1290` | Exact typed source/context at `-O2`; retail behavior checked |
+| `0x800183C4` | `CGameObjectInstance__AnimReceived`, `tengine/romstruc.c:3243` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x80087FC0` | `CCheat__Construct`, `tengine/cheats.c:335` | Exact typed source/context at `-O2`; retail behavior checked |
 | `0x8002A6F4` | `CParticle__SpawnWaterSurfaceCollision`, `tengine/particle.c:809` | Exact original typed context at `-O3`; retail table checked for model selector |
 | `0x800207C0` | `CGameRegion__GetCeilingNormal`, `tengine/romstruc.c:479` | Exact original typed context at `-O3`; retail table checked for model selector |
 | `0x8001F2B4` | `CGameStaticInstance__TakeFromROMStaticInstance`, `tengine/romstruc.c:2154` | Exact original typed context at `-O3`; retail table checked for model selector |

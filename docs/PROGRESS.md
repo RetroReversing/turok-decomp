@@ -157,3 +157,12 @@ local static storage, a typed application-object view and retail switch-table ev
 the batch. All ten pass individual checks and the full original-cartridge rebuild. Live app and
 saved progress are synchronized; the older constant-pool export gap remains separate.
 See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#animation-static-instances-and-object-identity--1-november-2026).
+
+
+## 1 November 2026 — seven menu, memory and animation-context matches
+
+Seven matches from ten live-API candidates add **2,756 bytes**, reaching **2,256 selected C functions /
+539,268 bytes (86.143%)**, up **0.440 percentage points**. Original records, typed application access,
+an unsigned flags word, an original inline animation predicate and target-confirmed retail behavior
+recovered the batch. Three scheduling/boundary candidates remain unresolved. All seven passed the full
+cartridge rebuild; live and saved app progress are synchronized. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#menus-memory-and-inline-animation-context--1-november-2026).
