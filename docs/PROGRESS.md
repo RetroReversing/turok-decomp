@@ -166,3 +166,13 @@ Seven matches from ten live-API candidates add **2,756 bytes**, reaching **2,256
 an unsigned flags word, an original inline animation predicate and target-confirmed retail behavior
 recovered the batch. Three scheduling/boundary candidates remain unresolved. All seven passed the full
 cartridge rebuild; live and saved app progress are synchronized. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#menus-memory-and-inline-animation-context--1-november-2026).
+
+
+## Save errors, aggregate ABI and retail layout — 1 November 2026
+
+Eight of ten investigated live-API candidates now match exactly, adding **3,940 bytes**.
+The standalone selection is **2,264 C functions / 543,208 bytes (86.772778%)**, up
+**0.629381 percentage points**, with **143 assembly entries** including padding. The live app has
+**2,265 persisted exact matches / 543,988 bytes (86.897376%)**, **82 open** and **59 assembly candidates**.
+The existing 780-byte constant-pool export blocker is unchanged. Full original-cartridge verification
+and saved app/repository source/context audits pass. See [provenance and remaining near misses](SOURCE_ASSISTED_CHECKPOINT.md#save-errors-aggregate-abi-and-retail-layout--1-november-2026).

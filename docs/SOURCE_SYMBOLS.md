@@ -8,6 +8,14 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x8000CE50` | `CSave__HandleError`, `tengine/loadsave.c:1369` | Exact typed source/context at `-O2`; retail behavior checked |
+| `0x8000EC10` | `CLoad__ExtractData`, `tengine/loadsave.c:2837` | Exact typed source/context at `-O2`; retail behavior checked |
+| `0x8000F108` | `CCheatCode__Update`, `tengine/loadsave.c:3303` | Exact typed source/context at `-O2`; retail behavior checked |
+| `0x80074E10` | `AI_SEvent_Test`, `tengine/ai.c:3923` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x80074F20` | `AI_Resurrect`, `tengine/ai.c:1759` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x80075090` | `AI_FeignDeath`, `tengine/ai.c:1718` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x80070DA8` | `AI_Event_Dispatcher`, `tengine/ai.c:1606` | Exact typed source/context at `-O3`; retail behavior checked |
+| `0x8007CDC0` | `GetReducedSaturation`, `tengine/hsb.c:222` | Exact typed source/context at `-O3`; retail behavior checked |
 | `0x80012F8C` | `CMtxF__PostMultScale`, `tengine/graphu64.c:1922` | Exact typed source/context at `-O3`; retail behavior checked |
 | `0x80011BD8` | `i3D_freePool`, `tengine/memory.c:469` | Exact typed source/context at `-O3`; retail behavior checked |
 | `0x8001F4E0` | `CGameStaticInstance__TakeFromROMEfficientStaticInstance`, `tengine/romstruc.c:2046` | Exact typed source/context at `-O3`; retail behavior checked |

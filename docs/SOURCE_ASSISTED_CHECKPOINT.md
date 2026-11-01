@@ -882,3 +882,65 @@ and **59 assembly candidates**. The older 780-byte constant-pool export gap rema
 All seven additions passed individual repository checks and the full **8,388,608-byte original-cartridge
 comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app source/header files were
 audited against the live matches and all standalone selections, with no revalidation pending.
+
+
+## Save errors, aggregate ABI and retail layout — 1 November 2026
+
+Ten candidates were investigated through the live app's authenticated API. **Eight new exact matches
+add 3,940 bytes**, or **0.629381 percentage points** of the fixed 626,012-byte candidate-code total.
+These are source-assisted manual recoveries, separate from the synthetic regression tests for
+[decompdecomp PR #275](https://github.com/RetroReversing/decompdecomp/pull/275). The newly exported
+app bundle was not installed or used to claim these manual matches.
+
+| Entry | Located source | Bytes | IDO 5.3 profile |
+|---|---|---:|---|
+| `func_8000CE50` | `CSave__HandleError` (`loadsave.c:1369`) | 372 | `-O2` |
+| `func_8000EC10` | `CLoad__ExtractData` (`loadsave.c:2837`) | 688 | `-O2` |
+| `func_8000F108` | `CCheatCode__Update` (`loadsave.c:3303`) | 912 | `-O2` |
+| `func_80074E10` | `AI_SEvent_Test` (`ai.c:3923`) | 272 | `-O3` |
+| `func_80074F20` | `AI_Resurrect` (`ai.c:1759`) | 368 | `-O3` |
+| `func_80075090` | `AI_FeignDeath` (`ai.c:1718`) | 316 | `-O3` |
+| `func_80070DA8` | `AI_Event_Dispatcher` (`ai.c:1606`) | 624 | `-O3` |
+| `func_8007CDC0` | `GetReducedSaturation` (`hsb.c:222`) | 388 | `-O3` |
+
+All profiles also use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+IDO 5.3 remains a provisional identification of the original compiler release.
+
+### What recovered the matches
+
+- **Save errors:** the retail jump table has directory/data-full cases 8/7 and an additional
+  grouped 3/5/10 error arm. The success and overwrite message bindings were checked against
+  target addresses. These retail differences were necessary; the archived switch alone failed.
+- **Loaded state and cheat entry:** original typed records and statement order restored the
+  bulk of the code. Four remaining load-data stores identified a four-byte layout gap before
+  the best-training-time field in the application view; its meaning is unknown. Correcting
+  the accessed offsets also recovered the cheat menu. Retail accepts 18 cheat characters,
+  versus the archive's 16, and has 36 code records in this build.
+- **Particle test:** the original position/vector/quaternion argument types recover the
+  aggregate calling convention. The old draft incorrectly described them as scalar arguments.
+- **Revival:** original enemy/dynamic records, real health-setting arguments and player/far-clip
+  bindings recovered both resurrection and feigned death at `-O3`.
+- **Event dispatcher:** the original cache-access call must remain a call. Substituting a direct
+  field load failed; the original source with correct app layout and `-O3` matched exactly.
+- **Saturation reduction:** the archive's nested maximum-channel expression and byte types
+  replaced a damaged draft and matched at `-O3`.
+
+### Two unresolved movement routines
+
+| Candidate | Retained score | Follow-up |
+|---|---:|---|
+| `func_80072144` / `AI_Make_TeleportMoveSlow` (`ai.c:9406`) | 51 | Stack-slot/register scheduling remains. Original body, typed pointer ABI, original constants/helper, one-element record copies and helper line directives did not match. An explicit ABI correction to the old flattened draft scored 1011 and was not retained. |
+| `func_80072C14` / `AI_Make_SwimRetreat` (`ai.c:9120`) | 60 | Original body, actual rotation helper, aggregate initializer copies and line directives did not improve the retained `-O3` draft. Other tested profiles were worse. |
+
+Both remain open and contribute no new coverage. Nonstatic helper-header experiments were correctly
+rejected for emitting another function body; the old working profiles and best sources are preserved.
+Trial notes and private evidence were retained locally through the app's normal paths.
+
+The standalone repository now selects **2,264 C functions / 543,208 bytes (86.772778%)**, with
+**143 assembly entries** including padding. The app has **2,265 persisted exact matches / 543,988 bytes
+(86.897376%)**, **82 open** and **59 assembly candidates**. The older `func_800587B8` / 780-byte
+non-contiguous constant-pool export blocker remains separate.
+
+All eight additions passed individual repository checks and the full **8,388,608-byte original-cartridge
+comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app sources and required contexts
+were checked against live state and standalone selections, with no progress revalidation pending.

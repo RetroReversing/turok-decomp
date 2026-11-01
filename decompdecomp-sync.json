@@ -153,7 +153,15 @@
     "src/code_80009A38/func_80011BD8.c": "9190fd939497bcb8dea27dd5dca3087f6c6da32a95bc1773f9ec5c36ad627753",
     "src/code_80017F0C/func_800183C4.c": "3fc7c00d8c93bdec2ba4842f38a93b7a0caae54795e7409afbb1e3156a306e51",
     "src/code_80009A38/func_80012F8C.c": "cb87b4a0f43f45c5b565b43c5e03589366a3e5dc2c3c8e647deeaef9d6f1622a",
-    "src/code_80009A38/func_8000CCE4.c": "957292a9355c4f88029effb79f3b0c8ff7012aba315d7c583f8df47b6a6d4093"
+    "src/code_80009A38/func_8000CCE4.c": "957292a9355c4f88029effb79f3b0c8ff7012aba315d7c583f8df47b6a6d4093",
+    "src/code_80070D48/func_80070DA8.c": "88f25732f293e7951b505535da29f0336de44d7ab6b1806ca8663781b9fbb6eb",
+    "src/code_80070D48/func_80074E10.c": "75cb50a24547fdc318289339fe288d96454ffeb3fcebfb2db56a2d081c98ca12",
+    "src/code_80070D48/func_80075090.c": "0e4296470c7a9f8a52bc06219bf184a81411dbad57e146788e56a6f909dd64c4",
+    "src/code_80009A38/func_8000F108.c": "8271ed819bae08593bf837851e0ec8a3591fce33d2f660b450f67ab62412ad8c",
+    "src/code_80070D48/func_80074F20.c": "d54134b5dcc16aa8bb60b9ee58330b1a3ec180191ad965b502dcdeb70ffe4983",
+    "src/code_80009A38/func_8000EC10.c": "ba529fa9f18027b797c06342977f1ad6e4f12dde5ce16c6c086d8c0bfb2e30d8",
+    "src/code_80009A38/func_8000CE50.c": "780ea9d7330af9ce3155dda396e4d3790b12dd788645667fa1d66ebf0e3bc45b",
+    "src/code_80076218/func_8007CDC0.c": "a516f323985733c409a0f7d3d64800669656f91beaac7c35b65383781b12cbc8"
   },
   "accepted": [
     "_Litob",
@@ -211,6 +219,9 @@
     "corrupted_init",
     "func_8000BEF0",
     "func_8000CCE4",
+    "func_8000CE50",
+    "func_8000EC10",
+    "func_8000F108",
     "func_800118EC",
     "func_800119F4",
     "func_80011BD8",
@@ -255,9 +266,14 @@
     "func_800474F8",
     "func_8005EED0",
     "func_8006905C",
+    "func_80070DA8",
     "func_80072D08",
     "func_80074A74",
+    "func_80074E10",
+    "func_80074F20",
+    "func_80075090",
     "func_80079540",
+    "func_8007CDC0",
     "func_80087FC0",
     "func_8009D38C",
     "func_8009D430",
@@ -317,5 +333,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2257
+  "matched_app": 2265
 }
