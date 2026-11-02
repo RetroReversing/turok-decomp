@@ -1457,3 +1457,38 @@ and both-direction match-selection audits pass. No target bytes or extents chang
 The compiler-context support is merged in decompdecomp PR #341; the documented
 build dependency now includes that support. During the session another app update
 interrupted one job; its claim expired normally before a fresh verified submission.
+
+
+## All 32 private-unit candidates completed — 2 November 2026
+
+The remaining **22 prepared source-assisted functions /16,364 bytes** now pass
+fresh live-app judging and the complete repository build. Together with the
+first ten, **all 32 candidates /22,532 bytes** are persisted and selected C.
+Coverage is **2,351 functions /616,444 bytes (98.471595%)**, up **3.599292
+percentage points** from the 2,319-function checkpoint. The final batch alone adds
+2.614007 percentage points. There are **7 open** and **48 assembly** candidates;
+the standalone manifest retains **56 assembly entries** among 2,407 entries
+including padding labels. These are fixed candidate-code figures, not whole-game
+coverage or a claim of complete C recovery.
+
+The final batch covers private bank, MIDI/compressed-sequence, sound-player,
+printf/long-double, envelope and ADPCM helpers. IDO 5.3 O3 uses real caller/callee
+units to recover private register conventions. The boot entry from the first batch
+uses O2 and three independently exact real predecessors. Common flags are
+`-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+Two former assembly candidates (`func_800A262C` and `func_800A42C4`) were reopened
+through the normal API and accepted with fresh exact proof. They were not
+reclassified from a diff score alone.
+
+Every real context body was independently matched at its known original entry;
+only each selected entry was published and normalized for export. Context bodies
+are not additional matches. Source/header/profile bundles remain together.
+No target bytes, function extents, judging gates or compression checks changed.
+All 32 promoted candidates are listed with their original source/header provenance
+in [the promotion report](../drafts/private-units-20261102/README.md).
+
+The complete **8,388,608-byte original cartridge** rebuild is byte identical,
+including the RNC-packed main program; SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved sources/headers, selected C,
+repository-owned files and both-direction match-selection audits pass, with no
+app-only export gap and no progress save pending.

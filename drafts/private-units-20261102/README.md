@@ -1,15 +1,20 @@
-# Private-unit source candidates — promotion progress
+# Private-unit source candidates — all 32 promoted
 
-**10 of the 32 prepared candidates are now live matches and selected C.**
-The complete original-cartridge rebuild passes at **2,329 selected C functions /
-600,080 bytes (95.857587%)**. The saved app sources and headers agree with the
-repository selection. The remaining **22 candidates /16,364 bytes** are still
-read-only verified drafts, not counted in those totals.
+**All 32 prepared candidates are now live matches and selected C.**
+Each passed fresh linked code/data judging through the authenticated app API,
+its individual repository check, and the complete original-cartridge rebuild.
+The saved app source/header and repository selection audits pass with no export gap.
 
-The promoted entries are: `_Ldtob`, `__alSeqNextDelta`, `alAdpcmPull`, `alBnkfNew`, `alCSeqNew`, `alCSeqNextEvent`, `alEnvmixerPull`, `alSeqNew`, `alSeqNextEvent`, `func_80001D30`.
+They add **22,532 bytes /3.599292 percentage points** over the 2,319-function
+checkpoint, reaching **2,351 selected C functions /616,444 bytes (98.471595%)**.
+The final batch adds 22 functions /16,364 bytes after the first ten.
+There are **7 open** and **48 assembly** candidates; the standalone build retains
+56 assembly entries among 2,407 entries including padding labels.
+This remains a partial decompilation, not whole-game C completion.
 
-The table retains all 32 original candidates and their source/header provenance.
-Only the entries listed above have completed live promotion and full rebuild.
+The table retains the original source/header provenance for all 32 promoted entries.
+Only each chosen entry was published; already-matched context bodies were not
+counted again. No target bytes or extents were changed.
 
 ## Why they are whole units
 
@@ -25,7 +30,8 @@ its linked header as private context through the normal prepared-pair API, choos
 only the indicated entry. The app must freshly verify every context body and
 publish only that entry. Context functions already matched must not be counted
 again. `func_800A42C4` and `func_800A262C` were previously set aside because of their
-private register conventions; reconsider those statuses only with fresh proof.
+private register conventions; both were reopened through the API and accepted only
+after fresh exact source/header/unit verification.
 
 All use IDO 5.3 and `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`, with the
 per-row optimization below. The O2 boot candidate uses three real, already-matched
