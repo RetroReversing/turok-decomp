@@ -185,7 +185,13 @@
     "src/code_80087228/func_800888D4.c": "9b133871bdf4c8ba8e966ce2d2e6e6841430080a542478fb01f333a80abc5bd9",
     "src/code_80017F0C/func_8001BAAC.c": "4dac617fca13dfbed1ec5fc85b47556ac7ee394e5c9e85c502a853b81c0ff78a",
     "src/code_8005C8BC/func_8005EA80.c": "85f5df101d46c050810949c56a64fb2dece3e062fbd7ab3a9e64fa3b1484fea3",
-    "src/code_8002F784/Campaigner_Initialise.c": "78dc184cb86d98b3a852e0c01134ac871c262a9152a2bd4bf089f13a0539f809"
+    "src/code_8002F784/Campaigner_Initialise.c": "78dc184cb86d98b3a852e0c01134ac871c262a9152a2bd4bf089f13a0539f809",
+    "src/code_80098440/func_80099208.c": "c92302e57576f824935db9d6d4cd4b8af35c6b13527a421147abfb8c7c27bd0f",
+    "src/code_80087228/func_80088124.c": "1765b559106f1c2cd0cb21cbcf1b13c04cf3ffe6446410adf65d35b07a8871fd",
+    "src/code_80098440/func_8009A4D8.c": "c0074d1c17404d7970f66d42d802c32d5a091ac5e9bac0248ab1df65bdcb510c",
+    "src/code_8002F784/func_80032BD8.c": "9eb0667f06ee341a1ebb18dd6e589f9ea59dc4b8b5b657a7ac6d0f673bc96cb8",
+    "src/code_80076218/func_80084E9C.c": "b39efedcb8c83952ce219d82282b3cca8f5edb05f96da38b7f5cb52ff4164358",
+    "src/code_8002F784/CScene__DecompressCollision.c": "a0a97587ace7ab6cb9635037a530371fc97e7e2ca7f3cf8e023f85be22884081"
   },
   "accepted": [
     "_Litob",
@@ -296,6 +302,8 @@
     "func_8002DD90",
     "func_8002FBD0",
     "func_800318D0",
+    "func_80032BD8",
+    "func_800337BC",
     "func_80033CDC",
     "func_80035438",
     "func_800398FC",
@@ -321,8 +329,12 @@
     "func_80079540",
     "func_8007CDC0",
     "func_80081210",
+    "func_80084E9C",
     "func_80087FC0",
+    "func_80088124",
     "func_800888D4",
+    "func_80099208",
+    "func_8009A4D8",
     "func_8009D38C",
     "func_8009D430",
     "func_8009D620",
@@ -381,5 +393,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2289
+  "matched_app": 2295
 }

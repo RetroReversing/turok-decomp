@@ -30,6 +30,96 @@
     "-Wab,-r4300_mul"
    ],
    "timeout": 20,
+   "start": 2148115672,
+   "end": 2148115673
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148110856,
+   "end": 2148110857
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148040996,
+   "end": 2148040997
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148028060,
+   "end": 2148028061
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147694524,
+   "end": 2147694525
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147691480,
+   "end": 2147691481
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
    "start": 2147871360,
    "end": 2147871361
   },
@@ -9134,7 +9224,11 @@
    "seg": "code_8002F784",
    "vram": 2147691480,
    "rom": 8599768,
-   "asm": "asm/nonmatchings/code_8002F784/func_80032BD8.s"
+   "asm": "asm/nonmatchings/code_8002F784/func_80032BD8.s",
+   "c": "src/code_8002F784/func_80032BD8.c",
+   "own": {
+    ".rodata": 2148473992
+   }
   },
   {
    "name": "func_800335B4",
@@ -9186,7 +9280,9 @@
    "seg": "code_8002F784",
    "vram": 2147694524,
    "rom": 8602812,
-   "asm": "asm/nonmatchings/code_8002F784/CScene__DecompressCollision.s"
+   "asm": "asm/nonmatchings/code_8002F784/CScene__DecompressCollision.s",
+   "c": "src/code_8002F784/CScene__DecompressCollision.c",
+   "own": {}
   },
   {
    "name": "func_80033B48",
@@ -21173,7 +21269,11 @@
    "seg": "code_80076218",
    "vram": 2148028060,
    "rom": 8936348,
-   "asm": "asm/nonmatchings/code_80076218/func_80084E9C.s"
+   "asm": "asm/nonmatchings/code_80076218/func_80084E9C.s",
+   "c": "src/code_80076218/func_80084E9C.c",
+   "own": {
+    ".rodata": 2148491072
+   }
   },
   {
    "name": "CPause__InitPolygon",
@@ -21254,7 +21354,11 @@
    "seg": "code_80087228",
    "vram": 2148040996,
    "rom": 8949284,
-   "asm": "asm/nonmatchings/code_80087228/func_80088124.s"
+   "asm": "asm/nonmatchings/code_80087228/func_80088124.s",
+   "c": "src/code_80087228/func_80088124.c",
+   "own": {
+    ".rodata": 2148491280
+   }
   },
   {
    "name": "func_800888D4",
@@ -23085,7 +23189,11 @@
    "seg": "code_80098440",
    "vram": 2148110856,
    "rom": 9019144,
-   "asm": "asm/nonmatchings/code_80098440/func_80099208.s"
+   "asm": "asm/nonmatchings/code_80098440/func_80099208.s",
+   "c": "src/code_80098440/func_80099208.c",
+   "own": {
+    ".rodata": 2148494256
+   }
   },
   {
    "name": "func_80099744",
@@ -23128,7 +23236,12 @@
    "seg": "code_80098440",
    "vram": 2148115672,
    "rom": 9023960,
-   "asm": "asm/nonmatchings/code_80098440/func_8009A4D8.s"
+   "asm": "asm/nonmatchings/code_80098440/func_8009A4D8.s",
+   "c": "src/code_80098440/func_8009A4D8.c",
+   "own": {
+    ".data": 2148459664,
+    ".rodata": 2148494352
+   }
   },
   {
    "name": "func_8009AC70",
