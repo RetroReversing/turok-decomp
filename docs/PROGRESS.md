@@ -232,4 +232,4 @@ cartridge rebuild and source/context audit pass. Same-file boss storage removes 
 address-high loads; a retail cinema map state completes the map routine. The older 780-byte
 constant-pool gap remains. Eight misses and a corrected legal-screen source identity are recorded
 in the [session report](SOURCE_ASSISTED_CHECKPOINT.md#same-file-boss-storage-and-retail-map-cinema-state--2-november-2026).
-CPU application changes are in PR #303, with 211 focused tests and separately labelled historical replays.
+CPU application changes are in PRs #303/#307, with 211 focused tests and separately labelled historical replays.

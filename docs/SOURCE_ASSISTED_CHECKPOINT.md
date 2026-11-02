@@ -1216,17 +1216,17 @@ The sole older export gap remains `func_800587B8` (780 bytes, separated constant
 | `alCSeqNew` | SDK `cseq.c:31`. Target `func_800A42C4` reads private temporary-register arguments and preserves caller temporaries. Isolated original body scores 1,064; saved best 988 remains. |
 | `func_8009A158` | `CCollide__IntersectCylinder`, `unicol.c:689`. Actual records and verified runtime bindings give private score 1,992 versus saved 3,866. Retaining the logical `sqrtf` name with a read-only alias gives the same result; names alone do not repair stack/register allocation. |
 | `func_8007223C` | `AI_Make_Turn`, `ai.c:9254`. Inline NudgeRotY context gives private score 2,745. The inherited draft also has an implicit-int shadow `register turnAng=-ang`; restoring actual semantics and coherent helper contexts still does not match. |
-| `func_8000B28C` | **Corrected source lead:** `CLegalScreen__Draw`, `frontend.c:109`, not `CEngineApp__DrawGALLERY`. ROM strings and calls identify controller/legal/pak drawing. The older supplied frontend body lacks retail pak/error states. No exact recovery; address label remains. |
+| `func_8000B28C` | **Corrected source lead:** `CLegalScreen__Draw`, `frontend.c:108`, not `CEngineApp__DrawGALLERY`. ROM strings and calls identify controller/legal/pak drawing. The older supplied frontend body lacks retail pak/error states. No exact recovery; address label remains. |
 
 These non-exact private pairs were not promoted as matches. Notes on all eight candidates were
 saved through the live MCP interface so future CPU/model sessions can avoid repeating these trials.
 
 ### Application CPU work is separate
 
-[decompdecomp PR #303](https://github.com/RetroReversing/decompdecomp/pull/303) adds bounded actual
+[decompdecomp PR #303](https://github.com/RetroReversing/decompdecomp/pull/303) and [follow-up PR #307](https://github.com/RetroReversing/decompdecomp/pull/307) add bounded actual
 helper/callee context and original-declaration stages, coherent multi-helper contexts, measured
 pointer lifetimes, neighboring-array-element repair, supplied retail-condition/prefix candidates,
-and ROM-proven string/scalar export follow-ups after a new match. **211 focused tests pass**.
+and ROM-proven string/scalar export follow-ups after a new match. **211 focused tests pass**, plus 13 allocator integration regressions on current main.
 Controlled private replays reproduce three historical matches; those are not new coverage.
 A supplied-draft prefix candidate improves a historical prepared map body from 5,065 to 1,478,
 but does not match; the new exact map result used a typed ROM-confirmed reconstruction.
