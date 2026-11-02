@@ -30,6 +30,36 @@
     "-Wab,-r4300_mul"
    ],
    "timeout": 20,
+   "start": 2147871360,
+   "end": 2147871361
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147799576,
+   "end": 2147799577
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
    "start": 2147596972,
    "end": 2147596973
   },
@@ -13266,7 +13296,9 @@
    "seg": "code_8002F784",
    "vram": 2147799576,
    "rom": 8707864,
-   "asm": "asm/nonmatchings/code_8002F784/Campaigner_Initialise.s"
+   "asm": "asm/nonmatchings/code_8002F784/Campaigner_Initialise.s",
+   "c": "src/code_8002F784/Campaigner_Initialise.c",
+   "own": {}
   },
   {
    "name": "func_8004D404",
@@ -15566,7 +15598,11 @@
    "seg": "code_8005C8BC",
    "vram": 2147871360,
    "rom": 8779648,
-   "asm": "asm/nonmatchings/code_8005C8BC/func_8005EA80.s"
+   "asm": "asm/nonmatchings/code_8005C8BC/func_8005EA80.s",
+   "c": "src/code_8005C8BC/func_8005EA80.c",
+   "own": {
+    ".rodata": 2148482232
+   }
   },
   {
    "name": "func_8005ED10",

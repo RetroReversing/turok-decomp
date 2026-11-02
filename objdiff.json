@@ -8723,9 +8723,10 @@
       "name": "code_8002F784/Campaigner_Initialise",
       "target_path": "build/asm/nonmatchings/code_8002F784/Campaigner_Initialise.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/Campaigner_Initialise.c"
+      },
+      "base_path": "build/src/code_8002F784/Campaigner_Initialise.o"
     },
     {
       "name": "code_8002F784/func_8004D404",
@@ -10940,9 +10941,10 @@
       "name": "code_8005C8BC/func_8005EA80",
       "target_path": "build/asm/nonmatchings/code_8005C8BC/func_8005EA80.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8005C8BC/func_8005EA80.c"
+      },
+      "base_path": "build/src/code_8005C8BC/func_8005EA80.o"
     },
     {
       "name": "code_8005C8BC/func_8005ED10",

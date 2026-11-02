@@ -221,3 +221,15 @@ these matches. The full original-cartridge build and saved source/context audit 
 780-byte constant-pool export gap remains separate. CPU repair rules in app PR #301 have 179
 focused tests and reproduce two historical matches without claiming extra coverage.
 See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#animation-helpers-original-declarations-and-retail-cheats--2-november-2026).
+
+
+## Same-file boss storage and retail map cinema state — 2 November 2026
+
+Two of ten investigated candidates match, adding **1,148 bytes / 0.183383 percentage points**.
+Standalone: **2,288 C functions / 563,780 bytes (90.058977%)**. App: **2,289 saved exact /
+564,560 bytes (90.183575%)**, **58 open**, **59 assembly candidates**. The complete original
+cartridge rebuild and source/context audit pass. Same-file boss storage removes redundant
+address-high loads; a retail cinema map state completes the map routine. The older 780-byte
+constant-pool gap remains. Eight misses and a corrected legal-screen source identity are recorded
+in the [session report](SOURCE_ASSISTED_CHECKPOINT.md#same-file-boss-storage-and-retail-map-cinema-state--2-november-2026).
+CPU application changes are in PR #303, with 211 focused tests and separately labelled historical replays.

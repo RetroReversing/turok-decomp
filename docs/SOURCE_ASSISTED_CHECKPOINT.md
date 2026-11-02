@@ -1183,3 +1183,52 @@ Persisted audit: **2,287 live/saved exact functions**, **2,286 selected standalo
 **59 assembly candidates**. The standalone has **121 assembly entries** among 2,407 entries.
 The sole older app-only match remains `func_800587B8` (780 bytes, discontiguous constant pools).
 The live/saved/repository source and private-context audit passes, with `progress_syncing=False`.
+
+
+## Same-file boss storage and retail map cinema state — 2 November 2026
+
+Two of the next ten investigated candidates match through the live app API, adding **1,148 bytes**
+and **0.183383 percentage points**. Standalone selection reaches **2,288 C functions /
+563,780 bytes (90.058977%)**. The app retains **2,289 persisted exact matches /
+564,560 bytes (90.183575%)**, **58 open** and **59 assembly candidates**. The standalone has
+**119 assembly entries** among 2,407 entries, including the two padding entries.
+
+| Exact function | Actual source identity | Bytes | What recovered the match |
+| --- | --- | ---: | --- |
+| `func_8004D218` | `Campaigner_Initialise`, `campaign.c:862` | 492 | Actual boss records, callback/data bindings and the same-file `CCampaigner` object definition. An extern-only version retained five redundant address-high loads. Using the actual object definition allowed IDO to remove them. No object address or target bytes changed. |
+| `func_8005EA80` | `CTMove__UpdateMap`, `tmove.c:7217` | 656 | Restore the ROM-confirmed cinema guard: hide the map with state 32 while in cinema mode, then restart fade-up after cinema. This retail branch is absent from the available reference body. |
+
+Both retain provisional IDO 5.3 `-O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+Normal source/header-pair promotion saved exact bundles; ordinary repository sync accepted both
+and verified the entire original 8,388,608-byte cartridge. Its SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. All 2,289 matched sources and contexts are saved
+on disk; the live/saved/standalone audit has no discrepancies and `progress_syncing=False`.
+The sole older export gap remains `func_800587B8` (780 bytes, separated constant pools).
+
+### Eight candidates remain unmatched
+
+| Function | Source lead and measured result |
+| --- | --- |
+| `func_8004D6FC` | `Campaigner_Update`, `campaign.c:1108`. Original-line typed trial retains 1,190. Callee-context and two guard/goto forms fail; branch scheduling and constant/jump-table context remain unresolved. |
+| `func_8002BA48` | `__scMain`, `sched.c:157`. Actual macros and scheduler types compile, but an extra unreachable epilogue retains score 1,200. No extent trimming or padding accepted. |
+| `func_800AB6AC` | SDK `__handleMetaMsg`, `seqplayer.c:765`, with actual `__setUsptFromTempo` inline. The target's event-first argument order is confirmed by its loads; coherent typed trial still scores 315. O3 and bounded expression/lifetime trials do not match. |
+| `alBnkfNew` | SDK `bnkf.c:47`. Retail inlines bank patching and uses the instrument helper `func_800A2170` with private arguments/clobbers. Isolated original body scores 3,296; saved best 878 remains. |
+| `alCSeqNew` | SDK `cseq.c:31`. Target `func_800A42C4` reads private temporary-register arguments and preserves caller temporaries. Isolated original body scores 1,064; saved best 988 remains. |
+| `func_8009A158` | `CCollide__IntersectCylinder`, `unicol.c:689`. Actual records and verified runtime bindings give private score 1,992 versus saved 3,866. Retaining the logical `sqrtf` name with a read-only alias gives the same result; names alone do not repair stack/register allocation. |
+| `func_8007223C` | `AI_Make_Turn`, `ai.c:9254`. Inline NudgeRotY context gives private score 2,745. The inherited draft also has an implicit-int shadow `register turnAng=-ang`; restoring actual semantics and coherent helper contexts still does not match. |
+| `func_8000B28C` | **Corrected source lead:** `CLegalScreen__Draw`, `frontend.c:109`, not `CEngineApp__DrawGALLERY`. ROM strings and calls identify controller/legal/pak drawing. The older supplied frontend body lacks retail pak/error states. No exact recovery; address label remains. |
+
+These non-exact private pairs were not promoted as matches. Notes on all eight candidates were
+saved through the live MCP interface so future CPU/model sessions can avoid repeating these trials.
+
+### Application CPU work is separate
+
+[decompdecomp PR #303](https://github.com/RetroReversing/decompdecomp/pull/303) adds bounded actual
+helper/callee context and original-declaration stages, coherent multi-helper contexts, measured
+pointer lifetimes, neighboring-array-element repair, supplied retail-condition/prefix candidates,
+and ROM-proven string/scalar export follow-ups after a new match. **211 focused tests pass**.
+Controlled private replays reproduce three historical matches; those are not new coverage.
+A supplied-draft prefix candidate improves a historical prepared map body from 5,065 to 1,478,
+but does not match; the new exact map result used a typed ROM-confirmed reconstruction.
+Arbitrary missing-case/enum synthesis and non-MIPS/imported-layout adapters remain explicit roadmap work.
+The existing live app judged this batch. The newly built app is exported without restarting it.

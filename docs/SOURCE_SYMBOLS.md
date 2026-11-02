@@ -77,7 +77,7 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 | --- | --- | --- | --- | --- |
 | `0x8000134C` | `func_8000134C` | `faultproc` | `tengine/tengine.c:430` | Tentative identity; preserve candidate name without declaring it canonical |
 | `0x80001D30` | `func_80001D30` | `CEngineApp__Idle` | `tengine/tengine.c:830` | Apply source symbol with address-preserving build verification |
-| `0x8000B28C` | `func_8000B28C` | `CEngineApp__DrawGALLERY` | `tengine/tengine.c:1479` | Tentative identity; preserve candidate name without declaring it canonical |
+| `0x8000B28C` | `func_8000B28C` | `CLegalScreen__Draw` | `tengine/frontend.c:109` | Corrected from gallery after ROM legal/controller/pak strings and call review; retail states differ, not byte-exact yet |
 | `0x8000C04C` | `func_8000C04C` | `CCheatCode__Update` | `tengine/loadsave.c:3303` | Conflicting source candidates at multiple ROM addresses |
 | `0x8000F108` | `func_8000F108` | `CCheatCode__Update` | `tengine/loadsave.c:3303` | Conflicting source candidates at multiple ROM addresses |
 | `0x800113A8` | `func_800113A8` | `ScanFileList` | `tengine/control.c:407` | Apply source symbol with address-preserving build verification |
@@ -246,3 +246,15 @@ Candidates below remain attached to their ROM address; they are not renamed into
 
 The address-based link labels remain stable; names identify the authorized source provenance.
 See the [session evidence](SOURCE_ASSISTED_CHECKPOINT.md#animation-helpers-original-declarations-and-retail-cheats--2-november-2026).
+
+
+## Confirmed source-assisted matches — boss storage and map cinema, 2 November 2026
+
+| Stable address label | Located source | Verification |
+| --- | --- | --- |
+| `func_8004D218` | `Campaigner_Initialise`, `campaign.c:862` | Exact C plus complete original cartridge |
+| `func_8005EA80` | `CTMove__UpdateMap`, `tmove.c:7217` | Exact C with ROM-confirmed retail cinema guard, plus complete original cartridge |
+
+The `func_8000B28C` gallery identity above has been corrected to `CLegalScreen__Draw` in
+`frontend.c:109`. It remains unmatched; the supplied source predates retail pak/error-state branches.
+See the [session report](SOURCE_ASSISTED_CHECKPOINT.md#same-file-boss-storage-and-retail-map-cinema-state--2-november-2026).

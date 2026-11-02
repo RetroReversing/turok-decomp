@@ -183,7 +183,9 @@
     "src/code_80017F0C/func_8001C9D8.c": "2479c513a210f74429b0796b41ac1ab6a34ba70039b3f4854fc9a336db8988d9",
     "src/code_8005C8BC/AI_MEvent_PressurePlate.c": "649b7843eb1096e3f701c073def9def565473a9d08b7ecea37d61a7e41b39ead",
     "src/code_80087228/func_800888D4.c": "9b133871bdf4c8ba8e966ce2d2e6e6841430080a542478fb01f333a80abc5bd9",
-    "src/code_80017F0C/func_8001BAAC.c": "4dac617fca13dfbed1ec5fc85b47556ac7ee394e5c9e85c502a853b81c0ff78a"
+    "src/code_80017F0C/func_8001BAAC.c": "4dac617fca13dfbed1ec5fc85b47556ac7ee394e5c9e85c502a853b81c0ff78a",
+    "src/code_8005C8BC/func_8005EA80.c": "85f5df101d46c050810949c56a64fb2dece3e062fbd7ab3a9e64fa3b1484fea3",
+    "src/code_8002F784/Campaigner_Initialise.c": "78dc184cb86d98b3a852e0c01134ac871c262a9152a2bd4bf089f13a0539f809"
   },
   "accepted": [
     "_Litob",
@@ -300,7 +302,9 @@
     "func_8003F804",
     "func_800474F8",
     "func_80047AA0",
+    "func_8004D218",
     "func_8004F74C",
+    "func_8005EA80",
     "func_8005EED0",
     "func_8005FD28",
     "func_80060AE4",
@@ -377,5 +381,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2287
+  "matched_app": 2289
 }
