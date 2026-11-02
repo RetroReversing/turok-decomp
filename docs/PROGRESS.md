@@ -286,3 +286,30 @@ required by the app's AGENTS.md. App support and measured compiler evidence are 
 A separate scheduler boundary proposal identifies a split-off 56-byte epilogue;
 it is documented but not applied or counted as a match. Original target bytes,
 extents, judging and compression gates remain unchanged in this checkpoint.
+
+
+## First ten private-unit promotions — 2 November 2026
+
+Ten source-assisted candidates from the prepared 32 are now freshly verified
+through the authenticated live app API and selected in the standalone build:
+`_Ldtob`, `__alSeqNextDelta`, `alAdpcmPull`, `alBnkfNew`, `alCSeqNew`, `alCSeqNextEvent`, `alEnvmixerPull`, `alSeqNew`, `alSeqNextEvent`, `func_80001D30`.
+
+They add **6,168 bytes**, taking both the persisted app and selected C to
+**2,329 functions /600,080 bytes (95.857587%)**, up **0.985285 percentage points**.
+There are **27 open** and **50 assembly** candidates. The standalone manifest has
+2,407 entries including padding, with **78 assembly fallbacks**. Another 22 prepared
+candidates /16,364 bytes remain outside the selected C totals.
+
+The SDK units use IDO 5.3 O3; the 288-byte boot entry uses O2 and three real
+already-matched predecessors. Common flags are `-mips2 -G 0 -non_shared
+-Xcpluscomm -Wab,-r4300_mul`. Real private caller/callee bodies reproduce IDO's
+private register conventions; independently exact context is not counted twice.
+The boot predecessor context restores compiler alignment without inserted padding.
+
+Each entry passed the unchanged linked code/data judge, the repository's individual
+check and a fresh complete original-cartridge rebuild. SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved source/header, repository ownership
+and both-direction match-selection audits pass. No target bytes or extents changed.
+The compiler-context support is merged in decompdecomp PR #341; the documented
+build dependency now includes that support. During the session another app update
+interrupted one job; its claim expired normally before a fresh verified submission.

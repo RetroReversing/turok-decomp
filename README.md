@@ -4,17 +4,17 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **2,319 functions selected in C**, covering **593,912 bytes**, or **94.8723% of the fixed 626,012 candidate-code bytes**.
-- The live app and standalone selection agree: **2,319 persisted matches**, **37 open candidates**, and **50 candidates set aside as assembly**. There is no remaining app-only export gap.
-- The standalone export has **2,407 build entries**, including padding labels; **88 entries use assembly**.
+- **2,329 functions selected in C**, covering **600,080 bytes**, or **95.8576% of the fixed 626,012 candidate-code bytes**.
+- The live app and standalone selection agree: **2,329 persisted matches**, **27 open candidates**, and **50 candidates set aside as assembly**. There is no remaining app-only export gap.
+- The standalone export has **2,407 build entries**, including padding labels; **78 entries use assembly**.
 - A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- The one-hour follow-up accepted the **460-byte VI manager thread**, with real predecessor context, and staged **32 additional byte-verified candidates /22,532 bytes** separately. Those drafts are not selected C or live matches. See [the preparation report](drafts/private-units-20261102/README.md).
+- Ten prepared private-unit candidates are now verified through the live app and selected in the full cartridge build, adding **6,168 bytes /0.9853 percentage points**. Another **22 prepared candidates /16,364 bytes** remain unselected. See [the preparation report](drafts/private-units-20261102/README.md).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
 ## Build
 
-Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested base tool revision is `1446d5b`, with the compiler-consistency repair documented in [the current checkpoint](docs/SOURCE_ASSISTED_CHECKPOINT.md). The checked-in build script also includes constant-pool placement, guarded empty-relocation extraction, IDO inline-placeholder handling, and freshly judged matching-only entry extraction for compiler contexts. The runtime island additionally uses per-function IDO 5.3 MIPS III/O32 O1 profiles. The 30 October verification used a private repaired tool copy for relocation-order replay; see [checkpoint notes](docs/SOURCE_ASSISTED_CHECKPOINT.md).
+Use macOS or another platform supported by [RetroReversing/decompdecomp](https://github.com/RetroReversing/decompdecomp). Python 3.12+ and [uv](https://docs.astral.sh/uv/) are required. The tested base tool revision is `19f7f02426a1ae351bfdd399cd3b3af3e4a4259c`, with the compiler-consistency repair documented in [the current checkpoint](docs/SOURCE_ASSISTED_CHECKPOINT.md). The checked-in build script also includes constant-pool placement, guarded empty-relocation extraction, IDO inline-placeholder handling, and freshly judged matching-only entry extraction for compiler contexts. The runtime island additionally uses per-function IDO 5.3 MIPS III/O32 O1 profiles. The 30 October verification used a private repaired tool copy for relocation-order replay; see [checkpoint notes](docs/SOURCE_ASSISTED_CHECKPOINT.md).
 
 Clone this project and install that tool revision into a local environment:
 
@@ -22,7 +22,7 @@ Clone this project and install that tool revision into a local environment:
 git clone https://github.com/RetroReversing/turok-decomp.git
 cd turok-decomp
 uv venv --python 3.12
-uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/RetroReversing/decompdecomp.git@1446d5b"
+uv pip install --python .venv/bin/python "decompnet @ git+https://github.com/RetroReversing/decompdecomp.git@19f7f02426a1ae351bfdd399cd3b3af3e4a4259c"
 .venv/bin/decomp setup
 ```
 
@@ -43,7 +43,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2319 of 2407 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2329 of 2407 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.

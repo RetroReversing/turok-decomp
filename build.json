@@ -21,6 +21,156 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148209688,
+   "end": 2148209689
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148209472,
+   "end": 2148209473
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148208484,
+   "end": 2148208485
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148206592,
+   "end": 2148206593
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148201884,
+   "end": 2148201885
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148198124,
+   "end": 2148198125
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148156956,
+   "end": 2148156957
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148156196,
+   "end": 2148156197
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148147812,
+   "end": 2148147813
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147491120,
+   "end": 2147491121
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O1",
     "-mips2",
     "-G",
@@ -5019,7 +5169,10 @@
    "seg": "code_80001300",
    "vram": 2147491120,
    "rom": 8399408,
-   "asm": "asm/nonmatchings/code_80001300/CEngineApp__Idle.s"
+   "asm": "asm/nonmatchings/code_80001300/CEngineApp__Idle.s",
+   "c": "src/code_80001300/CEngineApp__Idle.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "func_80001E50",
@@ -24953,7 +25106,10 @@
    "seg": "code_80098440",
    "vram": 2148147812,
    "rom": 9056100,
-   "asm": "asm/nonmatchings/code_80098440/alBnkfNew.s"
+   "asm": "asm/nonmatchings/code_80098440/alBnkfNew.s",
+   "c": "src/code_80098440/alBnkfNew.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "alSeqFileNew",
@@ -25223,14 +25379,20 @@
    "seg": "code_80098440",
    "vram": 2148156196,
    "rom": 9064484,
-   "asm": "asm/nonmatchings/code_80098440/alCSeqNextEvent.s"
+   "asm": "asm/nonmatchings/code_80098440/alCSeqNextEvent.s",
+   "c": "src/code_80098440/alCSeqNextEvent.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "alCSeqNew",
    "seg": "code_80098440",
    "vram": 2148156956,
    "rom": 9065244,
-   "asm": "asm/nonmatchings/code_80098440/alCSeqNew.s"
+   "asm": "asm/nonmatchings/code_80098440/alCSeqNew.s",
+   "c": "src/code_80098440/alCSeqNew.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "alCSeqNewMarker",
@@ -26567,7 +26729,10 @@
    "seg": "code_80098440",
    "vram": 2148198124,
    "rom": 9106412,
-   "asm": "asm/nonmatchings/code_80098440/alAdpcmPull.s"
+   "asm": "asm/nonmatchings/code_80098440/alAdpcmPull.s",
+   "c": "src/code_80098440/alAdpcmPull.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "alResampleParam",
@@ -26644,7 +26809,10 @@
    "seg": "code_80098440",
    "vram": 2148201884,
    "rom": 9110172,
-   "asm": "asm/nonmatchings/code_80098440/alEnvmixerPull.s"
+   "asm": "asm/nonmatchings/code_80098440/alEnvmixerPull.s",
+   "c": "src/code_80098440/alEnvmixerPull.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "func_800AFAF0",
@@ -26773,7 +26941,10 @@
    "seg": "code_80098440",
    "vram": 2148206592,
    "rom": 9114880,
-   "asm": "asm/nonmatchings/code_80098440/_Ldtob.s"
+   "asm": "asm/nonmatchings/code_80098440/_Ldtob.s",
+   "c": "src/code_80098440/_Ldtob.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "__osContAddressCrc",
@@ -26841,7 +27012,10 @@
    "seg": "code_80098440",
    "vram": 2148208484,
    "rom": 9116772,
-   "asm": "asm/nonmatchings/code_80098440/alSeqNextEvent.s"
+   "asm": "asm/nonmatchings/code_80098440/alSeqNextEvent.s",
+   "c": "src/code_80098440/alSeqNextEvent.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "alSeqNewMarker",
@@ -26875,7 +27049,10 @@
    "seg": "code_80098440",
    "vram": 2148209472,
    "rom": 9117760,
-   "asm": "asm/nonmatchings/code_80098440/__alSeqNextDelta.s"
+   "asm": "asm/nonmatchings/code_80098440/__alSeqNextDelta.s",
+   "c": "src/code_80098440/__alSeqNextDelta.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "func_800B1398",
@@ -26896,7 +27073,10 @@
    "seg": "code_80098440",
    "vram": 2148209688,
    "rom": 9117976,
-   "asm": "asm/nonmatchings/code_80098440/alSeqNew.s"
+   "asm": "asm/nonmatchings/code_80098440/alSeqNew.s",
+   "c": "src/code_80098440/alSeqNew.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "func_800B14F0",

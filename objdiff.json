@@ -176,9 +176,10 @@
       "name": "code_80001300/CEngineApp__Idle",
       "target_path": "build/asm/nonmatchings/code_80001300/CEngineApp__Idle.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80001300/CEngineApp__Idle.c"
+      },
+      "base_path": "build/src/code_80001300/CEngineApp__Idle.o"
     },
     {
       "name": "code_80001300/func_80001E50",
@@ -19470,9 +19471,10 @@
       "name": "code_80098440/alBnkfNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alBnkfNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alBnkfNew.c"
+      },
+      "base_path": "build/src/code_80098440/alBnkfNew.o"
     },
     {
       "name": "code_80098440/alSeqFileNew",
@@ -19749,17 +19751,19 @@
       "name": "code_80098440/alCSeqNextEvent",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSeqNextEvent.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSeqNextEvent.c"
+      },
+      "base_path": "build/src/code_80098440/alCSeqNextEvent.o"
     },
     {
       "name": "code_80098440/alCSeqNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alCSeqNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alCSeqNew.c"
+      },
+      "base_path": "build/src/code_80098440/alCSeqNew.o"
     },
     {
       "name": "code_80098440/alCSeqNewMarker",
@@ -21110,9 +21114,10 @@
       "name": "code_80098440/alAdpcmPull",
       "target_path": "build/asm/nonmatchings/code_80098440/alAdpcmPull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alAdpcmPull.c"
+      },
+      "base_path": "build/src/code_80098440/alAdpcmPull.o"
     },
     {
       "name": "code_80098440/alResampleParam",
@@ -21187,9 +21192,10 @@
       "name": "code_80098440/alEnvmixerPull",
       "target_path": "build/asm/nonmatchings/code_80098440/alEnvmixerPull.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alEnvmixerPull.c"
+      },
+      "base_path": "build/src/code_80098440/alEnvmixerPull.o"
     },
     {
       "name": "code_80098440/func_800AFAF0",
@@ -21319,9 +21325,10 @@
       "name": "code_80098440/_Ldtob",
       "target_path": "build/asm/nonmatchings/code_80098440/_Ldtob.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/_Ldtob.c"
+      },
+      "base_path": "build/src/code_80098440/_Ldtob.o"
     },
     {
       "name": "code_80098440/__osContAddressCrc",
@@ -21389,9 +21396,10 @@
       "name": "code_80098440/alSeqNextEvent",
       "target_path": "build/asm/nonmatchings/code_80098440/alSeqNextEvent.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSeqNextEvent.c"
+      },
+      "base_path": "build/src/code_80098440/alSeqNextEvent.o"
     },
     {
       "name": "code_80098440/alSeqNewMarker",
@@ -21424,9 +21432,10 @@
       "name": "code_80098440/__alSeqNextDelta",
       "target_path": "build/asm/nonmatchings/code_80098440/__alSeqNextDelta.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/__alSeqNextDelta.c"
+      },
+      "base_path": "build/src/code_80098440/__alSeqNextDelta.o"
     },
     {
       "name": "code_80098440/func_800B1398",
@@ -21448,9 +21457,10 @@
       "name": "code_80098440/alSeqNew",
       "target_path": "build/asm/nonmatchings/code_80098440/alSeqNew.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alSeqNew.c"
+      },
+      "base_path": "build/src/code_80098440/alSeqNew.o"
     },
     {
       "name": "code_80098440/func_800B14F0",

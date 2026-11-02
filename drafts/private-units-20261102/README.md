@@ -1,17 +1,15 @@
-# Prepared private-unit source candidates — not selected C
+# Private-unit source candidates — promotion progress
 
-**These drafts are not part of the build and have not been promoted in the live app.**
-The current verified app/repository checkpoint remains 2,319 C matches /593,912
-bytes (94.872303%). No target, function status, extent or compiler profile is
-changed by adding these drafts.
+**10 of the 32 prepared candidates are now live matches and selected C.**
+The complete original-cartridge rebuild passes at **2,329 selected C functions /
+600,080 bytes (95.857587%)**. The saved app sources and headers agree with the
+repository selection. The remaining **22 candidates /16,364 bytes** are still
+read-only verified drafts, not counted in those totals.
 
-During a one-hour follow-up, all 32 candidates below (22,532 bytes) independently
-passed the unchanged linked code/data judge in read-only replay. Every real body
-in each bounded unit was checked at its existing ROM entry. Matching-only
-normalization was also checked on each compiler-produced entry. This is stronger
-than a diff score, but **it is not a complete original-cartridge rebuild of these
-new selections**. That gate and live promotion remain required before adding them
-to the checkpoint totals. Potential coverage would be 98.471595% if all pass.
+The promoted entries are: `_Ldtob`, `__alSeqNextDelta`, `alAdpcmPull`, `alBnkfNew`, `alCSeqNew`, `alCSeqNextEvent`, `alEnvmixerPull`, `alSeqNew`, `alSeqNextEvent`, `func_80001D30`.
+
+The table retains all 32 original candidates and their source/header provenance.
+Only the entries listed above have completed live promotion and full rebuild.
 
 ## Why they are whole units
 
@@ -20,9 +18,7 @@ caller/callee bodies. Its `.mdebug` procedure metadata retains private names and
 explicit extents absent from `.symtab`. Separate or globalized helpers were not
 equivalent compiler inputs. The required app changes are in
 [decompdecomp PR #341](https://github.com/RetroReversing/decompdecomp/pull/341).
-An updated Apple Silicon app is prepared locally, preserving the installed remote
-browser features. Installation/restart requires the pending user approval under
-the app repository's AGENTS.md; it was not performed during this preparation.
+The compiler-context support merged in PR #341 and was installed before this batch. The live app freshly judged each selected entry and its real context bodies.
 
 Keep a unit and its exact header together. Submit the entire C unit as source and
 its linked header as private context through the normal prepared-pair API, choosing
