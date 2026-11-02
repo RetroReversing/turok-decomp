@@ -21,6 +21,66 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148042964,
+   "end": 2148042965
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147952608,
+   "end": 2147952609
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147876136,
+   "end": 2147876137
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147600856,
+   "end": 2147600857
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O3",
     "-mips2",
     "-G",
@@ -6885,7 +6945,11 @@
    "seg": "code_80017F0C",
    "vram": 2147600856,
    "rom": 8509144,
-   "asm": "asm/nonmatchings/code_80017F0C/func_8001C9D8.s"
+   "asm": "asm/nonmatchings/code_80017F0C/func_8001C9D8.s",
+   "c": "src/code_80017F0C/func_8001C9D8.c",
+   "own": {
+    ".rodata": 2148470360
+   }
   },
   {
    "name": "func_8001D240",
@@ -15705,7 +15769,11 @@
    "seg": "code_8005C8BC",
    "vram": 2147876136,
    "rom": 8784424,
-   "asm": "asm/nonmatchings/code_8005C8BC/AI_MEvent_PressurePlate.s"
+   "asm": "asm/nonmatchings/code_8005C8BC/AI_MEvent_PressurePlate.s",
+   "c": "src/code_8005C8BC/AI_MEvent_PressurePlate.c",
+   "own": {
+    ".rodata": 2148482644
+   }
   },
   {
    "name": "func_8006017C",
@@ -19554,7 +19622,12 @@
    "seg": "code_80070D48",
    "vram": 2147952608,
    "rom": 8860896,
-   "asm": "asm/nonmatchings/code_80070D48/func_800727E0.s"
+   "asm": "asm/nonmatchings/code_80070D48/func_800727E0.s",
+   "c": "src/code_80070D48/func_800727E0.c",
+   "own": {
+    ".data": 2148262944,
+    ".rodata": 2148488904
+   }
   },
   {
    "name": "func_80072C14",
@@ -21133,7 +21206,11 @@
    "seg": "code_80087228",
    "vram": 2148042964,
    "rom": 8951252,
-   "asm": "asm/nonmatchings/code_80087228/func_800888D4.s"
+   "asm": "asm/nonmatchings/code_80087228/func_800888D4.s",
+   "c": "src/code_80087228/func_800888D4.c",
+   "own": {
+    ".rodata": 2148491400
+   }
   },
   {
    "name": "func_80088F10",

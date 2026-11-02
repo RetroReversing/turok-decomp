@@ -178,7 +178,11 @@
     "src/code_8005C8BC/func_80060AE4.c": "e51b417cc0845c18ca1f0571761dc060941a361000fa0825e949d5780e5b0101",
     "src/code_80098440/alAudioFrame.c": "a7576cf43e3e0c903e03a10ad7c7f9f997b43756b605b7ff832c4104e36c01bd",
     "src/code_80029A10/func_8002DA18.c": "488975b6b625c95d5706babd5e78a2e5ed34e87fa98a7f2ec3cc2f9132387909",
-    "src/code_80070D48/func_80072C14.c": "04a2b3c1b6ca8edef9d39c4ca22363fe32cf56f6fd10b181f34319745d3313d0"
+    "src/code_80070D48/func_80072C14.c": "04a2b3c1b6ca8edef9d39c4ca22363fe32cf56f6fd10b181f34319745d3313d0",
+    "src/code_80070D48/func_800727E0.c": "5be4c9120a255fbe03545dda0733d9fa45eb7eb444bdc224efa66c100f77ef08",
+    "src/code_80017F0C/func_8001C9D8.c": "2479c513a210f74429b0796b41ac1ab6a34ba70039b3f4854fc9a336db8988d9",
+    "src/code_8005C8BC/AI_MEvent_PressurePlate.c": "649b7843eb1096e3f701c073def9def565473a9d08b7ecea37d61a7e41b39ead",
+    "src/code_80087228/func_800888D4.c": "9b133871bdf4c8ba8e966ce2d2e6e6841430080a542478fb01f333a80abc5bd9"
   },
   "accepted": [
     "_Litob",
@@ -256,6 +260,7 @@
     "func_80016AF4",
     "func_800181A0",
     "func_800183C4",
+    "func_8001C9D8",
     "func_8001DE20",
     "func_8001E21C",
     "func_8001F0AC",
@@ -295,10 +300,12 @@
     "func_80047AA0",
     "func_8004F74C",
     "func_8005EED0",
+    "func_8005FD28",
     "func_80060AE4",
     "func_8006905C",
     "func_8006A654",
     "func_80070DA8",
+    "func_800727E0",
     "func_80072C14",
     "func_80072D08",
     "func_80074A74",
@@ -309,6 +316,7 @@
     "func_8007CDC0",
     "func_80081210",
     "func_80087FC0",
+    "func_800888D4",
     "func_8009D38C",
     "func_8009D430",
     "func_8009D620",
@@ -362,10 +370,14 @@
   ],
   "skipped": [
     {
+      "function": "func_8001BAAC",
+      "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
+    },
+    {
       "function": "func_800587B8",
       "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
     }
   ],
   "verified_build": true,
-  "matched_app": 2282
+  "matched_app": 2287
 }
