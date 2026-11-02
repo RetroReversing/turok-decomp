@@ -186,3 +186,15 @@ retail menu sound calls, a timer-offset correction, controller-pak error cases a
 prototype recovered the batch at `-O2`. Three SDK ABI/register-allocation candidates remain unmatched.
 Full original-cartridge verification and persisted app/repository audits pass; the older 780-byte
 constant-pool export gap is unchanged. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#menus-legal-screen-and-retail-error-handling--1-november-2026).
+
+
+## Scene, cinematics, sort and boss context — 2 November 2026
+
+Six of ten live-API candidates match exactly, adding **4,252 bytes** and **0.679220 percentage points**.
+Standalone selection reaches **2,277 C functions / 551,068 bytes (88.028345%)**. Actual records,
+callback and helper bindings, original private-helper line numbering, float-argument prototypes and
+ROM-confirmed retail branches recovered the batch. Four misses retain their previous bests.
+Full original-cartridge verification and persisted app/repository audits pass; the older 780-byte
+constant-pool export gap is unchanged. CPU changes in PR #293 separately reproduce four known
+matches in controlled replays and are not counted as new coverage here.
+See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#scene-cinematics-sort-and-boss-context--2-november-2026).

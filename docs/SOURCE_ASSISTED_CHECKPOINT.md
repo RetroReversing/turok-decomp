@@ -1003,3 +1003,73 @@ non-contiguous constant-pool export gap remains separate.
 All seven additions passed individual repository checks and the full **8,388,608-byte original-cartridge
 comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app sources and required contexts
 were audited against live state and standalone selections, with no progress revalidation pending.
+
+
+## Scene, cinematics, sort and boss context — 2 November 2026
+
+Ten candidates were investigated through the live app's authenticated API. **Six exact matches add
+4,252 bytes**, or **0.679220 percentage points** of the fixed 626,012-byte candidate-code total.
+These are source-assisted recoveries through source preparation and separately judged source/header
+pairs. They are not an unattended CPU benchmark. The CPU changes in
+[decompdecomp PR #293](https://github.com/RetroReversing/decompdecomp/pull/293) separately reproduced
+four *known* recoveries in private controlled linked-byte/data replays; those add no new coverage.
+
+| Entry | Located source | Bytes | IDO 5.3 profile |
+|---|---|---:|---|
+| `func_80033CDC` | `CScene__LevelInfoReceived` (`scene.c:1137`) | 648 | `-O3` |
+| `func_80035438` | `qsort` (`qsort.c:43`), with original private `shortsort` | 668 | `-O3` |
+| `func_800398FC` | `CCamera__CheckForTurokDeathCinematic` (`camera.c:1629`) | 668 | `-O2` |
+| `func_8003F804` | `BOSS_Initialise` (`boss.c:517`) | 436 | `-O3` |
+| `func_80047AA0` | `TRex_UpdateLaserSound` (`trex.c:1098`) | 1,204 | `-O2` |
+| `func_8006A654` | `AI_SEvent_Footfall` (`ai.c:4428`) | 628 | `-O3` |
+
+All profiles also use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+IDO 5.3 remains a provisional identification of the original compiler release.
+
+### What recovered the matches
+
+- **Level lighting:** original typed scene data and arithmetic recovered all but four operands.
+  The remaining grid-bounds callbacks were reversed in the initial bindings. The existing verified
+  neighboring routines establish their actual identities; correcting the bindings at the existing
+  `-O3` profile matched. The source refers to the existing ROM message rather than invented data.
+- **Sorter:** the target inlines `shortsort`. Its actual static definition, callback signatures and
+  original source line numbering (`shortsort` at line 220) recovered the complete function at `-O3`.
+  The isolated ordinary call did not match. No extra emitted body or changed target boundary was accepted.
+- **Death cinematic:** enable the actual cinematic path, supply real call bindings, and include the
+  retail early return for bit `0x20000` at the observed global address. The bit's broader meaning is
+  not established here; the explicit address/bit access is retained.
+- **Boss setup:** restore the archive's commented saved-boss path and use its actual pointer-returning
+  saved-data prototype. Original boss/instance records, initialization callbacks and the float health
+  scaler match at `-O3`; an incorrect integer prototype was rejected during compilation.
+- **Footfall:** original by-value vector arguments recover the incoming argument-home stores. Bind
+  the actual instance-type and ground-material helpers, retaining the latter's real unsigned-word
+  return type rather than an incompatible integer redeclaration.
+- **Laser sound:** retail also disables the laser when health is exhausted and stops its sound type
+  in the early shutdown branch. The actual `UpdateSoundPitch(int, FLOAT)` declaration removes default
+  double promotions; the target-supported pitch-call binding resolves the final operand difference.
+  The initial match could not export its separated constant pools. A rewrite using the actual ROM
+  constants while retaining the original single 51.2 double pool passed the live linked-byte/data
+  and standalone-layout checks, was saved through the app's ordinary matched-code rewrite path,
+  and passed the complete repository rebuild. Replacing every pool changed scheduling (score 330);
+  retaining that one pool restored exact instructions.
+
+### Four candidates remain unmatched
+
+| Candidate | Retained best score | Finding |
+|---|---:|---|
+| `func_8002BA48` / `__scMain` (`sched.c:157`) | 1200 | Original scheduler body/records and alternate profiles did not improve loop/branch scheduling and trailing instructions. |
+| `func_80044BDC` / `Mantis_ClosestWall` (`mantis.c:1253`) | 300 | Actual wall-array bindings, original line numbering and an extern-array trial did not resolve unrolled load/base scheduling. |
+| `func_8004D218` / `Campaigner_Initialise` (`campaign.c:862`) | 1160 | Original global records, tables, callbacks and retail health value compile, but address-high/store scheduling still differs. A paired-line trial did not improve it. |
+| `func_8004D6FC` / `Campaigner_Update` (`campaign.c:1108`) | 1190 | Actual script/table bindings and helper declarations still differ in early branch scheduling. Alternate profiles/contexts were not accepted as matches. |
+
+All four retain their starting best scores and working profiles. Private failed or non-exact
+source/header/profile trials remain evidence, not new coverage.
+
+The standalone repository selects **2,277 C functions / 551,068 bytes (88.028345%)**, with
+**130 assembly entries** including padding. The app has **2,278 persisted exact matches / 551,848 bytes
+(88.152943%)**, **69 open** and **59 assembly candidates**. The existing `func_800587B8` / 780-byte
+non-contiguous constant-pool export gap remains separate.
+
+All six additions passed individual repository checks and the full **8,388,608-byte original-cartridge
+comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app sources and required contexts
+were audited against live state and standalone selections, with no progress revalidation pending.

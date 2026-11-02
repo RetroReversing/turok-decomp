@@ -2,12 +2,18 @@
 
 All 121 located source-candidate entries from the 30 October audit are recorded here, including competing alternatives. Candidate names are distinct from verified canonical identities. Twenty-one address-based symbols are given source names in the build; existing SDK spellings are preserved, and ambiguous/conflicting candidates remain research leads. ROM-visible strings and source formatting are preserved.
 
-## Verified corrections — 1 November 2026
+## Verified corrections — November 2026
 
 Subsequent live byte judging resolves or supersedes several historical leads below. Address-based entry symbols remain unchanged.
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x80033CDC` | `CScene__LevelInfoReceived`, `tengine/scene.c:1137` | Exact typed source/context at `-O3`; target calls and retail differences checked |
+| `0x80035438` | `qsort`, `tengine/qsort.c:43` | Exact typed source/context at `-O3`; target calls and retail differences checked |
+| `0x800398FC` | `CCamera__CheckForTurokDeathCinematic`, `tengine/camera.c:1629` | Exact typed source/context at `-O2`; target calls and retail differences checked |
+| `0x8003F804` | `BOSS_Initialise`, `tengine/boss.c:517` | Exact typed source/context at `-O3`; target calls and retail differences checked |
+| `0x80047AA0` | `TRex_UpdateLaserSound`, `tengine/trex.c:1098` | Exact typed source/context at `-O2`; target calls and retail differences checked |
+| `0x8006A654` | `AI_SEvent_Footfall`, `tengine/ai.c:4428` | Exact typed source/context at `-O3`; target calls and retail differences checked |
 | `0x800061C4` | `CEngineApp__MenuLeft`, `tengine/tengine.c:2541` | Exact typed source/context at `-O2`; retail differences checked |
 | `0x8000658C` | `CEngineApp__MenuDown`, `tengine/tengine.c:2630` | Exact typed source/context at `-O2`; retail differences checked |
 | `0x80006770` | `CEngineApp__MenuUp`, `tengine/tengine.c:2675` | Exact typed source/context at `-O2`; retail differences checked |

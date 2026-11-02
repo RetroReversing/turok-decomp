@@ -7784,9 +7784,10 @@
       "name": "code_8002F784/func_80047AA0",
       "target_path": "build/asm/nonmatchings/code_8002F784/func_80047AA0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/func_80047AA0.c"
+      },
+      "base_path": "build/src/code_8002F784/func_80047AA0.o"
     },
     {
       "name": "code_8002F784/chBottlesBonus_func_802DD158",

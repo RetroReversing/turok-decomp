@@ -21,6 +21,21 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147777184,
+   "end": 2147777185
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O3",
     "-mips2",
     "-G",
@@ -12131,7 +12146,11 @@
    "seg": "code_8002F784",
    "vram": 2147777184,
    "rom": 8685472,
-   "asm": "asm/nonmatchings/code_8002F784/func_80047AA0.s"
+   "asm": "asm/nonmatchings/code_8002F784/func_80047AA0.s",
+   "c": "src/code_8002F784/func_80047AA0.c",
+   "own": {
+    ".rodata": 2148477216
+   }
   },
   {
    "name": "chBottlesBonus_func_802DD158",
