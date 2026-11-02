@@ -8,7 +8,7 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 - The live app has **2,289 saved isolated matches / 564,560 bytes (90.184%)**, **58 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
 - The standalone export has **2,407 build entries**, including two padding labels; **119 entries use assembly**.
 - A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- The latest ten-candidate live-API investigation added **two matches / 1,148 bytes** (**+0.183383 percentage points**). Both passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#same-file-boss-storage-and-retail-map-cinema-state--2-november-2026).
+- The previous matching session added **two matches /1,148 bytes**. The latest ten-candidate CPU/context investigation found **no new exact matches**; the verified checkpoint is unchanged. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#cpu-context-triage-and-next-ten-investigations--2-november-2026).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 

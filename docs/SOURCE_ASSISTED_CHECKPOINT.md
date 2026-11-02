@@ -1232,3 +1232,40 @@ A supplied-draft prefix candidate improves a historical prepared map body from 5
 but does not match; the new exact map result used a typed ROM-confirmed reconstruction.
 Arbitrary missing-case/enum synthesis and non-MIPS/imported-layout adapters remain explicit roadmap work.
 The existing live app judged this batch. The newly built app is exported without restarting it.
+
+
+## CPU context triage and next ten investigations — 2 November 2026
+
+**No new exact matches** were found in this batch. Coverage remains **2,288 selected C functions /
+563,780 bytes (90.058977%)**, versus **2,289 persisted app matches /564,560 bytes (90.183575%)**.
+The saved app sources/headers and repository selection audit passed, with only the existing
+`func_800587B8` 780-byte constant-pool export gap. Non-exact private pairs were not promoted.
+
+| Candidate | Retained score | Finding |
+| --- | ---: | --- |
+| `func_80072144` | 51 | Actual swim-retreat source, target-observed flag-clear order, and real inline helper were tried. Typed trials scored1268/1857, so the existing draft stays. |
+| `func_800B0F18` | 20 | Actual `readVarLen` at SDK seq.c:316 retains20; loop temporary-register reuse differs. |
+| `func_8000134C` | 300 | Three extra NOPs immediately before an unreachable epilogue; body otherwise agrees. |
+| `func_800B13E8` | 20 | Actual `read16` at SDK seq.c:294 scores30. Retained draft also contains unrelated definitions, correctly rejected by the single-function API gate. |
+| `func_80044BDC` | 300 | Actual same-file position array is already supplied; float-load/address scheduling still differs. |
+| `func_800A2420` | 25 | Private pointer/float helper entry differs from ordinary isolated C arguments. |
+| `func_800A5F34` | 10 | Typed pop returning the original head retains10; target uses a different temporary register. |
+| `func_800AF4EC` | 110 | `_getVol` uses private integer/float argument placement. |
+| `alSeqNew` | 185 | Replacing machine-draft unset-pointer placeholders with the actual object scores498. Callee clobber context remains essential. |
+| `func_800A0F38` | 600 | Six target-only NOPs immediately before unreachable epilogue at O1; O2/O3 much worse. |
+
+Optimization levels O1/O2/O3, 40 read-only debug-profile comparisons (`-g0` through `-g3`),
+and 50 compiled single-function deterministic CPU candidates did not produce an exact result.
+Actual source/header trials were judged through the live app API; extra emitted bodies, source
+padding, forced register bindings and extent changes were not accepted. Detailed notes are saved
+against all ten functions in the live app.
+
+Reusable app changes are in [PR312](https://github.com/RetroReversing/decompdecomp/pull/312):
+existing simple-record field layouts can translate supplied raw guard macros; source identity and
+implicit-int-shadow warnings guide investigation; measured private ABI and epilogue routes avoid
+irrelevant generic body trials. 86 focused tests pass. Existing same-file definition recovery was
+already first and is retained. Complex nested layout recovery and whole-unit private ABI compile/extract
+remain implementation gaps, rather than claimed automatic matches.
+
+The complete cartridge rebuild was rerun and verified byte for byte, SHA-1
+`88916d5d2e2470f395ad8f4245d34138ef2d156a` (2,288 of 2,407 build entries in C).

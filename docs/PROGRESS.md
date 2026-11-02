@@ -233,3 +233,12 @@ address-high loads; a retail cinema map state completes the map routine. The old
 constant-pool gap remains. Eight misses and a corrected legal-screen source identity are recorded
 in the [session report](SOURCE_ASSISTED_CHECKPOINT.md#same-file-boss-storage-and-retail-map-cinema-state--2-november-2026).
 CPU application changes are in PRs #303/#307, with 211 focused tests and separately labelled historical replays.
+
+
+## CPU context triage — 2 November 2026
+
+Next ten candidates investigated; **0 new exact matches**, so coverage is unchanged at **90.058977%
+selected C /90.183575% persisted app matches**. All ten have live app investigation notes. The saved
+source/context/repository audit passes with the existing 780-byte export gap. See the
+[session report](SOURCE_ASSISTED_CHECKPOINT.md#cpu-context-triage-and-next-ten-investigations--2-november-2026).
+App PR312 adds measured context routing and bounded typed-field recovery; whole-unit ABI context remains open.
