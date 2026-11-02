@@ -14928,9 +14928,10 @@
       "name": "code_80070D48/func_80071F08",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_80071F08.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_80071F08.c"
+      },
+      "base_path": "build/src/code_80070D48/func_80071F08.o"
     },
     {
       "name": "code_80070D48/func_800720C8",
@@ -15245,9 +15246,10 @@
       "name": "code_80076218/AI_Standard_DeadBodyRiddle",
       "target_path": "build/asm/nonmatchings/code_80076218/AI_Standard_DeadBodyRiddle.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80076218/AI_Standard_DeadBodyRiddle.c"
+      },
+      "base_path": "build/src/code_80076218/AI_Standard_DeadBodyRiddle.o"
     },
     {
       "name": "code_80076218/func_80077904",
@@ -18259,9 +18261,10 @@
       "name": "code_80098440/func_8009A158",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009A158.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009A158.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009A158.o"
     },
     {
       "name": "code_80098440/func_8009A44C",
