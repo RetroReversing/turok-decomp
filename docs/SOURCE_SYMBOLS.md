@@ -268,3 +268,12 @@ See the [session evidence](SOURCE_ASSISTED_CHECKPOINT.md#animation-helpers-origi
 The `func_8000B28C` gallery identity above has been corrected to `CLegalScreen__Draw` in
 `frontend.c:108`. It remains unmatched; the supplied source predates retail pak/error-state branches.
 See the [session report](SOURCE_ASSISTED_CHECKPOINT.md#same-file-boss-storage-and-retail-map-cinema-state--2-november-2026).
+
+
+### CPU context recovery identities — 2 November 2026
+
+Verified source/ROM matches establish `func_80072144` as **AI_Make_TeleportMoveSlow**,
+`func_8007223C` as **AI_Make_Turn**, `func_800731F8` as **AI_Make_Walk**,
+`func_8007391C` as **AI_Make_Retreat**, and `func_80073FD8` as **AI_Make_Run**.
+Address-based exported entry names remain stable. See the checkpoint report above
+for source locations and byte/data verification.

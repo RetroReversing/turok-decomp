@@ -195,7 +195,12 @@
     "src/code_80098440/func_8009A158.c": "8f7abe71ba84d73059be69722d33b82ef27ca3b7993e5a27546a38ca4fdb629b",
     "src/code_80076218/AI_Standard_DeadBodyRiddle.c": "a94d1a6992b12223e688c8ce0875b9f2e5ed75bb34f9ebb73ba1c267edf50a7b",
     "src/code_80070D48/func_80071F08.c": "530de7f339fc5d248c994e829ba7f476887e8960232cfa75cf309ad6ddf938c2",
-    "src/code_80070D48/func_80071058.c": "bbc399295ba5ac864d8053d2a78cdc561860f9132ede5abba952b24956cf3ff5"
+    "src/code_80070D48/func_80071058.c": "bbc399295ba5ac864d8053d2a78cdc561860f9132ede5abba952b24956cf3ff5",
+    "src/code_80070D48/func_8007223C.c": "36110ec42193c71ed7833906b15f20c3666ead695e2e429843200949e8e2ffbf",
+    "src/code_80070D48/func_80073FD8.c": "cd7ec855784a76f65782b7389cd337ef4964e6abad4e7f6455a9b909eb66173f",
+    "src/code_80070D48/func_8007391C.c": "19673c3a921e1f74b8f33f21e13bd71fda1e7d27be9c6b089c815574cc9e04d0",
+    "src/code_80070D48/func_80072144.c": "d6b09ee60a539ea1d7500f9b3c64375b6c5b41d83a2b3320fa4b803444262481",
+    "src/code_80070D48/func_800731F8.c": "66a133f322f411989320047739fa11ba3a11942948e0f03c83d4687ed91b239a"
   },
   "accepted": [
     "_Litob",
@@ -325,9 +330,14 @@
     "func_80070DA8",
     "func_80071058",
     "func_80071F08",
+    "func_80072144",
+    "func_8007223C",
     "func_800727E0",
     "func_80072C14",
     "func_80072D08",
+    "func_800731F8",
+    "func_8007391C",
+    "func_80073FD8",
     "func_80074A74",
     "func_80074E10",
     "func_80074F20",
@@ -401,5 +411,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2299
+  "matched_app": 2304
 }

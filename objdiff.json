@@ -14956,17 +14956,19 @@
       "name": "code_80070D48/func_80072144",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_80072144.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_80072144.c"
+      },
+      "base_path": "build/src/code_80070D48/func_80072144.o"
     },
     {
       "name": "code_80070D48/func_8007223C",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_8007223C.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_8007223C.c"
+      },
+      "base_path": "build/src/code_80070D48/func_8007223C.o"
     },
     {
       "name": "code_80070D48/func_800727E0",
@@ -15008,25 +15010,28 @@
       "name": "code_80070D48/func_800731F8",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_800731F8.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_800731F8.c"
+      },
+      "base_path": "build/src/code_80070D48/func_800731F8.o"
     },
     {
       "name": "code_80070D48/func_8007391C",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_8007391C.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_8007391C.c"
+      },
+      "base_path": "build/src/code_80070D48/func_8007391C.o"
     },
     {
       "name": "code_80070D48/func_80073FD8",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_80073FD8.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_80073FD8.c"
+      },
+      "base_path": "build/src/code_80070D48/func_80073FD8.o"
     },
     {
       "name": "code_80070D48/func_80074720",

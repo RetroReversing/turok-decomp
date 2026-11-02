@@ -1318,3 +1318,24 @@ All ten selected C sources pass the repository checks and the complete original-
 The source/header audit covers all 2,299 saved app matches and all 2,298 selected C entries; the only gap is
 `func_800587B8`. The app finished saving/revalidation. Original cartridge SHA-1 remains
 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Target bytes/extents, linker checks and byte/data gates were retained.
+
+
+## CPU context recovery follow-up — 2 November 2026
+
+First five verified recoveries in this session add **7,108 bytes**. All passed
+through the live app's prepared-pair API; repository synchronization verified the
+complete original cartridge build. These are source-assisted results.
+
+| Entry | Located source | Bytes | Working optimization | Recovery |
+| --- | --- | ---: | --- | --- |
+| `func_80072144` | AI_Make_TeleportMoveSlow, ai.c:9406 | 248 | IDO 5.3 O3 | Actual typed body and rotation helper; one-element animation/weight arrays reference their real ROM initializers. |
+| `func_8007223C` | AI_Make_Turn, ai.c:9254 | 1,444 | IDO 5.3 O2 | CPU helper recovery restores the actual current-animation getter and animation-selection wrapper together. |
+| `func_800731F8` | AI_Make_Walk, ai.c:8816 | 1,828 | IDO 5.3 O3 | Referenced final weight initializer avoids standalone section-tail padding overlapping the next retail array. |
+| `func_8007391C` | AI_Make_Retreat, ai.c:8662 | 1,724 | IDO 5.3 O3 | Referenced the final three real initializer arrays; code and data then agree. |
+| `func_80073FD8` | AI_Make_Run, ai.c:8453 | 1,864 | IDO 5.3 O3 | Actual vector/square-root call bindings and final weight initializer reference. |
+
+All use `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. The compiler
+version remains a working match, not proven historical identification. No target
+boundaries, bytes, comparison rules or fabricated padding were changed. Array
+copies retain the actual source types, element counts and stack storage.
+The existing app-only export blocker `func_800587B8` remains separate.
