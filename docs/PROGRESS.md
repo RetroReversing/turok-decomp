@@ -253,3 +253,14 @@ the saved source/header audit and full original-cartridge rebuild pass. Only the
 `func_800587B8` export gap remains. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#ten-more-verified-matches--2-november-2026)
 for source identities, per-function flags and measured evidence. Correct source mappings, real inline
 helpers and O3 on complete typed source recovered functions that earlier draft/permutation trials missed.
+
+
+## Runtime C and compiler-context export — 2 November 2026
+
+Live app and selected C now agree at **2,318 functions /593,452 bytes (94.798822%)**.
+Nine new MIPS III/O32 O1 runtime recoveries add 576 bytes. The pending 816-byte fault
+handler is finalized with independently verified real predecessor context. Earlier
+legal-screen, cache, wall-collision and region-collision matches are exported, and
+the old 780-byte constant-pool export gap is resolved. The full original cartridge
+rebuild and saved source/header audit pass. See the [session report](SOURCE_ASSISTED_CHECKPOINT.md#runtime-arithmetic-and-verified-compiler-context--2-november-2026)
+for separate discovery/export counts and the K&R argument-promotion finding.

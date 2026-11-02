@@ -277,3 +277,14 @@ Verified source/ROM matches establish `func_80072144` as **AI_Make_TeleportMoveS
 `func_8007391C` as **AI_Make_Retreat**, and `func_80073FD8` as **AI_Make_Run**.
 Address-based exported entry names remain stable. See the checkpoint report above
 for source locations and byte/data verification.
+
+
+### Confirmed context recoveries — 2 November 2026
+
+The previously unmatched legal-screen candidate `func_8000B28C` is now an exact
+retail reconstruction of `CLegalScreen__Draw`. Also confirmed: `func_8002D6BC`
+as `CCacheEntry__DoDecompress`, `func_80044BDC` as `Mantis_ClosestWall`,
+`func_8009BD30` as `CCollide__RegionCollision`, and `func_8000134C` as `faultproc`.
+See the latest checkpoint for source provenance and independent byte/data evidence.
+Address labels remain stable; nine additional runtime operations are documented
+by their measured semantics without inventing historical source names.

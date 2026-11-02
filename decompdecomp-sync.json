@@ -208,7 +208,14 @@
     "src/code_80098440/func_8009BD30.c": "98dd65e158340098e9bfe41d96fd584708e7e0701bd90a92a5d480e8695c6e96",
     "src/code_8002F784/Mantis_ClosestWall.c": "4cfe917595e4e5b9e3168cae1633a462abac380237ada50d4682d8ec156e5344",
     "src/code_80054AC8/func_800587B8.c": "0f6468940059019c0af1fa44180d845be73f4ac22121f0b200f274c3a22dec79",
-    "src/code_80098440/func_8009D3C8.c": "c567f865f227cd808d2750d8e21acdc04a8340bacbf72db87e78649dc13fb6a3"
+    "src/code_80098440/func_8009D3C8.c": "c567f865f227cd808d2750d8e21acdc04a8340bacbf72db87e78649dc13fb6a3",
+    "src/code_80098440/func_8009D5F4.c": "fb8abb09370492897dba59e0eaad432f06036a9c08447bc7f58adcf4e38b15a5",
+    "src/code_80098440/func_8009D8C0.c": "a010bc33f786fbaa681bff603f26aa2c5db40b174712e855983482f25d7d189a",
+    "src/code_80098440/func_8009DA98.c": "6900669e0e972c9076a58db11be1c6527107d86daf0629c7248dad59d35af286",
+    "src/code_80098440/func_8009D998.c": "895998cee7e9428e3ab786a19b1a685130cd365e269082f7d135a9212aaa0ffc",
+    "src/code_80098440/func_8009D4F8.c": "5d2bb5b892879057e3c60d68f5a48a1ed0f72bc5c2c77d50c50931e07d8338bb",
+    "src/code_80098440/func_8009D8DC.c": "338b9c3f7eaea4137f8320b5f37b8dff2fae6a964f725ff316a1c143dc209185",
+    "src/code_80098440/func_8009DA34.c": "ed86ed406b1c9af6ea8bf91af12c1836b3626824338a39d62c71c8b701ae4693"
   },
   "accepted": [
     "_Litob",
@@ -371,8 +378,15 @@
     "func_8009D3C8",
     "func_8009D430",
     "func_8009D46C",
+    "func_8009D4F8",
+    "func_8009D5F4",
     "func_8009D620",
+    "func_8009D8C0",
+    "func_8009D8DC",
+    "func_8009D998",
+    "func_8009DA34",
     "func_8009DA4C",
+    "func_8009DA98",
     "func_8009EDC8",
     "func_8009F22C",
     "func_800A4C00",
@@ -420,12 +434,7 @@
     "osStartThread",
     "osYieldThread"
   ],
-  "skipped": [
-    {
-      "function": "func_8009D5F4",
-      "reason": "Function is not yet byte-identical."
-    }
-  ],
+  "skipped": [],
   "verified_build": true,
   "matched_app": 2318
 }

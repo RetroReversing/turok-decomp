@@ -18745,9 +18745,10 @@
       "name": "code_80098440/func_8009D4F8",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D4F8.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D4F8.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D4F8.o"
     },
     {
       "name": "code_80098440/__ll_mod",
@@ -18762,9 +18763,10 @@
       "name": "code_80098440/func_8009D5F4",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D5F4.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D5F4.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D5F4.o"
     },
     {
       "name": "code_80098440/func_8009D620",
@@ -18779,17 +18781,19 @@
       "name": "code_80098440/func_8009D8C0",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D8C0.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D8C0.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D8C0.o"
     },
     {
       "name": "code_80098440/func_8009D8DC",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D8DC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D8DC.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D8DC.o"
     },
     {
       "name": "code_80098440/__d_to_ull",
@@ -18804,17 +18808,19 @@
       "name": "code_80098440/func_8009D998",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009D998.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009D998.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009D998.o"
     },
     {
       "name": "code_80098440/func_8009DA34",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009DA34.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009DA34.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009DA34.o"
     },
     {
       "name": "code_80098440/func_8009DA4C",
@@ -18838,9 +18844,10 @@
       "name": "code_80098440/func_8009DA98",
       "target_path": "build/asm/nonmatchings/code_80098440/func_8009DA98.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/func_8009DA98.c"
+      },
+      "base_path": "build/src/code_80098440/func_8009DA98.o"
     },
     {
       "name": "code_80098440/osViSetMode",

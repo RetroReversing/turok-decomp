@@ -1339,3 +1339,67 @@ version remains a working match, not proven historical identification. No target
 boundaries, bytes, comparison rules or fabricated padding were changed. Array
 copies retain the actual source types, element counts and stack storage.
 The existing app-only export blocker `func_800587B8` remains separate.
+
+## Runtime arithmetic and verified compiler context — 2 November 2026
+
+This follow-up accepted **ten functions /1,392 bytes through the live app API**:
+**nine newly recovered runtime functions /576 bytes**, plus the **816-byte fault
+handler** whose exact candidate had been established in the previous session.
+The latter is completion of that pending recovery, not a second independent match.
+
+| Stable entry | Verified operation | Bytes | Working compiler profile |
+| --- | --- | ---: | --- |
+| `func_8009D3C8` | Unsigned 64-bit division | 60 | IDO 5.3 O1, MIPS III, O32 |
+| `func_8009D46C` | Signed 64-bit division | 92 | Same |
+| `func_8009D4F8` | Unsigned quotient and remainder with a promoted small divisor | 96 | Same; K&R declaration |
+| `func_8009D5F4` | Signed 64-bit right shift | 44 | Same |
+| `func_8009D8C0` | Double to signed 64-bit integer | 28 | Same |
+| `func_8009D8DC` | Float to signed 64-bit integer | 28 | Same |
+| `func_8009D998` | Float to unsigned 64-bit integer | 156 | Same |
+| `func_8009DA34` | Signed 64-bit integer to double | 24 | Same |
+| `func_8009DA98` | Unsigned 64-bit integer to float | 48 | Same |
+| `func_8000134C` | `faultproc`, tengine.c:430 | 816 | IDO 5.3 O2, MIPS II |
+
+Runtime flags: `-O1 -mips3 -32 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+These nine are ROM-derived C expressions, checked against the original instructions;
+no archived runtime implementation was substituted. Their former assembly status
+was reconsidered only after exact compilation, then reopened and promoted through
+the authenticated API. Hardware cache routines and incomplete fragments remain
+set aside. Working profiles are not proof of the historical compiler release.
+
+The fault handler retains its two real contiguous boot wrappers as compiler context.
+All three compiled bodies are independently exact. The existing matching-only
+exporter extracts the freshly judged handler, preventing duplicate predecessor
+exports. The predecessors are not counted as new matches.
+
+The quotient/remainder routine is a measured historical-compiler case: an ANSI
+small-divisor declaration left a 270-point mismatch. The K&R unsigned-short
+parameter declaration reproduced the target's promotion/conversion instructions
+and reached score zero. This is not a claim that the two declarations are a
+portable interchangeable API.
+
+### Previously accepted context recoveries now exported
+
+The repository also receives four matches already accepted before this follow-up:
+`func_8000B28C` (`CLegalScreen__Draw`, 1,688 bytes; retail pak/error branches),
+`func_8002D6BC` (`CCacheEntry__DoDecompress`, 200 bytes; actual size getter and helper
+order), `func_80044BDC` (`Mantis_ClosestWall`, 708 bytes; original preceding initialized
+globals restore data alignment), and `func_8009BD30` (`CCollide__RegionCollision`,
+2,196 bytes; typed original body and verified ground/ceiling helper bindings).
+These are source-assisted results and are not counted again among the nine new
+runtime discoveries.
+
+Compiler-context code/data can be needed to obtain an exact entry while being
+unsuitable for direct placement as a whole standalone object. The cache and Mantis
+entries therefore use the existing matching-only extraction path. Each build
+recompiles and rejudges raw compiler output and all required constant reads before
+extracting its linked entry bytes; it does not copy target instructions or export
+unrelated context storage. The old 780-byte `func_800587B8` export gap is resolved
+through that same verified entry normalization.
+
+Final synchronized selection and persisted app: **2,318 functions /593,452 bytes (94.798822%)**.
+There are 38 open and 50 assembly-status candidates. The standalone build retains
+89 assembly entries among 2,407 build entries, including padding labels.
+The complete original-cartridge rebuild and saved source/header audit pass;
+SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`.
+No target extents, bytes, compression checks, or matching gates were weakened.
