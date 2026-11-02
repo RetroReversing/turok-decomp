@@ -200,7 +200,15 @@
     "src/code_80070D48/func_80073FD8.c": "cd7ec855784a76f65782b7389cd337ef4964e6abad4e7f6455a9b909eb66173f",
     "src/code_80070D48/func_8007391C.c": "19673c3a921e1f74b8f33f21e13bd71fda1e7d27be9c6b089c815574cc9e04d0",
     "src/code_80070D48/func_80072144.c": "d6b09ee60a539ea1d7500f9b3c64375b6c5b41d83a2b3320fa4b803444262481",
-    "src/code_80070D48/func_800731F8.c": "66a133f322f411989320047739fa11ba3a11942948e0f03c83d4687ed91b239a"
+    "src/code_80070D48/func_800731F8.c": "66a133f322f411989320047739fa11ba3a11942948e0f03c83d4687ed91b239a",
+    "src/code_80098440/func_8009D46C.c": "ba8d2b01acb4bb94b23bfe1e173c12fdb90716086fbedec2f95f878ca009d6e5",
+    "src/code_80029A10/func_8002D6BC.c": "27af1bb31acc80f83c251d32a8e25106f887c8edbb079e6acb6615f3c80d3d59",
+    "src/code_80009A38/func_8000B28C.c": "41e6d7e8aefdf3902b6be7e04feba8853f7049c28e6433beb520b35b9eb5ab22",
+    "src/code_80001300/func_8000134C.c": "0a414f942e9226fbe3c35dcc13e0fd91c58c24881439258157e5136e247d656e",
+    "src/code_80098440/func_8009BD30.c": "98dd65e158340098e9bfe41d96fd584708e7e0701bd90a92a5d480e8695c6e96",
+    "src/code_8002F784/Mantis_ClosestWall.c": "4cfe917595e4e5b9e3168cae1633a462abac380237ada50d4682d8ec156e5344",
+    "src/code_80054AC8/func_800587B8.c": "0f6468940059019c0af1fa44180d845be73f4ac22121f0b200f274c3a22dec79",
+    "src/code_80098440/func_8009D3C8.c": "c567f865f227cd808d2750d8e21acdc04a8340bacbf72db87e78649dc13fb6a3"
   },
   "accepted": [
     "_Litob",
@@ -257,10 +265,12 @@
     "alSynNew",
     "corrupted",
     "corrupted_init",
+    "func_8000134C",
     "func_800061C4",
     "func_8000658C",
     "func_80006770",
     "func_80009B24",
+    "func_8000B28C",
     "func_8000BEF0",
     "func_8000C04C",
     "func_8000CCE4",
@@ -307,6 +317,7 @@
     "func_8002C63C",
     "func_8002D1F8",
     "func_8002D4EC",
+    "func_8002D6BC",
     "func_8002DA18",
     "func_8002DD90",
     "func_8002FBD0",
@@ -317,10 +328,12 @@
     "func_80035438",
     "func_800398FC",
     "func_8003F804",
+    "func_80044BDC",
     "func_800474F8",
     "func_80047AA0",
     "func_8004D218",
     "func_8004F74C",
+    "func_800587B8",
     "func_8005EA80",
     "func_8005EED0",
     "func_8005FD28",
@@ -353,8 +366,11 @@
     "func_80099208",
     "func_8009A158",
     "func_8009A4D8",
+    "func_8009BD30",
     "func_8009D38C",
+    "func_8009D3C8",
     "func_8009D430",
+    "func_8009D46C",
     "func_8009D620",
     "func_8009DA4C",
     "func_8009EDC8",
@@ -406,10 +422,10 @@
   ],
   "skipped": [
     {
-      "function": "func_800587B8",
-      "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
+      "function": "func_8009D5F4",
+      "reason": "Function is not yet byte-identical."
     }
   ],
   "verified_build": true,
-  "matched_app": 2304
+  "matched_app": 2318
 }
