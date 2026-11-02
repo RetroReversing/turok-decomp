@@ -264,3 +264,25 @@ legal-screen, cache, wall-collision and region-collision matches are exported, a
 the old 780-byte constant-pool export gap is resolved. The full original cartridge
 rebuild and saved source/header audit pass. See the [session report](SOURCE_ASSISTED_CHECKPOINT.md#runtime-arithmetic-and-verified-compiler-context--2-november-2026)
 for separate discovery/export counts and the K&R argument-promotion finding.
+
+
+## One-hour private-unit investigation — 2 November 2026
+
+One newly accepted live match: `func_800A0F38`, **460 bytes**. The existing VI-manager
+constructor (392 bytes), preserved as real context and independently rejudged,
+restored six missing internal alignment NOPs at IDO 5.3 O1. The complete cartridge
+rebuild passes. Live app and selected C agree at **2,319 functions /593,912 bytes
+(94.872303%)**, with no app-only export gap. Existing concurrent source/context
+polishes were also synchronized and verified; they are not additional matches.
+
+Another **32 candidates /22,532 bytes** pass independent code/data judging and
+matching-only normalization in read-only replay, but require the prepared app
+update, normal live promotion and a complete cartridge rebuild. They are staged
+under [drafts](../drafts/private-units-20261102/README.md), not counted in this
+checkpoint. The restart was not performed without the pending user approval
+required by the app's AGENTS.md. App support and measured compiler evidence are in
+[PR #341](https://github.com/RetroReversing/decompdecomp/pull/341).
+
+A separate scheduler boundary proposal identifies a split-off 56-byte epilogue;
+it is documented but not applied or counted as a match. Original target bytes,
+extents, judging and compression gates remain unchanged in this checkpoint.

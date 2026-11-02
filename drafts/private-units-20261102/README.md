@@ -1,8 +1,8 @@
 # Prepared private-unit source candidates — not selected C
 
 **These drafts are not part of the build and have not been promoted in the live app.**
-The current verified app/repository checkpoint remains 2,318 C matches /593,452
-bytes (94.798822%). No target, function status, extent or compiler profile is
+The current verified app/repository checkpoint remains 2,319 C matches /593,912
+bytes (94.872303%). No target, function status, extent or compiler profile is
 changed by adding these drafts.
 
 During a one-hour follow-up, all 32 candidates below (22,532 bytes) independently
@@ -11,7 +11,7 @@ in each bounded unit was checked at its existing ROM entry. Matching-only
 normalization was also checked on each compiler-produced entry. This is stronger
 than a diff score, but **it is not a complete original-cartridge rebuild of these
 new selections**. That gate and live promotion remain required before adding them
-to the checkpoint totals. Potential coverage would be 98.398114% if all pass.
+to the checkpoint totals. Potential coverage would be 98.471595% if all pass.
 
 ## Why they are whole units
 

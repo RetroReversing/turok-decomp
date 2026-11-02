@@ -21,6 +21,21 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O1",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148142904,
+   "end": 2148142905
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O2",
     "-mips2",
     "-G",
@@ -24716,7 +24731,10 @@
    "seg": "code_80098440",
    "vram": 2148142904,
    "rom": 9051192,
-   "asm": "asm/nonmatchings/code_80098440/func_800A0F38.s"
+   "asm": "asm/nonmatchings/code_80098440/func_800A0F38.s",
+   "c": "src/code_80098440/func_800A0F38.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "osViSetEvent",

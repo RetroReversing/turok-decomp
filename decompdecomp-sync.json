@@ -215,7 +215,8 @@
     "src/code_80098440/func_8009D998.c": "895998cee7e9428e3ab786a19b1a685130cd365e269082f7d135a9212aaa0ffc",
     "src/code_80098440/func_8009D4F8.c": "5d2bb5b892879057e3c60d68f5a48a1ed0f72bc5c2c77d50c50931e07d8338bb",
     "src/code_80098440/func_8009D8DC.c": "338b9c3f7eaea4137f8320b5f37b8dff2fae6a964f725ff316a1c143dc209185",
-    "src/code_80098440/func_8009DA34.c": "ed86ed406b1c9af6ea8bf91af12c1836b3626824338a39d62c71c8b701ae4693"
+    "src/code_80098440/func_8009DA34.c": "ed86ed406b1c9af6ea8bf91af12c1836b3626824338a39d62c71c8b701ae4693",
+    "src/code_80098440/func_800A0F38.c": "779a704688140d1cf914f02673e3e97ac27519b434ff52069f7cec73cbae5df1"
   },
   "accepted": [
     "_Litob",
@@ -389,6 +390,7 @@
     "func_8009DA98",
     "func_8009EDC8",
     "func_8009F22C",
+    "func_800A0F38",
     "func_800A4C00",
     "func_800A4D00",
     "func_800A4FB0",

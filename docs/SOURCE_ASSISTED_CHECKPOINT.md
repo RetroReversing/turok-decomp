@@ -1403,3 +1403,30 @@ There are 38 open and 50 assembly-status candidates. The standalone build retain
 The complete original-cartridge rebuild and saved source/header audit pass;
 SHA-1 remains `88916d5d2e2470f395ad8f4245d34138ef2d156a`.
 No target extents, bytes, compression checks, or matching gates were weakened.
+
+
+## VI manager alignment and prepared private units — 2 November 2026
+
+`func_800A0F38` adds **460 selected C bytes**, taking both the live app and standalone
+selection to **2,319 functions /593,912 bytes (94.872303%)**. There are 37 open
+candidates and 50 set aside as assembly; the standalone export retains 88 assembly
+entries among 2,407 entries including padding labels.
+
+The IDO 5.3 O1 standalone body was missing six internal NOPs. Restoring the actual
+392-byte `osCreateViManager` definition before it reproduced the compiler's section
+position. Both bodies independently matched the original ROM; only the new entry
+was promoted and exported through existing matching-only normalization. Flags:
+`-O1 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`. No padding was added to C.
+
+The complete original-cartridge rebuild passes, SHA-1
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. Source/header persistence and repository
+ownership audit pass. A recorded exact-attempt header remains valid where the
+sync pipeline deliberately preserves it; matching text is not silently rebuilt
+under a later unrelated header revision.
+
+The [32 prepared candidates](../drafts/private-units-20261102/README.md) are separate
+read-only evidence and do not increase these totals. Their potential coverage
+requires approval to update/restart the app, normal fresh live judging, saved-file
+synchronization, and full original-cartridge verification. The app feature is in
+[PR #341](https://github.com/RetroReversing/decompdecomp/pull/341). The one-hour matching
+investigation ended before the final synchronization/build gates completed.
