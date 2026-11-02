@@ -232,3 +232,17 @@ Candidates below remain attached to their ROM address; they are not renamed into
 | --- | --- | --- |
 | `func_80072C14` | `AI_Make_SwimRetreat`, `tengine/ai.c:9120` | Original body/helper lines and retained typed context compile byte-identically and pass the full cartridge rebuild. |
 | `func_80060AE4` | `AI_KnifeTomahawkDamage`, `tengine/ai.c:5396` | Signed angle checks and verified sound-call binding compile byte-identically and pass the full rebuild. |
+
+
+## Confirmed source-assisted matches — animation and retail-cheat batch, 2 November 2026
+
+| Address label | Located original source identity | Verification |
+| --- | --- | --- |
+| `func_8005FD28` | `AI_MEvent_PressurePlate` (`ai.c:2733`) | Exact C and complete cartridge |
+| `func_800727E0` | `AI_AssistSniperTurn` (`ai.c:9138`) | Exact C and complete cartridge |
+| `func_8001BAAC` | `CGameObjectInstance__Advance` (`romstruc.c:3578`) | Exact C and complete cartridge |
+| `func_800888D4` | `CCheat__Draw` (`cheats.c:718`) | Exact C, ROM-confirmed retail case and complete cartridge |
+| `func_8001C9D8` | `CGameObjectInstance__Draw` (`romstruc.c:8446`) | Exact C, ROM-confirmed retail pointer lifetime and complete cartridge |
+
+The address-based link labels remain stable; names identify the authorized source provenance.
+See the [session evidence](SOURCE_ASSISTED_CHECKPOINT.md#animation-helpers-original-declarations-and-retail-cheats--2-november-2026).

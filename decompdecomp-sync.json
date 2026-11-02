@@ -182,7 +182,8 @@
     "src/code_80070D48/func_800727E0.c": "5be4c9120a255fbe03545dda0733d9fa45eb7eb444bdc224efa66c100f77ef08",
     "src/code_80017F0C/func_8001C9D8.c": "2479c513a210f74429b0796b41ac1ab6a34ba70039b3f4854fc9a336db8988d9",
     "src/code_8005C8BC/AI_MEvent_PressurePlate.c": "649b7843eb1096e3f701c073def9def565473a9d08b7ecea37d61a7e41b39ead",
-    "src/code_80087228/func_800888D4.c": "9b133871bdf4c8ba8e966ce2d2e6e6841430080a542478fb01f333a80abc5bd9"
+    "src/code_80087228/func_800888D4.c": "9b133871bdf4c8ba8e966ce2d2e6e6841430080a542478fb01f333a80abc5bd9",
+    "src/code_80017F0C/func_8001BAAC.c": "4dac617fca13dfbed1ec5fc85b47556ac7ee394e5c9e85c502a853b81c0ff78a"
   },
   "accepted": [
     "_Litob",
@@ -260,6 +261,7 @@
     "func_80016AF4",
     "func_800181A0",
     "func_800183C4",
+    "func_8001BAAC",
     "func_8001C9D8",
     "func_8001DE20",
     "func_8001E21C",
@@ -369,10 +371,6 @@
     "osYieldThread"
   ],
   "skipped": [
-    {
-      "function": "func_8001BAAC",
-      "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
-    },
     {
       "function": "func_800587B8",
       "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."

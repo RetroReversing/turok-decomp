@@ -208,3 +208,16 @@ Four of ten investigated live-API candidates match exactly, adding **3,428 bytes
 555,276 bytes (88.700536%)**, **65 open** and **59 assembly candidates**.
 Full original-cartridge verification and saved source/context audits pass. The older 780-byte
 constant-pool export gap remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#inline-statement-lines-original-source-lines-and-angle-checks--2-november-2026).
+
+
+## Animation helpers, original declarations and retail cheats — 2 November 2026
+
+Five of ten investigated functions match through the live API, adding **8,136 bytes** and
+**1.299656 percentage points**. Standalone selection reaches **2,286 C functions /
+562,632 bytes (89.875593%)**. The app retains **2,287 persisted exact matches /
+563,412 bytes (90.000192%)**, **60 open** and **59 assembly candidates**.
+Original inline helpers, local declaration order and ROM-confirmed retail differences recovered
+these matches. The full original-cartridge build and saved source/context audit pass; the older
+780-byte constant-pool export gap remains separate. CPU repair rules in app PR #301 have 179
+focused tests and reproduce two historical matches without claiming extra coverage.
+See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#animation-helpers-original-declarations-and-retail-cheats--2-november-2026).

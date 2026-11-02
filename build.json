@@ -30,6 +30,21 @@
     "-Wab,-r4300_mul"
    ],
    "timeout": 20,
+   "start": 2147596972,
+   "end": 2147596973
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
    "start": 2148042964,
    "end": 2148042965
   },
@@ -6900,7 +6915,11 @@
    "seg": "code_80017F0C",
    "vram": 2147596972,
    "rom": 8505260,
-   "asm": "asm/nonmatchings/code_80017F0C/func_8001BAAC.s"
+   "asm": "asm/nonmatchings/code_80017F0C/func_8001BAAC.s",
+   "c": "src/code_80017F0C/func_8001BAAC.c",
+   "own": {
+    ".rodata": 2148471824
+   }
   },
   {
    "name": "func_8001C348",

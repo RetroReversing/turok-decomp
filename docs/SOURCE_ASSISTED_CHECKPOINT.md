@@ -1128,3 +1128,58 @@ recover the older sort match and the new audio-frame match from original helper 
 The replay exposed callback shadowing, which is fixed and regression-tested. The new app was exported
 to Downloads without restarting the user's installed app. This batch's new matches were verified
 through the existing live API; they are not a benchmark of the newly built automatic pass.
+
+## Animation helpers, original declarations and retail cheats — 2 November 2026
+
+Five of the next ten investigated functions match through the live app API, adding **8,136 bytes**
+without changing targets, extents or comparison gates. This is **1.299656 percentage points** of the
+fixed 626,012-byte denominator. The CPU application work is tracked separately in
+[decompdecomp PR #301](https://github.com/RetroReversing/decompdecomp/pull/301).
+
+| Exact function | Original source identity | Bytes | What recovered the match |
+| --- | --- | ---: | --- |
+| `func_8005FD28` | `AI_MEvent_PressurePlate`, `ai.c:2733` | 1,108 | Restore the actual inline animation wrapper: lookup through `func_800186FC`, then set by index through `func_8005FCA0`. Calling the out-of-line wrapper lost the original inline code and stack layout. |
+| `func_800727E0` | `AI_AssistSniperTurn`, `ai.c:9138` | 1,076 | Restore the original private inline `AI_NudgeRotY` body and its source line 8292, calling the verified rotation normalizer. |
+| `func_8001BAAC` | `CGameObjectInstance__Advance`, `romstruc.c:3578` | 2,204 | Restore the inline absolute-animation predicate, then the original local declaration order. The predicate reduced the score from 1,834 to 15; declaration order resolved the remaining fifteen stack offsets. |
+| `func_800888D4` | `CCheat__Draw`, `cheats.c:718` | 1,596 | ROM-confirmed retail `show enemies` entry, flag bit 28 and selection index 28; preserve all-map flag bit 6, bind its actual strings, and use the real scale constant. The available source lacks this retail case. |
+| `func_8001C9D8` | `CGameObjectInstance__Draw`, `romstruc.c:8446` | 2,152 | Restore the absolute-animation predicate, preserve the old draw-matrix pointer around the active advance call, and bind the fade value at the ROM-confirmed scalar address rather than its neighboring array element. |
+
+All five use provisional IDO 5.3: pressure-plate/sniper-turn use `-O3`, the other three `-O2`,
+with `-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+
+The ordinary repository sync individually checks new C, verifies the complete cartridge, and publishes
+sources with their private headers. The fixed cartridge SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. Compiler versions remain provisional; function profiles
+are retained rather than globally changing optimization settings.
+
+### Five candidates remain unmatched
+
+| Function | Result of this pass |
+| --- | --- |
+| `func_8000134C` / `faultproc` | Live best improved from 635 to 300 (98.5%). Correct SDK `FPCSR_EZ` value, runtime integer conversion/division bindings and actual VI-mode-table base now agree. Three extra NOPs remain; no padding or boundary alteration was accepted. |
+| `func_80071F08` / `AI_Can_See_Target` | Correct vector-by-value and two-pointer ray-call prototypes improve a private pair from 1,410 to 1,236. Original typed source and a real callee-body trial still fail to reproduce the target's retained temporary across a call. Private non-exact pairs are not published as matches. |
+| `func_8002D6BC` / `CCacheEntry__DoDecompress` | Restoring the actual `GetData` helper line improves a private pair from 780 to 505. The remaining return/control-flow scheduling differs; forcing inline is worse. |
+| `func_80001D30` / idle thread | Original-source/target review and a live `-O3` trial retain score 400; the NOP and loop/layout discrepancy remains unresolved. No target extent or assembly padding change. |
+| `func_800A0F38` / VI manager | The retained `-O1` candidate still differs in NOP/layout details; a live `-O3` trial scores 12,709 and is rejected. It remains unmatched; a source identity is not proof of an exact compiler context. |
+
+### CPU recovery improvements
+
+PR #301 adds bounded statement-line joins/splits, candidate-only narrowing-cast repairs, compatible
+actual extern recovery, missing-callee binding hypotheses supported by independent exact contexts,
+and original lines for existing inline helpers. Measured private calling-convention evidence demotes
+ordinary signature guesses behind context/body repairs. All candidates still require the byte/data
+judge. **179 focused tests pass**, including MIPS relocation regressions. Controlled replays reproduce
+two historical matches, not additional coverage. This batch used the existing running app's API;
+it does not claim that the newly exported CPU pass autonomously found all five matches.
+
+The first export accepted four functions but blocked object-advance's discontiguous anonymous
+constant pools. Binding the ROM-confirmed 0.4 and 0.0375 doubles and `"Animation"` string as
+external read-only/data references preserved the exact instructions. The 0.01 literal stays a
+compiler constant: replacing that one changes optimization and fails the byte judge. This is a
+source/data-reference repair, not a linker placement or target-boundary adjustment.
+
+Persisted audit: **2,287 live/saved exact functions**, **2,286 selected standalone C functions**;
+**562,632 selected bytes (89.875593%)**, **563,412 app bytes (90.000192%)**, **60 open** and
+**59 assembly candidates**. The standalone has **121 assembly entries** among 2,407 entries.
+The sole older app-only match remains `func_800587B8` (780 bytes, discontiguous constant pools).
+The live/saved/repository source and private-context audit passes, with `progress_syncing=False`.
