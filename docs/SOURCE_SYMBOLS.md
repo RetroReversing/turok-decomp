@@ -8,6 +8,16 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 
 | Address | Current source identity | Evidence |
 | --- | --- | --- |
+| `0x80099208` | `CCollide__CanEnter, unicol.c:771` | Exact source-assisted O2 match, saved in app and selected in full verified cartridge build |
+| `0x800337BC` | `CScene__DecompressCollision, scene.c:1203` | Exact source-assisted O2 match, saved in app and selected in full verified cartridge build |
+| `0x80032BD8` | `CScene__DecompressInstances, scene.c:1436` | Exact source-assisted O2 match, saved in app and selected in full verified cartridge build |
+| `0x8009A4D8` | `CAnimInstanceHdr__Collision3, unicol.c:43` | Exact source-assisted O2 match, saved in app and selected in full verified cartridge build |
+| `0x80084E9C` | `CPause__Update, pause.c:1059` | Exact source-assisted O2 match, saved in app and selected in full verified cartridge build |
+| `0x80088124` | `CCheat__Update, cheats.c:411` | Exact source-assisted O2 match, saved in app and selected in full verified cartridge build |
+| `0x80071F08` | `AI_Can_See_Target, ai.c:9465` | Exact source-assisted O3 match, saved in app and selected in full verified cartridge build |
+| `0x80071058` | `AI_Decrease_Health, ai.c:9538` | Exact source-assisted O3 match, saved in app and selected in full verified cartridge build |
+| `0x80077368` | `AI_Standard_DeadBodyRiddle, aistand.c:1478` | Exact source-assisted O3 match, saved in app and selected in full verified cartridge build |
+| `0x8009A158` | `CCollide__IntersectCylinder, unicol.c:689` | Exact source-assisted O3 match, saved in app and selected in full verified cartridge build |
 | `0x80033CDC` | `CScene__LevelInfoReceived`, `tengine/scene.c:1137` | Exact typed source/context at `-O3`; target calls and retail differences checked |
 | `0x80035438` | `qsort`, `tengine/qsort.c:43` | Exact typed source/context at `-O3`; target calls and retail differences checked |
 | `0x800398FC` | `CCamera__CheckForTurokDeathCinematic`, `tengine/camera.c:1629` | Exact typed source/context at `-O2`; target calls and retail differences checked |
@@ -112,7 +122,7 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 | `0x80060AE4` | `func_80060AE4` | `AI_KnifeTomahawkDamage` | `tengine/ai.c:5396` | Tentative identity; preserve candidate name without declaring it canonical |
 | `0x80061CC4` | `func_80061CC4` | `AI_MEvent_Damage` | `tengine/ai.c:3446` | Tentative identity; preserve candidate name without declaring it canonical |
 | `0x8006905C` | `func_8006905C` | `AI_SEvent_DamageNudge_Target` | `tengine/ai.c:6010` | Apply source symbol with address-preserving build verification |
-| `0x80071058` | `func_80071058` | `printFaultData` | `tengine/prfault.c:610` | Conflicting source candidates at multiple ROM addresses |
+| `0x80071058` | `func_80071058` | `AI_Decrease_Health` | `tengine/ai.c:9538` | Exact typed source-assisted O3 match; supersedes incorrect printFaultData lead |
 | `0x8007223C` | `func_8007223C` | `AI_Make_Turn` | `tengine/ai.c:9254` | Tentative identity; preserve candidate name without declaring it canonical |
 | `0x800727E0` | `func_800727E0` | `AI_AssistSniperTurn` | `tengine/ai.c:9138` | Tentative identity; preserve candidate name without declaring it canonical |
 | `0x800731F8` | `func_800731F8` | `AI_Make_Walk` | `tengine/ai.c:8816` | Tentative identity; preserve candidate name without declaring it canonical |
@@ -123,7 +133,7 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 | `0x8007791C` | `func_8007791C` | `AI_Standard_Follow` | `tengine/aistand.c:1394` | Apply source symbol with address-preserving build verification |
 | `0x80077BFC` | `func_80077BFC` | `AI_Standard_Death` | `tengine/aistand.c:924` | Apply source symbol with address-preserving build verification |
 | `0x80084E9C` | `func_80084E9C` | `CPause__Update` | `tengine/pause.c:1059` | Tentative identity; preserve candidate name without declaring it canonical |
-| `0x80088124` | `func_80088124` | `AI_Make_Run` | `tengine/ai.c:8453` | Conflicting source candidates at multiple ROM addresses |
+| `0x80088124` | `func_80088124` | `CCheat__Update` | `tengine/cheats.c:411` | Exact typed source-assisted O2 match; supersedes incorrect AI_Make_Run lead |
 | `0x800888D4` | `func_800888D4` | `CCheat__Draw` | `tengine/cheats.c:718` | Conflicting source candidates at multiple ROM addresses |
 | `0x800894B0` | `func_800894B0` | `initAudio` | `tengine/audio.c:112` | Conflicting source candidates at multiple ROM addresses |
 | `0x80099208` | `func_80099208` | `CCollide__CanEnter` | `tengine/unicol.c:771` | Tentative identity; preserve candidate name without declaring it canonical |
@@ -207,7 +217,7 @@ Candidates below remain attached to their ROM address; they are not renamed into
 
 - `0x8002C7DC`: `__scSchedule` (`src/PR/libultra/sched/sched.c`); `__scSchedule` (`src/PR/tengine/sched.c`)
 
-- `0x80071058`: `printFaultData` (`src/PR/fault/printfault.c`); `printFaultData` (`src/PR/tengine/prfault.c`)
+- Historical `0x80071058` printFaultData leads were rejected: exact typed source identifies `AI_Decrease_Health` (`tengine/ai.c:9538`).
 
 - `0x800894B0`: `initAudio` (`src/PR/compmidi/audio.c`); `initAudio` (`src/PR/compmidi/audio2.c`); `initAudio` (`src/PR/newaudio/audio.c`); `initAudio` (`src/PR/newaudio/audio2.c`); `initAudio` (`src/PR/seqtest/audio.c`); `initAudio` (`src/PR/seqtest/audio2.c`); `initAudio` (`src/PR/simple/audio.c`); `initAudio` (`src/PR/tengine/audio.c`)
 

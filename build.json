@@ -30,6 +30,21 @@
     "-Wab,-r4300_mul"
    ],
    "timeout": 20,
+   "start": 2147946584,
+   "end": 2147946585
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
    "start": 2148114776,
    "end": 2148114777
   },
@@ -19606,7 +19621,9 @@
    "seg": "code_80070D48",
    "vram": 2147946584,
    "rom": 8854872,
-   "asm": "asm/nonmatchings/code_80070D48/func_80071058.s"
+   "asm": "asm/nonmatchings/code_80070D48/func_80071058.s",
+   "c": "src/code_80070D48/func_80071058.c",
+   "own": {}
   },
   {
    "name": "func_8007170C",

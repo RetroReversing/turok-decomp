@@ -6,6 +6,15 @@ Snapshot: **30 October 2026**. Read-only snapshot of the live app: **2,053 isola
 
 All three shortlisted functions are now recovered: `func_8002AB68` as `CParticle__Advance`, `func_8007791C` as `AI_Standard_Follow`, and `alSeqNewMarker`. They were accepted by the live app and selected in the verified 2,039-C standalone build. The inventory below remains the original audit snapshot. See [repair evidence](SOURCE_ASSISTED_CHECKPOINT.md#source-naming-and-three-function-repair-30-october-2026) and the [source symbol index](SOURCE_SYMBOLS.md) for current names and unresolved alternatives.
 
+## Later ten-match correction — 2 November 2026
+
+Ten more entries below are now exact and selected: `func_80099208`, `func_800337BC`, `func_80032BD8`,
+`func_8009A4D8`, `func_80084E9C`, `func_80088124`, `func_80071F08`, `func_80071058`, `func_80077368`,
+and `func_8009A158`. In particular, the old printFaultData lead for `func_80071058` and AI_Make_Run
+lead for `func_80088124` were wrong; actual identities are AI health handling and the cheat menu.
+The tables below remain historical. See [verified corrections](SOURCE_SYMBOLS.md#verified-corrections--november-2026)
+and the [ten-match report](SOURCE_ASSISTED_CHECKPOINT.md#ten-more-verified-matches--2-november-2026).
+
 ## What this establishes
 
 Every one of the **294 open candidates** was inventoried and its saved draft recompiled and evaluated with the corrected private judge. All compiled successfully; none replayed as an exact match. **121 have one or more located source candidates**, while **173 have no sufficiently supported implementation mapping yet. Candidate identity is explicitly provisional unless supported by a source alias; even an alias or matching call sequence does not prove retail-equivalent source.

@@ -1269,3 +1269,52 @@ remain implementation gaps, rather than claimed automatic matches.
 
 The complete cartridge rebuild was rerun and verified byte for byte, SHA-1
 `88916d5d2e2470f395ad8f4245d34138ef2d156a` (2,288 of 2,407 build entries in C).
+
+
+## Ten more verified matches — 2 November 2026
+
+The requested **ten additional matches** are complete: **15,600 bytes /+2.491965 percentage points**
+against the unchanged 626,012-byte candidate denominator. Starting state: 2,288 selected C functions /
+563,780 bytes, and 2,289 saved app matches /564,560 bytes. Final state: **2,298 selected C functions /
+579,380 bytes (92.550942%)**, and **2,299 persisted app matches /580,160 bytes (92.675540%)**.
+There are **48 open candidates**, **59 set aside as assembly**, and **109 assembly build entries**.
+The one pre-existing 780-byte `func_800587B8` non-contiguous-pool export gap remains separate.
+
+Every match used the live app's normal source/header/profile acceptance path. Existing archival source
+was authorized and used; these are source-assisted results. All profiles below use IDO5.3 with
+`-mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`; O2/O3 is per function, not a global change.
+The working IDO version matching these functions is not independent proof of the original compiler release.
+
+| Entry | Located source identity | Bytes | Optimization | Recovery evidence |
+| --- | --- | ---: | --- | --- |
+| `func_80099208` | `CCollide__CanEnter`, unicol.c:771 | 1,340 | O2 | Original typed source, verified `CGameRegion__InRegion` call binding. |
+| `func_800337BC` | `CScene__DecompressCollision`, scene.c:1203 | 908 | O2 | Actual region-pointer store and inline region-flag wrapper restore the calls and frame. |
+| `func_80032BD8` | `CScene__DecompressInstances`, scene.c:1436 | 2,524 | O2 | Actual inline flag wrappers and correct pointer-return/three-argument persistent-bitstream prototype. |
+| `func_8009A4D8` | `CAnimInstanceHdr__Collision3`, unicol.c:43 | 1,936 | O2 | Retail height-clamp/slide conditions, typed helpers and original pools; multiline statements recover final scheduling. |
+| `func_80084E9C` | `CPause__Update`, pause.c:1059 | 2,568 | O2 | Retail debug-SFX option disabled, actual typed menu callbacks, arrays and strings. |
+| `func_80088124` | `CCheat__Update`, cheats.c:411 | 1,968 | O2 | Correct source identity; commented show-all-enemies case restored with ROM-verified flag/index. |
+| `func_80071F08` | `AI_Can_See_Target`, ai.c:9465 | 448 | O3 | Correct ray-test binding and distinct signed PI/two-PI ROM pools. |
+| `func_80071058` | `AI_Decrease_Health`, ai.c:9538 | 1,716 | O3 | Correct source identity, actual inline regeneration getter and existing float/double constant pools. |
+| `func_80077368` | `AI_Standard_DeadBodyRiddle`, aistand.c:1478 | 1,436 | O3 | Original typed source/context; O3 restores both code and initializer placement. |
+| `func_8009A158` | `CCollide__IntersectCylinder`, unicol.c:689 | 756 | O3 | Existing original source and verified plane/sqrt bindings; O3 resolves the remaining scheduling and allocation. |
+
+### What changed the outcome
+
+- **Validate source identity first.** `func_80071058` is AI health handling, not `printFaultData`;
+  `func_80088124` is the cheat menu, not `AI_Make_Run`. Matching whole typed bodies supersedes those weak older leads.
+- **Search optimization again after restoring context.** O3 on a machine draft was not a useful substitute
+  for O3 on complete original typed source. It recovered four functions here. In the corpse animation routine,
+  O2's changed initializer layout looked like numerous data/symbol failures; O3 matched the original values unchanged.
+- **Use real helpers, not just equivalent macros.** The regeneration macro left a 35-point register mismatch;
+  its actual inline function made the health routine exact. Scene wrappers likewise reproduced the target calls and frame.
+- **Keep per-use precision and sign.** Positive/negative PI labels are distinct. Health's `0.4f` and `0.4`
+  use separate existing float/double ROM pools; explicit references preserve exactness and standalone placement.
+- **Preserve normal source formatting.** In the repaired collision body, multiline statements changed the final
+  compare/move scheduling from score 120 to exact under the same O2 flags and header. No instructions were padded.
+- **Check the retail differences against instructions.** The cheat case, its enum index27/flag bit28,
+  and changed ground-clamping conditions were verified by complete code/data judgment, not assumed from old source.
+
+All ten selected C sources pass the repository checks and the complete original-cartridge rebuild.
+The source/header audit covers all 2,299 saved app matches and all 2,298 selected C entries; the only gap is
+`func_800587B8`. The app finished saving/revalidation. Original cartridge SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. Target bytes/extents, linker checks and byte/data gates were retained.

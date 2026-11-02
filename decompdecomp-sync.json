@@ -194,7 +194,8 @@
     "src/code_8002F784/CScene__DecompressCollision.c": "a0a97587ace7ab6cb9635037a530371fc97e7e2ca7f3cf8e023f85be22884081",
     "src/code_80098440/func_8009A158.c": "8f7abe71ba84d73059be69722d33b82ef27ca3b7993e5a27546a38ca4fdb629b",
     "src/code_80076218/AI_Standard_DeadBodyRiddle.c": "a94d1a6992b12223e688c8ce0875b9f2e5ed75bb34f9ebb73ba1c267edf50a7b",
-    "src/code_80070D48/func_80071F08.c": "530de7f339fc5d248c994e829ba7f476887e8960232cfa75cf309ad6ddf938c2"
+    "src/code_80070D48/func_80071F08.c": "530de7f339fc5d248c994e829ba7f476887e8960232cfa75cf309ad6ddf938c2",
+    "src/code_80070D48/func_80071058.c": "bbc399295ba5ac864d8053d2a78cdc561860f9132ede5abba952b24956cf3ff5"
   },
   "accepted": [
     "_Litob",
@@ -322,6 +323,7 @@
     "func_8006905C",
     "func_8006A654",
     "func_80070DA8",
+    "func_80071058",
     "func_80071F08",
     "func_800727E0",
     "func_80072C14",
@@ -395,10 +397,6 @@
   "skipped": [
     {
       "function": "func_800587B8",
-      "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
-    },
-    {
-      "function": "func_80071058",
       "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
     }
   ],

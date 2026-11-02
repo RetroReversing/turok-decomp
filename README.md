@@ -4,11 +4,11 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **2,288 functions selected in C**, covering **563,780 bytes**, or **90.059% of the fixed 626,012 candidate-code bytes**.
-- The live app has **2,289 saved isolated matches / 564,560 bytes (90.184%)**, **58 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
-- The standalone export has **2,407 build entries**, including two padding labels; **119 entries use assembly**.
+- **2,298 functions selected in C**, covering **579,380 bytes**, or **92.551% of the fixed 626,012 candidate-code bytes**.
+- The live app has **2,299 saved isolated matches /580,160 bytes (92.676%)**, **48 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
+- The standalone export has **2,407 build entries**, including two padding labels; **109 entries use assembly**.
 - A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- The previous matching session added **two matches /1,148 bytes**. The latest ten-candidate CPU/context investigation found **no new exact matches**; the verified checkpoint is unchanged. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#cpu-context-triage-and-next-ten-investigations--2-november-2026).
+- The latest completed goal added **ten matches /15,600 bytes (+2.491965 percentage points)**. All ten were judged through the live app, selected in the standalone build, and audited against saved sources and headers. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#ten-more-verified-matches--2-november-2026).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 

@@ -242,3 +242,14 @@ selected C /90.183575% persisted app matches**. All ten have live app investigat
 source/context/repository audit passes with the existing 780-byte export gap. See the
 [session report](SOURCE_ASSISTED_CHECKPOINT.md#cpu-context-triage-and-next-ten-investigations--2-november-2026).
 App PR312 adds measured context routing and bounded typed-field recovery; whole-unit ABI context remains open.
+
+
+## Ten more verified matches — 2 November 2026
+
+**Ten new matches /15,600 bytes /+2.491965 percentage points.** Selected C: **2,298 functions /
+579,380 bytes (92.550942%)**. Persisted app: **2,299 functions /580,160 bytes (92.675540%)**.
+There are 48 open candidates, 59 set aside as assembly and 109 assembly build entries. All ten are synced;
+the saved source/header audit and full original-cartridge rebuild pass. Only the existing 780-byte
+`func_800587B8` export gap remains. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#ten-more-verified-matches--2-november-2026)
+for source identities, per-function flags and measured evidence. Correct source mappings, real inline
+helpers and O3 on complete typed source recovered functions that earlier draft/permutation trials missed.
