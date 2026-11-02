@@ -21,6 +21,66 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148159912,
+   "end": 2148159913
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147953684,
+   "end": 2147953685
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147879652,
+   "end": 2147879653
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O3",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147670552,
+   "end": 2147670553
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O2",
     "-mips2",
     "-G",
@@ -8417,7 +8477,9 @@
    "seg": "code_80029A10",
    "vram": 2147670552,
    "rom": 8578840,
-   "asm": "asm/nonmatchings/code_80029A10/func_8002DA18.s"
+   "asm": "asm/nonmatchings/code_80029A10/func_8002DA18.s",
+   "c": "src/code_80029A10/func_8002DA18.c",
+   "own": {}
   },
   {
    "name": "func_8002DA8C",
@@ -15692,7 +15754,12 @@
    "seg": "code_8005C8BC",
    "vram": 2147879652,
    "rom": 8787940,
-   "asm": "asm/nonmatchings/code_8005C8BC/func_80060AE4.s"
+   "asm": "asm/nonmatchings/code_8005C8BC/func_80060AE4.s",
+   "c": "src/code_8005C8BC/func_80060AE4.c",
+   "own": {
+    ".data": 2148261996,
+    ".rodata": 2148483112
+   }
   },
   {
    "name": "func_80061448",
@@ -19494,7 +19561,11 @@
    "seg": "code_80070D48",
    "vram": 2147953684,
    "rom": 8861972,
-   "asm": "asm/nonmatchings/code_80070D48/func_80072C14.s"
+   "asm": "asm/nonmatchings/code_80070D48/func_80072C14.s",
+   "c": "src/code_80070D48/func_80072C14.c",
+   "own": {
+    ".rodata": 2148488936
+   }
   },
   {
    "name": "func_80072D08",
@@ -24606,7 +24677,11 @@
    "seg": "code_80098440",
    "vram": 2148159912,
    "rom": 9068200,
-   "asm": "asm/nonmatchings/code_80098440/alAudioFrame.s"
+   "asm": "asm/nonmatchings/code_80098440/alAudioFrame.s",
+   "c": "src/code_80098440/alAudioFrame.c",
+   "own": {
+    ".rodata": 2148495576
+   }
   },
   {
    "name": "alSynNew",

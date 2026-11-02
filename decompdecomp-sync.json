@@ -174,7 +174,11 @@
     "src/code_8002F784/func_80033CDC.c": "116b85afea25734482c92fd591f27f8efe18d138a088b1f04ef0ec2481c8ad92",
     "src/code_8002F784/func_80035438.c": "c8fe4c08ef509040aa143c7b228d97386fddda9cd7efa31806fc42d5b682efaf",
     "src/code_80063630/func_8006A654.c": "910e8bb396c6211dfa19e7f9b78423a5390d4ddaa607221fd5eea749975607f5",
-    "src/code_8002F784/func_80047AA0.c": "6270dde85015ede4faebfbc6ce54e1fff0940384b609cc7c7a79b3d37b8f79dd"
+    "src/code_8002F784/func_80047AA0.c": "6270dde85015ede4faebfbc6ce54e1fff0940384b609cc7c7a79b3d37b8f79dd",
+    "src/code_8005C8BC/func_80060AE4.c": "e51b417cc0845c18ca1f0571761dc060941a361000fa0825e949d5780e5b0101",
+    "src/code_80098440/alAudioFrame.c": "a7576cf43e3e0c903e03a10ad7c7f9f997b43756b605b7ff832c4104e36c01bd",
+    "src/code_80029A10/func_8002DA18.c": "488975b6b625c95d5706babd5e78a2e5ed34e87fa98a7f2ec3cc2f9132387909",
+    "src/code_80070D48/func_80072C14.c": "04a2b3c1b6ca8edef9d39c4ca22363fe32cf56f6fd10b181f34319745d3313d0"
   },
   "accepted": [
     "_Litob",
@@ -215,6 +219,7 @@
     "_loadBuffer",
     "_loadOutputBuffer",
     "_saveBuffer",
+    "alAudioFrame",
     "alAuxBusPull",
     "alCSPNew",
     "alCSeqNewMarker",
@@ -278,6 +283,7 @@
     "func_8002C63C",
     "func_8002D1F8",
     "func_8002D4EC",
+    "func_8002DA18",
     "func_8002DD90",
     "func_8002FBD0",
     "func_800318D0",
@@ -289,9 +295,11 @@
     "func_80047AA0",
     "func_8004F74C",
     "func_8005EED0",
+    "func_80060AE4",
     "func_8006905C",
     "func_8006A654",
     "func_80070DA8",
+    "func_80072C14",
     "func_80072D08",
     "func_80074A74",
     "func_80074E10",
@@ -359,5 +367,5 @@
     }
   ],
   "verified_build": true,
-  "matched_app": 2278
+  "matched_app": 2282
 }

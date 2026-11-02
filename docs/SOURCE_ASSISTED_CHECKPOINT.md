@@ -1073,3 +1073,58 @@ non-contiguous constant-pool export gap remains separate.
 All six additions passed individual repository checks and the full **8,388,608-byte original-cartridge
 comparison**, SHA-1 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved app sources and required contexts
 were audited against live state and standalone selections, with no progress revalidation pending.
+
+
+## Inline statement lines, original source lines and angle checks — 2 November 2026
+
+Four of ten investigated live-API candidates match exactly, adding **3,428 bytes** and
+**0.547593 percentage points**. Standalone selection reaches **2,281 C functions /
+554,496 bytes (88.575938%)**. The app retains **2,282 persisted exact matches /
+555,276 bytes (88.700536%)**, **65 open** and **59 assembly candidates**.
+Full original-cartridge verification and saved source/context audits pass. The older 780-byte
+constant-pool export gap remains separate.
+
+| Exact function | Original source identity | Bytes | What recovered the match |
+| --- | --- | ---: | --- |
+| `func_8002DA18` | `CUnindexedSet__ConstructWithAllocatedBlock`, `cart.c:702` | 116 | Put the inline count helper's pointer load and store on the same physical line. Only the final two load positions differed before the change. This corrects the older tentative PreAllocate identity. |
+| `func_80072C14` | `AI_Make_SwimRetreat`, `ai.c:9120` | 244 | Restore the body's physical line and the existing private inline `AI_NudgeRotY` helper's original line 8292. The retained `-O3` near match differed only in floating division scheduling. |
+| `func_80060AE4` | `AI_KnifeTomahawkDamage`, `ai.c:5396` | 2,404 | Restore signed `ey`/`py` checks and bind `AI_DoSound` to the already verified `func_8005EED0` callee. No new branch, storage or layout was invented. |
+| `alAudioFrame` | SDK `alAudioFrame`, `synthesizer.c:142` | 664 | Restore entry line 142 and the identical existing static `__nextSampleTime` helper at its original line 283. Entry-line restoration alone retained score 270; the pair is exact. |
+
+All four use provisional IDO 5.3 with `-O3 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul`.
+The live judge accepted separate source/header bundles where needed; the ordinary repository sync
+checked each addition and rebuilt the original 8,388,608-byte cartridge. SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`. Sources and required contexts were audited
+in the live app, saved project and selected standalone build.
+
+The first full build rejected an unused tentative `AICollidedWithWall` definition in the
+flattened private header: IDO produced a symbol index unsupported by GNU ld. The original `ai.h`
+declares it `extern`; restoring that actual declaration through the live context editor preserved
+the match without patching ELF indices or changing data placement. Application export diagnostics
+now catch a missing extended symbol-index table before reporting an object ready.
+
+### Six candidates remain unmatched
+
+| Function | Retained best score | Result of this pass |
+| --- | ---: | --- |
+| `func_80072144` / teleport slow movement | 51 | Private stack/declaration variants scored 51, 63 and 62. No new exact result. |
+| `func_800B0F18` / SDK `readVarLen` | 20 | Actual SDK body, integer types and equivalent arithmetic forms retain register-allocation differences. |
+| `func_800B13E8` / SDK `read16` | 20 | Actual SDK body and narrow/wide temporary alternatives were worse; saved source retained. |
+| `func_800A2420` / `__setUsptFromTempo` | 25 | Ordinary pointer-first C requires a move from an integer argument register; target uses the private pointer/float convention. |
+| `func_800AF4EC` / `_getVol` | 110 | Retained narrow integer inputs and bounded source-layout trials do not solve the private helper calling convention. |
+| `alSeqNew` | 185 | Actual SDK record and typed callee prototypes compile, scoring 338. The untyped draft's historical 185 was retained; it is not a verified match. |
+
+Non-exact private pairs do not overwrite working source/header/profile. Shared `you` claims can
+be used by other live sessions; a refused trial was left refused instead of releasing another
+session's claim. No assembly, target extents, comparison thresholds or data placement was changed.
+
+### Application work is separate from new coverage
+
+[decompdecomp PR #297](https://github.com/RetroReversing/decompdecomp/pull/297) adds actual static-helper
+discovery with original line directives, private source-boolean alternatives, include ABI correction,
+consensus callback binding hypotheses and bounded ROM-proven scalar-pool export repair.
+Its 182 focused tests include relocation-order regressions. Controlled compiler replays automatically
+recover the older sort match and the new audio-frame match from original helper context; the replays do not add coverage beyond the matches reported here.
+The replay exposed callback shadowing, which is fixed and regression-tested. The new app was exported
+to Downloads without restarting the user's installed app. This batch's new matches were verified
+through the existing live API; they are not a benchmark of the newly built automatic pass.

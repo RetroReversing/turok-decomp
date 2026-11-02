@@ -96,7 +96,7 @@ Subsequent live byte judging resolves or supersedes several historical leads bel
 | `0x8002AB68` | `func_8002AB68` | `CParticle__Advance` | `tengine/particle.c:1975` | Apply source symbol with address-preserving build verification |
 | `0x8002BF28` | `func_8002BF28` | `initAudio` | `tengine/audio.c:112` | Conflicting source candidates at multiple ROM addresses |
 | `0x8002C7DC` | `__scSchedule` | `__scSchedule` | `tengine/sched.c:744` | Already uses this source symbol |
-| `0x8002DA18` | `func_8002DA18` | `CUnindexedSet__PreAllocate` | `tengine/cart.c:671` | Tentative identity; preserve candidate name without declaring it canonical |
+| `0x8002DA18` | `func_8002DA18` | `CUnindexedSet__ConstructWithAllocatedBlock` | `tengine/cart.c:702` | Original five-argument constructor and inline count helper recovered exact code; older PreAllocate lead superseded |
 | `0x8002FBD0` | `func_8002FBD0` | `CScene__GetGridSections` | `tengine/scene.c:3052` | Apply source symbol with address-preserving build verification |
 | `0x80032BD8` | `func_80032BD8` | `CScene__DecompressInstances` | `tengine/scene.c:1436` | Tentative identity; preserve candidate name without declaring it canonical |
 | `0x800337BC` | `func_800337BC` | `CScene__DecompressCollision` | `tengine/scene.c:1203` | Apply source symbol with address-preserving build verification |
@@ -224,3 +224,11 @@ Candidates below remain attached to their ROM address; they are not renamed into
 - `0x800AF59C`: `CCamera__Code_CINEMATIC_TREX_KILL_TUROK` (`src/PR/tengine/cinecam.c`); `alEnvmixerPull` (`turoksnd/abi/env.c`)
 
 - `0x800B1EAC`: `alFxPull` (`turoksnd/abi/reverb.c`); `initAudio` (`src/PR/compmidi/audio.c`); `initAudio` (`src/PR/compmidi/audio2.c`); `initAudio` (`src/PR/newaudio/audio.c`); `initAudio` (`src/PR/newaudio/audio2.c`); `initAudio` (`src/PR/seqtest/audio.c`); `initAudio` (`src/PR/seqtest/audio2.c`); `initAudio` (`src/PR/simple/audio.c`); `initAudio` (`src/PR/tengine/audio.c`)
+
+
+### Additional exact source identities — 2 November 2026
+
+| Address name | Located original identity | Evidence |
+| --- | --- | --- |
+| `func_80072C14` | `AI_Make_SwimRetreat`, `tengine/ai.c:9120` | Original body/helper lines and retained typed context compile byte-identically and pass the full cartridge rebuild. |
+| `func_80060AE4` | `AI_KnifeTomahawkDamage`, `tengine/ai.c:5396` | Signed angle checks and verified sound-call binding compile byte-identically and pass the full rebuild. |

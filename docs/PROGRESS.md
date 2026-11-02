@@ -198,3 +198,13 @@ Full original-cartridge verification and persisted app/repository audits pass; t
 constant-pool export gap is unchanged. CPU changes in PR #293 separately reproduce four known
 matches in controlled replays and are not counted as new coverage here.
 See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#scene-cinematics-sort-and-boss-context--2-november-2026).
+
+
+## Inline statement lines, original source lines and angle checks — 2 November 2026
+
+Four of ten investigated live-API candidates match exactly, adding **3,428 bytes** and
+**0.547593 percentage points**. Standalone selection reaches **2,281 C functions /
+554,496 bytes (88.575938%)**. The app retains **2,282 persisted exact matches /
+555,276 bytes (88.700536%)**, **65 open** and **59 assembly candidates**.
+Full original-cartridge verification and saved source/context audits pass. The older 780-byte
+constant-pool export gap remains separate. See [the session report](SOURCE_ASSISTED_CHECKPOINT.md#inline-statement-lines-original-source-lines-and-angle-checks--2-november-2026).

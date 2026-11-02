@@ -4180,9 +4180,10 @@
       "name": "code_80029A10/func_8002DA18",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002DA18.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80029A10/func_8002DA18.c"
+      },
+      "base_path": "build/src/code_80029A10/func_8002DA18.o"
     },
     {
       "name": "code_80029A10/func_8002DA8C",
@@ -11196,9 +11197,10 @@
       "name": "code_8005C8BC/func_80060AE4",
       "target_path": "build/asm/nonmatchings/code_8005C8BC/func_80060AE4.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8005C8BC/func_80060AE4.c"
+      },
+      "base_path": "build/src/code_8005C8BC/func_80060AE4.o"
     },
     {
       "name": "code_8005C8BC/func_80061448",
@@ -14969,9 +14971,10 @@
       "name": "code_80070D48/func_80072C14",
       "target_path": "build/asm/nonmatchings/code_80070D48/func_80072C14.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80070D48/func_80072C14.c"
+      },
+      "base_path": "build/src/code_80070D48/func_80072C14.o"
     },
     {
       "name": "code_80070D48/func_80072D08",
@@ -19958,9 +19961,10 @@
       "name": "code_80098440/alAudioFrame",
       "target_path": "build/asm/nonmatchings/code_80098440/alAudioFrame.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80098440/alAudioFrame.c"
+      },
+      "base_path": "build/src/code_80098440/alAudioFrame.o"
     },
     {
       "name": "code_80098440/alSynNew",
