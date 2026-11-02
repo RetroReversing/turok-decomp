@@ -168,7 +168,12 @@
     "src/code_80001300/func_800061C4.c": "be2d1e32d762c184916428b7dc90e112771fb0d213a1f6596e4ff6ad433cf131",
     "src/code_80009A38/func_80009B24.c": "0f471b219bf39e361598b2d84634d146c4bafcbd4de2bc801774e271bc47b6cf",
     "src/code_80009A38/func_8000C04C.c": "7246cd515f7977c25d53022fbcff224b6c3c260d0180059e38bd9c3561b16056",
-    "src/code_80001300/func_8000658C.c": "7eab3ecc326a711fe1961737be5c57fcf9866631a10f0214107b9491bf967562"
+    "src/code_80001300/func_8000658C.c": "7eab3ecc326a711fe1961737be5c57fcf9866631a10f0214107b9491bf967562",
+    "src/code_8002F784/func_8003F804.c": "ae1dc778b1ccb703ae6f7656fa99c4a3bd1771a106e746d4a9525354ad0e19c5",
+    "src/code_8002F784/func_800398FC.c": "f8a47012d11f2a20ebe9cfc97f2eb1cb6785d6b13f7a148efd3bc4f3be29f6a3",
+    "src/code_8002F784/func_80033CDC.c": "116b85afea25734482c92fd591f27f8efe18d138a088b1f04ef0ec2481c8ad92",
+    "src/code_8002F784/func_80035438.c": "c8fe4c08ef509040aa143c7b228d97386fddda9cd7efa31806fc42d5b682efaf",
+    "src/code_80063630/func_8006A654.c": "910e8bb396c6211dfa19e7f9b78423a5390d4ddaa607221fd5eea749975607f5"
   },
   "accepted": [
     "_Litob",
@@ -275,10 +280,15 @@
     "func_8002DD90",
     "func_8002FBD0",
     "func_800318D0",
+    "func_80033CDC",
+    "func_80035438",
+    "func_800398FC",
+    "func_8003F804",
     "func_800474F8",
     "func_8004F74C",
     "func_8005EED0",
     "func_8006905C",
+    "func_8006A654",
     "func_80070DA8",
     "func_80072D08",
     "func_80074A74",
@@ -342,10 +352,14 @@
   ],
   "skipped": [
     {
+      "function": "func_80047AA0",
+      "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
+    },
+    {
       "function": "func_800587B8",
       "reason": "The candidate has non-contiguous constant pools. Reference existing ROM data separately or split the pools before standalone export."
     }
   ],
   "verified_build": true,
-  "matched_app": 2272
+  "matched_app": 2278
 }

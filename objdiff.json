@@ -4797,9 +4797,10 @@
       "name": "code_8002F784/func_80033CDC",
       "target_path": "build/asm/nonmatchings/code_8002F784/func_80033CDC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/func_80033CDC.c"
+      },
+      "base_path": "build/src/code_8002F784/func_80033CDC.o"
     },
     {
       "name": "code_8002F784/func_80033F64",
@@ -5066,9 +5067,10 @@
       "name": "code_8002F784/func_80035438",
       "target_path": "build/asm/nonmatchings/code_8002F784/func_80035438.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/func_80035438.c"
+      },
+      "base_path": "build/src/code_8002F784/func_80035438.o"
     },
     {
       "name": "code_8002F784/func_800356E0",
@@ -5533,9 +5535,10 @@
       "name": "code_8002F784/func_800398FC",
       "target_path": "build/asm/nonmatchings/code_8002F784/func_800398FC.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/func_800398FC.c"
+      },
+      "base_path": "build/src/code_8002F784/func_800398FC.o"
     },
     {
       "name": "code_8002F784/func_80039B98",
@@ -6306,9 +6309,10 @@
       "name": "code_8002F784/func_8003F804",
       "target_path": "build/asm/nonmatchings/code_8002F784/func_8003F804.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/func_8003F804.c"
+      },
+      "base_path": "build/src/code_8002F784/func_8003F804.o"
     },
     {
       "name": "code_8002F784/func_8003F9B8",
@@ -14349,9 +14353,10 @@
       "name": "code_80063630/func_8006A654",
       "target_path": "build/asm/nonmatchings/code_80063630/func_8006A654.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_80063630/func_8006A654.c"
+      },
+      "base_path": "build/src/code_80063630/func_8006A654.o"
     },
     {
       "name": "code_80063630/func_8006A8C8",
