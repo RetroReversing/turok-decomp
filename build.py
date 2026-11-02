@@ -64,7 +64,7 @@ def fail(msg: str) -> None:
 def run(argv: list[str]) -> None:
     res = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if res.returncode != 0:
-        fail(f"{' '.join(argv[:3])} ...\n{(res.stdout + res.stderr)[-3000:]}")
+        fail(f"{' '.join(argv[:3])} ... exited with {res.returncode}\n{(res.stdout + res.stderr)[-3000:]}")
 
 
 def binutils(tool: str) -> str:
@@ -301,8 +301,20 @@ def build_objects(todo: list[tuple[str, str, str]]) -> None:
                 names = {*B["symbols"], *(f["name"] for f in B["functions"])}
                 target.write_bytes(unmangle(target.read_bytes(), lambda n: n in names or bool(AUTO_NAME.match(n))))  # noqa: B023  called within this pass of the loop
             declare_o32_abi(target, compiler)
-            trim(target)
-            weaken_data(obj)
+            entry=next((f for f in B['functions'] if c_source(f)==src),None)
+            if entry and entry.get('entry_only'):
+                normalize_entry(entry,target)
+            else:
+                trim(target)
+                weaken_data(obj)
+
+
+def normalize_entry(fn, path):
+    """Matching-only extraction, recompiled and rejudged every build; never copies target instructions."""
+    from export_entry import write
+
+    try:write(ROOT,B,fn,path)
+    except ValueError as error:fail(str(error))
 
 
 def weaken_data(obj: str) -> None:
@@ -462,7 +474,7 @@ def build() -> bool:
     objs = sorted({obj for _, _, obj in todo} | {obj for _, obj in gaps})
     # the objects in a response file: a PSP game with its modules has 48,000 functions, past the command line's limit
     (ROOT / "build" / "objects.txt").write_text("\n".join(objs) + "\n", encoding="utf-8")
-    run([binutils("ld"), *B["ld_flags"], "-T", "build/game.ld", "-o", "build/game.elf", "@build/objects.txt"])
+    run([binutils("ld"), "--no-keep-memory", *B["ld_flags"], "-T", "build/game.ld", "-o", "build/game.elf", "@build/objects.txt"])
     run([binutils("objcopy"), "-O", "binary", *binary_image_options(ROOT / "build/game.elf"),
          "build/game.elf", B["output"]])
     out, base = (ROOT / B["output"]).read_bytes(), (ROOT / B["image"]).read_bytes()
@@ -539,7 +551,13 @@ def check(name: str) -> bool:
             print(f"  - {p}")
         return False
     fn["c"] = src
-    fn["own"] = {sec: min(a - o for o, a in offs.items()) for sec, offs in linked.placements.items()}
+    from decompnet.rom.export import _section_bases, _single_definition
+    _,problem=_section_bases(linked.placements)
+    if fn.get('entry_only') or problem or not _single_definition(res.obj,name):
+        fn['entry_only']=True
+        fn['own']={}
+    else:
+        fn['own'] = {sec: min(a - o for o, a in offs.items()) for sec, offs in linked.placements.items()}
     (ROOT / "build.json").write_text(json.dumps(B, indent=1), encoding="utf-8")
     print(f"{name}: identical to the original; recorded in build.json")
     return True
