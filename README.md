@@ -8,7 +8,7 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 - The live app has **2,282 saved isolated matches / 555,276 bytes (88.701%)**, **65 open candidates** and **59 candidates set aside as assembly**. Its one additional match has unresolved standalone constant-pool placement.
 - The standalone export has **2,407 build entries**, including two padding labels; **126 entries use assembly**.
 - A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- The latest ten-candidate live-API session added **six matches / 4,252 bytes**. All six passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#scene-cinematics-sort-and-boss-context--2-november-2026).
+- The latest ten-candidate live-API session added **four matches / 3,428 bytes**. All four passed individual checks and the complete cartridge rebuild, and their sources and contexts are persisted in the app. See [checkpoint provenance](docs/SOURCE_ASSISTED_CHECKPOINT.md#inline-statement-lines-original-source-lines-and-angle-checks--2-november-2026).
 
 The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
 
