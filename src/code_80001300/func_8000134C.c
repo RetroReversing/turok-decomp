@@ -1,4 +1,4 @@
-#include "decompdecomp_sync_716ca3dd917fcfe5a9b6.h"
+#include "decompdecomp_sync_4b7546230e1cb96ad526.h"
 #line 1 "func.c"
 void func_80001CD4(CEngineApp *); int func_80001D30(CEngineApp *,s32);
 void func_80001300(void) {
@@ -114,7 +114,7 @@ void func_8000134C(void *pArg)
 			// wait for 1 second for display lists to finish up
 			startTime = osGetTime();
 
-			while ((func_8009DA98(CYCLES_TO_NSEC(osGetTime() - startTime))/1000000) < 2);
+			while ((__ull_to_f(CYCLES_TO_NSEC(osGetTime() - startTime))/1000000) < 2);
 
 			if (D_80000300 == 0)
 				osViSetMode(&osViModeTable[OS_VI_PAL_HPF1]);

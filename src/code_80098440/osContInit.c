@@ -21,8 +21,8 @@ s32 func_800A8590(s32,void*);void __osPackRequestData(u8);void func_8009EDC8(u8*
 #define __osSiRawStartDma func_800A8590
 #define __osContGetInitData func_8009EDC8
 #define __osSiCreateAccessQueue func_800A84D0
-u64 func_8009D3C8(u64,u64);
-#define OS_USEC_TO_CYCLES(n) func_8009D3C8((u64)(n)*D_800EE4D0,1000000ULL)
+u64 __ull_div(u64,u64);
+#define OS_USEC_TO_CYCLES(n) __ull_div((u64)(n)*D_800EE4D0,1000000ULL)
 #define MAXCONTROLLERS 4
 #define CONT_REQUEST 0
 #define OS_WRITE 1

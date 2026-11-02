@@ -1,4 +1,4 @@
-#include "decompdecomp_sync_afe3ade9227c5871be6a.h"
+#include "decompdecomp_sync_cc84322cd17378942502.h"
 #line 1 "func.c"
 #line 46 "reference.c"
 void
@@ -54,7 +54,7 @@ func_8009D620(void)
 	if (clock)
 		osClockRate = (u64) clock;
 
-	osClockRate = func_8009D3C8(__ll_mul(osClockRate, 3), 4);
+	osClockRate = __ull_div(__ll_mul(osClockRate, 3), 4);
 
 	/* zero out the NMI buffer if cold reset */
 	if (osResetType == 0) {

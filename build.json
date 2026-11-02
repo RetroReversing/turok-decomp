@@ -21,6 +21,96 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148204528,
+   "end": 2148204529
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O1",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148133840,
+   "end": 2148133841
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O1",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2148128288,
+   "end": 2148128289
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147664512,
+   "end": 2147664513
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147663656,
+   "end": 2147663657
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147488588,
+   "end": 2147488589
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O1",
     "-mips3",
     "-32",
@@ -32843,7 +32933,13 @@
   "func_800B1E94": 2148212372,
   "alFxPull": 2148212396,
   "lldiv": 2148213232,
-  "ldiv": 2148213488
+  "ldiv": 2148213488,
+  "__ull_div": 2148127688,
+  "__ll_div": 2148127852,
+  "__ull_divremi": 2148127992,
+  "__ll_rshift": 2148128244,
+  "__f_to_ull": 2148129176,
+  "__ull_to_f": 2148129432
  },
  "cartridge": {
   "image": "baserom.cartridge.z64",

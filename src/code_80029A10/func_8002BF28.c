@@ -1,4 +1,4 @@
-#include "decompdecomp_sync_07d6f128c5b8fa38b210.h"
+#include "decompdecomp_sync_e08c5317d33ee6ff47a3.h"
 #line 1 "func.c"
 #line 34 "reference.c"
 void func_8002BF28(OSSched *sc)
@@ -35,7 +35,7 @@ void func_8002BF28(OSSched *sc)
 		ASSERT(t->list.t.type == M_GFXTASK);
 
 		if (t->flags & OS_SC_LAST_TASK)
-			this_rsp_graphics_time += (func_8009DA98(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
+			this_rsp_graphics_time += (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
 
 	}
 	else
@@ -49,9 +49,9 @@ void func_8002BF28(OSSched *sc)
 			// RSP complete for graphics task
 			if (t->flags & OS_SC_LAST_TASK)
 			{
-				this_rsp_graphics_time += (func_8009DA98(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
+				this_rsp_graphics_time += (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
 				rsp_graphics_time = this_rsp_graphics_time;
-				rsp_total_time = (func_8009DA98(CYCLES_TO_NSEC(osGetTime() - rsp_start_time)))/1000000;
+				rsp_total_time = (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_start_time)))/1000000;
 
 				ret = osSendMesg(t->msgQ, t->msg, OS_MESG_NOBLOCK);
 				if (ret == -1)
@@ -68,7 +68,7 @@ void func_8002BF28(OSSched *sc)
 		}
 		else
 		{
-			rsp_audio_time = (func_8009DA98(CYCLES_TO_NSEC(osGetTime() - rsp_audio_start_time)))/1000000;
+			rsp_audio_time = (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_audio_start_time)))/1000000;
 
 			ret = osSendMesg(t->msgQ, t->msg, OS_MESG_NOBLOCK);
 			if (ret == -1)

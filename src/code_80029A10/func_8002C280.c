@@ -1,4 +1,4 @@
-#include "decompdecomp_sync_6c7ef17ab6e8220c3991.h"
+#include "decompdecomp_sync_0b4d8928c78c9ffcb7cd.h"
 #line 1 "func.c"
 #line 491 "reference.c"
 void func_8002C280(OSSched *sc)
@@ -23,7 +23,7 @@ void func_8002C280(OSSched *sc)
 	if (t->list.t.type == M_GFXTASK)
 	{
 		if (t->flags & OS_SC_LAST_TASK)
-			rdp_time = (func_8009DA98(CYCLES_TO_NSEC(osGetTime() - rdp_start_time)))/1000000;
+			rdp_time = (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rdp_start_time)))/1000000;
 
 		sc->curRDPTask = 0;
 

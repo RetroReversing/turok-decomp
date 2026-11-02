@@ -1,4 +1,4 @@
-#include "decompdecomp_sync_7ddde419f26a938225dd.h"
+#include "decompdecomp_sync_6dec8abb6d34ae0339d0.h"
 #line 1 "func.c"
 #line 19 "reference.c"
 void _Litob(_Pft *px, char code)
@@ -13,7 +13,7 @@ void _Litob(_Pft *px, char code)
 		ullval = -ullval;	/* safe against overflow */
 	if (ullval || px->prec)
 		ac[--i] = digs[func_8009D38C(ullval, base)];
-	px->v.ll = func_8009D3C8(ullval, base);
+	px->v.ll = __ull_div(ullval, base);
 	while (0 < px->v.ll && 0 < i) {	/* convert digits */
 		lldiv_t qr = lldiv(px->v.ll, (long long) base);
 
