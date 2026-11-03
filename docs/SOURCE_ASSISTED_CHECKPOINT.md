@@ -1492,3 +1492,36 @@ including the RNC-packed main program; SHA-1 remains
 `88916d5d2e2470f395ad8f4245d34138ef2d156a`. Saved sources/headers, selected C,
 repository-owned files and both-direction match-selection audits pass, with no
 app-only export gap and no progress save pending.
+
+
+## Scheduler extent and original assembly verification — 3 November 2026
+
+The 256-byte scheduler candidate omitted its original 56-byte epilogue. A reviewed
+normal join API correction restored the unchanged 312-byte extent; regenerated
+repository target bytes equal the live target. Actual C with three independently
+exact predecessors freshly matched through the app API and passed the complete
+original-cartridge rebuild. The former tail address is preserved as an internal
+linker symbol. The layout correction is recorded in commit `64cbd9b`.
+
+App and standalone selection now agree at **2,352 C entries /616,756 bytes
+(98.521434%)** of the unchanged 626,012 candidate bytes. The standalone manifest
+has 2,406 entries including padding, with 54 assembly fallbacks. The live project
+has **one open** candidate and **52 assembly** candidates. No export gap remains;
+saved C/header and repository ownership audits pass. Full cartridge SHA-1 remains
+`88916d5d2e2470f395ad8f4245d34138ef2d156a`.
+
+The user explicitly approved preserving verified original assembly rather than
+calling it matching C. Five formerly open routines were assembled from original
+source with installed IDO 5.3 and passed exact linked code/data checks: both thread
+queue helpers (including `func_800A5F34` / `__osPopThread`), `_bcopy`, `_bzero`,
+and `func_80098E28` / `adpcmDecodeSignal`. Their unchanged extents total 1,256
+bytes. They remain assembly and add no selected-C coverage. See
+[original-source assembly evidence](ASSEMBLY_VERIFICATION.md).
+
+`Campaigner_Update` / `func_8004D6FC` remains unmatched. A pure nonvolatile guard
+reordering improves its score 1190 → 775 through the ordinary live attempt API;
+the data/constant address issues resolve, but the first block's instruction
+ordering still differs. A five-minute deep CPU pass retained 775 after 185 tested
+variants. Its [source/header draft](../drafts/remaining-20261103/README.md) is kept
+out of the cartridge selection. This session does not claim the remaining C
+function is complete.

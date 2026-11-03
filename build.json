@@ -21,6 +21,21 @@
   {
    "toolchain": "ido-5.3",
    "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
+   "start": 2147662408,
+   "end": 2147662409
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
     "-O3",
     "-mips2",
     "-G",
@@ -9208,7 +9223,10 @@
    "seg": "code_80029A10",
    "vram": 2147662408,
    "rom": 8570696,
-   "asm": "asm/nonmatchings/code_80029A10/func_8002BA48.s"
+   "asm": "asm/nonmatchings/code_80029A10/func_8002BA48.s",
+   "c": "src/code_80029A10/func_8002BA48.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "func_8002BB80",
