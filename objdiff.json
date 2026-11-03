@@ -3761,14 +3761,6 @@
       }
     },
     {
-      "name": "code_80029A10/pad_8002BB48",
-      "target_path": "build/asm/nonmatchings/code_80029A10/pad_8002BB48.o",
-      "metadata": {
-        "complete": false,
-        "source_path": null
-      }
-    },
-    {
       "name": "code_80029A10/func_8002BB80",
       "target_path": "build/asm/nonmatchings/code_80029A10/func_8002BB80.o",
       "metadata": {

@@ -9211,13 +9211,6 @@
    "asm": "asm/nonmatchings/code_80029A10/func_8002BA48.s"
   },
   {
-   "name": "pad_8002BB48",
-   "seg": "code_80029A10",
-   "vram": 2147662664,
-   "rom": 8570952,
-   "asm": "asm/nonmatchings/code_80029A10/pad_8002BB48.s"
-  },
-  {
    "name": "func_8002BB80",
    "seg": "code_80029A10",
    "vram": 2147662720,

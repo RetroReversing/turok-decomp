@@ -1,4 +1,4 @@
-# Scheduler boundary proposal — not applied
+# Scheduler boundary correction — applied 3 November 2026
 
 `func_8002BA48` currently covers 256 bytes. The adjacent 56-byte `pad_8002BB48`
 contains two NOPs followed by the exact RA/S0–S7/FP restores and 0x58-byte stack
@@ -17,3 +17,16 @@ through the app's normal join/boundary API, regeneration of the standalone layou
 and the full original-cartridge rebuild are required before promotion. Do not
 change the target simply to remove a mismatch; preserve these original extents
 and the correction evidence in the history.
+
+
+## Reviewed correction
+
+The normal authenticated join API combined the two unchanged pieces on 3 November.
+Its history records the prologue/epilogue, original contiguous bytes and source
+evidence. The merged 312-byte function freshly passed the live byte/data judge
+with the three independently exact real predecessors. Repository symbol extents
+and target splitting were regenerated from the original ROM: the new target
+compares byte-for-byte with the live 312-byte extent. The internal former tail
+address remains in the linker symbol map. Full cartridge verification of the C
+selection follows in the session checkpoint; this layout-only commit does not
+yet count the new C selection in the repository totals.
