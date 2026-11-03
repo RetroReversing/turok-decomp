@@ -30,6 +30,21 @@
     "-Wab,-r4300_mul"
    ],
    "timeout": 20,
+   "start": 2147800828,
+   "end": 2147800829
+  },
+  {
+   "toolchain": "ido-5.3",
+   "flags": [
+    "-O2",
+    "-mips2",
+    "-G",
+    "0",
+    "-non_shared",
+    "-Xcpluscomm",
+    "-Wab,-r4300_mul"
+   ],
+   "timeout": 20,
    "start": 2147662408,
    "end": 2147662409
   },
@@ -14436,7 +14451,10 @@
    "seg": "code_8002F784",
    "vram": 2147800828,
    "rom": 8709116,
-   "asm": "asm/nonmatchings/code_8002F784/Campaigner_Update.s"
+   "asm": "asm/nonmatchings/code_8002F784/Campaigner_Update.s",
+   "c": "src/code_8002F784/Campaigner_Update.c",
+   "entry_only": true,
+   "own": {}
   },
   {
    "name": "func_8004DACC",

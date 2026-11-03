@@ -8786,9 +8786,10 @@
       "name": "code_8002F784/Campaigner_Update",
       "target_path": "build/asm/nonmatchings/code_8002F784/Campaigner_Update.o",
       "metadata": {
-        "complete": false,
-        "source_path": null
-      }
+        "complete": true,
+        "source_path": "src/code_8002F784/Campaigner_Update.c"
+      },
+      "base_path": "build/src/code_8002F784/Campaigner_Update.o"
     },
     {
       "name": "code_8002F784/func_8004DACC",

@@ -1,4 +1,9 @@
-# Campaigner update — unmatched draft
+# Campaigner update — historical unmatched draft
+
+This draft has been superseded by the exact selected C in
+[`Campaigner_Update.c`](../../src/code_8002F784/Campaigner_Update.c). See
+[the final seven report](../../docs/FINAL_OPEN_FUNCTIONS.md). The draft below is
+retained as failed-experiment evidence, not the current project status.
 
 `func_8004D6FC` / `Campaigner_Update` improves from score 1190 to 775 with a
 reordering of pure nonvolatile guard predicates. The app accepted the improvement

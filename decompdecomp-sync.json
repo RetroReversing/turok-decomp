@@ -249,7 +249,8 @@
     "src/code_80098440/func_800A2E5C.c": "4c993abaa58ec438b4d2dfdcd39b658a345058ab9f7fa8732da2e19492b68c8a",
     "src/code_80098440/func_800AE5C0.c": "00d5751ea53d6c834f6fc65d5d20f00d75486dfd3d14382f20343a9bc7748ac8",
     "src/code_80098440/func_800AB6AC.c": "5efa59a51abf6bbf25868d7b339dcd60558b4f594b87758216f00a2f12f5d458",
-    "src/code_80029A10/func_8002BA48.c": "d5ea44c265560449f9cd4c2c903cff9f42a476db9b6bfa0261d0dc9ed81165cd"
+    "src/code_80029A10/func_8002BA48.c": "d5ea44c265560449f9cd4c2c903cff9f42a476db9b6bfa0261d0dc9ed81165cd",
+    "src/code_8002F784/Campaigner_Update.c": "9ffa3246d4ac7f0b1a559aef6a1b34ff8a5b66760ed3b819680543c259c830ec"
   },
   "accepted": [
     "_Ldtob",
@@ -384,6 +385,7 @@
     "func_800474F8",
     "func_80047AA0",
     "func_8004D218",
+    "func_8004D6FC",
     "func_8004F74C",
     "func_800587B8",
     "func_8005EA80",
@@ -504,5 +506,5 @@
   ],
   "skipped": [],
   "verified_build": true,
-  "matched_app": 2352
+  "matched_app": 2353
 }

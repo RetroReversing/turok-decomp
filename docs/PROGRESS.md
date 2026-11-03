@@ -381,3 +381,16 @@ ordering still differs. A five-minute deep CPU pass retained 775 after 185 teste
 variants. Its [source/header draft](../drafts/remaining-20261103/README.md) is kept
 out of the cartridge selection. This session does not claim the remaining C
 function is complete.
+
+## Final seven resolved — 3 November 2026
+
+`Campaigner_Update` now matches all 976 bytes through the live app API using its
+real, independently exact constructor as compiler context. Normal repository sync
+accepted it with no skipped functions and passed the complete original-cartridge
+build. The app now has **zero open functions**, **2,353 exact C matches /617,732
+bytes (98.677342%)**, and 52 assembly entries. The standalone manifest has 2,353 C
+and 53 assembly/padding fallbacks. The five formerly open original assembly
+routines remain verified assembly, as explicitly requested; they are not C matches.
+
+See [the final seven report](FINAL_OPEN_FUNCTIONS.md) for the compiler-context
+finding, scope and cartridge verification. The previous 775-score draft is historical.

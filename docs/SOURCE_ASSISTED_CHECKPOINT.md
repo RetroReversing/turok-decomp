@@ -1525,3 +1525,13 @@ ordering still differs. A five-minute deep CPU pass retained 775 after 185 teste
 variants. Its [source/header draft](../drafts/remaining-20261103/README.md) is kept
 out of the cartridge selection. This session does not claim the remaining C
 function is complete.
+
+## Final Campaigner update match — 3 November 2026
+
+The previously unmatched update now passes exact code/data checks with its real,
+already-matched constructor as address-taking compiler context. Both bodies are
+independently exact; only the 976-byte update is newly selected. Live promotion,
+normal repository sync and the complete cartridge build pass, with no skipped
+functions. The live project has zero open functions and 2,353 exact C matches
+(617,732 bytes, 98.677342%). Original hand-written routines remain assembly.
+See [the final seven report](FINAL_OPEN_FUNCTIONS.md) for evidence and limitations.
