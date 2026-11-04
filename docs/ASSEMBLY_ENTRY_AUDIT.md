@@ -5,6 +5,10 @@ and a read-only view of the live app. This is a classification audit, not a new
 matching session: no targets, statuses, extents, source selections or compiler
 settings were changed.
 
+## Follow-up recovery
+
+The eleven fragments below have since been expanded and reopened through the live API. See [the code recovery audit](CODE_RECOVERY_AUDIT.md) for full extents, raw-region leads and discovery validation. The table below preserves the original audit checkpoint.
+
 ## Conclusion
 
 **The 52 assembly-status entries are not all confirmed handwritten assembly.**

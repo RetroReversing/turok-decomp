@@ -67,8 +67,6 @@ segments:
   - - 8431416
     - c
     - code_80009A38
-- type: bin
-  start: 8485360
 - name: code_80017F0C
   type: code
   start: 8489996
@@ -78,7 +76,7 @@ segments:
     - c
     - code_80017F0C
 - type: bin
-  start: 8531536
+  start: 8537280
 - name: code_800258D0
   type: code
   start: 8545744
@@ -107,8 +105,6 @@ segments:
   - - 8562448
     - c
     - code_80029A10
-- type: bin
-  start: 8581616
 - name: code_8002F784
   type: code
   start: 8586372
@@ -117,8 +113,6 @@ segments:
   - - 8586372
     - c
     - code_8002F784
-- type: bin
-  start: 8730832
 - name: code_80054AC8
   type: code
   start: 8738760
@@ -127,8 +121,6 @@ segments:
   - - 8738760
     - c
     - code_80054AC8
-- type: bin
-  start: 8758944
 - name: code_8005A634
   type: code
   start: 8762164
@@ -137,8 +129,6 @@ segments:
   - - 8762164
     - c
     - code_8005A634
-- type: bin
-  start: 8767088
 - name: code_8005C8BC
   type: code
   start: 8771004
@@ -157,8 +147,6 @@ segments:
   - - 8799024
     - c
     - code_80063630
-- type: bin
-  start: 8833424
 - name: code_80070D48
   type: code
   start: 8854088
@@ -167,8 +155,6 @@ segments:
   - - 8854088
     - c
     - code_80070D48
-- type: bin
-  start: 8871776
 - name: code_80076218
   type: code
   start: 8875800
@@ -177,8 +163,6 @@ segments:
   - - 8875800
     - c
     - code_80076218
-- type: bin
-  start: 8939264
 - name: code_80087228
   type: code
   start: 8945448
@@ -187,8 +171,6 @@ segments:
   - - 8945448
     - c
     - code_80087228
-- type: bin
-  start: 8987344
 - name: code_80093090
   type: code
   start: 8994192
@@ -197,8 +179,6 @@ segments:
   - - 8994192
     - c
     - code_80093090
-- type: bin
-  start: 9009024
 - name: code_80098440
   type: code
   start: 9015616

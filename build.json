@@ -4892,13 +4892,8 @@
   },
   {
    "kind": "asm",
-   "src": "asm/bin/8179F0.s",
-   "obj": "build/asm/bin/8179F0.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/822E50.s",
-   "obj": "build/asm/bin/822E50.o"
+   "src": "asm/bin/8244C0.s",
+   "obj": "build/asm/bin/8244C0.o"
   },
   {
    "kind": "asm",
@@ -4912,53 +4907,8 @@
   },
   {
    "kind": "asm",
-   "src": "asm/bin/82F1F0.s",
-   "obj": "build/asm/bin/82F1F0.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/8538D0.s",
-   "obj": "build/asm/bin/8538D0.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/85A6A0.s",
-   "obj": "build/asm/bin/85A6A0.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/85C670.s",
-   "obj": "build/asm/bin/85C670.o"
-  },
-  {
-   "kind": "asm",
    "src": "asm/bin/862EA0.s",
    "obj": "build/asm/bin/862EA0.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/86C990.s",
-   "obj": "build/asm/bin/86C990.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/875F60.s",
-   "obj": "build/asm/bin/875F60.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/886700.s",
-   "obj": "build/asm/bin/886700.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/8922D0.s",
-   "obj": "build/asm/bin/8922D0.o"
-  },
-  {
-   "kind": "asm",
-   "src": "asm/bin/897780.s",
-   "obj": "build/asm/bin/897780.o"
   },
   {
    "kind": "asm",
@@ -5047,7 +4997,7 @@
    "name": "code_80009A38",
    "kind": "code",
    "start": 8431416,
-   "end": 8485360,
+   "end": 8489996,
    "vram": 2147523128,
    "bss_vram": null,
    "bss_size": 0,
@@ -5055,20 +5005,10 @@
    "bss": []
   },
   {
-   "name": "seg_8179F0",
-   "kind": "raw",
-   "start": 8485360,
-   "objects": [
-    "build/asm/bin/8179F0.o"
-   ],
-   "stub": "asm/bin/8179F0.s",
-   "incbin": "assets/8179F0.bin"
-  },
-  {
    "name": "code_80017F0C",
    "kind": "code",
    "start": 8489996,
-   "end": 8531536,
+   "end": 8537280,
    "vram": 2147581708,
    "bss_vram": null,
    "bss_size": 0,
@@ -5076,14 +5016,14 @@
    "bss": []
   },
   {
-   "name": "seg_822E50",
+   "name": "seg_8244C0",
    "kind": "raw",
-   "start": 8531536,
+   "start": 8537280,
    "objects": [
-    "build/asm/bin/822E50.o"
+    "build/asm/bin/8244C0.o"
    ],
-   "stub": "asm/bin/822E50.s",
-   "incbin": "assets/822E50.bin"
+   "stub": "asm/bin/8244C0.s",
+   "incbin": "assets/8244C0.bin"
   },
   {
    "name": "code_800258D0",
@@ -5131,7 +5071,7 @@
    "name": "code_80029A10",
    "kind": "code",
    "start": 8562448,
-   "end": 8581616,
+   "end": 8586372,
    "vram": 2147654160,
    "bss_vram": null,
    "bss_size": 0,
@@ -5139,20 +5079,10 @@
    "bss": []
   },
   {
-   "name": "seg_82F1F0",
-   "kind": "raw",
-   "start": 8581616,
-   "objects": [
-    "build/asm/bin/82F1F0.o"
-   ],
-   "stub": "asm/bin/82F1F0.s",
-   "incbin": "assets/82F1F0.bin"
-  },
-  {
    "name": "code_8002F784",
    "kind": "code",
    "start": 8586372,
-   "end": 8730832,
+   "end": 8738760,
    "vram": 2147678084,
    "bss_vram": null,
    "bss_size": 0,
@@ -5160,20 +5090,10 @@
    "bss": []
   },
   {
-   "name": "seg_8538D0",
-   "kind": "raw",
-   "start": 8730832,
-   "objects": [
-    "build/asm/bin/8538D0.o"
-   ],
-   "stub": "asm/bin/8538D0.s",
-   "incbin": "assets/8538D0.bin"
-  },
-  {
    "name": "code_80054AC8",
    "kind": "code",
    "start": 8738760,
-   "end": 8758944,
+   "end": 8762164,
    "vram": 2147830472,
    "bss_vram": null,
    "bss_size": 0,
@@ -5181,35 +5101,15 @@
    "bss": []
   },
   {
-   "name": "seg_85A6A0",
-   "kind": "raw",
-   "start": 8758944,
-   "objects": [
-    "build/asm/bin/85A6A0.o"
-   ],
-   "stub": "asm/bin/85A6A0.s",
-   "incbin": "assets/85A6A0.bin"
-  },
-  {
    "name": "code_8005A634",
    "kind": "code",
    "start": 8762164,
-   "end": 8767088,
+   "end": 8771004,
    "vram": 2147853876,
    "bss_vram": null,
    "bss_size": 0,
    "pieces": [],
    "bss": []
-  },
-  {
-   "name": "seg_85C670",
-   "kind": "raw",
-   "start": 8767088,
-   "objects": [
-    "build/asm/bin/85C670.o"
-   ],
-   "stub": "asm/bin/85C670.s",
-   "incbin": "assets/85C670.bin"
   },
   {
    "name": "code_8005C8BC",
@@ -5236,7 +5136,7 @@
    "name": "code_80063630",
    "kind": "code",
    "start": 8799024,
-   "end": 8833424,
+   "end": 8854088,
    "vram": 2147890736,
    "bss_vram": null,
    "bss_size": 0,
@@ -5244,20 +5144,10 @@
    "bss": []
   },
   {
-   "name": "seg_86C990",
-   "kind": "raw",
-   "start": 8833424,
-   "objects": [
-    "build/asm/bin/86C990.o"
-   ],
-   "stub": "asm/bin/86C990.s",
-   "incbin": "assets/86C990.bin"
-  },
-  {
    "name": "code_80070D48",
    "kind": "code",
    "start": 8854088,
-   "end": 8871776,
+   "end": 8875800,
    "vram": 2147945800,
    "bss_vram": null,
    "bss_size": 0,
@@ -5265,20 +5155,10 @@
    "bss": []
   },
   {
-   "name": "seg_875F60",
-   "kind": "raw",
-   "start": 8871776,
-   "objects": [
-    "build/asm/bin/875F60.o"
-   ],
-   "stub": "asm/bin/875F60.s",
-   "incbin": "assets/875F60.bin"
-  },
-  {
    "name": "code_80076218",
    "kind": "code",
    "start": 8875800,
-   "end": 8939264,
+   "end": 8945448,
    "vram": 2147967512,
    "bss_vram": null,
    "bss_size": 0,
@@ -5286,20 +5166,10 @@
    "bss": []
   },
   {
-   "name": "seg_886700",
-   "kind": "raw",
-   "start": 8939264,
-   "objects": [
-    "build/asm/bin/886700.o"
-   ],
-   "stub": "asm/bin/886700.s",
-   "incbin": "assets/886700.bin"
-  },
-  {
    "name": "code_80087228",
    "kind": "code",
    "start": 8945448,
-   "end": 8987344,
+   "end": 8994192,
    "vram": 2148037160,
    "bss_vram": null,
    "bss_size": 0,
@@ -5307,35 +5177,15 @@
    "bss": []
   },
   {
-   "name": "seg_8922D0",
-   "kind": "raw",
-   "start": 8987344,
-   "objects": [
-    "build/asm/bin/8922D0.o"
-   ],
-   "stub": "asm/bin/8922D0.s",
-   "incbin": "assets/8922D0.bin"
-  },
-  {
    "name": "code_80093090",
    "kind": "code",
    "start": 8994192,
-   "end": 9009024,
+   "end": 9015616,
    "vram": 2148085904,
    "bss_vram": null,
    "bss_size": 0,
    "pieces": [],
    "bss": []
-  },
-  {
-   "name": "seg_897780",
-   "kind": "raw",
-   "start": 9009024,
-   "objects": [
-    "build/asm/bin/897780.o"
-   ],
-   "stub": "asm/bin/897780.s",
-   "incbin": "assets/897780.bin"
   },
   {
    "name": "code_80098440",
