@@ -22,6 +22,24 @@ Original source/object evidence informed boundary review. The direct-flow scanne
 | `func_800915C4` | 6,860 |
 | `func_80096A74` | 6,604 |
 
+## Verified source-assisted matches after recovery
+
+Seven full functions passed the live app's ordinary exact linked byte/data judge and were saved with their required private headers and function compiler settings:
+
+| Entry | Located source routine | Matched bytes |
+| --- | --- | ---: |
+| `func_80016CE8` | `CGameObjectInstance__DoDraw` | 4,644 |
+| `func_80022148` | `CGeometry__Decompress` | 5,752 |
+| `func_8002E4EC` | `CScene__DrawSky` | 4,760 |
+| `func_80059994` | `CTMove__FireBullet` | 3,232 |
+| `func_8005B964` | `CTMove__ControlSwimMovement` | 3,928 |
+| `func_8006BC88` | `AI_Single_Event` | 20,672 |
+| `CPause__DrawBar` | `CPause__DrawBar` | 6,192 |
+
+This adds **49,180 verified C bytes**. The app now has **2,360 matched entries / 666,912 bytes** out of **700,524 detected bytes (95.2019%)**, with four open C candidates and 41 assembly-status entries (8,180 bytes). The lower percentage than the earlier fragment-based result reflects the corrected denominator.
+
+The four still-open recovered candidates are `func_80052BCC` (`CTMove__UpdateTurokInstance`), `func_80075254` (`AI_Advance`), `func_800915C4` (`CPickup_Pickup`) and `func_80096A74` (`DoDrawMap`). Their full boundaries are recovered; their C is not yet accepted. Prepared candidates still need declaration/symbol work or instruction-level matching. They must not be counted as finished assembly or matched C.
+
 ## Every raw interval was scanned
 
 These are the **pre-recovery** raw intervals. Candidates are review leads, not proven independent functions or automatically imported code. Each interval was scanned independently so a busy interval could not hide results from the others.
@@ -61,3 +79,5 @@ The complete demo ELF supplied 96 ground-truth functions. A deterministic size-s
 | Truncated and misclassified assembly | 24 | 24 |
 
 Across these 72 cases, no candidate started outside a ground-truth function body, and no search limit was reached. Detection includes a boundary warning or continuation lead; it does not establish exact function boundaries or a C match. This small, deliberately constructed benchmark is a regression check, not a guarantee for arbitrary retail games.
+
+The live repository-sync job verified and published all seven new matches with no skipped candidates, together with verified updates to four already matched functions. The complete repository build passed the cartridge comparison. Saved progress was checked independently: all eleven full sizes and all seven accepted source files persisted, and progress synchronization finished.

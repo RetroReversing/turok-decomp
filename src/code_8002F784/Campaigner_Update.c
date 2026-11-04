@@ -1,4 +1,4 @@
-#include "decompdecomp_sync_0db7af2886ab859d2b6d.h"
+#include "decompdecomp_sync_90656d858d8223124649.h"
 #line 1 "func.c"
 /* Declare the callback before the constructor that stores its address. */
 void Campaigner_Update(CGameObjectInstance *, CCampaigner *);
