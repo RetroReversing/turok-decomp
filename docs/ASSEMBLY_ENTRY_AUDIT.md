@@ -7,7 +7,7 @@ settings were changed.
 
 ## Follow-up recovery
 
-The eleven fragments below have since been expanded and reopened through the live API. See [the code recovery audit](CODE_RECOVERY_AUDIT.md) for full extents, raw-region leads and discovery validation. The table below preserves the original audit checkpoint.
+The eleven fragments below have since been expanded through the live API and all eleven now have full-extent exact C matches; see [the final follow-up](REMAINING_C_MATCHES.md). See [the code recovery audit](CODE_RECOVERY_AUDIT.md) for full extents, raw-region leads and discovery validation. The table below preserves the original audit checkpoint.
 
 ## Conclusion
 

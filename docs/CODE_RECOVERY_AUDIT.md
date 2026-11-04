@@ -1,5 +1,9 @@
 # Reviewed code recovery and raw-region audit
 
+## Latest matching follow-up
+
+All four remaining recovered C candidates have since matched. See [the final four-match report](REMAINING_C_MATCHES.md) for the retail/source differences, verified compiler context and updated coverage. The recovery checkpoint below is retained as history.
+
 ## Scope and result — 4 November 2026
 
 The eleven assembly-status fragments identified in [the assembly audit](ASSEMBLY_ENTRY_AUDIT.md) were reviewed and expanded through the live app's authenticated recovery API. Their original prefixes were unchanged. A private Splat run retained exactly the reviewed extents, with every instruction byte checked against the frozen expanded ROM. Recovery reopened these entries as C candidates; it did not infer matches.

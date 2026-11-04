@@ -257,7 +257,11 @@
     "src/code_80063630/func_8006BC88.c": "0e4a5b69aa0d3dade7c67298a906170c287bc1f1fc37b045c9473c3617463efe",
     "src/code_8005A634/func_8005B964.c": "ac99ba2edcb6914759b76f78d45d4209b691c0d31a9a76c11688d6630e11fe2c",
     "src/code_80029A10/func_8002E4EC.c": "90ba684ab2136154cac85703a0a3c906ec4ca989f29166c9275d1de359dbf279",
-    "src/code_80017F0C/func_80022148.c": "2c97640002ea8cd1aebbac535c1670345e36932daa85ab7a2a7ded0e27c8772a"
+    "src/code_80017F0C/func_80022148.c": "2c97640002ea8cd1aebbac535c1670345e36932daa85ab7a2a7ded0e27c8772a",
+    "src/code_8002F784/func_80052BCC.c": "03f5816d7cd9cf66da98dafda2cc35b38e0dcbda973faecea59694adaaf2eee7",
+    "src/code_80087228/func_800915C4.c": "c513d253b548061a5d7858f1453455dd0c28d74d5be95b9975a8a2b744fd3ceb",
+    "src/code_80070D48/func_80075254.c": "48a019b3247364563f643f9d4caacdc7dcfe99ca6dd4f9654c676d5c568384ef",
+    "src/code_80093090/func_80096A74.c": "0146b50351181ba66f35e8d9098e82e0edb31842eb370b30bc97cdb572455649"
   },
   "accepted": [
     "CPause__DrawBar",
@@ -398,6 +402,7 @@
     "func_8004D218",
     "func_8004D6FC",
     "func_8004F74C",
+    "func_80052BCC",
     "func_800587B8",
     "func_80059994",
     "func_8005B964",
@@ -423,6 +428,7 @@
     "func_80074E10",
     "func_80074F20",
     "func_80075090",
+    "func_80075254",
     "func_80077368",
     "func_80079540",
     "func_8007CDC0",
@@ -431,6 +437,8 @@
     "func_80087FC0",
     "func_80088124",
     "func_800888D4",
+    "func_800915C4",
+    "func_80096A74",
     "func_80099208",
     "func_8009A158",
     "func_8009A4D8",
@@ -520,5 +528,5 @@
   ],
   "skipped": [],
   "verified_build": true,
-  "matched_app": 2360
+  "matched_app": 2364
 }
