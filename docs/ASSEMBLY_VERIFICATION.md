@@ -46,3 +46,10 @@ The app history records the proof and the explicit assembly classification.
 `func_800A5F34` is `__osPopThread`: the near-match C draft had the same algorithm
 but a different temporary register. That was not evidence of a missing C algorithm.
 Keeping these routines as verified assembly accurately reflects how the game was built.
+
+## Audit of the remaining assembly classifications
+
+The [complete 52-entry audit](ASSEMBLY_ENTRY_AUDIT.md) distinguishes these five
+fresh proofs from archived-object corroboration and unresolved source versions.
+It also identifies eleven truncated C candidates that must not be treated as
+confirmed original assembly. Assembly status alone is not provenance.

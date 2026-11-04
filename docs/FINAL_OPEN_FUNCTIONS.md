@@ -42,6 +42,15 @@ is extracted into its selected slot. The constructor is not exported twice or
 counted as a new match. A forward declaration in the C unit keeps the callback
 reference valid when export uses its proper source name.
 
+## Coverage audit correction — 4 November 2026
+
+The later [audit of all 52 assembly-status entries](ASSEMBLY_ENTRY_AUDIT.md)
+found eleven truncated C candidates followed by raw binary continuation blocks.
+The zero-open result below is a statement about the detected queue, not complete
+retail function discovery or whole-game matching. Those eleven entries must not
+be described as confirmed original assembly. The five fresh assembly proofs
+above remain valid.
+
 ## Persisted result and cartridge verification
 
 The exact pair was promoted through the live app API. Its export-safe declaration

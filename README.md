@@ -4,14 +4,14 @@ An **unfinished matching decompilation** of the European revision 0 release (`NT
 
 ## Current checkpoint
 
-- **2,352 functions selected in C**, covering **616,756 bytes**, or **98.5214% of the fixed 626,012 candidate-code bytes**.
-- The live app and standalone selection agree: **2,352 persisted matches**, **1 open candidate**, and **52 candidates set aside as assembly**. There is no remaining app-only export gap.
-- The standalone export has **2,406 build entries**, including padding labels; **54 entries use assembly**.
-- A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program.
-- **All 32 prepared private-unit candidates are now live matches and selected C**, adding **22,532 bytes /3.5993 percentage points** over the 2,319-function checkpoint. See [the preparation and promotion report](drafts/private-units-20261102/README.md).
-- The scheduler's split-off epilogue was reviewed and rejoined without changing ROM bytes; its full 312-byte C entry now matches. Five formerly open routines were freshly verified from original assembly and remain assembly. `Campaigner_Update` is the sole open C candidate, improved to score 775. See [assembly verification](docs/ASSEMBLY_VERIFICATION.md).
+- **2,353 functions selected in C**, covering **617,732 bytes**, or **98.677342% of the fixed 626,012 detected candidate-code bytes**. This is not whole-game coverage.
+- The live app has **2,353 persisted C matches**, **zero open entries**, and **52 entries classified as assembly**. The standalone export has **2,406 entries**, including padding labels, with **53 assembly fallbacks**.
+- **The assembly audit found 11 truncated C candidates among those 52 entries.** Their continuations are in raw binary blocks, so zero open entries does not mean the decompilation is finished. See the [52-entry evidence table](docs/ASSEMBLY_ENTRY_AUDIT.md).
+- Of the other 41 entries, five have fresh original-assembly linked code/data proofs, 35 have archived assembly object corroboration, and one exception-handler region has assembly source evidence but differs from the checked SDK revision.
+- A full build reproduced the **original 8,388,608-byte cartridge byte for byte**, including its RNC-packed main program. Raw binary preservation contributes to this equality.
+- All 32 prepared private-unit candidates are live matches and selected C; the final `Campaigner_Update` candidate also matched with its independently verified constructor as compiler context. See [the final candidate resolution](docs/FINAL_OPEN_FUNCTIONS.md).
 
-The build is a partial decompilation. An identical ROM does not mean that all of the game has been recovered as C. Candidate boundaries, types, and semantic names still need review; the detected-code figures are not whole-game coverage.
+The build is a **partial decompilation**. The eleven raw blocks immediately after the truncated entries total **82,976 bytes**, not yet classified completely as code/data; additional raw blocks also require coverage review. Candidate boundaries, types and semantic names still need review. An identical ROM does not establish complete source reconstruction.
 
 ## Build
 
@@ -44,7 +44,7 @@ The first build regenerates assembly and assets using splat. The final compariso
 
 ```text
 cartridge verified: 88916d5d2e2470f395ad8f4245d34138ef2d156a
-identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2352 of 2406 functions in C)
+identical: build/game.z64 matches baserom.cartridge.z64 byte for byte (2353 of 2406 functions in C)
 ```
 
 The link can take several minutes. On Apple Silicon the tested IDO tools run natively; installing the optional period KMC tools may require Rosetta. Windows users should use the equivalent environment executables under `.venv/Scripts/` and the fork's platform setup instructions.
