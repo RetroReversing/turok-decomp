@@ -56,18 +56,18 @@ BOOL func_80073FD8 ( CGameObjectInstance *pAI, float ang )
       
 		// turn around 180 degrees
 		if (AI_GetEA(pAI)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-			picked = func_8001C348(pAI, 6, turn180type2, turn180weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 6, turn180type2, turn180weight, NULL);
 		else
-			picked = func_8001C348(pAI, 6, turn180type1, turn180weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 6, turn180type1, turn180weight, NULL);
 
 		if (picked==-1)
 		{
-			func_80072110(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
+			AI_NudgeRotY(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
 			AI_GetDyn(pAI)->m_dwStatusFlags &= (~AI_WAITFOR_CYCLE);
 		}
 		else
 		{
-			func_8005FCA0(pAI, picked, FALSE);
+			AI_SetDesiredAnimByIndex(pAI, picked, FALSE);
 			AI_GetDyn(pAI)->m_dwStatusFlags       |= AI_WAITFOR_CYCLE;
 		}
 	}
@@ -78,18 +78,18 @@ BOOL func_80073FD8 ( CGameObjectInstance *pAI, float ang )
       
 		// turn left 90 degrees
 		if (AI_GetEA(pAI)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-			picked = func_8001C348(pAI, 3, turnl90type2, turnl90weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 3, turnl90type2, turnl90weight, NULL);
 		else
-			picked = func_8001C348(pAI, 3, turnl90type1, turnl90weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 3, turnl90type1, turnl90weight, NULL);
 
 		if (picked==-1)
 		{
-			func_80072110(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
+			AI_NudgeRotY(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
 			AI_GetDyn(pAI)->m_dwStatusFlags &= (~AI_WAITFOR_CYCLE);
 		}
 		else
 		{
-			func_8005FCA0(pAI, picked, FALSE);
+			AI_SetDesiredAnimByIndex(pAI, picked, FALSE);
 			AI_GetDyn(pAI)->m_dwStatusFlags       |= AI_WAITFOR_CYCLE;
 		}
 	}
@@ -100,18 +100,18 @@ BOOL func_80073FD8 ( CGameObjectInstance *pAI, float ang )
       
 		// Running
 		if (AI_GetEA(pAI)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-			picked = func_8001C348(pAI, 2, runtype2, runweight.values, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 2, runtype2, runweight.values, NULL);
 		else
-			picked = func_8001C348(pAI, 2, runtype1, runweight.values, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 2, runtype1, runweight.values, NULL);
 
 		if (picked==-1)
 		{
-			func_80072110(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
+			AI_NudgeRotY(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
 			AI_GetDyn(pAI)->m_dwStatusFlags &= (~AI_WAITFOR_CYCLE);
 		}
 		else
 		{
-			func_8005FCA0(pAI, picked, FALSE);
+			AI_SetDesiredAnimByIndex(pAI, picked, FALSE);
 			AI_GetDyn(pAI)->m_dwStatusFlags       &= (~AI_WAITFOR_CYCLE);
 			AI_GetDyn(pAI)->m_dwStatusFlags |= AI_RUNNING;
 		}
@@ -147,7 +147,7 @@ BOOL func_80073FD8 ( CGameObjectInstance *pAI, float ang )
       
 
 		// make ai turn a direction
-		func_80072110(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
+		AI_NudgeRotY(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
 
 		if ( ang>ANGLE_DTOR(-10) && ang<ANGLE_DTOR(10) )
 			return TRUE;
@@ -159,18 +159,18 @@ BOOL func_80073FD8 ( CGameObjectInstance *pAI, float ang )
       
 		// turn right 90 degrees
 		if (AI_GetEA(pAI)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-			picked = func_8001C348(pAI, 3, turnr90type2, turnr90weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 3, turnr90type2, turnr90weight, NULL);
 		else
-			picked = func_8001C348(pAI, 3, turnr90type1, turnr90weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 3, turnr90type1, turnr90weight, NULL);
 
 		if (picked==-1)
 		{
-			func_80072110(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
+			AI_NudgeRotY(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
 			AI_GetDyn(pAI)->m_dwStatusFlags &= (~AI_WAITFOR_CYCLE);
 		}
 		else
 		{
-			func_8005FCA0(pAI, picked, FALSE);
+			AI_SetDesiredAnimByIndex(pAI, picked, FALSE);
 			AI_GetDyn(pAI)->m_dwStatusFlags       |= AI_WAITFOR_CYCLE;
 		}
 	}
@@ -178,24 +178,24 @@ BOOL func_80073FD8 ( CGameObjectInstance *pAI, float ang )
 	{
 		// turn around 180 degrees
 		if (AI_GetEA(pAI)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-			picked = func_8001C348(pAI, 6, turn180type2, turn180weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 6, turn180type2, turn180weight, NULL);
 		else
-			picked = func_8001C348(pAI, 6, turn180type1, turn180weight, NULL);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 6, turn180type1, turn180weight, NULL);
 
 		if (picked==-1)
 		{
-			func_80072110(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
+			AI_NudgeRotY(pAI, D_800B6B00*ang/AI_RUNTURN_SMOOTHNESS);
 			AI_GetDyn(pAI)->m_dwStatusFlags &= (~AI_WAITFOR_CYCLE);
 		}
 		else
 		{
-			func_8005FCA0(pAI, picked, FALSE);
+			AI_SetDesiredAnimByIndex(pAI, picked, FALSE);
 			AI_GetDyn(pAI)->m_dwStatusFlags       |= AI_WAITFOR_CYCLE;
 		}
 	}
 
 
-	func_800144C8(&vDelta, &pAI->ah.ih.m_vPos, &CEngineApp__GetPlayer(GetApp())->ah.ih.m_vPos);
+	CVector3__Subtract(&vDelta, &pAI->ah.ih.m_vPos, &CEngineApp__GetPlayer(GetApp())->ah.ih.m_vPos);
 	dist = CVector3__Magnitude(&vDelta);
 
 	if (GetApp()->m_FarClip == 0)

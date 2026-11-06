@@ -7,7 +7,7 @@ static char zeroes[] = "00000000000000000000000000000000";
 
 static void gl_func_0006E224(_Pft *x, va_list *args, char type, char *buff);
 
-int func_800A7E80(outfun prout, char *arg, const char *fmt, va_list args) {
+int _Printf(outfun prout, char *arg, const char *fmt, va_list args) {
     _Pft x;
     
     x.nchar = 0;
@@ -203,7 +203,7 @@ static void gl_func_0006E224(_Pft *x, va_list *args, char type, char *buff) {
             break;
         case 's':
             x->s = va_arg(*args, char *);
-            x->n1 = func_8009FA7C(x->s);
+            x->n1 = strlen(x->s);
             
             if (x->prec >= 0 && x->prec < x->n1) {
                 x->n1 = x->prec;

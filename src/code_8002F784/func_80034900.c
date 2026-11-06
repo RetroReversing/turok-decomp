@@ -248,7 +248,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern void func_80083D94(unsigned char Bits[], int nBit, int Set);
+extern void SetBitStreamFlag(unsigned char Bits[], int nBit, int Set);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -965,15 +965,15 @@ typedef struct CBossData_t
  float m_ModeMisc1 ;
 } CBossData ;
 struct CCollisionInfo2_t;
-extern int func_80034868(CScene *pThis, CGameObjectInstance *pAnim);
-extern unsigned char* func_8003205C(CScene *pThis, int nLevel, int nBitstream);
-unsigned char* func_8003205C(CScene *pThis, int nLevel, int nBitstream);
-int func_80034868(CScene *pThis, CGameObjectInstance *pAnim);
+extern int CScene__GetAnimInstanceIndex(CScene *pThis, CGameObjectInstance *pAnim);
+extern unsigned char* CScene__GetPersistantBitstream(CScene *pThis, int nLevel, int nBitstream);
+unsigned char* CScene__GetPersistantBitstream(CScene *pThis, int nLevel, int nBitstream);
+int CScene__GetAnimInstanceIndex(CScene *pThis, CGameObjectInstance *pAnim);
 void func_80034900(CScene *pThis, CGameObjectInstance *pAnim, int Set);
 void func_80034900(CScene *pThis, CGameObjectInstance *pAnim, int Set){
  int index;
  unsigned char *pBitStream;
- index = func_80034868(pThis, pAnim);
- pBitStream = func_8003205C(pThis, pThis->m_nLevel, 1);
- func_80083D94(pBitStream, index, Set);
+ index = CScene__GetAnimInstanceIndex(pThis, pAnim);
+ pBitStream = CScene__GetPersistantBitstream(pThis, pThis->m_nLevel, 1);
+ SetBitStreamFlag(pBitStream, index, Set);
 }

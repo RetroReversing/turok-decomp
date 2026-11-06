@@ -53,13 +53,13 @@ extern float D_80112BE4;
 extern V3 D_80112C00;
 extern V3 D_80112C0C;
 extern float D_80128C20[];
-extern void func_8003FB8C(void);
-extern void func_8003FF88(P *, S *);
-extern void func_8003F9C0(P *);
-extern float func_8009E7A0(float);
-extern float func_8005F34C(P *, V3);
-extern void func_800144C8(V3 *, V3 *, V3 *);
-extern void func_80013B2C(V3 *);
+extern void BOSS_UpdateSounds(void);
+extern void BOSS_CalculateAngles(P *, S *);
+extern void BOSS_UpdateAnimation(P *);
+extern float sqrtf(float);
+extern float AI_DistanceSquared(P *, V3);
+extern void CVector3__Subtract(V3 *, V3 *, V3 *);
+extern void CVector3__Normalize(V3 *);
 /* Update boss motion, health, animation and its tracking of Turok. */
 void func_8003FC00(P *p)
 {
@@ -67,12 +67,12 @@ void func_8003FC00(P *p)
   float f;
   G *g = D_8010201C;
   V3 *v;
-  func_8003FB8C();
+  BOSS_UpdateSounds();
   p->ptr = D_8010201C;
   f = (D_80128C20[12] * D_80128C20[12]) + (D_80128C20[0] * D_80128C20[0]);
   if (f != 0.0f)
   {
-    f = func_8009E7A0(f);
+    f = sqrtf(f);
   }
   D_80112BE4 = f;
   if (!s->a4)
@@ -88,7 +88,7 @@ void func_8003FC00(P *p)
   f = ((s->delta.x * s->delta.x) + (s->delta.y * s->delta.y)) + (s->delta.z * s->delta.z);
   if (f != 0.0f)
   {
-    f = func_8009E7A0(f);
+    f = sqrtf(f);
     s->aD8 = f;
   }
   else
@@ -99,12 +99,12 @@ void func_8003FC00(P *p)
   s->dir.x = s->delta.x / f;
   s->dir.y = s->delta.y / f;
   s->dir.z = s->delta.z / f;
-  s->a140 = func_8005F34C(p, D_8010201C->vec);
+  s->a140 = AI_DistanceSquared(p, D_8010201C->vec);
   if (s->a140 != 0.0f)
   {
-    s->a140 = func_8009E7A0(s->a140);
+    s->a140 = sqrtf(s->a140);
   }
-  func_8003FF88(p, s);
+  BOSS_CalculateAngles(p, s);
   s->a14 = s->a18;
   if (p->val > 0)
   {
@@ -118,7 +118,7 @@ void func_8003FC00(P *p)
   {
     s->cb(p, s);
   }
-  func_8003F9C0(p);
+  BOSS_UpdateAnimation(p);
   s->a10 = p->val;
   if (s->a0 && (p->val <= 0))
   {
@@ -129,7 +129,7 @@ void func_8003FC00(P *p)
   s->pos.z = p->pos.z;
   s->a1C = 0;
   v = &g->vec;
-  func_800144C8(&D_80112C0C, v, &D_80112C00);
-  func_80013B2C(&D_80112C0C);
+  CVector3__Subtract(&D_80112C0C, v, &D_80112C00);
+  CVector3__Normalize(&D_80112C0C);
   D_80112C00 = *v;
 }

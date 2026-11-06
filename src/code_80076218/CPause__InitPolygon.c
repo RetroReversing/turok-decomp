@@ -251,7 +251,7 @@ typedef union {
 typedef float CMtxF[4][4];
 extern void D_8001551C(CMtxF mfThis, float X, float Y, float Z);
 extern void D_8001315C(CMtxF mfThis, float Tx, float Ty, float Tz) ;
-extern void func_80012290(CMtxF mfThis, Mtx *m) ;
+extern void CMtxF__ToMtxFast(CMtxF mfThis, Mtx *m) ;
 extern void D_80023FF8(Gfx **ppDLP, unsigned long mode) ;
 extern void CPause__InitPolygon(Gfx **ppDLP) ;
 extern Mtx D_80129340;
@@ -269,7 +269,7 @@ void CPause__InitPolygon(Gfx **ppDLP){
  { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = (((unsigned int) (((unsigned int)((1)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x01 | 0x02 | 0x00)) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)((sizeof(Mtx))) & ((0x01 << (16)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((&D_80129340)); };
  D_8001551C(mfPause, 1, -1, 1);
  D_8001315C(mfPause, 0, 240, 0);
- func_80012290((mfPause), &(mPause));
+ CMtxF__ToMtxFast((mfPause), &(mPause));
  { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = (((unsigned int) (((unsigned int)((1)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x00 | 0x02 | 0x00)) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)((sizeof(Mtx))) & ((0x01 << (16)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((&mPause)); };
  D_801293A8 = 0 ;
 }

@@ -673,7 +673,7 @@ typedef struct CGameObjectInstance_t
   struct CGameObjectInstance_t *m_pAttackerCGameObjectInstance;
 } CGameObjectInstance;
 extern int D_800186FC(CGameObjectInstance *pThis, int nType);
-extern int func_8001C348(CGameObjectInstance *pThis, int nItems, int AITypes[], int Weights[], int *pPickedType);
+extern int CGameObjectInstance__GetRandomAnimIndex(CGameObjectInstance *pThis, int nItems, int AITypes[], int Weights[], int *pPickedType);
 typedef struct CROMLevel_t
 {
   float m_GridDistance;
@@ -759,13 +759,13 @@ typedef struct CROMWarpPoint_t
 } CROMWarpPoint;
 extern int D_80073FD8(CGameObjectInstance *pAI, float ang);
 extern void D_800731F8(CGameObjectInstance *pAI, float ang);
-extern int func_8005FCA0(CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
-extern float func_800747C0(CGameObjectInstance *pAI, CVector3 vPos, CGameObjectInstance *pTarget, float radiusFactor);
-extern float func_8005F34C(CGameObjectInstance *pAI, CVector3 vPos);
-extern int func_80071C8C(CGameObjectInstance *pAI);
-extern int func_800719B4(CGameObjectInstance *pThis);
+extern int AI_SetDesiredAnimByIndex(CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
+extern float AI_GetAvoidanceAngle(CGameObjectInstance *pAI, CVector3 vPos, CGameObjectInstance *pTarget, float radiusFactor);
+extern float AI_DistanceSquared(CGameObjectInstance *pAI, CVector3 vPos);
+extern int AI_GetCurrentAnim(CGameObjectInstance *pAI);
+extern int AI_GetWaterStatus(CGameObjectInstance *pThis);
 extern void D_80072D08(CGameObjectInstance *pAI, float ang);
-extern float func_8005EDD8(CGameObjectInstance *pThis);
+extern float AI_GetAvoidanceRadiusFactor(CGameObjectInstance *pThis);
 extern void AI_Standard_Idle(CGameObjectInstance *pMe);
 struct CAnimInstanceHdr_t;
 struct CCollisionInfo2_t;
@@ -1771,9 +1771,9 @@ void AI_Standard_Idle(CGameObjectInstance *pMe)
   int typeswalk2[] = {13, 14, 129, 130, 132, 133, 134};
   int typesrun2[] = {13, 14, 129, 131, 132, 133, 134};
   int weights[] = {10, 10, 5, 25, 12, 14, 5};
-  waterFlag = func_800719B4(pMe);
-  avoidrad = func_8005EDD8(pMe);
-  (&pMe->m_AI)->m_AvoidanceAngle = (turnang = func_800747C0(pMe, (&pMe->m_AI)->m_vLeashCoor, (&D_800F9F10)->m_Scene.m_pPlayer, avoidrad));
+  waterFlag = AI_GetWaterStatus(pMe);
+  avoidrad = AI_GetAvoidanceRadiusFactor(pMe);
+  (&pMe->m_AI)->m_AvoidanceAngle = (turnang = AI_GetAvoidanceAngle(pMe, (&pMe->m_AI)->m_vLeashCoor, (&D_800F9F10)->m_Scene.m_pPlayer, avoidrad));
   if (pMe->ah.ih.m_pEA->m_dwTypeFlags2 & (1 << 21))
   {
     if (D_800186FC(pMe, 130) != (-1))
@@ -1784,7 +1784,7 @@ void AI_Standard_Idle(CGameObjectInstance *pMe)
     if (D_800186FC(pMe, 1) != (-1))
       WalkPresent = 1;
   }
-  Dist = func_8005F34C(pMe, (&pMe->m_AI)->m_vLeashCoor);
+  Dist = AI_DistanceSquared(pMe, (&pMe->m_AI)->m_vLeashCoor);
   if (Dist >= (pMe->ah.ih.m_pEA->m_LeashRadius / 3))
   {
     if ((waterFlag != 1) && (waterFlag != 3))
@@ -1796,7 +1796,7 @@ void AI_Standard_Idle(CGameObjectInstance *pMe)
         curAnimTest = D_800186FC(pMe, 2);
       if (Dist <= D_800F5C70)
       {
-        curAnim = func_80071C8C(pMe);
+        curAnim = AI_GetCurrentAnim(pMe);
         if (curAnim == curAnimTest)
           D_80073FD8(pMe, turnang);
         else
@@ -1823,19 +1823,19 @@ void AI_Standard_Idle(CGameObjectInstance *pMe)
       if (pMe->ah.ih.m_pEA->m_dwTypeFlags2 & (1 << 21))
       {
         if (WalkPresent)
-          picked = func_8001C348(pMe, 7, typeswalk2, weights, &pickedType);
+          picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 7, typeswalk2, weights, &pickedType);
         else
-          picked = func_8001C348(pMe, 7, typesrun2, weights, &pickedType);
+          picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 7, typesrun2, weights, &pickedType);
       }
       else
       {
         if (WalkPresent)
-          picked = func_8001C348(pMe, 7, typeswalk1, weights, &pickedType);
+          picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 7, typeswalk1, weights, &pickedType);
         else
-          picked = func_8001C348(pMe, 7, typesrun1, weights, &pickedType);
+          picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 7, typesrun1, weights, &pickedType);
       }
       (&pMe->m_AI)->m_dwStatusFlags |= 1 << 4;
-      func_8005FCA0(pMe, picked, 0);
+      AI_SetDesiredAnimByIndex(pMe, picked, 0);
       switch (pickedType)
       {
         case 0:

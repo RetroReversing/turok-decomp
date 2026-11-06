@@ -863,7 +863,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-struct CPersistantData_t* func_80034AF8(CScene *pThis);
+struct CPersistantData_t* CScene__GetPersistantDataStruct(CScene *pThis);
 typedef struct COverlay_t
 {
  int m_OnScreen ;
@@ -1817,7 +1817,7 @@ void func_8000E9BC(void);
 void func_8000E9BC(void){
  /* Copy Turok's equipment and game options into persistent save data. */
  CPersistantData *persist ;
- persist = (CPersistantData *)func_80034AF8(&(&D_800F9F10)->m_Scene) ;
+ persist = (CPersistantData *)CScene__GetPersistantDataStruct(&(&D_800F9F10)->m_Scene) ;
  persist->SemiAutomaticPistolFlag = D_80128C20.SemiAutomaticPistolFlag ;
  persist->RiotShotgunFlag = D_80128C20.RiotShotgunFlag ;
  persist->AutomaticShotgunFlag = D_80128C20.AutomaticShotgunFlag ;

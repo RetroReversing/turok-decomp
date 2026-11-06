@@ -10,7 +10,7 @@ INT32 func_80088124(CCheat *pThis)
 	// do gallery instructions
 	if (GetApp()->m_GInst.b_Active)
 	{
-		func_80088F3C(&GetApp()->m_GInst) ;
+		CGInst__Update(&GetApp()->m_GInst) ;
 		ReturnValue = -1 ;
 	}
 	else
@@ -18,7 +18,7 @@ INT32 func_80088124(CCheat *pThis)
 
 
 		// Goto next selection?
-		if (func_8000658C(GetApp()))
+		if (CEngineApp__MenuDown(GetApp()))
 		{
 			D_800EC0C0 = 0 ;
 			do
@@ -41,7 +41,7 @@ INT32 func_80088124(CCheat *pThis)
 		}
 
 		// Goto previous selection?
-		if (func_80006770(GetApp()))
+		if (CEngineApp__MenuUp(GetApp()))
 		{
 			D_800EC0C0 = 0 ;
 			do
@@ -65,7 +65,7 @@ INT32 func_80088124(CCheat *pThis)
 
 
 		// Exit if start pressed
-		if (func_80051EA4(D_800F9E44))
+		if (CTControl__IsUseMenu(D_800F9E44))
 			ReturnValue = pThis->m_Selection ;
 
 		switch (ReturnValue)
@@ -132,110 +132,110 @@ INT32 func_80088124(CCheat *pThis)
 
 			case	CHEAT_WARPLEVEL1:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 0;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL2:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 1000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL3:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 2000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL4:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 3000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL5:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 4000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL6:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 5000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL7:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 7000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLEVEL8:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = 8000;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_WARPLONGHUNTER:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = LONGHUNTER_BOSS_START_WARP_ID;
 				GetApp()->m_BossFlags &= ~LONGHUNTER_BOSS_FLAGS ;
 				GetApp()->m_BossFlags |= BOSS_FLAG_RESET_LEVEL ;
 				func_8000B008(GetApp());
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 			case	CHEAT_WARPMANTIS:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = MANTIS_BOSS_WARP_ID;
 				GetApp()->m_BossFlags &= ~MANTIS_BOSS_FLAGS ;
 				GetApp()->m_BossFlags |= BOSS_FLAG_RESET_LEVEL ;
 				func_8000B008(GetApp());
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 			case	CHEAT_WARPTREX:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = TREX_BOSS_WARP_ID;
 				GetApp()->m_BossFlags &= ~TREX_BOSS_FLAGS ;
 				GetApp()->m_BossFlags |= BOSS_FLAG_RESET_LEVEL ;
 				func_8000B008(GetApp());
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 			case	CHEAT_WARPCAMPAIGNER:
 				ReturnValue = -1 ;
-				func_80009FBC(GetApp()) ;
+				CEngineApp__NewLife(GetApp()) ;
 				GetApp()->m_WarpID = CAMPAIGNER_BOSS_WARP_ID;
 				GetApp()->m_BossFlags &= ~CAMPAIGNER_BOSS_FLAGS ;
 				GetApp()->m_BossFlags |= BOSS_FLAG_RESET_LEVEL ;
 				func_8000B008(GetApp());
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_GALLERY:
 				ReturnValue = -1 ;
 				pThis->m_Mode = CHEAT_FADEDOWN ;
-				func_80088F10(&GetApp()->m_GInst) ;
+				CGInst__Construct(&GetApp()->m_GInst) ;
 				GetApp()->m_bGInst = TRUE ;
 				break ;
 
 			case	CHEAT_SHOWCREDITS:
 				ReturnValue = -1 ;
 				pThis->m_Mode = CHEAT_FADEDOWN;
-				func_8000B924();
+				CCredits__Construct();
 				GetApp()->m_WarpID = CREDITS_WARP_ID;
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 //			case	CHEAT_MODIFYENEMY:
@@ -253,7 +253,7 @@ INT32 func_80088124(CCheat *pThis)
 				D_80128C20.Level8Keys = 31 ;
 				ReturnValue = -1 ;
 				GetApp()->m_WarpID = 666;	// Hub warp
-				func_80004504(GetApp(), MODE_RESETLEVEL);
+				CEngineApp__SetupFadeTo(GetApp(), MODE_RESETLEVEL);
 				break ;
 
 			case	CHEAT_INFINITELIVES:
@@ -273,7 +273,7 @@ INT32 func_80088124(CCheat *pThis)
 
 					if (pPlayer)
 					{
-						pPlayer->ah.ih.m_pCurrentRegion = func_8002E280(&GetApp()->m_Scene, &pPlayer->ah.ih.m_vPos);
+						pPlayer->ah.ih.m_pCurrentRegion = CScene__NearestRegion(&GetApp()->m_Scene, &pPlayer->ah.ih.m_vPos);
 					}
 				}
 				break ;

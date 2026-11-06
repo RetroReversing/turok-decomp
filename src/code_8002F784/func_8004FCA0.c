@@ -14,15 +14,15 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_80034EDC(M2C_UNK *, s32, M2C_UNK *, M2C_UNK, M2C_UNK *); /* extern */
+s32 CScene__RequestBinaryBlock(M2C_UNK *, s32, M2C_UNK *, M2C_UNK, M2C_UNK *); /* extern */
 extern s32 D_800B6B38;
 extern M2C_UNK D_800FA3C8;
 extern M2C_UNK D_801289FC;
-extern M2C_UNK func_8004FC54;
+extern M2C_UNK CAttractDemo__DemoFromRomReceived;
 
 s32 func_8004FCA0(s32 arg0) {
     if (D_800B6B38 == 0) {
         return 0;
     }
-    return func_80034EDC(&D_800FA3C8, arg0, &D_801289FC, 0, &func_8004FC54);
+    return CScene__RequestBinaryBlock(&D_800FA3C8, arg0, &D_801289FC, 0, &CAttractDemo__DemoFromRomReceived);
 }

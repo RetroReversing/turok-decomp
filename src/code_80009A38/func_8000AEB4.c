@@ -1336,7 +1336,7 @@ typedef struct CCamera_t
  signed long m_UserSoundHandles[8] ;
  signed long m_Flags ;
 } CCamera ;
-extern int func_80039B98(CCamera *pThis) ;
+extern int CCamera__InCinemaMode(CCamera *pThis) ;
 typedef struct CSunFrameData_t
 {
  sa_u64 m_DepthData[2];
@@ -1618,7 +1618,7 @@ struct CCollisionInfo2_t;
 extern CEngineApp D_800F9F10;
 float func_8000AEB4(CEngineApp *pThis);
 float func_8000AEB4(CEngineApp *pThis){
- if ((func_80039B98(&pThis->m_Camera)) || ((&D_800F9F10)->m_Mode != MODE_GAME))
+ if ((CCamera__InCinemaMode(&pThis->m_Camera)) || ((&D_800F9F10)->m_Mode != MODE_GAME))
   return 1.0 ;
  if (pThis->m_pBossActive)
  {

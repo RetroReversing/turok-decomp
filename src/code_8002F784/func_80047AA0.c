@@ -24,7 +24,7 @@ void func_80047AA0(CGameObjectInstance *pThis, CTRex *pTRex)
 		{
 			killCFX(pTRex->m_LaserSoundHandle) ;
 			pTRex->m_LaserSoundHandle = -1 ;
-            func_8008A4DC(SOUND_TREX_SERVO_1);
+            killSoundType(SOUND_TREX_SERVO_1);
 		}
 		return ;
 	}

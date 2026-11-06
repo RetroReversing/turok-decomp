@@ -985,8 +985,8 @@ typedef struct
        TypeFlyForward,
        TypeFlyBackward;
 } CTControl;
-extern float func_80051304 (CTControl *pThis);
-extern float func_80051334 (CTControl *pThis);
+extern float CTControl__IsSideStepLeft (CTControl *pThis);
+extern float CTControl__IsSideStepRight (CTControl *pThis);
 struct CAnimInstanceHdr_t;
 struct CCollisionInfo2_t;
 typedef enum ECollisionResult_t
@@ -1925,7 +1925,7 @@ typedef struct CEngineApp_t
  unsigned char m_AttractPadFrames ;
  OSContPad m_AttractPad ;
 } CEngineApp;
-extern int func_80002A8C(CEngineApp *pThis);
+extern int CEngineApp__GetPlayerDuckStatus(CEngineApp *pThis);
 extern sa_u64 dram_stack[];
 extern float D_800B6B00;
 extern int D_800B6B34;
@@ -2143,9 +2143,9 @@ typedef struct
  CCollisionInfo2 *pLastCI;
 } CTMove;
 extern CVector3 CTMove__ControlSideStep (CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos);
-extern void func_8005AEDC (CTMove *pThis);
+extern void CTMove__QuietNoise (CTMove *pThis);
 CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos);
-void func_8005AEDC(CTMove *pThis);
+void CTMove__QuietNoise(CTMove *pThis);
 CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *pCTControl, CVector3 vDesiredPos){
  /* Apply side-step input and inertia to the player's desired position. */
  float dm,
@@ -2155,10 +2155,10 @@ CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *pCT
  int duckFlag;
  pIns = ((pApp)->m_Scene.m_pPlayer);
  if ( pIns == ((void*)0) ) return vDesiredPos;
- duckFlag = func_80002A8C(pApp);
+ duckFlag = CEngineApp__GetPlayerDuckStatus(pApp);
  sinSideY = __sinf(pIns->m_RotY - D_800F3258);
  cosSideY = __cosf(pIns->m_RotY - 3.14159265358979323846/2);
- ressr = func_80051334 ( pCTControl );
+ ressr = CTControl__IsSideStepRight ( pCTControl );
  if ( ressr < 0 )
  {
   if (duckFlag == 0)
@@ -2190,15 +2190,15 @@ CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *pCT
   pThis->SideStepSpeed += dm;
   vDesiredPos.x += pThis->SideStepSpeed*D_800B6B00*sinSideY;
   vDesiredPos.z += pThis->SideStepSpeed*D_800B6B00*cosSideY;
-  func_8005AEDC(pThis);
+  CTMove__QuietNoise(pThis);
  }
  else if ( ressr > 0 )
  {
   vDesiredPos.x += ressr*D_800B6B00*sinSideY;
   vDesiredPos.z += ressr*D_800B6B00*cosSideY;
-  func_8005AEDC(pThis);
+  CTMove__QuietNoise(pThis);
  }
- ressl = func_80051304 ( pCTControl );
+ ressl = CTControl__IsSideStepLeft ( pCTControl );
  if ( ressl < 0 )
  {
   if (duckFlag == 0)
@@ -2230,13 +2230,13 @@ CVector3 CTMove__ControlSideStep(CTMove *pThis, CEngineApp *pApp, CTControl *pCT
   pThis->SideStepSpeed += dm;
   vDesiredPos.x += pThis->SideStepSpeed*D_800B6B00*sinSideY;
   vDesiredPos.z += pThis->SideStepSpeed*D_800B6B00*cosSideY;
-  func_8005AEDC(pThis);
+  CTMove__QuietNoise(pThis);
  }
  else if ( ressl > 0 )
  {
   vDesiredPos.x -= ressl*D_800B6B00*sinSideY;
   vDesiredPos.z -= ressl*D_800B6B00*cosSideY;
-  func_8005AEDC(pThis);
+  CTMove__QuietNoise(pThis);
  }
  if ( ressr == 0 && ressl == 0 )
  {

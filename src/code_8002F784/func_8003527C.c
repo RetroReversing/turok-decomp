@@ -362,7 +362,7 @@ typedef struct CCartCache_t
  CNotifyEntry m_NotifyEntries[16];
  CNotifyEntry *m_pNotifyFreeHead;
 } CCartCache;
-extern void func_8002D4EC(CCartCache *pThis);
+extern void CCartCache__Construct(CCartCache *pThis);
 extern void D_8002D1F8(CCartCache *pThis,
             void *pNotifyPtr,
                         pfnCACHENOTIFY pfnDecompress,
@@ -770,7 +770,7 @@ typedef struct CParticleSystem_t
    CCacheEntry *m_pceParticleEffects,
      *m_pceTextureSetsIndex;
 } CParticleSystem;
-extern void func_8002B5E0(CParticleSystem *pThis);
+extern void CParticleSystem__Construct(CParticleSystem *pThis);
 struct CScene_t;
 typedef struct CDynamicSimple_t
 {
@@ -791,7 +791,7 @@ typedef struct CSimplePool_t
  ROMAddress *m_rpObjectsAddress;
  int m_Initialized;
 } CSimplePool;
-extern void func_800357D0(CSimplePool *pThis);
+extern void CSimplePool__Construct(CSimplePool *pThis);
 typedef struct CPickupGenerator_t
 {
  float m_Time ;
@@ -805,7 +805,7 @@ typedef struct CPickupMonitor_t
  CPickupGenerator m_Generators[16] ;
  signed long m_NoOfGenerators ;
 } CPickupMonitor ;
-extern void func_80093688(CPickupMonitor *pThis) ;
+extern void CPickupMonitor__Construct(CPickupMonitor *pThis) ;
 typedef struct CScene_t
 {
  CCartCache m_Cache;
@@ -1209,7 +1209,7 @@ typedef struct CDynamicList_t
  CList m_FreeList ;
  CList m_ActiveList ;
 } CDynamicList ;
-extern void func_80035768(void) ;
+extern void CAnimationMtxs__Construct(void) ;
 typedef struct CSwooshVertex_t
 {
  CVector3 m_vPos ;
@@ -1612,15 +1612,15 @@ typedef struct CEngineApp_t
 extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
-extern void func_8003505C(CScene *pThis, CCacheEntry **ppceTarget);
+extern void CScene__CartridgeIndexReceived(CScene *pThis, CCacheEntry **ppceTarget);
 /* Initializes a scene and requests its cartridge index from the cache. */
 void func_8003527C(CScene *pThis, int nWarpID);
-void func_8003505C(CScene *pThis, CCacheEntry **ppceTarget);
+void CScene__CartridgeIndexReceived(CScene *pThis, CCacheEntry **ppceTarget);
 void func_8003527C(CScene *pThis, int nWarpID){
                                                          ;
  pThis->m_nWarpID = nWarpID;
- func_8002D4EC(&pThis->m_Cache);
- func_80035768();
+ CCartCache__Construct(&pThis->m_Cache);
+ CAnimationMtxs__Construct();
  pThis->m_rpBaseAddress = (ROMAddress*) (((&D_800F9F10))->m_pStaticSegment);
    pThis->m_pceIndex = pThis->m_pceInstances
        = pThis->m_pceTextureSetsIndex = 0;
@@ -1646,11 +1646,11 @@ void func_8003527C(CScene *pThis, int nWarpID){
  pThis->m_LevelInfoReceived = 0;
  pThis->m_RotYPickup = 0;
  { (&pThis->m_qRotYPickup)->x = (&pThis->m_qRotYPickup)->y = (&pThis->m_qRotYPickup)->z = 0; (&pThis->m_qRotYPickup)->t = 1; };
- func_8002B5E0(&pThis->m_ParticleSystem);
- func_800357D0(&pThis->m_SimplePool);
- func_80093688(&pThis->m_PickupMonitor) ;
+ CParticleSystem__Construct(&pThis->m_ParticleSystem);
+ CSimplePool__Construct(&pThis->m_SimplePool);
+ CPickupMonitor__Construct(&pThis->m_PickupMonitor) ;
    D_8002D1F8(&pThis->m_Cache,
-          pThis, 0, (pfnCACHENOTIFY) func_8003505C,
+          pThis, 0, (pfnCACHENOTIFY) CScene__CartridgeIndexReceived,
           &pThis->m_pceIndex,
                           pThis->m_rpBaseAddress, ( ( ((1*sizeof(unsigned long)) + ((11)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) ),
                           "Cartridge Index");

@@ -575,7 +575,7 @@ typedef struct CGameObjectInstance_t
  struct CGameObjectInstance_t *m_pEventCGameObjectInstance;
  struct CGameObjectInstance_t *m_pAttackerCGameObjectInstance;
 } CGameObjectInstance;
-extern void func_8001E93C(CGameObjectInstance *pThis);
+extern void CGameObjectInstance__RestartAnim(CGameObjectInstance *pThis);
 typedef struct CROMLevel_t
 {
  float m_GridDistance;
@@ -660,7 +660,7 @@ typedef struct CROMWarpPoint_t
      m_nRegion;
 } CROMWarpPoint;
 extern void D_80070DA8 (CInstanceHdr *pThis, CInstanceHdr *pOrigin, int Event, unsigned long dwSpecies, CVector3 vPos, float Value);
-extern int func_8005FCF4 (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
+extern int AI_SetDesiredAnim (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
 struct CAnimInstanceHdr_t;
 struct CCollisionInfo2_t;
 typedef enum ECollisionResult_t
@@ -866,7 +866,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-extern int func_80031974(CScene *pThis,
+extern int CScene__DoSoundEffect(CScene *pThis,
              int nSoundType, float Volume,
              void *pSource, CVector3 *pvSourcePos, int SndFlags);
 typedef struct COverlay_t
@@ -1251,7 +1251,7 @@ typedef struct
        TypeFlyForward,
        TypeFlyBackward;
 } CTControl;
-extern float func_800510C4 (CTControl *pThis);
+extern float CTControl__IsPrimaryFire (CTControl *pThis);
 typedef struct CRequestor_t
 {
  float m_Alpha ;
@@ -2143,14 +2143,14 @@ typedef struct
  float InMenuTimer ;
  CCollisionInfo2 *pLastCI;
 } CTMove;
-extern int func_8005843C (CTMove *pThis, int weapon, int variation);
-extern void func_800587B0 (CTMove *pThis, int status);
-extern void func_80057DC8 (CTMove *pThis, int *pAmt, int nAmt);
-extern void func_80058B6C (CTMove *pThis, int ammo, int next);
-extern void func_80059244 (CTMove *pThis, CEngineApp *pApp, float shake, float ang, int rotstyle);
+extern int CTMove__WeaponEmpty (CTMove *pThis, int weapon, int variation);
+extern void CTMove__SetWeaponFiredStatus (CTMove *pThis, int status);
+extern void CTMove__DecreaseAmmo (CTMove *pThis, int *pAmt, int nAmt);
+extern void CTMove__SelectWeapon (CTMove *pThis, int ammo, int next);
+extern void CTMove__ShakeScreen (CTMove *pThis, CEngineApp *pApp, float shake, float ang, int rotstyle);
 extern void D_80059994 (CTMove *pThis, int WFired);
-extern void func_8005AFE8 (CTMove *pThis, int Direction);
-extern int func_80058D60 (CTMove *pThis, int nType, int Reselect);
+extern void CTMove__DisplayWeaponsIcons (CTMove *pThis, int Direction);
+extern int CTMove__SelectWeaponByAIType (CTMove *pThis, int nType, int Reselect);
 extern int AI_Update_Weapon_SemiAutomaticPistol (CGameObjectInstance *pMe, CTControl *pCTControl, CTMove *pCTMove, int waterFlag);
 enum SOUND_TYPES
 {
@@ -2800,52 +2800,52 @@ int AI_Update_Weapon_SemiAutomaticPistol ( CGameObjectInstance *pMe, CTControl *
  CEngineApp *pApp;
  pApp = (&D_800F9F10);
  if (pApp == 0) return 0;
- if (func_800510C4(pCTControl))
+ if (CTControl__IsPrimaryFire(pCTControl))
  {
-  func_800587B0(pCTMove, 4);
-  if (func_8005843C(pCTMove, 103, 1))
+  CTMove__SetWeaponFiredStatus(pCTMove, 4);
+  if (CTMove__WeaponEmpty(pCTMove, 103, 1))
   {
    if (pCTMove->Mode == 5)
    {
-    func_80058D60(pCTMove, 100, 0);
+    CTMove__SelectWeaponByAIType(pCTMove, 100, 0);
    }
    else
    {
     if (D_80128F90)
-     func_80058B6C(pCTMove, 1, 0);
+     CTMove__SelectWeapon(pCTMove, 1, 0);
     else
-     func_80058B6C(pCTMove, 1, 1);
+     CTMove__SelectWeapon(pCTMove, 1, 1);
    }
-   func_8005AFE8(pCTMove, 1);
+   CTMove__DisplayWeaponsIcons(pCTMove, 1);
    return 0;
   }
   vPos = ((pMe)->ah.ih.m_vPos);
-  func_80031974(&(&D_800F9F10)->m_Scene, SOUND_PISTOL_SHOT, 0, 0, &vPos, 0);
+  CScene__DoSoundEffect(&(&D_800F9F10)->m_Scene, SOUND_PISTOL_SHOT, 0, 0, &vPos, 0);
   D_80070DA8 (&pMe->ah.ih, &pMe->ah.ih, 29, 0xffffffff, vPos, 10);
-  func_80057DC8(pCTMove, &pCTMove->BulletPool, 1);
-  func_80059244(pCTMove, pApp, 5*(1024.0/100.0)/16, -(3.14159265358979323846/150), 1);
+  CTMove__DecreaseAmmo(pCTMove, &pCTMove->BulletPool, 1);
+  CTMove__ShakeScreen(pCTMove, pApp, 5*(1024.0/100.0)/16, -(3.14159265358979323846/150), 1);
   D_80059994(pCTMove, 4);
-  func_8005FCF4(pMe, 45, 1);
+  AI_SetDesiredAnim(pMe, 45, 1);
   (&((pMe)->m_AI))->m_dwStatusFlags |= (1<<4);
-  func_8001E93C(pMe);
+  CGameObjectInstance__RestartAnim(pMe);
   return 1;
  }
  else
  {
-  if (func_8005843C(pCTMove, 103, 1))
+  if (CTMove__WeaponEmpty(pCTMove, 103, 1))
   {
    if (pCTMove->Mode == 5)
    {
-    func_80058D60(pCTMove, 100, 0);
+    CTMove__SelectWeaponByAIType(pCTMove, 100, 0);
    }
    else
    {
     if (D_80128F90)
-     func_80058B6C(pCTMove, 1, 0);
+     CTMove__SelectWeapon(pCTMove, 1, 0);
     else
-     func_80058B6C(pCTMove, 1, 1);
+     CTMove__SelectWeapon(pCTMove, 1, 1);
    }
-   func_8005AFE8(pCTMove, 1);
+   CTMove__DisplayWeaponsIcons(pCTMove, 1);
   }
  }
  return 0;

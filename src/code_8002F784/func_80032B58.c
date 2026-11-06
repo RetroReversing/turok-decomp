@@ -248,7 +248,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern int func_80083D54(unsigned char Bits[], int nBit);
+extern int GetBitStreamFlag(unsigned char Bits[], int nBit);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -965,11 +965,11 @@ typedef struct CBossData_t
  float m_ModeMisc1 ;
 } CBossData ;
 struct CCollisionInfo2_t;
-extern unsigned char* func_8003205C(CScene *pThis, int nLevel, int nBitstream);
-unsigned char* func_8003205C(CScene *pThis, int nLevel, int nBitstream);
+extern unsigned char* CScene__GetPersistantBitstream(CScene *pThis, int nLevel, int nBitstream);
+unsigned char* CScene__GetPersistantBitstream(CScene *pThis, int nLevel, int nBitstream);
 int func_80032B58(CScene *pThis, int nInstance);
 int func_80032B58(CScene *pThis, int nInstance){
  unsigned char *pBitStream;
- pBitStream = func_8003205C(pThis, pThis->m_nLevel, 1);
- return func_80083D54(pBitStream, nInstance);
+ pBitStream = CScene__GetPersistantBitstream(pThis, pThis->m_nLevel, 1);
+ return GetBitStreamFlag(pBitStream, nInstance);
 }

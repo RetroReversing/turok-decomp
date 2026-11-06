@@ -6,7 +6,7 @@ s32 func_800A4F20(void)
   return D_A450000C & 0xFFFFFFFFFFFFFFFFu;
 }
 
-s32 func_800AD5C0(u32);
+s32 __osProbeTLB(u32);
 s32 osVirtualToPhysical(u32 arg0);
 struct Node_800A4E90
 {

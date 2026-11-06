@@ -53,13 +53,13 @@ typedef struct CROMStaticInstance_t
 	signed char		m_RotX, m_RotY, m_RotZ, m_RotT;
 } CROMStaticInstance;
 typedef struct {CInstanceHdr ih;CCacheEntry*m_pceObjectIndex,*m_pceStaticEvents;ROMAddress*m_rpObjectIndexAddress;Mtx m_mOrientation;CGeometry m_Geometry;CROMBounds m_Bounds;DWORD m_dwFlags;} CGameStaticInstance;
-void func_80012290(CMtxF,Mtx*);void func_800130DC(CMtxF,float,float,float);void func_8001315C(CMtxF,float,float,float);
-void func_80014538(CQuatern*);void func_80014DC4(CQuatern*,CMtxF);
-#define CQuatern__Normalize func_80014538
-#define CQuatern__ToMatrix func_80014DC4
+void CMtxF__ToMtxFast(CMtxF,Mtx*);void func_800130DC(CMtxF,float,float,float);void func_8001315C(CMtxF,float,float,float);
+void CQuatern__Normalize(CQuatern*);void CQuatern__ToMatrix(CQuatern*,CMtxF);
+#define CQuatern__Normalize CQuatern__Normalize
+#define CQuatern__ToMatrix CQuatern__ToMatrix
 #define CMtxF__PreMultScale func_800130DC
 #define CMtxF__PostMultTranslate func_8001315C
-#define CMtxF__ToMtx(mf,m) func_80012290((mf),&(m))
+#define CMtxF__ToMtx(mf,m) CMtxF__ToMtxFast((mf),&(m))
 #define USE_ORIGINAL_MATRIX 0
 #define I_STATIC 0
 #define ORDERBYTES(x) (x)
@@ -149,19 +149,19 @@ typedef struct {CInstanceHdr ih;CVector3 m_vVelocity;} CAnimInstanceHdr;
 typedef struct {s16 m_WeaponModel,m_ExtraModel;} CAIDynamicView;
 typedef struct CGameObjectInstance_t {CAnimInstanceHdr ah;u8 pad28[0xF0-0x28];CGeometry m_Geometry;u8 padF8[0x21C-0xF8];CAIDynamicView m_AI;} CGameObjectInstance;
 extern CGameObjectInstance*D_80112BD8;extern int D_800B6AF4;extern float D_800B6B00;
-int func_80016468(CGameObjectInstance*,int);int func_80016584(CGameObjectInstance*,int);int func_800165E0(CGameObjectInstance*,int);
-int func_80090958(CGameObjectInstance*,int);int func_8004F884(CGameObjectInstance*,int);int func_8004B828(CGameObjectInstance*,int);
-void func_800220BC(CGeometry*,int,float);
+int func_80016468(CGameObjectInstance*,int);int CGameObjectInstance__GetTurokFeathersModelIndex(CGameObjectInstance*,int);int CGameObjectInstance__GetTurokCorpseModelIndex(CGameObjectInstance*,int);
+int CGameObjectInstance__GetCrystalModelIndex(CGameObjectInstance*,int);int CGameObjectInstance__GetCampaignerModelIndex(CGameObjectInstance*,int);int CGameObjectInstance__GetLonghunterModelIndex(CGameObjectInstance*,int);
+void CGeometry__MorphInc(CGeometry*,int,float);
 #define CGameObjectInstance__GetTurokModelIndex func_80016468
-#define CGameObjectInstance__GetTurokCorpseModelIndex func_800165E0
-#define CGameObjectInstance__GetTurokFeathersModelIndex func_80016584
-#define CGameObjectInstance__GetCrystalModelIndex func_80090958
-#define CGameObjectInstance__GetCampaignerModelIndex func_8004F884
-#define CGameObjectInstance__GetLonghunterModelIndex func_8004B828
+#define CGameObjectInstance__GetTurokCorpseModelIndex CGameObjectInstance__GetTurokCorpseModelIndex
+#define CGameObjectInstance__GetTurokFeathersModelIndex CGameObjectInstance__GetTurokFeathersModelIndex
+#define CGameObjectInstance__GetCrystalModelIndex CGameObjectInstance__GetCrystalModelIndex
+#define CGameObjectInstance__GetCampaignerModelIndex CGameObjectInstance__GetCampaignerModelIndex
+#define CGameObjectInstance__GetLonghunterModelIndex CGameObjectInstance__GetLonghunterModelIndex
 #define CGameObjectInstance__TypeFlag(p) (*(u16*)((BYTE*)(p)+0x11A))
 #define AI_GetEA(p) ((p)->ah.ih.m_pEA)
 #define AI_GetDyn(p) (&(p)->m_AI)
-#define CGeometry__MorphInc func_800220BC
+#define CGeometry__MorphInc CGeometry__MorphInc
 #define even_odd D_800B6AF4
 #define frame_increment D_800B6B00
 #define FRAME_FPS 15

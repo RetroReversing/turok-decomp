@@ -15,7 +15,7 @@ INT32 Mantis_ClosestWall(CGameObjectInstance *pThis, CMantis *pMantis)
 	else
 	// Never chosen before?
 	if (pMantis->m_WallToAimFor == -1)
-		Chosen = func_8004045C(pThis, &D_800BC604[0], 4) ;
+		Chosen = BOSS_GetClosestPositionIndex(pThis, &D_800BC604[0], 4) ;
 	else
 	// Choose the logical next wall!
 	switch(pMantis->m_WallToAimFor)
@@ -85,7 +85,7 @@ INT32 Mantis_ClosestWall(CGameObjectInstance *pThis, CMantis *pMantis)
  	pMantis->m_WallToAimFor = Chosen ;
 	if (Chosen != -1)
 	{
-		func_80044A34(pThis, pMantis) ;
+		Mantis_ChooseWallJumpPos(pThis, pMantis) ;
 
                 
                                                

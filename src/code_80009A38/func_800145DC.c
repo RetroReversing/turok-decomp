@@ -2,8 +2,8 @@
 
 extern float __sinf(float angle);
 typedef struct CQuatern_t { float x,y,z,t; } CQuatern;
-extern float func_8001349C(float x);
-extern void func_80014538(CQuatern *q);
+extern float acos(float x);
+extern void CQuatern__Normalize(CQuatern *q);
 extern double D_800F0D30;
 void func_800145DC(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB){
  CQuatern qBN;
@@ -24,10 +24,10 @@ void func_800145DC(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB){
   pqThis->y = pqA->y + u * (pqB->y - pqA->y);
   pqThis->z = pqA->z + u * (pqB->z - pqA->z);
   pqThis->t = pqA->t + u * (pqB->t - pqA->t);
-  func_80014538(pqThis);
+  CQuatern__Normalize(pqThis);
   return;
  }
- theta = func_8001349C(dot);
+ theta = acos(dot);
  sinTheta = __sinf(theta);
    if (sinTheta == 0)
    {

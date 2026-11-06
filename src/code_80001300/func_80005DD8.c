@@ -1131,7 +1131,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-extern int func_80031974(CScene *pThis,
+extern int CScene__DoSoundEffect(CScene *pThis,
              int nSoundType, float Volume,
              void *pSource, CVector3 *pvSourcePos, int SndFlags);
 typedef struct COverlay_t
@@ -1997,7 +1997,7 @@ void func_80005DD8(CEngineApp *pThis){
    if ((pThis->m_WarpSound >= 0) && (pThis->m_uWarp > 0) && !pThis->m_PlayedSound)
    {
     pThis->m_PlayedSound = 1;
-    func_80031974(&pThis->m_Scene,
+    CScene__DoSoundEffect(&pThis->m_Scene,
             pThis->m_WarpSound, 1,
             pPlayer, &D_80129520.Ears.vPos, 0);
    }

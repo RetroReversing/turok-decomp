@@ -1336,7 +1336,7 @@ typedef struct CCamera_t
  signed long m_UserSoundHandles[8] ;
  signed long m_Flags ;
 } CCamera ;
-extern void func_80037EEC(CCamera *pThis) ;
+extern void CCamera__Update(CCamera *pThis) ;
 typedef struct CSunFrameData_t
 {
  sa_u64 m_DepthData[2];
@@ -1608,8 +1608,8 @@ extern unsigned long D_800F9D60;
 extern float D_800B6B00;
 extern float D_800F9E4C;
 struct CCollisionInfo2_t;
-extern CFrameData* func_80007E44(CEngineApp *pThis);
-extern void func_80008060(CEngineApp *pThis, CFrameData *pFData);
+extern CFrameData* CEngineApp__CreateGraphicsTask(CEngineApp *pThis);
+extern void CEngineApp__SendGraphicsTask(CEngineApp *pThis, CFrameData *pFData);
 extern void CEngineApp__PrepareFrame(CEngineApp *pThis, int nMinimumFields);
 extern unsigned long D_800F9D54;
 extern unsigned long D_800F9D58;
@@ -1617,18 +1617,18 @@ extern unsigned long D_800F9D5C;
 extern unsigned long D_800F9D60;
 extern float D_800B6B00 ;
 extern float D_800F9E4C;
-CFrameData* func_80007E44(CEngineApp *pThis);
-void func_80008060(CEngineApp *pThis, CFrameData *pFData);
+CFrameData* CEngineApp__CreateGraphicsTask(CEngineApp *pThis);
+void CEngineApp__SendGraphicsTask(CEngineApp *pThis, CFrameData *pFData);
 extern CFrameData *D_80119924;
 extern int nDisplayLists,
     D_8011992C;
 void CEngineApp__PrepareFrame(CEngineApp *pThis, int nMinimumFields);
 void CEngineApp__PrepareFrame(CEngineApp *pThis, int nMinimumFields){
  /* Updates the camera, predicts frame time and queues the next graphics task (tengine.c). */
- func_80037EEC(&pThis->m_Camera) ;
+ CCamera__Update(&pThis->m_Camera) ;
  D_8011992C = ((nMinimumFields) > (((D_800F9D54 + D_800F9D58 + D_800F9D5C + D_800F9D60 + 2) - ((D_800F9D54) > (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))))) ? (D_800F9D54) : (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60)))))))/3) ? (nMinimumFields) : (((D_800F9D54 + D_800F9D58 + D_800F9D5C + D_800F9D60 + 2) - ((D_800F9D54) > (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))))) ? (D_800F9D54) : (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60)))))))/3));
  D_800B6B00 = (((D_8011992C)*15)/D_800F9E4C);
- D_80119924 = func_80007E44(pThis);
+ D_80119924 = CEngineApp__CreateGraphicsTask(pThis);
  D_80119924->m_nPredictFields = D_8011992C;
- func_80008060(pThis, D_80119924);
+ CEngineApp__SendGraphicsTask(pThis, D_80119924);
 }

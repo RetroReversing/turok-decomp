@@ -1,6 +1,6 @@
 #include "common.h"
 
-s64 func_8009D46C(s64, s64);
+s64 __ll_div(s64, s64);
 s64 __ll_mul(s64, s64);
 typedef struct 
 {
@@ -18,7 +18,7 @@ void lldiv(ResultWords * volatile destination, s64 dividend, s64 divisor)
 {
   Division tmp;
  goto dummy_label_320923; dummy_label_320923: ;
-  tmp.quotient = func_8009D46C(dividend, divisor);
+  tmp.quotient = __ll_div(dividend, divisor);
   tmp.remainder = dividend - __ll_mul(divisor, tmp.quotient);
   if ((tmp.quotient < 0) && (tmp.remainder > 0))
   {

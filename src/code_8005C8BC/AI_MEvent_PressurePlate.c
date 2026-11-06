@@ -23,7 +23,7 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 		case AI_OBJECT_DEVICE_WALL:
 			// Only mantis can trigger breakable walls, if on wall or flying
 			//if ((nType == AI_OBJECT_CHARACTER_MANTIS_BOSS) &&
-			if ((func_8001D398(pOrigin) == AI_OBJECT_CHARACTER_MANTIS_BOSS) &&
+			if ((CInstanceHdr__TypeFlag(pOrigin) == AI_OBJECT_CHARACTER_MANTIS_BOSS) &&
 				 (((CGameObjectInstance *)pOrigin)->m_pBoss->m_ModeFlags & (BF_LEFT_WALL_MODE | BF_RIGHT_WALL_MODE | BF_FLYING_MODE)))
 			{
 				// if already activated, then don't bother
@@ -35,13 +35,13 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 					// Check for matching left right actions
 					if (Id == Value)
 					{
-						func_8008FD20(pAI);
+						WallAI_MEvent_Left(pAI);
 						Activated = TRUE ;
 					}
 					else
 					if ((Id+1) == Value)
 					{
-					 	func_8008FDA4(pAI);
+					 	WallAI_MEvent_Right(pAI);
 						Activated = TRUE ;
 					}
 
@@ -68,12 +68,12 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 //				if ((CEngineApp__GetPlayer(GetApp()) == (CGameObjectInstance *)pOrigin) &&
 //					(CInstanceHdr__IsOnGround(&CEngineApp__GetPlayer(GetApp())->ah.ih)))
 
-				func_8008F948(pAI, FALSE);
+				DoorAI_MEvent_OpenClose(pAI, FALSE);
 				break ;
 
 			// make crystal sink
 			case AI_OBJECT_DEVICE_CRYSTAL:
-				func_80090830(pAI, FALSE);
+				CrystalAI_MEvent_Start(pAI, FALSE);
 				break ;
 		}
 	}
@@ -90,22 +90,22 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 			// only player can trigger doors (so MANTIS doesnt trigger crystal)
 //			if (CEngineApp__GetPlayer(GetApp()) == (CGameObjectInstance *)pOrigin)
 
-			func_8008F948(pAI, TRUE);
+			DoorAI_MEvent_OpenClose(pAI, TRUE);
 			break;
 
 		case AI_OBJECT_DEVICE_ACTION:
 		case AI_OBJECT_DEVICE_ANIMOFFSCREENACTION:
 			// only player can trigger actions (so MANTIS doesnt trigger rising walls)
 			//if (CEngineApp__GetPlayer(GetApp()) == (CGameObjectInstance *)pOrigin)
-				func_8008FB0C(pAI);
+				ActionAI_MEvent_Go(pAI);
 			break;
 
 		case AI_OBJECT_DEVICE_TIMERACTION:
-			func_8008FB9C(pAI);
+			TimerActionAI_MEvent_Go(pAI);
 			break;
 
 		case AI_OBJECT_DEVICE_PRESSUREACTION:
-			func_8008FC3C(pAI);
+			PressureActionAI_MEvent_Go(pAI);
 			break;
      
            
@@ -115,11 +115,11 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
       
 
 		case AI_OBJECT_DEVICE_PORTAL:
-			func_800901E0(pAI);
+			PortalAI_MEvent_Start(pAI);
 			break;
 
 		case AI_OBJECT_DEVICE_LOCK:
-			func_80090330(pAI);
+			LockAI_MEvent_Start(pAI);
 			break;
 
 
@@ -153,7 +153,7 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 				floorcheck = FALSE ;
 			if (AI_GetDyn(pAI)->m_dwStatusFlags & AI_INTERACTIVEANIMATION)
 			{
-				if ((floorcheck) && (func_8001BA24(&CEngineApp__GetPlayer(GetApp())->ah.ih)==FALSE))
+				if ((floorcheck) && (CInstanceHdr__IsOnGround(&CEngineApp__GetPlayer(GetApp())->ah.ih)==FALSE))
 					break ;
 
 				AI_GetDyn(pAI)->m_dwStatusFlags &= ~AI_INTERACTIVEANIMATION;
@@ -163,8 +163,8 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 				{
 					nAnim = AI_GetEA(pAI)->m_InteractiveAnim - 1 + AI_ANIM_INTERACTIVE_ANIMATION1;
 					AI_GetDyn(pAI)->m_dwStatusFlags2 &= ~AI_HOLDINTANIMON1STFRAME;
-					func_8005FCF4(pAI, nAnim, TRUE);
-					func_8001E93C(pAI);
+					AI_SetDesiredAnim(pAI, nAnim, TRUE);
+					CGameObjectInstance__RestartAnim(pAI);
 					//AI_GetDyn(pAI)->m_Invincible = TRUE;
 					AI_GetDyn(pAI)->m_dwStatusFlags2 |= AI_VISIBLE;
 				}
@@ -182,25 +182,25 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 		case AI_OBJECT_DEVICE_LASER:
 			// only player can trigger lasers
 			if (CEngineApp__GetPlayer(GetApp()) == (CGameObjectInstance *)pOrigin)
-				func_8008FE28(pAI);
+				LaserAI_MEvent_Start(pAI);
 			break;
 
 		// elevators
 		case AI_OBJECT_DEVICE_ELEVATOR:
 		case AI_OBJECT_DEVICE_FOOTELEVATOR:
-			func_8008FF34(pAI);
+			ElevatorAI_MEvent_Start(pAI);
 			break;
 		// platforms
 		case AI_OBJECT_DEVICE_PLATFORM:
-			func_80090064(pAI);
+			PlatformAI_MEvent_Start(pAI);
 			break;
 		// deathelevators
 		case AI_OBJECT_DEVICE_DEATHELEVATOR:
-			func_800900E4(pAI);
+			DeathElevatorAI_MEvent_Start(pAI);
 			break;
 		// collapsing platform
 		case AI_OBJECT_DEVICE_COLLAPSINGPLATFORM:
-			func_80090154(pAI);
+			CollapsingPlatformAI_MEvent_Start(pAI);
 			break;
 
 // TREX ELEVATOR AND PLATFORMS NOW GONE!!
@@ -220,32 +220,32 @@ void AI_MEvent_PressurePlate(CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CV
 
 		// drain
 		case AI_OBJECT_DEVICE_DRAIN:
-			func_80090738(pAI);
+			DrainAI_MEvent_Start(pAI);
 			break;
 		// flood
 		case AI_OBJECT_DEVICE_FLOOD:
-			func_800907CC(pAI);
+			FloodAI_MEvent_Start(pAI);
 			break;
 
 		// crystal
 		case AI_OBJECT_DEVICE_CRYSTAL:
 			// only player can trigger crystal on mantis level
 			if (CEngineApp__GetPlayer(GetApp()) == (CGameObjectInstance *)pOrigin)
-				func_80090830(pAI, TRUE);
+				CrystalAI_MEvent_Start(pAI, TRUE);
 			break;
 		// spin elevator
 		case AI_OBJECT_DEVICE_SPINELEVATOR:
-			func_80090988(pAI);
+			SpinElevatorAI_MEvent_Start(pAI);
 			break;
 		// spin platform
 		case AI_OBJECT_DEVICE_SPINPLATFORM:
-			func_80090A1C(pAI);
+			SpinPlatformAI_MEvent_Start(pAI);
 			break;
 
 
 		// FadeInFadeOut device
 		case AI_OBJECT_DEVICE_FADEINFADEOUT:
-			func_80090A8C(pAI) ;
+			FadeInFadeOutAI_MEvent_ToggleState(pAI) ;
 			break ;
 	}
 }

@@ -14,9 +14,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8002D410(s32, void *);                 /* extern */
+M2C_UNK CCartCache__ResetAge(s32, void *);                 /* extern */
 
 s32 CCacheEntry__GetData(void *arg0) {
-    func_8002D410(M2C_FIELD(arg0, s32 *, 0x10), arg0);
+    CCartCache__ResetAge(M2C_FIELD(arg0, s32 *, 0x10), arg0);
     return M2C_FIELD(arg0, s32 *, 0);
 }

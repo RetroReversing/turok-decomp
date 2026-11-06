@@ -274,7 +274,7 @@ typedef union {
  Gloadtlut loadtlut;
         long long int force_structure_alignment;
 } Gfx;
-extern float func_8009E7A0(float value);
+extern float sqrtf(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -332,7 +332,7 @@ typedef struct CVector3_t
 {
  float x, y, z;
 } CVector3;
-extern void func_80013C2C(CVector3 *pvThis, CVector3 *pvIn, float Scaler);
+extern void CVector3__MultScaler(CVector3 *pvThis, CVector3 *pvIn, float Scaler);
 typedef struct CQuatern_t
 {
  float x, y, z, t;
@@ -1007,10 +1007,10 @@ void func_80033B48(CScene *pThis){
  vDir.x = pThis->m_LevelInfo.m_Direction[0];
  vDir.y = pThis->m_LevelInfo.m_Direction[1];
  vDir.z = pThis->m_LevelInfo.m_Direction[2];
- mag = func_8009E7A0(((&vDir)->x*(&vDir)->x + (&vDir)->y*(&vDir)->y + (&vDir)->z*(&vDir)->z));
+ mag = sqrtf(((&vDir)->x*(&vDir)->x + (&vDir)->y*(&vDir)->y + (&vDir)->z*(&vDir)->z));
  if (mag != 0)
  {
-  func_80013C2C(&vDir, &vDir, 127/mag);
+  CVector3__MultScaler(&vDir, &vDir, 127/mag);
   pThis->m_LightDirection[0] = (signed short) vDir.x;
   pThis->m_LightDirection[1] = (signed short) vDir.y;
   pThis->m_LightDirection[2] = (signed short) vDir.z;

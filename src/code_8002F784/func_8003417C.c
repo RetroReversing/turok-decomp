@@ -14,8 +14,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_800340B0();                         /* extern */
+M2C_UNK CScene__RequestLevel();                         /* extern */
 
 void func_8003417C(void *arg0, M2C_UNK arg1) {
-    func_800340B0(arg0, M2C_FIELD(arg0, s32 *, 0x175EC));
+    CScene__RequestLevel(arg0, M2C_FIELD(arg0, s32 *, 0x175EC));
 }

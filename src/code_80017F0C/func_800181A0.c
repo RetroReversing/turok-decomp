@@ -26,7 +26,7 @@ int func_800181A0(CGameObjectInstance *pThis, int nAnimIndex)
 												 CCacheEntry__GetData(pThis->m_pceObjectInfo),
 												 FALSE);
 
-	pbAnimTypes = CIndexedSet__GetBlock(&isObjectInfo, CART_OBJECTINFO_usAnimTypes);
+	pbAnimTypes = CIndexedSet__GetAddress(&isObjectInfo, CART_OBJECTINFO_usAnimTypes);
 
 	CUnindexedSet__ConstructFromRawData(&usAnimTypes, pbAnimTypes, FALSE);
 

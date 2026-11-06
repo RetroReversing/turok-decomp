@@ -11,16 +11,16 @@ extern OSPifRam D_80137C00;extern u8 D_80137C40,D_80137C41;extern s32 D_800EF230
 extern OSMesgQueue D_80137C68;extern OSMesg D_80137C80;
 u64 osGetTime(void);void osCreateMesgQueue(OSMesgQueue*,OSMesg*,s32);s32 osRecvMesg(OSMesgQueue*,OSMesg*,s32);
 s32 osSetTimer(OSTimer*,u64,u64,OSMesgQueue*,OSMesg*);
-s32 func_800A8590(s32,void*);void __osPackRequestData(u8);void func_8009EDC8(u8*,OSContStatus*);void func_800A84D0(void);
+s32 __osSiRawStartDma(s32,void*);void __osPackRequestData(u8);void func_8009EDC8(u8*,OSContStatus*);void __osSiCreateAccessQueue(void);
 #define __osContPifRam D_80137C00
 #define __osContLastCmd D_80137C40
 #define __osMaxControllers D_80137C41
 #define __osContinitialized D_800EF230
 #define __osEepromTimerQ D_80137C68
 #define __osEepromTimerMsg D_80137C80
-#define __osSiRawStartDma func_800A8590
+#define __osSiRawStartDma __osSiRawStartDma
 #define __osContGetInitData func_8009EDC8
-#define __osSiCreateAccessQueue func_800A84D0
+#define __osSiCreateAccessQueue __osSiCreateAccessQueue
 u64 __ull_div(u64,u64);
 #define OS_USEC_TO_CYCLES(n) __ull_div((u64)(n)*D_800EE4D0,1000000ULL)
 #define MAXCONTROLLERS 4

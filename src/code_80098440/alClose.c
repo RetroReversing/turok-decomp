@@ -14,12 +14,12 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_800AD5B0();                            /* extern */
+M2C_UNK alSynDelete();                            /* extern */
 extern s32 D_800EF260;
 
 void alClose(void) {
     if (D_800EF260 != 0) {
-        func_800AD5B0();
+        alSynDelete();
         D_800EF260 = 0;
     }
 }

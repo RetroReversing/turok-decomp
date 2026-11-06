@@ -55,7 +55,7 @@ typedef struct OSMesgQueue_s {
     OSMesg *msg;
 } OSMesgQueue;
 typedef sa_u32 OSIntMask;
-extern OSIntMask func_8009D220(OSIntMask);
+extern OSIntMask osSetIntMask(OSIntMask);
 typedef sa_u64 OSTime;
 typedef struct {
  sa_u32 type;
@@ -121,9 +121,9 @@ extern sa_u64 dram_stack[];
 void osScAddClient(OSSched *D_800F95E0, OSScClient *c, OSMesgQueue *msgQ);
 void osScAddClient(OSSched *D_800F95E0, OSScClient *c, OSMesgQueue *msgQ){
     OSIntMask mask;
-    mask = func_8009D220(0x00000001);
+    mask = osSetIntMask(0x00000001);
     c->msgQ = msgQ;
     c->next = D_800F95E0->clientList;
     D_800F95E0->clientList = c;
-    func_8009D220(mask);
+    osSetIntMask(mask);
 }

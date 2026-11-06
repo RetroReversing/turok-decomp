@@ -1,10 +1,10 @@
 #include "decompdecomp_sync_8d698fdff8b312cb3f4a.h"
 #line 1 "func.c"
 typedef struct {void *data;s32 automatic;s32 allocated;} RawSet;
-void func_80011DDC(void*);
+void i3D_free(void*);
 static __inline void raw_attach(RawSet*p,void *data,s32 automatic)
 {
- if(p->data && p->automatic) func_80011DDC(p->data);
+ if(p->data && p->automatic) i3D_free(p->data);
  p->data=data;
  p->allocated=0;
  p->automatic=automatic;

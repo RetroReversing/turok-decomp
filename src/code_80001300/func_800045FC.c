@@ -312,7 +312,7 @@ typedef union {
 } Gfx;
 extern float __sinf(float angle);
 extern float __cosf(float angle);
-extern float func_8009E7A0(float value);
+extern float sqrtf(float value);
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -370,14 +370,14 @@ typedef struct CVector3_t
 {
  float x, y, z;
 } CVector3;
-extern void func_800144C8(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
+extern void CVector3__Subtract(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
 typedef float CMtxF[4][4];
 typedef struct CQuatern_t
 {
  float x, y, z, t;
 } CQuatern;
-extern void func_80014CB8(CQuatern *pqThis, const CQuatern *pqLeft, const CQuatern *pqRight);
-extern void func_80014538(CQuatern *pqThis);
+extern void CQuatern__Mult(CQuatern *pqThis, const CQuatern *pqLeft, const CQuatern *pqRight);
+extern void CQuatern__Normalize(CQuatern *pqThis);
 extern float D_80119CB0,
      inv_mag_squared;
 typedef struct CGameAnimateState_t
@@ -1253,18 +1253,18 @@ typedef struct
        TypeFlyForward,
        TypeFlyBackward;
 } CTControl;
-extern float func_800513F4 (CTControl *pThis);
-extern float func_80051694 (CTControl *pThis);
-extern float func_800516C4 (CTControl *pThis);
-extern float func_80051964 (CTControl *pThis);
-extern float func_80051994 (CTControl *pThis);
-extern float func_800519F4 (CTControl *pThis);
-extern float func_800519C4 (CTControl *pThis);
-extern float func_80051B44 (CTControl *pThis);
-extern float func_80051B74 (CTControl *pThis);
-extern float func_80051BA4 (CTControl *pThis);
-extern float func_80051BD4 (CTControl *pThis);
-extern float func_80051C04 (CTControl *pThis);
+extern float CTControl__IsStart (CTControl *pThis);
+extern float CTControl__IsClickLeft (CTControl *pThis);
+extern float CTControl__IsClickRight (CTControl *pThis);
+extern float CTControl__IsAnalogLeft (CTControl *pThis);
+extern float CTControl__IsAnalogRight (CTControl *pThis);
+extern float CTControl__IsAnalogDown (CTControl *pThis);
+extern float CTControl__IsAnalogUp (CTControl *pThis);
+extern float CTControl__IsDigitalUp (CTControl *pThis);
+extern float CTControl__IsDigitalDown (CTControl *pThis);
+extern float CTControl__IsZRotTog (CTControl *pThis);
+extern float CTControl__IsZRotLeft (CTControl *pThis);
+extern float CTControl__IsZRotRight (CTControl *pThis);
 typedef struct CRequestor_t
 {
  float m_Alpha ;
@@ -1975,7 +1975,7 @@ void func_800045FC(CEngineApp *pThis){
         *pClosestAI;
  CVector3 vDelta,
         vPos;
- if (func_800513F4(D_800F9E44) && pThis->m_PortraitExit == 0)
+ if (CTControl__IsStart(D_800F9E44) && pThis->m_PortraitExit == 0)
  {
   pThis->m_PortraitExit = 1;
   pThis->m_PortraitNameMode = 3;
@@ -2023,14 +2023,14 @@ void func_800045FC(CEngineApp *pThis){
    pThis->m_PortraitTimer = 0.0;
   pThis->m_PortraitNameMode = 3;
  }
- if (func_800516C4(D_800F9E44))
+ if (CTControl__IsClickRight(D_800F9E44))
  {
   pThis->m_Portrait++;
   if (pThis->m_Portrait >= 31)
    pThis->m_Portrait = 0;
   func_80004524(pThis);
  }
- else if (func_80051694(D_800F9E44))
+ else if (CTControl__IsClickLeft(D_800F9E44))
  {
   pThis->m_Portrait--;
   if (pThis->m_Portrait < 0)
@@ -2046,8 +2046,8 @@ void func_800045FC(CEngineApp *pThis){
  for (cAI=0; cAI<nAIs; cAI++)
  {
   pAI = ((pThis)->m_Scene.m_pActiveAnimInstances[cAI]);
-  func_800144C8(&vDelta, &vPos, &pAI->ah.ih.m_vPos);
-  aidist = func_8009E7A0(((&vDelta)->x*(&vDelta)->x + (&vDelta)->y*(&vDelta)->y + (&vDelta)->z*(&vDelta)->z));
+  CVector3__Subtract(&vDelta, &vPos, &pAI->ah.ih.m_vPos);
+  aidist = sqrtf(((&vDelta)->x*(&vDelta)->x + (&vDelta)->y*(&vDelta)->y + (&vDelta)->z*(&vDelta)->z));
   if (aidist <= dist)
   {
    dist = aidist;
@@ -2058,14 +2058,14 @@ void func_800045FC(CEngineApp *pThis){
   zoommax = pClosestAI->ah.ih.m_pEA->m_CollisionRadius;
  else
   zoommax = -1;
- if (func_80051B44(D_800F9E44) && zoommax >= 0)
+ if (CTControl__IsDigitalUp(D_800F9E44) && zoommax >= 0)
  {
   pThis->m_PortraitTimer = 3.0;
   pThis->m_ActualPortraitZoom -= (1*(1024.0/100.0));
   if (pThis->m_ActualPortraitZoom < zoommax)
    pThis->m_ActualPortraitZoom = zoommax;
  }
- else if (func_80051B74(D_800F9E44))
+ else if (CTControl__IsDigitalDown(D_800F9E44))
  {
   pThis->m_PortraitTimer = 3.0;
   pThis->m_ActualPortraitZoom += (1*(1024.0/100.0));
@@ -2074,11 +2074,11 @@ void func_800045FC(CEngineApp *pThis){
  }
  dm = (pThis->m_ActualPortraitZoom - pThis->m_PortraitZoom) / 2;
  pThis->m_PortraitZoom += dm * D_800B6B00 * 2;
- reszl = resl = func_80051964(D_800F9E44);
- reszr = resr = func_80051994(D_800F9E44);
- resu = func_800519C4(D_800F9E44);
- resd = func_800519F4(D_800F9E44);
- if (func_80051BA4(D_800F9E44))
+ reszl = resl = CTControl__IsAnalogLeft(D_800F9E44);
+ reszr = resr = CTControl__IsAnalogRight(D_800F9E44);
+ resu = CTControl__IsAnalogUp(D_800F9E44);
+ resd = CTControl__IsAnalogDown(D_800F9E44);
+ if (CTControl__IsZRotTog(D_800F9E44))
  {
   if (reszl) pThis->m_ActualPortraitRotZSpd = -(reszl/4);
   if (reszr) pThis->m_ActualPortraitRotZSpd = +(reszr/4);
@@ -2089,12 +2089,12 @@ void func_800045FC(CEngineApp *pThis){
   if (resl) pThis->m_ActualPortraitRotYSpd = -(resl/4);
   if (resr) pThis->m_ActualPortraitRotYSpd = +(resr/4);
   reszl = reszr = 0;
-  if (func_80051BD4(D_800F9E44))
+  if (CTControl__IsZRotLeft(D_800F9E44))
   {
    reszl = 10;
    pThis->m_ActualPortraitRotZSpd = -reszl;
   }
-  else if (func_80051C04(D_800F9E44))
+  else if (CTControl__IsZRotRight(D_800F9E44))
   {
    reszr = 10;
    pThis->m_ActualPortraitRotZSpd = +reszr;
@@ -2121,16 +2121,16 @@ void func_800045FC(CEngineApp *pThis){
  dm = (pThis->m_ActualPortraitRotZSpd - pThis->m_PortraitRotZSpd) / 2;
  pThis->m_PortraitRotZSpd += dm;
  D_80119CB0 = __sinf((((pThis->m_PortraitRotXSpd)*(3.14159265358979323846/180)) *(60*((D_800B6B00)*(1.0/15))))/2); (&qRot)->x = (1)*D_80119CB0; (&qRot)->y = (0)*D_80119CB0; (&qRot)->z = (0)*D_80119CB0; (&qRot)->t = __cosf((((pThis->m_PortraitRotXSpd)*(3.14159265358979323846/180)) *(60*((D_800B6B00)*(1.0/15))))/2); ;
- func_80014CB8(&qFinal, &pThis->m_qPortraitOrientation, &qRot) ;
- func_80014538(&qFinal) ;
+ CQuatern__Mult(&qFinal, &pThis->m_qPortraitOrientation, &qRot) ;
+ CQuatern__Normalize(&qFinal) ;
  pThis->m_qPortraitOrientation = qFinal ;
  D_80119CB0 = __sinf((((pThis->m_PortraitRotYSpd)*(3.14159265358979323846/180)) *(60*((D_800B6B00)*(1.0/15))))/2); (&qRot)->x = (0)*D_80119CB0; (&qRot)->y = (1)*D_80119CB0; (&qRot)->z = (0)*D_80119CB0; (&qRot)->t = __cosf((((pThis->m_PortraitRotYSpd)*(3.14159265358979323846/180)) *(60*((D_800B6B00)*(1.0/15))))/2); ;
- func_80014CB8(&qFinal, &pThis->m_qPortraitOrientation, &qRot) ;
- func_80014538(&qFinal) ;
+ CQuatern__Mult(&qFinal, &pThis->m_qPortraitOrientation, &qRot) ;
+ CQuatern__Normalize(&qFinal) ;
  pThis->m_qPortraitOrientation = qFinal ;
  D_80119CB0 = __sinf((((pThis->m_PortraitRotZSpd)*(3.14159265358979323846/180)) *(60*((D_800B6B00)*(1.0/15))))/2); (&qRot)->x = (0)*D_80119CB0; (&qRot)->y = (0)*D_80119CB0; (&qRot)->z = (1)*D_80119CB0; (&qRot)->t = __cosf((((pThis->m_PortraitRotZSpd)*(3.14159265358979323846/180)) *(60*((D_800B6B00)*(1.0/15))))/2); ;
- func_80014CB8(&qFinal, &pThis->m_qPortraitOrientation, &qRot) ;
- func_80014538(&qFinal) ;
+ CQuatern__Mult(&qFinal, &pThis->m_qPortraitOrientation, &qRot) ;
+ CQuatern__Normalize(&qFinal) ;
  pThis->m_qPortraitOrientation = qFinal ;
  pThis->m_Camera.m_View.m_vEye.x = (pThis->m_Portrait%5) * ( 119.60 *(1024.0/100.0)) + (-239.19 *(1024.0/100.0));
  pThis->m_Camera.m_View.m_vEye.z = (pThis->m_Portrait/5) * -( 119.60 *(1024.0/100.0)) + ( 358.80 *(1024.0/100.0)) - pThis->m_PortraitZoom;

@@ -14,12 +14,12 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_800B1580(); /* extern */
+M2C_UNK alFilterNew(); /* extern */
 extern M2C_UNK func_800AFAF0;
 extern M2C_UNK alAuxBusPull;
 
 void alAuxBusNew(void *arg0, s32 arg1, s32 arg2) {
-    func_800B1580(arg0, &alAuxBusPull, &func_800AFAF0, 6);
+    alFilterNew(arg0, &alAuxBusPull, &func_800AFAF0, 6);
     M2C_FIELD(arg0, s32 *, 0x14) = 0;
     M2C_FIELD(arg0, s32 *, 0x18) = arg2;
     M2C_FIELD(arg0, s32 *, 0x1C) = arg1;

@@ -1,8 +1,8 @@
 #include "common.h"
 
 s32 __alSeqNextDelta(void *, s32 *);
-s32 func_800B0F08(void *);
-void func_800B0EEC(void *, s32);
+s32 alCSeqGetTicks(void *);
+void alSeqSetLoc(void *, s32);
 void alEvtqPostEvent(void *, s16 *, u32);
 typedef struct 
 {
@@ -27,9 +27,9 @@ void __postNextSeqEvent(S_AB5D0 *p)
   {
     if (__alSeqNextDelta(obj, &count))
     {
-      if ((p->p84 != 0) && ((func_800B0F08(obj) + count) >= (*((s32 *) (((u8 *) p->p80) + 8)))))
+      if ((p->p84 != 0) && ((alCSeqGetTicks(obj) + count) >= (*((s32 *) (((u8 *) p->p80) + 8)))))
       {
-        func_800B0EEC(obj, (s32) p->p7c);
+        alSeqSetLoc(obj, (s32) p->p7c);
         if (p->p84 != (-1))
         {
           p->p84--;

@@ -922,8 +922,8 @@ typedef struct COnScreen_t
  sa_u8 m_SelectPosition ;
 } COnScreen ;
 extern void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP);
-extern void func_8007E38C(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
-extern void func_80081A10(Gfx **ppDLP, int opacity) ;
+extern void COnScreen__DrawLensFlare(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
+extern void COnScreen__Init16BitDraw(Gfx **ppDLP, int opacity) ;
 typedef struct CPlane_t
 {
  CVector3 m_vPoint,
@@ -933,7 +933,7 @@ typedef struct CViewVolume_t
 {
  CPlane m_Planes[6];
 } CViewVolume;
-extern int func_80084ACC(CViewVolume *pThis, CROMBounds *pBounds);
+extern int CViewVolume__IsOverlappingBounds(CViewVolume *pThis, CROMBounds *pBounds);
 typedef struct CRequestor_t
 {
  float m_Alpha ;
@@ -1618,8 +1618,8 @@ extern CBoundsRect D_800F9E20,
 extern CEngineApp D_800F9F10; extern CEngineApp D_80106000; extern CEngineApp D_80106004;
 struct CCollisionInfo2_t;
 void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP);
-void func_8007E38C(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
-void func_80081A10(Gfx **ppDLP, int opacity);
+void COnScreen__DrawLensFlare(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
+void COnScreen__Init16BitDraw(Gfx **ppDLP, int opacity);
 void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP){
  /* Draw lens flares for visible particles that carry the lens flare behavior flag. */
  CParticle *pParticle;
@@ -1627,7 +1627,7 @@ void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP){
  float diag, diagD2,
       ScreenX,
       ScreenY;
- func_80081A10(ppDLP, 100) ;
+ COnScreen__Init16BitDraw(ppDLP, 100) ;
  D_800239C0(ppDLP, 26);
  { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(12) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((2 << 12)); };
  pParticle = (&D_80106000)->m_Scene.m_ParticleSystem.m_pDrawHead;
@@ -1645,10 +1645,10 @@ void func_8007DFE4(COnScreen *pThis, Gfx **ppDLP){
    bounds.m_vMax.z = pParticle->ah.ih.m_vPos.z + diagD2;
    if ((((&D_800F9E20)->m_MaxX > (&bounds)->m_vMin.x) && ((&D_800F9E20)->m_MinX < (&bounds)->m_vMax.x) && ((&D_800F9E20)->m_MaxZ > (&bounds)->m_vMin.z) && ((&D_800F9E20)->m_MinZ < (&bounds)->m_vMax.z)))
    {
-    if (func_80084ACC(&D_800F9D90, &bounds))
+    if (CViewVolume__IsOverlappingBounds(&D_800F9D90, &bounds))
     {
      D_8000AE3C((&D_800F9F10), &pParticle->ah.ih.m_vPos, &ScreenX, &ScreenY);
-     func_8007E38C(pThis, ppDLP, ScreenX, ScreenY, 1, 0, 0);
+     COnScreen__DrawLensFlare(pThis, ppDLP, ScreenX, ScreenY, 1, 0, 0);
     }
    }
   }

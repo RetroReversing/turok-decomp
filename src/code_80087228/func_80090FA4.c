@@ -14,9 +14,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80090E4C();                   /* extern */
+M2C_UNK Turret_TransformPos();                   /* extern */
 extern M2C_UNK D_800ED494;
 
 void func_80090FA4(s32 arg0, s32 arg1, s32 arg2) {
-    func_80090E4C(arg0, arg1, arg2, &D_800ED494);
+    Turret_TransformPos(arg0, arg1, arg2, &D_800ED494);
 }

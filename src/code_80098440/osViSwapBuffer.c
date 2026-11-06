@@ -14,15 +14,15 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_800A5750();                                /* extern */
-M2C_UNK func_800A5770(s32);                         /* extern */
+s32 __osDisableInt();                                /* extern */
+M2C_UNK __osRestoreInt(s32);                         /* extern */
 extern void *D_800EF334;
 
 void osViSwapBuffer(s32 arg0) {
     s32 sp1C;
 
-    sp1C = func_800A5750();
+    sp1C = __osDisableInt();
     M2C_FIELD(D_800EF334, s32 *, 4) = arg0;
     M2C_FIELD(D_800EF334, u16 *, 0) = (u16) (M2C_FIELD(D_800EF334, u16 *, 0) | 0x10);
-    func_800A5770(sp1C);
+    __osRestoreInt(sp1C);
 }

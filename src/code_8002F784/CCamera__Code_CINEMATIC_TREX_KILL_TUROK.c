@@ -491,7 +491,7 @@ typedef struct CInstanceHdr_t
  CGameRegion *m_pCurrentRegion;
  CEnemyAttributes *m_pEA;
 } CInstanceHdr;
-extern void func_80017F0C(CInstanceHdr *pThis,
+extern void CInstanceHdr__GetNearPositionAndRegion(CInstanceHdr *pThis,
                 CVector3 vDesiredPos,
                 CVector3 *pvOutPos, CGameRegion **ppOutRegion,
                 int GroundBehavior, int InstanceBehavior);
@@ -868,7 +868,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-extern void func_800329E0(CScene *pThis, CGameObjectInstance *pInstance,
+extern void CScene__LoadObjectModelType(CScene *pThis, CGameObjectInstance *pInstance,
                int nObjectType, int nAnimType);
 typedef struct COverlay_t
 {
@@ -1607,7 +1607,7 @@ extern void D_80005350(CEngineApp *pThis);
 extern sa_u64 dram_stack[];
 extern float D_800B6B00;
 extern CEngineApp D_800F9F10;
-extern int func_8005FCF4 (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
+extern int AI_SetDesiredAnim (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
 struct CCollisionInfo2_t;
 extern void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis) ;
 enum TRexModes
@@ -1668,9 +1668,9 @@ void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis){
  CGameObjectInstance *pTurok = (((&D_800F9F10))->m_Scene.m_pPlayer) ;
  int i, nInsts ;
  CGameObjectInstance *pInstance ;
- func_800329E0(&(&D_800F9F10)->m_Scene, pTurok,
+ CScene__LoadObjectModelType(&(&D_800F9F10)->m_Scene, pTurok,
              0, 201) ;
- func_8005FCF4(pTurok, 201, 1) ;
+ AI_SetDesiredAnim(pTurok, 201, 1) ;
  if ((!D_80127460) || (!D_80127464))
  {
   nInsts = (&D_800F9F10)->m_Scene.m_nActiveAnimInstances;
@@ -1683,7 +1683,7 @@ void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis){
     D_80127460 = pInstance ;
     D_80127460->m_RotY = pTrex->m_RotY ;
     D_80127460->m_vScale = pTrex->m_vScale ;
-    func_8005FCF4(pInstance, 2604, 1);
+    AI_SetDesiredAnim(pInstance, 2604, 1);
    }
    if ((((pInstance)->m_dwFlags & (1 << 0))) &&
     (pInstance->ah.ih.m_pEA->m_Id == 2))
@@ -1691,7 +1691,7 @@ void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis){
     D_80127464 = pInstance ;
     D_80127464->m_RotY = pTrex->m_RotY ;
     D_80127464->m_vScale = pTrex->m_vScale ;
-    func_8005FCF4(pInstance, 2604, 1);
+    AI_SetDesiredAnim(pInstance, 2604, 1);
    }
   }
  }
@@ -1733,7 +1733,7 @@ void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis){
   vPos = pTrex->ah.ih.m_vPos ;
   vPos.x += (21*(1024.0/100.0)) ;
   vPos.z += (12*(1024.0/100.0)) ;
-  func_80017F0C(&D_80127460->ah.ih, vPos, &vOutPos, &pOutRegion, 0, 0);
+  CInstanceHdr__GetNearPositionAndRegion(&D_80127460->ah.ih, vPos, &vOutPos, &pOutRegion, 0, 0);
   D_80127460->ah.ih.m_vPos = vOutPos ;
   D_80127460->ah.ih.m_pCurrentRegion = pOutRegion ;
   D_80127460->m_RotY = pTrex->m_RotY ;
@@ -1744,7 +1744,7 @@ void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis){
   vPos.x += (26*(1024.0/100.0)) ;
   vPos.z += (6*(1024.0/100.0)) ;
   vPos.y += (16*(1024.0/100.0)) ;
-  func_80017F0C(&D_80127464->ah.ih, vPos, &vOutPos, &pOutRegion, 0, 0);
+  CInstanceHdr__GetNearPositionAndRegion(&D_80127464->ah.ih, vPos, &vOutPos, &pOutRegion, 0, 0);
   D_80127464->ah.ih.m_vPos = vOutPos ;
   D_80127464->ah.ih.m_pCurrentRegion = pOutRegion ;
   D_80127464->m_RotY = pTrex->m_RotY ;
@@ -1758,9 +1758,9 @@ void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis){
    pTrex->m_pBoss->m_Mode = TREX_IDLE_MODE ;
    pTrex->m_pBoss->m_OldMode = -1 ;
    if (D_80127460)
-    func_8005FCF4(D_80127460, 2603, 1);
+    AI_SetDesiredAnim(D_80127460, 2603, 1);
    if (D_80127464)
-    func_8005FCF4(D_80127464, 2603, 1);
+    AI_SetDesiredAnim(D_80127464, 2603, 1);
   }
  }
 }

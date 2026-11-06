@@ -986,11 +986,11 @@ extern void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event);
 extern void _removeEvents(ALEventQueue *evtq, ALSoundState *state);
 extern s32 _DivS32ByF32 (s32 i, f32 f);
 
-void func_800A2170(ALBank*,s32,s32);u32 func_8009D220(u32);
+void func_800A2170(ALBank*,s32,s32);u32 osSetIntMask(u32);
 #define OS_IM_NONE 1
 
 typedef u32 OSIntMask;u32 osSetIntMask(u32);
-#define osSetIntMask func_8009D220
+#define osSetIntMask osSetIntMask
 
 #define	_ABI_H_
 #define	A_SPNOOP		0
@@ -1198,16 +1198,16 @@ extern s32 D_800EF4A0[];
 extern s32 D_800EF4C8[];
 #define FLANGE_PARAMS D_800EF4C8
 
-#define alFilterNew func_800B1580
-void func_800B1580(ALFilter*,ALCmdHandler,ALSetParam,s32);
+#define alFilterNew alFilterNew
+void alFilterNew(ALFilter*,ALCmdHandler,ALSetParam,s32);
 
-void func_800A5158(ALParam*);
-#define _freeParam func_800A5158
+void __freeParam(ALParam*);
+#define _freeParam __freeParam
 
-#define __freeParam func_800A5158
+#define __freeParam __freeParam
 #define assert(x) ((void)0)
-#define alFxParam func_800B1E94
-s32 func_800B1E94(void*,s32,void*);
+#define alFxParam alFxParam
+s32 alFxParam(void*,s32,void*);
 #undef ECHO_PARAMS
 #undef CHORUS_PARAMS
 #undef FLANGE_PARAMS
@@ -1219,4 +1219,4 @@ s32 func_800B1E94(void*,s32,void*);
 
 #define SWAP(in,out) {s16 t=out;out=in;in=t;}
 
-#define osSetIntMask func_8009D220
+#define osSetIntMask osSetIntMask

@@ -36,19 +36,19 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 												 FALSE);
 
 	pbRegionAttributes = CIndexedSet__GetBlockAndSize(&isCollision, CART_COLLISION_usRegionAttributes, &regionAttributesSize);
-	func_8002DA8C(&usAttributes, pbRegionAttributes, FALSE);
+	CUnindexedSet__ConstructFromRawData(&usAttributes, pbRegionAttributes, FALSE);
 
 	pbCorners = CIndexedSet__GetBlockAndSize(&isCollision, CART_COLLISION_usCorners, &cornersSize);
-	func_8002DA8C(&usCorners, pbCorners, FALSE);
+	CUnindexedSet__ConstructFromRawData(&usCorners, pbCorners, FALSE);
 
-	pbRegions = CIndexedSet__GetBlock(&isCollision, CART_COLLISION_usRegions);
-	func_8002DA8C(&usRegions, pbRegions, FALSE);
+	pbRegions = CIndexedSet__GetAddress(&isCollision, CART_COLLISION_usRegions);
+	CUnindexedSet__ConstructFromRawData(&usRegions, pbRegions, FALSE);
 
 	nRegions = CUnindexedSet__GetBlockCount(&usRegions);
 	TRACE("There are %d regions.\r\n", nRegions);
 
 	pbBlocks = CIndexedSet__GetBlockAndSize(&isCollision, CART_COLLISION_usBlockBounds, &blocksSize);
-	func_8002DA8C(&usBlocks, pbBlocks, FALSE);
+	CUnindexedSet__ConstructFromRawData(&usBlocks, pbBlocks, FALSE);
 
 	newRegionsSize = FixAlignment(US_TOTAL_SIZE(sizeof(CGameRegion), nRegions), IS_ALIGNMENT);
 	newSize = IS_INDEX_SIZE(4) + regionAttributesSize + cornersSize + newRegionsSize + blocksSize;
@@ -67,7 +67,7 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 
 		pbNewRegionAttributes = pBytes + offset;
 		//memcpy(pbNewRegionAttributes, pbRegionAttributes, regionAttributesSize);
-		func_8002D7AC(&usAttributes, pbNewRegionAttributes, FALSE);
+		CUnindexedSet__DeinterleaveCopy(&usAttributes, pbNewRegionAttributes, FALSE);
 
 		offset += regionAttributesSize;
 		CIndexedSet__SetBlockCount(&isNewCollision, 1);
@@ -76,9 +76,9 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 
 		pbNewCorners = pBytes + offset;
 		//memcpy(pbNewCorners, pbCorners, cornersSize);
-		func_8002D7AC(&usCorners, pbNewCorners, FALSE);
+		CUnindexedSet__DeinterleaveCopy(&usCorners, pbNewCorners, FALSE);
 
-		func_8002DA8C(&usNewCorners, pbNewCorners, FALSE);
+		CUnindexedSet__ConstructFromRawData(&usNewCorners, pbNewCorners, FALSE);
 
 		offset += cornersSize;
 		CIndexedSet__SetBlockCount(&isNewCollision, 2);
@@ -86,7 +86,7 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 
 		pbNewRegions = pBytes + offset;
 		ASSERT(sizeof(CGameRegion) >= sizeof(CROMRegion));
-		func_8002D7AC(&usRegions, pbNewRegions, TRUE);
+		CUnindexedSet__DeinterleaveCopy(&usRegions, pbNewRegions, TRUE);
 
 		func_8002DA18(&usNewRegions,
 															  	 pbNewRegions,				// data ptr
@@ -101,16 +101,16 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 
 		nCorners = CUnindexedSet__GetBlockCount(&usCorners);
 		for (cCorner=0; cCorner<nCorners; cCorner++)
-			func_80021B28(&newCorners[cCorner]);
+			CROMCorner__Decode(&newCorners[cCorner]);
 
 
 		
 		D_8011A610 = newRegions;
 		for (cRegion=0; cRegion<nRegions; cRegion++)
 		{
-			func_80021AB4(&newRegions[cRegion], &regions[cRegion],
+			CGameRegion__TakeFromROMRegion(&newRegions[cRegion], &regions[cRegion],
 													 newCorners, newRegions);
-			if (func_80033790(pThis, cRegion))
+			if (CScene__GetRegionFlag(pThis, cRegion))
 				newRegions[cRegion].m_wFlags |= REGFLAG_REGIONENTERED ;
 		}
 
@@ -120,7 +120,7 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 
 		// region block bounds
 		pbNewBlocks = pBytes + offset;
-		func_8002D7AC(&usBlocks, pbNewBlocks, FALSE);
+		CUnindexedSet__DeinterleaveCopy(&usBlocks, pbNewBlocks, FALSE);
 
 		offset += blocksSize;
 		CIndexedSet__SetBlockCount(&isNewCollision, 4);
@@ -132,7 +132,7 @@ void CScene__DecompressCollision(CScene *pThis, CCacheEntry **ppceTarget)
 		CUnindexedSet__Destruct(&usNewRegions);
 	}
 
-	func_8002D604(pThis->m_pceCollision, pBytes, newSize);
+	CCacheEntry__DeallocAndReplaceData(pThis->m_pceCollision, pBytes, newSize);
 
 	TRACE0("CScene: ...Finished collision decompression.\r\n");
 

@@ -1596,13 +1596,13 @@ typedef struct CEngineApp_t
  unsigned char m_AttractPadFrames ;
  OSContPad m_AttractPad ;
 } CEngineApp;
-extern void func_80004030(CEngineApp *pThis, unsigned char Color[4]);
+extern void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]);
 extern sa_u64 dram_stack[];
 extern float D_800B6B00;
 struct CCollisionInfo2_t;
 extern void func_80004084(CEngineApp *pThis);
 extern float D_800B6B00 ;
-void func_80004030(CEngineApp *pThis, unsigned char Color[4]);
+void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]);
 void func_80004084(CEngineApp *pThis);
 void func_80004084(CEngineApp *pThis){
  unsigned char flashColor[4];
@@ -1616,6 +1616,6 @@ void func_80004084(CEngineApp *pThis){
   flashColor[1] = 0;
   flashColor[2] = 0;
   flashColor[3] = pThis->m_Flash;
-  func_80004030(pThis, flashColor);
+  CEngineApp__DrawTint(pThis, flashColor);
  }
 }

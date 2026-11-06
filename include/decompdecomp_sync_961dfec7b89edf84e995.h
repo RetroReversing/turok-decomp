@@ -4,14 +4,14 @@ typedef struct {u32 file_size,game_code;u16 company_code;char ext_name[4],game_n
 typedef struct {int index;char string[20];int pages;} t_File;
 extern u8 D_80119A08[];extern OSPfsState D_80119A90;extern t_File D_80119AC8[16];
 extern u16 D_800B86D8;extern u32 D_800B86DC;extern s32 D_80119AC0;
-void func_80011194(void);void func_800111F4(void);int func_8001172C(int);int func_800119F4(void);
-s32 func_80034B4C(CScene*);void*func_80034B90(CScene*);int osPfsFileState(void*,int,OSPfsState*);
-#define StartSerialQ func_80011194
-#define EndSerialQ func_800111F4
-#define DeleteCurrent func_8001172C
-#define SaveNew func_800119F4
-#define CScene__GetPersistantDataSize func_80034B4C
-#define CScene__GetPersistantDataAddress func_80034B90
+void StartSerialQ(void);void EndSerialQ(void);int DeleteCurrent(int);int SaveNew(void);
+s32 CScene__GetPersistantDataSize(CScene*);void*CScene__GetPersistantDataAddress(CScene*);int osPfsFileState(void*,int,OSPfsState*);
+#define StartSerialQ StartSerialQ
+#define EndSerialQ EndSerialQ
+#define DeleteCurrent DeleteCurrent
+#define SaveNew SaveNew
+#define CScene__GetPersistantDataSize CScene__GetPersistantDataSize
+#define CScene__GetPersistantDataAddress CScene__GetPersistantDataAddress
 #define ControllerPak D_80119A08
 #define FileState D_80119A90
 #define FileDirectory D_80119AC8

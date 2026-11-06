@@ -15,8 +15,8 @@ typedef struct {
   s32 y;
   s32 z;
 } PickupPosition;
-extern s32 func_800137A0(void);
-extern void func_80063C4C(EnemyInstance *, PickupPosition, s32, f32);
+extern s32 RandomSwapWord(void);
+extern void AI_DoPickup(EnemyInstance *, PickupPosition, s32, f32);
 void func_80063DE8(EnemyInstance *enemy, PickupPosition position)
 {
   /* Spawn the pickup types selected by this enemy's attribute flags. */
@@ -65,7 +65,7 @@ void func_80063DE8(EnemyInstance *enemy, PickupPosition position)
         case 256:
           if ((enemy->mortalWoundStatus << 1) < (((enemy->mortalWoundStatus << 1) < 0) * 0))
         {
-          if ((func_800137A0() % 100) < 15)
+          if ((RandomSwapWord() % 100) < 15)
           {
             pickupType = 0x195;
           }
@@ -108,7 +108,7 @@ void func_80063DE8(EnemyInstance *enemy, PickupPosition position)
 
       if (pickupType != 0)
       {
-        func_80063C4C(enemy, position, pickupType, 120.0);
+        AI_DoPickup(enemy, position, pickupType, 120.0);
       }
     }
     mask = mask * 2;

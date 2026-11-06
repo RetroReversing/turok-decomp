@@ -59,7 +59,7 @@ void func_8001F0AC(CGameStaticInstance *pThis, Gfx **ppDLP,
 														 CCacheEntry__GetData(pceGeometry),
 														 FALSE);
 
-			pbNodes = CIndexedSet__GetBlock(&isGeometry, CART_GEOMETRY_isNodes);
+			pbNodes = CIndexedSet__GetAddress(&isGeometry, CART_GEOMETRY_isNodes);
 			CIndexedSet__ConstructFromRawData(&isNodes, pbNodes, FALSE);
 
 			// draw static instance

@@ -67,21 +67,21 @@ void func_8001C9D8(CGameObjectInstance *pThis, Gfx **ppDLP,
 	// make sure the anims index, object index, and object info are handy
 
 	pThis->m_pceAnimsIndex = NULL;
-   func_8002D1F8(GetCache(),
+   CCartCache__RequestBlock(GetCache(),
 									 NULL, NULL, NULL,
                             &pThis->m_pceAnimsIndex,
                             pThis->m_rpAnims, IS_INDEX_SIZE(pThis->m_nAnims),
                             "Animations Index (draw)");
 
 	pThis->m_pceObjectIndex = NULL;
-   func_8002D1F8(GetCache(),
+   CCartCache__RequestBlock(GetCache(),
 									 NULL, NULL, NULL,
 									 &pThis->m_pceObjectIndex,
                             pThis->m_rpObject, IS_INDEX_SIZE(CART_GRAPHOBJ_nItems),
                             "Object Index (draw)");
 
 	pThis->m_pceObjectInfo = NULL;
-	func_8002D1F8(GetCache(),
+	CCartCache__RequestBlock(GetCache(),
 									 NULL, NULL, NULL,
 									 &pThis->m_pceObjectInfo,
 									 pThis->m_rpObjectInfo, pThis->m_ObjectInfoSize,
@@ -116,7 +116,7 @@ void func_8001C9D8(CGameObjectInstance *pThis, Gfx **ppDLP,
 	{
 		ASSERT(pThis != CEngineApp__GetPlayer(GetApp()));
 		prevFrameIncrement = D_800B6B00;
-		func_8001C66C(pThis);
+		CGameObjectInstance__DoAI(pThis);
 		D_800B6B00 = prevFrameIncrement;
 
 		CGameObjectInstance__SetNotVisible(pThis);
@@ -134,7 +134,7 @@ void func_8001C9D8(CGameObjectInstance *pThis, Gfx **ppDLP,
 		isAlive = !(pThis->m_AI.m_dwStatusFlags & AI_ALREADY_DEAD);
 
 		if (!pThis->m_asCurrent.m_pceAnim)
-			func_80018644(pThis);
+			CGameObjectInstance__RequestInitialAnimation(pThis);
 
 		if (pThis->m_asCurrent.m_pceAnim)
 		{
@@ -143,9 +143,9 @@ void func_8001C9D8(CGameObjectInstance *pThis, Gfx **ppDLP,
 			// allow AI to speed up/slow down animations
 			prevFrameIncrement = D_800B6B00;
 
-			func_80019300(pThis, ppDLP);
+			CGameObjectInstance__PreDraw(pThis, ppDLP);
 
-			func_800144C8(&vDelta, &pThis->ah.ih.m_vPos, &pPlayer->ah.ih.m_vPos);
+			CVector3__Subtract(&vDelta, &pThis->ah.ih.m_vPos, &pPlayer->ah.ih.m_vPos);
 			distFromPlayerSquared = CVector3__MagnitudeSquared(&vDelta);
 
 			sendEvents = FALSE;
@@ -162,14 +162,14 @@ void func_8001C9D8(CGameObjectInstance *pThis, Gfx **ppDLP,
 					sendEvents = TRUE;
 
 					pThis->pmtDrawMtxs = oldDrawMtxs;
-func_8001C66C(pThis);
+CGameObjectInstance__DoAI(pThis);
  pThis->pmtDrawMtxs = NULL;
 
 					if (pThis->ah.ih.m_pEA->m_dwTypeFlags & AI_TYPE_SLOWENEMY)
 						D_800B6B00 *= 0.5;
 
 					// This function in "cinecam.cpp"
-					D_800B6B00 *= func_8003AD20(pThis) ;
+					D_800B6B00 *= CGameObjectInstance__AnimSpeedScaler(pThis) ;
 
 					if (pThis->m_asCurrent.m_pceAnim)
 						func_8001BAAC(pThis);
@@ -193,10 +193,10 @@ func_8001C66C(pThis);
 				if (!isPlayer)
 				{
 					//CGameObjectInstance__CalculateOrientationMatrix(pThis, isPlayer, vTCorners);
-					update_object_orientation_bounds(pThis, FALSE, vTCorners, mfOrient);
+					CGameObjectInstance__CalculateOrientationMatrix(pThis, FALSE, vTCorners, mfOrient);
 
 					if (sendEvents)
-						func_8001A8E4(pThis, &isCurrentAnim, mfOrient);
+						CGameObjectInstance__SendAnimEvents(pThis, &isCurrentAnim, mfOrient);
 				}
 
 				// bounds check against view rect
@@ -205,7 +205,7 @@ func_8001C66C(pThis);
 								&& (isDevice || (pThis->m_AI.m_dwStatusFlags2 & AI_VISIBLE)) ) )
 				{
 					// bounds check against view volume
-					if (isPlayer || func_8008492C(&D_800F9D90, 8, isPlayer ? D_80119CC0 : vTCorners))
+					if (isPlayer || CViewVolume__IsOverlapping(&D_800F9D90, 8, isPlayer ? D_80119CC0 : vTCorners))
 					{
 						CGameObjectInstance__SetVisible(pThis);
 
@@ -233,22 +233,22 @@ func_8001C66C(pThis);
 														 			 	CCacheEntry__GetData(pceGeometry),
 														 			 	FALSE);
 
-							pbNodes = CIndexedSet__GetBlock(&isGeometry, CART_GEOMETRY_isNodes);
+							pbNodes = CIndexedSet__GetAddress(&isGeometry, CART_GEOMETRY_isNodes);
 							CIndexedSet__ConstructFromRawData(&isNodes, pbNodes, FALSE);
 							nNodes = CIndexedSet__GetBlockCount(&isNodes);
 
 							// get matrix table for drawing animated instances
-							pThis->pmtDrawMtxs = func_800356E0(nNodes);
+							pThis->pmtDrawMtxs = CAnimationMtxs__RequestMtxTable(nNodes);
 							if (pThis->pmtDrawMtxs)
 							{
 								// Update head tracking
-								func_80043FFC(pThis);
+								AI_PerformHeadTracking(pThis);
 
-								isAbsoluteAnim = func_80018274(pThis, pThis->m_asCurrent.m_nAnim);
+								isAbsoluteAnim = CGameObjectInstance__IsAbsoluteAnim(pThis, pThis->m_asCurrent.m_nAnim);
 
 								if (isAbsoluteAnim)
 								{
-									vShadowOffset = func_8001A78C(pThis, &pThis->m_asCurrent, 0);
+									vShadowOffset = CGameObjectInstance__GetNodeBlendPos(pThis, &pThis->m_asCurrent, 0);
 									vShadowOffset.y = 0;
 								}
 								else
@@ -259,7 +259,7 @@ func_8001C66C(pThis);
 								// draw shadow before model so model will be in front of shadow
 								// never draw shadow for devices?
 								if (!isDevice && !isPlayer)
-									func_80019F64(pThis, ppDLP, &vShadowOffset);
+									CGameObjectInstance__DrawShadow(pThis, ppDLP, &vShadowOffset);
 
 								// instance orientation
   								gSPMatrix((*ppDLP)++,
@@ -334,7 +334,7 @@ func_8001C66C(pThis);
 
 								if ((D_800B9878 != FXMODE_TOTRANSPARENT) || D_800B9888[0])
 								{
-									func_80016CE8(pThis, &AnimDraw, 0,
+									CGameObjectInstance__DoDraw(pThis, &AnimDraw, 0,
 																	 	isPlayer ? D_80119D20 : mfOrient,
 																	 	TRUE);
 
@@ -342,7 +342,7 @@ func_8001C66C(pThis);
 
 									// add swoosh edge if a swoosh is active
 									if (pThis->m_ActiveSwooshes)
-										func_80042564(&GetApp()->m_FxSystem, pThis, pThis->pmtDrawMtxs) ;
+										CFxSystem__CheckForAddingObjectSwooshEdge(&GetApp()->m_FxSystem, pThis, pThis->pmtDrawMtxs) ;
 								}
 
                     
@@ -375,7 +375,7 @@ func_8001C66C(pThis);
 				}
 			}
 
-			func_80019238(pThis, ppDLP);
+			CGameObjectInstance__PostDraw(pThis, ppDLP);
 			D_800B6B00 = prevFrameIncrement;
 
 			CIndexedSet__Destruct(&isCurrentAnim);

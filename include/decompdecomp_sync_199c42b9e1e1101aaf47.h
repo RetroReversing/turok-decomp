@@ -79,18 +79,18 @@ typedef struct CParticle_t
 	struct CParticle_t	*m_pLast, *m_pNext,
 								*m_pDrawLast, *m_pDrawNext;
 } CParticle;
-DWORD func_800210C0(CGameRegion*);
-void func_8002A2A4(CParticle*,int);
-void func_80070DA8(CInstanceHdr*,CInstanceHdr*,int,unsigned long,CVector3,float);
-int func_80031974(void*,int,float,void*,CVector3*,int);
-void func_8002864C(void*,CParticle*);
+DWORD CGameRegion__GetWallMaterial(CGameRegion*);
+void CParticle__SpawnCeilingCollision(CParticle*,int);
+void AI_Event_Dispatcher(CInstanceHdr*,CInstanceHdr*,int,unsigned long,CVector3,float);
+int CScene__DoSoundEffect(void*,int,float,void*,CVector3*,int);
+void CParticleSystem__DeallocateParticle(void*,CParticle*);
 extern u8 D_800FA3C8[],D_80102228[];
-#define CGameRegion__GetWallMaterial func_800210C0
-#define CParticle__SpawnCeilingCollision func_8002A2A4
-#define AI_Event_Dispatcher func_80070DA8
+#define CGameRegion__GetWallMaterial CGameRegion__GetWallMaterial
+#define CParticle__SpawnCeilingCollision CParticle__SpawnCeilingCollision
+#define AI_Event_Dispatcher AI_Event_Dispatcher
 #define AI_SPECIES_ALL 0xffffffff
-#define CParticle__DoSoundEffect(p,n,l,v) func_80031974(D_800FA3C8,(n),(l),(p),(v),0)
-#define CParticle__Delete(p) func_8002864C(D_80102228,(p))
+#define CParticle__DoSoundEffect(p,n,l,v) CScene__DoSoundEffect(D_800FA3C8,(n),(l),(p),(v),0)
+#define CParticle__Delete(p) CParticleSystem__DeallocateParticle(D_80102228,(p))
 #define INTERSECT_BEHAVIOR_STICK 1
 #define FALSE 0
 
@@ -9188,28 +9188,28 @@ extern u8 D_800FA3C8[],D_80102228[];
 
 
 
-BOOL func_8002814C(CParticle*);
+BOOL CParticle__IsInWater(CParticle*);
 void CParticle__Spawn(CParticle*,int,BOOL);
-DWORD func_800210FC(CGameRegion*);
-BOOL func_80019ED8(CGameRegion*);
-void func_8002A4BC(CParticle*,int);
-void func_8002A8F0(CParticle*,int);
-void func_8002A6F4(CParticle*,int);
+DWORD CGameRegion__GetGroundMaterial(CGameRegion*);
+BOOL CGameRegion__IsCliff(CGameRegion*);
+void CParticle__SpawnGroundCollision(CParticle*,int);
+void CParticle__SpawnWallCollision(CParticle*,int);
+void CParticle__SpawnWaterSurfaceCollision(CParticle*,int);
 typedef struct CParticleSystem_t CParticleSystem;
 typedef struct CQuatern_t {float x,y,z,t;} CQuatern;
 typedef struct CROMRegionSet_t {u8 pad[0x45];u8 m_AmbientSounds;} CROMRegionSet;
-CQuatern func_80013C58(CVector3*);
-CROMRegionSet*func_8002E438(void*,CGameRegion*);
+CQuatern CVector3__GetDirectionRotation(CVector3*);
+CROMRegionSet*CScene__GetRegionAttributes(void*,CGameRegion*);
 void func_80028970(CParticleSystem*,CInstanceHdr*,int,CVector3,CQuatern,CVector3,CGameRegion*,int,BOOL);
-#define CParticle__IsInWater func_8002814C
-#define CGameRegion__GetGroundMaterial func_800210FC
-#define CGameRegion__IsCliff func_80019ED8
-#define CParticle__SpawnGroundCollision func_8002A4BC
-#define CParticle__SpawnWallCollision func_8002A8F0
-#define CParticle__SpawnWaterSurfaceCollision func_8002A6F4
-#define CVector3__GetDirectionRotation func_80013C58
+#define CParticle__IsInWater CParticle__IsInWater
+#define CGameRegion__GetGroundMaterial CGameRegion__GetGroundMaterial
+#define CGameRegion__IsCliff CGameRegion__IsCliff
+#define CParticle__SpawnGroundCollision CParticle__SpawnGroundCollision
+#define CParticle__SpawnWallCollision CParticle__SpawnWallCollision
+#define CParticle__SpawnWaterSurfaceCollision CParticle__SpawnWaterSurfaceCollision
+#define CVector3__GetDirectionRotation CVector3__GetDirectionRotation
 #define CParticleSystem__CreateParticle func_80028970
-#define CScene__GetRegionAttributes func_8002E438
+#define CScene__GetRegionAttributes CScene__GetRegionAttributes
 #define ASSERT(x)
 #define TRUE 1
 #define PARTICLE_HASHITWALL (1 << 2)

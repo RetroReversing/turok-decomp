@@ -460,7 +460,7 @@ typedef struct CGameStaticInstance_t
  CROMBounds m_Bounds;
  unsigned long m_dwFlags;
 } CGameStaticInstance;
-extern void func_8001EEB0(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantRateFrame);
+extern void CGameStaticInstance__SendEvents(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantRateFrame);
 typedef struct CGameObjectInstance_t
 {
  CAnimInstanceHdr ah;
@@ -975,5 +975,5 @@ void func_8003098C(CScene *pThis){
  if (constantRateFrame)
   pThis->m_cSendStaticEventsFrame -= ((int) pThis->m_cSendStaticEventsFrame) + 1;
  for (cInst=0; cInst<pThis->m_nStaticEventsInstances; cInst++)
-  func_8001EEB0(pThis->m_pStaticEventsInstances[cInst], &pThis->m_Cache, constantRateFrame);
+  CGameStaticInstance__SendEvents(pThis->m_pStaticEventsInstances[cInst], &pThis->m_Cache, constantRateFrame);
 }

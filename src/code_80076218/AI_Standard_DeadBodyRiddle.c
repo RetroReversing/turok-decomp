@@ -68,7 +68,7 @@ void AI_Standard_DeadBodyRiddle(CGameObjectInstance *pMe)
 		case AI_ANIM_DEATH_NORMAL2:
 		case AI_ANIM_TWITCH_NORMAL1:
 		case AI_ANIM_TWITCH_NORMAL2:
-			picked = func_8001C348(pMe, 3, normaltypes, normalweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, normaltypes, normalweights, &pickedType);
 			break;
 
 		case AI_ANIM_DEATH_VIOLENT:
@@ -77,56 +77,56 @@ void AI_Standard_DeadBodyRiddle(CGameObjectInstance *pMe)
 		case AI_ANIM_DEATH_VIOLENT2LESSCHANCE:
 		case AI_ANIM_TWITCH_VIOLENT1:
 		case AI_ANIM_TWITCH_VIOLENT2:
-			picked = func_8001C348(pMe, 3, violenttypes, violentweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, violenttypes, violentweights, &pickedType);
 			break;
 
 		case AI_ANIM_DEATH_WIPEOUT:
 		case AI_ANIM_DEATH_WIPEOUT2:
 		case AI_ANIM_TWITCH_WIPEOUT1:
 		case AI_ANIM_TWITCH_WIPEOUT2:
-			picked = func_8001C348(pMe, 3, wipeouttypes, wipeoutweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, wipeouttypes, wipeoutweights, &pickedType);
 			break;
 
 		case AI_ANIM_DEATH_HIGH_FALL:
 		case AI_ANIM_TWITCH_HIGHFALL1:
 		case AI_ANIM_TWITCH_HIGHFALL2:
-			picked = func_8001C348(pMe, 3, highfalltypes, highfallweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, highfalltypes, highfallweights, &pickedType);
 			break;
 
 		case AI_ANIM_IMPACT_EXPLODE_DEAD1:
 		case AI_ANIM_TWITCH_EXPDEAD1_1:
 		case AI_ANIM_TWITCH_EXPDEAD1_2:
-			picked = func_8001C348(pMe, 3, expdead1types, expdead1weights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, expdead1types, expdead1weights, &pickedType);
 			break;
 
 		case AI_ANIM_IMPACT_EXPLODE_DEAD2:
 		case AI_ANIM_TWITCH_EXPDEAD2_1:
 		case AI_ANIM_TWITCH_EXPDEAD2_2:
-			picked = func_8001C348(pMe, 3, expdead2types, expdead2weights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, expdead2types, expdead2weights, &pickedType);
 			break;
 
 		case AI_ANIM_IMPACT_EXPLODE_LEFT_LAND:
 		case AI_ANIM_TWITCH_EXPLEFT1:
 		case AI_ANIM_TWITCH_EXPLEFT2:
-			picked = func_8001C348(pMe, 3, explefttypes, expleftweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, explefttypes, expleftweights, &pickedType);
 			break;
 
 		case AI_ANIM_IMPACT_EXPLODE_RIGHT_LAND:
 		case AI_ANIM_TWITCH_EXPRIGHT1:
 		case AI_ANIM_TWITCH_EXPRIGHT2:
-			picked = func_8001C348(pMe, 3, exprighttypes, exprightweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, exprighttypes, exprightweights, &pickedType);
 			break;
 
 		case AI_ANIM_IMPACT_EXPLODE_BACKWARD_LAND:
 		case AI_ANIM_TWITCH_EXPBACK1:
 		case AI_ANIM_TWITCH_EXPBACK2:
-			picked = func_8001C348(pMe, 3, expbacktypes, expbackweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, expbacktypes, expbackweights, &pickedType);
 			break;
 
 		case AI_ANIM_IMPACT_EXPLODE_FORWARD_LAND:
 		case AI_ANIM_TWITCH_EXPFOR1:
 		case AI_ANIM_TWITCH_EXPFOR2:
-			picked = func_8001C348(pMe, 3, expfortypes, expforweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, expfortypes, expforweights, &pickedType);
 			break;
 
 		default:
@@ -143,8 +143,8 @@ void AI_Standard_DeadBodyRiddle(CGameObjectInstance *pMe)
 			// play chosen twitch animation
 			default:
 				AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-				func_8005FCA0(pMe, picked, TRUE);
-				func_8001E93C(pMe);
+				AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
+				CGameObjectInstance__RestartAnim(pMe);
 				break;
 
 			// should not do any animation for these anims - not proper twitch animations

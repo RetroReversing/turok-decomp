@@ -25,22 +25,22 @@ extern u32 D_8000030C,D_800EE4E0;
 #define osResetType D_8000030C
 #define osDiskExist D_800EE4E0
 #define osAppNMIBuffer ((void*)0x8000031c)
-extern u32 func_800A57D0[];
-#define __osExceptionPreamble func_800A57D0
-u32 func_800A64F0(void);void func_800A64E0(u32);u32 func_8009D0A0(u32);
+extern u32 __osExceptionPreamble[];
+#define __osExceptionPreamble __osExceptionPreamble
+u32 __osGetSR(void);void __osSetSR(u32);u32 __osSetFpcCsr(u32);
 s32 func_800A6500(u32,u32*);s32 func_800A6550(u32,u32);
-void func_800A16E0(void*,s32);void func_800A65A0(void*,s32);void func_800A6620(void);
+void osWritebackDCache(void*,s32);void osInvalICache(void*,s32);void osMapTLBRdb(void);
 s32 func_800A6680(u32,u32*);void _bzero(void*,s32);
 u64 __ull_div(u64,u64);u64 __ll_mul(u64,u64);
 s32 func_800A67D0(void);void __osSetHWIntrRoutine(OSHWIntr,s32(*)(void));
-#define __osGetSR func_800A64F0
-#define __osSetSR func_800A64E0
-#define __osSetFpcCsr func_8009D0A0
+#define __osGetSR __osGetSR
+#define __osSetSR __osSetSR
+#define __osSetFpcCsr __osSetFpcCsr
 #define __osSiRawReadIo func_800A6500
 #define __osSiRawWriteIo func_800A6550
-#define osWritebackDCache func_800A16E0
-#define osInvalICache func_800A65A0
-#define osMapTLBRdb func_800A6620
+#define osWritebackDCache osWritebackDCache
+#define osInvalICache osInvalICache
+#define osMapTLBRdb osMapTLBRdb
 #define osPiRawReadIo func_800A6680
 #define bzero _bzero
 #define __osLeoInterrupt func_800A67D0

@@ -863,7 +863,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-extern int func_80033638(CScene *pThis, CGameRegion *pRegion);
+extern int CScene__GetRegionIndex(CScene *pThis, CGameRegion *pRegion);
 typedef struct COverlay_t
 {
  int m_OnScreen ;
@@ -1630,7 +1630,7 @@ void func_80005A0C(CEngineApp *pThis,
    pThis->m_ReturnWarp.m_vPos = pPlayer->ah.ih.m_vPos;
    pThis->m_ReturnWarp.m_RotY = pPlayer->m_RotY;
    pThis->m_ReturnWarp.m_nLevel = pThis->m_Scene.m_nLevel;
-   pThis->m_ReturnWarp.m_nRegion = func_80033638(&pThis->m_Scene, pPlayer->ah.ih.m_pCurrentRegion);
+   pThis->m_ReturnWarp.m_nRegion = CScene__GetRegionIndex(&pThis->m_Scene, pPlayer->ah.ih.m_pCurrentRegion);
   }
   pThis->m_Warp = 1;
   pThis->m_uWarp = WarpIn ? 0 : 1;

@@ -1,7 +1,7 @@
 #include "source_ScanFileList.h"
 
 extern char D_800B86FC[];
-extern void *func_8009FA50(void*,const void*,s32);
+extern void *memcpy(void*,const void*,s32);
 #line 1 "reference.c"
 int ScanFileList(BOOL showall)
 {
@@ -9,7 +9,7 @@ int ScanFileList(BOOL showall)
 	BOOL	Turok ;
 	u16	available ;
 
-	ret = func_800112D8() ;
+	ret = GetDirectoryInfo() ;
 
 	switch (ret)
 	{
@@ -23,7 +23,7 @@ int ScanFileList(BOOL showall)
 		case PFS_ERR_CONTRFAIL:
 			break ;
 		case PFS_ERR_INVALID:
-			func_8009FA50(D_80119AC8[0].string, D_800B86FC, 8) ;
+			memcpy(D_80119AC8[0].string, D_800B86FC, 8) ;
 			D_80119AB0 = 0 ;
 			D_80119AB8 = 0 ;
 			break ;
@@ -40,7 +40,7 @@ int ScanFileList(BOOL showall)
 		{
 			Turok = FALSE ;
 
-			ret = func_80011364(i) ;
+			ret = GetFileState(i) ;
 			if (ret == 0)
 			{
 				// TUROK file
@@ -76,7 +76,7 @@ int ScanFileList(BOOL showall)
 			{
 				D_80119AC8[D_80119AB8].index = i ;
 				D_80119AC8[D_80119AB8].pages = 0 ;
-				func_8009FA50(&D_80119AC8[D_80119AB8].string, D_800B86F4, 8) ;
+				memcpy(&D_80119AC8[D_80119AB8].string, D_800B86F4, 8) ;
 				D_80119AB8++ ;
 				if (D_80119AB8>15)
 					break ;
@@ -94,7 +94,7 @@ int ScanFileList(BOOL showall)
 		}
 
 		if (D_80119AB8 == 0)
-			func_8009FA50(&D_80119AC8[0].string, D_800B86F4, 8) ;
+			memcpy(&D_80119AC8[0].string, D_800B86F4, 8) ;
 	}
 	return ret ;
 }

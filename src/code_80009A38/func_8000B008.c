@@ -14,12 +14,12 @@ typedef s32 M2C_UNK32;
 #endif
 
 M2C_UNK func_8003F108(s32);                         /* extern */
-M2C_UNK func_8003F7CC(s32);                         /* extern */
+M2C_UNK CBossVars__Construct(s32);                         /* extern */
 M2C_UNK func_8007D540(u8 *);                      /* extern */
 
 void func_8000B008(u8 *arg0) {
     func_8003F108(arg0 + 0x17E18);
-    func_8003F7CC(arg0 + 0x18CCC);
+    CBossVars__Construct(arg0 + 0x18CCC);
     M2C_FIELD(arg0, s32 *, 0x18CC8) = 0;
     func_8007D540(arg0 + 0x17C60);
 }

@@ -14,14 +14,14 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_800A5750();                                /* extern */
-M2C_UNK func_800A5770(s32);                         /* extern */
+s32 __osDisableInt();                                /* extern */
+M2C_UNK __osRestoreInt(s32);                         /* extern */
 extern void *D_800EF334;
 
 void osViSetSpecialFeatures(s32 arg0) {
     register s32 temp_s0;
 
-    temp_s0 = func_800A5750();
+    temp_s0 = __osDisableInt();
     if (arg0 & 1) {
         M2C_FIELD(D_800EF334, s32 *, 0xC) = (s32) (M2C_FIELD(D_800EF334, s32 *, 0xC) | 8);
     }
@@ -49,5 +49,5 @@ void osViSetSpecialFeatures(s32 arg0) {
         M2C_FIELD(D_800EF334, s32 *, 0xC) = (M2C_FIELD(M2C_FIELD(D_800EF334, void **, 8), s32 *, 4) & 0x300) | M2C_FIELD(D_800EF334, s32 *, 0xC);
     }
     M2C_FIELD(D_800EF334, u16 *, 0) = (u16) (M2C_FIELD(D_800EF334, u16 *, 0) | 8);
-    func_800A5770(temp_s0);
+    __osRestoreInt(temp_s0);
 }

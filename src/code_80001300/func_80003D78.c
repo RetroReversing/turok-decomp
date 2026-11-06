@@ -13,25 +13,25 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80002B40();                            /* extern */
-M2C_UNK func_800042D4(u8 *);                      /* extern */
-M2C_UNK func_8000BB88(s32);                         /* extern */
-M2C_UNK func_80031B6C(s32, s32);                    /* extern */
-M2C_UNK func_8007DF74(s32, s32);                    /* extern */
-M2C_UNK func_80081A10(s32, M2C_UNK);                /* extern */
-M2C_UNK func_80087228(u8 *, s32);                 /* extern */
+M2C_UNK CEngineApp__SetupDraw();                            /* extern */
+M2C_UNK CEngineApp__DrawFade(u8 *);                      /* extern */
+M2C_UNK CCredits__Draw(s32);                         /* extern */
+M2C_UNK CScene__Draw(s32, s32);                    /* extern */
+M2C_UNK COnScreen__DrawSunLensFlare(s32, s32);                    /* extern */
+M2C_UNK COnScreen__Init16BitDraw(s32, M2C_UNK);                /* extern */
+M2C_UNK CPause__Draw(u8 *, s32);                 /* extern */
 
 void func_80003D78(u8 *arg0) {
     s32 temp_s1;
 
-    func_80002B40();
+    CEngineApp__SetupDraw();
     temp_s1 = arg0 + 0x1F810;
-    func_80031B6C(arg0 + 0x4B8, temp_s1);
-    func_8000BB88(temp_s1);
-    func_80081A10(temp_s1, 0x64);
-    func_8007DF74(arg0 + 0x17C60, temp_s1);
+    CScene__Draw(arg0 + 0x4B8, temp_s1);
+    CCredits__Draw(temp_s1);
+    COnScreen__Init16BitDraw(temp_s1, 0x64);
+    COnScreen__DrawSunLensFlare(arg0 + 0x17C60, temp_s1);
     if (M2C_FIELD(arg0, s32 *, 0x1F578) != 0) {
-        func_80087228(arg0 + 0x1F578, temp_s1);
+        CPause__Draw(arg0 + 0x1F578, temp_s1);
     }
-    func_800042D4(arg0);
+    CEngineApp__DrawFade(arg0);
 }

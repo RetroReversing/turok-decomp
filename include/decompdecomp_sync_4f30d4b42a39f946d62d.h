@@ -5027,13 +5027,13 @@ extern int trap_thread;
 #define cos(n) cosf(n)
 #define floor(n) ((n >= 0) ? ((int)(n)) : ((((int)(n)) == n) ? ((int)(n)) : (((int)(n)) - 1)))
 #define ceil(n) ((n <= 0) ? ((int)(n)) : ((((int)(n)) == n) ? ((int)(n)) : (((int)(n)) + 1)))
-void func_80083B80(const char *src, const char *dest, const int len);
+void romcpy(const char *src, const char *dest, const int len);
 void igAssert(const char *szFile, int nLine, const char *szExpr);
-int func_80083BF4(unsigned long Keys[], int nItems, unsigned long SearchKey);
-int func_80083C74(unsigned long Keys[], int nItems, unsigned long SearchKey, int *pFirst, int *pLast);
-int func_80083D38(int nBits);
-int func_80083D54(unsigned char Bits[], int nBit);
-void func_80083D94(unsigned char Bits[], int nBit, int Set);
+int BinarySearch(unsigned long Keys[], int nItems, unsigned long SearchKey);
+int BinaryRange(unsigned long Keys[], int nItems, unsigned long SearchKey, int *pFirst, int *pLast);
+int GetBitStreamSize(int nBits);
+int GetBitStreamFlag(unsigned char Bits[], int nBit);
+void SetBitStreamFlag(unsigned char Bits[], int nBit, int Set);
 
 #define ANGLE_PI 3.14159265358979323846
 #define ANGLE_DTOR(deg) ((deg)*(ANGLE_PI/180))
@@ -5106,29 +5106,29 @@ typedef struct s_MemoryPool {
  struct s_Memory *used_head ;
 } t_MemoryPool ;
 
-void func_80012158 (void *pAddress, int Size) ;
+void i3D_initMemoryAllocation (void *pAddress, int Size) ;
 
 t_MemoryPool *i3D_addPool (int size) ;
 int i3D_removePool (t_MemoryPool *pool) ;
-void *func_80011EC0 (t_MemoryPool *pool, int size) ;
-void *func_80011E04 (t_MemoryPool *pool, int size) ;
+void *i3D_mallocPool (t_MemoryPool *pool, int size) ;
+void *i3D_mallocPoolTop (t_MemoryPool *pool, int size) ;
 
-void *func_80011FC8 (t_MemoryPool *pool, void *address, int size) ;
-void *func_80012084 (void *address, int size) ;
+void *i3D_reallocPool (t_MemoryPool *pool, void *address, int size) ;
+void *i3D_realloc (void *address, int size) ;
 
 int i3D_freePool (t_MemoryPool *pool, void *address) ;
-int func_80011D6C (t_MemoryPool *pool) ;
+int i3D_freeAllPool (t_MemoryPool *pool) ;
 
 void *i3D_malloc (int size) ;
 void *i3D_mallocTop (int size) ;
 int i3D_free (void *address) ;
 int i3D_freeAll (void) ;
 
-int func_80011B1C (t_MemoryPool *pool) ;
+int i3D_memoryCheck (t_MemoryPool *pool) ;
 int i3D_memoryCheckGlobal();
 
 void FreeMem(int *pTotal, int *pLargest);
-int func_80011AF8(void *pAddress);
+int BlockBelowFreeChunk(void *pAddress);
 void PrintLowestFree();
 
 #define ALLOC(size) i3D_malloc(size)
@@ -5137,8 +5137,8 @@ void PrintLowestFree();
 
 
 
-void func_80012218(void *pDest, void *pSrc, int Count);
-void func_800121B8(void *pDest, unsigned char Val, int Count);
+void r_memcpy(void *pDest, void *pSrc, int Count);
+void memset(void *pDest, unsigned char Val, int Count);
 
 
 
@@ -5216,15 +5216,15 @@ typedef struct CHashTable_t
 
 
 
-void func_8002E254(CHashTable *pThis, int nBlockSize );
+void CHashTable__Construct(CHashTable *pThis, int nBlockSize );
 void CHashTable__Destruct(CHashTable *pThis);
 
 int CHashTable__GetCount(CHashTable *pThis);
 int CHashTable__IsEmpty(CHashTable *pThis);
-int func_8002E13C(CHashTable *pThis, void* key, void **prValue);
+int CHashTable__Lookup(CHashTable *pThis, void* key, void **prValue);
 
 
-void func_8002E098(CHashTable *pThis, void* key, void* newValue);
+void CHashTable__SetAt(CHashTable *pThis, void* key, void* newValue);
 
 
 int CHashTable__RemoveKey(CHashTable *pThis, void* key);
@@ -5236,7 +5236,7 @@ void CHashTable__GetNextAssoc(CHashTable *pThis, HASHPOS *prNextPosition, void *
 
 
 unsigned long CHashTable__GetHashTableSize(CHashTable *pThis);
-void func_8002DFA0(CHashTable *pThis, unsigned long hashSize, int bAllocNow );
+void CHashTable__InitHashTable(CHashTable *pThis, unsigned long hashSize, int bAllocNow );
 
 
 #define CARTCACHE_CACHEENTRY_COUNT 512
@@ -5331,7 +5331,7 @@ struct CIndexedSet_t;
 void CUnindexedSet__Construct(CUnindexedSet *pThis);
 void CUnindexedSet__ConstructWithSize(CUnindexedSet *pThis,
                int BlockSize, int BlockCount, int AutoDeleteData );
-void func_8002DA8C(CUnindexedSet *pThis,
+void CUnindexedSet__ConstructFromRawData(CUnindexedSet *pThis,
                void *pData, int AutoDeleteData );
 void CUnindexedSet__ConstructWithAllocatedBlock(CUnindexedSet *pThis,
                   void *pData, int BlockSize, int BlockCount, int AutoDeleteData );
@@ -5368,7 +5368,7 @@ void CUnindexedSet__AttatchRawData(CUnindexedSet *pThis, void *pData, int AutoDe
 
 
 
-void func_8002D7AC(CUnindexedSet *pThis, void *pDest, int CopyBack);
+void CUnindexedSet__DeinterleaveCopy(CUnindexedSet *pThis, void *pDest, int CopyBack);
 
 
 
@@ -5396,7 +5396,7 @@ typedef struct CIndexedSet_t
 
 
 
-void func_8002DD34(CIndexedSet *pThis);
+void CIndexedSet__Construct(CIndexedSet *pThis);
 void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 
 
@@ -5415,15 +5415,15 @@ int CIndexedSet__AddCompressedBlockUS(CIndexedSet *pThis, CUnindexedSet *pusBloc
 int CIndexedSet__AddCompressedBlockSS(CIndexedSet *pThis, CStreamSet *pssBlock, unsigned long *pCompressedSize, int Better);
 int CIndexedSet__CompressAndAddBlock(CIndexedSet *pThis, void *pData, unsigned long Length, unsigned long *pCompressedSize, int Better);
 
-void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+void* CIndexedSet__GetAddress(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 void* CIndexedSet__GetAddressAndSize(CIndexedSet *pThis, void *pBaseAddress, int nBlock, unsigned long *pLength);
 
-ROMAddress* func_8002DC24(CIndexedSet *pThis,
+ROMAddress* CIndexedSet__GetROMAddress(CIndexedSet *pThis,
                                        ROMAddress *rpBaseAddress, int nBlock);
 ROMAddress* CIndexedSet__GetROMAddressAndSize(CIndexedSet *pThis,
                                               ROMAddress *rpBaseAddress, int nBlock, unsigned long *pLength);
 
-#define CIndexedSet__GetBlock(pThis,nBlock) CIndexedSet__GetBlock((pThis), (pThis)->m_pData, (nBlock))
+#define CIndexedSet__GetAddress(pThis,nBlock) CIndexedSet__GetAddress((pThis), (pThis)->m_pData, (nBlock))
 #define CIndexedSet__GetBlockAndSize(pThis,nBlock,pLength) CIndexedSet__GetAddressAndSize((pThis), (pThis)->m_pData, (nBlock), (pLength))
 #define CIndexedSet__GetBlockCount(pThis) ORDERBYTES(((DWORD*) (pThis)->m_pData)[IS_BLOCKCOUNT])
 
@@ -5432,14 +5432,14 @@ ROMAddress* CIndexedSet__GetROMAddressAndSize(CIndexedSet *pThis,
 
 
 
-unsigned long func_8002DBD0(CIndexedSet *pThis, const int nBlock, unsigned long *pLength);
+unsigned long CIndexedSet__GetOffsetAndSize(CIndexedSet *pThis, const int nBlock, unsigned long *pLength);
 
 #define CIndexedSet__SetBlockCount(pThis,nBlocks) ((DWORD*) ((pThis)->m_pData))[IS_BLOCKCOUNT] = ORDERBYTES((DWORD) (nBlocks))
 #define CIndexedSet__SetNextOffset(pThis,Offset) ((DWORD*) ((pThis)->m_pData))[IS_NHEADERS + CIndexedSet__GetBlockCount(pThis)] = ORDERBYTES((DWORD) (Offset))
 #define CIndexedSet__GetNextOffset(pThis) ORDERBYTES( ((DWORD*) ((pThis)->m_pData))[IS_NHEADERS + CIndexedSet__GetBlockCount(pThis)] )
 
 
-void func_8002DC80(CIndexedSet *pThis, void **ppData, unsigned long *pSize);
+void CIndexedSet__GetRawData(CIndexedSet *pThis, void **ppData, unsigned long *pSize);
 void CIndexedSet__AttatchRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
 void CIndexedSet__DetatchRawData(CIndexedSet *pThis, void **ppData, unsigned long *pSize);
 
@@ -5483,19 +5483,19 @@ typedef struct CCacheEntry_t
 
 
 
-#define CCacheEntry__ResetAge(pThis) func_8002D410((pThis)->m_pOwner, pThis)
+#define CCacheEntry__ResetAge(pThis) CCartCache__ResetAge((pThis)->m_pOwner, pThis)
 
 void* CCacheEntry__GetData(CCacheEntry *pThis);
 
 #define CCacheEntry__GetDataPtr(pThis) ((pThis)->m_pData)
 #define CCacheEntry__GetRequestedAddress(pThis) ((pThis)->m_rpAddress)
 
-#define CCacheEntry__AllocDataForReplacement(pThis,NewSize) func_8002D648(pThis, NewSize, FALSE)
-#define CCacheEntry__AllocTempDataForReplacement(pThis,NewSize) func_8002D648(pThis, NewSize, TRUE)
-void* func_8002D648(CCacheEntry *pThis, unsigned long NewSize, int AllocTop);
-void func_8002D604(CCacheEntry *pThis, void *pNewData, unsigned long NewLength);
-void func_8002CB0C(CCacheEntry *pThis);
-void func_8002D784(void *pVoid, CCacheEntry **ppceTarget);
+#define CCacheEntry__AllocDataForReplacement(pThis,NewSize) CCacheEntry__DoAllocDataForReplacement(pThis, NewSize, FALSE)
+#define CCacheEntry__AllocTempDataForReplacement(pThis,NewSize) CCacheEntry__DoAllocDataForReplacement(pThis, NewSize, TRUE)
+void* CCacheEntry__DoAllocDataForReplacement(CCacheEntry *pThis, unsigned long NewSize, int AllocTop);
+void CCacheEntry__DeallocAndReplaceData(CCacheEntry *pThis, void *pNewData, unsigned long NewLength);
+void CCacheEntry__DeallocData(CCacheEntry *pThis);
+void CCacheEntry__DecompressCallback(void *pVoid, CCacheEntry **ppceTarget);
 #define CCacheEntry__Decompress(pThis) CCacheEntry__DoDecompress(pThis, FALSE)
 #define CCacheEntry__DecompressTemp(pThis) CCacheEntry__DoDecompress(pThis, TRUE)
 int CCacheEntry__DoDecompress(CCacheEntry *pThis, int AllocTop);
@@ -5552,21 +5552,21 @@ void CCartCache__RequestBlock(CCartCache *pThis,
                         ROMAddress *rpRequestAddress, unsigned long rLength,
                         const char *szDescription );
 
-int func_8002D3EC(CCartCache *pThis, ROMAddress *rpAddress);
+int CCartCache__InCache(CCartCache *pThis, ROMAddress *rpAddress);
 #define CCartCache__SetDiscardAge(pThis,DiscardAge) (pThis)->m_DiscardAge = DiscardAge
 
 void CCartCache__Empty(CCartCache *pThis);
 int CCartCache__Compress(CCartCache *pThis);
-void func_8002D410(CCartCache *pThis, CCacheEntry *pCacheEntry);
-void func_8002D4A0(CCartCache *pThis);
+void CCartCache__ResetAge(CCartCache *pThis, CCacheEntry *pCacheEntry);
+void CCartCache__KeepAroundAnotherFrame(CCartCache *pThis);
 
 
 
 
 void CMP_CompressData(int better, void *pData, unsigned long Length, unsigned char **ppOut, unsigned long *pLength);
 void CMP_DeallocData(unsigned char *pData);
-unsigned long func_8002CA14(void *pCompressedData);
-int func_8002C9C0(void *pCompressedData, void *pOutputBuffer);
+unsigned long CMP_GetDecompressedSize(void *pCompressedData);
+int CMP_DecompressData(void *pCompressedData, void *pOutputBuffer);
 
 
 
@@ -5598,34 +5598,34 @@ typedef struct CVector3_t
 
 
 
-void func_800144FC(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
-void func_800144C8(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
-void func_80013C2C(CVector3 *pvThis, CVector3 *pvIn, float Scaler);
-void func_800141A8(CVector3 *pvThis, float u, CVector3 *pvLeft, CVector3 *pvRight);
-void func_80013BBC(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
+void CVector3__Add(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
+void CVector3__Subtract(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
+void CVector3__MultScaler(CVector3 *pvThis, CVector3 *pvIn, float Scaler);
+void CVector3__Blend(CVector3 *pvThis, float u, CVector3 *pvLeft, CVector3 *pvRight);
+void CVector3__Cross(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
 #define CVector3__Dot(pvLeft,pvRight) ((pvLeft)->x*(pvRight)->x + (pvLeft)->y*(pvRight)->y + (pvLeft)->z*(pvRight)->z)
 #define CVector3__MagnitudeSquared(pvThis) ((pvThis)->x*(pvThis)->x + (pvThis)->y*(pvThis)->y + (pvThis)->z*(pvThis)->z)
 #define CVector3__Magnitude(pvThis) sqrt(CVector3__MagnitudeSquared(pvThis))
 #define CVector3__Set(pThis,X,Y,Z) (pThis)->x = X ; (pThis)->y = Y ; (pThis)->z = Z ;
-void func_80013B2C(CVector3 *pvThis);
-CVector3 func_800143F8(CVector3 *pvThis, float uRandom);
-CVector3 func_8001434C(CVector3 *pvThis, float uRandom);
-CVector3 func_800142A0(CVector3 *pvThis, float uRandom);
-CVector3 func_800141F8(CVector3 *pvThis, float uRandom);
-void func_80014124(CVector3 *pvThis, CVector3 *pvStart, CVector3 *pvEnd, float Y);
-CVector3 func_80014074(CVector3 *pThis, CVector3 *pvSurfaceUnitNormal, float EnergyFactor);
-CVector3 func_80013E64(CVector3 *pvThis, CVector3 *pvSurfaceUnitNormal);
+void CVector3__Normalize(CVector3 *pvThis);
+CVector3 CVector3__RandomizeDirection(CVector3 *pvThis, float uRandom);
+CVector3 CVector3__RandomizeDirectionX(CVector3 *pvThis, float uRandom);
+CVector3 CVector3__RandomizeDirectionY(CVector3 *pvThis, float uRandom);
+CVector3 CVector3__RandomizeDirectionZ(CVector3 *pvThis, float uRandom);
+void CVector3__YIntersect(CVector3 *pvThis, CVector3 *pvStart, CVector3 *pvEnd, float Y);
+CVector3 CVector3__Reflect(CVector3 *pThis, CVector3 *pvSurfaceUnitNormal, float EnergyFactor);
+CVector3 CVector3__Project(CVector3 *pvThis, CVector3 *pvSurfaceUnitNormal);
 CVector3 CVector3__ProjectCrease(CVector3 *pvThis, CVector3 *pvNormalA, CVector3 *pvNormalB);
-CVector3 func_80013EF0(CVector3 *pvThis, CVector3 *pvSurfaceUnitNormal);
+CVector3 CVector3__Redirect(CVector3 *pvThis, CVector3 *pvSurfaceUnitNormal);
 int CVector3__Clamp(CVector3 *pvThis, float MaxVal);
 void CVector3__Print(CVector3 *pvThis);
 #define CVector3__IsEqual(pvLeft,pvRight) (((pvLeft)->x == (pvRight)->x) && ((pvLeft)->y == (pvRight)->y) && ((pvLeft)->z == (pvRight)->z))
-struct CQuatern_t func_80013C58(CVector3 *pvThis);
+struct CQuatern_t CVector3__GetDirectionRotation(CVector3 *pvThis);
 
-float func_80013A24(CVector3 *pThis) ;
-float func_800139A8(CVector3 *pThis) ;
-float func_80013944(CVector3 *pThis, CVector3 *pvPos) ;
-float func_80013980(CVector3 *pThis, CVector3 *pvPos) ;
+float CVector3__XZAngle(CVector3 *pThis) ;
+float CVector3__XYAngle(CVector3 *pThis) ;
+float CVector3__DistSqr(CVector3 *pThis, CVector3 *pvPos) ;
+float CVector3__Dist(CVector3 *pThis, CVector3 *pvPos) ;
 
 
 
@@ -5642,24 +5642,24 @@ typedef struct CQuatern_t
 
 
 
-#define CMtxF__ToMtx(mfThis,mFixed) func_80012290((mfThis), &(mFixed))
+#define CMtxF__ToMtx(mfThis,mFixed) CMtxF__ToMtxFast((mfThis), &(mFixed))
 #define CMtxF__FromMtx(mfThis,mFixed) guMtxL2F((mfThis), &(mFixed))
-void func_800155D4(CMtxF mfThis);
-void func_80015910(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight);
-void func_80015800(CMtxF mfThis) ;
-void func_80015754(CMtxF mfThis, const CVector3 *pvIn, CVector3 *pvOut);
-void func_80015624(CMtxF mfThis, const CVector3 *pvIn, CVector3 *pvOut);
+void CMtxF__Identity(CMtxF mfThis);
+void CMtxF__PostMult4x4(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight);
+void CMtxF__Clamp(CMtxF mfThis) ;
+void CMtxF__VectorMult(CMtxF mfThis, const CVector3 *pvIn, CVector3 *pvOut);
+void CMtxF__VectorMult4x4(CMtxF mfThis, const CVector3 *pvIn, CVector3 *pvOut);
 void CMtxF__Translate(CMtxF mfThis, float X, float Y, float Z);
 void CMtxF__Scale(CMtxF mfThis, float X, float Y, float Z);
 void CMtxF__Rotate(CMtxF mfThis, float Theta, float X, float Y, float Z);
 void CMtxF__Print(CMtxF mfThis);
-void func_80014F28(CMtxF mfThis, CMtxF mfSource);
-void func_80014FAC(CMtxF mfThis, CMtxF mfIn);
+void CMtxF__Copy(CMtxF mfThis, CMtxF mfSource);
+void CMtxF__Invert(CMtxF mfThis, CMtxF mfIn);
 
 
 
 
-void func_80013224(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight) ;
+void CMtxF__PostMult(CMtxF mfThis, CMtxF mfLeft, CMtxF mfRight) ;
 
 void CMtxF__PreMultTranslate(CMtxF mfThis, float Tx, float Ty, float Tz) ;
 void CMtxF__PostMultTranslate(CMtxF mfThis, float Tx, float Ty, float Tz) ;
@@ -5669,28 +5669,28 @@ void CMtxF__CopyPreMultScale(CMtxF mfThis, CMtxF mfSource, float Sx, float Sy, f
 
 void CMtxF__PostMultScale(CMtxF mfThis, float Sx, float Sy, float Sz) ;
 
-void func_80012EFC(CMtxF mfThis, float Theta) ;
-void func_80012E6C(CMtxF mfThis, float Theta) ;
-void func_80012DE0(CMtxF mfThis, float Theta) ;
+void CMtxF__RotateX(CMtxF mfThis, float Theta) ;
+void CMtxF__RotateY(CMtxF mfThis, float Theta) ;
+void CMtxF__RotateZ(CMtxF mfThis, float Theta) ;
 
-void func_80012D28(CMtxF mfThis, float RotX) ;
-void func_80012C48(CMtxF mfThis, float RotX) ;
+void CMtxF__PreMultRotateX(CMtxF mfThis, float RotX) ;
+void CMtxF__PostMultRotateX(CMtxF mfThis, float RotX) ;
 
-void func_80012B90(CMtxF mfThis, float RotY) ;
-void func_80012AB0(CMtxF mfThis, float RotY) ;
+void CMtxF__PreMultRotateY(CMtxF mfThis, float RotY) ;
+void CMtxF__PostMultRotateY(CMtxF mfThis, float RotY) ;
 
-void func_800129F8(CMtxF mfThis, float RotZ) ;
-void func_80012918(CMtxF mfThis, float RotZ) ;
+void CMtxF__PreMultRotateZ(CMtxF mfThis, float RotZ) ;
+void CMtxF__PostMultRotateZ(CMtxF mfThis, float RotZ) ;
 
-void func_800128E4(CMtxF mfThis) ;
-void func_80012864(CMtxF mfThis, CMtxF mfSource) ;
+void CMtxF__PreMult3DSToU64(CMtxF mfThis) ;
+void CMtxF__CopyPreMult3DSToU64(CMtxF mfThis, CMtxF mfSource) ;
 
-void func_80012820(CMtxF mfThis) ;
-void func_800127A0(CMtxF mfThis, CMtxF mfSource) ;
+void CMtxF__PostMult3DSToU64(CMtxF mfThis) ;
+void CMtxF__CopyPostMult3DSToU64(CMtxF mfThis, CMtxF mfSource) ;
 
 
-void func_80012290(CMtxF mfThis, Mtx *m) ;
-void func_80012504(CMtxF mfThis, Mtx *m, float Tx, float Ty, float Tz) ;
+void CMtxF__ToMtxFast(CMtxF mfThis, Mtx *m) ;
+void CMtxF__ToMtxPostMultTranslate(CMtxF mfThis, Mtx *m, float Tx, float Ty, float Tz) ;
 
 
 
@@ -5703,9 +5703,9 @@ void func_80012504(CMtxF mfThis, Mtx *m, float Tx, float Ty, float Tz) ;
 
 #define BlendFLOATCosine(u,A,B) (BlendFLOAT(GetCosineBlender(u), A, B))
 
-float func_800136C8(float u, float A, float B);
-float func_80013620(float A, float B);
-void func_80013588(float *pTheta);
+float BlendRotFLOAT(float u, float A, float B);
+float RotDifference(float A, float B);
+void NormalizeRotation(float *pTheta);
 void NormalizeBigRotation(float *pTheta);
 
 
@@ -5729,13 +5729,13 @@ void NormalizeBigRotation(float *pTheta);
 
 
 
-void func_80014CB8(CQuatern *pqThis, const CQuatern *pqLeft, const CQuatern *pqRight);
+void CQuatern__Mult(CQuatern *pqThis, const CQuatern *pqLeft, const CQuatern *pqRight);
 #define CQuatern__Dot(pqLeft,pqRight) ((pqLeft)->x*(pqRight)->x + (pqLeft)->y*(pqRight)->y + (pqLeft)->z*(pqRight)->z + (pqLeft)->t*(pqRight)->t)
 
 #define CQuatern__MagnitudeSquared(pqThis) ((pqThis)->x*(pqThis)->x + (pqThis)->y*(pqThis)->y + (pqThis)->z*(pqThis)->z + (pqThis)->t*(pqThis)->t)
 
 #define CQuatern__Magnitude(pqThis) sqrt(CQuatern__MagnitudeSquared(pqThis))
-void func_80014538(CQuatern *pqThis);
+void CQuatern__Normalize(CQuatern *pqThis);
 #define CQuatern__Inverse(pqThis,pqIn) ASSERT(CQuatern__MagnitudeSquared(pqIn) != 0); inv_mag_squared = (-1.0)/CQuatern__MagnitudeSquared(pqIn); (pqThis)->x = (pqIn)->x * inv_mag_squared; (pqThis)->y = (pqIn)->y * inv_mag_squared; (pqThis)->z = (pqIn)->z * inv_mag_squared; (pqThis)->t = (pqIn)->t * -inv_mag_squared;
 
 
@@ -5748,11 +5748,11 @@ void func_80014538(CQuatern *pqThis);
 
 
 
-void func_80014DC4(CQuatern *pqThis, CMtxF mfRotate);
-void func_80014C50(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB);
-void func_80014A04(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB);
+void CQuatern__ToMatrix(CQuatern *pqThis, CMtxF mfRotate);
+void CQuatern__BlendLinear(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB);
+void CQuatern__BlendSpherical(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB);
 void CQuatern__BlendThreshold(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern *pqB);
-void func_800148B8(CQuatern *pqThis, CQuatern *pqTarget);
+void CQuatern__GetCloser(CQuatern *pqThis, CQuatern *pqTarget);
 void CQuatern__Print(CQuatern *pqThis);
 
 
@@ -5765,11 +5765,11 @@ extern unsigned long random_value;
 extern unsigned long sound_random_value;
 
 
-void func_80013928();
+void InitializeRandomSeed();
 int RandomSwapWord();
 int SoundRandomSwapWord() ;
-float func_80013840(float Max);
-float func_8001349C(float x);
+float RandomFloat(float Max);
+float acos(float x);
 
 
 
@@ -5806,11 +5806,11 @@ typedef struct CGameAnimateState_t
 
 
 
-void func_800376A4(CGameAnimateState *pThis);
+void CGameAnimateState__Construct(CGameAnimateState *pThis);
 #define CGameAnimateState__SetDesiredAnim(pThis,nAnim) (pThis)->m_nDesiredAnim = nAnim
-int func_80037564(CGameAnimateState *pThis);
-int func_800374D8(CGameAnimateState *pThis);
-void func_80037394(CGameAnimateState *pThis);
+int CGameAnimateState__GetTransitionAnim(CGameAnimateState *pThis);
+int CGameAnimateState__GetNextFrame(CGameAnimateState *pThis);
+void CGameAnimateState__Advance(CGameAnimateState *pThis);
 #define CGameAnimateState__IsCycleCompleted(pThis) ((pThis)->m_CycleCompleted)
 
 
@@ -5882,7 +5882,7 @@ void CGeometry__DrawPart(CGeometry *pThis, Gfx **ppDLP, CCartCache *pCache,
 void CGeometry__DrawShadow(Gfx **ppDLP, Mtx *pmShadow, int Decal, unsigned char Alpha);
 #define CGeometry__IsModelLoaded(pThis) ((pThis)->m_pceGeometry != NULL)
 void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame);
-void func_800220BC(CGeometry *pThis, int nNode, float Increment);
+void CGeometry__MorphInc(CGeometry *pThis, int nNode, float Increment);
 
 
 
@@ -6643,13 +6643,13 @@ typedef struct CTextureLoader_t
 
 
 
-void func_80026DA4(CTextureLoader *pThis, ROMAddress *rpTextureSet, unsigned long TextureSetSize);
+void CTextureLoader__ConstructFromAddressSize(CTextureLoader *pThis, ROMAddress *rpTextureSet, unsigned long TextureSetSize);
 void CTextureLoader__ConstructFromIndex(CTextureLoader *pThis,
                 CIndexedSet *pisTextureSetsIndex,
                 ROMAddress *rpTextureSets,
                 int nIndex);
 int CTextureLoader__RequestTextureSet(CTextureLoader *pThis, CCartCache *pCache, char *szDescription);
-void func_80026AD0(CTextureLoader *pThis, CTextureInfo *pInfo);
+void CTextureLoader__GetTextureInfo(CTextureLoader *pThis, CTextureInfo *pInfo);
 void CTextureLoader__LoadTexture(CTextureLoader *pThis, Gfx **ppDLP,
              int nBitmap, int nPalette,
              int MultU, int MultV,
@@ -8000,7 +8000,7 @@ typedef struct CEnemyAttributes_t
 
 
 
-void func_80083E20(CEnemyAttributes *pThis);
+void CEnemyAttributes__SetDefaults(CEnemyAttributes *pThis);
 
 
 
@@ -8042,12 +8042,12 @@ typedef struct CAIDynamic_t
 
 
 
-void func_80083F00(CAIDynamic *pThis, CEnemyAttributes *pEA, CVector3 vStartPos, struct CGameObjectInstance_t *pInstance);
-void func_80084364(CAIDynamic *pThis, CEnemyAttributes *pEA);
-void func_80084460(CAIDynamic *pThis, CEnemyAttributes *pEA);
-void func_8008453C(CAIDynamic *pThis, CEnemyAttributes *pEA, int nTypeFlag);
-void func_800842CC(CAIDynamic *pThis, CEnemyAttributes *pEA, int nObjtype);
-void func_800840C4(CAIDynamic *pThis, CEnemyAttributes *pEA, struct CGameObjectInstance_t *pInstance) ;
+void CAIDynamic__Reset(CAIDynamic *pThis, CEnemyAttributes *pEA, CVector3 vStartPos, struct CGameObjectInstance_t *pInstance);
+void CAIDynamic__ResetRegenerate(CAIDynamic *pThis, CEnemyAttributes *pEA);
+void CAIDynamic__ResetInteractiveAnim(CAIDynamic *pThis, CEnemyAttributes *pEA);
+void CAIDynamic__SetHealth(CAIDynamic *pThis, CEnemyAttributes *pEA, int nTypeFlag);
+void CAIDynamic__SetMeltTiming(CAIDynamic *pThis, CEnemyAttributes *pEA, int nObjtype);
+void CAIDynamic__RandomizeHuman(CAIDynamic *pThis, CEnemyAttributes *pEA, struct CGameObjectInstance_t *pInstance) ;
 
 
 
@@ -8072,8 +8072,8 @@ struct CCollisionInfo2_t;
 
 typedef unsigned short SF;
 
-SF func_80021B9C(float fValue);
-float func_8001F298(SF sfValue);
+SF FLOAT2SF(float fValue);
+float SF2FLOAT(SF sfValue);
 
 
 
@@ -8107,20 +8107,20 @@ typedef struct CGameRegion_t
 
 
 
-void func_80021AB4(CGameRegion *pThis, CROMRegion *pSource,
+void CGameRegion__TakeFromROMRegion(CGameRegion *pThis, CROMRegion *pSource,
                 CROMCorner Corners[], CGameRegion Regions[]);
 
-CVector3 func_80019C78(CGameRegion *pThis);
-CVector3 func_80019E30(CGameRegion *pThis);
-float func_80019D3C(CGameRegion *pThis, float X, float Z);
+CVector3 CGameRegion__GetGroundNormal(CGameRegion *pThis);
+CVector3 CGameRegion__GetGroundUnitNormal(CGameRegion *pThis);
+float CGameRegion__GetGroundHeight(CGameRegion *pThis, float X, float Z);
 CVector3 CGameRegion__GetCeilingNormal(CGameRegion *pThis);
-CVector3 func_800208FC(CGameRegion *pThis);
-float func_80021348(CGameRegion *pThis, float X, float Z);
-CVector3 func_800211F8(CGameRegion *pThis, float Gravity);
-float func_80021138(CGameRegion *pThis,
+CVector3 CGameRegion__GetCeilingUnitNormal(CGameRegion *pThis);
+float CGameRegion__GetCeilingHeight(CGameRegion *pThis, float X, float Z);
+CVector3 CGameRegion__GetSlideVector(CGameRegion *pThis, float Gravity);
+float CGameRegion__GetUphillCosine(CGameRegion *pThis,
                 float StartX, float StartZ,
                 float EndX, float EndZ);
-float func_8001AA68(CGameRegion *pThis,
+float CGameRegion__GetHillAngle(CGameRegion *pThis,
                float StartX, float StartZ,
                float EndX, float EndZ);
 int CGameRegion__InRegion(CGameRegion *pThis, float X, float Z);
@@ -8128,28 +8128,28 @@ int CGameRegion__InRegion(CGameRegion *pThis, float X, float Z);
 
 
 
-unsigned long func_800210FC(CGameRegion *pThis);
-unsigned long func_800210C0(CGameRegion *pThis);
-int func_80020F44(CGameRegion *pThis, CVector3 *pvStart, CVector3 *pvEnd, float *Out);
+unsigned long CGameRegion__GetGroundMaterial(CGameRegion *pThis);
+unsigned long CGameRegion__GetWallMaterial(CGameRegion *pThis);
+int CGameRegion__GetGroundIntersection(CGameRegion *pThis, CVector3 *pvStart, CVector3 *pvEnd, float *Out);
 int CGameRegion__GetCeilingIntersection(CGameRegion *pThis, CVector3 *pvStart, CVector3 *pvEnd, float *Out);
 int CGameRegion__CalculateWaterIntersection(CGameRegion *pThis, CVector3 *pvStart, CVector3 *pvEnd, float *Out);
-CQuatern func_80020B28(CGameRegion *pThis);
-CQuatern func_800209A4(CGameRegion *pThis);
-float func_800206E4(CGameRegion *pThis, int nEdge);
-float func_80020638(CGameRegion *pThis);
+CQuatern CGameRegion__GetGroundRotation(CGameRegion *pThis);
+CQuatern CGameRegion__GetCeilingRotation(CGameRegion *pThis);
+float CGameRegion__GetEdgeAngle(CGameRegion *pThis, int nEdge);
+float CGameRegion__GetGroundYAngle(CGameRegion *pThis);
 #define CGameRegion__IsDoorOpen(pThis) ((pThis)->m_wFlags & REGFLAG_OPENDOOR)
 void CGameRegion__OpenDoor(CGameRegion *pThis);
 void CGameRegion__CloseDoor(CGameRegion *pThis);
-void func_800218A4(CGameRegion *pThis) ;
-void func_800217A0(CGameRegion *pThis) ;
-void func_800216E0(CGameRegion *pThis);
-void func_8002169C(CGameRegion *pThis);
-void func_800215C8(CGameRegion *pThis) ;
-void func_8002165C(CGameRegion *pThis) ;
-void func_80021618(CGameRegion *pThis) ;
-void func_80021508(CGameRegion *pThis, float Height);
-int func_80019ED8(CGameRegion *pThis);
-CGameRegion* func_8001E2F8(CGameRegion *pThis, CVector3 vPos);
+void CGameRegion__ToWater(CGameRegion *pThis) ;
+void CGameRegion__FromWater(CGameRegion *pThis) ;
+void CGameRegion__MakeInstantDeath(CGameRegion *pThis);
+void CGameRegion__UnMakeInstantDeath(CGameRegion *pThis);
+void CGameRegion__MakeFallDeath(CGameRegion *pThis) ;
+void CGameRegion__MakeWarp(CGameRegion *pThis) ;
+void CGameRegion__UnMakeWarp(CGameRegion *pThis) ;
+void CGameRegion__SetGroundHeight(CGameRegion *pThis, float Height);
+int CGameRegion__IsCliff(CGameRegion *pThis);
+CGameRegion* CGameRegion__FindNextLowerRegion(CGameRegion *pThis, CVector3 vPos);
 
 
 
@@ -8190,7 +8190,7 @@ typedef struct CBoundsRect_t
 
 
 void CBoundsRect__EncloseVectors(CBoundsRect *pThis, int nPts, CVector3 V[]);
-void func_800188C8(CBoundsRect *pThis, int nPts, CVector3 V[]);
+void CBoundsRect__AddEncloseVectors(CBoundsRect *pThis, int nPts, CVector3 V[]);
 void CBoundsRect__Print(CBoundsRect *pThis);
 
 
@@ -8216,7 +8216,7 @@ typedef struct CGameGridBounds_t
 
 
 
-void func_80020600(CGameGridBounds *pThis, CROMGridBounds *pSource);
+void CGameGridBounds__TakeFromROMGridBounds(CGameGridBounds *pThis, CROMGridBounds *pSource);
 
 #define I_STATIC 0
 #define I_ANIMATED 1
@@ -8236,22 +8236,22 @@ typedef struct CInstanceHdr_t
 
 
 
-CQuatern func_8001D5C8(CInstanceHdr *pThis, CVector3 vPos);
-int func_8001BA24(CInstanceHdr *pThis);
-int func_8001D3DC(CInstanceHdr *pThis);
-#define CInstanceHdr__DoSoundEffect(pThis,nSoundType,Looping) func_80031974(&GetApp()->m_Scene, nSoundType, Looping, pThis, &(pThis)->m_vPos, 0)
-void func_80017F0C(CInstanceHdr *pThis,
+CQuatern CInstanceHdr__GetAimAtTarget(CInstanceHdr *pThis, CVector3 vPos);
+int CInstanceHdr__IsOnGround(CInstanceHdr *pThis);
+int CInstanceHdr__IsOnGroundWhenClimbing(CInstanceHdr *pThis);
+#define CInstanceHdr__DoSoundEffect(pThis,nSoundType,Looping) CScene__DoSoundEffect(&GetApp()->m_Scene, nSoundType, Looping, pThis, &(pThis)->m_vPos, 0)
+void CInstanceHdr__GetNearPositionAndRegion(CInstanceHdr *pThis,
                 CVector3 vDesiredPos,
                 CVector3 *pvOutPos, CGameRegion **ppOutRegion,
                 int GroundBehavior, int InstanceBehavior);
-int func_80018B08(CInstanceHdr *pThis);
-float func_8001D240(CInstanceHdr *pThis, int ToTop, float TestDistance);
-CQuatern func_8001ABB8(CInstanceHdr *pThis);
-int func_80015E44(CInstanceHdr *pThis, int nNode);
-int func_80015F50(CInstanceHdr *pThis, int nNode);
-int func_80016324(CInstanceHdr *pThis, int nType, int nNode);
-int func_8001D398(CInstanceHdr *pThis);
-#define CInstanceHdr__GetGroundHeight(pThis) func_80019D3C((pThis)->m_pCurrentRegion, (pThis)->m_vPos.x, (pThis)->m_vPos.z)
+int CInstanceHdr__IsDevice(CInstanceHdr *pThis);
+float CInstanceHdr__GetCliffDistance(CInstanceHdr *pThis, int ToTop, float TestDistance);
+CQuatern CInstanceHdr__GetGroundRotation(CInstanceHdr *pThis);
+int CInstanceHdr__GetLockTextureIndex(CInstanceHdr *pThis, int nNode);
+int CInstanceHdr__GetGateTextureIndex(CInstanceHdr *pThis, int nNode);
+int CInstanceHdr__GetTextureIndex(CInstanceHdr *pThis, int nType, int nNode);
+int CInstanceHdr__TypeFlag(CInstanceHdr *pThis);
+#define CInstanceHdr__GetGroundHeight(pThis) CGameRegion__GetGroundHeight((pThis)->m_pCurrentRegion, (pThis)->m_vPos.x, (pThis)->m_vPos.z)
 
 
 
@@ -8264,12 +8264,12 @@ typedef struct CAnimInstanceHdr_t
 
 } CAnimInstanceHdr;
 
-int func_8001DF50(CAnimInstanceHdr *pThis,
+int CAnimInstanceHdr__IsObstructed(CAnimInstanceHdr *pThis,
                 CVector3 vDesired,
                 struct CCollisionInfo2_t **ppCIUsed );
 int CAnimInstanceHdr__CastYeThyRay(CAnimInstanceHdr *pThis, CInstanceHdr *pTarget);
-void func_8001E080(CAnimInstanceHdr *pThis, float X, float Z);
-#define CAnimInstanceHdr__GetVelocityRotation(pThis) func_80013C58(&(pThis)->m_vVelocity)
+void CAnimInstanceHdr__Teleport(CAnimInstanceHdr *pThis, float X, float Z);
+#define CAnimInstanceHdr__GetVelocityRotation(pThis) CVector3__GetDirectionRotation(&(pThis)->m_vVelocity)
 
 
 
@@ -8327,7 +8327,7 @@ typedef struct CGameSimpleInstance_t
 void CGameSimpleInstance__TakeFromROMSimpleInstance(CGameSimpleInstance *pThis, CROMSimpleInstance *pSource,
                     ROMAddress *rpObjectAddress,
                     CGameRegion Regions[], CEnemyAttributes Variations[]);
-void func_8002007C(CGameSimpleInstance *pThis, Gfx **ppDLP,
+void CGameSimpleInstance__Draw(CGameSimpleInstance *pThis, Gfx **ppDLP,
              CCartCache *pCache, CCacheEntry *pceTextureSetsIndex);
 CQuatern CGameSimpleInstance__GetAimRotation(CGameSimpleInstance *pThis);
 
@@ -8411,7 +8411,7 @@ void CGameStaticInstance__TakeFromROMStaticInstance(CGameStaticInstance *pThis, 
                     CGameRegion Regions[], CEnemyAttributes Variations[]);
 void CGameStaticInstance__Draw(CGameStaticInstance *pThis, Gfx **ppDLP,
                CCartCache *pCache, CCacheEntry *pceTextureSetsIndex);
-void func_8001EEB0(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantRateFrame);
+void CGameStaticInstance__SendEvents(CGameStaticInstance *pThis, CCartCache *pCache, int ConstantRateFrame);
 
 
 
@@ -8548,7 +8548,7 @@ typedef struct CAnimDraw_t
 
 
 
-void func_8001EB64(CGameObjectInstance *pThis, CROMObjectInstance *pSource,
+void CGameObjectInstance__TakeFromROMObjectInstance(CGameObjectInstance *pThis, CROMObjectInstance *pSource,
                     CGameRegion Regions[], CEnemyAttributes Variations[]);
 
 #define CGameObjectInstance__GetOrientationMatrix(pThis) ((pThis)->m_mOrientation[D_800B6AF4])
@@ -8573,11 +8573,11 @@ void func_8001EB64(CGameObjectInstance *pThis, CROMObjectInstance *pSource,
 #define CGameObjectInstance__HasTransparency(pThis) ((pThis)->m_dwFlags & ANIM_INSTANCE_TRANSPARENCY)
 
 void CGameObjectInstance__CalculateOrientationMatrix(CGameObjectInstance *pThis, int FollowView, CVector3 vTCorners[8], CMtxF mfOrient);
-void func_8001E990(CGameObjectInstance *pThis, int nAnim);
-void func_8001E93C(CGameObjectInstance *pThis);
+void CGameObjectInstance__SetDesiredAnim(CGameObjectInstance *pThis, int nAnim);
+void CGameObjectInstance__RestartAnim(CGameObjectInstance *pThis);
 int func_800186FC(CGameObjectInstance *pThis, int nType);
-int func_8001C348(CGameObjectInstance *pThis, int nItems, int AITypes[], int Weights[], int *pPickedType);
-int func_8001E9B8(CGameObjectInstance *pThis, int nItems, int Info[][3], int *pPickedType);
+int CGameObjectInstance__GetRandomAnimIndex(CGameObjectInstance *pThis, int nItems, int AITypes[], int Weights[], int *pPickedType);
+int CGameObjectInstance__GetRandomAnimIndexWithCheck(CGameObjectInstance *pThis, int nItems, int Info[][3], int *pPickedType);
 #define CGameObjectInstance__GetCurrentAnim(pThis) ((pThis)->m_asCurrent.m_nAnim)
 #define CGameObjectInstance__IsModelLoaded(pThis) CGeometry__IsModelLoaded(&(pThis)->m_Geometry)
 void CGameObjectInstance__Jerk(CGameObjectInstance *pThis);
@@ -8590,17 +8590,17 @@ void CGameObjectInstance__Jerk(CGameObjectInstance *pThis);
 void CGameObjectInstance__Reset(CGameObjectInstance *pThis,
               CIndexedSet *pisObjectsIndex, ROMAddress *rpObjectsAddress,
             int StartupAnimType);
-void func_8001E660(CGameObjectInstance *pThis, Gfx **ppDLP);
+void CGameObjectInstance__PreDrawPlayer(CGameObjectInstance *pThis, Gfx **ppDLP);
 void func_8001C9D8(CGameObjectInstance *pThis, Gfx **ppDLP, CCacheEntry *pceTextureSetsIndex);
 
 void CGameObjectInstance__GetOffsetPositionAndRegion(CGameObjectInstance *pThis,
                      CVector3 vDesiredOffset,
                      CVector3 *pvOutPos, CGameRegion **ppOutRegion);
-CQuatern func_8001D464(CGameObjectInstance *pThis);
-CQuatern func_8001D8F0(CGameObjectInstance *pThis, CVector3 vPos, CQuatern *pqFixResult, float Angle);
-CVector3 func_8001D888(CGameObjectInstance *pThis, CVector3 vDirection);
-void func_8001E7BC(CGameObjectInstance *pThis);
-int func_8001E804(CGameObjectInstance *pThis);
+CQuatern CGameObjectInstance__GetAimRotation(CGameObjectInstance *pThis);
+CQuatern CGameObjectInstance__GetAutoAimRotation(CGameObjectInstance *pThis, CVector3 vPos, CQuatern *pqFixResult, float Angle);
+CVector3 CGameObjectInstance__GetRotatedDirection(CGameObjectInstance *pThis, CVector3 vDirection);
+void CGameObjectInstance__WentOutOfAnimBounds(CGameObjectInstance *pThis);
+int CGameObjectInstance__IsFacingCliff(CGameObjectInstance *pThis);
 
 
 
@@ -8620,7 +8620,7 @@ typedef struct CGameGeometryInfo_t
 
 
 
-void func_8001E648(CGameGeometryInfo *pThis, CROMGeometryInfo *pSource);
+void CGameGeometryInfo__TakeFromROMGeometryInfo(CGameGeometryInfo *pThis, CROMGeometryInfo *pSource);
 
 
 
@@ -8955,8 +8955,8 @@ typedef struct CClosestIntersect_t
 
 
 
-void func_8009A4B4(CClosestIntersect *pThis);
-void func_8009A44C(CClosestIntersect *pThis, CAnimInstanceHdr *pInst);
+void CClosestIntersect__Reset(CClosestIntersect *pThis);
+void CClosestIntersect__Store(CClosestIntersect *pThis, CAnimInstanceHdr *pInst);
 #define CClosestIntersect__SetStoreDest(pThis,pvDestPos,ppDestRegion,pDestCollType,StoreCollType,ppDestInst,pDestInstType) { (pThis)->pvIntersectPos = (pvDestPos); (pThis)->ppRegion = (ppDestRegion); (pThis)->pCollType = (pDestCollType); (pThis)->CollType = (StoreCollType); (pThis)->ppInst = (ppDestInst); (pThis)->pInstType = (pDestInstType); }
 
 typedef struct CCollide_t
@@ -8989,7 +8989,7 @@ typedef struct CCollide_t
 
 
 
-int func_80099744(CCollide *pThis,
+int CCollide__IntersectPlane(CCollide *pThis,
               CVector3 *pvNormal,
               CVector3 *pvPointOnPlane,
               int BackCull,
@@ -9001,12 +9001,12 @@ int CCollide__IntersectCylinder(CCollide *pThis,
                int BackCull,
                int Behavior,
                float SurfaceFriction);
-CGameRegion* func_80099208(CCollide *pThis,
+CGameRegion* CCollide__CanEnter(CCollide *pThis,
             CGameRegion *pCurrent,
             int nDesiredEdge,
             CVector3 *pvComparePos);
-void func_80098F6C(CCollide *pThis);
-int func_80098F20(CCollide *pThis, CGameRegion *pCurrentRegion);
+void CCollide__TrackGround(CCollide *pThis);
+int CCollide__GetGroundBehavior(CCollide *pThis, CGameRegion *pCurrentRegion);
 
 #define CCollide__InitSlideSurface(pThis) (pThis)->SlidingType = SLIDING_TYPE_NONE
 #define CCollide__ClearSlideSurface(pThis) (pThis)->NextSlidingType = SLIDING_TYPE_NONE
@@ -9036,7 +9036,7 @@ int func_80098F20(CCollide *pThis, CGameRegion *pCurrentRegion);
 
 
 
-int func_8009A4D8(struct CAnimInstanceHdr_t *pThis,
+int CAnimInstanceHdr__Collision3(struct CAnimInstanceHdr_t *pThis,
            CVector3 vDesired,
            struct CCollisionInfo2_t *pCI);
 
@@ -9123,8 +9123,8 @@ typedef struct CCollisionInfo2_t
 
 
 
-void func_8009C5E4();
-void func_8009C5D0(CCollisionInfo2 *pThis);
+void CCollisionInfo__Reset();
+void CCollisionInfo__ClearCollision(CCollisionInfo2 *pThis);
 
 
 
@@ -9206,7 +9206,7 @@ extern CParticle *p_particle_glare;
 
 
 
-void func_8002B5BC (CParticle *pThis);
+void CParticle__Construct (CParticle *pThis);
 
 void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
 
@@ -9225,12 +9225,12 @@ void CParticle__InstanceCollision (CParticle *pThis);
 void CParticle__EveryFrame (CParticle *pThis);
 void CParticle__EndLife (CParticle *pThis);
 void CParticle__Done (CParticle *pThis);
-int func_800280A8 (CParticle *pThis);
-int func_8002814C (CParticle *pThis);
-#define CParticle__DoSoundEffect(pThis,nSoundType,Looping,pvPos) func_80031974(&GetApp()->m_Scene, nSoundType, Looping, pThis, pvPos, 0)
+int CParticle__IsInAntiGrav (CParticle *pThis);
+int CParticle__IsInWater (CParticle *pThis);
+#define CParticle__DoSoundEffect(pThis,nSoundType,Looping,pvPos) CScene__DoSoundEffect(&GetApp()->m_Scene, nSoundType, Looping, pThis, pvPos, 0)
 
 #define CParticle__GetRandom(max) ((((int)max) < 0) ? -RANDOM((-((int)max))+1) : (((max) == 0) ? 0 : RANDOM((max) + 1)))
-#define CParticle__GetRandomFloat(max) ((max == 0.0) ? 0.0 : func_80013840(max))
+#define CParticle__GetRandomFloat(max) ((max == 0.0) ? 0.0 : RandomFloat(max))
 
 
 
@@ -9302,8 +9302,8 @@ typedef struct CDynamicSimple_t
 
 
 
-void func_80035F9C(CDynamicSimple *pThis);
-void update_dynamic_simple_instance(CDynamicSimple *pThis);
+void CDynamicSimple__Construct(CDynamicSimple *pThis);
+void CDynamicSimple__Advance(CDynamicSimple *pThis);
 void CDynamicSimple__Delete(CDynamicSimple *pThis);
 
 #define CDynamicSimple__IsAllocated(pThis) ((pThis)->m_dwFlags & DYNSIMPLE_ALLOCATED)
@@ -9328,17 +9328,17 @@ typedef struct CSimplePool_t
 
 
 
-void func_800357D0(CSimplePool *pThis);
-void func_80035F84(CSimplePool *pThis, CCartCache *pCache,
+void CSimplePool__Construct(CSimplePool *pThis);
+void CSimplePool__Initialize(CSimplePool *pThis, CCartCache *pCache,
             CCacheEntry *pceObjectsIndex, ROMAddress *rpObjectsAddress);
 
-CDynamicSimple* func_80035A74(CSimplePool *pThis, int nType,
+CDynamicSimple* CSimplePool__CreateSimpleInstance(CSimplePool *pThis, int nType,
                   CVector3 vVelocity,
                   CVector3 vPos, CGameRegion *pRegion, float Time) ;
 
-void func_80035C68(CSimplePool *pThis);
-void func_80035E74(CSimplePool *pThis, Gfx **ppDLP, CCacheEntry *pceTextureSetsIndex);
-void func_80035DA0(CSimplePool *pThis, struct CScene_t *pScene);
+void CSimplePool__Advance(CSimplePool *pThis);
+void CSimplePool__Draw(CSimplePool *pThis, Gfx **ppDLP, CCacheEntry *pceTextureSetsIndex);
+void CSimplePool__AddToCollisionList(CSimplePool *pThis, struct CScene_t *pScene);
 
 
 
@@ -9459,9 +9459,9 @@ void func_80035DA0(CSimplePool *pThis, struct CScene_t *pScene);
 
 
 
-void func_80091010(void) ;
+void CPickup__DisplayKeysRemaining(void) ;
 void CPickup_Pickup(CGameSimpleInstance *pPickup);
-int func_80091508(CGameSimpleInstance *pPickup, CAnimInstanceHdr *pInst);
+int CPickup__CanInstancePickItUp(CGameSimpleInstance *pPickup, CAnimInstanceHdr *pInst);
 
 typedef struct CPickupGenerator_t
 {
@@ -9472,8 +9472,8 @@ typedef struct CPickupGenerator_t
 } CPickupGenerator ;
 
 
-void func_800934A4(CPickupGenerator *pThis, CVector3 *pvPos) ;
-CDynamicSimple *func_80093524(CPickupGenerator *pThis, signed long Type, float Time) ;
+void CPickupGenerator__Construct(CPickupGenerator *pThis, CVector3 *pvPos) ;
+CDynamicSimple *CPickupGenerator__Generate(CPickupGenerator *pThis, signed long Type, float Time) ;
 
 
 
@@ -9488,12 +9488,12 @@ typedef struct CPickupMonitor_t
 } CPickupMonitor ;
 
 
-void func_80093688(CPickupMonitor *pThis) ;
-void func_80093694(CPickupMonitor *pThis, signed long NoOfGenerators, CVector3 *pvPosList) ;
+void CPickupMonitor__Construct(CPickupMonitor *pThis) ;
+void CPickupMonitor__AddGenerators(CPickupMonitor *pThis, signed long NoOfGenerators, CVector3 *pvPosList) ;
 #define CPickupMonitor__Activate(pThis) (pThis)->m_Active = TRUE
 #define CPickupMonitor__Deactivate(pThis) (pThis)->m_Active = FALSE
-void func_8009373C(CPickupMonitor *pThis, CPickupGenerator *pGenerator) ;
-void func_80093984(CPickupMonitor *pThis) ;
+void CPickupMonitor__UpdateGenerator(CPickupMonitor *pThis, CPickupGenerator *pGenerator) ;
+void CPickupMonitor__Update(CPickupMonitor *pThis) ;
 void CPickupMonitor__ProduceWeapons(CPickupMonitor *pThis) ;
 
 
@@ -9591,34 +9591,34 @@ typedef struct CScene_t
 void CScene__Construct(CScene *pThis, int nLevel);
 void CScene__Destruct(CScene *pThis);
 
-void func_80031B6C(CScene *pThis, Gfx **ppDLP);
+void CScene__Draw(CScene *pThis, Gfx **ppDLP);
 int CScene__Idle(CScene *pThis);
-int func_80032970(CScene *pThis, int nType);
-int func_80032ACC(CScene *pThis, int nObjType);
-void func_800329E0(CScene *pThis, CGameObjectInstance *pInstance,
+int CScene__LookupObjectType(CScene *pThis, int nType);
+int CScene__GetObjectTypeFlag(CScene *pThis, int nObjType);
+void CScene__LoadObjectModelType(CScene *pThis, CGameObjectInstance *pInstance,
                int nObjectType, int nAnimType);
 void CScene__Decompress(CScene *pThis, CCacheEntry *pceData);
 
-CROMRegionSet* func_8002E438(CScene *pThis, CGameRegion *pRegion);
-int func_80033638(CScene *pThis, CGameRegion *pRegion);
-CGameRegion *func_800335B4(CScene *pThis, int Index) ;
-int func_80031974(CScene *pThis,
+CROMRegionSet* CScene__GetRegionAttributes(CScene *pThis, CGameRegion *pRegion);
+int CScene__GetRegionIndex(CScene *pThis, CGameRegion *pRegion);
+CGameRegion *CScene__GetRegionPtr(CScene *pThis, int Index) ;
+int CScene__DoSoundEffect(CScene *pThis,
              int nSoundType, float Volume,
              void *pSource, CVector3 *pvSourcePos, int SndFlags);
-void func_80034998();
+void CScene__ResetPersistantData();
 void CScene__SetInstanceFlag(CScene *pThis, CGameObjectInstance *pAnim, int Set);
 int CScene__GetInstanceFlag(CScene *pThis, CGameObjectInstance *pAnim);
 int CScene__GetInstanceFlagByIndex(CScene *pThis, int nInstance);
 void CScene__SetPickupFlag(CScene *pThis, CGameSimpleInstance *pSimple, int Set);
 int CScene__GetPickupFlag(CScene *pThis, CGameSimpleInstance *pSimple);
-void func_80034834(CScene *pThis, int nRegion, int Set);
-int func_80033790(CScene *pThis, int nRegion);
-void func_80033C88(CScene *pThis);
-struct CPersistantData_t* func_80034AF8(CScene *pThis);
-void* func_80034B90(CScene *pThis);
-int func_80034B4C(CScene *pThis);
-void func_80034B38(CScene *pThis);
-int func_80034EDC(CScene *pThis, int nBlockType,
+void plcamera_entrypoint_12(CScene *pThis, int nRegion, int Set);
+int CScene__GetRegionFlag(CScene *pThis, int nRegion);
+void CScene__ClearAllRegionFlags(CScene *pThis);
+struct CPersistantData_t* CScene__GetPersistantDataStruct(CScene *pThis);
+void* CScene__GetPersistantDataAddress(CScene *pThis);
+int CScene__GetPersistantDataSize(CScene *pThis);
+void CScene__PersistantDataLoaded(CScene *pThis);
+int CScene__RequestBinaryBlock(CScene *pThis, int nBlockType,
               CCacheEntry **ppceBinaryBlock,
               void *pNotifyPtr, pfnCACHENOTIFY pfnBlockReceived);
 
@@ -9627,7 +9627,7 @@ int func_80034EDC(CScene *pThis, int nBlockType,
 CDynamicSimple *CScene__GeneratePickup(CScene *pThis, CGameRegion *pRegion,
              CVector3 vPos, int nType, float Time) ;
 
-CGameRegion* func_8002E280(CScene *pThis, CVector3 *pvPos) ;
+CGameRegion* CScene__NearestRegion(CScene *pThis, CVector3 *pvPos) ;
 
 void func_80033B48(CScene *pThis) ;
 
@@ -9747,9 +9747,9 @@ enum OverlayScriptCommands
 
 
 
-void func_8007F588(COverlay *pThis, signed short nScreenX, signed short nScreenY) ;
-void func_8007F5C4(COverlay *pThis, signed long *pScript) ;
-void func_8007F5EC(COverlay *pThis) ;
+void COverlay__Construct(COverlay *pThis, signed short nScreenX, signed short nScreenY) ;
+void COverlay__RunScript(COverlay *pThis, signed long *pScript) ;
+void COverlay__Update(COverlay *pThis) ;
 #define COverlay__Active(pThis) ((pThis)->m_Mode == OVERLAY_INACTIVE_MODE)
 #define COverlay__OnScreen(pThis) ((pThis)->m_OnScreen)
 
@@ -9874,43 +9874,43 @@ typedef struct COnScreen_t
  u8 m_SelectPosition ;
 } COnScreen ;
 
-void func_8007D3C0(COnScreen *pThis);
+void COnScreen__Construct(COnScreen *pThis);
 void COnScreen__Reset(COnScreen *pThis);
-void func_8007D5A0(COnScreen *pThis) ;
+void COnScreen__Update(COnScreen *pThis) ;
 void COnScreen__Draw(COnScreen *pThis, Gfx **ppDLP);
-void func_8007F024(COnScreen *pThis, Gfx **ppDLP) ;
-void func_8007F11C(COnScreen *pThis, int nHealth);
-void func_8007F270(COnScreen *pThis, int nLives);
-void func_8007F2D4(COnScreen *pThis, int nTokens) ;
+void COnScreen__DrawWeaponSelection(COnScreen *pThis, Gfx **ppDLP) ;
+void COnScreen__SetHealth(COnScreen *pThis, int nHealth);
+void COnScreen__SetLives(COnScreen *pThis, int nLives);
+void COnScreen__SetTokens(COnScreen *pThis, int nTokens) ;
 
-void func_8007F3C0(COnScreen *pThis, int mode) ;
-int func_8007F3F4(COnScreen *pThis, struct CBoss_t *pBoss) ;
-void func_8007F404(COnScreen *pThis, struct CBoss_t *pBoss) ;
+void COnScreen__SetBossBarMode(COnScreen *pThis, int mode) ;
+int COnScreen__BossHasBar(COnScreen *pThis, struct CBoss_t *pBoss) ;
+void COnScreen__AddBossBar(COnScreen *pThis, struct CBoss_t *pBoss) ;
 
 
-void func_8007F428(COnScreen *pThis, int mode) ;
-void func_8007F320(COnScreen *pThis, int nAmmo, int explosive);
-void func_8007F45C(COnScreen *pThis, signed long nIcon) ;
-void func_8007F4A4(COnScreen *pThis, int nSelectPosition, int Direction);
-void func_8007F504(COnScreen *pThis, int SelectPosition);
-int func_8007F580(COnScreen *pThis);
+void COnScreen__SetAirMode(COnScreen *pThis, int mode) ;
+void COnScreen__SetAmmo(COnScreen *pThis, int nAmmo, int explosive);
+void COnScreen__SetWalkRunIcon(COnScreen *pThis, signed long nIcon) ;
+void COnScreen__DisplayWeaponChoice(COnScreen *pThis, int nSelectPosition, int Direction);
+void COnScreen__QuickWeaponChange(COnScreen *pThis, int SelectPosition);
+int COnScreen__IsWeaponOverlayOn(COnScreen *pThis);
 void COnScreen__DrawParticleLensFlares(COnScreen *pThis, Gfx **ppDLP);
-void func_8007E38C(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
-void func_8007DF74(COnScreen *pThis, Gfx **ppDLP);
+void COnScreen__DrawLensFlare(COnScreen *pThis, Gfx **ppDLP, float sx, float sy, float Opacity, int Sun, int Blocked);
+void COnScreen__DrawSunLensFlare(COnScreen *pThis, Gfx **ppDLP);
 
-void func_8007E208(Gfx **ppDL);
+void COnScreen__DrawSun(Gfx **ppDL);
 
 void COnScreen__InitBoxDraw(Gfx **ppDLP) ;
 
 void COnScreen__DrawBox(Gfx **ppDLP, signed long X1, signed long Y1, signed long X2, signed long Y2,
         unsigned char Red, unsigned char Green, unsigned char Blue, unsigned char Alpha) ;
 
-void func_8007FAE0(Gfx **ppDLP, signed long X1, signed long Y1, signed long X2, signed long Y2, signed long Thickness,
+void COnScreen__DrawBoxOutLine(Gfx **ppDLP, signed long X1, signed long Y1, signed long X2, signed long Y2, signed long Thickness,
            unsigned char Red, unsigned char Green, unsigned char Blue, unsigned char Alpha) ;
 void COnScreen__DrawHilightBox(Gfx **ppDLP, signed long x1, signed long y1, signed long x2, signed long y2, signed long thick, int invert,
            unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) ;
 
-void func_800803D0(Gfx **ppDLP,
+void COnScreen__DrawDigits(Gfx **ppDLP,
          int nNumber,
          int nX,
          int nY) ;
@@ -9921,17 +9921,17 @@ void COnScreen__DrawText(Gfx **ppDLP,
          int Opacity, int centre, int shadow) ;
 void COnScreen__SetFontColor(Gfx **ppDLP, int tr, int tg, int tb, int br, int bg, int bb) ;
 void COnScreen__SetFontScale(float XScale, float YScale) ;
-void func_80080940(Gfx **ppDLP) ;
-void func_80080B0C(Gfx **ppDLP) ;
-void func_80080BF0(Gfx **ppDLP) ;
+void COnScreen__PrepareLargeFont(Gfx **ppDLP) ;
+void COnScreen__PrepareSmallFont(Gfx **ppDLP) ;
+void COnScreen__PrepareNintendoFont(Gfx **ppDLP) ;
 
-void func_80081A10(Gfx **ppDLP, int opacity) ;
-void func_80081B20(Gfx **ppDLP,
+void COnScreen__Init16BitDraw(Gfx **ppDLP, int opacity) ;
+void COnScreen__Draw16BitTexture(Gfx **ppDLP,
           void *pTexture,
           void *pOpacity,
           int XPos, int YPos,
           int TextureWidth, int TextureHeight) ;
-void func_80081F58(Gfx **ppDLP,
+void COnScreen__Draw16BitScaledTexture(Gfx **ppDLP,
            void *pTexture,
            void *pOpacity,
            float XPos, float YPos,
@@ -9939,8 +9939,8 @@ void func_80081F58(Gfx **ppDLP,
            float XScale, float YScale) ;
 
 
-void func_80082E64(Gfx **ppDLP, C16BitGraphic *Graphic, signed short X, signed short Y) ;
-void func_80082FA0(Gfx **ppDLP, C16BitGraphic *Graphic, float X, float Y, float XScale, float YScale) ;
+void COnScreen__Draw16BitGraphic(Gfx **ppDLP, C16BitGraphic *Graphic, signed short X, signed short Y) ;
+void COnScreen__Draw16BitScaledGraphic(Gfx **ppDLP, C16BitGraphic *Graphic, float X, float Y, float XScale, float YScale) ;
 
 enum GameTextModes
 {
@@ -9951,12 +9951,12 @@ enum GameTextModes
 } ;
 
 
-void func_8008319C(void) ;
-t_GameText *func_800831E4(char *String) ;
-t_GameText *func_80083248(char *String, float Secs) ;
-t_GameText *func_80083288(char *String, int id) ;
-int func_800832FC(int id) ;
-void func_800833C0(Gfx **ppDLP) ;
+void COnScreen__InitializeGameText(void) ;
+t_GameText *COnScreen__AddGameText(char *String) ;
+t_GameText *COnScreen__AddGameTextForTime(char *String, float Secs) ;
+t_GameText *COnScreen__AddGameTextWithId(char *String, int id) ;
+int COnScreen__SearchForId(int id) ;
+void COnScreen__UpdateGameText(Gfx **ppDLP) ;
 
 
 
@@ -9996,11 +9996,11 @@ typedef struct s_CBarrel
 
 } CBarrel ;
 
-void func_8008363C(CBarrel *pThis, int items,
+void CBarrel__Construct(CBarrel *pThis, int items,
         int x, int y, int xstep, int ystep,
         float speed, int display) ;
-void func_800836B8(CBarrel *pThis) ;
-void func_80083938(CBarrel *pThis, Gfx **ppDLP) ;
+void CBarrel__Update(CBarrel *pThis) ;
+void CBarrel__Draw(CBarrel *pThis, Gfx **ppDLP) ;
 
 
 
@@ -10022,9 +10022,9 @@ typedef struct CPlane_t
 
 
 
-void func_80084630(CPlane *pThis, CVector3 *pvA, CVector3 *pvB, CVector3 *pvC);
-int func_800846A4(CPlane *pThis, CVector3 *pvPoint);
-float func_80084714(CPlane *pThis, CVector3 *pvA, CVector3 *pvB);
+void CPlane__BuildFromVectors(CPlane *pThis, CVector3 *pvA, CVector3 *pvB, CVector3 *pvC);
+int CPlane__Inside(CPlane *pThis, CVector3 *pvPoint);
+float CPlane__Intersect(CPlane *pThis, CVector3 *pvA, CVector3 *pvB);
 
 
 
@@ -10042,17 +10042,17 @@ typedef struct CViewVolume_t
 
 
 
-void func_800847F0(CViewVolume *pThis,
+void CViewVolume__BuildFromVectors(CViewVolume *pThis,
                CVector3 *pvEye,
                CVector3 *pvUpLeft,
                CVector3 *pvUpRight,
                CVector3 *pvLowLeft,
                CVector3 *pvLowRight);
-int func_800848C0(CViewVolume *pThis, CVector3 *pvPoint);
-int func_8008492C(CViewVolume *pThis, int nPts, CVector3 V[]);
-int func_800849FC(CViewVolume *pThis, int nPts, CVector3 V[]);
-int func_80084ACC(CViewVolume *pThis, CROMBounds *pBounds);
-#define CViewVolume__Intersect(pThis,nPlane,pvA,pvB) func_80084714(&(pThis)->m_Planes[(nPlane)], (pvA), (pvB))
+int CViewVolume__Inside(CViewVolume *pThis, CVector3 *pvPoint);
+int CViewVolume__IsOverlapping(CViewVolume *pThis, int nPts, CVector3 V[]);
+int CViewVolume__IsOverlappingNoFarClip(CViewVolume *pThis, int nPts, CVector3 V[]);
+int CViewVolume__IsOverlappingBounds(CViewVolume *pThis, CROMBounds *pBounds);
+#define CViewVolume__Intersect(pThis,nPlane,pvA,pvB) CPlane__Intersect(&(pThis)->m_Planes[(nPlane)], (pvA), (pvB))
 
 
 
@@ -10148,19 +10148,19 @@ extern t_File FileDirectory[] ;
 
 
 
-int func_80010C94 ( void );
+int InitControllersAdvanced ( void );
 
-void func_80010DF0(void) ;
+void ReadPlayerController(void) ;
 void ProcessPlayerController(void) ;
-void func_8001116C ( void );
+void ReadControllerAdvanced ( void );
 
 int SetupFileSystem (void) ;
-int func_800112D8 (void) ;
-int func_80011364 (int file) ;
+int GetDirectoryInfo (void) ;
+int GetFileState (int file) ;
 int ScanFileList (int showall) ;
 
-int func_8001172C(int index) ;
-int func_800117C0(int index) ;
+int DeleteCurrent(int index) ;
+int LoadCurrent(int index) ;
 int SaveNew(void) ;
 int SaveCurrent(int index) ;
 
@@ -10509,87 +10509,87 @@ typedef struct
 
 } CTControl;
 
-CTControl* func_800502F0 (int Right);
-float func_800510C4 (CTControl *pThis);
-float func_800510F4 (CTControl *pThis);
-float func_80051124 (CTControl *pThis);
-float func_80051154 (CTControl *pThis);
-float func_80051184 (CTControl *pThis);
+CTControl* CTControl__CTControl (int Right);
+float CTControl__IsPrimaryFire (CTControl *pThis);
+float CTControl__IsForward (CTControl *pThis);
+float CTControl__IsBackward (CTControl *pThis);
+float CTControl__IsLeft (CTControl *pThis);
+float CTControl__IsRight (CTControl *pThis);
 float CTControl__IsDuck (CTControl *pThis);
-float func_800511B4 (CTControl *pThis);
-float func_800511E4 (CTControl *pThis);
+float CTControl__IsJump (CTControl *pThis);
+float CTControl__IsJumpReleased (CTControl *pThis);
 float CTControl__IsDoubleJump (CTControl *pThis);
-float func_80051E74 (CTControl *pThis);
-float func_80051304 (CTControl *pThis);
-float func_80051334 (CTControl *pThis);
-float func_80051244 (CTControl *pThis);
-float func_80051274 (CTControl *pThis);
-float func_800512A4 (CTControl *pThis);
-float func_800512D4 (CTControl *pThis);
-float func_80051214 (CTControl *pThis);
-float func_80051364 (CTControl *pThis);
-float func_80051394 (CTControl *pThis);
-float func_800513C4 (CTControl *pThis);
-float func_800513F4 (CTControl *pThis);
-float func_80051424 (CTControl *pThis);
-float func_80051EA4 (CTControl *pThis);
-float func_80051454 (CTControl *pThis);
-float func_80051484 (CTControl *pThis);
-float func_800514B4 (CTControl *pThis);
-float func_800514E4 (CTControl *pThis);
-float func_80051514 (CTControl *pThis);
-float func_80051544 (CTControl *pThis);
-float func_80051574 (CTControl *pThis);
-float func_800515A4 (CTControl *pThis);
+float CTControl__IsMapToggle (CTControl *pThis);
+float CTControl__IsSideStepLeft (CTControl *pThis);
+float CTControl__IsSideStepRight (CTControl *pThis);
+float CTControl__IsSelectWeaponPrev (CTControl *pThis);
+float CTControl__IsSelectWeaponNext (CTControl *pThis);
+float CTControl__IsSelectEnemyPrev (CTControl *pThis);
+float CTControl__IsSelectEnemyNext (CTControl *pThis);
+float CTControl__IsOpenDoor (CTControl *pThis);
+float CTControl__IsRollLeft (CTControl *pThis);
+float CTControl__IsRollRight (CTControl *pThis);
+float CTControl__IsPause (CTControl *pThis);
+float CTControl__IsStart (CTControl *pThis);
+float CTControl__IsStartHeld (CTControl *pThis);
+float CTControl__IsUseMenu (CTControl *pThis);
+float CTControl__IsLookUp (CTControl *pThis);
+float CTControl__IsLookDown (CTControl *pThis);
+float CTControl__IsLookLeft (CTControl *pThis);
+float CTControl__IsLookRight (CTControl *pThis);
+float CTControl__IsRunBackward (CTControl *pThis);
+float CTControl__IsRunForward (CTControl *pThis);
+float CTControl__IsRollSpeedL (CTControl *pThis);
+float CTControl__IsRollSpeedR (CTControl *pThis);
 float CTControl__IsFirstFire (CTControl *pThis);
 float CTControl__IsDetonate (CTControl *pThis);
 float CTControl__IsDetonateAll (CTControl *pThis);
-float func_800515D4 (CTControl *pThis);
-float func_80051604 (CTControl *pThis);
-float func_80051634 (CTControl *pThis);
-float func_80051664 (CTControl *pThis);
-float func_80051694 (CTControl *pThis);
-float func_800516C4 (CTControl *pThis);
-float func_800516F4 (CTControl *pThis);
-float func_80051754 (CTControl *pThis);
-float func_80051784 (CTControl *pThis);
-float func_800517B4 (CTControl *pThis);
-float func_800517E4 (CTControl *pThis);
-float func_80051814 (CTControl *pThis);
-float func_80051844 (CTControl *pThis);
-float func_80051874 (CTControl *pThis);
-float func_800518A4 (CTControl *pThis);
-float func_80051904 (CTControl *pThis);
-float func_800518D4 (CTControl *pThis);
-float func_80051934 (CTControl *pThis);
-float func_80051964 (CTControl *pThis);
-float func_80051994 (CTControl *pThis);
-float func_800519F4 (CTControl *pThis);
-float func_800519C4 (CTControl *pThis);
-float func_80051A24 (CTControl *pThis);
-float func_80051A54 (CTControl *pThis);
-float func_80051A84 (CTControl *pThis);
-float func_80051AB4 (CTControl *pThis);
-float func_80051AE4 (CTControl *pThis);
-float func_80051B14 (CTControl *pThis);
-float func_80051724 (CTControl *pThis);
-float func_80051B44 (CTControl *pThis);
-float func_80051B74 (CTControl *pThis);
-float func_80051BA4 (CTControl *pThis);
-float func_80051BD4 (CTControl *pThis);
-float func_80051C04 (CTControl *pThis);
-float func_80051C34 (CTControl *pThis);
-float func_80051C64 (CTControl *pThis);
-float func_80051C94 (CTControl *pThis);
-float func_80051CC4 (CTControl *pThis);
-float func_80051CF4 (CTControl *pThis);
-float func_80051D24 (CTControl *pThis);
-float func_80051D54 (CTControl *pThis);
-float func_80051D84 (CTControl *pThis);
-float func_80051DB4 (CTControl *pThis);
-float func_80051DE4 (CTControl *pThis);
-float func_80051E14 (CTControl *pThis);
-float func_80051E44 (CTControl *pThis);
+float CTControl__IsGrenadeLauncherFired (CTControl *pThis);
+float CTControl__IsToggleOnScreen (CTControl *pThis);
+float CTControl__IsClickUp (CTControl *pThis);
+float CTControl__IsClickDown (CTControl *pThis);
+float CTControl__IsClickLeft (CTControl *pThis);
+float CTControl__IsClickRight (CTControl *pThis);
+float CTControl__IsRunWalkToggle (CTControl *pThis);
+float CTControl__IsSwimForward (CTControl *pThis);
+float CTControl__IsSwimBackward (CTControl *pThis);
+float CTControl__IsSwimSideStepL (CTControl *pThis);
+float CTControl__IsSwimSideStepR (CTControl *pThis);
+float CTControl__IsSwimUp (CTControl *pThis);
+float CTControl__IsSwimBurstForward (CTControl *pThis);
+float CTControl__IsMapLeft (CTControl *pThis);
+float CTControl__IsMapRight (CTControl *pThis);
+float CTControl__IsMapDown (CTControl *pThis);
+float CTControl__IsMapUp (CTControl *pThis);
+float CTControl__IsStartJump (CTControl *pThis);
+float CTControl__IsAnalogLeft (CTControl *pThis);
+float CTControl__IsAnalogRight (CTControl *pThis);
+float CTControl__IsAnalogDown (CTControl *pThis);
+float CTControl__IsAnalogUp (CTControl *pThis);
+float CTControl__IsClimbLookLeft (CTControl *pThis);
+float CTControl__IsClimbLookRight (CTControl *pThis);
+float CTControl__IsClimbUp (CTControl *pThis);
+float CTControl__IsClimbDown (CTControl *pThis);
+float CTControl__IsClimbLeft (CTControl *pThis);
+float CTControl__IsClimbRight (CTControl *pThis);
+float CTControl__IsBurstSwimToggle (CTControl *pThis);
+float CTControl__IsDigitalUp (CTControl *pThis);
+float CTControl__IsDigitalDown (CTControl *pThis);
+float CTControl__IsZRotTog (CTControl *pThis);
+float CTControl__IsZRotLeft (CTControl *pThis);
+float CTControl__IsZRotRight (CTControl *pThis);
+float CTControl__IsEnemyForward (CTControl *pThis);
+float CTControl__IsEnemyBackward (CTControl *pThis);
+float CTControl__IsEnemyLeft (CTControl *pThis);
+float CTControl__IsEnemyRight (CTControl *pThis);
+float CTControl__IsEnemyRotLeft (CTControl *pThis);
+float CTControl__IsEnemyRotRight (CTControl *pThis);
+float CTControl__IsFlyUp (CTControl *pThis);
+float CTControl__IsFlyDown (CTControl *pThis);
+float CTControl__IsFlyLeft (CTControl *pThis);
+float CTControl__IsFlyRight (CTControl *pThis);
+float CTControl__IsFlyForward (CTControl *pThis);
+float CTControl__IsFlyBackward (CTControl *pThis);
 
 float CTControl__Action ( CTControl *pThis,
                    u16 Action,
@@ -10840,24 +10840,24 @@ typedef struct CGamePak_t
 
 void func_8000BEF0(CLoad *pThis) ;
 signed long func_8000C02C(CLoad *pThis) ;
-void func_8000C40C(CLoad *pThis, Gfx **ppDLP) ;
+void CLoad__Draw(CLoad *pThis, Gfx **ppDLP) ;
 
-void func_8000CCE4(CSave *pThis) ;
-signed long func_8000CE18(CSave *pThis) ;
-void func_8000D554(CSave *pThis, Gfx **ppDLP) ;
+void CSave__Construct(CSave *pThis) ;
+signed long CSave__Update(CSave *pThis) ;
+void CSave__Draw(CSave *pThis, Gfx **ppDLP) ;
 
 void CGamePak__Construct(CGamePak *pThis) ;
-signed long func_80010310(CGamePak *pThis) ;
+signed long CGamePak__Update(CGamePak *pThis) ;
 void CGamePak__Draw(CGamePak *pThis, Gfx **ppDLP) ;
 
 
-void func_8000DEB8(CRequestor *pThis, char *String1, char *String2) ;
-signed long func_8000DEE8(CRequestor *pThis) ;
+void CRequestor__Construct(CRequestor *pThis, char *String1, char *String2) ;
+signed long CRequestor__Update(CRequestor *pThis) ;
 void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP) ;
 
-void func_8000E498(CMessageBox *pThis, char *String1, char *String2) ;
-signed long func_8000E4BC(CMessageBox *pThis) ;
-void func_8000E52C(CMessageBox *pThis, Gfx **ppDLP) ;
+void CMessageBox__Construct(CMessageBox *pThis, char *String1, char *String2) ;
+signed long CMessageBox__Update(CMessageBox *pThis) ;
+void CMessageBox__Draw(CMessageBox *pThis, Gfx **ppDLP) ;
 
 
 
@@ -10912,12 +10912,12 @@ typedef struct CGiveCheatCode_t
 } CGiveCheatCode ;
 
 
-void func_8000EEC0(CCheatCode *pThis) ;
-signed long func_8000F108(CCheatCode *pThis) ;
-void func_8000F498(CCheatCode *pThis, Gfx **ppDLP) ;
+void CCheatCode__Construct(CCheatCode *pThis) ;
+signed long CCheatCode__Update(CCheatCode *pThis) ;
+void CCheatCode__Draw(CCheatCode *pThis, Gfx **ppDLP) ;
 
-void func_8000F87C(CGiveCheatCode *pThis, int *code) ;
-signed long func_8000F8AC(CGiveCheatCode *pThis) ;
+void CGiveCheatCode__Construct(CGiveCheatCode *pThis, int *code) ;
+signed long CGiveCheatCode__Update(CGiveCheatCode *pThis) ;
 void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP) ;
 
 
@@ -11007,9 +11007,9 @@ void COptions__Restore(COptions *pThis) ;
 void COptions__SetAttractDefaults(COptions *pThis) ;
 
 void COptions__SetDefaults(COptions *pThis) ;
-void func_80093DD8(COptions *pThis) ;
-signed long func_80093DF4(COptions *pThis) ;
-void func_80094170(COptions *pThis, Gfx **ppDLP);
+void COptions__Construct(COptions *pThis) ;
+signed long COptions__Update(COptions *pThis) ;
+void COptions__Draw(COptions *pThis, Gfx **ppDLP);
 
 enum KeySelections
 {
@@ -11042,9 +11042,9 @@ typedef struct CKeys_t
 
 
 
-void func_80094880(CKeys *pThis) ;
-s32 func_800948A8(CKeys *pThis) ;
-void func_80094BD0(CKeys *pThis, Gfx **ppDLP);
+void CKeys__Construct(CKeys *pThis) ;
+s32 CKeys__Update(CKeys *pThis) ;
+void CKeys__Draw(CKeys *pThis, Gfx **ppDLP);
 
 
 
@@ -11182,12 +11182,12 @@ typedef struct CGInst_t
 
 
 
-void func_80087FC0(CCheat *pThis) ;
+void CCheat__Construct(CCheat *pThis) ;
 signed long func_80088124(CCheat *pThis) ;
 void CCheat__Draw(CCheat *pThis, Gfx **ppDLP) ;
 
-void func_80088F10(CGInst *pThis) ;
-signed long func_80088F3C(CGInst *pThis) ;
+void CGInst__Construct(CGInst *pThis) ;
+signed long CGInst__Update(CGInst *pThis) ;
 void CGInst__Draw(CGInst *pThis, Gfx **ppDLP) ;
 
 
@@ -11255,7 +11255,7 @@ extern float D_800EC0C0 ;
 
 void CPause__Construct(CPause *pThis) ;
 signed long func_80084E9C(CPause *pThis) ;
-void func_80087228(CPause *pThis, Gfx **ppDLP) ;
+void CPause__Draw(CPause *pThis, Gfx **ppDLP) ;
 
 
 
@@ -11343,7 +11343,7 @@ typedef struct CBossVars_t
 } CBossVars ;
 
 
-void func_8003F7CC(CBossVars *pThis) ;
+void CBossVars__Construct(CBossVars *pThis) ;
 
 
 typedef struct CDamage_t
@@ -11526,70 +11526,70 @@ typedef struct CFlinchInfo_t
 
 
 
-void func_8003F7E0(CBoss *pThis) ;
+void CBoss__Construct(CBoss *pThis) ;
 
 void BOSS_Initialise(CGameObjectInstance *pThis, signed long nObjectType) ;
 
 
 void BOSS_LevelComplete(void) ;
 
-int func_8003FAC8(CGameObjectInstance *pThis, signed long nNewMode) ;
+int BOSS_SetupMode(CGameObjectInstance *pThis, signed long nNewMode) ;
 void BOSS_Update(CGameObjectInstance *pThis) ;
-void func_8003FEE4(CGameObjectInstance *pThis, signed long Node) ;
+void BOSS_DoNodeDamage(CGameObjectInstance *pThis, signed long Node) ;
 
-void func_8003FF88(CGameObjectInstance *pThis, CBoss *pBoss) ;
-signed long func_800400D8(CGameObjectInstance *pThis, CBoss *pBoss, float AngleRange) ;
+void BOSS_CalculateAngles(CGameObjectInstance *pThis, CBoss *pBoss) ;
+signed long BOSS_InProjectilePath(CGameObjectInstance *pThis, CBoss *pBoss, float AngleRange) ;
 
-void func_8004016C(CGameObjectInstance *pThis, CBoss *pBoss, float TurnSpeed, float DeltaAngle) ;
-void func_80040228(CGameObjectInstance *pThis, CBoss *pBoss, float Speed) ;
+void BOSS_PerformTurn(CGameObjectInstance *pThis, CBoss *pBoss, float TurnSpeed, float DeltaAngle) ;
+void BOSS_RotateToFaceTurok(CGameObjectInstance *pThis, CBoss *pBoss, float Speed) ;
 
-signed long func_800402A0(CGameObjectInstance *pThis, CBoss *pBoss, CFlinchInfo *pInfo, CParticle *pParticle) ;
+signed long BOSS_HitByParticleFlinchMode(CGameObjectInstance *pThis, CBoss *pBoss, CFlinchInfo *pInfo, CParticle *pParticle) ;
 
-signed long func_8004045C(CGameObjectInstance *pThis, CVector3 *pvPos, signed long Length) ;
+signed long BOSS_GetClosestPositionIndex(CGameObjectInstance *pThis, CVector3 *pvPos, signed long Length) ;
 
-void func_800408F8(CGameObjectInstance *pThis, float x, float z) ;
+void BOSS_SetPosition(CGameObjectInstance *pThis, float x, float z) ;
 
-int func_80040614(CGameObjectInstance *pThis, float Radius, float AngleOffset, CGameRegion **ppRegion, CVector3 *pvOutPos) ;
-
-
-
-
-
-
-void func_80040704(CGameObjectInstance *pThis, CBoss *pBoss) ;
+int BOSS_OffsetFromPlayerObstructed(CGameObjectInstance *pThis, float Radius, float AngleOffset, CGameRegion **ppRegion, CVector3 *pvOutPos) ;
 
 
 
 
 
 
-CQuatern func_80040764(CGameObjectInstance *pThis) ;
+void BOSS_Code_NextModeAfterAnim(CGameObjectInstance *pThis, CBoss *pBoss) ;
 
 
 
 
 
 
-float func_800409AC(float Var, float Accel, float MaxSpeed) ;
-float func_80040A0C(float Var, float Decel) ;
-
-#define AccelerateVarFLOAT(pVar,Accel,MaxSpeed) *(pVar) = func_800409AC(*(pVar), Accel, MaxSpeed)
-#define DecelerateVarFLOAT(pVar,Decel) *(pVar) = func_80040A0C(*(pVar), Decel)
+CQuatern BOSS_CalculateOrientation(CGameObjectInstance *pThis) ;
 
 
-signed long func_80040A80(signed long Var, signed long Accel, signed long MaxSpeed) ;
-
-float func_80040ADC(float Var, float Target, float Speed) ;
-void func_80040B54(float *pVar, float Target, float Speed) ;
-
-float func_80040CB0(float Phi, float Theta) ;
-float func_80040C80(float Phi, float Theta) ;
-
-float func_80040D10(float a, float b) ;
-int func_80040D74(float *pTimer) ;
 
 
-void func_80040DB8(CInstanceHdr *pThis, CVector3 *pvDestPos, CVector3 *pvOutPos) ;
+
+
+float AccelerateFLOAT(float Var, float Accel, float MaxSpeed) ;
+float DecelerateFLOAT(float Var, float Decel) ;
+
+#define AccelerateVarFLOAT(pVar,Accel,MaxSpeed) *(pVar) = AccelerateFLOAT(*(pVar), Accel, MaxSpeed)
+#define DecelerateVarFLOAT(pVar,Decel) *(pVar) = DecelerateFLOAT(*(pVar), Decel)
+
+
+signed long AccelerateINT32(signed long Var, signed long Accel, signed long MaxSpeed) ;
+
+float ZoomFLOAT(float Var, float Target, float Speed) ;
+void ProportionalZoomVarFLOAT(float *pVar, float Target, float Speed) ;
+
+float AngleDist(float Phi, float Theta) ;
+float AngleDiff(float Phi, float Theta) ;
+
+float RandomRangeFLOAT(float a, float b) ;
+int DecrementTimer(float *pTimer) ;
+
+
+void CInstanceHdr__NearestPosition(CInstanceHdr *pThis, CVector3 *pvDestPos, CVector3 *pvOutPos) ;
 
 
 
@@ -11603,14 +11603,14 @@ signed short ChooseWeaponPickupTurokIsHolding(void) ;
 
 
 
-void func_80040E48(CShield *pThis,
+void CShield__Construct(CShield *pThis,
         CGameObjectInstance *pOwner,
         signed long Health, CPsuedoColor *pColors, signed long TotalColors) ;
 
-int func_80040E80(CShield *pThis) ;
-void func_80040EA4(CShield *pThis) ;
-int func_800416C0(CShield *pThis, float Time) ;
-void func_80041740(CShield *pThis) ;
+int CShield__IsOn(CShield *pThis) ;
+void CShield__Update(CShield *pThis) ;
+int CShield__Activate(CShield *pThis, float Time) ;
+void CShield__Deactivate(CShield *pThis) ;
 
 
 
@@ -11682,18 +11682,18 @@ typedef struct CBossesStatus_t
 } CBossesStatus ;
 
 
-signed long func_8003F188(CGameObjectInstance *pThis) ;
-signed long func_8003F1C4(CGameObjectInstance *pThis) ;
+signed long CGameObjectInstance__GetBossSaveIndex(CGameObjectInstance *pThis) ;
+signed long CGameObjectInstance__GetBossDataSize(CGameObjectInstance *pThis) ;
 
 void CBossesStatus__Construct(CBossesStatus *pThis) ;
-void func_8003F220(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
-void func_8003F298(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
-CBossData *func_8003F334(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
+void CBossesStatus__SaveBossStatus(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
+void CBossesStatus__RestoreBossStatus(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
+CBossData *CBossesStatus__BossWasSaved(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
 
 void CBossesStatus__SaveAllBossesStatus(CBossesStatus *pThis) ;
 void CBossesStatus__RestoreAllBossesStatus(CBossesStatus *pThis) ;
 
-void func_8003F6D4(CBossesStatus *pThis, CInstanceHdr *pInst, int nType, CVector3 vPos, float Value) ;
+void CBossesStatus__SaveEvent(CBossesStatus *pThis, CInstanceHdr *pInst, int nType, CVector3 vPos, float Value) ;
 
 
 
@@ -11747,12 +11747,12 @@ typedef struct CDynamicList_t
 
 
 
-void func_80043930(CList *pThis) ;
-void func_80043940(CList *pThis, CNode *pNode) ;
-void func_80043988(CList *pThis, CNode *pNode) ;
-void func_800439E8(CDynamicList *pThis, unsigned char *NodeData, signed long NodeSize, signed long Total) ;
-CNode *func_80043A60(CDynamicList *pThis) ;
-void func_80043AAC(CDynamicList *pThis, CNode *pNode) ;
+void CList__Construct(CList *pThis) ;
+void CList__AppendNode(CList *pThis, CNode *pNode) ;
+void CList__DeleteNode(CList *pThis, CNode *pNode) ;
+void CDynamicList__Construct(CDynamicList *pThis, unsigned char *NodeData, signed long NodeSize, signed long Total) ;
+CNode *CDynamicList__AllocateNode(CDynamicList *pThis) ;
+void CDynamicList__DeallocateNode(CDynamicList *pThis, CNode *pNode) ;
 
 
 
@@ -11776,11 +11776,11 @@ typedef struct CSelectionList_t
 
 
 
-signed short func_80043AE0(CSelection *pList) ;
+signed short CSelection__Choose(CSelection *pList) ;
 
-void func_80043BA4(CSelectionList *pThis) ;
-void func_80043BAC(CSelectionList *pThis, signed short Item, signed short Weight) ;
-signed short func_80043BE4(CSelectionList *pThis) ;
+void CSelectionList__Construct(CSelectionList *pThis) ;
+void CSelectionList__AddItem(CSelectionList *pThis, signed short Item, signed short Weight) ;
+signed short CSelectionList__ChooseItem(CSelectionList *pThis) ;
 
 
 
@@ -11802,7 +11802,7 @@ typedef struct CAnimationMtxs_t
 
 void CAnimationMtxs__Construct(void) ;
 void CAnimationMtxs__Update(void) ;
-Mtx *func_800356E0(signed long Size) ;
+Mtx *CAnimationMtxs__RequestMtxTable(signed long Size) ;
 
 
 
@@ -11987,39 +11987,39 @@ enum SpecialFxCommands
 
 
 
-void func_800423A4(CFxSystem *pThis) ;
+void CFxSystem__Construct(CFxSystem *pThis) ;
 
-void func_800423A4(CFxSystem *pThis) ;
-void func_800424CC(CFxSystem *pThis) ;
-Vtx *func_80042530(CFxSystem *pThis, signed long NoOfVertices) ;
+void CFxSystem__Construct(CFxSystem *pThis) ;
+void CFxSystem__Update(CFxSystem *pThis) ;
+Vtx *CFxSystem__AllocateVertexList(CFxSystem *pThis, signed long NoOfVertices) ;
 
-CSwooshEdge *func_80042444(CFxSystem *pThis, CSwoosh *pSwoosh) ;
-void func_80042490(CFxSystem *pThis, CSwoosh *pSwoosh, CSwooshEdge *pEdge) ;
+CSwooshEdge *CFxSystem__AllocateSwooshEdge(CFxSystem *pThis, CSwoosh *pSwoosh) ;
+void CFxSystem__DeallocateSwooshEdge(CFxSystem *pThis, CSwoosh *pSwoosh, CSwooshEdge *pEdge) ;
 
-void func_80041760(CFxSystem *pThis, CSwoosh *pSwoosh, Mtx *pmtDrawMtxs) ;
+void CFxSystem__AddEdgeToSwoosh(CFxSystem *pThis, CSwoosh *pSwoosh, Mtx *pmtDrawMtxs) ;
 
-void func_80042794(CFxSystem *pThis, CGameObjectInstance *pObject, CSwooshInfo *pInfo) ;
-void func_80042800(CFxSystem *pThis, CParticle *pParticle, CSwooshInfo *pInfo) ;
-
-
-void func_80042564(CFxSystem *pThis, CGameObjectInstance *pObject, Mtx *pmtDrawMtxs) ;
-void func_800425F8(CFxSystem *pThis, CParticle *pParticle, Mtx *pmtDrawMtxs) ;
-
-void func_80042740(CFxSystem *pThis, CGameObjectInstance *pObject) ;
-void func_800426EC(CFxSystem *pThis, CParticle *pParticle) ;
-
-void func_80042964(CFxSystem *pThis, Gfx **ppDLP) ;
+void CFxSystem__AddObjectSwoosh(CFxSystem *pThis, CGameObjectInstance *pObject, CSwooshInfo *pInfo) ;
+void CFxSystem__AddParticleSwoosh(CFxSystem *pThis, CParticle *pParticle, CSwooshInfo *pInfo) ;
 
 
+void CFxSystem__CheckForAddingObjectSwooshEdge(CFxSystem *pThis, CGameObjectInstance *pObject, Mtx *pmtDrawMtxs) ;
+void CFxSystem__CheckForAddingParticleSwooshEdge(CFxSystem *pThis, CParticle *pParticle, Mtx *pmtDrawMtxs) ;
+
+void CFxSystem__StopSwooshesOnObject(CFxSystem *pThis, CGameObjectInstance *pObject) ;
+void CFxSystem__StopSwooshesOnParticle(CFxSystem *pThis, CParticle *pParticle) ;
+
+void CFxSystem__Draw(CFxSystem *pThis, Gfx **ppDLP) ;
 
 
-void func_80042A40(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
+
+
+void AI_SEvent_SwooshAllHands(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshLeftHand(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshRightHand(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
-void func_80042C00(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
+void AI_SEvent_SwooshAllFeet(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshLeftFoot(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshRightFoot(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
-void func_80042E84(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
+void AI_SEvent_SwooshWeapon1(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshWeapon2(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshTail(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_SwooshLeftToes(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
@@ -12027,20 +12027,20 @@ void AI_SEvent_SwooshRightToes(CInstanceHdr *pThis, CVector3 vPos, float Value) 
 
 
 
-void func_80043028(CSpecialFx *pThis, CGameObjectInstance *pInst) ;
-void func_8004305C(CSpecialFx *pThis, float *pScript) ;
-void func_8004306C(CSpecialFx *pThis) ;
-void func_8004345C(CSpecialFx *pThis) ;
-void func_800434C0(CSpecialFx *pThis) ;
-void func_8004353C(float *pVar) ;
-void func_80043584(void) ;
+void CSpecialFx__Construct(CSpecialFx *pThis, CGameObjectInstance *pInst) ;
+void CSpecialFx__StartScript(CSpecialFx *pThis, float *pScript) ;
+void CSpecialFx__Update(CSpecialFx *pThis) ;
+void CSpecialFx__SetDrawFxVars(CSpecialFx *pThis) ;
+void CSpecialFx__AddToDrawFxVars(CSpecialFx *pThis) ;
+void RangeCheckFxVar(float *pVar) ;
+void PrepareDrawFxVars(void) ;
 
 
 
 
 typedef void(*TimerFxFunction)(CTimerFx *pThis) ;
 
-CTimerFx *func_800438C8(CFxSystem *pThis,
+CTimerFx *CFxSystem__AddTimerFx(CFxSystem *pThis,
             TimerFxFunction pFunction,
             CGameObjectInstance *pInst,
             signed long Total,
@@ -12126,11 +12126,11 @@ typedef struct {
     s32 doAudio;
 } OSSched;
 
-void func_8002B830(OSSched *s, void *stack, OSPri priority,
+void osCreateScheduler(OSSched *s, void *stack, OSPri priority,
                                   u8 mode, u8 numFields);
 void osScAddClient(OSSched *s, OSScClient *c, OSMesgQueue *msgQ);
 void osScRemoveClient(OSSched *s, OSScClient *c);
-OSMesgQueue *func_8002BA38(OSSched *s);
+OSMesgQueue *osScGetCmdQ(OSSched *s);
 
 
 
@@ -12338,12 +12338,12 @@ typedef struct s_CCameraModeInfo
 
 
 
-void func_8003792C(CCamera *pThis) ;
-void func_80037960(CCamera *pThis) ;
+void CCamera__PreSceneConstruct(CCamera *pThis) ;
+void CCamera__Construct(CCamera *pThis) ;
 
 
-void func_80039C30(CCamera *pThis) ;
-void func_8003EE90(CCamera *pThis) ;
+void CCamera__ConstructIntro(CCamera *pThis) ;
+void CCamera__ConstructGallery(CCamera *pThis) ;
 
 
 
@@ -12356,37 +12356,37 @@ void func_8003EE90(CCamera *pThis) ;
 
 
 
-void func_80037EEC(CCamera *pThis) ;
-void func_80038B94(CCamera *pThis, Gfx **ppDLP);
-void func_80038E94(CCamera *pThis, signed long NewMode) ;
+void CCamera__Update(CCamera *pThis) ;
+void CCamera__DisplayListSetup(CCamera *pThis, Gfx **ppDLP);
+void CCamera__SetupMode(CCamera *pThis, signed long NewMode) ;
 
-void func_80038EF0(CCamera *pThis) ;
+void CCamera__TurokGoneBelowWater(CCamera *pThis) ;
 
-int func_80038F30(CCamera *pThis, CVector3 *pvPos, float Radius) ;
+int CCamera__PosIsCollisionFree(CCamera *pThis, CVector3 *pvPos, float Radius) ;
 
-int func_80039030(CGameObjectInstance *pThis, float Radius) ;
+int CGameObjectInstance__CylinderCollisionFree(CGameObjectInstance *pThis, float Radius) ;
 
-void func_8003911C(CCamera *pThis, CVector3 *pvCurrentPos,
+void CCamera__GetCollisionFreePos(CCamera *pThis, CVector3 *pvCurrentPos,
             CVector3 *pvOutPos, float EndRadius) ;
 
-void func_800392DC(CCamera *pThis, CVector3 vDesired) ;
+void CCamera__SetTurokPosition(CCamera *pThis, CVector3 vDesired) ;
 
-void func_800396F8(CCamera *pThis) ;
-
-
+void CCamera__KeepBelowCeiling(CCamera *pThis) ;
 
 
 
-void func_800378B8(CCameraView *pThis) ;
 
-void func_80039368(CCameraView *pThis, float Time, CCameraView *pViewA, CCameraView *pViewB) ;
-void func_800393E0(CCameraView *pThis, CCameraPosTrackInfo *pInfo, float Time) ;
-void func_80039494(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time, CVector3 *pvPos, float RotYOffset) ;
-void func_800395D4(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time, CGameObjectInstance *pObject) ;
-void func_8003960C(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time) ;
 
-void func_80039638(CCameraView *pThis, CVector3 *pvPos, float Speed) ;
-void func_80039698(CCameraView *pThis, CVector3 *pvPos, float Speed) ;
+void CCameraView__CalculateXYRotation(CCameraView *pThis) ;
+
+void CCameraView__Blend(CCameraView *pThis, float Time, CCameraView *pViewA, CCameraView *pViewB) ;
+void CCameraView__TweenPosTrack(CCameraView *pThis, CCameraPosTrackInfo *pInfo, float Time) ;
+void CCameraView__TweenTrackAroundPos(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time, CVector3 *pvPos, float RotYOffset) ;
+void CCameraView__TweenTrackAroundObject(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time, CGameObjectInstance *pObject) ;
+void CCameraView__TweenTrackAroundTurok(CCameraView *pThis, CCameraTrackInfo *pInfo, float Time) ;
+
+void CCameraView__ZoomEyeToPos(CCameraView *pThis, CVector3 *pvPos, float Speed) ;
+void CCameraView__ZoomFocusToPos(CCameraView *pThis, CVector3 *pvPos, float Speed) ;
 
 
 
@@ -12395,21 +12395,21 @@ void func_80039698(CCameraView *pThis, CVector3 *pvPos, float Speed) ;
 
 void CCamera__FadeToCinema(CCamera *pThis, signed long CinemaFlag) ;
 int CCamera__CheckForTurokDeathCinematic(CCamera *pThis) ;
-int func_80039B98(CCamera *pThis) ;
-int func_80039BA0(CCamera *pThis) ;
-int func_80039BCC(CCamera *pThis) ;
-int func_80039BF0(CCamera *pThis) ;
+int CCamera__InCinemaMode(CCamera *pThis) ;
+int CCamera__UpdateTurokHead(CCamera *pThis) ;
+int CCamera__UpdateTurokPosition(CCamera *pThis) ;
+int CCamera__InLetterBoxMode(CCamera *pThis) ;
 
 
 
 
 
 
-void func_800376EC(CShake *pThis, float Shake) ;
+void CShake__Set(CShake *pThis, float Shake) ;
 
-#define CCamera__SetShakeX(pThis,Shake) func_800376EC(&((pThis)->m_ShakeX), Shake) ;
-#define CCamera__SetShakeY(pThis,Shake) func_800376EC(&((pThis)->m_ShakeY), Shake) ;
-#define CCamera__SetShakeZ(pThis,Shake) func_800376EC(&((pThis)->m_ShakeZ), Shake) ;
+#define CCamera__SetShakeX(pThis,Shake) CShake__Set(&((pThis)->m_ShakeX), Shake) ;
+#define CCamera__SetShakeY(pThis,Shake) CShake__Set(&((pThis)->m_ShakeY), Shake) ;
+#define CCamera__SetShakeZ(pThis,Shake) CShake__Set(&((pThis)->m_ShakeZ), Shake) ;
 
 #define CCamera__SetShake(pThis,x,y,z) CCamera__SetShakeX(pThis,x) ; CCamera__SetShakeY(pThis,y) ; CCamera__SetShakeZ(pThis,z) ;
 
@@ -12420,19 +12420,19 @@ void func_800376EC(CShake *pThis, float Shake) ;
 
 
 
-void func_80037B0C(CCamera *pThis) ;
-void func_80037B3C(CCamera *pThis) ;
-void func_80037EC4(CCamera *pThis) ;
-void func_80037ED8(CCamera *pThis) ;
+void CCamera__InitializeWarp(CCamera *pThis) ;
+void CCamera__UpdateWarp(CCamera *pThis) ;
+void CCamera__WarpIn(CCamera *pThis) ;
+void CCamera__WarpOut(CCamera *pThis) ;
 
 
 
 
 
 
-void func_80037A84(CCamera *pThis) ;
-void func_80037AB8(CCamera *pThis, signed long Index) ;
-void func_80037AFC(CCamera *pThis, signed long Index, signed long Handle) ;
+void CCamera__InitializeSoundHandles(CCamera *pThis) ;
+void CCamera__KillSoundHandle(CCamera *pThis, signed long Index) ;
+void CCamera__SetSoundHandle(CCamera *pThis, signed long Index, signed long Handle) ;
 
 
 
@@ -12457,8 +12457,8 @@ typedef struct CSunFrameData_t
 
 
 
-void func_800984B0(CSunFrameData *pThis);
-void func_800984BC(CSunFrameData *pThis);
+void CSunFrameData__Construct(CSunFrameData *pThis);
+void CSunFrameData__RDPComplete(CSunFrameData *pThis);
 
 
 
@@ -12475,10 +12475,10 @@ typedef struct CSun_t
 
 
 
-void func_800985E4(CSun *pThis);
-void func_80098638(CSun *pThis, CVector3 *pvDir);
-void func_80098670(CSun *pThis, int *pVisible, float *pX, float *pY, float *pOpacity);
-void func_800986F4(CSun *pThis, Gfx **ppDLP);
+void CSun__Construct(CSun *pThis);
+void CSun__SetSunDir(CSun *pThis, CVector3 *pvDir);
+void CSun__GetSunData(CSun *pThis, int *pVisible, float *pX, float *pY, float *pOpacity);
+void CSun__ReadZDepth(CSun *pThis, Gfx **ppDLP);
 
 
 
@@ -12526,9 +12526,9 @@ typedef struct CTraining_t
 
 
 
-void func_80087B10(CTraining *pThis, s32 id) ;
-void func_80087B38(CTraining *pThis) ;
-void func_80087B94(CTraining *pThis, Gfx **ppDLP) ;
+void CTraining__Construct(CTraining *pThis, s32 id) ;
+void CTraining__Update(CTraining *pThis) ;
+void CTraining__Draw(CTraining *pThis, Gfx **ppDLP) ;
 
 
 #define THREAD_RMON 0
@@ -12982,10 +12982,10 @@ typedef struct CEngineApp_t
 
 
 
-void func_80001CD4(CEngineApp *pThis);
+void CEngineApp__Boot(CEngineApp *pThis);
 void CEngineApp__Idle(CEngineApp *pThis, void *pArg);
 void CEngineApp__Main(CEngineApp *pThis);
-void func_80006CE0(CEngineApp *pThis) ;
+void CEngineApp__ClearFrameBuffer(CEngineApp *pThis) ;
 
 void CEngineApp__Construct(CEngineApp *pThis);
 
@@ -13011,15 +13011,15 @@ void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]);
 
 int CEngineApp__GetPlayerWaterStatus(CEngineApp *pThis);
 float CEngineApp__GetPlayerWaterDepth(CEngineApp *pThis);
-int func_800028C4(CEngineApp *pThis);
+int CEngineApp__PlayerInShallowWater(CEngineApp *pThis);
 
-float func_80002678(CEngineApp *pThis);
-float func_80002614(CEngineApp *pThis);
+float CEngineApp__GetWaterDepthWherePlayerIs(CEngineApp *pThis);
+float CEngineApp__GetGroundHeightWherePlayerIs(CEngineApp *pThis);
 #define CEngineApp__GetEyePos(pThis) ((pThis)->m_vTCorners[0])
-int func_80002950(CEngineApp *pThis);
-float func_800029FC(CEngineApp *pThis);
-float func_80002A44(CEngineApp *pThis);
-int func_80002A8C(CEngineApp *pThis);
+int CEngineApp__GetPlayerClimbStatus(CEngineApp *pThis);
+float CEngineApp__GetPlayerHeightFromBottomOfCliff(CEngineApp *pThis);
+float CEngineApp__GetPlayerHeightFromTopOfCliff(CEngineApp *pThis);
+int CEngineApp__GetPlayerDuckStatus(CEngineApp *pThis);
 
 
 void CEngineApp__DoDeath(CEngineApp *pThis);
@@ -13028,10 +13028,10 @@ void CEngineApp__GetScreenCoordinates(CEngineApp *pThis, CVector3 *pvIn, float *
 #define WARP_WITHINLEVEL 0
 #define WARP_BETWEENLEVELS 1
 void CEngineApp__Warp(CEngineApp *pThis, int WarpID, int nType, int StoreWarpReturn);
-void func_80005690(CEngineApp *pThis);
+void CEngineApp__WarpReturn(CEngineApp *pThis);
 
-int func_8000658C(CEngineApp *pThis);
-int func_80006770(CEngineApp *pThis);
+int CEngineApp__MenuDown(CEngineApp *pThis);
+int CEngineApp__MenuUp(CEngineApp *pThis);
 int CEngineApp__MenuLeft(CEngineApp *pThis);
 int CEngineApp__MenuRight(CEngineApp *pThis);
 
@@ -13183,12 +13183,12 @@ extern CTControl *D_800F9E44;
 
 extern CEngineApp D_800F9F10;
 
-void func_80004504(CEngineApp *pThis, unsigned long Mode) ;
+void CEngineApp__SetupFadeTo(CEngineApp *pThis, unsigned long Mode) ;
 void CEngineApp__Reset(CEngineApp *pThis, unsigned long NewMode);
-void func_80009FBC(CEngineApp *pThis) ;
+void CEngineApp__NewLife(CEngineApp *pThis) ;
 
 
-void func_8002BB80(OSSched *sc, OSScTask *pTask);
+void scSendCommand(OSSched *sc, OSScTask *pTask);
 
 
 
@@ -13348,84 +13348,84 @@ extern int AICollidedWithWall ;
 
 
 
-int func_8007636C (int Event);
-int func_80070D48 (int Event);
-int func_80063630 (int Event);
+int IsExplosionEvent (int Event);
+int IsSingleEvent (int Event);
+int SendEventToWholeWorld (int Event);
 void AI_Single_Event (CInstanceHdr *pThis, CInstanceHdr *pOrigin, int Event, CVector3 vPos, float Value);
 void AI_Event_Dispatcher (CInstanceHdr *pThis, CInstanceHdr *pOrigin, int Event, unsigned long dwSpecies, CVector3 vPos, float Value);
 void AI_Advance (CGameObjectInstance *pAI);
-CGameObjectInstance *func_80076218 (CGameObjectInstance *pMe);
-unsigned char func_800720C8 (CGameObjectInstance *pAI);
+CGameObjectInstance *AI_Advance_Gallery (CGameObjectInstance *pMe);
+unsigned char AI_Cycle_Completed (CGameObjectInstance *pAI);
 void AI_Multi_Event (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, int event, CVector3 vPos, float Value);
 int AI_Can_See_Target (CGameObjectInstance *pMe, CGameObjectInstance *pTarget);
 int AI_Make_Retreat (CGameObjectInstance *pAI, float ang);
 int AI_Make_Run (CGameObjectInstance *pAI, float ang);
 void AI_Make_Walk (CGameObjectInstance *pAI, float ang);
-int func_8007223C (CGameObjectInstance *pAI, float ang);
-void func_8005F2B8 (CGameObjectInstance *pAI, short amt, short max);
-void func_80074DE8 (CGameObjectInstance *pAI, short amt);
-short func_80074DCC (CGameObjectInstance *pAI);
-void func_80071CF0 (CGameObjectInstance *pMe);
+int AI_Make_Turn (CGameObjectInstance *pAI, float ang);
+void AI_Increase_Agitation (CGameObjectInstance *pAI, short amt, short max);
+void AI_Decrease_Agitation (CGameObjectInstance *pAI, short amt);
+short AI_Get_Agitation_Level (CGameObjectInstance *pAI);
+void AI_Make_Get_Attention (CGameObjectInstance *pMe);
 void AI_Decrease_Health (CGameObjectInstance *pAI, int hits, int FlashScreen, int DoSounds);
-int func_8005FCF4 (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
-int func_8005FCA0 (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
-void func_80060A54 (CGameObjectInstance *pAI, int hits);
-void func_8005F840 (CInstanceHdr *pThis, int nType, CVector3 vPos);
-void func_800696A8 (CAnimInstanceHdr *pThis, int nType, CVector3 vPos, int nParticles);
-#define AI_DoParticleAtPlayer(pThis,nType,vPos) func_80060464((pThis), (nType), (vPos), ANGLE_DTOR(45))
-void func_80060464 (CInstanceHdr *pThis, int nType, CVector3 vPos, float MaxYRot);
+int AI_SetDesiredAnim (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
+int AI_SetDesiredAnimByIndex (CGameObjectInstance *pAI, int nAnim, int InterruptBlend);
+void AI_DoHit (CGameObjectInstance *pAI, int hits);
+void AI_DoParticle (CInstanceHdr *pThis, int nType, CVector3 vPos);
+void AI_DoParticleSpread (CAnimInstanceHdr *pThis, int nType, CVector3 vPos, int nParticles);
+#define AI_DoParticleAtPlayer(pThis,nType,vPos) AI_AimParticleAtPlayer((pThis), (nType), (vPos), ANGLE_DTOR(45))
+void AI_AimParticleAtPlayer (CInstanceHdr *pThis, int nType, CVector3 vPos, float MaxYRot);
 void AI_GeneratePickups (CGameObjectInstance *pThis, CVector3 vPos);
-struct CDynamicSimple_t *func_80063C4C(CInstanceHdr *pThis, CVector3 vPos, int nType, float Time) ;
+struct CDynamicSimple_t *AI_DoPickup(CInstanceHdr *pThis, CVector3 vPos, int nType, float Time) ;
 int AI_DoSound (CInstanceHdr *pThis, int nSound, float Volume, int SndFlags);
-float func_80071DA4 (CGameObjectInstance *pAI, CVector3 vPos);
-float func_800747C0 (CGameObjectInstance *pAI, CVector3 vPos, CGameObjectInstance *pTarget, float radiusFactor);
-void func_80072110 (CGameObjectInstance *pAI, float Angle);
-float func_8005F34C (CGameObjectInstance *pAI, CVector3 vPos);
-float func_80071C94 (CGameObjectInstance *pAI, CVector3 vPos);
-int func_80071C8C (CGameObjectInstance *pAI);
-void func_800751CC (CGameObjectInstance *pAI);
+float AI_GetAngle (CGameObjectInstance *pAI, CVector3 vPos);
+float AI_GetAvoidanceAngle (CGameObjectInstance *pAI, CVector3 vPos, CGameObjectInstance *pTarget, float radiusFactor);
+void AI_NudgeRotY (CGameObjectInstance *pAI, float Angle);
+float AI_DistanceSquared (CGameObjectInstance *pAI, CVector3 vPos);
+float AI_XZDistanceSquared (CGameObjectInstance *pAI, CVector3 vPos);
+int AI_GetCurrentAnim (CGameObjectInstance *pAI);
+void AI_Get_Attack_Destination (CGameObjectInstance *pAI);
 int AI_KnifeTomahawkDamage (CGameObjectInstance *This, CInstanceHdr *pOrigin, CVector3 vPos, float rad, int nKnife);
-int func_80071B18 (CInstanceHdr *pThis);
-void func_8005F228 (CGameObjectInstance *pThis, CInstanceHdr *pOrigin);
+int AI_GetMaterial (CInstanceHdr *pThis);
+void AI_SetAttacker (CGameObjectInstance *pThis, CInstanceHdr *pOrigin);
 void AI_FeignDeath (CGameObjectInstance *pThis);
 void AI_Resurrect (CGameObjectInstance *pThis);
-int func_800719B4 (CGameObjectInstance *pThis);
-float func_80071934 (CGameObjectInstance *pThis);
+int AI_GetWaterStatus (CGameObjectInstance *pThis);
+float AI_GetWaterHeight (CGameObjectInstance *pThis);
 void AI_Make_Swim (CGameObjectInstance *pAI, float ang);
-void func_80072E18 (CGameObjectInstance *pAI);
+void AI_Make_Swim_AtHeight (CGameObjectInstance *pAI);
 void AI_Make_SwimRetreat (CGameObjectInstance *pAI, float ang);
-void func_80071A88 (CGameObjectInstance *pThis);
-int func_80071920 (CGameObjectInstance *pThis);
-int func_80074D20 (CGameObjectInstance *pAI);
-int func_80074720 (CGameObjectInstance *pAI);
-void func_80074C34 (CGameObjectInstance *pAI);
+void AI_StayInWater (CGameObjectInstance *pThis);
+int AI_DoesItFloat (CGameObjectInstance *pThis);
+int AI_Make_Teleport_Away (CGameObjectInstance *pAI);
+int AI_Make_Teleport_Appear (CGameObjectInstance *pAI);
+void AI_Make_Teleport (CGameObjectInstance *pAI);
 void AI_Make_TeleportMoveSlow (CGameObjectInstance *pAI, float ang);
-int func_8005FA10 (CGameObjectInstance *pThis);
-int func_80071020 (CGameObjectInstance *pThis);
-int func_8007183C (CGameObjectInstance *pThis);
-int func_80063DD4 (CGameObjectInstance *pThis);
-int func_80071820 (int nType);
-int func_80071804 (int nType);
-int func_800717E8 (int nType);
-int func_800717CC (int nType);
-int func_800717B4 (CGameObjectInstance *pThis);
-int func_80071018 (CGameObjectInstance *pThis);
+int AI_CanWeKillIt (CGameObjectInstance *pThis);
+int AI_CanWeRemoveIt (CGameObjectInstance *pThis);
+int AI_DoesItMelt (CGameObjectInstance *pThis);
+int AI_IsMortalWound (CGameObjectInstance *pThis);
+int AI_IsPickup (int nType);
+int AI_IsWarp (int nType);
+int AI_IsMorph (int nType);
+int AI_IsBouncy (int nType);
+int AI_DoesItAvoidWater (CGameObjectInstance *pThis);
+int AI_DoesItRegenerate (CGameObjectInstance *pThis);
 int AI_DoTeleport (CGameObjectInstance *pAI, CVector3 vDestPos);
-int func_80071770 (CGameObjectInstance *pThis);
-void func_8007170C (CGameObjectInstance *pThis);
-int func_8005F100 (int nType);
-void func_80071854 (CGameObjectInstance *pThis);
-float func_8005EDD8 (CGameObjectInstance *pThis);
+int AI_DoesItFireProjectiles (CGameObjectInstance *pThis);
+void AI_CompletelyKillOff (CGameObjectInstance *pThis);
+int AI_IsSfxUnderwater (int nType);
+void AI_UpdateMeltTimer (CGameObjectInstance *pThis);
+float AI_GetAvoidanceRadiusFactor (CGameObjectInstance *pThis);
 
-CVector3 func_8005ED90(CGameObjectInstance *pThis, CGameObjectInstance *pTarget) ;
+CVector3 AI_GetZigZagPosition(CGameObjectInstance *pThis, CGameObjectInstance *pTarget) ;
 
 
 
-void func_800620D8 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos);
-void func_80062040 (CGameObjectInstance *pAI, CVector3 vPos);
-void func_80061FA8 (CGameObjectInstance *pAI, CVector3 vPos);
+void AI_MEvent_GetAttention (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos);
+void AI_MEvent_QuietNoise (CGameObjectInstance *pAI, CVector3 vPos);
+void AI_MEvent_LoudNoise (CGameObjectInstance *pAI, CVector3 vPos);
 void AI_MEvent_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, int hits, float rad, int nType);
-void func_8005F3C0 (CGameObjectInstance *pAI,
+void AI_MEvent_Explosion (CGameObjectInstance *pAI,
                 CInstanceHdr *pOrigin,
                 CVector3 vPos,
                 float rad,
@@ -13435,81 +13435,81 @@ void func_8005F3C0 (CGameObjectInstance *pAI,
                 int DontHurtBigCreatures,
                 float ForceMultiplier,
                 int AllowDamageToDevices);
-void func_800619EC (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad);
-void func_800618E8 (CGameObjectInstance *pAI, CVector3 vPos, float Value);
-void func_80061718 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_80061688 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_800615F8 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_80061568 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_800614D8 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_80061448 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_8006017C (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_WeaponImpact (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad);
+void AI_MEvent_NudgeBack (CGameObjectInstance *pAI, CVector3 vPos, float Value);
+void AI_MEvent_KnifeLeft_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_KnifeRight_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_KnifeForward_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_TomahawkLeft_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_TomahawkRight_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_TomahawkForward_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_Shockwave_Damage (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void func_8005FD28 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_8005FC64 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_Statue (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void AI_MEvent_Pillar (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 void AI_MEvent_SlideWall (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
-void func_8005FA74 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad, float ExpHits);
-void func_800617A0 (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
+void AI_MEvent_Freeze (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float rad, float ExpHits);
+void AI_MEvent_ShoveWithCamera (CGameObjectInstance *pAI, CInstanceHdr *pOrigin, CVector3 vPos, float Value);
 
 
 
-void func_8006BC54 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BBFC (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_AcidIncoming (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_AcidSpitPart (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_AcidSpitSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BBB4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BB28 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BAF4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_BlowGunFire (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_BreathPart (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_BreathSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_ChargeHeadSlam (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BA88 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BA54 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006BA20 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B9B8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_DeathRainPart (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_DeathRainSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Earthquake (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_EnergyBlastPart (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_EnergyBlastSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B950 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B8F8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B8C4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B838 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ExplosiveLaunched (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_EyeFirePart (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_EyeFireSound (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_FireBallPart (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_FireBallSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_JawSnap (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B798 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B764 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B70C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B6D8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B6A4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ShockWavePart (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ShockWaveSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_SpellCastPart (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_SpellCastSnd (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_SwingFistsWeapon (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_WeaponFire (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B1C4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_WeaponRound (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_WeaponCock (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006B184 (CInstanceHdr *pThis, float Value);
+void AI_SEvent_LookOffset (CInstanceHdr *pThis, float Value);
 void AI_SEvent_Test (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006AE40 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006AF20 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006AC18 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006ABE4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006ABB0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006AB7C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006AB48 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_SurfaceImpact (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Chitter (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Alert (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Hydraulics (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Shutdown (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Swivel (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_JetpackOutofControl (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_BurstFromGround (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_ChestThump (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A8FC (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Death (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Explode (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Footfall (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069F94 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Grunt (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Gurgle (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A5F8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Handfall (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Hiss (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Hitground (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Licking (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A574 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A540 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Rage (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_RockNoise1 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_RubbingSkin (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Scratch (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A4E4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A4B0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A47C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A448 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A220 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Screech (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Sniff (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Swoosh (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_TurntoStone (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ViolentDeath (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_WingFlap (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006A1BC (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Growl (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Alert1 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Alert2 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Alert3 (CInstanceHdr *pThis, CVector3 vPos, float Value);
@@ -13524,311 +13524,311 @@ void AI_SEvent_Injury3 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Long1 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Long2 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Long3 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069E5C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069E14 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Taunt1 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Taunt2 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_Taunt3 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_ViolentDeath1 (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_ViolentDeath2 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069C48 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069BC4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069B78 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069B2C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069AE0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069A94 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069A48 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800699FC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800699B0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069920 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069890 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006965C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069610 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800695C4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069578 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006952C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800694E0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069494 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069448 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ScreenShake (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Invincible (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_BloodArcParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_MuzzleFlashParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_HulkBlasterParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_AlienDeathFireParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_KnifeForwardParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_KnifeLeftParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_KnifeRightParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_GreenBloodArcParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_SpurtBloodArcParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_FountainBloodArcParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_GushBloodArcParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_DroolParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ArterialBloodParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_SpurtGBloodParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_FountainGBloodParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_GushGBloodParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ArterialGBloodParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
 void AI_SEvent_KnifeTomahawkBlood_Particles (CInstanceHdr *pThis, CVector3 vPos, int nTomahawk, int nHits);
-void func_800693FC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800693B0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069364 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069234 (CInstanceHdr *pThis, CInstanceHdr *pOrigin, CVector3 vPos, float rad);
-void func_8006364C (CInstanceHdr *pThis);
-void func_80069158 (CInstanceHdr *pThis, CInstanceHdr *pOrigin, CVector3 vPos, float damage);
+void AI_SEvent_WaterDropParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_WaterFoamParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_WaterSteamParticles (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Arrow_Damage (CInstanceHdr *pThis, CInstanceHdr *pOrigin, CVector3 vPos, float rad);
+void AI_SEvent_InstantDeath (CInstanceHdr *pThis);
+void AI_SEvent_Damage_Target (CInstanceHdr *pThis, CInstanceHdr *pOrigin, CVector3 vPos, float damage);
 void AI_SEvent_DamageNudge_Target (CInstanceHdr *pThis, CInstanceHdr *pOrigin, CVector3 vPos, float damage);
-void func_80069010 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068FC4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068F78 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068F2C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068EE0 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068E94 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068E48 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068DFC (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068DB0 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068D64 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068D18 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068CCC (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068C80 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068C34 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068BE8 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068B9C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068B50 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068B04 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068AB8 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068A6C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068A20 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800689D4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068988 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_8006893C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800688F0 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800688A4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068858 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_8006880C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800687C0 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068774 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80068728 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800686DC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068690 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068644 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800685F8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800685AC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068560 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068514 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800684C8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006847C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068430 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800683E4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068398 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006834C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068300 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800682B4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068268 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006821C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800681D0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068184 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068138 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800680EC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800680A0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068054 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80068008 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067FBC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067F70 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067F24 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067ED8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067E8C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067E40 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067DF4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067DA8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067D5C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067D10 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067CC4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067C78 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067C2C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067BE0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067B94 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067B48 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067AFC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067AB0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067A64 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067A18 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800679CC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067980 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067934 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800678E8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006789C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067850 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067804 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800677B8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006776C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067720 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800676D4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067688 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006763C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800675F0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800675A4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067558 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006750C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800674C0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067474 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067428 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800673DC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067390 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067344 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800672F8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800672AC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80067260 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80067214 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800671C8 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_8006717C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80067130 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800670E4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80067098 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_8006704C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80067000 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066FB4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066F68 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066F1C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066ED0 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066E84 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066E38 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066DEC (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066DA0 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066D54 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066D08 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066CBC (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066C70 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066C24 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066BD8 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066B8C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066B40 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066AF4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066AA8 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066A5C (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066A10 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_800669C4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
-void func_80066978 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006692C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800668E0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066894 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066848 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800667FC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800667B0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066764 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066718 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800666CC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066680 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066634 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800665E8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006659C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066550 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066504 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800664B8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006646C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066420 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800663D4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066388 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006633C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800662F0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800662A4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066258 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006620C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800661C0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066174 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066128 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800660DC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066090 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80066044 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065FEC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065FA0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065F54 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065F08 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065EBC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065E70 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065E24 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065DD8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065D8C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065D40 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065CF4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065CA8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065C5C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065C10 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065BC4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065B78 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065B2C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065AE0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065A94 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065A48 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800659FC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800659B0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065964 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065918 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800658CC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065880 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065834 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800657E8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006579C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065750 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065704 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800656B8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006566C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065620 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800655D4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065588 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006553C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800654F0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800654A4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065458 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006540C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800653C0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065374 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065328 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800652DC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065290 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065244 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800651F8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800651AC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065160 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065114 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800650C8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006507C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80065030 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064FE4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064F98 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064F4C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064F00 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064EB4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064E68 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064E1C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064D14 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064CC8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064C7C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064C30 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064BE4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064B98 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064B4C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064B00 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064AB4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064A68 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064A1C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800649D0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064984 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064938 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800648EC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800648A0 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064854 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064808 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800647BC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064770 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064724 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800646D8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006468C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064640 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800645DC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064590 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064544 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800644F8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800644AC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064460 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064414 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800643C8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006437C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064330 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800642E4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064298 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8006424C (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800641D4 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064128 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_800640DC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064090 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80063AE8 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80064004 (CInstanceHdr *pThis, CVector3 vPos);
-void func_80063BEC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80069BEC (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_80063D64 (CInstanceHdr *pThis, CVector3 vPos, float Value);
-void func_8005F090(CInstanceHdr *pThis, CVector3 vPos, float Value ) ;
-void func_8005F020(CInstanceHdr *pThis, CVector3 vPos, float Value ) ;
-void func_8005EF58(CInstanceHdr *pThis, CVector3 vPos, float Value ) ;
-void func_8005EE3C(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
+void AI_SEvent_Generic1 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic2 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic3 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic4 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic5 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic6 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic7 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic8 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic9 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic10 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic11 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic12 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic13 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic14 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic15 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic16 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic17 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic18 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic19 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic20 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic21 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic22 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic23 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic24 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic25 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic26 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic27 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic28 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic29 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic30 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic31 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic32 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic33 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic34 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic35 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic36 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic37 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic38 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic39 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic40 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic41 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic42 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic43 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic44 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic45 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic46 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic47 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic48 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic49 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic50 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic51 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic52 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic53 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic54 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic55 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic56 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic57 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic58 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic59 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic60 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic61 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic62 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic63 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic64 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic65 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic66 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic67 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic68 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic69 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic70 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic71 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic72 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic73 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic74 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic75 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic76 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic77 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic78 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic79 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic80 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic81 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic82 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic83 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic84 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic85 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic86 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic87 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic88 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic89 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic90 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic91 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic92 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic93 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic94 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic95 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic96 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic97 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic98 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic99 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic100 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic101 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic102 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic103 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic104 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic105 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic106 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic107 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic108 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic109 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic110 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic111 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic112 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic113 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic114 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic115 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic116 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic117 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic118 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic119 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic120 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic121 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic122 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic123 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic124 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic125 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic126 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic127 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic128 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic129 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic130 (CInstanceHdr *pThis, CVector3 vPos, float damage);
+void AI_SEvent_Generic131 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic132 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic133 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic134 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic135 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic136 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic137 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic138 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic139 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic140 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic141 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic142 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic143 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic144 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic145 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic146 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic147 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic148 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic149 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic150 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic151 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic152 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic153 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic154 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic155 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic156 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic157 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic158 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic159 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic160 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic161 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic162 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic163 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic164 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic165 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic166 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic167 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic168 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic169 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic170 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic171 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic172 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic173 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic174 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic175 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic176 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic177 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic178 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic179 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic180 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic181 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic182 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic183 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic184 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic185 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic186 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic187 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic188 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic189 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic190 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic191 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic192 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic193 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic194 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic195 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic196 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic197 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic198 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic199 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic200 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic201 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic202 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic203 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic204 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic205 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic206 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic207 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic208 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic209 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic210 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic211 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic212 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic213 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic214 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic215 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic216 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic217 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic218 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic219 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic220 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic221 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic222 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic223 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic224 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic225 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic226 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic227 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic228 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic229 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic230 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic231 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic232 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic233 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic234 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic235 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic236 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic237 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic238 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic239 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic240 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic241 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic242 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic243 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic244 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic245 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic246 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic247 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic248 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic249 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic250 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic251 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic252 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic253 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic254 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic255 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic256 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic257 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic258 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic259 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generic260 (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Plasma2Particle (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Water_Bubble (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Water_Ripple (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Water_Splash (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_GeneralSound (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_GeneratePickups (CInstanceHdr *pThis, CVector3 vPos);
+void AI_SEvent_MakeInvisible (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_ScreenTremor (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_Generate_Pickup (CInstanceHdr *pThis, CVector3 vPos, float Value);
+void AI_SEvent_RandBigSwooshSnd(CInstanceHdr *pThis, CVector3 vPos, float Value ) ;
+void AI_SEvent_RandSmallSwooshSnd(CInstanceHdr *pThis, CVector3 vPos, float Value ) ;
+void AI_SEvent_RandGruntSnd(CInstanceHdr *pThis, CVector3 vPos, float Value ) ;
+void AI_SEvent_StartFireSound(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 void AI_SEvent_StopFireSound(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 
 
@@ -14276,99 +14276,99 @@ typedef struct
 CTMove *func_80052484 (void);
 
 void CTMove__UpdateTurokInstance (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-void func_80054CFC (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-void func_80056D80 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+void CTMove__GroundMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+void CTMove__GroundRollMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 void CTMove__GroundJumpMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-void func_80057134 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-void func_800576EC (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+void CTMove__GroundJumpNSMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+void CTMove__Turn (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 CVector3 CTMove__ControlSwimMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos, struct CCollisionInfo2_t *pCollInfo, int Underwater);
-void update_player_surface_swim (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-void func_8005B644 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-CVector3 func_800558F0 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+void CTMove__SwimSurfaceMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+void CTMove__SwimWaterMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+CVector3 CTMove__ControlMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 CVector3 CTMove__ControlSideStep (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_80056050 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-void func_8005D528 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-CVector3 func_8005D5CC (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_8005D738 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-CVector3 func_8005D628 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+CVector3 CTMove__ControlFBward (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+void CTMove__ClimbingMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+CVector3 CTMove__ControlClimbMovement (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+CVector3 CTMove__ControlCliffUpDown (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+CVector3 CTMove__ClimbMoveIntoCliff (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
 void CTMove__DoDucking (CTMove *pThis, CEngineApp *pApp);
-void func_8005E7EC (CTMove *pThis, CTControl *D_800F9E44);
+void CTMove__UsingMap (CTMove *pThis, CTControl *D_800F9E44);
 void CTMove__UpdateMap (CTMove *pThis, CEngineApp *pApp);
-void func_8005ED10 (CTMove *pThis);
-void func_8005ED68 (CTMove *pThis);
-int func_80058AC4 (CTMove *pThis);
+void CTMove__LoadPlayerWeapon (CTMove *pThis);
+void CTMove__ResetDrawnWeapons (CTMove *pThis);
+int CTMove__OnLastWeapon (CTMove *pThis);
 
 extern CTMove D_80128C20;
-extern void func_800587B8 (CTMove *pThis, CVector3 *pvVec);
-extern int func_80058708 (CTMove *pThis, int weapon);
-extern int func_8005843C (CTMove *pThis, int weapon, int variation);
-extern int func_80057DFC (CTMove *pThis, int weapon, int explosive) ;
-extern int func_80058020(CTMove *pThis, int weapon, int explosive) ;
-extern int func_800583D4 (CTMove *pThis) ;
-extern void func_800587B0 (CTMove *pThis, int status);
-extern void func_80057B58 (CTMove *pThis, int weapon, int amount) ;
-extern void func_80057DC8 (CTMove *pThis, int *pAmt, int nAmt);
-extern void func_80058B6C (CTMove *pThis, int ammo, int next);
-extern void func_80059244 (CTMove *pThis, CEngineApp *pApp, float shake, float ang, int rotstyle);
-extern void func_80059320 (CTMove *pThis, int wfired);
+extern void CTMove__GetWeaponOffset (CTMove *pThis, CVector3 *pvVec);
+extern int CTMove__WeaponExist (CTMove *pThis, int weapon);
+extern int CTMove__WeaponEmpty (CTMove *pThis, int weapon, int variation);
+extern int CTMove__WeaponFull (CTMove *pThis, int weapon, int explosive) ;
+extern int CTMove__WeaponAmmoPercentage(CTMove *pThis, int weapon, int explosive) ;
+extern int CTMove__IsExplosiveAmmo (CTMove *pThis) ;
+extern void CTMove__SetWeaponFiredStatus (CTMove *pThis, int status);
+extern void CTMove__AddAmmo (CTMove *pThis, int weapon, int amount) ;
+extern void CTMove__DecreaseAmmo (CTMove *pThis, int *pAmt, int nAmt);
+extern void CTMove__SelectWeapon (CTMove *pThis, int ammo, int next);
+extern void CTMove__ShakeScreen (CTMove *pThis, CEngineApp *pApp, float shake, float ang, int rotstyle);
+extern void CTMove__SpecialEffect (CTMove *pThis, int wfired);
 extern void CTMove__FireBullet (CTMove *pThis, int WFired);
-void func_8005A670 (CTMove *pThis, int WFired);
-extern void func_8005A9F8 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-extern void func_8005970C (CTMove *pThis, int nWeapon);
-extern void func_800598B4 (CTMove *pThis, int nWeapon);
-extern int func_80058644 (CTMove *pThis);
-void func_8005AE80 (CTMove *pThis);
-void func_8005AEDC (CTMove *pThis);
+void CTMove__FireBulletShell (CTMove *pThis, int WFired);
+extern void CTMove__KeelOver (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+extern void CTMove__WeaponBarrelUpdate (CTMove *pThis, int nWeapon);
+extern void CTMove__WeaponBarrelFire (CTMove *pThis, int nWeapon);
+extern int CTMove__GetAmmoOfSelectedWeapon (CTMove *pThis);
+void CTMove__LoudNoise (CTMove *pThis);
+void CTMove__QuietNoise (CTMove *pThis);
 
-int func_8005AFB4 (CTMove *pThis);
-void func_8005AFA8 (CTMove *pThis, float Timer);
-void func_8005AF38 (CTMove *pThis);
-void func_8005AFE8 (CTMove *pThis, int Direction);
-void func_8005B044 (CTMove *pThis, CTControl *D_800F9E44);
+int CTMove__IsInCombat (CTMove *pThis);
+void CTMove__SetCombatTimer (CTMove *pThis, float Timer);
+void CTMove__UpdateCombatTimer (CTMove *pThis);
+void CTMove__DisplayWeaponsIcons (CTMove *pThis, int Direction);
+void CTMove__UpdateRunWalkToggle (CTMove *pThis, CTControl *D_800F9E44);
 void CTMove__UpdateSwimBurstToggle (CTMove *pThis, CTControl *D_800F9E44);
-int func_8005863C (CTMove *pThis);
+int CTMove__GetCurrentWeapon (CTMove *pThis);
 void CTMove__DoRotOffsets (CTMove *pThis, CEngineApp *pApp);
 void CTMove__TiltJumping (CTMove *pThis);
 void CTMove__TiltNotJumping (CTMove *pThis);
 float CTMove__GetJumpAngle (CTMove *pThis);
-void func_800573F0 (CTMove *pThis);
-void func_80057410 (CTMove *pThis);
-void func_80057428 (CTMove *pThis);
-void func_80055768 (CTMove *pThis);
-void func_8005C8BC (CTMove *pThis, CEngineApp *pApp);
-void func_8005CB40 (CTMove *pThis, CEngineApp *pApp);
-void func_8005CBDC (CTMove *pThis, CEngineApp *pApp);
-void func_8005CCF0 (CTMove *pThis, CEngineApp *pApp, int DoSound);
-void func_8005CD90 (CTMove *pThis, CEngineApp *pApp);
-int func_8005CE10 (CTMove *pThis);
-void func_8005CEBC (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+void CTMove__StartJump (CTMove *pThis);
+void CTMove__StopJumping (CTMove *pThis);
+void CTMove__JumpIncrement (CTMove *pThis);
+void CTMove__ClearHeadRotations (CTMove *pThis);
+void CTMove__UnderwaterOxygen (CTMove *pThis, CEngineApp *pApp);
+void CTMove__InitBubbles (CTMove *pThis, CEngineApp *pApp);
+void CTMove__DoSplashBubbles (CTMove *pThis, CEngineApp *pApp);
+void CTMove__DoSplash (CTMove *pThis, CEngineApp *pApp, int DoSound);
+void CTMove__DoRipple (CTMove *pThis, CEngineApp *pApp);
+int CTMove__IsPlayerUpsideDown (CTMove *pThis);
+void CTMove__SetClimbCamera (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 void CTMove__UpdateClimbCameraRot (CTMove *pThis, CEngineApp *pApp);
-int func_80058D60 (CTMove *pThis, int nType, int Reselect);
-void func_80058E84 (CTMove *pThis, CEngineApp *pApp);
-int func_80058E7C (CTMove *pThis);
-CVector3 func_8005DDE8 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
-void func_80057560 (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
-int func_8005E530 (CTMove *pThis, signed short *pWeaponList);
-void func_8005E410 (CTMove *pThis);
-int func_8005A634 (CTMove *pThis, int WFired);
-float func_8005CAB0 (CTMove *pThis);
-int func_8005E594 (CTMove *pThis);
-int func_8005E618 (CTMove *pThis);
-float func_8005E6A4 (CTMove *pThis);
-void func_8005AE24 (CTMove *pThis);
-int func_8005E728 (CTMove *pThis);
-void func_8005E768 (CTMove *pThis, int nLives);
-void func_8005278C (CTMove *pThis);
-void func_80058EFC (CTMove *pThis, CVector3 vPos, float shake, float ang, float time);
-void func_80058F78 (CTMove *pThis, CVector3 vPos, float time);
-void func_8005901C (CTMove *pThis);
-int func_8005ED4C (CTMove *pThis);
-int func_8005ED5C (CTMove *pThis);
+int CTMove__SelectWeaponByAIType (CTMove *pThis, int nType, int Reselect);
+void CTMove__RemoveWeaponFromScreen (CTMove *pThis, CEngineApp *pApp);
+int CTMove__GetWeaponAIType (CTMove *pThis);
+CVector3 CTMove__ControlClimbSideStep (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44, CVector3 vDesiredPos);
+void CTMove__TurnOnXAxis (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
+int CTMove__TurokHasAnyWeaponInList (CTMove *pThis, signed short *pWeaponList);
+void CTMove__UpdateWeaponPosition (CTMove *pThis);
+int CTMove__DoesWeaponAutoAim (CTMove *pThis, int WFired);
+float CTMove__GetOxygenStatus (CTMove *pThis);
+int CTMove__InAntiGrav (CTMove *pThis);
+int CTMove__OnLadder (CTMove *pThis);
+float CTMove__GetSpeed (CTMove *pThis);
+void CTMove__UpdateDeathTimer (CTMove *pThis);
+int CTMove__DecreaseLives (CTMove *pThis);
+void CTMove__IncreaseLives (CTMove *pThis, int nLives);
+void CTMove__NewLifeSetup (CTMove *pThis);
+void CTMove__DoTremorEffectFull (CTMove *pThis, CVector3 vPos, float shake, float ang, float time);
+void CTMove__DoTremorEffectQuick (CTMove *pThis, CVector3 vPos, float time);
+void CTMove__UpdateTremorEffect (CTMove *pThis);
+int CTMove__IsClimbing (CTMove *pThis);
+int CTMove__ClearWeaponZBuffer (CTMove *pThis);
 int CTMove__ModifyEnemy (CTMove *pThis, CEngineApp *pApp);
 void CTMove__ChangeEnemy (CTMove *pThis, CEngineApp *pApp, int Direction);
 void CTMove__MoveEnemy (CTMove *pThis, CEngineApp *pApp, CTControl *D_800F9E44);
 void CTMove__ResetEnemy (CTMove *pThis);
-void update_player_head_bob (CTMove *pThis);
+void CTMove__DoGrdHeadMovements (CTMove *pThis);
 
 
 
@@ -14620,49 +14620,49 @@ typedef struct
  signed long cfx_counter;
 } t_AudioWorld;
 
-void func_8008B45C(t_Ears *EarLocation);
-void func_8008B40C(float Radius);
-signed short func_80089BF8(signed long VirtualHandle, CVector3 *vPos, int flags);
-signed short func_80089FA0(signed short cfxnum, signed short sfxnum, signed short Priority, CVector3 *vPos, unsigned short Flags);
-void func_8008A5C4(signed long VirtualHandle);
-void func_8008A820(void);
-void func_8008D300(ALSynConfig *c, OSPri priority, amConfig *amc);
-int func_8008AD08(signed long VirtualHandle, signed long HandleType);
-void update_spatial_sound(signed long channel, float X, float Y, float Z, int flags);
-signed short func_8008A3B8(signed long VirtualHandle);
+void UpdateEars(t_Ears *EarLocation);
+void InitSoundGlobals(float Radius);
+signed short playElement(signed long VirtualHandle, CVector3 *vPos, int flags);
+signed short GetNextVoice(signed short cfxnum, signed short sfxnum, signed short Priority, CVector3 *vPos, unsigned short Flags);
+void killCFX(signed long VirtualHandle);
+void UpdateWorldSound(void);
+void amCreateAudioMgr(ALSynConfig *c, OSPri priority, amConfig *amc);
+int SoundHandleToChannel(signed long VirtualHandle, signed long HandleType);
+void SetSoundPosition(signed long channel, float X, float Y, float Z, int flags);
+signed short modifySFX(signed long VirtualHandle);
 signed short CheckChannelStatus(signed short sfxnum, int Channel, signed short Priority);
-void func_8008A0EC(int Channel, signed long VirtualHandle, CVector3 *vPos);
-void func_8008A200();
-signed long func_80089858(CROMSoundElement *pElement,
+void EnqueSFX(int Channel, signed long VirtualHandle, CVector3 *vPos);
+void ProcessSFXQue();
+signed long PlayEnvironmentSound(CROMSoundElement *pElement,
          void *pInstance, CVector3 *vPos,
          float Volume, float Pitch);
-void func_8008AB2C(t_SoundPlayer *sndplayer, signed short i);
-int func_8008AD54(void *pHandle);
-int func_8008AC5C(signed long VirtualHandle, signed long HandleType);
+void UpdateEnvironmentSound(t_SoundPlayer *sndplayer, signed short i);
+int FindEnvSound(void *pHandle);
+int VirtualToPhysical(signed long VirtualHandle, signed long HandleType);
 void PlaySeq(int seqnum);
 void StopSeq(int StopMode);
-void func_8008B530();
-void func_8008B490();
-void func_80089E38(signed short Channel);
-int func_80089EC4(signed short Channel);
-int func_80089F10(signed short Channel);
-void func_80089E70(signed short Channel);
-void func_8008B654();
+void DoSeqFades();
+void SetupSeq();
+void StopChannel(signed short Channel);
+int SetChannel(signed short Channel);
+int DeallocateChannel(signed short Channel);
+void StartChannel(signed short Channel);
+void UpdateSeq();
 int LoadSeq(int nTune);
-void func_8008B600(void *pThis, CCacheEntry **ppceTarget);
+void SeqReceived(void *pThis, CCacheEntry **ppceTarget);
 
-void func_8008A908(int CFXhandle, CVector3 *NewPos);
-void func_8008A998(int CFXhandle, float NewPitch) ;
-void func_8008AA5C(int CFXhandle, signed short NewVolume) ;
+void UpdateSoundVector(int CFXhandle, CVector3 *NewPos);
+void UpdateSoundPitch(int CFXhandle, float NewPitch) ;
+void UpdateSoundVolume(int CFXhandle, signed short NewVolume) ;
 signed short GetSoundVolume(int CFXhandle) ;
-void func_8008B854(float Music, float Sfx);
-void func_8008A4DC(int nType);
+void SetAudioVolume(float Music, float Sfx);
+void killSoundType(int nType);
 
 
 
 void CAudioList__Construct(void) ;
-void func_8008B8B8(CInstanceHdr *pInst, CVector3 vPos, float Value) ;
-void func_8008B92C(void) ;
+void CAudioList__AddGeneralSound(CInstanceHdr *pInst, CVector3 vPos, float Value) ;
+void CAudioList__Flush(void) ;
 
 
 
@@ -15741,30 +15741,30 @@ extern int IntroFirstRun ;
 
 
 
-void func_80039C30(CCamera *pThis) ;
+void CCamera__ConstructIntro(CCamera *pThis) ;
 
-void func_80039E08(CCamera *pThis) ;
+void CCamera__Setup_LEGALSCREEN_LOGO(CCamera *pThis) ;
 void CCamera__Code_LEGALSCREEN_LOGO(CCamera *pThis) ;
 
-void func_80039E50(CCamera *pThis) ;
-void func_80039E70(CCamera *pThis) ;
+void CCamera__Setup_INTRO_ACCLAIM_LOGO(CCamera *pThis) ;
+void CCamera__Code_INTRO_ACCLAIM_LOGO(CCamera *pThis) ;
 
-void func_8003A02C(CCamera *pThis) ;
-void func_8003A0F0(CCamera *pThis) ;
+void CCamera__Setup_INTRO_IGGY(CCamera *pThis) ;
+void CCamera__Code_INTRO_IGGY(CCamera *pThis) ;
 
-void func_8003A1FC(CCamera *pThis) ;
-void func_8003A270(CCamera *pThis) ;
+void CCamera__Setup_INTRO_TUROK_DRAWING_BOW(CCamera *pThis) ;
+void CCamera__Code_INTRO_TUROK_DRAWING_BOW(CCamera *pThis) ;
 
-void func_8003A43C(CCamera *pThis) ;
+void CCamera__Setup_INTRO_ZOOM_TO_LOGO(CCamera *pThis) ;
 void CCamera__Code_INTRO_ZOOM_TO_LOGO(CCamera *pThis) ;
 
-CQuatern func_8003A8D0(CGameObjectInstance *pThis) ;
+CQuatern CGameObjectInstance__CinemaTurokArrowOrientation(CGameObjectInstance *pThis) ;
 
-void func_8003A98C(CCamera *pThis) ;
-void func_8003A9C4(CCamera *pThis) ;
+void CCamera__Setup_GAME_INTRO(CCamera *pThis) ;
+void CCamera__Code_GAME_INTRO(CCamera *pThis) ;
 
-void func_8003AC1C(CCamera *pThis) ;
-void func_8003AC70(CCamera *pThis) ;
+void CCamera__Setup_GAME_KEY_INTRO(CCamera *pThis) ;
+void CCamera__Code_GAME_KEY_INTRO(CCamera *pThis) ;
 
 
 
@@ -15863,8 +15863,8 @@ enum CameraModes
 
 
 void CEngineApp__DrawMap(CEngineApp *pThis);
-void func_80098488(CEngineApp *pThis);
-void func_80096478(CEngineApp *pThis);
+void CEngineApp__RevealMap(CEngineApp *pThis);
+void CEngineApp__SetupMap(CEngineApp *pThis);
 int CEngineApp__DrawingMap(CEngineApp *pThis) ;
 
 
@@ -15891,21 +15891,21 @@ enum MapStatus
 
 
 
-void func_8004FF94() ;
-int func_8004FF48(void) ;
+void CAttractDemo__Construct() ;
+int CAttractDemo__Play(void) ;
 int CAttractDemo__CheckForPlay() ;
-int func_8004FE78() ;
-int func_80050280(void) ;
+int CAttractDemo__CheckForRecord() ;
+int CAttractDemo__Active(void) ;
 
-int func_800AA800(void) ;
-int func_800502B8(void) ;
+int CAttractDemo__PlayingDemo(void) ;
+int CAttractDemo__StartOfRecordingDemo(void) ;
 
-void func_80050120() ;
-void func_800501E0() ;
+void CAttractDemo__Update() ;
+void CAttractDemo__CheckForUpdatingGameVars() ;
 void CAttractDemo__EventDebug() ;
 
-void func_8004FCF4(void) ;
-void func_8004FD0C(void) ;
+void CAttractDemo__RequestNewDemo(void) ;
+void CAttractDemo__CheckForNewDemoRequest(void) ;
 
 
 
@@ -15918,32 +15918,32 @@ void AI_Standard_Idle (CGameObjectInstance *pMe);
 void AI_Standard_Agitated (CGameObjectInstance *pMe);
 void AI_Standard_Attack (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
 void func_80077BFC (CGameObjectInstance *pMe);
-void func_80078378 (CGameObjectInstance *pMe);
-void func_80078040 (CGameObjectInstance *pMe);
-void func_80076824 (CGameObjectInstance *pMe, float turnang, int MovementAllowed);
+void AI_Standard_Hit (CGameObjectInstance *pMe);
+void AI_Standard_Explosion (CGameObjectInstance *pMe);
+void AI_Standard_Projectile_Attack (CGameObjectInstance *pMe, float turnang, int MovementAllowed);
 void AI_Standard_Follow (CGameObjectInstance *pMe, CGameObjectInstance *pLeader);
 void AI_Standard_DeadBodyRiddle (CGameObjectInstance *pMe);
-void func_8007924C (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
-void func_800784B0 (CGameObjectInstance *pMe);
-void func_800783AC (CGameObjectInstance *pMe);
-int func_800791F0 (CGameObjectInstance *pMe);
+void AI_Standard_Retreat (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
+void AI_Standard_Sink (CGameObjectInstance *pMe);
+void AI_Standard_Float (CGameObjectInstance *pMe);
+int AI_Standard_Teleport (CGameObjectInstance *pMe);
 void AI_Standard_TeleportMoveSlow (CGameObjectInstance *pMe);
 void AI_Standard_Sniper (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
-void func_80076B3C (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
-void func_80076FB4 (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
-void func_80077B34 (CGameObjectInstance *pMe, int waterFlag);
-int func_80076A40 (CGameObjectInstance *pAI, float radiusFactor);
+void AI_Standard_Flying (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
+void AI_Standard_Keep_It_Flying (CGameObjectInstance *pMe, CGameObjectInstance *pDest);
+void AI_Standard_ExplodedLand (CGameObjectInstance *pMe, int waterFlag);
+int AI_Standard_HeadingForWall (CGameObjectInstance *pAI, float radiusFactor);
 
-int func_80077904();
-CVector3 func_80079B78();
-
-
+int IsPlayerAlive();
+CVector3 GetPlayerPos();
 
 
-void func_8007666C(CGameObjectInstance *pMe) ;
-int func_80076488(CGameObjectInstance *pMe, float AngleRange) ;
-int func_80076400(CGameObjectInstance *pMe) ;
-void func_800763C0(CGameObjectInstance *pMe) ;
+
+
+void AI_AssistRun(CGameObjectInstance *pMe) ;
+int AI_InTurokWeaponPath(CGameObjectInstance *pMe, float AngleRange) ;
+int AI_IsInMovementAnim(CGameObjectInstance *pMe) ;
+void AI_UpdateLeashPos(CGameObjectInstance *pMe) ;
 
 
 
@@ -16150,11 +16150,11 @@ extern CTRex TRexBoss ;
 
 typedef void(*TRexSetupFunction)(CGameObjectInstance *pThis, CTRex *pTRex) ;
 
-CBoss *func_800477A0(CGameObjectInstance *pThis) ;
+CBoss *TRex_Initialise(CGameObjectInstance *pThis) ;
 void TRex_Update(CGameObjectInstance *pThis, CTRex *pTRex) ;
 signed long TRex_SetupMode(CGameObjectInstance *pThis, signed long nNewMode) ;
 
-int func_80049BE0(CGameObjectInstance *pThis, int nNode) ;
+int CGameObjectInstance__GetTRexTextureIndex(CGameObjectInstance *pThis, int nNode) ;
 
 void TRex_StartFireSound(CGameObjectInstance *pThis, CTRex *pTRex) ;
 void TRex_StopFireSound(CGameObjectInstance *pThis, CTRex *pTRex) ;
@@ -16293,10 +16293,10 @@ typedef struct CLine_t
  CVector3 m_vNormal ;
 } CLine ;
 
-void func_80098AA0(CLine *pThis, CVector3 *pvPt1, CVector3 *pvPt2) ;
-void func_80098B20(CLine *pThis) ;
+void CLine__Construct(CLine *pThis, CVector3 *pvPt1, CVector3 *pvPt2) ;
+void CLine__CalculateXZDirection(CLine *pThis) ;
 
-int func_80098BB8(CLine *pThis, CLine *pLine, float *pt) ;
+int CLine__IntersectsLine(CLine *pThis, CLine *pLine, float *pt) ;
 
 
 
@@ -16468,64 +16468,64 @@ struct CParticle_t;
 
 
 
-void func_8008DDA4(CGameObjectInstance *pThis);
-void func_8008DF0C(CGameObjectInstance *pThis) ;
-void func_8008DF58(CGameObjectInstance *pThis) ;
-void func_8008E1D4(CGameObjectInstance *pThis) ;
-void func_8008E314(CGameObjectInstance *pThis) ;
-void func_8008E488(CGameObjectInstance *pThis) ;
-void func_8008E4D4(CGameObjectInstance *pThis) ;
+void DoorAI_Advance(CGameObjectInstance *pThis);
+void ActionAI_Advance(CGameObjectInstance *pThis) ;
+void TimerActionAI_Advance(CGameObjectInstance *pThis) ;
+void PressureActionAI_Advance(CGameObjectInstance *pThis) ;
+void ConstantActionAI_Advance(CGameObjectInstance *pThis) ;
+void StatueAI_Advance(CGameObjectInstance *pThis) ;
+void WallAI_Advance(CGameObjectInstance *pThis) ;
 
-void func_8008E520(CGameObjectInstance *pThis) ;
-void func_8008E660(CGameObjectInstance *pThis) ;
-void func_8008E6BC(CGameObjectInstance *pThis) ;
-void func_8008E800(CGameObjectInstance *pThis) ;
-void func_8008E880(CGameObjectInstance *pThis) ;
-void func_8008E9D8(CGameObjectInstance *pThis) ;
+void LaserAI_Advance(CGameObjectInstance *pThis) ;
+void ExplosiveTargetAI_Advance(CGameObjectInstance *pThis) ;
+void ElevatorAI_Advance(CGameObjectInstance *pThis) ;
+void PlatformAI_Advance(CGameObjectInstance *pThis) ;
+void DeathElevatorAI_Advance(CGameObjectInstance *pThis) ;
+void CollapsingPlatformAI_Advance(CGameObjectInstance *pThis) ;
 
 
-void func_8008EB08(CGameObjectInstance *pThis) ;
+void PortalAI_Advance(CGameObjectInstance *pThis) ;
 void GateAI_Advance(CGameObjectInstance *pThis) ;
-void func_8008EC0C(CGameObjectInstance *pThis) ;
-void func_8008EC80(CGameObjectInstance *pThis) ;
-void func_8008ED7C(CGameObjectInstance *pThis) ;
-void func_8008EE08(CGameObjectInstance *pThis) ;
-void func_8008F090(CGameObjectInstance *pThis) ;
-void func_8008F1E4(CGameObjectInstance *pThis) ;
+void LockAI_Advance(CGameObjectInstance *pThis) ;
+void DrainAI_Advance(CGameObjectInstance *pThis) ;
+void FloodAI_Advance(CGameObjectInstance *pThis) ;
+void CrystalAI_Advance(CGameObjectInstance *pThis) ;
+void SpinElevatorAI_Advance(CGameObjectInstance *pThis) ;
+void SpinPlatformAI_Advance(CGameObjectInstance *pThis) ;
 void KeyFloorAI_Advance(CGameObjectInstance *pThis) ;
-void func_8008F280(CGameObjectInstance *pThis) ;
+void FadeInFadeOutAI_Advance(CGameObjectInstance *pThis) ;
 
-void func_8008F948(CGameObjectInstance *pThis, int Open);
-void func_8008FB0C(CGameObjectInstance *pThis) ;
-void func_8008FB9C(CGameObjectInstance *pThis) ;
-void func_8008FC3C(CGameObjectInstance *pThis) ;
+void DoorAI_MEvent_OpenClose(CGameObjectInstance *pThis, int Open);
+void ActionAI_MEvent_Go(CGameObjectInstance *pThis) ;
+void TimerActionAI_MEvent_Go(CGameObjectInstance *pThis) ;
+void PressureActionAI_MEvent_Go(CGameObjectInstance *pThis) ;
 void ConstantActionAI_MEvent_Go(CGameObjectInstance *pThis) ;
 void StatueAI_MEvent_Go(CGameObjectInstance *pThis) ;
-void func_8008FD20(CGameObjectInstance *pThis) ;
-void func_8008FDA4(CGameObjectInstance *pThis) ;
+void WallAI_MEvent_Left(CGameObjectInstance *pThis) ;
+void WallAI_MEvent_Right(CGameObjectInstance *pThis) ;
 
-void func_8008FE28(CGameObjectInstance *pThis);
-void func_8008FEE4(CGameObjectInstance *pThis);
-void func_8008FF34(CGameObjectInstance *pThis);
-void func_80090064(CGameObjectInstance *pThis);
-void func_800900E4(CGameObjectInstance *pThis);
-void func_80090154(CGameObjectInstance *pThis);
-void func_800901E0(CGameObjectInstance *pThis);
-void func_80090330(CGameObjectInstance *pThis);
-void func_80090738(CGameObjectInstance *pThis);
-void func_800907CC(CGameObjectInstance *pThis);
+void LaserAI_MEvent_Start(CGameObjectInstance *pThis);
+void ExplosiveTargetAI_MEvent_Go(CGameObjectInstance *pThis);
+void ElevatorAI_MEvent_Start(CGameObjectInstance *pThis);
+void PlatformAI_MEvent_Start(CGameObjectInstance *pThis);
+void DeathElevatorAI_MEvent_Start(CGameObjectInstance *pThis);
+void CollapsingPlatformAI_MEvent_Start(CGameObjectInstance *pThis);
+void PortalAI_MEvent_Start(CGameObjectInstance *pThis);
+void LockAI_MEvent_Start(CGameObjectInstance *pThis);
+void DrainAI_MEvent_Start(CGameObjectInstance *pThis);
+void FloodAI_MEvent_Start(CGameObjectInstance *pThis);
 void CrystalAI_MEvent_Start(CGameObjectInstance *pThis, int Sink);
-int func_80090958(CGameObjectInstance *pThis, int nNode) ;
-void func_80090988(CGameObjectInstance *pThis);
-void func_80090A1C(CGameObjectInstance *pThis);
-void func_80090A8C(CGameObjectInstance *pThis) ;
+int CGameObjectInstance__GetCrystalModelIndex(CGameObjectInstance *pThis, int nNode) ;
+void SpinElevatorAI_MEvent_Start(CGameObjectInstance *pThis);
+void SpinPlatformAI_MEvent_Start(CGameObjectInstance *pThis);
+void FadeInFadeOutAI_MEvent_ToggleState(CGameObjectInstance *pThis) ;
 
 
-void func_8008FA88(CInstanceHdr *pThis, CVector3 vPos, int AllowEntry);
+void DoorAI_SEvent_AllowBlockEntry(CInstanceHdr *pThis, CVector3 vPos, int AllowEntry);
 
-void func_8008DCA0(CInstanceHdr *pThis, struct CParticle_t *pParticle);
-void func_8008DCD8(CInstanceHdr *pThis, struct CParticle_t *pParticle);
-void func_8008DD60(CGameObjectInstance *pThis);
+void CInstanceHdr__DeviceParticleCollision(CInstanceHdr *pThis, struct CParticle_t *pParticle);
+void ArrowTarget_ParticleCollision(CInstanceHdr *pThis, struct CParticle_t *pParticle);
+void ExplosiveTarget_ParticleCollision(CGameObjectInstance *pThis);
 
 
 
@@ -16719,11 +16719,11 @@ typedef void(*CampaignerSetupFunction)(CGameObjectInstance *pThis, CCampaigner *
 
 CBoss *func_8004D218(CGameObjectInstance *pThis) ;
 void func_8004D6FC(CGameObjectInstance *pThis, CCampaigner *pCampaigner) ;
-signed long func_8004DACC(CGameObjectInstance *pThis, signed long nNewMode) ;
+signed long Campaigner_SetupMode(CGameObjectInstance *pThis, signed long nNewMode) ;
 
 
-int func_8004F808(CGameObjectInstance *pThis, int nNode) ;
-int func_8004F884(CGameObjectInstance *pThis, int nNode) ;
+int CGameObjectInstance__GetCampaignerTextureIndex(CGameObjectInstance *pThis, int nNode) ;
+int CGameObjectInstance__GetCampaignerModelIndex(CGameObjectInstance *pThis, int nNode) ;
 
 
 
@@ -16778,7 +16778,7 @@ typedef struct CHeadTrackInfo_t
 
 
 
-void func_80043FFC(CGameObjectInstance *pThis) ;
+void AI_PerformHeadTracking(CGameObjectInstance *pThis) ;
 
 
 
@@ -16787,60 +16787,60 @@ void func_80043FFC(CGameObjectInstance *pThis) ;
 
 #define _INC_CINECAM 
 
-float func_8003AD20(CGameObjectInstance *pThis) ;
+float CGameObjectInstance__AnimSpeedScaler(CGameObjectInstance *pThis) ;
 
 
-void func_8003B1C4(CCamera *pThis) ;
-void func_8003B2C4(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_DEATH(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_DEATH(CCamera *pThis) ;
 
-void func_8003B3CC(CCamera *pThis) ;
-void func_8003B564(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_FALL_DEATH(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_FALL_DEATH(CCamera *pThis) ;
 
-void func_8003B710(CCamera *pThis) ;
-void func_8003B7AC(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_WATER_DEATH(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_WATER_DEATH(CCamera *pThis) ;
 
-void func_8003B8CC(CCamera *pThis) ;
-void func_8003B988(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_RESURRECT(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_RESURRECT(CCamera *pThis) ;
 
-void func_8003BBB8(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_LONGHUNTER(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_LONGHUNTER(CCamera *pThis) ;
 
-void func_8003BC3C(CCamera *pThis) ;
-void func_8003BC90(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_FIRST_HUMVEE(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_FIRST_HUMVEE(CCamera *pThis) ;
 
-void func_8003BCD0(CCamera *pThis) ;
-void func_8003BD30(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_FINAL_HUMVEE(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_FINAL_HUMVEE(CCamera *pThis) ;
 
-void func_8003BDA8(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_KILL_MANTIS(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_TUROK_KILL_MANTIS(CCamera *pThis) ;
 void CCamera__Setup_CINEMATIC_MANTIS_KILL_TUROK(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_MANTIS_KILL_TUROK(CCamera *pThis) ;
 
-void func_8003C264(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_KILL_TREX(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_TUROK_KILL_TREX(CCamera *pThis) ;
 void CCamera__Setup_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_TREX_KILL_TUROK(CCamera *pThis) ;
 
-void func_8003CAC8(CCamera *pThis) ;
-void func_8003CB14(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_KILL_LONGHUNTER(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_KILL_LONGHUNTER(CCamera *pThis) ;
 
-void func_8003CCD8(CCamera *pThis) ;
-void func_8003CE10(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_KILL_CAMPAIGNER(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_KILL_CAMPAIGNER(CCamera *pThis) ;
 void CCamera__Setup_CINEMATIC_CAMPAIGNER_KILL_TUROK(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_CAMPAIGNER_KILL_TUROK(CCamera *pThis) ;
 
 
-void func_8003D450(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_PICKUP_KEY(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_TUROK_PICKUP_KEY(CCamera *pThis) ;
 
 
-void func_8003D90C(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_END_SEQUENCE(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_END_SEQUENCE(CCamera *pThis) ;
-void func_8003DF00(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_END_SEQUENCE2(CCamera *pThis) ;
 void CCamera__Code_CINEMATIC_END_SEQUENCE2(CCamera *pThis) ;
 
-void func_8003EB14(CCamera *pThis) ;
-void func_8003EB44(CCamera *pThis) ;
+void CCamera__Setup_CINEMATIC_TUROK_VICTORY(CCamera *pThis) ;
+void CCamera__Code_CINEMATIC_TUROK_VICTORY(CCamera *pThis) ;
 
 
 
@@ -16887,23 +16887,23 @@ typedef struct
 
 
 
-void func_8008C250(CROMSoundElement *pElement, signed long channel, int SndFlags);
-void func_8008C470(CROMSoundElement *pElement, signed long channel);
-void func_8008BA10(CROMSoundElement *pElement,
+void SetCFXPitch(CROMSoundElement *pElement, signed long channel, int SndFlags);
+void SetCFXVolume(CROMSoundElement *pElement, signed long channel);
+void DoSoundElement(CROMSoundElement *pElement,
         void *pInstance, CVector3 *vPos,
         float Volume, int cfxnum, int cfxhandle, int SndFlags);
-signed long func_8008BEA4(CROMSoundElement *pElement, int cfxnum, int cfxhandle, CVector3 *vPos);
-void func_8008D274();
-float func_8008B9B0(float x, signed long y);
-void func_8008CBEC(t_SoundPlayer *sndplayer, signed short Channel);
-void func_8008C97C(signed long channel);
-void func_8008C6D0(signed long channel);
-void func_8008C66C(signed long channel);
-float func_8008CB48(float PitchCents);
-void func_8008CFC0();
-void func_8008BC74(int cfxnum, CVector3 *vPos, int SndFlags);
-void func_8008C15C(int channel, int SndFlags);
-void func_8008BB50(int SampleNum, int SndFlags);
+signed long initCFX(CROMSoundElement *pElement, int cfxnum, int cfxhandle, CVector3 *vPos);
+void InitCFXVars();
+float pow(float x, signed long y);
+void UpdateCFXChannel(t_SoundPlayer *sndplayer, signed short Channel);
+void UpdateCFXPitch(signed long channel);
+void UpdateCFXVolume(signed long channel);
+void UpdateCFXPanning(signed long channel);
+float ConvertPitch(float PitchCents);
+void DoSoundScenes();
+void DoSoundRandomization(int cfxnum, CVector3 *vPos, int SndFlags);
+void SetReverbMix(int channel, int SndFlags);
+void DoFrontEndSound(int SampleNum, int SndFlags);
 
 
 
@@ -17095,8 +17095,8 @@ extern unsigned char BarOverlay[] ;
 
 #define _INC_GALRECAM 
 
-void func_8003EE90(CCamera *pThis) ;
-void func_8003EEB0(CCamera *pThis) ;
+void CCamera__ConstructGallery(CCamera *pThis) ;
+void CCamera__Setup_GALLERY_IDLE(CCamera *pThis) ;
 void CCamera__Code_GALLERY_IDLE(CCamera *pThis) ;
 
 
@@ -17227,13 +17227,13 @@ extern CHumvee HumveeBossList[] ;
 
 typedef void(*HumveeSetupFunction)(CGameObjectInstance *pThis, CHumvee *pHumvee) ;
 
-CBoss *func_8004B850(CGameObjectInstance *pThis) ;
+CBoss *Humvee_Initialise(CGameObjectInstance *pThis) ;
 int Humvee_CanFire(CGameObjectInstance *pThis, CHumvee *pHumvee) ;
 
 void Humvee_Update(CGameObjectInstance *pThis, CHumvee *pHumvee) ;
 signed long Humvee_SetupMode(CGameObjectInstance *pThis, signed long nNewMode) ;
 
-void func_8004D0BC(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
+void Humvee_SEvent_GeneralSound(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 
 
 
@@ -17273,23 +17273,23 @@ void func_8004D0BC(CInstanceHdr *pThis, CVector3 vPos, float Value) ;
 #define SCALING_MAX_DIST(farClip,fov) (farClip/cos((fov)*(3.14159265358979323846/180.0)/2.0))
 
 
-void func_8007A58C (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_80079BA0 (CGameObjectInstance *pMe);
-int func_8007A6FC (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007A870 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007A974 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+void AI_Update_Weapon_Movements (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Turok_Weapon (CGameObjectInstance *pMe);
+int AI_Update_Weapon_Knife (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_Tomahawk (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_TekBow (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
 int AI_Update_Weapon_SemiAutomaticPistol (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007B024 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007B1A0 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007B348 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007B568 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007B790 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007BA2C (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007BC28 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007C698 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-int func_8007C84C (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
-void func_8007A548 (CGameObjectInstance *pAI);
-void func_8007CC14 (CTMove *pThis);
+int AI_Update_Weapon_AssaultRifle (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_MachineGun (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_RiotShotgun (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_AutomaticShotgun (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_MiniGun (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_Grenade_Launcher (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_TechWeapon1 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_TechWeapon2 (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+int AI_Update_Weapon_Chronoscepter (CGameObjectInstance *pMe, CTControl *D_800F9E44, CTMove *pCTMove, int waterFlag);
+void AI_Reset_Turok_Weapon (CGameObjectInstance *pAI);
+void AI_Kill_Weapon_SFX (CTMove *pThis);
 
 
 
@@ -17477,16 +17477,16 @@ extern CMantis MantisBoss ;
 
 
 
-CBoss *func_800442AC(CGameObjectInstance *pThis) ;
-void func_800444D8(CGameObjectInstance *pThis, CMantis *pMantis) ;
-int func_80045E1C(CGameObjectInstance *pThis, CMantis *pMantis) ;
+CBoss *Mantis_Initialise(CGameObjectInstance *pThis) ;
+void Mantis_Update(CGameObjectInstance *pThis, CMantis *pMantis) ;
+int Mantis_CanSpit(CGameObjectInstance *pThis, CMantis *pMantis) ;
 
 signed long Mantis_SetupMode(CGameObjectInstance *pThis, signed long nNewMode) ;
 
 void Mantis_UpdateGlow(CGameObjectInstance *pThis, CMantis *pMantis) ;
 void Mantis_StartGlow(CGameObjectInstance *pThis, CMantis *pMantis, signed short Count) ;
-void func_800447B4(CGameObjectInstance *pThis, CMantis *pMantis, Gfx **ppDLP) ;
-void func_80044890(CGameObjectInstance *pThis, CMantis *pMantis, Gfx **ppDLP) ;
+void Mantis_PreDraw(CGameObjectInstance *pThis, CMantis *pMantis, Gfx **ppDLP) ;
+void Mantis_PostDraw(CGameObjectInstance *pThis, CMantis *pMantis, Gfx **ppDLP) ;
 
 
 
@@ -17618,11 +17618,11 @@ extern CLonghunt LonghuntBoss ;
 
 typedef void(*LonghuntSetupFunction)(CGameObjectInstance *pThis, CLonghunt *pLonghunt) ;
 
-CBoss *func_80049C80(CGameObjectInstance *pThis) ;
+CBoss *Longhunt_Initialise(CGameObjectInstance *pThis) ;
 void Longhunt_Update(CGameObjectInstance *pThis, CLonghunt *pLonghunt) ;
 signed long Longhunt_SetupMode(CGameObjectInstance *pThis, signed long nNewMode) ;
 
-int func_8004B828(CGameObjectInstance *pThis, int nNode) ;
+int CGameObjectInstance__GetLonghunterModelIndex(CGameObjectInstance *pThis, int nNode) ;
 
 
 
@@ -17652,8 +17652,8 @@ void qsort (
 
 
 
-void func_8003ECF0(CCamera *pThis);
-void func_8003ED10(CCamera *pThis);
+void CCamera__Setup_CINEMATIC_CREDIT(CCamera *pThis);
+void CCamera__Code_CINEMATIC_CREDIT(CCamera *pThis);
 
 
 
@@ -17752,13 +17752,13 @@ void func_8003ED10(CCamera *pThis);
 #define TREX_HEALTH	6000
       
 
-void func_80072110(CGameObjectInstance *pAI, float Angle)
+void AI_NudgeRotY(CGameObjectInstance *pAI, float Angle)
 ;
-int func_8005FCF4(CGameObjectInstance *pAI, int nAnim, int InterruptBlend)
+int AI_SetDesiredAnim(CGameObjectInstance *pAI, int nAnim, int InterruptBlend)
 ;
-int func_8005FCA0(CGameObjectInstance *pAI, int nAnim, int InterruptBlend)
+int AI_SetDesiredAnimByIndex(CGameObjectInstance *pAI, int nAnim, int InterruptBlend)
 ;
-int func_800719B4(CGameObjectInstance *pThis)
+int AI_GetWaterStatus(CGameObjectInstance *pThis)
 ;
 
 extern CTMove D_80128C20;

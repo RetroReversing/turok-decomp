@@ -11,8 +11,8 @@ typedef struct CHashTable_t
  struct CHashPlex_t *m_pBlocks;
  int m_nBlockSize;
 } CHashTable;
-extern int func_8002E13C(CHashTable *pThis, void* key, void **prValue);
-extern void func_8002E098(CHashTable *pThis, void* key, void* newValue);
+extern int CHashTable__Lookup(CHashTable *pThis, void* key, void **prValue);
+extern void CHashTable__SetAt(CHashTable *pThis, void* key, void* newValue);
 extern int D_8002DE54(CHashTable *pThis, void* key);
 typedef ROMAddress;
 struct CCartCache_t;
@@ -65,10 +65,10 @@ typedef struct CTextureLoader_t
 extern void CCartCache__BlockReceived(CCartCache *pThis,
                  ROMAddress *rpRequestedAddress, unsigned long rLength,
                  void *pData);
-extern CCacheEntry* func_8002CD74(CCartCache *pThis);
+extern CCacheEntry* CCartCache__AllocCacheEntry(CCartCache *pThis);
 extern void D_8002CBEC(CCartCache *pThis, CCacheEntry *pCacheEntry);
 extern void D_8002CCB8(CCartCache *pThis, CNotifyEntry *pNotify);
-CCacheEntry* func_8002CD74(CCartCache *pThis);
+CCacheEntry* CCartCache__AllocCacheEntry(CCartCache *pThis);
 void CCartCache__BlockReceived(CCartCache *pThis,
            ROMAddress *rpRequestedAddress, unsigned long rLength, void *pData);
 void D_8002CCB8(CCartCache *pThis, CNotifyEntry *pNotify);
@@ -86,11 +86,11 @@ void CCartCache__BlockReceived(CCartCache *pThis,
  pfnCACHENOTIFY pfnDecompress;
  pfnCACHENOTIFY pfnBlockReceived;
  CCacheEntry **ppceTarget;
- pCacheEntry = func_8002CD74(pThis);
+ pCacheEntry = CCartCache__AllocCacheEntry(pThis);
    if (pCacheEntry)
    {
   pOldCacheEntry = ((void*)0);
-  if (func_8002E13C(&pThis->m_HashTable, rpRequestedAddress, (void**) &pOldCacheEntry))
+  if (CHashTable__Lookup(&pThis->m_HashTable, rpRequestedAddress, (void**) &pOldCacheEntry))
       {
                                                     ;
          D_8002DE54(&pThis->m_HashTable, pOldCacheEntry->m_rpAddress);
@@ -102,7 +102,7 @@ void CCartCache__BlockReceived(CCartCache *pThis,
   pCacheEntry->m_DataLength = rLength;
       pCacheEntry->m_InHashTable = 1;
   pCacheEntry->m_Compressed = 0;
-      func_8002E098(&pThis->m_HashTable, rpRequestedAddress, pCacheEntry);
+      CHashTable__SetAt(&pThis->m_HashTable, rpRequestedAddress, pCacheEntry);
       if (pThis->m_pCacheHead)
          pThis->m_pCacheHead->m_pLast = pCacheEntry;
   if (!pThis->m_pCacheTail)

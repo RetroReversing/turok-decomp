@@ -42,9 +42,9 @@ void CGameSimpleInstance__TakeFromROMSimpleInstance(CGameSimpleInstance *pThis, 
 	pThis->m_wFlags = pSource->m_wFlags;
 
 
-	nObjType = func_8001D398(&pThis->ah.ih);
+	nObjType = CInstanceHdr__TypeFlag(&pThis->ah.ih);
 
-	if (func_80071820(nObjType) || func_800717E8(nObjType))
+	if (AI_IsPickup(nObjType) || AI_IsMorph(nObjType))
 	{
 		pThis->m_wFlags |= SIMPLE_FLAG_VISIBLE;
 		pThis->m_Time = 0 ;

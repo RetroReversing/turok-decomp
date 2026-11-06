@@ -30,7 +30,7 @@ void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache)
 	if (!func_80026CFC(&pThis->m_TextureLoader, pCache, D_800F17E4))
 		return;
 
-	func_80026AD0(&pThis->m_TextureLoader, &textureInfo);
+	CTextureLoader__GetTextureInfo(&pThis->m_TextureLoader, &textureInfo);
 
 	if ((pThis->m_dwFlags & PARTICLE_HASHITGROUND) && (pThis->m_pEffect->m_dwFlags & PARTICLE_BEHAVIOR_HOLDANIMONBOUNCE))
 	{
@@ -119,7 +119,7 @@ void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache)
 		if (cUseFrame[0] == cUseFrame[1])
 			crossfade = FALSE;
 
-	func_80026EC4(pThis, &distance, &intersectWithGround);
+	CParticle__CalculateOrientationMatrix(pThis, &distance, &intersectWithGround);
 
 	multU = (1 << ( ((pThis->m_pEffect->m_dwFlags & PARTICLE_BEHAVIOR_MIRRORWIDTH)  ? 9 : 8) + textureInfo.m_pFormat->m_WidthShift) );
 	multV = (1 << ( ((pThis->m_pEffect->m_dwFlags & PARTICLE_BEHAVIOR_MIRRORHEIGHT) ? 9 : 8) + textureInfo.m_pFormat->m_HeightShift) );
@@ -327,7 +327,7 @@ void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache)
 
 	// add swoosh edge if a swoosh is active
 	if (pThis->m_ActiveSwooshes)
-		func_800425F8(&GetApp()->m_FxSystem, pThis, &CParticle__GetOrientationMatrix(pThis)) ;
+		CFxSystem__CheckForAddingParticleSwooshEdge(&GetApp()->m_FxSystem, pThis, &CParticle__GetOrientationMatrix(pThis)) ;
 
 /*
 	CMtxF__VectorMult4x4(GetApp()->m_mfProjection, &pThis->ah.ih.m_vPos, &vProj);

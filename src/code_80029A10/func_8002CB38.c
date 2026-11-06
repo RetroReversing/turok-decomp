@@ -1,6 +1,6 @@
 #include "common.h"
 
-void func_80011DDC(s32);
+void i3D_free(s32);
 void func_8002E1C0(void *);
 typedef struct { char pad0[0x18]; void *head; s32 x1C; void *list; s32 x24; char pad28[0x682C - 0x28]; void *pool; char pad6830[0x6AB0 - 0x6830]; void *free; } Big;
 typedef struct N { struct N *next; char pad4[0x1C]; struct N *link2; char pad24[8]; struct N *link3; } N;
@@ -18,7 +18,7 @@ void func_8002CB38(Big *a)
     n = n->link3;
     if (*((s32 *) new_var3))
     {
-      func_80011DDC(*((s32 *) new_var3));
+      i3D_free(*((s32 *) new_var3));
     }
     *((s32 *) (((char *) new_var3) + 0x20)) = 0x15D0B;
     new_var2 = ((char *) new_var3) + 0x30;

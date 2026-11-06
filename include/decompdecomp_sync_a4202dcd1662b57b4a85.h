@@ -71,9 +71,9 @@ typedef struct {BYTE m_Type,m_bActiveFlags;WORD m_nObjType;CVector3 m_vPos;float
 typedef struct {CInstanceHdr ih;CVector3 m_vVelocity;} CAnimInstanceHdr;
 typedef struct CGameObjectInstance_t {CAnimInstanceHdr ah;u8 pad28[0x64-0x28];float m_RotY,m_cMelt;u8 pad6C[0x11A-0x6C];WORD m_nTypeFlag;u8 pad11C[0x130-0x11C];DWORD m_dwFlags;u8 pad134[0x1A4-0x134];CAIDynamic m_AI;} CGameObjectInstance;
 extern CGameObjectInstance*D_8010201C;extern float D_801197E8;
-float func_8005F34C(CGameObjectInstance*,CVector3);void func_8008453C(CAIDynamic*,CEnemyAttributes*,int);
-#define AI_DistanceSquared func_8005F34C
-#define CAIDynamic__SetHealth func_8008453C
+float AI_DistanceSquared(CGameObjectInstance*,CVector3);void CAIDynamic__SetHealth(CAIDynamic*,CEnemyAttributes*,int);
+#define AI_DistanceSquared AI_DistanceSquared
+#define CAIDynamic__SetHealth CAIDynamic__SetHealth
 #define AI_GetDyn(p) (&(p)->m_AI)
 #define AI_GetEA(p) ((p)->ah.ih.m_pEA)
 #define AI_GetPos(p) ((p)->ah.ih.m_vPos)

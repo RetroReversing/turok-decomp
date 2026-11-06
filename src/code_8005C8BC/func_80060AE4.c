@@ -38,7 +38,7 @@ int func_80060AE4 (CGameObjectInstance *pThis, CInstanceHdr *pOrigin, CVector3 v
 	if (!(AI_GetEA(pThis)->m_dwTypeFlags & AI_TYPE_COLLISION))
 		return 0;
 
-	if (func_8005FA10(pThis))
+	if (AI_CanWeKillIt(pThis))
 		return 0;
 
 	if (AI_GetDyn(pThis)->m_dwStatusFlags2 & AI_HOLDINTANIMON1STFRAME)
@@ -56,7 +56,7 @@ int func_80060AE4 (CGameObjectInstance *pThis, CInstanceHdr *pOrigin, CVector3 v
 	angdiff = (ey-py);
 
 	// test for more accurate mortal wound hit - radius is smaller & enemy must be facing away from us
-	if ( (sqrt(func_8005F34C(pThis, vPos)) <= ( (rad/2) + AI_GetEA(pThis)->m_CollisionRadius)) &&
+	if ( (sqrt(AI_DistanceSquared(pThis, vPos)) <= ( (rad/2) + AI_GetEA(pThis)->m_CollisionRadius)) &&
 		  (abs(angdiff)<=40)         &&
 		  (AI_GetDyn(pThis)->m_Health>0)     )
 	{
@@ -147,11 +147,11 @@ int func_80060AE4 (CGameObjectInstance *pThis, CInstanceHdr *pOrigin, CVector3 v
 				break;
 		}
 		// do mortal hits
-		func_80060A54(pThis, nHits);
-		func_8005F228(pThis, pOrigin);
+		AI_DoHit(pThis, nHits);
+		AI_SetAttacker(pThis, pOrigin);
 	}
 	// hit another ai (do normal proper test between two ai's)
-	else if ( sqrt(func_8005F34C(pThis, vPos)) <= ( rad + AI_GetEA(pThis)->m_CollisionRadius) )
+	else if ( sqrt(AI_DistanceSquared(pThis, vPos)) <= ( rad + AI_GetEA(pThis)->m_CollisionRadius) )
 	{
 		// which character is standing on what ?
 		switch (CGameObjectInstance__TypeFlag(pThis))
@@ -291,8 +291,8 @@ int func_80060AE4 (CGameObjectInstance *pThis, CInstanceHdr *pOrigin, CVector3 v
 			}
 			else
 			{
-				func_80060A54(pThis, nHits);
-				func_8005F228(pThis, pOrigin);
+				AI_DoHit(pThis, nHits);
+				AI_SetAttacker(pThis, pOrigin);
 
 				// was mortal wound caused ?
 				if (AI_GetDyn(pThis)->m_Health==0)

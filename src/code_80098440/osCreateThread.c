@@ -3,10 +3,10 @@
 typedef struct {u8 pad0[0x18];u64 a0;u8 pad1[0xb0];u64 sp,s8,ra;u8 pad2[16];u32 sr,pc,cause,badvaddr,rcp,fpcsr;} ThreadContext;
 typedef struct OSThread {struct OSThread *next;s32 priority;struct OSThread **queue;struct OSThread *tlnext;u16 state,flags;s32 id,fp;ThreadContext context;} OSThread;
 typedef s32 OSId;typedef s32 OSPri;typedef u32 OSIntMask;
-u32 func_800A5750(void);void func_800A5770(u32);void func_800A60C0(void);
+u32 __osDisableInt(void);void __osRestoreInt(u32);void func_800A60C0(void);
 extern OSThread *D_800EF28C;
-#define __osDisableInt func_800A5750
-#define __osRestoreInt func_800A5770
+#define __osDisableInt __osDisableInt
+#define __osRestoreInt __osRestoreInt
 #define __osCleanupThread func_800A60C0
 #define __osActiveQueue D_800EF28C
 #define ARGSAVE 16

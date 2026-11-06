@@ -1,11 +1,11 @@
 #include "decompdecomp_sync_4b7546230e1cb96ad526.h"
 #line 1 "func.c"
-void func_80001CD4(CEngineApp *); int func_80001D30(CEngineApp *,s32);
+void CEngineApp__Boot(CEngineApp *); /* Address alias retains the observed caller ABI; the canonical entry is CEngineApp__Idle. */ int sub_80001D30(CEngineApp *,s32);
 void func_80001300(void) {
-    func_80001CD4(&D_800F9F10);
+    CEngineApp__Boot(&D_800F9F10);
 }
-void func_80001324(s32 pArg) {
-    func_80001D30(&D_800F9F10,pArg);
+void idle(s32 pArg) {
+    sub_80001D30(&D_800F9F10,pArg);
 }
 #line 430 "reference.c"
 void func_8000134C(void *pArg)
@@ -22,7 +22,7 @@ void func_8000134C(void *pArg)
 
 
 	// fetch the current floating-point control/status register
-	fpstat = func_8009D090();
+	fpstat = __osGetFpcCsr();
 
 	// enable divide-by-zero exception for floating point
 	fpstat |= (short)FPCSR_EZ;
@@ -35,7 +35,7 @@ void func_8000134C(void *pArg)
 	//fpstat &= ~FPCSR_CE;
 	//fpstat = 0;
 
-	func_8009D0A0(fpstat);
+	__osSetFpcCsr(fpstat);
 
 	//last = (OSThread*) NULL;
 
@@ -95,10 +95,10 @@ void func_8000134C(void *pArg)
 			CrashWarp.m_nRegion = -1;
 	}
 */
-	func_8009D1F0();
+	osWritebackDCacheAll();
 
 
-	func_8009D220(OS_IM_NONE) ;
+	osSetIntMask(OS_IM_NONE) ;
 	((pfnReboot)0x80000400)() ;
       
 //#else
@@ -127,7 +127,7 @@ void func_8000134C(void *pArg)
 			osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
 			osViSwapBuffer(D_80200000);
 
-			func_80095AD0(curr);
+			printFaultData(curr);
 
 			while (TRUE);
 

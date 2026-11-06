@@ -3,9 +3,9 @@ typedef unsigned long DWORD;typedef struct CCartCache CCartCache;typedef struct 
 typedef struct {u8 pad[0xc414];CCartCache*m_pCache;CCacheEntry*m_pceParticleEffects,*m_pceTextureSetsIndex;} CParticleSystem;
 typedef void (*pfnCACHENOTIFY)(void*,CCacheEntry**);
 void func_80029D94(CParticleSystem*,CCacheEntry**);
-void func_8002D1F8(CCartCache*,void*,pfnCACHENOTIFY,pfnCACHENOTIFY,CCacheEntry**,ROMAddress*,DWORD,const char*);
+void CCartCache__RequestBlock(CCartCache*,void*,pfnCACHENOTIFY,pfnCACHENOTIFY,CCacheEntry**,ROMAddress*,DWORD,const char*);
 extern char D_800F17D0[];
-#define CCartCache__RequestBlock func_8002D1F8
+#define CCartCache__RequestBlock CCartCache__RequestBlock
 #define CParticleSystem__DecompressParticles func_80029D94
 #define NULL ((void*)0)
 

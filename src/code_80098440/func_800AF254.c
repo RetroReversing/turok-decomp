@@ -260,7 +260,7 @@ Acmd *alEnvmixerPull(void *filter, s16 *outp, s32 outCount, s32 sampleOffset,
         if (e->ctrlList == 0)
             e->ctrlTail = 0;
         
-        func_800A5158(thisParam);
+        __freeParam(thisParam);
         
     }
     

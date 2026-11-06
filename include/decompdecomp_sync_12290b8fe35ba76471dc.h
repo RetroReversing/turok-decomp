@@ -53,13 +53,13 @@ typedef struct CROMStaticInstance_t
 	signed char		m_RotX, m_RotY, m_RotZ, m_RotT;
 } CROMStaticInstance;
 typedef struct {CInstanceHdr ih;CCacheEntry*m_pceObjectIndex,*m_pceStaticEvents;ROMAddress*m_rpObjectIndexAddress;Mtx m_mOrientation;CGeometry m_Geometry;CROMBounds m_Bounds;DWORD m_dwFlags;} CGameStaticInstance;
-void func_80012290(CMtxF,Mtx*);void func_800130DC(CMtxF,float,float,float);void func_8001315C(CMtxF,float,float,float);
-void func_80014538(CQuatern*);void func_80014DC4(CQuatern*,CMtxF);
-#define CQuatern__Normalize func_80014538
-#define CQuatern__ToMatrix func_80014DC4
+void CMtxF__ToMtxFast(CMtxF,Mtx*);void func_800130DC(CMtxF,float,float,float);void func_8001315C(CMtxF,float,float,float);
+void CQuatern__Normalize(CQuatern*);void CQuatern__ToMatrix(CQuatern*,CMtxF);
+#define CQuatern__Normalize CQuatern__Normalize
+#define CQuatern__ToMatrix CQuatern__ToMatrix
 #define CMtxF__PreMultScale func_800130DC
 #define CMtxF__PostMultTranslate func_8001315C
-#define CMtxF__ToMtx(mf,m) func_80012290((mf),&(m))
+#define CMtxF__ToMtx(mf,m) CMtxF__ToMtxFast((mf),&(m))
 #define USE_ORIGINAL_MATRIX 0
 #define I_STATIC 0
 #define ORDERBYTES(x) (x)
@@ -150,12 +150,12 @@ typedef struct {void*m_pData;BOOL m_AutoDeleteData;} CIndexedSet;
 extern s16 D_80112C20;extern u8 D_800F0D84;typedef struct DrawAppView_t DrawAppView;extern DrawAppView D_80109F10;
 void CIndexedSet__ConstructFromRawData(CIndexedSet*,void*,BOOL);void*CCacheEntry__GetData(CCacheEntry*);
 ROMAddress*func_8002DBF8(CIndexedSet*,ROMAddress*,int,DWORD*);void*func_8002DC68(CIndexedSet*,void*,int);
-void func_8002D1F8(CCartCache*,void*,void*,void*,CCacheEntry**,ROMAddress*,DWORD,void*);
+void CCartCache__RequestBlock(CCartCache*,void*,void*,void*,CCacheEntry**,ROMAddress*,DWORD,void*);
 void func_800237C0(CGeometry*,CCartCache*,ROMAddress*,DWORD,CCacheEntry*);
 void CGeometry__DrawPart(CGeometry*,Gfx**,CCartCache*,int,int,BOOL,BOOL,int);
 #define CIndexedSet__GetROMAddressAndSize func_8002DBF8
-#define CIndexedSet__GetBlock(p,n) func_8002DC68((p),(p)->m_pData,(n))
-#define CCartCache__RequestBlock func_8002D1F8
+#define CIndexedSet__GetAddress(p,n) func_8002DC68((p),(p)->m_pData,(n))
+#define CCartCache__RequestBlock CCartCache__RequestBlock
 #define CGeometry__RequestBlock func_800237C0
 #define CGeometry__GetCacheEntry(p) ((p)->m_pceGeometry)
 #define CIndexedSet__Destruct(p)

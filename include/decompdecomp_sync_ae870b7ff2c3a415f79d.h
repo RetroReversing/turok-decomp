@@ -24,7 +24,7 @@ typedef struct CSave_t
 } CSave ;
 typedef struct {u8 pad[0xF660];BOOL messageActive;u8 gap[0xF89C-0xF664];BOOL m_bRequestor,m_bMessageBox;} SaveAppView;
 extern SaveAppView D_80109F10;extern u8 D_80119568[],D_800B8148[],D_800B815C[],D_800B7E50[],D_800B7E60[];extern u8 D_800B86D4;extern int D_80119974;
-int func_80011224(void);void func_800113A8(BOOL);void func_8000E498(void*,void*,void*);
+int func_80011224(void);void func_800113A8(BOOL);void CMessageBox__Construct(void*,void*,void*);
 #define GetApp() (&D_80109F10)
 #define SetupFileSystem func_80011224
 #define validpaks D_800B86D4

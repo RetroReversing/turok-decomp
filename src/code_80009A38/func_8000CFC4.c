@@ -978,7 +978,7 @@ typedef struct CGamePak_t
  signed long m_Selection ;
  signed long m_Timer ;
 } CGamePak ;
-extern void func_8000E498(CMessageBox *pThis, char *String1, char *String2) ;
+extern void CMessageBox__Construct(CMessageBox *pThis, char *String1, char *String2) ;
 typedef struct CCheatCode_t
 {
  float m_Alpha ;
@@ -1605,14 +1605,14 @@ struct CCollisionInfo2_t;
 extern char D_800B7E7C[1] ;
 extern char D_800B7F20[1] ;
 void func_8000CFC4(int ret);
-void func_8000E498(CMessageBox *pThis, char *String1, char *String2);
+void CMessageBox__Construct(CMessageBox *pThis, char *String1, char *String2);
 void func_8000CFC4(int ret){
  switch (ret)
  {
   case 0:
    break ;
   default:
-   func_8000E498(&(&D_800F9F10)->m_MessageBox,
+   CMessageBox__Construct(&(&D_800F9F10)->m_MessageBox,
           D_800B7E7C, D_800B7F20) ;
    (&D_800F9F10)->m_bMessageBox = 1 ;
    break ;

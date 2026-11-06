@@ -78,31 +78,31 @@ typedef struct CCartCache_t
 #define TRACE2(a,b,c)
 #define TRACE3(a,b,c,d)
 #define TRACE4(a,b,c,d,e)
-void func_8002D410(CCartCache*,CCacheEntry*);
-void*func_8002D648(CCacheEntry*,DWORD,BOOL);
-BOOL func_8002C9C0(void*,void*);
-void func_80011DDC(void*);
-void func_8002E254(CHashTable*,int);
-void func_8002DFA0(CHashTable*,UINT,BOOL);
-BOOL func_8002E13C(CHashTable*,void*,void**);
-CNotifyEntry*func_8002D1D0(CCartCache*);
-void*func_8002D120(CCartCache*,DWORD,BOOL);
-void func_8002D020(CCartCache*,CNotifyEntry*);
+void CCartCache__ResetAge(CCartCache*,CCacheEntry*);
+void*CCacheEntry__DoAllocDataForReplacement(CCacheEntry*,DWORD,BOOL);
+BOOL CMP_DecompressData(void*,void*);
+void i3D_free(void*);
+void CHashTable__Construct(CHashTable*,int);
+void CHashTable__InitHashTable(CHashTable*,UINT,BOOL);
+BOOL CHashTable__Lookup(CHashTable*,void*,void**);
+CNotifyEntry*CCartCache__AllocNotifyEntry(CCartCache*);
+void*CCartCache__Alloc(CCartCache*,DWORD,BOOL);
+void BrokenUpDMA(CCartCache*,CNotifyEntry*);
 void CCartCache__BlockReceived(CCartCache*,ROMAddress*,DWORD,void*);
-void func_8002CAE0(void*,ROMAddress*,DWORD);
-#define CCacheEntry__ResetAge(p) func_8002D410((p)->m_pOwner,(p))
+void CCartCache__DeallocNotifyEntry(void*,ROMAddress*,DWORD);
+#define CCacheEntry__ResetAge(p) CCartCache__ResetAge((p)->m_pOwner,(p))
 #define CCacheEntry__GetData(p) (CCacheEntry__ResetAge(p),(p)->m_pData)
-#define CCacheEntry__DoAllocDataForReplacement func_8002D648
+#define CCacheEntry__DoAllocDataForReplacement CCacheEntry__DoAllocDataForReplacement
 #define CMP_GetDecompressedSize(p) (((DWORD*)(p))[1])
-#define CMP_DecompressData func_8002C9C0
-#define DEALLOC(p) func_80011DDC(p)
+#define CMP_DecompressData CMP_DecompressData
+#define DEALLOC(p) i3D_free(p)
 #define CCacheEntry__DeallocAndReplaceData(p,b,n) (DEALLOC((p)->m_pData),(p)->m_pData=(b),(p)->m_DataLength=(n))
-#define CHashTable__Construct func_8002E254
-#define CHashTable__InitHashTable func_8002DFA0
-#define CHashTable__Lookup func_8002E13C
-#define CCartCache__AllocNotifyEntry func_8002D1D0
-#define CCartCache__Alloc func_8002D120
-#define CCartCache__DeallocNotifyEntry func_8002D020
-#define BrokenUpDMA func_8002CAE0
+#define CHashTable__Construct CHashTable__Construct
+#define CHashTable__InitHashTable CHashTable__InitHashTable
+#define CHashTable__Lookup CHashTable__Lookup
+#define CCartCache__AllocNotifyEntry CCartCache__AllocNotifyEntry
+#define CCartCache__Alloc CCartCache__Alloc
+#define CCartCache__DeallocNotifyEntry BrokenUpDMA
+#define BrokenUpDMA CCartCache__DeallocNotifyEntry
 
 

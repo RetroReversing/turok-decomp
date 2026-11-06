@@ -10,10 +10,10 @@ extern u8 D_800B86D4;
 extern int D_80119AB8;
 #define TurokFiles D_80119AB8
 int func_80011224(void);int func_800113A8(int);
-void func_8000E498(CMessageBox*,char*,char*);
+void CMessageBox__Construct(CMessageBox*,char*,char*);
 #define SetupFileSystem func_80011224
 #define ScanFileList func_800113A8
-#define CMessageBox__Construct func_8000E498
+#define CMessageBox__Construct CMessageBox__Construct
 extern char D_800B8148[],D_800B815C[],D_800B7E50[],D_800B7E60[];
 #define text_errorcontroller D_800B8148
 #define text_pakdamaged D_800B815C

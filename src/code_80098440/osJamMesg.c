@@ -4,13 +4,13 @@ typedef struct OSThread {struct OSThread *next;s32 priority;struct OSThread **qu
 typedef void *OSMesg;
 typedef struct {OSThread *mtqueue,*fullqueue;s32 validCount,first,msgCount;OSMesg *msg;} OSMesgQueue;
 extern OSThread *D_800EF290,*D_800EF288;
-u32 func_800A5750(void);void func_800A5770(u32);void func_800A5DEC(OSThread**);OSThread *func_800A5F34(OSThread**);void func_800A5F44(void);
+u32 __osDisableInt(void);void __osRestoreInt(u32);void __osEnqueueAndYield(OSThread**);OSThread *__osPopThread(OSThread**);void __osDispatchThread(void);
 void osStartThread(OSThread*);void __osEnqueueThread(OSThread**,OSThread*);
-#define __osDisableInt func_800A5750
-#define __osRestoreInt func_800A5770
-#define __osEnqueueAndYield func_800A5DEC
-#define __osPopThread func_800A5F34
-#define __osDispatchThread func_800A5F44
+#define __osDisableInt __osDisableInt
+#define __osRestoreInt __osRestoreInt
+#define __osEnqueueAndYield __osEnqueueAndYield
+#define __osPopThread __osPopThread
+#define __osDispatchThread __osDispatchThread
 #define __osRunningThread D_800EF290
 #define __osRunQueue D_800EF288
 #define OS_STATE_WAITING 8

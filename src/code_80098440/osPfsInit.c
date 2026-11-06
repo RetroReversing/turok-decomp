@@ -1,14 +1,14 @@
 #include "common.h"
 
-s32 __osPfsGetStatus(s32, s32); s32 func_800A8520(); s32 func_800A8564(); s32 func_800A8D94(void *); s32 osPfsChecker(void *);
+s32 __osPfsGetStatus(s32, s32); s32 __osSiGetAccess(); s32 __osSiRelAccess(); s32 func_800A8D94(void *); s32 osPfsChecker(void *);
 
 /* Runs the ordered setup stages and marks arg1 ready after all return success. */
 s32 osPfsInit(s32 arg0, void *arg1, s32 arg2) {
     s32 result = 0;
 
-    func_800A8520();
+    __osSiGetAccess();
     result = __osPfsGetStatus(arg0, arg2);
-    func_800A8564();
+    __osSiRelAccess();
     if (result != 0) {
         return result;
     }

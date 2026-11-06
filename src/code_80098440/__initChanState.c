@@ -30,7 +30,7 @@ unsigned char __initChanState(void *a)
   }
 }
 
-extern S32 func_8009D220(S32);
+extern S32 osSetIntMask(S32);
 extern void alUnlink(void *);
 extern void alLink(void *, void *);
 extern void alCopy(void *, void *, S32);

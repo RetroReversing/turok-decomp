@@ -367,15 +367,15 @@ typedef struct CVector3_t
 {
  float x, y, z;
 } CVector3;
-extern void func_800144FC(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
-struct CQuatern_t func_80013C58(CVector3 *pvThis);
+extern void CVector3__Add(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
+struct CQuatern_t CVector3__GetDirectionRotation(CVector3 *pvThis);
 typedef float CMtxF[4][4];
 typedef struct CQuatern_t
 {
  float x, y, z, t;
 } CQuatern;
-extern void func_80015754(CMtxF mfThis, const CVector3 *pvIn, CVector3 *pvOut);
-extern void func_80012DE0(CMtxF mfThis, float Theta) ;
+extern void CMtxF__VectorMult(CMtxF mfThis, const CVector3 *pvIn, CVector3 *pvOut);
+extern void CMtxF__RotateZ(CMtxF mfThis, float Theta) ;
 typedef struct CGameAnimateState_t
 {
  CCacheEntry *m_pceAnim;
@@ -463,7 +463,7 @@ typedef struct CAIDynamic_t
 } CAIDynamic;
 struct CCollisionInfo2_t;
 typedef unsigned short SF;
-extern float func_8001F298(SF sfValue);
+extern float SF2FLOAT(SF sfValue);
 typedef struct CROMCorner_t
 {
    CVector3 m_vCorner;
@@ -495,7 +495,7 @@ typedef struct CInstanceHdr_t
  CGameRegion *m_pCurrentRegion;
  CEnemyAttributes *m_pEA;
 } CInstanceHdr;
-extern void func_80017F0C(CInstanceHdr *pThis,
+extern void CInstanceHdr__GetNearPositionAndRegion(CInstanceHdr *pThis,
                 CVector3 vDesiredPos,
                 CVector3 *pvOutPos, CGameRegion **ppOutRegion,
                 int GroundBehavior, int InstanceBehavior);
@@ -1614,9 +1614,9 @@ extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 struct CParticle_t;
-extern CMtxF* func_80026DC0(CParticle *pThis);
+extern CMtxF* CParticle__GetAlignmentRotation(CParticle *pThis);
 void CParticle__Spawn(CParticle *pThis, int nType, int Blood);
-CMtxF* func_80026DC0(CParticle *pThis);
+CMtxF* CParticle__GetAlignmentRotation(CParticle *pThis);
 void D_80028970(CParticleSystem *pThis, CInstanceHdr *pSource,
              int nType,
              CVector3 vBaseVelocity, CQuatern qRotateDirection,
@@ -1637,24 +1637,24 @@ void CParticle__Spawn(CParticle *pThis, int nType, int Blood){
   vVelocity = pThis->m_CI.vCollisionVelocity;
  else
   vVelocity = pThis->ah.m_vVelocity;
- qRot = func_80013C58(&vVelocity);
- if ( (func_8001F298(pThis->m_pEffect->m_RotationPivotX) == 0)
-   && (func_8001F298(pThis->m_pEffect->m_RotationPivotY) == 0) )
+ qRot = CVector3__GetDirectionRotation(&vVelocity);
+ if ( (SF2FLOAT(pThis->m_pEffect->m_RotationPivotX) == 0)
+   && (SF2FLOAT(pThis->m_pEffect->m_RotationPivotY) == 0) )
  {
   vPos = pThis->ah.ih.m_vPos;
   pRegion = pThis->ah.ih.m_pCurrentRegion;
  }
  else
  {
-  vOrigin.x = -func_8001F298(pThis->m_pEffect->m_RotationPivotX);
-  vOrigin.y = -func_8001F298(pThis->m_pEffect->m_RotationPivotY);
+  vOrigin.x = -SF2FLOAT(pThis->m_pEffect->m_RotationPivotX);
+  vOrigin.y = -SF2FLOAT(pThis->m_pEffect->m_RotationPivotY);
   vOrigin.z = 0;
-  func_80012DE0(mfRotate, pThis->m_Rotation);
-  func_80015754(mfRotate, &vOrigin, &vRotated);
-  pmfAlign = func_80026DC0(pThis);
-  func_80015754(*pmfAlign, &vRotated, &vOffset);
-  func_800144FC(&vDesired, &vOffset, &pThis->ah.ih.m_vPos);
-  func_80017F0C(&pThis->ah.ih,
+  CMtxF__RotateZ(mfRotate, pThis->m_Rotation);
+  CMtxF__VectorMult(mfRotate, &vOrigin, &vRotated);
+  pmfAlign = CParticle__GetAlignmentRotation(pThis);
+  CMtxF__VectorMult(*pmfAlign, &vRotated, &vOffset);
+  CVector3__Add(&vDesired, &vOffset, &pThis->ah.ih.m_vPos);
+  CInstanceHdr__GetNearPositionAndRegion(&pThis->ah.ih,
                vDesired,
                &vPos,
                &pRegion,

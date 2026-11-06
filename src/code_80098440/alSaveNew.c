@@ -14,12 +14,12 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_800B1580(); /* extern */
+M2C_UNK alFilterNew(); /* extern */
 extern M2C_UNK alSaveParam;
 extern M2C_UNK alSavePull;
 
 void alSaveNew(void *arg0) {
-    func_800B1580(arg0, &alSavePull, &alSaveParam, 3);
+    alFilterNew(arg0, &alSavePull, &alSaveParam, 3);
     M2C_FIELD(arg0, s32 *, 0x14) = 0;
     M2C_FIELD(arg0, s32 *, 0x18) = 1;
 }

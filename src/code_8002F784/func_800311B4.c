@@ -834,7 +834,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-extern CROMRegionSet* func_8002E438(CScene *pThis, CGameRegion *pRegion);
+extern CROMRegionSet* CScene__GetRegionAttributes(CScene *pThis, CGameRegion *pRegion);
 typedef struct COverlay_t
 {
  int m_OnScreen ;
@@ -1000,14 +1000,14 @@ typedef struct CBossData_t
 struct CCollisionInfo2_t;
 extern void func_800311B4(CScene *pThis, CUnindexedSet *pusAnimInstances);
 void func_800311B4(CScene *pThis, CUnindexedSet *pusAnimInstances);
-CROMRegionSet* func_8002E438(CScene *pThis, CGameRegion *pRegion);
+CROMRegionSet* CScene__GetRegionAttributes(CScene *pThis, CGameRegion *pRegion);
 void func_800311B4(CScene *pThis, CUnindexedSet *pusAnimInstances){
  CGameObjectInstance *instances, *pInstance;
  CROMRegionSet *pRegionSet;
    instances = (CGameObjectInstance*) ( (void*) ( ((unsigned char*)((pusAnimInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
                                                        ;
  pInstance = &instances[0];
- pRegionSet = func_8002E438(pThis, pInstance->ah.ih.m_pCurrentRegion);
+ pRegionSet = CScene__GetRegionAttributes(pThis, pInstance->ah.ih.m_pCurrentRegion);
  if (pRegionSet)
   pThis->m_bPlayerActiveFlags = pRegionSet->m_bActiveFlags;
  else

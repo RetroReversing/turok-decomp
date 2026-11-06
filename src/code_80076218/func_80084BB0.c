@@ -1632,9 +1632,9 @@ struct CCollisionInfo2_t;
 extern Vtx D_80129140[2][16];
 extern Mtx D_80129340;
 extern int D_80129380 ;
-extern void func_80084D70(CPause *pThis);
+extern void CPause__ResetMenuItems(CPause *pThis);
 void func_80084BB0(CPause *pThis);
-void func_80084D70(CPause *pThis);
+void CPause__ResetMenuItems(CPause *pThis);
 void func_80084BB0(CPause *pThis){
  int eye, vertex ;
  /* Reset pause state and initialize the overlay's projection and vertices. */
@@ -1665,7 +1665,7 @@ void func_80084BB0(CPause *pThis){
   D_800B6B04 = 0.0 ;
   D_800B6B08 = 0 ;
  }
- func_80084D70(pThis);
+ CPause__ResetMenuItems(pThis);
  D_800A2054(&D_80129340,
     0, 320 -1,
     0, 240 -1,

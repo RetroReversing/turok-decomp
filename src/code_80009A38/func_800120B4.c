@@ -14,9 +14,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80011BD8(M2C_UNK *, s32);              /* extern */
+M2C_UNK i3D_freePool(M2C_UNK *, s32);              /* extern */
 extern M2C_UNK D_80119C90;
 
 void func_800120B4(s32 arg0) {
-    func_80011BD8(&D_80119C90, arg0);
+    i3D_freePool(&D_80119C90, arg0);
 }

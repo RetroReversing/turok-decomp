@@ -15,7 +15,7 @@ typedef s32 M2C_UNK32;
 #endif
 
 M2C_UNK osRecvMesg(M2C_UNK *, M2C_UNK *, M2C_UNK); /* extern */
-M2C_UNK func_800A71E0();                            /* extern */
+M2C_UNK __osPiCreateAccessQueue();                            /* extern */
 extern s32 D_800EF340;
 extern M2C_UNK D_80139F78;
 
@@ -23,7 +23,7 @@ void func_800A7230(void) {
     M2C_UNK sp1C;
 
     if (D_800EF340 == 0) {
-        func_800A71E0();
+        __osPiCreateAccessQueue();
     }
     osRecvMesg(&D_80139F78, &sp1C, 1);
 }

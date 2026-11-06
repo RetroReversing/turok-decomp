@@ -8,7 +8,7 @@ void func_8005EA80(CTMove *pThis, CEngineApp *pApp)
 
 if (pApp->m_MapMode)
  {
-  if (func_80039B98(&pApp->m_Camera) && pApp->m_MapStatus != 32)
+  if (CCamera__InCinemaMode(&pApp->m_Camera) && pApp->m_MapStatus != 32)
   { pApp->m_MapStatus=32; pApp->m_MapAlpha=0; }
   else if (pApp->m_MapStatus==32) pApp->m_MapStatus=MAP_FADEUP;
  }

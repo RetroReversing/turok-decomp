@@ -267,7 +267,7 @@ typedef struct CUnindexedSet_t
    unsigned long m_CurrentAllocSize;
 } CUnindexedSet;
 struct CIndexedSet_t;
-extern void func_8002DA8C(CUnindexedSet *pThis,
+extern void CUnindexedSet__ConstructFromRawData(CUnindexedSet *pThis,
                void *pData, int AutoDeleteData );
 typedef struct CIndexedSet_t
 {
@@ -275,7 +275,7 @@ typedef struct CIndexedSet_t
    int m_AutoDeleteData;
 } CIndexedSet;
 extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void* CIndexedSet__GetAddress(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -850,12 +850,12 @@ void func_80029D94(CParticleSystem *pThis, CCacheEntry **ppceTarget){
  CIndexedSet__ConstructFromRawData(&isParticleEffects,
              CCacheEntry__GetData(pThis->m_pceParticleEffects),
              0);
- pbParticles = CIndexedSet__GetBlock((&isParticleEffects), (&isParticleEffects)->m_pData, (1));
- func_8002DA8C(&usParticles, pbParticles, 0);
+ pbParticles = CIndexedSet__GetAddress((&isParticleEffects), (&isParticleEffects)->m_pData, (1));
+ CUnindexedSet__ConstructFromRawData(&usParticles, pbParticles, 0);
  effects = (CROMParticleEffect*) ( (void*) ( ((unsigned char*)((&usParticles)->m_pData)) + (2*sizeof(unsigned long)) ) );
  nEffects = ( (unsigned long) (((unsigned long*) (&usParticles)->m_pData)[1]) );
- pbImpacts = CIndexedSet__GetBlock((&isParticleEffects), (&isParticleEffects)->m_pData, (2));
- func_8002DA8C(&usImpacts, pbImpacts, 0);
+ pbImpacts = CIndexedSet__GetAddress((&isParticleEffects), (&isParticleEffects)->m_pData, (2));
+ CUnindexedSet__ConstructFromRawData(&usImpacts, pbImpacts, 0);
  impacts = (CROMParticleImpact*) ( (void*) ( ((unsigned char*)((&usImpacts)->m_pData)) + (2*sizeof(unsigned long)) ) );
  for (cEffect=0; cEffect<nEffects; cEffect++)
   effects[cEffect].m_pImpact = &impacts[(int) effects[cEffect].m_pImpact];

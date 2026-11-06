@@ -4,8 +4,8 @@ typedef double ldouble;
 typedef struct {union{long long ll;ldouble ld;}v;char*s;int n0,nz0,n1,nz1,n2,nz2,prec,width;size_t nchar;unsigned int flags;char qual;} _Pft;
 typedef struct {long long quot,rem;} lldiv_t;
 lldiv_t lldiv(long long,long long);
-void *func_8009FA50(void*,const void*,size_t);
-#define memcpy func_8009FA50
+void *memcpy(void*,const void*,size_t);
+#define memcpy memcpy
 #define _FSP 1
 #define _FPL 2
 #define _FMI 4

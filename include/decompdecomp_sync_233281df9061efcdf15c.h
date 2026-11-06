@@ -6,12 +6,12 @@ typedef struct {void*m_pData;BOOL m_AutoDeleteData;} CIndexedSet;
 typedef struct {CVector3 m_vPos;INT16 m_RotX,m_RotY,m_RotZ,m_RotT;} CROMInitialOrientation;
 typedef struct {short m_nTranslationSet,m_nRotationSet;} CROMNodeIndex;
 typedef struct {CVector3 m_vPos;} CPosFrame;typedef struct {INT16 x,y,z,t;} CRotFrame;
-CROMNodeIndex func_8001697C(CIndexedSet*,int);
+CROMNodeIndex CGameObjectInstance__GetNodeAnimIndex(CIndexedSet*,int);
 void*func_8002DC68(CIndexedSet*,void*,int);
-void func_8002DA8C(CUnindexedSet*,void*,BOOL);
-#define CGameObjectInstance__GetNodeAnimIndex func_8001697C
-#define CIndexedSet__GetBlock(p,n) func_8002DC68((p),(p)->m_pData,(n))
-#define CUnindexedSet__ConstructFromRawData func_8002DA8C
+void CUnindexedSet__ConstructFromRawData(CUnindexedSet*,void*,BOOL);
+#define CGameObjectInstance__GetNodeAnimIndex CGameObjectInstance__GetNodeAnimIndex
+#define CIndexedSet__GetAddress(p,n) func_8002DC68((p),(p)->m_pData,(n))
+#define CUnindexedSet__ConstructFromRawData CUnindexedSet__ConstructFromRawData
 #define CUnindexedSet__GetBasePtr(p) ((void*)((BYTE*)((p)->m_pData)+8))
 #define CUnindexedSet__GetBlockSize(p) (((DWORD*)(p)->m_pData)[0])
 #define CUnindexedSet__GetBlock(p,n) ((void*)((BYTE*)CUnindexedSet__GetBasePtr(p)+(n)*CUnindexedSet__GetBlockSize(p)))

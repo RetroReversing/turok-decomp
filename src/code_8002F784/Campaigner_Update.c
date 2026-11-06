@@ -8,24 +8,24 @@ CBoss *func_8004D218(CGameObjectInstance *pThis)
 	CCampaigner *pCampaigner = &D_80127ED0 ;
 
 	// Setup defaults
-	func_8003F7E0(&pCampaigner->m_Boss) ;
+	CBoss__Construct(&pCampaigner->m_Boss) ;
 
 	// Setup regions for in hole modes!
 	pCampaigner->m_HoleNumber = 0 ;
-	GetApp()->m_BossVars.m_pRegionList[0] = func_8002E280(&GetApp()->m_Scene, &D_800BDE58[0]) ;
-	GetApp()->m_BossVars.m_pRegionList[1] = func_8002E280(&GetApp()->m_Scene, &D_800BDE58[1]) ;
+	GetApp()->m_BossVars.m_pRegionList[0] = CScene__NearestRegion(&GetApp()->m_Scene, &D_800BDE58[0]) ;
+	GetApp()->m_BossVars.m_pRegionList[1] = CScene__NearestRegion(&GetApp()->m_Scene, &D_800BDE58[1]) ;
 
 	// Setup boss vars
-	pCampaigner->m_Boss.m_pInitializeFunction = (void *)func_8004D1EC ;
+	pCampaigner->m_Boss.m_pInitializeFunction = (void *)InitializeCampaigner ;
 	pCampaigner->m_Boss.m_pUpdateFunction = (void *)Campaigner_Update ;
-	pCampaigner->m_Boss.m_pHitByParticleFunction = (void *)func_8004DFE8 ;
+	pCampaigner->m_Boss.m_pHitByParticleFunction = (void *)Campaigner_HitByParticle ;
 	pCampaigner->m_Boss.m_pModeTable = D_800BD390 ;
 	pCampaigner->m_Boss.m_Rot1 = 0 ;
 	pCampaigner->m_Boss.m_Rot2 = 0 ;
 
 	// Setup campaigner vars
 	pCampaigner->m_pStageInfo = D_800BD818 ;
-	func_8004D444(pThis, pCampaigner, D_800BD818) ;
+	Campaigner_SetupStageInfo(pThis, pCampaigner, D_800BD818) ;
 
 	// Put into start mode
 	pCampaigner->m_Boss.m_Mode = CAMPAIGNER_TALK_MODE ;
@@ -34,8 +34,8 @@ CBoss *func_8004D218(CGameObjectInstance *pThis)
 	pCampaigner->m_Boss.m_AnimRepeats = 1 ;
 	pCampaigner->m_Boss.m_AnimSpeed = 1.0 ;
 
-	pCampaigner->m_Boss.m_pPreDrawFunction = (void *)func_8004DAF4 ;
-	pCampaigner->m_Boss.m_pPostDrawFunction = (void *)func_8004DB30 ;
+	pCampaigner->m_Boss.m_pPreDrawFunction = (void *)Campaigner_PreDraw ;
+	pCampaigner->m_Boss.m_pPostDrawFunction = (void *)Campaigner_PostDraw ;
 
                  
                                                                               
@@ -46,7 +46,7 @@ CBoss *func_8004D218(CGameObjectInstance *pThis)
       
 
 	// Setup misc
-	func_8004D404(&pCampaigner->m_Boss.m_CollisionInfo) ;
+	CCollisionInfo__SetCampaignerCollisionDefaults(&pCampaigner->m_Boss.m_CollisionInfo) ;
 	BOSS_Health(pThis) = CAMPAIGNER_HEALTH ;
 
 	// Make him limp!
@@ -64,7 +64,7 @@ CBoss *func_8004D218(CGameObjectInstance *pThis)
 
 	// Init shield
 	pCampaigner->m_Boss.m_pShield = &pCampaigner->m_Shield ;
-	func_80040E48(&pCampaigner->m_Shield,
+	CShield__Construct(&pCampaigner->m_Shield,
 							 pThis,
 							 CAMPAIGNER_HEALTH/2,
 							 D_800BD280,
@@ -91,7 +91,7 @@ CBoss *func_8004D218(CGameObjectInstance *pThis)
 void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 {
 	// Keep the sound up-to date
-	func_8004D4B4(pThis, pCampaigner) ;
+	Campaigner_UpdateSound(pThis, pCampaigner) ;
 
 	// Has a weapon been fired at Mr. Campaigner?
 	if ((pCampaigner->m_Boss.m_Mode != CAMPAIGNER_TELEPORT_MODE) &&
@@ -103,7 +103,7 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 			// Take away weapons
 			case AI_OBJECT_WEAPON_TECHWEAPON2:
 			case AI_OBJECT_WEAPON_SHOCKWAVE:
-				func_8004DACC(pThis, CAMPAIGNER_WEAPON_IDLE_MODE) ;
+				Campaigner_SetupMode(pThis, CAMPAIGNER_WEAPON_IDLE_MODE) ;
 				break ;
 
 			// Block weaponss
@@ -114,27 +114,27 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 
 				// Start shield
 				if (pCampaigner->m_pStageInfo->BlockWeaponsPercentage >= RANDOM(101))
-					func_8004DB48(pThis, pCampaigner, SECONDS_TO_FRAMES(4)) ;
+					Campaigner_ActivateShield(pThis, pCampaigner, SECONDS_TO_FRAMES(4)) ;
 				break ;
 		}
 	}
 
 	// Get target and angle to aim for
-	func_8004DBDC(pThis, pCampaigner) ;
+	Campaigner_GetTarget(pThis, pCampaigner) ;
 
 	// Goto teleport/jump?
-	if ((!func_8004E200(pThis, pCampaigner)) &&
+	if ((!Campaigner_TurokObstructed(pThis, pCampaigner)) &&
 		 (pCampaigner->m_Boss.m_ModeFlags & BF_CAN_TELEPORT) &&
 		 (pCampaigner->m_Boss.m_DistFromTarget >= CAMPAIGNER_DO_TELEPORT_DIST))
 	{
 		if ((RANDOM(2)) || (pCampaigner->m_Limp))
-			func_8004DACC(pThis, CAMPAIGNER_TELEPORT_MODE) ;
+			Campaigner_SetupMode(pThis, CAMPAIGNER_TELEPORT_MODE) ;
 		else
-			func_8004DACC(pThis, CAMPAIGNER_EVADE_MEGA_JUMP_MODE) ;
+			Campaigner_SetupMode(pThis, CAMPAIGNER_EVADE_MEGA_JUMP_MODE) ;
 	}
 
 	// Check for death
-	if ((BOSS_Health(pThis) <= 0) && (!func_8004D1C0(pThis, pCampaigner)))
+	if ((BOSS_Health(pThis) <= 0) && (!Campaigner_InHole(pThis, pCampaigner)))
 	{
 		switch(pCampaigner->m_Boss.m_Mode)
 		{
@@ -143,15 +143,15 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 				break ;
 
 			default:
-				func_8004DACC(pThis, CAMPAIGNER_DEATH_MODE) ;
-				func_8004305C(&pCampaigner->m_SpecialFx, D_800BDBCC) ;
+				Campaigner_SetupMode(pThis, CAMPAIGNER_DEATH_MODE) ;
+				CSpecialFx__StartScript(&pCampaigner->m_SpecialFx, D_800BDBCC) ;
 				break ;
 		}
 	}
 	
 	// Update invincible flag
 	if ((pCampaigner->m_Boss.m_ModeFlags & BF_INVINCIBLE) ||
-		 (func_80040E80(&pCampaigner->m_Shield)))
+		 (CShield__IsOn(&pCampaigner->m_Shield)))
 		AI_GetDyn(pThis)->m_Invincible = TRUE ;
 	else
 		AI_GetDyn(pThis)->m_Invincible = FALSE ;
@@ -159,14 +159,14 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 	// Hit by explosion?
 	if ((BOSS_Health(pThis) > 0) && (!AI_GetDyn(pThis)->m_Invincible))
 	{
-		func_8004E0B4(pThis, pCampaigner) ;
+		Campaigner_CheckHitByExplosion(pThis, pCampaigner) ;
 
 		// Increase damage
 		if (pCampaigner->m_Boss.m_PercentageHealth < pCampaigner->m_pDamage->m_Health)
 		{
 			pCampaigner->m_pDamage++ ;
-			func_8004DACC(pThis, CAMPAIGNER_DAMAGE_SHORTING_OUT_MODE) ;
-			func_80063AE8(&pThis->ah.ih, pThis->ah.ih.m_vPos, SOUND_CAMPAIGNERS_DEATH) ;
+			Campaigner_SetupMode(pThis, CAMPAIGNER_DAMAGE_SHORTING_OUT_MODE) ;
+			AI_SEvent_GeneralSound(&pThis->ah.ih, pThis->ah.ih.m_vPos, SOUND_CAMPAIGNERS_DEATH) ;
 		}
 	}
 
@@ -177,7 +177,7 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 		pCampaigner->m_RunTime += D_800B6B00 ;
 
 	// Update the shield
-	func_80040EA4(&pCampaigner->m_Shield) ;
+	CShield__Update(&pCampaigner->m_Shield) ;
 
 	// No interruptions on blends!
 	if (CGameObjectInstance__IsBlending(pThis))
@@ -192,7 +192,7 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 
 #if CAMPAIGNER_CHECK_FOR_EVADE
 	// Check for evading projectiles
-	func_8004DEC8(pThis, pCampaigner) ;
+	Campaigner_CheckForEvade(pThis, pCampaigner) ;
 #endif
 
 	// Put into limp?
@@ -228,7 +228,7 @@ void Campaigner_Update(CGameObjectInstance *pThis, CCampaigner *pCampaigner)
 	if (pCampaigner->m_Boss.m_PercentageHealth < pCampaigner->m_pStageInfo->HealthLimit)
 	{
 		pCampaigner->m_Boss.m_Stage++ ;
-		func_8004D444(pThis, pCampaigner, ++pCampaigner->m_pStageInfo) ;
+		Campaigner_SetupStageInfo(pThis, pCampaigner, ++pCampaigner->m_pStageInfo) ;
 #if DEBUG_CAMPAIGNER
 			rmonPrintf("\r\n....NEXT ATTACK STAGE....\r\n") ;
 #endif

@@ -14,12 +14,12 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_8001D398();                                /* extern */
-M2C_UNK func_8001FAC0(void *);                      /* extern */
-M2C_UNK func_8001FE40(void *);                      /* extern */
-s32 func_800717E8(s32);                             /* extern */
-s32 func_80071804(s32);                             /* extern */
-s32 func_80071820(s32);                             /* extern */
+s32 CInstanceHdr__TypeFlag();                                /* extern */
+M2C_UNK CGameSimpleInstance__AdvanceWarp(void *);                      /* extern */
+M2C_UNK CGameSimpleInstance__AdvancePickup(void *);                      /* extern */
+s32 AI_IsMorph(s32);                             /* extern */
+s32 AI_IsWarp(s32);                             /* extern */
+s32 AI_IsPickup(s32);                             /* extern */
 extern f32 D_800B6B00;
 extern f64 D_800F1618;
 extern s32 D_80119798;
@@ -29,17 +29,17 @@ void func_8001FFD8(void *arg0) {
     s32 temp_v0;
 
     if (D_80119798 == 0) {
-        temp_v0 = func_8001D398();
+        temp_v0 = CInstanceHdr__TypeFlag();
         sp1C = temp_v0;
-        if (func_80071820(temp_v0) != 0) {
-            func_8001FE40(arg0);
+        if (AI_IsPickup(temp_v0) != 0) {
+            CGameSimpleInstance__AdvancePickup(arg0);
             return;
         }
-        if (func_80071804(sp1C) != 0) {
-            func_8001FAC0(arg0);
+        if (AI_IsWarp(sp1C) != 0) {
+            CGameSimpleInstance__AdvanceWarp(arg0);
             return;
         }
-        if (func_800717E8(sp1C) != 0) {
+        if (AI_IsMorph(sp1C) != 0) {
             M2C_FIELD(arg0, f32 *, 0x17C) = (f32) ((f64) D_800B6B00 * D_800F1618);
         }
     }

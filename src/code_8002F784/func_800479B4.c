@@ -14,16 +14,16 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8008A4DC(M2C_UNK, void *);             /* extern */
-M2C_UNK func_8008A5C4(s32);                         /* extern */
+M2C_UNK killSoundType(M2C_UNK, void *);             /* extern */
+M2C_UNK killCFX(s32);                         /* extern */
 
 void func_800479B4(s32 arg0, void *arg1) {
     s32 temp_a0;
 
     temp_a0 = M2C_FIELD(arg1, s32 *, 0x1F4);
     if (temp_a0 != -1) {
-        func_8008A5C4(temp_a0);
+        killCFX(temp_a0);
         M2C_FIELD(arg1, s32 *, 0x1F4) = -1;
-        func_8008A4DC(0x15E, arg1);
+        killSoundType(0x15E, arg1);
     }
 }

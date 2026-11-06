@@ -42,26 +42,26 @@ void CScene__GetGridSections(CScene *pThis, CBoundsRect *pBoundsRect,
 												 CCacheEntry__GetData(pThis->m_pceGridBounds),
 												 FALSE);
 
-	pbMinXs = CIndexedSet__GetBlock(&isGridBounds, CART_GRIDBOUNDS_usMinXs);
-	func_8002DA8C(&usMinXs, pbMinXs, FALSE);
+	pbMinXs = CIndexedSet__GetAddress(&isGridBounds, CART_GRIDBOUNDS_usMinXs);
+	CUnindexedSet__ConstructFromRawData(&usMinXs, pbMinXs, FALSE);
 	nXs = CUnindexedSet__GetBlockCount(&usMinXs);
 	minXs = (float*) CUnindexedSet__GetBasePtr(&usMinXs);
 
-	pbMaxXs = CIndexedSet__GetBlock(&isGridBounds, CART_GRIDBOUNDS_usMaxXs);
-	func_8002DA8C(&usMaxXs, pbMaxXs, FALSE);
+	pbMaxXs = CIndexedSet__GetAddress(&isGridBounds, CART_GRIDBOUNDS_usMaxXs);
+	CUnindexedSet__ConstructFromRawData(&usMaxXs, pbMaxXs, FALSE);
 	maxXs = (float*) CUnindexedSet__GetBasePtr(&usMaxXs);
 
-	pbMinZs = CIndexedSet__GetBlock(&isGridBounds, CART_GRIDBOUNDS_usMinZs);
-	func_8002DA8C(&usMinZs, pbMinZs, FALSE);
+	pbMinZs = CIndexedSet__GetAddress(&isGridBounds, CART_GRIDBOUNDS_usMinZs);
+	CUnindexedSet__ConstructFromRawData(&usMinZs, pbMinZs, FALSE);
 	nZs = CUnindexedSet__GetBlockCount(&usMinZs);
 	minZs = (float*) CUnindexedSet__GetBasePtr(&usMinZs);
 
-	pbMaxZs = CIndexedSet__GetBlock(&isGridBounds, CART_GRIDBOUNDS_usMaxZs);
-	func_8002DA8C(&usMaxZs, pbMaxZs, FALSE);
+	pbMaxZs = CIndexedSet__GetAddress(&isGridBounds, CART_GRIDBOUNDS_usMaxZs);
+	CUnindexedSet__ConstructFromRawData(&usMaxZs, pbMaxZs, FALSE);
 	maxZs = (float*) CUnindexedSet__GetBasePtr(&usMaxZs);
 
-	pbBounds = CIndexedSet__GetBlock(&isGridBounds, CART_GRIDBOUNDS_usBounds);
-	func_8002DA8C(&usBounds, pbBounds, FALSE);
+	pbBounds = CIndexedSet__GetAddress(&isGridBounds, CART_GRIDBOUNDS_usBounds);
+	CUnindexedSet__ConstructFromRawData(&usBounds, pbBounds, FALSE);
 	gridBounds = (CGameGridBounds*) CUnindexedSet__GetBasePtr(&usBounds);
 	ASSERT((nXs*nZs) == CUnindexedSet__GetBlockCount(&usBounds));
 	ASSERT(nXs && nZs);

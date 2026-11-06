@@ -14,13 +14,13 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_80043AE0(M2C_UNK *);                       /* extern */
-M2C_UNK func_8004A118(s32, s32);                    /* extern */
-M2C_UNK func_8004AF44();                            /* extern */
+s32 CSelection__Choose(M2C_UNK *);                       /* extern */
+M2C_UNK Longhunt_SetupMode(s32, s32);                    /* extern */
+M2C_UNK Longhunt_PlayAttackTauntSount();                            /* extern */
 extern M2C_UNK D_800BD03C;
 
 void func_8004B200(s32 arg0, void *arg1) {
-    func_8004AF44();
-    func_8004A118(arg0, func_80043AE0(&D_800BD03C));
+    Longhunt_PlayAttackTauntSount();
+    Longhunt_SetupMode(arg0, CSelection__Choose(&D_800BD03C));
     M2C_FIELD(arg1, s32 *, 0x24) = -1;
 }

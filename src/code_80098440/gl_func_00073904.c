@@ -56,7 +56,7 @@ void _Ldtob(_Pft* px, char code) {
 
     err = func_800B07F8(&xexp, px);
     if (err > 0) {
-        func_8009FA50(px->s, err == 2 ? "NaN" : "Inf", px->n1 = 3);
+        memcpy(px->s, err == 2 ? "NaN" : "Inf", px->n1 = 3);
         return;
     } else if (err == 0) {
         nsig = 0;
@@ -210,10 +210,10 @@ void gl_func_00073904(_Pft* px, char code, u8* p, s16 nsig, s16 xexp) {
                 nsig = px->prec;
             }
 
-            func_8009FA50(&px->s[px->n1], p, px->n2 = nsig);
+            memcpy(&px->s[px->n1], p, px->n2 = nsig);
             px->nz2 = px->prec - nsig;
         } else if (nsig < xexp) {
-            func_8009FA50(&px->s[px->n1], p, nsig);
+            memcpy(&px->s[px->n1], p, nsig);
             px->n1 += nsig;
             px->nz1 = xexp - nsig;
             if (px->prec > 0 || (px->flags & 8)) {
@@ -223,7 +223,7 @@ void gl_func_00073904(_Pft* px, char code, u8* p, s16 nsig, s16 xexp) {
 
             px->nz2 = px->prec;
         } else {
-            func_8009FA50(&px->s[px->n1], p, xexp);
+            memcpy(&px->s[px->n1], p, xexp);
             px->n1 += xexp;
             nsig -= xexp;
 
@@ -235,7 +235,7 @@ void gl_func_00073904(_Pft* px, char code, u8* p, s16 nsig, s16 xexp) {
                 nsig = px->prec;
             }
 
-            func_8009FA50(&px->s[px->n1], &p[xexp], nsig);
+            memcpy(&px->s[px->n1], &p[xexp], nsig);
             px->n1 += nsig;
             px->nz1 = px->prec - nsig;
         }
@@ -263,7 +263,7 @@ void gl_func_00073904(_Pft* px, char code, u8* p, s16 nsig, s16 xexp) {
                 nsig = px->prec;
             }
 
-            func_8009FA50(&px->s[px->n1], p, nsig);
+            memcpy(&px->s[px->n1], p, nsig);
             px->n1 += nsig;
             px->nz1 = px->prec - nsig;
         }

@@ -14,13 +14,13 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_8003205C(void *, s32, M2C_UNK);            /* extern */
-s32 func_80034868();                                /* extern */
-M2C_UNK func_80083D54(s32, s32);                    /* extern */
+s32 CScene__GetPersistantBitstream(void *, s32, M2C_UNK);            /* extern */
+s32 CScene__GetAnimInstanceIndex();                                /* extern */
+M2C_UNK GetBitStreamFlag(s32, s32);                    /* extern */
 
 void func_800348B8(void *arg0) {
     s32 sp1C;
 
-    sp1C = func_80034868();
-    func_80083D54(func_8003205C(arg0, M2C_FIELD(arg0, s32 *, 0x175EC), 1), sp1C);
+    sp1C = CScene__GetAnimInstanceIndex();
+    GetBitStreamFlag(CScene__GetPersistantBitstream(arg0, M2C_FIELD(arg0, s32 *, 0x175EC), 1), sp1C);
 }

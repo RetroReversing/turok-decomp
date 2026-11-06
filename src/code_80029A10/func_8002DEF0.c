@@ -3,12 +3,12 @@
 typedef struct Assoc {struct Assoc *next;u32 hash;void *key,*value;} Assoc;
 typedef struct Plex {struct Plex *next;u32 max,cur;} Plex;
 typedef struct {void *table;u32 tableSize;s32 count;Assoc *freeList;Plex *blocks;s32 blockSize;} Hash;
-extern void *func_80011E98(s32);
+extern void *i3D_mallocTop(s32);
 static __inline Plex *Create(Plex **head,u32 max,u32 element)
 {
  Plex *p;
 
- p=(Plex*)func_80011E98(sizeof(Plex)+max*element);
+ p=(Plex*)i3D_mallocTop(sizeof(Plex)+max*element);
  p->max=max;
  p->cur=0;
  p->next=*head;

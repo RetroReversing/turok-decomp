@@ -943,7 +943,7 @@ typedef struct s_File
 } t_File ;
 extern t_File D_80119AC8[] ;
 extern int D_800113A8 (int showall) ;
-extern int func_8001172C(int index) ;
+extern int DeleteCurrent(int index) ;
 extern int SaveNew(void) ;
 extern int func_800118EC(int index) ;
 typedef struct
@@ -1257,7 +1257,7 @@ typedef struct
        TypeFlyForward,
        TypeFlyBackward;
 } CTControl;
-extern float func_80051EA4 (CTControl *pThis);
+extern float CTControl__IsUseMenu (CTControl *pThis);
 enum SaveMemorySelections
 {
  SAVEMEMORY_SAVE,
@@ -1349,10 +1349,10 @@ typedef struct CGamePak_t
  signed long m_Selection ;
  signed long m_Timer ;
 } CGamePak ;
-extern void func_8000DEB8(CRequestor *pThis, char *String1, char *String2) ;
-extern signed long func_8000DEE8(CRequestor *pThis) ;
-extern void func_8000E498(CMessageBox *pThis, char *String1, char *String2) ;
-extern signed long func_8000E4BC(CMessageBox *pThis) ;
+extern void CRequestor__Construct(CRequestor *pThis, char *String1, char *String2) ;
+extern signed long CRequestor__Update(CRequestor *pThis) ;
+extern void CMessageBox__Construct(CMessageBox *pThis, char *String1, char *String2) ;
+extern signed long CMessageBox__Update(CMessageBox *pThis) ;
 typedef struct CCheatCode_t
 {
  float m_Alpha ;
@@ -1983,7 +1983,7 @@ typedef struct CEngineApp_t
 } CEngineApp;
 extern int D_8000658C(CEngineApp *pThis);
 extern int D_80006770(CEngineApp *pThis);
-extern int func_800061C4(CEngineApp *pThis);
+extern int CEngineApp__MenuLeft(CEngineApp *pThis);
 extern int func_800063A8(CEngineApp *pThis);
 extern sa_u64 dram_stack[];
 extern CTControl *D_800F9E44;
@@ -2001,10 +2001,10 @@ extern signed long CSave__UpdateMemory(CSave *pThis) ;
 void func_8000CE50(int ret);
 void func_8000CFC4(int ret);
 signed long CSave__UpdateMemory(CSave *pThis);
-void func_8000DEB8(CRequestor *pThis, char *String1, char *String2);
-signed long func_8000DEE8(CRequestor *pThis);
-void func_8000E498(CMessageBox *pThis, char *String1, char *String2);
-signed long func_8000E4BC(CMessageBox *pThis);
+void CRequestor__Construct(CRequestor *pThis, char *String1, char *String2);
+signed long CRequestor__Update(CRequestor *pThis);
+void CMessageBox__Construct(CMessageBox *pThis, char *String1, char *String2);
+signed long CMessageBox__Update(CMessageBox *pThis);
 void func_8000E9BC(void);
 signed long CSave__UpdateMemory(CSave *pThis){
  /* Update memory card save choices and confirmation dialogs. */
@@ -2012,7 +2012,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
  signed long ReturnValue = -1 ;
  if ((&D_800F9F10)->m_bMessageBox)
  {
-  ReturnValue = func_8000E4BC(&(&D_800F9F10)->m_MessageBox) ;
+  ReturnValue = CMessageBox__Update(&(&D_800F9F10)->m_MessageBox) ;
   if (ReturnValue != -1)
   {
    if ((&D_800F9F10)->m_MessageBox.b_Active == 0)
@@ -2029,7 +2029,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
  }
  else if ((&D_800F9F10)->m_bRequestor)
  {
-  ReturnValue = func_8000DEE8(&(&D_800F9F10)->m_Requestor) ;
+  ReturnValue = CRequestor__Update(&(&D_800F9F10)->m_Requestor) ;
   if (ReturnValue != -1)
   {
    switch (D_80119974)
@@ -2037,7 +2037,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
     case 0:
      if (ReturnValue == REQUESTOR_YES)
      {
-      func_8000E498(&(&D_800F9F10)->m_MessageBox,
+      CMessageBox__Construct(&(&D_800F9F10)->m_MessageBox,
              D_800B7EB4, D_800B7EC8) ;
       (&D_800F9F10)->m_bMessageBox = 1 ;
      }
@@ -2057,7 +2057,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
     case 2:
      if (ReturnValue == REQUESTOR_YES)
      {
-      ret = func_8001172C(pThis->m_ASelection-1) ;
+      ret = DeleteCurrent(pThis->m_ASelection-1) ;
       func_8000CFC4(ret) ;
      }
      (&D_800F9F10)->m_Requestor.m_Mode = REQUESTOR_FADEDOWN ;
@@ -2070,7 +2070,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
  }
  else
  {
-  if (func_800061C4((&D_800F9F10)))
+  if (CEngineApp__MenuLeft((&D_800F9F10)))
    pThis->m_Side ^= 1 ;
   else if (func_800063A8((&D_800F9F10)))
    pThis->m_Side ^= 1 ;
@@ -2113,7 +2113,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
      pThis->m_BSelection = SAVEMEMORY_END_SELECTION-1 ;
    }
   }
-  if (func_80051EA4(D_800F9E44))
+  if (CTControl__IsUseMenu(D_800F9E44))
    ReturnValue = pThis->m_BSelection ;
   switch (ReturnValue)
   {
@@ -2130,7 +2130,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
     }
     else
     {
-     func_8000DEB8(&(&D_800F9F10)->m_Requestor,
+     CRequestor__Construct(&(&D_800F9F10)->m_Requestor,
            D_800B7F30, D_800B7F3C) ;
      (&D_800F9F10)->m_bRequestor = 1 ;
      (&D_800F9F10)->m_Requestor.m_Selection = REQUESTOR_NO ;
@@ -2144,7 +2144,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
      ret = 1 ;
     else
     {
-     func_8000DEB8(&(&D_800F9F10)->m_Requestor,
+     CRequestor__Construct(&(&D_800F9F10)->m_Requestor,
          D_800B7E3C, D_800B7F4C) ;
      (&D_800F9F10)->m_bRequestor = 1 ;
      (&D_800F9F10)->m_Requestor.m_Selection = REQUESTOR_NO ;

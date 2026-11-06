@@ -372,7 +372,7 @@ typedef struct CQuatern_t
 {
  float x, y, z, t;
 } CQuatern;
-extern void func_800155D4(CMtxF mfThis);
+extern void CMtxF__Identity(CMtxF mfThis);
 typedef struct CGameAnimateState_t
 {
  CCacheEntry *m_pceAnim;
@@ -726,7 +726,7 @@ typedef struct CCollisionInfo2_t
  CVector3 vWaterCollisionPos;
  CVector3 vCollisionVelocity;
 } CCollisionInfo2;
-extern void func_8009C5E4();
+extern void CCollisionInfo__Reset();
 typedef struct CParticle_t
 {
  CAnimInstanceHdr ah;
@@ -865,7 +865,7 @@ typedef struct CScene_t
  unsigned long pad1, pad2, pad3, m_bPlayerActiveFlags;
  CPickupMonitor m_PickupMonitor ;
 } CScene;
-extern void func_80034998();
+extern void CScene__ResetPersistantData();
 typedef struct COverlay_t
 {
  int m_OnScreen ;
@@ -923,7 +923,7 @@ typedef struct COnScreen_t
  struct CBoss_t *m_pBoss ;
  sa_u8 m_SelectPosition ;
 } COnScreen ;
-extern void func_8007D3C0(COnScreen *pThis);
+extern void COnScreen__Construct(COnScreen *pThis);
 typedef struct CRequestor_t
 {
  float m_Alpha ;
@@ -1604,9 +1604,9 @@ extern sa_u64 dram_stack[];
 struct CCollisionInfo2_t;
 extern sa_u32 D_8014F660 ;
 extern int D_800BA910 ;
-extern void func_80001860(CEngineApp *pThis) ;
-void func_80001860(CEngineApp *pThis);
-void func_80001860(CEngineApp *pThis){
+extern void CEngineApp__InitializeGameVars(CEngineApp *pThis) ;
+void CEngineApp__InitializeGameVars(CEngineApp *pThis);
+void CEngineApp__InitializeGameVars(CEngineApp *pThis){
  /* Reset per-game state and screen defaults when starting a new game. */
  if ( (D_8014F660 == 0x4341524c)
    || (D_8014F660 == 0x4341524d) )
@@ -1615,7 +1615,7 @@ void func_80001860(CEngineApp *pThis){
  }
  else
  {
-  func_80034998();
+  CScene__ResetPersistantData();
  }
  pThis->m_nCurrentRegionSet = (unsigned long) -1 ;
  pThis->m_Flash = 0;
@@ -1646,19 +1646,19 @@ void func_80001860(CEngineApp *pThis){
  pThis->m_MenuLeftChangeCount = 249.0;
  pThis->m_MenuRightChangeCount = 249.0;
  { (&pThis->m_qGround)->x = (&pThis->m_qGround)->y = (&pThis->m_qGround)->z = 0; (&pThis->m_qGround)->t = 1; };
- func_800155D4(pThis->m_mfViewOrient);
- func_800155D4(pThis->m_mfProjection);
+ CMtxF__Identity(pThis->m_mfViewOrient);
+ CMtxF__Identity(pThis->m_mfProjection);
  { (&pThis->m_qViewAlign)->x = (&pThis->m_qViewAlign)->y = (&pThis->m_qViewAlign)->z = 0; (&pThis->m_qViewAlign)->t = 1; };
  pThis->m_RotXOffset = 0;
  pThis->m_RotYOffset = 0;
  pThis->m_RotZOffset = 0;
  pThis->m_YPosOffset = 0;
- func_8009C5E4();
- func_8007D3C0(&pThis->m_OnScreen) ;
+ CCollisionInfo__Reset();
+ COnScreen__Construct(&pThis->m_OnScreen) ;
 }
 
 extern Vtx D_800F9ED0[4];
-void func_80001B74(){
+void CEngineApp__SetupShadowVtxs(){
  int v;
  Vtx *pV;
  for (v=0; v<4; v++)
@@ -1700,16 +1700,16 @@ void func_80001B74(){
  }
 }
 
-extern void osCreateThread(); extern void osStartThread(); extern void func_8009D620(); extern u8 D_800F90D0[],D_8013C660[]; extern void func_80001324();
-void func_80001CD4(s32 arg0) {
+extern void osCreateThread(); extern void osStartThread(); extern void func_8009D620(); extern u8 D_800F90D0[],D_8013C660[]; extern void idle();
+void CEngineApp__Boot(s32 arg0) {
 func_8009D620();
-osCreateThread(D_800F90D0,1,func_80001324,0,D_8013C660,0xA);
+osCreateThread(D_800F90D0,1,idle,0,D_8013C660,0xA);
 osStartThread(D_800F90D0);
 }
 
 extern void osCreateThread(); extern void osStartThread(); extern void osViBlack(); extern void osCreatePiManager(); extern void osCreateMesgQueue(); extern void osSetThreadPri();
 extern u8 D_800F9280[],D_800F9430[],D_800F9870[],D_800F9888[],D_800F9890[],D_800F9BB0[],D_8014A660[],D_8014B660[];
-extern void func_8000134C(); extern void func_8000167C();
+extern void func_8000134C(); extern void mainproc();
 void CEngineApp__Idle(u32 *arg0,s32 arg1) {
 volatile u32 *p;
 osViBlack(1);
@@ -1717,7 +1717,7 @@ osCreatePiManager(0x96,D_800F9BB0,D_800F9890,0xC8);
 osCreateMesgQueue(D_800F9870,D_800F9888,1);
 osCreateThread(D_800F9430,5,func_8000134C,arg1,D_8014B660,0x32);
 osStartThread(D_800F9430);
-osCreateThread(D_800F9280,6,func_8000167C,arg1,D_8014A660,0xA);
+osCreateThread(D_800F9280,6,mainproc,arg1,D_8014A660,0xA);
 p=(volatile u32 *)((u8*)arg0+0x1f818);
 if (*p==0) osStartThread(D_800F9280);
 p[1]=0;

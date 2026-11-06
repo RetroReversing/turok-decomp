@@ -79,18 +79,18 @@ typedef struct CParticle_t
 	struct CParticle_t	*m_pLast, *m_pNext,
 								*m_pDrawLast, *m_pDrawNext;
 } CParticle;
-DWORD func_800210C0(CGameRegion*);
-void func_8002A2A4(CParticle*,int);
-void func_80070DA8(CInstanceHdr*,CInstanceHdr*,int,unsigned long,CVector3,float);
-int func_80031974(void*,int,float,void*,CVector3*,int);
-void func_8002864C(void*,CParticle*);
+DWORD CGameRegion__GetWallMaterial(CGameRegion*);
+void CParticle__SpawnCeilingCollision(CParticle*,int);
+void AI_Event_Dispatcher(CInstanceHdr*,CInstanceHdr*,int,unsigned long,CVector3,float);
+int CScene__DoSoundEffect(void*,int,float,void*,CVector3*,int);
+void CParticleSystem__DeallocateParticle(void*,CParticle*);
 extern u8 D_800FA3C8[],D_80102228[];
-#define CGameRegion__GetWallMaterial func_800210C0
-#define CParticle__SpawnCeilingCollision func_8002A2A4
-#define AI_Event_Dispatcher func_80070DA8
+#define CGameRegion__GetWallMaterial CGameRegion__GetWallMaterial
+#define CParticle__SpawnCeilingCollision CParticle__SpawnCeilingCollision
+#define AI_Event_Dispatcher AI_Event_Dispatcher
 #define AI_SPECIES_ALL 0xffffffff
-#define CParticle__DoSoundEffect(p,n,l,v) func_80031974(D_800FA3C8,(n),(l),(p),(v),0)
-#define CParticle__Delete(p) func_8002864C(D_80102228,(p))
+#define CParticle__DoSoundEffect(p,n,l,v) CScene__DoSoundEffect(D_800FA3C8,(n),(l),(p),(v),0)
+#define CParticle__Delete(p) CParticleSystem__DeallocateParticle(D_80102228,(p))
 #define INTERSECT_BEHAVIOR_STICK 1
 #define FALSE 0
 

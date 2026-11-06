@@ -14,7 +14,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_8009D220(s32);                             /* extern */
+s32 osSetIntMask(s32);                             /* extern */
 M2C_UNK alUnlink(void *);                      /* extern */
 M2C_UNK alLink(void *, void *);              /* extern */
 
@@ -24,7 +24,7 @@ void alEvtqFlushType(void *arg0, s16 arg1) {
     void *temp_s1;
     void *var_s0;
 
-    sp2C = func_8009D220(1);
+    sp2C = osSetIntMask(1);
     var_s0 = M2C_FIELD(arg0, void **, 8);
     if (var_s0 != NULL) {
         do {
@@ -39,5 +39,5 @@ void alEvtqFlushType(void *arg0, s16 arg1) {
             var_s0 = temp_s1;
         } while (temp_s1 != NULL);
     }
-    func_8009D220(sp2C);
+    osSetIntMask(sp2C);
 }

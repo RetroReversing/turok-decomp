@@ -71,9 +71,9 @@ typedef struct {BYTE m_Type,m_bActiveFlags;WORD m_nObjType;CVector3 m_vPos;float
 typedef struct {CInstanceHdr ih;CVector3 m_vVelocity;} CAnimInstanceHdr;
 typedef struct CGameObjectInstance_t {CAnimInstanceHdr ah;u8 pad28[0x64-0x28];float m_RotY,m_cMelt;u8 pad6C[0x11A-0x6C];WORD m_nTypeFlag;u8 pad11C[0x130-0x11C];DWORD m_dwFlags;u8 pad134[0x1A4-0x134];CAIDynamic m_AI;} CGameObjectInstance;
 extern CGameObjectInstance*D_8010201C;extern float D_801197E8;
-float func_8005F34C(CGameObjectInstance*,CVector3);void func_8008453C(CAIDynamic*,CEnemyAttributes*,int);
-#define AI_DistanceSquared func_8005F34C
-#define CAIDynamic__SetHealth func_8008453C
+float AI_DistanceSquared(CGameObjectInstance*,CVector3);void CAIDynamic__SetHealth(CAIDynamic*,CEnemyAttributes*,int);
+#define AI_DistanceSquared AI_DistanceSquared
+#define CAIDynamic__SetHealth CAIDynamic__SetHealth
 #define AI_GetDyn(p) (&(p)->m_AI)
 #define AI_GetEA(p) ((p)->ah.ih.m_pEA)
 #define AI_GetPos(p) ((p)->ah.ih.m_vPos)
@@ -90,8 +90,8 @@ float func_8005F34C(CGameObjectInstance*,CVector3);void func_8008453C(CAIDynamic
 typedef struct {float x,y,z,w;} CQuatern;
 typedef struct {int unused;} CEngineApp;
 extern CEngineApp D_800F9F10;extern u8 D_80102228[];
-int func_80017F0C(CInstanceHdr*,CVector3,CVector3*,CGameRegion**,int,int);
-CQuatern func_8001D464(CGameObjectInstance*);
+int CInstanceHdr__GetNearPositionAndRegion(CInstanceHdr*,CVector3,CVector3*,CGameRegion**,int,int);
+CQuatern CGameObjectInstance__GetAimRotation(CGameObjectInstance*);
 void func_80028970(void*,CInstanceHdr*,int,CVector3,CQuatern,CVector3,CGameRegion*,int,BOOL);
 #define GetApp() (&D_800F9F10)
 #define NULL 0
@@ -100,8 +100,8 @@ void func_80028970(void*,CInstanceHdr*,int,CVector3,CQuatern,CVector3,CGameRegio
 #define INTERSECT_BEHAVIOR_STICK 1
 #define PARTICLE_TYPE_TEST 15
 #define PARTICLE_NOEDGE -1
-#define CInstanceHdr__GetNearPositionAndRegion func_80017F0C
-#define CGameObjectInstance__GetAimRotation func_8001D464
+#define CInstanceHdr__GetNearPositionAndRegion CInstanceHdr__GetNearPositionAndRegion
+#define CGameObjectInstance__GetAimRotation CGameObjectInstance__GetAimRotation
 #define CParticleSystem__CreateParticle func_80028970
 #define TRACE1(a,b)
 

@@ -36,17 +36,17 @@ typedef struct{u8 dummy,txsize,rxsize,cmd,typeh,typel,status,dummy1;}__OSContReq
 typedef struct{u8 dummy,txsize,rxsize,cmd;u16 address;u8 data[32];u8 datacrc;}__OSContRamReadFormat;
 typedef struct{u32 repaired,random;u64 serial_mid,serial_low;u16 deviceid;u8 banks,version;u16 checksum,inverted_checksum;}__OSPackId;
 extern OSPifRam D_80137C90;extern u8 D_80137C40,D_80137C41;
-void func_800A8520(void);void func_800A8564(void);s32 func_800A8590(s32,void*);s32 osRecvMesg(OSMesgQueue*,OSMesg*,s32);
-void __osPfsRequestData(u8);void func_8009F22C(u8*,OSContStatus*);void __osPackRamReadData(int,u16);void __osPackRamWriteData(int,u16,u8*);
+void __osSiGetAccess(void);void __osSiRelAccess(void);s32 __osSiRawStartDma(s32,void*);s32 osRecvMesg(OSMesgQueue*,OSMesg*,s32);
+void __osPfsRequestData(u8);void __osContGetInitData(u8*,OSContStatus*);void __osPackRamReadData(int,u16);void __osPackRamWriteData(int,u16,u8*);
 u8 __osContAddressCrc(u16);u8 __osContDataCrc(u8*);s32 __osPfsGetStatus(OSMesgQueue*,int);
 s32 __osIdCheckSum(u16*,u16*,u16*);u16 __osSumcalc(u8*,int);u32 osGetCount(void);s32 __osClearPage(OSPfs*,int,u8*,u8);
 #define __osPfsPifRam D_80137C90
 #define __osContLastCmd D_80137C40
 #define __osMaxControllers D_80137C41
-#define __osSiGetAccess func_800A8520
-#define __osSiRelAccess func_800A8564
-#define __osSiRawStartDma func_800A8590
-#define __osPfsGetInitData func_8009F22C
+#define __osSiGetAccess __osSiGetAccess
+#define __osSiRelAccess __osSiRelAccess
+#define __osSiRawStartDma __osSiRawStartDma
+#define __osPfsGetInitData __osContGetInitData
 #define MAXCONTROLLERS 4
 #define OS_WRITE 1
 #define OS_READ 0

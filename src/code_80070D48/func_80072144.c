@@ -11,12 +11,12 @@ void func_80072144(CGameObjectInstance *pAI, float ang)
 
 
 	AI_GetDyn(pAI)->m_dwStatusFlags &= (~AI_WAITFOR_CYCLE);
-	picked = func_8001C348(pAI, 1, movetype.values, moveweight.values, NULL);
-	func_8005FCA0(pAI, picked, FALSE);
+	picked = CGameObjectInstance__GetRandomAnimIndex(pAI, 1, movetype.values, moveweight.values, NULL);
+	AI_SetDesiredAnimByIndex(pAI, picked, FALSE);
 
 	// make ai turn
 	if (ang<=ANGLE_DTOR(-AI_MAX_TELEPORTTURN)) ang=ANGLE_DTOR(-AI_MAX_TELEPORTTURN);
 	if (ang>=ANGLE_DTOR(+AI_MAX_TELEPORTTURN)) ang=ANGLE_DTOR(+AI_MAX_TELEPORTTURN);
-	func_80072110(pAI, D_800B6B00*ang/AI_TURN_SMOOTHNESS);
+	AI_NudgeRotY(pAI, D_800B6B00*ang/AI_TURN_SMOOTHNESS);
 }
 

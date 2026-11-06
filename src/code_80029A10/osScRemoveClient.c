@@ -55,7 +55,7 @@ typedef struct OSMesgQueue_s {
     OSMesg *msg;
 } OSMesgQueue;
 typedef sa_u32 OSIntMask;
-extern OSIntMask func_8009D220(OSIntMask);
+extern OSIntMask osSetIntMask(OSIntMask);
 typedef sa_u64 OSTime;
 typedef struct {
  sa_u32 type;
@@ -123,7 +123,7 @@ void osScRemoveClient(OSSched *D_800F95E0, OSScClient *c){
     OSScClient *client = D_800F95E0->clientList;
     OSScClient *prev = 0;
     OSIntMask mask;
-    mask = func_8009D220(0x00000001);
+    mask = osSetIntMask(0x00000001);
     while (client != 0) {
         if (client == c) {
      if(prev)
@@ -135,5 +135,5 @@ void osScRemoveClient(OSSched *D_800F95E0, OSScClient *c){
         prev = client;
         client = client->next;
     }
-    func_8009D220(mask);
+    osSetIntMask(mask);
 }

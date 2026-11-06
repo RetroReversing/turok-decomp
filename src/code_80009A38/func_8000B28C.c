@@ -4,7 +4,7 @@
 extern void func_800806B4(int);
 extern void func_8008092C(float, float);
 extern void func_800808F8(int, int, int, int, int, int, int);
-extern void func_80080B0C(int);
+extern void COnScreen__PrepareSmallFont(int);
 extern void func_800814AC(int, const char *, int, int, int, int, int);
 extern unsigned char D_800B86D0;
 extern int D_80119940;
@@ -58,7 +58,7 @@ void func_8000B28C(int a){
    func_800814AC(a,D_800B6BD8,160,180,(int)D_80119944,1,0);
   }
  }else{
-  func_8008092C(1.0f,1.0f);func_800808F8(a,150,150,150,150,150,150);func_80080B0C(a);
+  func_8008092C(1.0f,1.0f);func_800808F8(a,150,150,150,150,150,150);COnScreen__PrepareSmallFont(a);
   y=92;
  func_800814AC(a,D_800EFB50,160,y,(int)D_80119944,1,0);
  y+=9;

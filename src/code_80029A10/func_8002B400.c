@@ -641,7 +641,7 @@ typedef struct CParticle_t
         *m_pDrawLast, *m_pDrawNext;
 } CParticle;
 extern void CParticle__Advance (CParticle *pThis);
-extern void func_80029C48 (CParticle *pThis);
+extern void CParticle__EndLife (CParticle *pThis);
 typedef struct CParticleSystem_t
 {
  CParticle m_Particles[128],
@@ -824,7 +824,7 @@ struct CParticle_t;
 void CParticleSystem__DeallocateParticle(CParticleSystem *pThis, CParticle *pParticle);
 void func_8002B400(CParticleSystem *pThis);
 void CParticle__Advance(CParticle *pThis);
-void func_80029C48(CParticle *pThis);
+void CParticle__EndLife(CParticle *pThis);
 void func_8002B400(CParticleSystem *pThis){
  CParticle *pParticle, *pCurrent;
  float prevFrameInc;
@@ -850,7 +850,7 @@ void func_8002B400(CParticleSystem *pThis){
   }
   else
   {
-   func_80029C48(pCurrent);
+   CParticle__EndLife(pCurrent);
    CParticleSystem__DeallocateParticle(pThis, pCurrent);
   }
  }

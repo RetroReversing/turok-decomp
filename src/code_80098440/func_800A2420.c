@@ -687,7 +687,7 @@ static void  func_800A2454(ALEventQueue *evtq, ALEventListItem *item)
     ALLink              *node;
     ALEventListItem     *nextItem;
     
-    mask = func_8009D220(OS_IM_NONE);
+    mask = osSetIntMask(OS_IM_NONE);
 
     for (node = &evtq->allocList; node != 0; node = node->next)
     {
@@ -708,7 +708,7 @@ static void  func_800A2454(ALEventQueue *evtq, ALEventListItem *item)
             item->delta -= nextItem->delta;
         }
     }
-    func_8009D220(mask);
+    osSetIntMask(mask);
 }
 
 static void func_800A2420 (ALCSPlayer *seqp, f32 tempo)

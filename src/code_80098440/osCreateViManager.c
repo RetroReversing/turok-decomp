@@ -6,16 +6,16 @@ typedef struct {struct {u16 type;u8 pri,status;OSMesgQueue *retQueue;}hdr;u8 res
 OSDevMgr D_800EF240={0};extern OSDevMgr D_800EF210;extern s32 D_800EF340;
 extern u8 D_80136A30[],D_80136BE0[],D_80137BE0[],D_80137BF8[],D_80139F78[],D_80137CD0[],D_80137E80[],D_80138E80[],D_80138E98[];
 OSIoMesg D_80138EB0,D_80138EC8;
-u32 func_800A5750(void);void func_800A5770(u32);OSPri func_800A1920(OSThread*);void osSetThreadPri(OSThread*,OSPri);
+u32 __osDisableInt(void);void __osRestoreInt(u32);OSPri osGetThreadPri(OSThread*);void osSetThreadPri(OSThread*,OSPri);
 void osSetEventMesg(s32,OSMesgQueue*,OSMesg);void osCreateMesgQueue(OSMesgQueue*,OSMesg*,s32);void osCreateThread(OSThread*,s32,void(*)(void*),void*,void*,OSPri);void osStartThread(OSThread*);
-void __osTimerServicesInit(void);void func_800A7090(void);void func_800A71E0(void);void func_800A0F38(void*);void func_800A7460(void*);void func_800A72A0(void);void func_800A7380(void);
-#define __osDisableInt func_800A5750
-#define __osRestoreInt func_800A5770
-#define osGetThreadPri func_800A1920
+void __osTimerServicesInit(void);void __osViInit(void);void __osPiCreateAccessQueue(void);void viMgrMain(void*);void __osDevMgrMain(void*);void osPiRawStartDma(void);void osEPiRawStartDma(void);
+#define __osDisableInt __osDisableInt
+#define __osRestoreInt __osRestoreInt
+#define osGetThreadPri osGetThreadPri
 #define __osViDevMgr D_800EF240
 #define __osPiDevMgr D_800EF210
-#define __osViInit func_800A7090
-#define __osPiCreateAccessQueue func_800A71E0
+#define __osViInit __osViInit
+#define __osPiCreateAccessQueue __osPiCreateAccessQueue
 #define __osPiAccessQueueEnabled D_800EF340
 #define __osPiAccessQueue (*(OSMesgQueue*)D_80139F78)
 #define viThread (*(OSThread*)D_80137CD0)
@@ -24,14 +24,14 @@ void __osTimerServicesInit(void);void func_800A7090(void);void func_800A71E0(voi
 #define viEventBuf ((OSMesg*)D_80138E98)
 #define viRetraceMsg D_80138EB0
 #define viCounterMsg D_80138EC8
-#define viMgrMain func_800A0F38
+#define viMgrMain viMgrMain
 #define piThread (*(OSThread*)D_80136A30)
 #define piThreadStack D_80136BE0
 #define piEventQueue (*(OSMesgQueue*)D_80137BE0)
 #define piEventBuf ((OSMesg*)D_80137BF8)
-#define __osDevMgrMain func_800A7460
-#define osPiRawStartDma func_800A72A0
-#define osEPiRawStartDma func_800A7380
+#define __osDevMgrMain __osDevMgrMain
+#define osPiRawStartDma osPiRawStartDma
+#define osEPiRawStartDma osEPiRawStartDma
 #define OS_VIM_STACKSIZE 4096
 #define OS_PIM_STACKSIZE 4096
 #define OS_MESG_TYPE_VRETRACE 13

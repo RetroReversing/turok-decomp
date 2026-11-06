@@ -35,8 +35,8 @@ extern char D_800B7DF4[];
 extern char D_800F9F10[];
 extern char D_80119488[];
 extern char D_80119598[];
-extern void func_80004504(void *, s32);
-extern void func_8000F87C(void *, void *);
+extern void CEngineApp__SetupFadeTo(void *, s32);
+extern void CGiveCheatCode__Construct(void *, void *);
 extern void func_80084BB0(void *);
 void func_8000B96C(void)
 {
@@ -65,22 +65,22 @@ void func_8000B96C(void)
       D_80109F10.x = 2;
       if ((D_80109F10.y == 1) && D_80109F10.w)
       {
-        func_8000F87C(D_80119598, D_800B7DE4);
+        CGiveCheatCode__Construct(D_80119598, D_800B7DE4);
         D_80109F10.q = 1;
         return;
       }
       if ((D_80109F10.y == 2) && D_80109F10.w)
       {
-        func_8000F87C(D_80119598, D_800B7DF4);
+        CGiveCheatCode__Construct(D_80119598, D_800B7DF4);
         D_80109F10.q = 1;
         return;
       }
-      func_80004504(D_800F9F10, 0);
+      CEngineApp__SetupFadeTo(D_800F9F10, 0);
       return;
     }
     if (currentStep->a == (-1.0f))
     {
-      func_80004504(D_800F9F10, 0);
+      CEngineApp__SetupFadeTo(D_800F9F10, 0);
       D_80119950.p = D_800B6BF0;
       currentStep = D_80119950.p;
       D_80119950.delay = 240.0f;

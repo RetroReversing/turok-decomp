@@ -38,7 +38,7 @@ typedef struct CIndexedSet_t
    int m_AutoDeleteData;
 } CIndexedSet;
 extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void* CIndexedSet__GetAddress(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -126,22 +126,22 @@ void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame){
  CIndexedSet__ConstructFromRawData(&isGeometry,
              CCacheEntry__GetData(pThis->m_pceGeometry),
              0);
- pInfo = (CGameGeometryInfo*) CIndexedSet__GetBlock((&isGeometry), (&isGeometry)->m_pData, (0));
+ pInfo = (CGameGeometryInfo*) CIndexedSet__GetAddress((&isGeometry), (&isGeometry)->m_pData, (0));
  if (pInfo->m_MorphFrameNumber != D_800B6AF0)
  {
   pInfo->m_MorphFrameNumber = D_800B6AF0;
-  pbNodes = CIndexedSet__GetBlock((&isGeometry), (&isGeometry)->m_pData, (1));
+  pbNodes = CIndexedSet__GetAddress((&isGeometry), (&isGeometry)->m_pData, (1));
   CIndexedSet__ConstructFromRawData(&isNodes, pbNodes, 0);
   if (nNode < (((unsigned long*) (&isNodes)->m_pData)[0]))
   {
-   pbNode = CIndexedSet__GetBlock((&isNodes), (&isNodes)->m_pData, (nNode));
+   pbNode = CIndexedSet__GetAddress((&isNodes), (&isNodes)->m_pData, (nNode));
    CIndexedSet__ConstructFromRawData(&isNode, pbNode, 0);
-     pbParts = CIndexedSet__GetBlock((&isNode), (&isNode)->m_pData, (2));
+     pbParts = CIndexedSet__GetAddress((&isNode), (&isNode)->m_pData, (2));
    CIndexedSet__ConstructFromRawData(&isParts, pbParts, 0);
    nParts = (((unsigned long*) (&isParts)->m_pData)[0]);
    if (nParts >= 3)
    {
-    pbPart = CIndexedSet__GetBlock((&isParts), (&isParts)->m_pData, (D_800B6AF4));
+    pbPart = CIndexedSet__GetAddress((&isParts), (&isParts)->m_pData, (D_800B6AF4));
     CIndexedSet__ConstructFromRawData(&isDestPart, pbPart, 0);
     nDestSections = (((unsigned long*) (&isDestPart)->m_pData)[0]);
     while (Frame < 0)
@@ -157,7 +157,7 @@ void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame){
     for (i=0; i<2; i++)
     {
      frame = ((((int) Frame) + i) % (nParts - 2)) + 2;
-     pbPart = CIndexedSet__GetBlock((&isParts), (&isParts)->m_pData, (frame));
+     pbPart = CIndexedSet__GetAddress((&isParts), (&isParts)->m_pData, (frame));
      CIndexedSet__ConstructFromRawData(&isFramePart[i], pbPart, 0);
      nSections[i] = (((unsigned long*) (&isFramePart[i])->m_pData)[0]);
     }
@@ -165,16 +165,16 @@ void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame){
     {
      for (cSection=0; cSection<nDestSections; cSection++)
      {
-      pbSection = CIndexedSet__GetBlock((&isDestPart), (&isDestPart)->m_pData, (cSection));
+      pbSection = CIndexedSet__GetAddress((&isDestPart), (&isDestPart)->m_pData, (cSection));
       CIndexedSet__ConstructFromRawData(&isDestSection, pbSection, 0);
-      pbData = CIndexedSet__GetBlock((&isDestSection), (&isDestSection)->m_pData, (1));
+      pbData = CIndexedSet__GetAddress((&isDestSection), (&isDestSection)->m_pData, (1));
       nDestVertices = *((unsigned long*) pbData);
       destVertices = (Vtx*) *(((unsigned long*) pbData) + 1);
       for (i=0; i<2; i++)
       {
-       pbSection = CIndexedSet__GetBlock((&isFramePart[i]), (&isFramePart[i])->m_pData, (cSection));
+       pbSection = CIndexedSet__GetAddress((&isFramePart[i]), (&isFramePart[i])->m_pData, (cSection));
        CIndexedSet__ConstructFromRawData(&isSection[i], pbSection, 0);
-       pbData = CIndexedSet__GetBlock((&isSection[i]), (&isSection[i])->m_pData, (1));
+       pbData = CIndexedSet__GetAddress((&isSection[i]), (&isSection[i])->m_pData, (1));
        nVertices[i] = *((unsigned long*) pbData);
        vertices[i] = (Vtx*) *(((unsigned long*) pbData) + 1);
       }

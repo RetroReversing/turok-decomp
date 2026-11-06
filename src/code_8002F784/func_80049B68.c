@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_8003983C(void *, s32);
+extern void CCamera__FadeToCinema(void *, s32);
 extern u8 D_80112C18[];
 typedef struct 
 {
@@ -20,5 +20,5 @@ void func_80049B68(s32 a0, u8 *a1)
   (&D_80109F10)->flags |= 0x4000;
   (&D_80109F10)->owner = a0;
   (&D_80109F10)->x = 0;
-  func_8003983C(D_80112C18, 0x100);
+  CCamera__FadeToCinema(D_80112C18, 0x100);
 }

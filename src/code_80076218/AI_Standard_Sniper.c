@@ -18,16 +18,16 @@ void AI_Standard_Sniper(CGameObjectInstance *pMe, CGameObjectInstance *pDest)
 	// get projectile angle - is it worth firing ?
 	vDestPos = AI_GetPos(pDest);
 //	projectileang = AI_GetAngle(pMe, vDestPos);
-	dist = func_8005F34C(pMe, vDestPos);
+	dist = AI_DistanceSquared(pMe, vDestPos);
 //	turnang = AI_GetAngle(pMe, vDestPos);
 	random = RANDOM(99);
 
 //	AI_GetDyn(pMe)->m_AvoidanceAngle = projectileang;
 //	AI_PerformTurn(pMe, ANGLE_DTOR(60));
-	projectileang = func_80071DA4(pMe, vDestPos);
+	projectileang = AI_GetAngle(pMe, vDestPos);
 
 	// ai is not within close attack range - does ai fire projectiles ?
-	if (	  (func_80071770(pMe))
+	if (	  (AI_DoesItFireProjectiles(pMe))
 //		  && (fabs(projectileang) <= ANGLE_DTOR(7))		//5
 		  && (dist <= AI_GetEA(pMe)->m_ProjectileRadius)
 		  && (random < AI_GetEA(pMe)->m_Aggression) )
@@ -36,18 +36,18 @@ void AI_Standard_Sniper(CGameObjectInstance *pMe, CGameObjectInstance *pDest)
 		dist = sqrt(dist) * 100 / max(1, sqrt(AI_GetEA(pMe)->m_ProjectileRadius));
 		if (RANDOM(100) >= dist)
 		{
-			func_80076824(pMe, projectileang, FALSE);
+			AI_Standard_Projectile_Attack(pMe, projectileang, FALSE);
 //			AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
 		}
 		else
 		{
-			func_8005FCF4(pMe, AI_ANIM_IDLE, FALSE);
+			AI_SetDesiredAnim(pMe, AI_ANIM_IDLE, FALSE);
 			AI_GetDyn(pMe)->m_dwStatusFlags &= ~AI_WAITFOR_CYCLE;
 		}
 	}
 	else
 	{
-		func_8005FCF4(pMe, AI_ANIM_IDLE, FALSE);
+		AI_SetDesiredAnim(pMe, AI_ANIM_IDLE, FALSE);
 		AI_GetDyn(pMe)->m_dwStatusFlags &= ~AI_WAITFOR_CYCLE;
 	}
 }

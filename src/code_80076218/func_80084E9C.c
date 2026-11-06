@@ -16,8 +16,8 @@ INT32 func_80084E9C(CPause *pThis)
 	// force the icons to be displayed
 	GetApp()->m_OnScreen.m_Lives = -1 ;
 	GetApp()->m_OnScreen.m_Tokens = -1 ;
-	func_8007F270(&GetApp()->m_OnScreen, D_80128C20.Lives);
-	func_8007F2D4(&GetApp()->m_OnScreen, D_80128C20.Tokens);
+	COnScreen__SetLives(&GetApp()->m_OnScreen, D_80128C20.Lives);
+	COnScreen__SetTokens(&GetApp()->m_OnScreen, D_80128C20.Tokens);
 
 	// do cheat options
 	if (GetApp()->m_Cheat.b_Active)
@@ -29,7 +29,7 @@ INT32 func_80084E9C(CPause *pThis)
 		{
 			pThis->m_Mode = PAUSE_FADEUP ;
 			GetApp()->m_Cheat.b_Active = FALSE ;
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 		}
 		ReturnValue = -1 ;
 	}
@@ -39,12 +39,12 @@ INT32 func_80084E9C(CPause *pThis)
 	{
 		GetApp()->m_ModeTime = 0 ;
 		// returns quite a lot of stuff
-		ReturnValue = func_8000F108(&GetApp()->m_CheatCode) ;
+		ReturnValue = CCheatCode__Update(&GetApp()->m_CheatCode) ;
 		if (ReturnValue != -1)
 		{
 			pThis->m_Mode = PAUSE_FADEUP ;
 			GetApp()->m_CheatCode.b_Active = FALSE ;
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 		}
 		ReturnValue = -1 ;
 	}
@@ -53,12 +53,12 @@ INT32 func_80084E9C(CPause *pThis)
 	else if (GetApp()->m_GiveCheatCode.b_Active)
 	{
 		GetApp()->m_ModeTime = 0 ;
-		ReturnValue = func_8000F8AC(&GetApp()->m_GiveCheatCode) ;
+		ReturnValue = CGiveCheatCode__Update(&GetApp()->m_GiveCheatCode) ;
 		if (ReturnValue != -1)
 		{
 			pThis->m_Mode = PAUSE_FADEUP ;
 			GetApp()->m_GiveCheatCode.b_Active = FALSE ;
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 		}
 		ReturnValue = -1 ;
 	}
@@ -69,12 +69,12 @@ INT32 func_80084E9C(CPause *pThis)
 	{
 		GetApp()->m_ModeTime = 0 ;
 		// returns quite a lot of stuff
-		ReturnValue = func_80093DF4(&GetApp()->m_Options) ;
+		ReturnValue = COptions__Update(&GetApp()->m_Options) ;
 		if (ReturnValue != -1)
 		{
 			pThis->m_Mode = PAUSE_FADEUP ;
 			GetApp()->m_Options.b_Active = FALSE ;
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 		}
 		ReturnValue = -1 ;
 	}
@@ -84,12 +84,12 @@ INT32 func_80084E9C(CPause *pThis)
 	else if (GetApp()->m_Keys.b_Active)
 	{
 		GetApp()->m_ModeTime = 0 ;
-		ReturnValue = func_800948A8(&GetApp()->m_Keys) ;
+		ReturnValue = CKeys__Update(&GetApp()->m_Keys) ;
 		if (ReturnValue != -1)
 		{
 			pThis->m_Mode = PAUSE_FADEUP ;
 			GetApp()->m_Keys.b_Active = FALSE ;
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 		}
 		ReturnValue = -1 ;
 	}
@@ -103,11 +103,11 @@ INT32 func_80084E9C(CPause *pThis)
 		ReturnValue = func_8000C02C(&GetApp()->m_Load) ;
 		if (ReturnValue != -1)
 		{
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 			pThis->m_Mode = PAUSE_FADEUP ;
 			GetApp()->m_Load.b_Active = FALSE ;
 			ReturnValue = -1 ;
-			func_80084D70(pThis);
+			CPause__ResetMenuItems(pThis);
 		}
 	}
 
@@ -116,7 +116,7 @@ INT32 func_80084E9C(CPause *pThis)
 	{
 		GetApp()->m_ModeTime = 0 ;
 		// will only return -1 or SAVE_EXIT
-		ReturnValue = func_8000CE18(&GetApp()->m_Save) ;
+		ReturnValue = CSave__Update(&GetApp()->m_Save) ;
 		if (ReturnValue != -1)
 		{
 			GetApp()->m_Pause.m_Mode = PAUSE_FADEDOWN ;
@@ -133,7 +133,7 @@ INT32 func_80084E9C(CPause *pThis)
 	else if (GetApp()->m_Requestor.b_Active)
 	{
 		GetApp()->m_ModeTime = 0 ;
-		ReturnValue = func_8000DEE8(&GetApp()->m_Requestor) ;
+		ReturnValue = CRequestor__Update(&GetApp()->m_Requestor) ;
 		if (ReturnValue != -1)
 		{
 			switch (D_80129380)
@@ -142,7 +142,7 @@ INT32 func_80084E9C(CPause *pThis)
 					// do save
 					if (ReturnValue == REQUESTOR_YES)
 					{
-						func_8000CCE4(&GetApp()->m_Save) ;
+						CSave__Construct(&GetApp()->m_Save) ;
 						GetApp()->m_bSave = TRUE ;
 					}
 					// return to game
@@ -197,7 +197,7 @@ INT32 func_80084E9C(CPause *pThis)
 	else if (GetApp()->m_MessageBox.b_Active == 2)
 	{
 		GetApp()->m_ModeTime = 0 ;
-		ReturnValue = func_8000E4BC(&GetApp()->m_MessageBox) ;
+		ReturnValue = CMessageBox__Update(&GetApp()->m_MessageBox) ;
 		if (ReturnValue != -1)
 		{
 			ReturnValue = -1 ;
@@ -214,7 +214,7 @@ INT32 func_80084E9C(CPause *pThis)
 		if (GetApp()->m_Mode == MODE_TITLE)
 		{
 			// in title mode
-			if (func_8000658C(GetApp()))
+			if (CEngineApp__MenuDown(GetApp()))
 			{
 				D_800EC0C0 = 0 ;
 				GetApp()->m_ModeTime = 0 ;
@@ -227,7 +227,7 @@ INT32 func_80084E9C(CPause *pThis)
 				} while (!D_801293A0[pThis->m_Selection]);
 
 				pThis->m_RealSelection++;
-				if (pThis->m_RealSelection >= func_80084E44(pThis))
+				if (pThis->m_RealSelection >= CPause__GetTitleOptionAmt(pThis))
 					pThis->m_RealSelection = 0;
 
 
@@ -239,7 +239,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 			}
 
-			if (func_80006770(GetApp()))
+			if (CEngineApp__MenuUp(GetApp()))
 			{
 				D_800EC0C0 = 0 ;
 				GetApp()->m_ModeTime = 0 ;
@@ -253,7 +253,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 				pThis->m_RealSelection--;
 				if (pThis->m_RealSelection < 0)
-					pThis->m_RealSelection = func_80084E44(pThis)-1;
+					pThis->m_RealSelection = CPause__GetTitleOptionAmt(pThis)-1;
 
             
              
@@ -267,7 +267,7 @@ INT32 func_80084E9C(CPause *pThis)
 		else
 		{
 			// in pause mode
-			if (func_8000658C(GetApp()))
+			if (CEngineApp__MenuDown(GetApp()))
 			{
 				D_800EC0C0 = 0 ;
 				do
@@ -279,7 +279,7 @@ INT32 func_80084E9C(CPause *pThis)
 				} while (!D_80129384[pThis->m_Selection]);
 
 				pThis->m_RealSelection++;
-				if (pThis->m_RealSelection >= func_80084DEC(pThis))
+				if (pThis->m_RealSelection >= CPause__GetPauseOptionAmt(pThis))
 					pThis->m_RealSelection = 0;
 
             
@@ -289,7 +289,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 			}
 
-			if (func_80006770(GetApp()))
+			if (CEngineApp__MenuUp(GetApp()))
 			{
 				D_800EC0C0 = 0 ;
 				do
@@ -302,7 +302,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 				pThis->m_RealSelection--;
 				if (pThis->m_RealSelection < 0)
-					pThis->m_RealSelection = func_80084DEC(pThis)-1;
+					pThis->m_RealSelection = CPause__GetPauseOptionAmt(pThis)-1;
 
             
              
@@ -346,7 +346,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 
 		// Exit if start pressed
-		if (func_80051EA4(D_800F9E44))
+		if (CTControl__IsUseMenu(D_800F9E44))
 			ReturnValue = pThis->m_Selection ;
 
 		// do corresponding action TITLE SCREEN
@@ -366,7 +366,7 @@ INT32 func_80084E9C(CPause *pThis)
 					ReturnValue = -1 ;
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_80093DD8(&GetApp()->m_Options) ;
+					COptions__Construct(&GetApp()->m_Options) ;
 					GetApp()->m_bOptions = TRUE ;
 					break ;
 
@@ -384,7 +384,7 @@ INT32 func_80084E9C(CPause *pThis)
 					break ;
 
 				case TITLE_TRAINING:
-					func_8000DEB8(&GetApp()->m_Requestor,
+					CRequestor__Construct(&GetApp()->m_Requestor,
 									D_800EC170, D_800EC17C) ;
 					GetApp()->m_Requestor.Selections = D_800EC1D4 ;
 					GetApp()->m_bRequestor = TRUE ;
@@ -401,7 +401,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_80087FC0(&GetApp()->m_Cheat) ;
+					CCheat__Construct(&GetApp()->m_Cheat) ;
 					GetApp()->m_bCheat = TRUE ;
 					break;
 
@@ -410,7 +410,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_8000EEC0(&GetApp()->m_CheatCode) ;
+					CCheatCode__Construct(&GetApp()->m_CheatCode) ;
 					GetApp()->m_bCheatCode = TRUE ;
 					break ;
 
@@ -432,7 +432,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_8000EEC0(&GetApp()->m_CheatCode) ;
+					CCheatCode__Construct(&GetApp()->m_CheatCode) ;
 					GetApp()->m_bCheatCode = TRUE ;
 					break ;
 
@@ -441,7 +441,7 @@ INT32 func_80084E9C(CPause *pThis)
 
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_80087FC0(&GetApp()->m_Cheat) ;
+					CCheat__Construct(&GetApp()->m_Cheat) ;
 					GetApp()->m_bCheat = TRUE ;
 					break ;
 
@@ -467,7 +467,7 @@ INT32 func_80084E9C(CPause *pThis)
 					ReturnValue = -1 ;
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_80093DD8(&GetApp()->m_Options) ;
+					COptions__Construct(&GetApp()->m_Options) ;
 					GetApp()->m_bOptions = TRUE ;
 					break ;
 
@@ -475,7 +475,7 @@ INT32 func_80084E9C(CPause *pThis)
 					ReturnValue = -1 ;
 					pThis->m_Mode = PAUSE_FADEDOWN ;
 
-					func_80094880(&GetApp()->m_Keys) ;
+					CKeys__Construct(&GetApp()->m_Keys) ;
 					GetApp()->m_bKeys = TRUE ;
 					break ;
 
@@ -507,7 +507,7 @@ INT32 func_80084E9C(CPause *pThis)
 					break ;
 
 				case PAUSE_RESTART_GAME:
-					func_8000DEB8(&GetApp()->m_Requestor,
+					CRequestor__Construct(&GetApp()->m_Requestor,
 									D_800EC104, D_800EC18C) ;
 					GetApp()->m_bRequestor = TRUE ;
 					GetApp()->m_Requestor.m_Selection = REQUESTOR_NO ;

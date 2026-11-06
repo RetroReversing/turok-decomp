@@ -53,13 +53,13 @@ typedef struct CROMStaticInstance_t
 	signed char		m_RotX, m_RotY, m_RotZ, m_RotT;
 } CROMStaticInstance;
 typedef struct {CInstanceHdr ih;CCacheEntry*m_pceObjectIndex,*m_pceStaticEvents;ROMAddress*m_rpObjectIndexAddress;Mtx m_mOrientation;CGeometry m_Geometry;CROMBounds m_Bounds;DWORD m_dwFlags;} CGameStaticInstance;
-void func_80012290(CMtxF,Mtx*);void func_800130DC(CMtxF,float,float,float);void func_8001315C(CMtxF,float,float,float);
-void func_80014538(CQuatern*);void func_80014DC4(CQuatern*,CMtxF);
-#define CQuatern__Normalize func_80014538
-#define CQuatern__ToMatrix func_80014DC4
+void CMtxF__ToMtxFast(CMtxF,Mtx*);void func_800130DC(CMtxF,float,float,float);void func_8001315C(CMtxF,float,float,float);
+void CQuatern__Normalize(CQuatern*);void CQuatern__ToMatrix(CQuatern*,CMtxF);
+#define CQuatern__Normalize CQuatern__Normalize
+#define CQuatern__ToMatrix CQuatern__ToMatrix
 #define CMtxF__PreMultScale func_800130DC
 #define CMtxF__PostMultTranslate func_8001315C
-#define CMtxF__ToMtx(mf,m) func_80012290((mf),&(m))
+#define CMtxF__ToMtx(mf,m) CMtxF__ToMtxFast((mf),&(m))
 #define USE_ORIGINAL_MATRIX 0
 #define I_STATIC 0
 #define ORDERBYTES(x) (x)
@@ -169,8 +169,8 @@ typedef struct CROMEfficientStaticInstance_t
 						m_nMinY, m_nMaxY,	// * 1
 						m_nMinZ, m_nMaxZ;	// * 1
 } CROMEfficientStaticInstance;
-void func_80012E6C(CMtxF,float);
-#define CMtxF__RotateY func_80012E6C
+void CMtxF__RotateY(CMtxF,float);
+#define CMtxF__RotateY CMtxF__RotateY
 #define SCALING_FACTOR (1024.0/100.0)
 #define ANGLE_DTOR(x) ((x)*(3.14159265358979323846/180.0))
 

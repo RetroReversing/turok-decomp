@@ -13,7 +13,7 @@ void CParticle__Advance(CParticle *pThis)
 		return;
 
 	if (pThis->m_pEffect->m_FpsVelThreshold)
-		pThis->m_FPS = pThis->m_pEffect->m_FPS * min(1, ParticleMagnitude(pThis) / func_8001F298(pThis->m_pEffect->m_FpsVelThreshold));
+		pThis->m_FPS = pThis->m_pEffect->m_FPS * min(1, ParticleMagnitude(pThis) / SF2FLOAT(pThis->m_pEffect->m_FpsVelThreshold));
 
 	pThis->m_cFramePos += D_800B6B00*pThis->m_FPS*(1.0/FRAME_FPS)*D_800B6B08;
 
@@ -28,7 +28,7 @@ void CParticle__Advance(CParticle *pThis)
 		pThis->m_Size += (newSize - pThis->m_Size)*D_800B6B00;
 		if (pThis->m_Size < 0)
 		{
-			func_80029C48(pThis);
+			CParticle__EndLife(pThis);
 			CParticleSystem__DeallocateParticle(&GetApp()->m_Scene.m_ParticleSystem, pThis);
 			return;
 		}
@@ -41,7 +41,7 @@ void CParticle__Advance(CParticle *pThis)
 	}
 
 	// update every frame particle stuff
-	func_8002A1A0(pThis);
+	CParticle__EveryFrame(pThis);
 
 	// don't do collision if particle has come to rest
 	if (		((pThis->m_CI.GravityAcceleration == 0) || ((pThis->ah.ih.m_vPos.y == 0) && (pThis->m_CI.GravityAcceleration < 0)))
@@ -50,7 +50,7 @@ void CParticle__Advance(CParticle *pThis)
 		return;
 	}
 
-	func_8009A4D8(&pThis->ah, pThis->ah.ih.m_vPos, &pThis->m_CI);
+	CAnimInstanceHdr__Collision3(&pThis->ah, pThis->ah.ih.m_vPos, &pThis->m_CI);
 
 	// update glare effect on particle ?
 	if (pThis == D_8011A0D0)
@@ -81,7 +81,7 @@ void CParticle__Advance(CParticle *pThis)
 	// collision
 	if (pThis->m_CI.pWaterCollisionRegion)
 	{
-		func_8002A800(pThis);
+		CParticle__WaterSurfaceCollision(pThis);
 
 		pThis->m_dwFlags |= PARTICLE_HASHITGROUND;
 	}
@@ -91,7 +91,7 @@ void CParticle__Advance(CParticle *pThis)
 		if (pThis->m_CI.pWallCollisionRegion)
 		{
 			if (!(pThis->m_pEffect->m_dwFlags & PARTICLE_BEHAVIOR_NOWALLSPAWN))
-				func_8002AA38(pThis);
+				CParticle__WallCollision(pThis);
 
 			pThis->m_dwFlags |= PARTICLE_HASHITWALL;
 			if (pThis->m_pEffect->m_dwFlags & PARTICLE_BEHAVIOR_BOUNCEONLYONCE)
@@ -101,7 +101,7 @@ void CParticle__Advance(CParticle *pThis)
 		if (pThis->m_dwFlags & PARTICLE_ALLOCATED)
 		{
 			if (pThis->m_CI.pInstanceCollision)
-				func_80029F14(pThis);
+				CParticle__InstanceCollision(pThis);
 
 			if (pThis->m_dwFlags & PARTICLE_ALLOCATED)
 			{
@@ -109,9 +109,9 @@ void CParticle__Advance(CParticle *pThis)
 						&& !(pThis->m_pEffect->m_dwFlags & PARTICLE_BEHAVIOR_NOGRDSPAWN) )
 				{
 					if (pThis->m_CI.nGroundCollisionType == GROUNDCOLLISION_GROUND)
-							func_8002A5C8(pThis);
+							CParticle__GroundCollision(pThis);
 					else	// (pThis->m_CI.nGroundCollisionType == GROUNDCOLLISION_CEILING)
-							func_8002A3B0(pThis);
+							CParticle__CeilingCollision(pThis);
 
 					pThis->m_dwFlags |= PARTICLE_HASHITGROUND;
 				}

@@ -6,24 +6,24 @@ CBoss *Campaigner_Initialise(CGameObjectInstance *pThis)
 	CCampaigner *pCampaigner = &D_80127ED0 ;
 
 	// Setup defaults
-	func_8003F7E0(&pCampaigner->m_Boss) ;
+	CBoss__Construct(&pCampaigner->m_Boss) ;
 
 	// Setup regions for in hole modes!
 	pCampaigner->m_HoleNumber = 0 ;
-	GetApp()->m_BossVars.m_pRegionList[0] = func_8002E280(&GetApp()->m_Scene, &D_800BDE58[0]) ;
-	GetApp()->m_BossVars.m_pRegionList[1] = func_8002E280(&GetApp()->m_Scene, &D_800BDE58[1]) ;
+	GetApp()->m_BossVars.m_pRegionList[0] = CScene__NearestRegion(&GetApp()->m_Scene, &D_800BDE58[0]) ;
+	GetApp()->m_BossVars.m_pRegionList[1] = CScene__NearestRegion(&GetApp()->m_Scene, &D_800BDE58[1]) ;
 
 	// Setup boss vars
-	pCampaigner->m_Boss.m_pInitializeFunction = (void *)func_8004D1EC ;
+	pCampaigner->m_Boss.m_pInitializeFunction = (void *)InitializeCampaigner ;
 	pCampaigner->m_Boss.m_pUpdateFunction = (void *)func_8004D6FC ;
-	pCampaigner->m_Boss.m_pHitByParticleFunction = (void *)func_8004DFE8 ;
+	pCampaigner->m_Boss.m_pHitByParticleFunction = (void *)Campaigner_HitByParticle ;
 	pCampaigner->m_Boss.m_pModeTable = D_800BD390 ;
 	pCampaigner->m_Boss.m_Rot1 = 0 ;
 	pCampaigner->m_Boss.m_Rot2 = 0 ;
 
 	// Setup campaigner vars
 	pCampaigner->m_pStageInfo = D_800BD818 ;
-	func_8004D444(pThis, pCampaigner, D_800BD818) ;
+	Campaigner_SetupStageInfo(pThis, pCampaigner, D_800BD818) ;
 
 	// Put into start mode
 	pCampaigner->m_Boss.m_Mode = CAMPAIGNER_TALK_MODE ;
@@ -32,8 +32,8 @@ CBoss *Campaigner_Initialise(CGameObjectInstance *pThis)
 	pCampaigner->m_Boss.m_AnimRepeats = 1 ;
 	pCampaigner->m_Boss.m_AnimSpeed = 1.0 ;
 
-	pCampaigner->m_Boss.m_pPreDrawFunction = (void *)func_8004DAF4 ;
-	pCampaigner->m_Boss.m_pPostDrawFunction = (void *)func_8004DB30 ;
+	pCampaigner->m_Boss.m_pPreDrawFunction = (void *)Campaigner_PreDraw ;
+	pCampaigner->m_Boss.m_pPostDrawFunction = (void *)Campaigner_PostDraw ;
 
                  
                                                                               
@@ -44,7 +44,7 @@ CBoss *Campaigner_Initialise(CGameObjectInstance *pThis)
       
 
 	// Setup misc
-	func_8004D404(&pCampaigner->m_Boss.m_CollisionInfo) ;
+	CCollisionInfo__SetCampaignerCollisionDefaults(&pCampaigner->m_Boss.m_CollisionInfo) ;
 	BOSS_Health(pThis) = CAMPAIGNER_HEALTH ;
 
 	// Make him limp!
@@ -62,7 +62,7 @@ CBoss *Campaigner_Initialise(CGameObjectInstance *pThis)
 
 	// Init shield
 	pCampaigner->m_Boss.m_pShield = &pCampaigner->m_Shield ;
-	func_80040E48(&pCampaigner->m_Shield,
+	CShield__Construct(&pCampaigner->m_Shield,
 							 pThis,
 							 CAMPAIGNER_HEALTH/2,
 							 D_800BD280,

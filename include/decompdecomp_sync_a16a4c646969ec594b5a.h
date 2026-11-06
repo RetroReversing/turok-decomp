@@ -5,20 +5,20 @@ typedef struct {CVector3 m_vCorner;float m_Ceiling;} CGameCorner;
 typedef struct {u16 m_nRegionSet,m_wFlags;CGameCorner*m_pCorners[3];} CGameRegion;
 typedef struct {u8 pad[0x20];float m_WaterElevation;} CROMRegionSet;
 extern u8 D_800FA3C8[];
-CROMRegionSet*func_8002E438(void*,CGameRegion*);
-CVector3 func_800207C0(CGameRegion*);
-void func_800144C8(CVector3*,CVector3*,CVector3*);
-#define CScene__GetRegionAttributes func_8002E438
-#define func_800207C0 func_800207C0
-#define CVector3__Subtract func_800144C8
+CROMRegionSet*CScene__GetRegionAttributes(void*,CGameRegion*);
+CVector3 CGameRegion__GetCeilingNormal(CGameRegion*);
+void CVector3__Subtract(CVector3*,CVector3*,CVector3*);
+#define CScene__GetRegionAttributes CScene__GetRegionAttributes
+#define CGameRegion__GetCeilingNormal CGameRegion__GetCeilingNormal
+#define CVector3__Subtract CVector3__Subtract
 #define CVector3__Dot(a,b) ((a)->x*(b)->x+(a)->y*(b)->y+(a)->z*(b)->z)
 #define NULL ((void*)0)
 #define TRUE 1
 #define FALSE 0
 #define REGFLAG_HASWATER 1
 
-void func_80013BBC(CVector3*,CVector3*,CVector3*);
-#define CVector3__Cross func_80013BBC
+void CVector3__Cross(CVector3*,CVector3*,CVector3*);
+#define CVector3__Cross CVector3__Cross
 #define pNormalCache D_800B9720
 #define vNormalCache D_80119D60
 

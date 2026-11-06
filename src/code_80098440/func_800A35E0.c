@@ -180,7 +180,7 @@ static void func_800A35E0(ALEventQueue *evtq, ALSoundState *state)
     ALSndpEvent         *thisEvent;
     OSIntMask           mask;
 
-    mask = func_8009D220(OS_IM_NONE);
+    mask = osSetIntMask(OS_IM_NONE);
 
     thisNode = evtq->allocList.next;
     while( thisNode != 0 ) {
@@ -197,7 +197,7 @@ static void func_800A35E0(ALEventQueue *evtq, ALSoundState *state)
 	thisNode = nextNode;
     }
     
-    func_8009D220(mask);
+    osSetIntMask(mask);
 }
 
 static s32 func_800A365C (s32 i, f32 f)

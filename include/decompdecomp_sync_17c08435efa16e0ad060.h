@@ -5,15 +5,15 @@ typedef struct {void*m_pData;BOOL m_AutoDeleteData;} CIndexedSet;
 typedef struct {void*m_pData;BOOL m_AutoDeleteData;DWORD m_CurrentAllocSize;} CUnindexedSet;
 typedef struct {u8 prefix[0x100];ROMAddress*m_rpObjectInfo;u8 gap[8];CCacheEntry*m_pceObjectInfo;u8 gap2[8];u16 m_ObjectInfoSize;} CGameObjectInstance;
 extern u8 D_800FA3C8[],D_800F0DBC[];
-void func_8002D1F8(void*,void*,void*,void*,CCacheEntry**,ROMAddress*,DWORD,char*);
+void CCartCache__RequestBlock(void*,void*,void*,void*,CCacheEntry**,ROMAddress*,DWORD,char*);
 void*CCacheEntry__GetData(CCacheEntry*);
 void CIndexedSet__ConstructFromRawData(CIndexedSet*,void*,BOOL);
 void*func_8002DC68(CIndexedSet*,void*,int);
-void func_8002DA8C(CUnindexedSet*,void*,BOOL);
+void CUnindexedSet__ConstructFromRawData(CUnindexedSet*,void*,BOOL);
 #define GetCache() ((void*)D_800FA3C8)
-#define CCartCache__RequestBlock func_8002D1F8
-#define CIndexedSet__GetBlock(p,n) func_8002DC68((p),(p)->m_pData,(n))
-#define CUnindexedSet__ConstructFromRawData func_8002DA8C
+#define CCartCache__RequestBlock CCartCache__RequestBlock
+#define CIndexedSet__GetAddress(p,n) func_8002DC68((p),(p)->m_pData,(n))
+#define CUnindexedSet__ConstructFromRawData CUnindexedSet__ConstructFromRawData
 #define CUnindexedSet__GetBasePtr(p) ((void*)((u8*)(p)->m_pData+8))
 #define CIndexedSet__Destruct(p)
 #define CUnindexedSet__Destruct(p)

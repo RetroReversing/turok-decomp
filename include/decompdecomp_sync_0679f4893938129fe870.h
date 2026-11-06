@@ -97,15 +97,15 @@ extern int D_800B6AF4;
 extern u8 D_80112E10[];
 extern CParticle*D_8011A0D0;
 extern CAnimInstanceHdr*D_8010201C;
-void func_80026EC4(CParticle*,void*,void*);
-void func_800425F8(void*,CParticle*,Mtx*);
-void func_800426EC(void*,CParticle*);
-void func_800144C8(CVector3*,CVector3*,CVector3*);
-#define CParticle__CalculateOrientationMatrix func_80026EC4
-#define CFxSystem__CheckForAddingParticleSwooshEdge func_800425F8
-#define CFxSystem__StopSwooshesOnParticle func_800426EC
+void CParticle__CalculateOrientationMatrix(CParticle*,void*,void*);
+void CFxSystem__CheckForAddingParticleSwooshEdge(void*,CParticle*,Mtx*);
+void CFxSystem__StopSwooshesOnParticle(void*,CParticle*);
+void CVector3__Subtract(CVector3*,CVector3*,CVector3*);
+#define CParticle__CalculateOrientationMatrix CParticle__CalculateOrientationMatrix
+#define CFxSystem__CheckForAddingParticleSwooshEdge CFxSystem__CheckForAddingParticleSwooshEdge
+#define CFxSystem__StopSwooshesOnParticle CFxSystem__StopSwooshesOnParticle
 #define CParticle__GetOrientationMatrix(p) ((p)->m_mOrientation[D_800B6AF4])
-#define CVector3__Subtract func_800144C8
+#define CVector3__Subtract CVector3__Subtract
 #define CVector3__MagnitudeSquared(p) ((p)->x*(p)->x+(p)->y*(p)->y+(p)->z*(p)->z)
 #define PARTICLE_ALLOCATED 1
 #define PARTICLE_PERMANENT (1 << 3)
@@ -148,9 +148,9 @@ struct CEnemyAttributes_t
 typedef float CMtxF[4][4];
 typedef union {struct {short ob[3];u16 flag;short tc[2];u8 cn[4];} v;u64 align;} Vtx;
 extern Vtx D_80119F70[4];extern CMtxF D_8011A030;extern CEnemyAttributes D_8011A070;
-void func_80083E20(CEnemyAttributes*);void func_80012EFC(CMtxF,float);
-#define CEnemyAttributes__SetDefaults func_80083E20
-#define CMtxF__RotateX func_80012EFC
+void CEnemyAttributes__SetDefaults(CEnemyAttributes*);void CMtxF__RotateX(CMtxF,float);
+#define CEnemyAttributes__SetDefaults CEnemyAttributes__SetDefaults
+#define CMtxF__RotateX CMtxF__RotateX
 
 #define p_particle_glare D_8011A0D0
 #define particle_attributes D_8011A070

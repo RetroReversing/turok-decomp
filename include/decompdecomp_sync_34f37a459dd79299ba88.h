@@ -909,15 +909,15 @@ extern s32 D_800EE4E0;
 #define __OSGlobalIntMask D_800EE4DC
 #define osDiskExist D_800EE4E0
 #define __osLeoAbnormalResume func_800A6EB4
-#define osEPiRawStartDma func_800A7380
+#define osEPiRawStartDma osEPiRawStartDma
 #define osEPiRawWriteIo func_800AFF50
-#define __osDisableInt func_800A5750
-#define __osRestoreInt func_800A5770
+#define __osDisableInt __osDisableInt
+#define __osRestoreInt __osRestoreInt
 void _bzero(void*,s32);
 #define bzero _bzero
-u32 func_800A5750(void);void func_800A5770(u32);
+u32 __osDisableInt(void);void __osRestoreInt(u32);
 void __osLeoResume(void);void func_800A6EB4(void);
-s32 func_800A7380(OSPiHandle*,s32,u32,void*,u32);
+s32 osEPiRawStartDma(OSPiHandle*,s32,u32,void*,u32);
 s32 func_800AFF50(OSPiHandle*,u32,u32);
 s32 osRecvMesg(OSMesgQueue*,OSMesg*,s32);s32 osSendMesg(OSMesgQueue*,OSMesg,s32);
 void __osResetGlobalIntMask(u32);void __osSetGlobalIntMask(u32);void osYieldThread(void);

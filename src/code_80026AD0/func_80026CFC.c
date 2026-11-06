@@ -14,11 +14,11 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_8002D1F8(M2C_UNK, void *, M2C_UNK *, M2C_UNK, void *, s32, s32, s32); /* extern */
-extern M2C_UNK func_80026B98;
+M2C_UNK CCartCache__RequestBlock(M2C_UNK, void *, M2C_UNK *, M2C_UNK, void *, s32, s32, s32); /* extern */
+extern M2C_UNK CTextureLoader__Decompress;
 
 s32 func_80026CFC(void *arg0, M2C_UNK arg1, s32 arg2) {
     M2C_FIELD(arg0, s32 *, 0) = 0;
-    func_8002D1F8(arg1, arg0, &func_80026B98, 0, arg0, M2C_FIELD(arg0, s32 *, 4), M2C_FIELD(arg0, s32 *, 8), arg2);
+    CCartCache__RequestBlock(arg1, arg0, &CTextureLoader__Decompress, 0, arg0, M2C_FIELD(arg0, s32 *, 4), M2C_FIELD(arg0, s32 *, 8), arg2);
     return M2C_FIELD(arg0, s32 *, 0) != 0;
 }

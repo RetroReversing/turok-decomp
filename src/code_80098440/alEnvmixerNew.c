@@ -1,9 +1,9 @@
 #include "common.h"
 
-s32 alHeapDBAlloc(s32,s32,s32,s32,s32); void func_800B1580(void*,void*,void*,s32); extern s32 alEnvmixerPull,alEnvmixerParam;
+s32 alHeapDBAlloc(s32,s32,s32,s32,s32); void alFilterNew(void*,void*,void*,s32); extern s32 alEnvmixerPull,alEnvmixerParam;
 typedef struct {u8 pad[0x14];s32 a14; s16 a18,a1a,a1c,a1e,a20,a22,a24,a26;u8 pad28[8];s32 a30,a34,a38,a3c,a40,a44,a48;} Obj2;
 void alEnvmixerNew(volatile Obj2 *p,s32 n){
- func_800B1580((void*)p,&alEnvmixerPull,&alEnvmixerParam,4);
+ alFilterNew((void*)p,&alEnvmixerPull,&alEnvmixerParam,4);
  p->a14=alHeapDBAlloc(0,0,n,1,0x50);
  p->a38=1;p->a48=0;
  p->a1a=1;*(volatile s16*)((volatile u8*)p+0x28)=1;*(volatile s16*)((volatile u8*)p+0x2e)=1;

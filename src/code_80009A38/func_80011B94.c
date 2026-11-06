@@ -14,11 +14,11 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-s32 func_80011B1C(M2C_UNK *);                       /* extern */
+s32 i3D_memoryCheck(M2C_UNK *);                       /* extern */
 extern M2C_UNK D_80119C90;
 extern s32 D_80119CA4;
 
 void func_80011B94(s32 *arg0, s32 *arg1) {
-    *arg0 = func_80011B1C(&D_80119C90);
+    *arg0 = i3D_memoryCheck(&D_80119C90);
     *arg1 = D_80119CA4;
 }

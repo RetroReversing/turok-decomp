@@ -14,13 +14,13 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80075254();                            /* extern */
-M2C_UNK func_80090B50(void *, M2C_UNK *);           /* extern */
+M2C_UNK AI_Advance();                            /* extern */
+M2C_UNK Turret_TrackPlayer(void *, M2C_UNK *);           /* extern */
 extern M2C_UNK D_800ED470;
 extern s32 D_8010201C;
 
 void func_80090F68(void *arg0) {
-    func_80075254();
+    AI_Advance();
     M2C_FIELD(arg0, s32 *, 0x224) = (s32) D_8010201C;
-    func_80090B50(arg0, &D_800ED470);
+    Turret_TrackPlayer(arg0, &D_800ED470);
 }

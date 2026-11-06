@@ -14,8 +14,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_80011194();                            /* extern */
-M2C_UNK func_800111F4();                            /* extern */
+M2C_UNK StartSerialQ();                            /* extern */
+M2C_UNK EndSerialQ();                            /* extern */
 s32 osPfsIsPlug(M2C_UNK *, u8 *);                 /* extern */
 s32 osPfsInit(M2C_UNK *, M2C_UNK *, s32);       /* extern */
 extern u8 D_800B86D4;
@@ -30,7 +30,7 @@ s32 func_80011224(void) {
     s32 temp_v0;
     s32 sp1C;
 
-    func_80011194();
+    StartSerialQ();
     osPfsIsPlug(&D_80119A70, &D_800B86D4);
     temp_v0 = osPfsIsPlug(&D_80119A70, &D_800B86D4);
     var_v1 = temp_v0;
@@ -44,6 +44,6 @@ s32 func_80011224(void) {
     D_80119AC4 = 0x7B;
     D_80119AB0 = 0;
     sp1C = var_v1;
-    func_800111F4();
+    EndSerialQ();
     return sp1C;
 }

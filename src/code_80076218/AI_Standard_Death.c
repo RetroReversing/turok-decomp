@@ -47,34 +47,34 @@ void AI_Standard_Death(CGameObjectInstance *pMe)
 	if (AI_GetEA(pMe)->m_wTypeFlags3 & AI_TYPE3_DONTDOVIOLENTDEATH)
 	{
 		// violent deaths not allowed
-		if (func_800719B4(pMe)==AI_BELOW_WATERSURFACE)
+		if (AI_GetWaterStatus(pMe)==AI_BELOW_WATERSURFACE)
 		{
-			picked = func_8001C348(pMe, 1, swimtypes, swimweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 1, swimtypes, swimweights, &pickedType);
 
 			AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-			func_8005FCA0(pMe, picked, TRUE);
+			AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
 		}
 		else
 		{
 			if (AI_GetDyn(pMe)->m_dwStatusFlags & AI_RUNNING)
 			{
 				if (AI_GetEA(pMe)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-					picked = func_8001C348(pMe, 2, wipeouttypes2, wipeoutweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 2, wipeouttypes2, wipeoutweights, &pickedType);
 				else
-					picked = func_8001C348(pMe, 2, wipeouttypes1, wipeoutweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 2, wipeouttypes1, wipeoutweights, &pickedType);
 
 				AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-				func_8005FCA0(pMe, picked, TRUE);
+				AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
 			}
 			else
 			{
 				if (AI_GetEA(pMe)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-					picked = func_8001C348(pMe, 1, deathtypes2, deathweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 1, deathtypes2, deathweights, &pickedType);
 				else
-					picked = func_8001C348(pMe, 1, deathtypes1, deathweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 1, deathtypes1, deathweights, &pickedType);
 
 				AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-				func_8005FCA0(pMe, picked, TRUE);
+				AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
 			}
 		}
 
@@ -84,34 +84,34 @@ void AI_Standard_Death(CGameObjectInstance *pMe)
 	else
 	{
 		// violent deaths allowed
-		if (func_800719B4(pMe)==AI_BELOW_WATERSURFACE)
+		if (AI_GetWaterStatus(pMe)==AI_BELOW_WATERSURFACE)
 		{
-			picked = func_8001C348(pMe, 1, swimtypes, swimweights, &pickedType);
+			picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 1, swimtypes, swimweights, &pickedType);
 
 			AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-			func_8005FCA0(pMe, picked, TRUE);
+			AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
 		}
 		else
 		{
 			if (AI_GetDyn(pMe)->m_dwStatusFlags & AI_RUNNING)
 			{
 				if (AI_GetEA(pMe)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-					picked = func_8001C348(pMe, 3, vwipeouttypes2, vwipeoutweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, vwipeouttypes2, vwipeoutweights, &pickedType);
 				else
-					picked = func_8001C348(pMe, 3, vwipeouttypes1, vwipeoutweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, vwipeouttypes1, vwipeoutweights, &pickedType);
 
 				AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-				func_8005FCA0(pMe, picked, TRUE);
+				AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
 			}
 			else
 			{
 				if (AI_GetEA(pMe)->m_dwTypeFlags2 & AI_TYPE2_USE2NDSETOFMOVES)
-					picked = func_8001C348(pMe, 3, vdeathtypes2, vdeathweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, vdeathtypes2, vdeathweights, &pickedType);
 				else
-					picked = func_8001C348(pMe, 3, vdeathtypes1, vdeathweights, &pickedType);
+					picked = CGameObjectInstance__GetRandomAnimIndex(pMe, 3, vdeathtypes1, vdeathweights, &pickedType);
 
 				AI_GetDyn(pMe)->m_dwStatusFlags |= AI_WAITFOR_CYCLE;
-				func_8005FCA0(pMe, picked, TRUE);
+				AI_SetDesiredAnimByIndex(pMe, picked, TRUE);
 			}
 		}
 

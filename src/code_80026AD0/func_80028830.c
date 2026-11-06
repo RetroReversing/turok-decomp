@@ -815,15 +815,15 @@ typedef struct CBossData_t
 struct CCollisionInfo2_t;
 struct CParticle_t;
 extern CParticle* func_80028830(CParticleSystem *pThis, unsigned char Priority);
-extern void func_800287CC(CParticleSystem *pThis, unsigned char Priority);
-void func_800287CC(CParticleSystem *pThis, unsigned char Priority);
+extern void CParticleSystem__DeallocateParticleByPriority(CParticleSystem *pThis, unsigned char Priority);
+void CParticleSystem__DeallocateParticleByPriority(CParticleSystem *pThis, unsigned char Priority);
 CParticle* func_80028830(CParticleSystem *pThis, unsigned char Priority);
 CParticle* func_80028830(CParticleSystem *pThis, unsigned char Priority){
  CParticle *pParticle;
  if (!pThis->m_pFreeHead)
  {
                               ;
-  func_800287CC(pThis, Priority);
+  CParticleSystem__DeallocateParticleByPriority(pThis, Priority);
  }
  if (!pThis->m_pFreeHead)
   return 0;

@@ -8,7 +8,7 @@ extern Big D_80109F10;
 extern s32 D_80119940;
 extern f32 D_80119944;
 extern f32 D_80119948[2];
-extern void func_80004504(void *, s32, s32 *);
+extern void CEngineApp__SetupFadeTo(void *, s32, s32 *);
 void func_8000B148(void)
 {
   if (D_800B86D0)
@@ -32,7 +32,7 @@ void func_8000B148(void)
       {
         D_80109F10.a = 1;
         D_80109F10.b = 0x7D00;
-        func_80004504(&D_800F9F10, 6, &D_80119940);
+        CEngineApp__SetupFadeTo(&D_800F9F10, 6, &D_80119940);
       }
     }
     if ((D_80119940 == 0) && (D_80119944 < 255.0f))

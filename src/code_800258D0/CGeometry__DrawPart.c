@@ -329,7 +329,7 @@ typedef struct CUnindexedSet_t
    unsigned long m_CurrentAllocSize;
 } CUnindexedSet;
 struct CIndexedSet_t;
-extern void func_8002DA8C(CUnindexedSet *pThis,
+extern void CUnindexedSet__ConstructFromRawData(CUnindexedSet *pThis,
                void *pData, int AutoDeleteData );
 typedef struct CIndexedSet_t
 {
@@ -337,7 +337,7 @@ typedef struct CIndexedSet_t
    int m_AutoDeleteData;
 } CIndexedSet;
 extern void CIndexedSet__ConstructFromRawData(CIndexedSet *pThis, void *pData, int AutoDeleteData );
-extern void* CIndexedSet__GetBlock(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
+extern void* CIndexedSet__GetAddress(CIndexedSet *pThis, void *pBaseAddress, int nBlock);
 struct CCartCache_t;
 typedef struct CCacheEntry_t
 {
@@ -1644,27 +1644,27 @@ void CGeometry__DrawPart(CGeometry *pThis, Gfx **ppDLP, CCartCache *pCache, int 
  CIndexedSet__ConstructFromRawData(&isGeometry,
              CCacheEntry__GetData(pThis->m_pceGeometry),
              0);
- pbNodes = CIndexedSet__GetBlock((&isGeometry), (&isGeometry)->m_pData, (1));
+ pbNodes = CIndexedSet__GetAddress((&isGeometry), (&isGeometry)->m_pData, (1));
  CIndexedSet__ConstructFromRawData(&isNodes, pbNodes, 0);
  if ((((unsigned long*) (&isNodes)->m_pData)[0]))
  {
                                                       ;
-  pbNode = CIndexedSet__GetBlock((&isNodes), (&isNodes)->m_pData, (nNode));
+  pbNode = CIndexedSet__GetAddress((&isNodes), (&isNodes)->m_pData, (nNode));
   CIndexedSet__ConstructFromRawData(&isNode, pbNode, 0);
-  pbPartIndices = CIndexedSet__GetBlock((&isNode), (&isNode)->m_pData, (1));
-  func_8002DA8C(&usPartIndices, pbPartIndices, 0);
+  pbPartIndices = CIndexedSet__GetAddress((&isNode), (&isNode)->m_pData, (1));
+  CUnindexedSet__ConstructFromRawData(&usPartIndices, pbPartIndices, 0);
   nPartIndices = ( (unsigned long) (((unsigned long*) (&usPartIndices)->m_pData)[1]) );
   if (nPartIndices)
   {
      partIndices = (unsigned long*) ( (void*) ( ((unsigned char*)((&usPartIndices)->m_pData)) + (2*sizeof(unsigned long)) ) );
-     pbParts = CIndexedSet__GetBlock((&isNode), (&isNode)->m_pData, (2));
+     pbParts = CIndexedSet__GetAddress((&isNode), (&isNode)->m_pData, (2));
    CIndexedSet__ConstructFromRawData(&isParts, pbParts, 0);
-     pbPart = CIndexedSet__GetBlock((&isParts), (&isParts)->m_pData, (partIndices[nPart%nPartIndices]));
+     pbPart = CIndexedSet__GetAddress((&isParts), (&isParts)->m_pData, (partIndices[nPart%nPartIndices]));
    CIndexedSet__ConstructFromRawData(&isPart, pbPart, 0);
    nSections = (((unsigned long*) (&isPart)->m_pData)[0]);
    for (cSection=0; cSection<nSections; cSection++)
    {
-    pbSection = CIndexedSet__GetBlock((&isPart), (&isPart)->m_pData, (cSection));
+    pbSection = CIndexedSet__GetAddress((&isPart), (&isPart)->m_pData, (cSection));
     CIndexedSet__ConstructFromRawData(&isSection, pbSection, 0);
     CGeometry__DrawSection(pThis, ppDLP, &isSection, pCache, Inter, Better, nFrame);
                                      ;

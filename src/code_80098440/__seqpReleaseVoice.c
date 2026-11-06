@@ -24,7 +24,7 @@ extern void alUnlink(Node *);
 extern void alLink(Node *, void *);
 extern void alEvtqPostEvent(void *, Event *, s32);
 extern void alSynSetVol(void *, void *, s32, s32);
-extern void func_800B14F0(void *, void *, s32);
+extern void alSynSetPriority(void *, void *, s32);
 void __seqpReleaseVoice(char *arg0, char *arg1, s32 arg2)
 {
   Node *next;
@@ -57,7 +57,7 @@ void __seqpReleaseVoice(char *arg0, char *arg1, s32 arg2)
   state[0x34] = 3;
   state[0x30] = 0;
   *((s32 *) (state + 0x24)) = (*((s32 *) (arg0 + 0x1c))) + arg2;
-  func_800B14F0(*((void **) (arg0 + 0x14)), arg1, 0);
+  alSynSetPriority(*((void **) (arg0 + 0x14)), arg1, 0);
   alSynSetVol(*((void **) (arg0 + 0x14)), arg1, 0, arg2);
   local.event.kind = 5;
   local.event.owner = arg1;

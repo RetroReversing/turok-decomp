@@ -26,7 +26,7 @@ typedef struct
 extern s32 CCacheEntry__GetData(void *);
 extern void CIndexedSet__ConstructFromRawData(void *, s32, s32);
 extern s32 func_8002DBF8(void *, s32, s32, s32 *);
-extern void func_80026DA4(void *, s32, s32);
+extern void CTextureLoader__ConstructFromAddressSize(void *, s32, s32);
 void func_8001E550(Dst *o, Src *s, A2 *a)
 {
   u8 *new_var2;
@@ -56,6 +56,6 @@ void func_8001E550(Dst *o, Src *s, A2 *a)
   else
   {
     val = func_8002DBF8(&tmp, a->id, s->index, &size);
-    func_80026DA4(((u8 *) o) + 4, val, size);
+    CTextureLoader__ConstructFromAddressSize(((u8 *) o) + 4, val, size);
   }
 }

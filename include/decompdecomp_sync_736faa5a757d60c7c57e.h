@@ -8,16 +8,16 @@ typedef struct {u8 pad[0x11A];WORD m_nTypeFlag;u8 p11C[0x130-0x11C];DWORD m_dwFl
 typedef struct {void*m_pData;BOOL m_AutoDeleteData;} CIndexedSet;
 typedef struct {void*m_pData;BOOL m_AutoDeleteData;DWORD m_CurrentAllocSize;} CUnindexedSet;
 void*CCacheEntry__GetData(CCacheEntry*);void CIndexedSet__ConstructFromRawData(CIndexedSet*,void*,BOOL);
-void*func_8002DC68(CIndexedSet*,void*,int);void func_8002DA8C(CUnindexedSet*,void*,BOOL);
-void func_800182A4(CGameObjectInstance*,CIndexedSet*);int func_800181A0(CGameObjectInstance*,int);void func_80018060(CGameObjectInstance*,CGameAnimateState*);
-#define CIndexedSet__GetBlock(p,n) func_8002DC68((p),(p)->m_pData,(n))
-#define CUnindexedSet__ConstructFromRawData func_8002DA8C
+void*func_8002DC68(CIndexedSet*,void*,int);void CUnindexedSet__ConstructFromRawData(CUnindexedSet*,void*,BOOL);
+void CGameObjectInstance__SendAllDoorEvents(CGameObjectInstance*,CIndexedSet*);int func_800181A0(CGameObjectInstance*,int);void CGameObjectInstance__MoveToEndOfAbsoluteAnim(CGameObjectInstance*,CGameAnimateState*);
+#define CIndexedSet__GetAddress(p,n) func_8002DC68((p),(p)->m_pData,(n))
+#define CUnindexedSet__ConstructFromRawData CUnindexedSet__ConstructFromRawData
 #define CUnindexedSet__GetBlockCount(p) (((DWORD*)(p)->m_pData)[1])
 #define CIndexedSet__Destruct(p)
 #define CUnindexedSet__Destruct(p)
-#define CGameObjectInstance__SendAllDoorEvents func_800182A4
+#define CGameObjectInstance__SendAllDoorEvents CGameObjectInstance__SendAllDoorEvents
 
-#define CGameObjectInstance__MoveToEndOfAbsoluteAnim func_80018060
+#define CGameObjectInstance__MoveToEndOfAbsoluteAnim CGameObjectInstance__MoveToEndOfAbsoluteAnim
 #define ASSERT(x)
 #define TRACE0(x)
 #define FALSE 0

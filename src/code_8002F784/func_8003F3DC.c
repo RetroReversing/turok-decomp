@@ -328,7 +328,7 @@ typedef struct CUnindexedSet_t
    int m_AutoDeleteData;
    unsigned long m_CurrentAllocSize;
 } CUnindexedSet;
-extern void func_8002DA8C(CUnindexedSet *pThis,
+extern void CUnindexedSet__ConstructFromRawData(CUnindexedSet *pThis,
                void *pData, int AutoDeleteData );
 struct CCartCache_t;
 typedef struct CCacheEntry_t
@@ -499,7 +499,7 @@ typedef struct CInstanceHdr_t
  CGameRegion *m_pCurrentRegion;
  CEnemyAttributes *m_pEA;
 } CInstanceHdr;
-extern int func_8001D398(CInstanceHdr *pThis);
+extern int CInstanceHdr__TypeFlag(CInstanceHdr *pThis);
 typedef struct CAnimInstanceHdr_t
 {
  CInstanceHdr ih;
@@ -1191,7 +1191,7 @@ typedef struct CBossesStatus_t
  CBossPickup m_PickupData[20] ;
  signed long m_CurrentPickup ;
 } CBossesStatus ;
-extern void func_8003F220(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
+extern void CBossesStatus__SaveBossStatus(CBossesStatus *pThis, CGameObjectInstance *pObject) ;
 extern void func_8003F3DC(CBossesStatus *pThis) ;
 typedef struct CNode_t
 {
@@ -1611,7 +1611,7 @@ typedef struct CEngineApp_t
 extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
-void func_8003F220(CBossesStatus *pThis, CGameObjectInstance *pObject);
+void CBossesStatus__SaveBossStatus(CBossesStatus *pThis, CGameObjectInstance *pObject);
 void func_8003F3DC(CBossesStatus *pThis);
 void func_8003F3DC(CBossesStatus *pThis){
  int i ;
@@ -1626,7 +1626,7 @@ void func_8003F3DC(CBossesStatus *pThis){
  pScene = &(&D_800F9F10)->m_Scene;
  if (pScene->m_pceInstances)
  {
-  func_8002DA8C(&usInstances,
+  CUnindexedSet__ConstructFromRawData(&usInstances,
               CCacheEntry__GetData(pScene->m_pceInstances),
               0);
   instances = (CGameObjectInstance*) ( (void*) ( ((unsigned char*)((&usInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
@@ -1635,7 +1635,7 @@ void func_8003F3DC(CBossesStatus *pThis){
   {
    pInst = &instances[cInstance];
    if (pInst->m_pBoss)
-    func_8003F220(pThis, pInst) ;
+    CBossesStatus__SaveBossStatus(pThis, pInst) ;
   }
                                        ;
  }
@@ -1646,12 +1646,12 @@ void func_8003F3DC(CBossesStatus *pThis){
  pDyn = (&D_800F9F10)->m_Scene.m_SimplePool.m_pActiveHead ;
  while(pDyn)
  {
-  switch(func_8001D398(&pDyn->s.ah.ih))
+  switch(CInstanceHdr__TypeFlag(&pDyn->s.ah.ih))
   {
    case 415:
    case 443:
    case 449:
-    pPickup->m_nType = func_8001D398(&pDyn->s.ah.ih) ;
+    pPickup->m_nType = CInstanceHdr__TypeFlag(&pDyn->s.ah.ih) ;
     pPickup->m_vPos = pDyn->s.ah.ih.m_vPos ;
     pPickup++ ;
     break ;

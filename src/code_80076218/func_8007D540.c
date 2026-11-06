@@ -921,7 +921,7 @@ typedef struct COnScreen_t
  sa_u8 m_SelectPosition ;
 } COnScreen ;
 extern void func_8007D540(COnScreen *pThis);
-extern void func_8008319C(void) ;
+extern void COnScreen__InitializeGameText(void) ;
 typedef struct CRequestor_t
 {
  float m_Alpha ;
@@ -1602,7 +1602,7 @@ extern sa_u64 dram_stack[];
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 void func_8007D540(COnScreen *pThis);
-void func_8008319C(void);
+void COnScreen__InitializeGameText(void);
 void func_8007D540(COnScreen *pThis){
  pThis->m_AirMode = 0 ;
  pThis->m_AirOpacity = 0 ;
@@ -1612,5 +1612,5 @@ void func_8007D540(COnScreen *pThis){
   pThis->m_BossBarOpacity = 0 ;
   pThis->m_pBoss = 0 ;
  }
- func_8008319C() ;
+ COnScreen__InitializeGameText() ;
 }

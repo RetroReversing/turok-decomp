@@ -109,8 +109,8 @@ typedef struct {
 
 lldiv_t lldiv(long long num, long long denom);
 ldiv_t ldiv(long num, long denom);
-void *func_8009FA50(void *s1, const void *s2, u32 n);
-s32 func_8009FA7C(const u8 *s);
+void *memcpy(void *s1, const void *s2, u32 n);
+s32 strlen(const u8 *s);
 const char* strchr(const u8* str, s32 ch);
 
 #define FLAGS_SPACE 1
@@ -154,7 +154,7 @@ const char* strchr(const u8* str, s32 ch);
 
 typedef char *outfun(char*,const char*,u32);
 
-int func_800A7E80(outfun prout, char *arg, const char *fmt, va_list args);
+int _Printf(outfun prout, char *arg, const char *fmt, va_list args);
 void _Litob(_Pft *args, u8 type);
 void _Ldtob(_Pft* args, char type);
 

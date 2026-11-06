@@ -1618,7 +1618,7 @@ extern sa_u64 dram_stack[];
 extern float D_800B6B00;
 extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
-extern void func_80080C18(Gfx **ppDLP,
+extern void COnScreen__DrawFontTexture(Gfx **ppDLP,
           void *pTexture,
           float XPos, float YPos,
           float XScale, float YScale) ;
@@ -1700,7 +1700,7 @@ void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP){
    x = (320/2) - x ;
    for (c=0; c<D_800B8484[*code].length; c++)
    {
-    func_80080C18(ppDLP, D_800B8264[D_800B8484[*code].code[c]], x, y, 1.0, 1.0) ;
+    COnScreen__DrawFontTexture(ppDLP, D_800B8264[D_800B8484[*code].code[c]], x, y, 1.0, 1.0) ;
     x+=16 ;
    }
    y+=20 ;

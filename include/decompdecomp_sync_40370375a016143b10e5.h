@@ -4,26 +4,26 @@ typedef struct {u8 pad[16];float m_ProjectileRadius;u8 gap[20];float m_AttackRad
 typedef struct CGameObjectInstance_t {u8 head[4];CVector3 pos;u8 pad[8];EA*ea;u8 pad2[0x64-0x1c];float m_RotY;u8 pad3[0x130-0x68];u32 m_dwFlags;u8 pad4[0x1bc-0x134];float m_AvoidanceAngle;u8 pad5[0x1d0-0x1c0];u32 m_dwStatusFlags;u8 pad6[0x224-0x1d4];struct CGameObjectInstance_t*m_pAttackerCGameObjectInstance;} CGameObjectInstance;
 typedef CGameObjectInstance CAnimInstanceHdr;
 extern float D_800B6B00;
-int func_800137A0(void);float func_8009E7A0(float);float __cosf(float);float __sinf(float);
-void func_8001E080(CAnimInstanceHdr*,float,float);float func_800747C0(CGameObjectInstance*,CVector3,CGameObjectInstance*,float);
-void func_80013588(float*);int func_800719B4(CGameObjectInstance*);void func_8007170C(CGameObjectInstance*);
-int func_8001C348(CGameObjectInstance*,int,int*,int*,int*);void func_8005FCA0(CGameObjectInstance*,int,int);
-#define CGameObjectInstance__GetRandomAnimIndex func_8001C348
-#define AI_SetDesiredAnimByIndex func_8005FCA0
+int RandomSwapWord(void);float sqrtf(float);float __cosf(float);float __sinf(float);
+void CAnimInstanceHdr__Teleport(CAnimInstanceHdr*,float,float);float AI_GetAvoidanceAngle(CGameObjectInstance*,CVector3,CGameObjectInstance*,float);
+void NormalizeRotation(float*);int AI_GetWaterStatus(CGameObjectInstance*);void AI_CompletelyKillOff(CGameObjectInstance*);
+int CGameObjectInstance__GetRandomAnimIndex(CGameObjectInstance*,int,int*,int*,int*);void AI_SetDesiredAnimByIndex(CGameObjectInstance*,int,int);
+#define CGameObjectInstance__GetRandomAnimIndex CGameObjectInstance__GetRandomAnimIndex
+#define AI_SetDesiredAnimByIndex AI_SetDesiredAnimByIndex
 #define frame_increment D_800B6B00
 #define AI_GetEA(p) ((p)->ea)
 #define AI_GetDyn(p) (p)
 #define AI_GetPos(p) ((p)->pos)
-#define RANDOM(x) (func_800137A0()%(x))
-#define sqrt func_8009E7A0
+#define RANDOM(x) (RandomSwapWord()%(x))
+#define sqrt sqrtf
 #define cosf __cosf
 #define sinf __sinf
-#define CAnimInstanceHdr__Teleport func_8001E080
-#define AI_GetAvoidanceAngle func_800747C0
-#define AI_GetWaterStatus func_800719B4
-#define AI_CompletelyKillOff func_8007170C
+#define CAnimInstanceHdr__Teleport CAnimInstanceHdr__Teleport
+#define AI_GetAvoidanceAngle AI_GetAvoidanceAngle
+#define AI_GetWaterStatus AI_GetWaterStatus
+#define AI_CompletelyKillOff AI_CompletelyKillOff
 #define CGameObjectInstance__SetGone(p) ((p)->m_dwFlags|=0x200000)
-#define NormalizeRotation func_80013588
+#define NormalizeRotation NormalizeRotation
 #define ANGLE_PI 3.14159265358979323846
 #define ANGLE_DTOR(deg) ((deg)*(ANGLE_PI/180))
 #define AVOIDANCE_RADIUS_DISTANCE_FACTOR 1.5

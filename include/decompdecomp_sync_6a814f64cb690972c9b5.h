@@ -1,9 +1,9 @@
 typedef signed char s8; typedef unsigned char u8; typedef short s16; typedef unsigned short u16; typedef long s32; typedef unsigned long u32; typedef long long s64; typedef unsigned long long u64; typedef float f32; typedef double f64;
 typedef struct {u8 pad[0x3c];u32 m_dwTypeFlags2;} EA;
 typedef struct {u8 pad[0x18];EA*m_pEA;u8 gap[0x1d0-0x1c];u32 m_dwStatusFlags;} CGameObjectInstance;
-int func_8001C348(CGameObjectInstance*,int,int*,int*,int*);void func_8005FCA0(CGameObjectInstance*,int,int);
-#define CGameObjectInstance__GetRandomAnimIndex func_8001C348
-#define AI_SetDesiredAnimByIndex func_8005FCA0
+int CGameObjectInstance__GetRandomAnimIndex(CGameObjectInstance*,int,int*,int*,int*);void AI_SetDesiredAnimByIndex(CGameObjectInstance*,int,int);
+#define CGameObjectInstance__GetRandomAnimIndex CGameObjectInstance__GetRandomAnimIndex
+#define AI_SetDesiredAnimByIndex AI_SetDesiredAnimByIndex
 #define AI_GetEA(p) ((p)->m_pEA)
 #define AI_GetDyn(p) (p)
 #define FALSE 0

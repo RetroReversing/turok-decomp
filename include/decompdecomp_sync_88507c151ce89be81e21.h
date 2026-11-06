@@ -985,11 +985,11 @@ extern void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event);
 extern void _removeEvents(ALEventQueue *evtq, ALSoundState *state);
 extern s32 _DivS32ByF32 (s32 i, f32 f);
 
-void func_800A2170(ALBank*,s32,s32);u32 func_8009D220(u32);
+void func_800A2170(ALBank*,s32,s32);u32 osSetIntMask(u32);
 #define OS_IM_NONE 1
 
 typedef u32 OSIntMask;u32 osSetIntMask(u32);
-#define osSetIntMask func_8009D220
+#define osSetIntMask osSetIntMask
 
 #define	_ABI_H_
 #define	A_SPNOOP		0
