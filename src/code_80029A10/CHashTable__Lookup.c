@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -16,14 +15,14 @@ typedef s32 M2C_UNK32;
 
 void *CHashTable__GetAssocAt();                     /* extern */
 
-s32 CHashTable__Lookup(s32 arg0, s32 arg1, s32 *arg2) {
+s32 CHashTable__Lookup(s32 pThis, s32 key, s32 *prValue) {
     M2C_UNK sp1C;
     void *temp_v0;
 
-    temp_v0 = CHashTable__GetAssocAt(arg0, arg1, &sp1C);
+    temp_v0 = CHashTable__GetAssocAt(pThis, key, &sp1C);
     if (temp_v0 == NULL) {
         return 0;
     }
-    *arg2 = M2C_FIELD(temp_v0, s32 *, 0xC);
+    *prValue = M2C_FIELD(temp_v0, s32 *, 0xC);
     return 1;
 }

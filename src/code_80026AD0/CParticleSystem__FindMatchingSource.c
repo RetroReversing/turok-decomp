@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -821,27 +821,33 @@ CParticle* CParticleSystem__FindMatchingSource(CParticleSystem *pThis,
                  CInstanceHdr *pSource,
                  CROMParticleEffect *pEffect );
 CParticle* CParticleSystem__FindMatchingSource(CParticleSystem *pThis,
-                 CInstanceHdr *pSource,
-                 CROMParticleEffect *pEffect ){
- CParticle *pParticle;
- pParticle = pThis->m_pActiveHead;
- if (pEffect)
- {
-  while (pParticle)
-  {
-   if ((pParticle->m_pSource == pSource) && (pParticle->m_pEffect == pEffect))
-    return pParticle;
-   pParticle = pParticle->m_pNext;
-  }
- }
- else
- {
-  while (pParticle)
-  {
-   if (pParticle->m_pSource == pSource)
-    return pParticle;
-   pParticle = pParticle->m_pNext;
-  }
- }
- return 0;
+															  CInstanceHdr *pSource,
+															  CROMParticleEffect *pEffect /*=NULL*/)
+{
+	CParticle	*pParticle;
+
+	pParticle = pThis->m_pActiveHead;
+
+	if (pEffect)
+	{
+		while (pParticle)
+		{
+			if ((pParticle->m_pSource == pSource) && (pParticle->m_pEffect == pEffect))
+				return pParticle;
+
+			pParticle = pParticle->m_pNext;
+		}
+	}
+	else
+	{
+		while (pParticle)
+		{
+			if (pParticle->m_pSource == pSource)
+				return pParticle;
+
+			pParticle = pParticle->m_pNext;
+		}
+	}
+
+	return NULL;
 }

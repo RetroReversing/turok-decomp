@@ -1,7 +1,6 @@
-#include "decompdecomp_sync_1beb867b94b7b2c85f88.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_f68de04e095aa12b0178.h"
 #line 1071 "reference.c"
-void CGeometry__Decompress(CGeometry *pThis, CCacheEntry **ppceTarget)
+/* #define BOUNDS_CHECK_THRESHOLD 16 */ void CGeometry__Decompress(CGeometry *pThis, CCacheEntry **ppceTarget)
 {
 	int				allocSize,
 						dispListSize, verticesSize,
@@ -660,4 +659,3 @@ void CGeometry__Decompress(CGeometry *pThis, CCacheEntry **ppceTarget)
 	CIndexedSet__Destruct(&isNodes);
 	CIndexedSet__Destruct(&isGeometry);
 }
-

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct {
  short ob[3];
@@ -127,7 +127,7 @@ void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame){
              CCacheEntry__GetData(pThis->m_pceGeometry),
              0);
  pInfo = (CGameGeometryInfo*) CIndexedSet__GetAddress((&isGeometry), (&isGeometry)->m_pData, (0));
- if (pInfo->m_MorphFrameNumber != D_800B6AF0)
+ /* only one morph per frame */ if (pInfo->m_MorphFrameNumber != D_800B6AF0)
  {
   pInfo->m_MorphFrameNumber = D_800B6AF0;
   pbNodes = CIndexedSet__GetAddress((&isGeometry), (&isGeometry)->m_pData, (1));
@@ -137,7 +137,7 @@ void CGeometry__Morph(CGeometry *pThis, int nNode, float Frame){
    pbNode = CIndexedSet__GetAddress((&isNodes), (&isNodes)->m_pData, (nNode));
    CIndexedSet__ConstructFromRawData(&isNode, pbNode, 0);
      pbParts = CIndexedSet__GetAddress((&isNode), (&isNode)->m_pData, (2));
-   CIndexedSet__ConstructFromRawData(&isParts, pbParts, 0);
+   /* all parts in node */ CIndexedSet__ConstructFromRawData(&isParts, pbParts, 0);
    nParts = (((unsigned long*) (&isParts)->m_pData)[0]);
    if (nParts >= 3)
    {

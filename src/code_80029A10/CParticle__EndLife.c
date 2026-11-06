@@ -1,6 +1,7 @@
-#include "decompdecomp_sync_51594220493c8c54d998.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_22b1c57b24adc1180d9c.h"
 #line 11499 "reference.c"
+// do end of life particle
+//
 void CParticle__EndLife(CParticle *pThis)
 {
 	// declare variables
@@ -33,4 +34,3 @@ void CParticle__EndLife(CParticle *pThis)
 	if (nSoundType != (WORD) -1)
 		CParticle__DoSoundEffect(pThis, nSoundType, FALSE, &pThis->ah.ih.m_vPos);
 }
-

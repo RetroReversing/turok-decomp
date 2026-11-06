@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1642,7 +1642,7 @@ int CParticle__IsInAntiGrav(CParticle *pThis){
  pRegionSet = CScene__GetRegionAttributes(&(&D_800F9F10)->m_Scene, pRegion);
  if (!pRegionSet)
   return 0;
- if (!(pRegionSet->m_dwFlags & (1 << 24)))
+ /* is this water region actually an anti grav area ? */ if (!(pRegionSet->m_dwFlags & (1 << 24)))
   return 0;
- return (pThis->ah.ih.m_vPos.y <= pRegionSet->m_WaterElevation);
+ /* in anti grav */ return (pThis->ah.ih.m_vPos.y <= pRegionSet->m_WaterElevation);
 }

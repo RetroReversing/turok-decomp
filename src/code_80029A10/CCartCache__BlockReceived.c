@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -90,7 +90,7 @@ void CCartCache__BlockReceived(CCartCache *pThis,
    if (pCacheEntry)
    {
   pOldCacheEntry = ((void*)0);
-  if (CHashTable__Lookup(&pThis->m_HashTable, rpRequestedAddress, (void**) &pOldCacheEntry))
+  /* not used, just supresses warning; */ if (CHashTable__Lookup(&pThis->m_HashTable, rpRequestedAddress, (void**) &pOldCacheEntry))
       {
                                                     ;
          D_8002DE54(&pThis->m_HashTable, pOldCacheEntry->m_rpAddress);
@@ -102,8 +102,8 @@ void CCartCache__BlockReceived(CCartCache *pThis,
   pCacheEntry->m_DataLength = rLength;
       pCacheEntry->m_InHashTable = 1;
   pCacheEntry->m_Compressed = 0;
-      CHashTable__SetAt(&pThis->m_HashTable, rpRequestedAddress, pCacheEntry);
-      if (pThis->m_pCacheHead)
+      /* CCacheEntry__ResetAge(pCacheEntry); */ /* add to cache hash table */ CHashTable__SetAt(&pThis->m_HashTable, rpRequestedAddress, pCacheEntry);
+      /* add to cache linked list */ if (pThis->m_pCacheHead)
          pThis->m_pCacheHead->m_pLast = pCacheEntry;
   if (!pThis->m_pCacheTail)
    pThis->m_pCacheTail = pCacheEntry;
@@ -118,14 +118,14 @@ void CCartCache__BlockReceived(CCartCache *pThis,
          if ((pNotify->m_rpRequestedAddress == rpRequestedAddress) && (pNotify->m_rLength <= rLength))
          {
             pCacheEntry->m_szDescription = pNotify->m_szDescription;
-            ppceTarget = pNotify->m_ppceTarget;
+            /* remove from linked list before sending notification messages */ ppceTarget = pNotify->m_ppceTarget;
             pNotifyPtr = pNotify->m_pNotifyPtr;
             pfnDecompress = pNotify->m_pfnDecompress;
             pfnBlockReceived = pNotify->m_pfnBlockReceived;
             pDeleteEntry = pNotify;
             pNotify = pNotify->m_pNext;
             D_8002CCB8(pThis, pDeleteEntry);
-    prevPceTarget = *ppceTarget;
+    /* assign to target address and save previous value */ prevPceTarget = *ppceTarget;
             *ppceTarget = pCacheEntry;
             if (pCacheEntry->m_pData)
             {
@@ -141,7 +141,7 @@ void CCartCache__BlockReceived(CCartCache *pThis,
      }
      else
      {
-      *ppceTarget = prevPceTarget;
+      /* restore previous value of *ppceTarget */ *ppceTarget = prevPceTarget;
       D_8002DE54(&pThis->m_HashTable, pCacheEntry->m_rpAddress);
       pCacheEntry->m_InHashTable = 0;
      }
@@ -152,7 +152,7 @@ void CCartCache__BlockReceived(CCartCache *pThis,
             pNotify = pNotify->m_pNext;
          }
       }
-      if (!pCacheEntry->m_pData)
+      /* memory allocation failed during decompression */ if (!pCacheEntry->m_pData)
          D_8002CBEC(pThis, pCacheEntry);
    }
  else

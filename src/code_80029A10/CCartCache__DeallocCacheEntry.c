@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -14,8 +13,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-void CCartCache__DeallocCacheEntry(void *arg0, void *arg1) {
-    M2C_FIELD(arg1, s32 *, 0x20) = 0x15D0B;
-    M2C_FIELD(arg1, void **, 0x30) = (void *) M2C_FIELD(arg0, void **, 0x682C);
-    M2C_FIELD(arg0, void **, 0x682C) = arg1;
+void CCartCache__DeallocCacheEntry(void *pThis, void *pEntry) {
+    M2C_FIELD(pEntry, s32 *, 0x20) = 0x15D0B;
+    M2C_FIELD(pEntry, void **, 0x30) = (void *) M2C_FIELD(pThis, void **, 0x682C);
+    M2C_FIELD(pThis, void **, 0x682C) = pEntry;
 }

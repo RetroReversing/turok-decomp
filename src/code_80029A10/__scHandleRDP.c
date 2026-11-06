@@ -1,7 +1,6 @@
-#include "decompdecomp_sync_0b4d8928c78c9ffcb7cd.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_b88bba27f8b0d617e1f0.h"
 #line 491 "reference.c"
-void __scHandleRDP(OSSched *sc)
+/* called when an RDP task signals that it has finished */ void __scHandleRDP(OSSched *sc)
 {
     OSScTask *t, *sp = 0, *dp = 0;
     s32 state;
@@ -78,4 +77,3 @@ void __scHandleRDP(OSSched *sc)
 	if ( (__scSchedule (sc, &sp, &dp, state)) != state)
 		__scExec(sc, sp, dp);
 }
-

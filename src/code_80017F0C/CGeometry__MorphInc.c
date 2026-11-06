@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern unsigned long D_800B6AF0;
 struct CAssoc_t;
@@ -93,7 +93,7 @@ void CGeometry__MorphInc(CGeometry *pThis, int nNode, float Increment){
              CCacheEntry__GetData(pThis->m_pceGeometry),
              0);
  pInfo = (CGameGeometryInfo*) CIndexedSet__GetAddress((&isGeometry), (&isGeometry)->m_pData, (0));
- if (pInfo->m_MorphFrameNumber != D_800B6AF0)
+ /* only one morph per frame */ if (pInfo->m_MorphFrameNumber != D_800B6AF0)
  {
   pInfo->m_cMorph += Increment;
   CGeometry__Morph(pThis, nNode, pInfo->m_cMorph);

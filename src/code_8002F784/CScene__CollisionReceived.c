@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -21,10 +20,10 @@ extern M2C_UNK D_800F1B64;
 extern M2C_UNK CScene__InstancesReceived;
 extern M2C_UNK CScene__DecompressInstances;
 
-void CScene__CollisionReceived(u8 *arg0, M2C_UNK arg1) {
+void CScene__CollisionReceived(u8 *pThis, M2C_UNK ppceTarget) {
     M2C_UNK sp40[3];
     s32 sp38;
 
-    CIndexedSet__ConstructFromRawData(sp40 + 1, CCacheEntry__GetData(M2C_FIELD(arg0, s32 *, 0x6B10)), 0);
-    CCartCache__RequestBlock(arg0, arg0, &CScene__DecompressInstances, &CScene__InstancesReceived, arg0 + 0x6AFC, func_8002DBF8(sp40 + 1, M2C_FIELD(arg0, s32 *, 0x6AC8), 2, &sp38), sp38, &D_800F1B64);
+    CIndexedSet__ConstructFromRawData(sp40 + 1, CCacheEntry__GetData(M2C_FIELD(pThis, s32 *, 0x6B10)), 0);
+    CCartCache__RequestBlock(pThis, pThis, &CScene__DecompressInstances, &CScene__InstancesReceived, pThis + 0x6AFC, func_8002DBF8(sp40 + 1, M2C_FIELD(pThis, s32 *, 0x6AC8), 2, &sp38), sp38, &D_800F1B64);
 }

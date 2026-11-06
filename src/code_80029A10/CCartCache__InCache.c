@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -16,9 +16,9 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK CHashTable__Lookup();                       /* extern */
 
-void CCartCache__InCache(s32 arg0, s32 arg1) {
+void CCartCache__InCache(s32 pThis, s32 rpAddress) {
     s32 sp1C;
 
     sp1C = 0;
-    CHashTable__Lookup(arg0, arg1, &sp1C);
+    CHashTable__Lookup(pThis, rpAddress, &sp1C);
 }

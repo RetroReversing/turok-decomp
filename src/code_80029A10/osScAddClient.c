@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -119,11 +119,11 @@ typedef struct {
 extern void osScAddClient(OSSched *s, OSScClient *c, OSMesgQueue *msgQ);
 extern sa_u64 dram_stack[];
 void osScAddClient(OSSched *D_800F95E0, OSScClient *c, OSMesgQueue *msgQ);
-void osScAddClient(OSSched *D_800F95E0, OSScClient *c, OSMesgQueue *msgQ){
+/* * Add a client to the scheduler. Clients receive messages at retrace time */ void osScAddClient(OSSched *sc, OSScClient *c, OSMesgQueue *msgQ){
     OSIntMask mask;
     mask = osSetIntMask(0x00000001);
     c->msgQ = msgQ;
-    c->next = D_800F95E0->clientList;
-    D_800F95E0->clientList = c;
+    c->next = sc->clientList;
+    sc->clientList = c;
     osSetIntMask(mask);
 }

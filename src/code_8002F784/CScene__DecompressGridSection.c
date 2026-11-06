@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_8d698fdff8b312cb3f4a.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1064,8 +1064,8 @@ void CScene__DecompressGridSection(CScene *pThis, CCacheEntry **ppceTarget){
         usObjectAttributes,
         usRegions;
  unsigned char *pBytes;
- int
-        cEStatic, nEStatics,
+ /* pickupFlags; */ int
+        /* nGridSection, */ cEStatic, nEStatics,
         cStatic, nStatics,
         cSimple, nSimples,
         newStaticSize, newSimpleSize,
@@ -1084,7 +1084,7 @@ void CScene__DecompressGridSection(CScene *pThis, CCacheEntry **ppceTarget){
   return;
                                                        ;
  pceGridSection = *ppceTarget;
-   CIndexedSet__ConstructFromRawData(&isGridSection,
+   /* attatch collection to old data */ CIndexedSet__ConstructFromRawData(&isGridSection,
              CCacheEntry__GetData(pceGridSection),
              0);
  if (!(((unsigned long*) (&isGridSection)->m_pData)[0]))
@@ -1125,7 +1125,7 @@ void CScene__DecompressGridSection(CScene *pThis, CCacheEntry **ppceTarget){
                  sizeof(CGameStaticInstance),
                  nEStatics + nStatics,
                  0);
-  romEStaticInstances = (CROMEfficientStaticInstance*) ( (void*) ( ((unsigned char*)((&usEStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
+  /* don't auto delete data */ romEStaticInstances = (CROMEfficientStaticInstance*) ( (void*) ( ((unsigned char*)((&usEStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
   romStaticInstances = (CROMStaticInstance*) ( (void*) ( ((unsigned char*)((&usStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
   gameStaticInstances = (CGameStaticInstance*) ( (void*) ( ((unsigned char*)((&usNewStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
                                ;
@@ -1144,7 +1144,7 @@ void CScene__DecompressGridSection(CScene *pThis, CCacheEntry **ppceTarget){
               CCacheEntry__GetData(pThis->m_pceObjectAttributes),
               0);
   variations = (CEnemyAttributes*) ( (void*) ( ((unsigned char*)((&usObjectAttributes)->m_pData)) + (2*sizeof(unsigned long)) ) );
-  for (cEStatic=0; cEStatic<nEStatics; cEStatic++)
+  /* efficient static instances */ for (cEStatic=0; cEStatic<nEStatics; cEStatic++)
   {
    rpObjectAddress = D_8002DC24(&isObjectsIndex,
                   pThis->m_rpObjectsAddress,
@@ -1155,7 +1155,7 @@ void CScene__DecompressGridSection(CScene *pThis, CCacheEntry **ppceTarget){
                        regions, variations,
                        pThis->m_LevelInfo.m_GridDistance);
   }
-  for (cStatic=0; cStatic<nStatics; cStatic++)
+  /* static instances */ for (cStatic=0; cStatic<nStatics; cStatic++)
   {
    rpObjectAddress = D_8002DC24(&isObjectsIndex,
                   pThis->m_rpObjectsAddress,
@@ -1176,9 +1176,9 @@ void CScene__DecompressGridSection(CScene *pThis, CCacheEntry **ppceTarget){
                  sizeof(CGameSimpleInstance),
                  nSimples,
                  0);
-  romSimpleInstances = (CROMSimpleInstance*) ( (void*) ( ((unsigned char*)((&usSimpleInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
+  /* don't auto delete data */ romSimpleInstances = (CROMSimpleInstance*) ( (void*) ( ((unsigned char*)((&usSimpleInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
   gameSimpleInstances = (CGameSimpleInstance*) ( (void*) ( ((unsigned char*)((&usNewSimpleInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
-  for (cSimple=0; cSimple<nSimples; cSimple++)
+  /* nGridSection = CScene__FindGridSection(pThis, ppceTarget); */ /* ASSERT(nGridSection != -1); */ /* simple instances */ for (cSimple=0; cSimple<nSimples; cSimple++)
   {
    rpObjectAddress = D_8002DC24(&isObjectsIndex,
                   pThis->m_rpObjectsAddress,

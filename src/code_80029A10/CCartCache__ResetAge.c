@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -16,34 +15,34 @@ typedef s32 M2C_UNK32;
 
 extern s32 D_800B6AF0;
 
-void CCartCache__ResetAge(void *arg0, void *arg1) {
+void CCartCache__ResetAge(void *pThis, void *pCacheEntry) {
     void *temp_v0;
     void *temp_v0_2;
     void *temp_v0_3;
 
-    M2C_FIELD(arg1, s32 *, 0x14) = (s32) D_800B6AF0;
-    if (arg1 == M2C_FIELD(arg0, void **, 0x20)) {
-        M2C_FIELD(arg0, void **, 0x20) = (void *) M2C_FIELD(arg1, void **, 0x2C);
+    M2C_FIELD(pCacheEntry, s32 *, 0x14) = (s32) D_800B6AF0;
+    if (pCacheEntry == M2C_FIELD(pThis, void **, 0x20)) {
+        M2C_FIELD(pThis, void **, 0x20) = (void *) M2C_FIELD(pCacheEntry, void **, 0x2C);
     }
-    if (arg1 == M2C_FIELD(arg0, void **, 0x24)) {
-        M2C_FIELD(arg0, void **, 0x24) = (void *) M2C_FIELD(arg1, void **, 0x28);
+    if (pCacheEntry == M2C_FIELD(pThis, void **, 0x24)) {
+        M2C_FIELD(pThis, void **, 0x24) = (void *) M2C_FIELD(pCacheEntry, void **, 0x28);
     }
-    temp_v0 = M2C_FIELD(arg1, void **, 0x28);
+    temp_v0 = M2C_FIELD(pCacheEntry, void **, 0x28);
     if (temp_v0 != NULL) {
-        M2C_FIELD(temp_v0, void **, 0x2C) = (void *) M2C_FIELD(arg1, void **, 0x2C);
+        M2C_FIELD(temp_v0, void **, 0x2C) = (void *) M2C_FIELD(pCacheEntry, void **, 0x2C);
     }
-    temp_v0_2 = M2C_FIELD(arg1, void **, 0x2C);
+    temp_v0_2 = M2C_FIELD(pCacheEntry, void **, 0x2C);
     if (temp_v0_2 != NULL) {
-        M2C_FIELD(temp_v0_2, void **, 0x28) = (void *) M2C_FIELD(arg1, void **, 0x28);
+        M2C_FIELD(temp_v0_2, void **, 0x28) = (void *) M2C_FIELD(pCacheEntry, void **, 0x28);
     }
-    temp_v0_3 = M2C_FIELD(arg0, void **, 0x20);
+    temp_v0_3 = M2C_FIELD(pThis, void **, 0x20);
     if (temp_v0_3 != NULL) {
-        M2C_FIELD(temp_v0_3, void **, 0x28) = arg1;
+        M2C_FIELD(temp_v0_3, void **, 0x28) = pCacheEntry;
     }
-    if (M2C_FIELD(arg0, void **, 0x24) == NULL) {
-        M2C_FIELD(arg0, void **, 0x24) = arg1;
+    if (M2C_FIELD(pThis, void **, 0x24) == NULL) {
+        M2C_FIELD(pThis, void **, 0x24) = pCacheEntry;
     }
-    M2C_FIELD(arg1, void **, 0x28) = NULL;
-    M2C_FIELD(arg1, void **, 0x2C) = (void *) M2C_FIELD(arg0, void **, 0x20);
-    M2C_FIELD(arg0, void **, 0x20) = arg1;
+    M2C_FIELD(pCacheEntry, void **, 0x28) = NULL;
+    M2C_FIELD(pCacheEntry, void **, 0x2C) = (void *) M2C_FIELD(pThis, void **, 0x20);
+    M2C_FIELD(pThis, void **, 0x20) = pCacheEntry;
 }

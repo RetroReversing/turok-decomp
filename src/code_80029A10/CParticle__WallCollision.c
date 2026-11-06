@@ -1,6 +1,7 @@
-#include "decompdecomp_sync_167423be0e0131092af9.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_27aef775aef348aa6e35.h"
 #line 11356 "reference.c"
+// particle wall collision
+//
 void CParticle__WallCollision(CParticle *pThis)
 {
 	// declare variables
@@ -38,4 +39,3 @@ void CParticle__WallCollision(CParticle *pThis)
 	if (pThis->m_CI.WallBehavior == INTERSECT_BEHAVIOR_STICK)
 		CParticle__Delete(pThis);
 }
-

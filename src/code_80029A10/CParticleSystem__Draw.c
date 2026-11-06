@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1631,7 +1631,7 @@ void CParticle__CalculateOrientationMatrix(CParticle *pThis,
                float *pDistanceFromPlayer ,
                int *pIntersectWithGround );
 void CParticle__Draw(CParticle *pThis, Gfx **ppDLP, CCartCache *pCache);
-void CParticleSystem__Draw(CParticleSystem *pThis, Gfx **ppDLP){
+/* LEAVES IN 1 CYCLE MODE */ void CParticleSystem__Draw(CParticleSystem *pThis, Gfx **ppDLP){
  /* Draw visible particles and extend swooshes for offscreen particles. */
  CParticle *pParticle;
  CROMBounds bounds;
@@ -1648,7 +1648,7 @@ void CParticleSystem__Draw(CParticleSystem *pThis, Gfx **ppDLP){
   CMtxF__RotateY(D_80119FF0, (&D_800F9F10)->m_RotY) ;
   { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(20) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((0 << 20)); };
     { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = ((unsigned int) (((unsigned int)((-65 -9)) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = (unsigned int)(0x00020000 | 0x00002000 | 0x00040000); };
-  pParticle = pThis->m_pDrawHead;
+  /* gDPSetDepthSource((*ppDLP)++, G_ZS_PRIM); */ pParticle = pThis->m_pDrawHead;
   while (pParticle)
   {
    diag = 1.414213562373*pParticle->m_Size;

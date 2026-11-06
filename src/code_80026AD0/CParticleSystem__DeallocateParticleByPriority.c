@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -819,7 +819,7 @@ extern void CParticleSystem__DeallocateParticleByPriority(CParticleSystem *pThis
 void CParticleSystem__DeallocateParticleByPriority(CParticleSystem *pThis, unsigned char Priority);
 void CParticleSystem__DeallocateParticle(CParticleSystem *pThis, CParticle *pParticle);
 void CParticleSystem__DeallocateParticleByPriority(CParticleSystem *pThis, unsigned char Priority){
- CParticle *pParticle;
+ /* CParticle *pParticle, *pLowestPriorityParticle; BYTE lowestPriority; lowestPriority = 100; pLowestPriorityParticle = NULL; pParticle = pThis->m_pActiveTail; while (pParticle) { if (pParticle->m_pEffect->m_Priority < lowestPriority) { lowestPriority = pParticle->m_pEffect->m_Priority; pLowestPriorityParticle = pParticle; if (lowestPriority == 0) break; } pParticle = pParticle->m_pLast; } if (pLowestPriorityParticle && (lowestPriority <= Priority)) CParticleSystem__DeallocateParticle(pThis, pLowestPriorityParticle); */ CParticle *pParticle;
  pParticle = pThis->m_pActiveTail;
  while (pParticle)
  {

@@ -1,7 +1,7 @@
-#include "common_local_source_4038.h"
+#include "decompdecomp_sync_7c146445770e3af03686.h"
 
 #line 1 "reference.c"
-void CParticle__InstanceCollision(CParticle *pThis)
+/* particle instance collision */ void CParticle__InstanceCollision(CParticle *pThis)
 {
 	// declare variables
 	int						nMaterial,
@@ -90,5 +90,5 @@ void CParticle__InstanceCollision(CParticle *pThis)
 
 	// ?
 	if ((pThis->m_CI.InstanceBehavior == INTERSECT_BEHAVIOR_STICK) || IsExplosionEvent(EventNumber))
-		CParticleSystem__DeallocateParticle(&GetApp()->m_Scene.m_ParticleSystem, pThis);
+		sub_8002864C(&GetApp()->m_Scene.m_ParticleSystem, pThis);
 }

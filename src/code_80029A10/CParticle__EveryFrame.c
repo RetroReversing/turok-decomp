@@ -1,6 +1,7 @@
-#include "decompdecomp_sync_32a6a5c9c28c85d9c85a.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_8507a72c31a8c16fd6f7.h"
 #line 11535 "reference.c"
+// do every frame particle
+//
 void CParticle__EveryFrame(CParticle *pThis)
 {
 	// declare variables
@@ -33,4 +34,3 @@ void CParticle__EveryFrame(CParticle *pThis)
 	if (nSoundType != (WORD) -1)
 		CParticle__DoSoundEffect(pThis, nSoundType, TRUE, &pThis->ah.ih.m_vPos);
 }
-

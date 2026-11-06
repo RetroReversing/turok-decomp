@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern unsigned long D_800B6AF0;
 struct CAssoc_t;
@@ -66,7 +66,7 @@ extern int CCartCache__DiscardCacheEntry(CCartCache *pThis);
 int CCartCache__DiscardCacheEntry(CCartCache *pThis);
 CCacheEntry* CCartCache__AllocCacheEntry(CCartCache *pThis);
 CCacheEntry* CCartCache__AllocCacheEntry(CCartCache *pThis){
- CCacheEntry *pEntry;
+ /* CCacheEntry *pEntry; if (pThis->m_pCacheFreeHead) { pEntry = pThis->m_pCacheFreeHead; pThis->m_pCacheFreeHead = pThis->m_pCacheFreeHead->m_pNextFree; ASSERT(pEntry->m_Allocated == CACHEENTRY_UNALLOCATED); pEntry->m_Allocated = CACHEENTRY_ALLOCATED; pEntry->m_pOwner = pThis; pEntry->m_LastAccessed = frame_number; #ifdef TRACE_MEM TRACE("Cache: Allocated cache entry: %x.\r\n", pEntry); #endif return pEntry; } else { TRACE0("Cache: WARNING - Could not allocate cache entry.\r\n"); ASSERT(FALSE); return NULL; } */ CCacheEntry *pEntry;
  if (!pThis->m_pCacheFreeHead)
  {
   if (CCartCache__DiscardCacheEntry(pThis))

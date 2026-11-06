@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -832,25 +832,30 @@ float CGameRegion__GetUphillCosine(CGameRegion *pThis,
              float StartX, float StartZ,
               float EndX, float EndZ);
 float CGameRegion__GetUphillCosine(CGameRegion *pThis,
-             float StartX, float StartZ,
-              float EndX, float EndZ){
- float currentGroundHeight, desiredGroundHeight,
-    dx, dy, dz,
-    groundMagSq, magSq;
- if (pThis)
- {
-  currentGroundHeight = CGameRegion__GetGroundHeight(pThis, StartX, StartZ);
-  desiredGroundHeight = CGameRegion__GetGroundHeight(pThis, EndX, EndZ);
-  if (desiredGroundHeight > currentGroundHeight)
-  {
-   dx = EndX - StartX;
-   dy = desiredGroundHeight - currentGroundHeight;
-   dz = EndZ - StartZ;
-   groundMagSq = dx*dx + dz*dz;
-   magSq = groundMagSq + dy*dy;
-   if (magSq != 0)
-    return sqrtf(groundMagSq/magSq);
-  }
- }
- return 1;
+											  float StartX, float StartZ,
+										 	  float EndX, float EndZ)
+{
+	float		currentGroundHeight, desiredGroundHeight,
+				dx, dy, dz,
+				groundMagSq, magSq;
+
+	if (pThis)
+	{
+		currentGroundHeight = CGameRegion__GetGroundHeight(pThis, StartX, StartZ);
+		desiredGroundHeight = CGameRegion__GetGroundHeight(pThis, EndX, EndZ);
+		if (desiredGroundHeight > currentGroundHeight)
+		{
+			// going up hill
+			dx = EndX - StartX;
+			dy = desiredGroundHeight - currentGroundHeight;
+			dz = EndZ - StartZ;
+			groundMagSq = dx*dx + dz*dz;
+			magSq = groundMagSq + dy*dy;
+
+			if (magSq != 0)
+				return sqrtf(groundMagSq/magSq);
+		}
+	}
+
+	return 1;
 }

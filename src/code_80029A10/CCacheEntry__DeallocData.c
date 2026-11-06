@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern int D_80011DDC (void *address) ;
 struct CAssoc_t;
@@ -62,7 +62,8 @@ typedef struct CTextureLoader_t
  unsigned long m_TextureSetSize;
 } CTextureLoader;
 void CCacheEntry__DeallocData(CCacheEntry *pThis);
-void CCacheEntry__DeallocData(CCacheEntry *pThis){
- if (pThis->m_pData)
-  D_80011DDC(pThis->m_pData);
+void CCacheEntry__DeallocData(CCacheEntry *pThis)
+{
+	if (pThis->m_pData)
+		D_80011DDC(pThis->m_pData);
 }

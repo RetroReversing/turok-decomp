@@ -1,15 +1,15 @@
-#include "decompdecomp_sync_9d9b901578a01a880ff8.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_cd8e719cd0b00f3838e3.h"
 #line 744 "reference.c"
+// schedules the tasks to be run on the RCP
 s32 __scSchedule(OSSched *sc, OSScTask **sp, OSScTask **dp, s32 availRCP)
 {
 	s32 avail = availRCP;
 	OSScTask *gfx = sc->gfxListHead;
 	OSScTask *audio = sc->audioListHead;
 
-
-
-
+#ifdef SC_LOGGING
+	osLogEvent(l, 517, 3, *sp, *dp, availRCP);
+#endif
 
 	if (sc->doAudio && (avail & OS_SC_SP))
 	{
@@ -30,31 +30,31 @@ s32 __scSchedule(OSSched *sc, OSScTask **sp, OSScTask **dp, s32 availRCP)
 	}
 	else
 	{
-
-
-
+#ifdef SC_LOGGING
+		osLogEvent(l, 520, 1, gfx);
+#endif
 		if (__scTaskReady(gfx))
 		{
-
-
-
+#ifdef SC_LOGGING
+			osLogEvent(l, 522, 3, gfx, gfx->state, gfx->flags);
+#endif
 			switch (gfx->flags & OS_SC_TYPE_MASK)
 			{
 				case (OS_SC_XBUS):
 					if (gfx->state & OS_SC_YIELDED)
 					{
-
-
-
+#ifdef SC_LOGGING
+						osLogEvent(l, 518, 0);
+#endif
 						// can hit this if RDP finishes at yield req
 						// ASSERT(gfx->state & OS_SC_DP);
 
 						if (avail & OS_SC_SP)
 						{
 							// if SP is available
-
-
-
+#ifdef SC_LOGGING
+							osLogEvent(l, 519, 0);
+#endif
 							*sp = gfx;
 							avail &= ~OS_SC_SP;
 
@@ -127,4 +127,3 @@ s32 __scSchedule(OSSched *sc, OSScTask **sp, OSScTask **dp, s32 availRCP)
 
 	return avail;
 }
-

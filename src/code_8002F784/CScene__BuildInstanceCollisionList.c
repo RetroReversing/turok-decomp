@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 extern char D_800F1B84[]; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1026,7 +1025,7 @@ void CScene__BuildInstanceCollisionList(CScene *pThis, CUnindexedSet *pusAnimIns
  pThis->m_nInstances = 0;
  pThis->m_nActiveAnimInstances = 0;
  pThis->m_nStaticEventsInstances = 0;
-   instances = (CGameObjectInstance*) ( (void*) ( ((unsigned char*)((pusAnimInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
+   /* animated instances */ instances = (CGameObjectInstance*) ( (void*) ( ((unsigned char*)((pusAnimInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
    nInstances = ( (unsigned long) (((unsigned long*) (pusAnimInstances)->m_pData)[1]) );
                         ;
  pInstance = &instances[0];
@@ -1035,7 +1034,7 @@ void CScene__BuildInstanceCollisionList(CScene *pThis, CUnindexedSet *pusAnimIns
   if (pInstance->ah.ih.m_pEA->m_dwTypeFlags & (1<<0))
    if ((((&pInstance->m_BoundsRect)->m_MaxX > (&D_800F9E30)->m_MinX) && ((&pInstance->m_BoundsRect)->m_MinX < (&D_800F9E30)->m_MaxX) && ((&pInstance->m_BoundsRect)->m_MaxZ > (&D_800F9E30)->m_MinZ) && ((&pInstance->m_BoundsRect)->m_MinZ < (&D_800F9E30)->m_MaxZ)))
     if (pThis->m_nInstances != 1024) pThis->m_pInstances[pThis->m_nInstances++] = &pInstance->ah.ih;;
- for (cInstance=1; cInstance<nInstances; cInstance++)
+ /* COMBINE WITH DRAW INSTANCES? */ for (cInstance=1; cInstance<nInstances; cInstance++)
  {
   pInstance = &instances[cInstance];
   if (pInstance->m_pceObjectInfo && !((pInstance)->m_dwFlags & (1 << 21)))
@@ -1060,9 +1059,9 @@ void CScene__BuildInstanceCollisionList(CScene *pThis, CUnindexedSet *pusAnimIns
    pBounds = pGridBounds[cGrid];
    rpGridSectionAddress = D_8002DBF8(&isGridSections, pThis->m_rpGridSectionsAddress,
                       indices[cGrid], &gridSectionSize);
-   pBounds->m_pceGridSection = 0;
+   /* make sure we use current cache entry */ pBounds->m_pceGridSection = 0;
    D_8002D1F8(&pThis->m_Cache,
-            pThis, (pfnCACHENOTIFY) CScene__DecompressGridSection, 0,
+            /* pThis, (pfnCACHENOTIFY) CScene__DecompressStaticInstances, NULL, */ pThis, (pfnCACHENOTIFY) CScene__DecompressGridSection, 0,
                             &pBounds->m_pceGridSection,
                             rpGridSectionAddress, gridSectionSize,
                             D_800F1B84);
@@ -1117,5 +1116,5 @@ void CScene__BuildInstanceCollisionList(CScene *pThis, CUnindexedSet *pusAnimIns
   }
                                         ;
  }
- CSimplePool__AddToCollisionList(&pThis->m_SimplePool, pThis);
+ /* add pickups */ CSimplePool__AddToCollisionList(&pThis->m_SimplePool, pThis);
 }

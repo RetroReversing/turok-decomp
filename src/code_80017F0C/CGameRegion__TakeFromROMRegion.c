@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -834,18 +834,32 @@ typedef struct CHeadTrackInfo_t
 void CGameRegion__TakeFromROMRegion(CGameRegion *pThis, CROMRegion *pSource,
             CROMCorner Corners[], CGameRegion Regions[]);
 void CGameRegion__TakeFromROMRegion(CGameRegion *pThis, CROMRegion *pSource,
-            CROMCorner Corners[], CGameRegion Regions[]){
- int i;
- unsigned short neighbor;
- pThis->m_nRegionSet = pSource->m_nRegionSet;
- pThis->m_wFlags = pSource->m_wFlags;
- for (i=0; i<3; i++)
- {
-  pThis->m_pCorners[i] = &Corners[pSource->m_Corners[i]];
-  neighbor = pSource->m_Neighbors[i];
-  if (neighbor == ((unsigned short) -1))
-   pThis->m_pNeighbors[i] = ((void*)0);
-  else
-   pThis->m_pNeighbors[i] = &Regions[neighbor];
- }
+												CROMCorner Corners[], CGameRegion Regions[])
+{
+	int 				i;
+	unsigned short	neighbor;
+
+	pThis->m_nRegionSet = pSource->m_nRegionSet;
+	pThis->m_wFlags = pSource->m_wFlags;
+
+	//TRACE3("Neighbors 0:%d, 1:%d, 2:%d\r\n",
+	//		pSource->m_Neighbors[0],
+	//		pSource->m_Neighbors[1],
+	//		pSource->m_Neighbors[2]);
+
+	for (i=0; i<3; i++)
+	{
+		pThis->m_pCorners[i] = &Corners[pSource->m_Corners[i]];
+
+		neighbor = pSource->m_Neighbors[i];
+		if (neighbor == ((unsigned short) -1))
+			pThis->m_pNeighbors[i] = NULL;
+		else
+			pThis->m_pNeighbors[i] = &Regions[neighbor];
+	}
+
+	//TRACE3("pNeighbors 0:%x, 1:%x, 2:%x\r\n",
+	//		pThis->m_pNeighbors[0],
+	//		pThis->m_pNeighbors[1],
+	//		pThis->m_pNeighbors[2]);
 }

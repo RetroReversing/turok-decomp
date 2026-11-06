@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -16,7 +15,7 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK CCartCache__ResetAge(s32, void *);                 /* extern */
 
-s32 CCacheEntry__GetData(void *arg0) {
-    CCartCache__ResetAge(M2C_FIELD(arg0, s32 *, 0x10), arg0);
-    return M2C_FIELD(arg0, s32 *, 0);
+s32 CCacheEntry__GetData(void *pThis) {
+    CCartCache__ResetAge(M2C_FIELD(pThis, s32 *, 0x10), pThis);
+    return M2C_FIELD(pThis, s32 *, 0);
 }

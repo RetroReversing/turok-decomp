@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct CUnindexedSet_t
 {
@@ -17,7 +17,7 @@ void CUnindexedSet__DeinterleaveCopy(CUnindexedSet *pThis, void *pDest, int Copy
                                                   ;
  inBytes = (unsigned char*) ( (void*) ( ((unsigned char*)((pThis)->m_pData)) + (2*sizeof(unsigned long)) ) );
  pOutPlace = (unsigned char*) pDest;
- memcpy(pDest, pThis->m_pData, (2*sizeof(unsigned long)));
+ /* copy header */ memcpy(pDest, pThis->m_pData, (2*sizeof(unsigned long)));
  pOutPlace += (2*sizeof(unsigned long));
  blockSize = ( (unsigned long) (((unsigned long*) (pThis)->m_pData)[0]) );
  blockCount = ( (unsigned long) (((unsigned long*) (pThis)->m_pData)[1]) );

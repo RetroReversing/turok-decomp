@@ -1,5 +1,4 @@
-#include "decompdecomp_sync_d1a9230c436ba570f40b.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_0529a9eb27c650e1d886.h"
 #line 1597 "reference.c"
 void CCartCache__RequestBlock(CCartCache *pThis,
 										void *pNotifyPtr,
@@ -17,9 +16,9 @@ void CCartCache__RequestBlock(CCartCache *pThis,
 						*pSearchNotify;
 	void				*pData;
 
-             
+#ifndef WIN32
 	ASSERT(osGetThreadId(NULL) == THREAD_MAIN);
-      
+#endif
 
    ASSERT(rpRequestAddress);
    ASSERT(ppceTarget);
@@ -105,10 +104,10 @@ void CCartCache__RequestBlock(CCartCache *pThis,
 						 rpRequestAddress,
 						 rLength);
 
-            
-                                                                     
-                                                                                           
-     
+#ifdef WIN32
+				// FOR TESTING, I'M JUST COPYING DATA AND CALLING BlockReceived()
+				memcpy(pData, (void*) ((DWORD) rpRequestAddress & ~CACHE_BLOCK_VERSION_MASK), rLength);
+#else
 				// FOR NOW, REQUEST IS SYNCHRONOUS
 				BrokenUpDMA(pData,
 								(ROMAddress*) ((DWORD) rpRequestAddress & ~CACHE_BLOCK_VERSION_MASK),
@@ -130,7 +129,7 @@ void CCartCache__RequestBlock(CCartCache *pThis,
 				osInvalDCache(pData, rLength);
 */
 //				romcpy(pData, (DWORD) rpRequestAddress & ~CACHE_BLOCK_VERSION_MASK, rLength);
-      
+#endif
 				CCartCache__BlockReceived(pThis, rpRequestAddress, rLength, pData);
 			}
 		}
@@ -145,4 +144,3 @@ void CCartCache__RequestBlock(CCartCache *pThis,
          pfnBlockReceived(pNotifyPtr, ppceTarget);
    }
 }
-

@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -17,9 +16,9 @@ typedef s32 M2C_UNK32;
 s32 CCacheEntry__GetData(s32);                             /* extern */
 M2C_UNK CUnindexedSet__ConstructFromRawData(s32 *, s32, M2C_UNK);         /* extern */
 
-u16 CScene__GetObjectTypeFlag(void *arg0, s32 arg1) {
+u16 CScene__GetObjectTypeFlag(void *pThis, s32 nObjType) {
     s32 sp24[4];
 
-    CUnindexedSet__ConstructFromRawData((sp24 + 1), CCacheEntry__GetData(M2C_FIELD(arg0, s32 *, 0x6AEC)), 0);
-    return M2C_FIELD((sp24[1] + (arg1 * 2)), u16 *, 8);
+    CUnindexedSet__ConstructFromRawData((sp24 + 1), CCacheEntry__GetData(M2C_FIELD(pThis, s32 *, 0x6AEC)), 0);
+    return M2C_FIELD((sp24[1] + (nObjType * 2)), u16 *, 8);
 }

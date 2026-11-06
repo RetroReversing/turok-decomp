@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -826,23 +826,31 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo ;
 CVector3 D_800207C0(CGameRegion *pThis);
 float CGameRegion__GetCeilingHeight(CGameRegion *pThis, float X, float Z);
-float CGameRegion__GetCeilingHeight(CGameRegion *pThis, float X, float Z){
- CVector3 vNormal,
-    vPoint;
- if (!pThis)
-  return 0;
- vNormal = D_800207C0(pThis);
+float CGameRegion__GetCeilingHeight(CGameRegion *pThis, float X, float Z)
+{
+	CVector3	vNormal,
+				vPoint;
+
+	if (!pThis)
+		return 0;
+
+	vNormal = D_800207C0(pThis);
+
    if (vNormal.y == 0)
    {
+      // degenerate region
+      // return average height
       return (pThis->m_pCorners[0]->m_Ceiling
-      + pThis->m_pCorners[1]->m_Ceiling
-      + pThis->m_pCorners[2]->m_Ceiling)/3;
+				  + pThis->m_pCorners[1]->m_Ceiling
+				  + pThis->m_pCorners[2]->m_Ceiling)/3;
    }
    else
    {
-  vPoint.x = pThis->m_pCorners[0]->m_vCorner.x;
-  vPoint.y = pThis->m_pCorners[0]->m_Ceiling;
-  vPoint.z = pThis->m_pCorners[0]->m_vCorner.z;
+      // use corner 0 for point on plane
+		vPoint.x = pThis->m_pCorners[0]->m_vCorner.x;
+		vPoint.y = pThis->m_pCorners[0]->m_Ceiling;
+		vPoint.z = pThis->m_pCorners[0]->m_vCorner.z;
+
       return ((vPoint.z - Z)*vNormal.z + (vPoint.x - X)*vNormal.x + vPoint.y*vNormal.y)/vNormal.y;
    }
 }

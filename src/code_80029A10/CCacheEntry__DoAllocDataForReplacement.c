@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -76,6 +76,6 @@ void* CCacheEntry__DoAllocDataForReplacement(CCacheEntry *pThis, unsigned long N
  else
  {
                                      ;
- }
+ /* ASSERT(FALSE); */ }
  return pNewData;
 }

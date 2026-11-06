@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1644,19 +1643,19 @@ void CScene__DrawTransparentInstances(CScene *pThis, Gfx **ppDLP){
   {
    case 0:
     pStatic = (CGameStaticInstance*) pInstance;
-    xCenter2 = pStatic->m_Bounds.m_vMin.x + pStatic->m_Bounds.m_vMax.x + xPos2;
+    /* xCenter2 = pStatic->m_Bounds.m_vMin.x + pStatic->m_Bounds.m_vMax.x; */ /* yCenter2 = pStatic->m_Bounds.m_vMin.y + pStatic->m_Bounds.m_vMax.y; */ /* zCenter2 = pStatic->m_Bounds.m_vMin.z + pStatic->m_Bounds.m_vMax.z; */ xCenter2 = pStatic->m_Bounds.m_vMin.x + pStatic->m_Bounds.m_vMax.x + xPos2;
     yCenter2 = pStatic->m_Bounds.m_vMin.y + pStatic->m_Bounds.m_vMax.y + yPos2;
     zCenter2 = pStatic->m_Bounds.m_vMin.z + pStatic->m_Bounds.m_vMax.z + zPos2;
     break;
    case 3:
    case 1:
-    xCenter2 = 2*pInstance->m_vPos.x + xPos2;
+    /* xCenter2 = 2*pInstance->m_vPos.x; */ /* yCenter2 = 2*pInstance->m_vPos.y; */ /* zCenter2 = 2*pInstance->m_vPos.z; */ xCenter2 = 2*pInstance->m_vPos.x + xPos2;
     yCenter2 = 2*pInstance->m_vPos.y + yPos2;
     zCenter2 = 2*pInstance->m_vPos.z + zPos2;
     break;
   }
   pSort->p = pInstance;
-  pSort->dist = xCenter2*xCenter2 + yCenter2*yCenter2 + zCenter2*zCenter2;
+  /* pSort->dist = abs(xPos2 - xCenter2) + abs(yPos2 - yCenter2) + abs(zPos2 - zCenter2); */ pSort->dist = xCenter2*xCenter2 + yCenter2*yCenter2 + zCenter2*zCenter2;
  }
  qsort(sorts, nInsts, sizeof(SortStruct), SortCompare, SortSwap);
  for (cInst=0; cInst<nInsts; cInst++)

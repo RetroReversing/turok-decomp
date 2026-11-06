@@ -1,6 +1,7 @@
-#include "decompdecomp_sync_e08c5317d33ee6ff47a3.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_51fb4305e26611586ff5.h"
 #line 34 "reference.c"
+// called when an RSP task signals that it has
+// finished or yielded (at the hosts request)
 void __scHandleRSP(OSSched *sc)
 {
 	OSScTask *t, *sp = 0, *dp = 0;
@@ -11,9 +12,9 @@ void __scHandleRSP(OSSched *sc)
 	t = sc->curRSPTask;
 	sc->curRSPTask = 0;
 
-                 
-                                              
-      
+#ifdef SC_LOGGING
+	osLogEvent(l, 510, 3, t, t->state, t->flags);
+#endif
 
 	if ((t->state & OS_SC_YIELD) && osSpTaskYielded(&t->list))
 	{
@@ -28,14 +29,14 @@ void __scHandleRSP(OSSched *sc)
 				sc->gfxListTail = t;
 		}
 
-                 
-                           
-      
+#ifdef SC_LOGGING
+		osLogEvent(l, 521, 1, t);
+#endif
 
 		ASSERT(t->list.t.type == M_GFXTASK);
 
 		if (t->flags & OS_SC_LAST_TASK)
-			this_rsp_graphics_time += (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
+			this_rsp_graphics_time += ((float)(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
 
 	}
 	else
@@ -49,17 +50,17 @@ void __scHandleRSP(OSSched *sc)
 			// RSP complete for graphics task
 			if (t->flags & OS_SC_LAST_TASK)
 			{
-				this_rsp_graphics_time += (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
+				this_rsp_graphics_time += ((float)(CYCLES_TO_NSEC(osGetTime() - rsp_graphics_start_time)))/1000000;
 				rsp_graphics_time = this_rsp_graphics_time;
-				rsp_total_time = (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_start_time)))/1000000;
+				rsp_total_time = ((float)(CYCLES_TO_NSEC(osGetTime() - rsp_start_time)))/1000000;
 
 				ret = osSendMesg(t->msgQ, t->msg, OS_MESG_NOBLOCK);
 				if (ret == -1)
 				{
-               
-                               
-                                                   
-      
+#ifndef SHIP_IT
+					trap_thread = THREAD_MAIN;
+					igAssert(__FILE__, __LINE__, "-- MQ FULL --");
+#endif
 
 					// reboot
 					*((char*)(NULL)) = 0;
@@ -68,15 +69,15 @@ void __scHandleRSP(OSSched *sc)
 		}
 		else
 		{
-			rsp_audio_time = (__ull_to_f(CYCLES_TO_NSEC(osGetTime() - rsp_audio_start_time)))/1000000;
+			rsp_audio_time = ((float)(CYCLES_TO_NSEC(osGetTime() - rsp_audio_start_time)))/1000000;
 
 			ret = osSendMesg(t->msgQ, t->msg, OS_MESG_NOBLOCK);
 			if (ret == -1)
 			{
-               
-                              
-                                                  
-      
+#ifndef SHIP_IT
+				trap_thread = THREAD_MAIN;
+				igAssert(__FILE__, __LINE__, "-- MQ FULL --");
+#endif
 
 				// reboot
 				*((char*)(NULL)) = 0;
@@ -90,4 +91,3 @@ void __scHandleRSP(OSSched *sc)
 	if ( (__scSchedule (sc, &sp, &dp, state)) != state)
 		__scExec(sc, sp, dp);
 }
-

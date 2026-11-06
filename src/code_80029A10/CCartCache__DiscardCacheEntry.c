@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern unsigned long D_800B6AF0;
 struct CAssoc_t;
@@ -66,12 +66,12 @@ extern int CCartCache__DiscardCacheEntry(CCartCache *pThis);
 int CCartCache__DiscardCacheEntry(CCartCache *pThis);
 void D_8002CBEC(CCartCache *pThis, CCacheEntry *pCacheEntry);
 int CCartCache__DiscardCacheEntry(CCartCache *pThis){
- if (!pThis->m_pCacheTail)
+ /* CCartCache__PrintMemory(pThis); */ if (!pThis->m_pCacheTail)
  {
                                                                              ;
   return 0;
  }
- if ((pThis->m_pCacheTail->m_LastAccessed + 1) < D_800B6AF0)
+ /* +1 allows for time for display processor */ if ((pThis->m_pCacheTail->m_LastAccessed + 1) < D_800B6AF0)
  {
   D_8002CBEC(pThis, pThis->m_pCacheTail);
   return 1;

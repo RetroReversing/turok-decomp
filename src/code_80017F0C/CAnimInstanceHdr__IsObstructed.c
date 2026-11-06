@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1659,8 +1659,8 @@ int CAnimInstanceHdr__IsObstructed(CAnimInstanceHdr *pThis, CVector3 vDesired, C
  }
  if (ppCIUsed)
   *ppCIUsed = pCI;
- ah = *pThis;
+ /* save pThis data */ ah = *pThis;
  collisions = D_8009A4D8(pThis, vDesired, pCI);
- *pThis = ah;
+ /* restore pThis data */ *pThis = ah;
  return collisions;
 }

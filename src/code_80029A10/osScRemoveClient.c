@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -119,8 +119,8 @@ typedef struct {
 extern void osScRemoveClient(OSSched *s, OSScClient *c);
 extern sa_u64 dram_stack[];
 void osScRemoveClient(OSSched *D_800F95E0, OSScClient *c);
-void osScRemoveClient(OSSched *D_800F95E0, OSScClient *c){
-    OSScClient *client = D_800F95E0->clientList;
+void osScRemoveClient(OSSched *sc, OSScClient *c){
+    OSScClient *client = sc->clientList;
     OSScClient *prev = 0;
     OSIntMask mask;
     mask = osSetIntMask(0x00000001);
@@ -129,7 +129,7 @@ void osScRemoveClient(OSSched *D_800F95E0, OSScClient *c){
      if(prev)
   prev->next = c->next;
      else
-  D_800F95E0->clientList = c->next;
+  sc->clientList = c->next;
             break;
         }
         prev = client;

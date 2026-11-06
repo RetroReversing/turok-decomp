@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 extern char D_800F1B94[]; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1923,7 +1922,7 @@ void CScene__DrawEnvironment(CScene *pThis, Gfx **ppDLP){
  {
   pBounds = pGridBounds[cGrid];
   pSort = &sorts[cGrid];
-  xCenter2 = pBounds->m_BoundsRect.m_MinX + pBounds->m_BoundsRect.m_MaxX + xPos2;
+  /* xCenter2 = pBounds->m_BoundsRect.m_MinX + pBounds->m_BoundsRect.m_MaxX; */ /* zCenter2 = pBounds->m_BoundsRect.m_MinZ + pBounds->m_BoundsRect.m_MaxZ; */ xCenter2 = pBounds->m_BoundsRect.m_MinX + pBounds->m_BoundsRect.m_MaxX + xPos2;
   zCenter2 = pBounds->m_BoundsRect.m_MinZ + pBounds->m_BoundsRect.m_MaxZ + zPos2;
   pSort->p = (void*) cGrid;
   pSort->dist = xCenter2*xCenter2 + zCenter2*zCenter2;
@@ -1945,7 +1944,7 @@ void CScene__DrawEnvironment(CScene *pThis, Gfx **ppDLP){
   pBounds = pGridBounds[cGrid];
   rpGridSectionAddress = D_8002DBF8(&isGridSections, pThis->m_rpGridSectionsAddress,
                      indices[cGrid], &gridSectionSize);
-  pBounds->m_pceGridSection = 0;
+  /* make sure we use current cache entry */ pBounds->m_pceGridSection = 0;
   D_8002D1F8(&pThis->m_Cache,
            pThis, (pfnCACHENOTIFY) CScene__DecompressGridSection, 0,
                            &pBounds->m_pceGridSection,
@@ -1962,14 +1961,14 @@ void CScene__DrawEnvironment(CScene *pThis, Gfx **ppDLP){
     CUnindexedSet__ConstructFromRawData(&usStaticInstances, pbStaticInstances, 0);
     staticInstances = ( (void*) ( ((unsigned char*)((&usStaticInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
     nStatInsts = ( (unsigned long) (((unsigned long*) (&usStaticInstances)->m_pData)[1]) );
-    nVisInsts = 0;
+    /* make list of visible instances */ nVisInsts = 0;
     for (cStatInst=0; cStatInst<nStatInsts; cStatInst++)
     {
      pInstance = &staticInstances[cStatInst];
                                              ;
      if ((((&D_800F9E20)->m_MaxX > (&pInstance->m_Bounds)->m_vMin.x) && ((&D_800F9E20)->m_MinX < (&pInstance->m_Bounds)->m_vMax.x) && ((&D_800F9E20)->m_MaxZ > (&pInstance->m_Bounds)->m_vMin.z) && ((&D_800F9E20)->m_MinZ < (&pInstance->m_Bounds)->m_vMax.z)))
      {
-      if (CViewVolume__IsOverlappingBounds(&D_800F9D90, &pInstance->m_Bounds) && ((pThis)->m_bPlayerActiveFlags & ((CInstanceHdr*)(pInstance))->m_bActiveFlags))
+      /* bounds check against view volume */ if (CViewVolume__IsOverlappingBounds(&D_800F9D90, &pInstance->m_Bounds) && ((pThis)->m_bPlayerActiveFlags & ((CInstanceHdr*)(pInstance))->m_bActiveFlags))
       {
        if (pInstance->m_dwFlags & (1 << 2))
        {
@@ -1978,7 +1977,7 @@ void CScene__DrawEnvironment(CScene *pThis, Gfx **ppDLP){
        else
        {
         pSort = &sorts[nVisInsts++];
-        xCenter2 = pInstance->m_Bounds.m_vMin.x + pInstance->m_Bounds.m_vMax.x + xPos2;
+        /* xCenter2 = pInstance->m_Bounds.m_vMin.x + pInstance->m_Bounds.m_vMax.x; */ /* yCenter2 = pInstance->m_Bounds.m_vMin.y + pInstance->m_Bounds.m_vMax.y; */ /* zCenter2 = pInstance->m_Bounds.m_vMin.z + pInstance->m_Bounds.m_vMax.z; */ xCenter2 = pInstance->m_Bounds.m_vMin.x + pInstance->m_Bounds.m_vMax.x + xPos2;
         yCenter2 = pInstance->m_Bounds.m_vMin.y + pInstance->m_Bounds.m_vMax.y + yPos2;
         zCenter2 = pInstance->m_Bounds.m_vMin.z + pInstance->m_Bounds.m_vMax.z + zPos2;
         pSort->p = pInstance;
@@ -1988,7 +1987,7 @@ void CScene__DrawEnvironment(CScene *pThis, Gfx **ppDLP){
      }
     }
     qsort(sorts, nVisInsts, sizeof(SortStruct), RevSortCompare, SortSwap);
-    for (cVisInst=0; cVisInst<nVisInsts; cVisInst++)
+    /* nVisInsts = (frame_number/3)%(nVisInsts + 1); */ for (cVisInst=0; cVisInst<nVisInsts; cVisInst++)
     {
      func_8001F0AC((CGameStaticInstance*) sorts[cVisInst].p, ppDLP,
                  &pThis->m_Cache, pThis->m_pceTextureSetsIndex);

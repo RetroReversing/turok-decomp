@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -984,7 +983,7 @@ typedef struct CBossData_t
 } CBossData ;
 struct CCollisionInfo2_t;
 CGameRegion* CScene__NearestRegion(CScene *pThis, CVector3 *pvPos);
-CGameRegion* CScene__NearestRegion(CScene *pThis, CVector3 *pvPos){
+/* Function: CScene__NearestRegion() * ****************************************************************************** * * Description: Returns closest region to given position * * Inputs: *pThis - Ptr to scene * *pvPos - Ptr to position * * Outputs: Ptr to region closest to specified position, or NULL if none */ CGameRegion* CScene__NearestRegion(CScene *pThis, CVector3 *pvPos){
  float groundHeight,
       distance, closestDistance ;
  int cRegion, nRegions ;
@@ -994,7 +993,7 @@ CGameRegion* CScene__NearestRegion(CScene *pThis, CVector3 *pvPos){
  CIndexedSet isCollision ;
  CUnindexedSet usRegions ;
                                ;
- CIndexedSet__ConstructFromRawData(&isCollision,
+ /* Set up collision data for parsing */ CIndexedSet__ConstructFromRawData(&isCollision,
              CCacheEntry__GetData(pThis->m_pceCollision),
              0) ;
  pbRegions = CIndexedSet__GetAddress((&isCollision), (&isCollision)->m_pData, (2)) ;
@@ -1008,11 +1007,11 @@ CGameRegion* CScene__NearestRegion(CScene *pThis, CVector3 *pvPos){
   pRegion = &regions[cRegion] ;
   if (D_8001E21C(pRegion, pvPos->x, pvPos->z))
   {
-   groundHeight = CGameRegion__GetGroundHeight(pRegion, pvPos->x, pvPos->z) ;
+   /* Get y distance */ groundHeight = CGameRegion__GetGroundHeight(pRegion, pvPos->x, pvPos->z) ;
    distance = (((pvPos->y - groundHeight) < 0) ? -(pvPos->y - groundHeight) : (pvPos->y - groundHeight)) ;
    if (pDesired)
    {
-    if (distance < closestDistance)
+    /* Is this the closest on the y axis? */ if (distance < closestDistance)
     {
      pDesired = pRegion ;
      closestDistance = distance ;

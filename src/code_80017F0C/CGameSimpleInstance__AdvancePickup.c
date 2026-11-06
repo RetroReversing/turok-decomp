@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -864,7 +864,7 @@ void CGameSimpleInstance__AdvancePickup(CGameSimpleInstance *pThis){
    pThis->m_Scale = 0.35;
   }
  }
- switch (CInstanceHdr__TypeFlag(&pThis->ah.ih))
+ /* add particle effect to certain pickups */ switch (CInstanceHdr__TypeFlag(&pThis->ah.ih))
  {
   case 404:
   case 405:

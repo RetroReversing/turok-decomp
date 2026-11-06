@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1652,13 +1652,13 @@ void CGeometry__DrawPart(CGeometry *pThis, Gfx **ppDLP, CCartCache *pCache, int 
   pbNode = CIndexedSet__GetAddress((&isNodes), (&isNodes)->m_pData, (nNode));
   CIndexedSet__ConstructFromRawData(&isNode, pbNode, 0);
   pbPartIndices = CIndexedSet__GetAddress((&isNode), (&isNode)->m_pData, (1));
-  CUnindexedSet__ConstructFromRawData(&usPartIndices, pbPartIndices, 0);
+  /* parts are indirected through indices */ CUnindexedSet__ConstructFromRawData(&usPartIndices, pbPartIndices, 0);
   nPartIndices = ( (unsigned long) (((unsigned long*) (&usPartIndices)->m_pData)[1]) );
   if (nPartIndices)
   {
      partIndices = (unsigned long*) ( (void*) ( ((unsigned char*)((&usPartIndices)->m_pData)) + (2*sizeof(unsigned long)) ) );
      pbParts = CIndexedSet__GetAddress((&isNode), (&isNode)->m_pData, (2));
-   CIndexedSet__ConstructFromRawData(&isParts, pbParts, 0);
+   /* all parts in node */ CIndexedSet__ConstructFromRawData(&isParts, pbParts, 0);
      pbPart = CIndexedSet__GetAddress((&isParts), (&isParts)->m_pData, (partIndices[nPart%nPartIndices]));
    CIndexedSet__ConstructFromRawData(&isPart, pbPart, 0);
    nSections = (((unsigned long*) (&isPart)->m_pData)[0]);

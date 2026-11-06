@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -990,7 +989,7 @@ CGameRegion* CScene__GetRegionPtr(CScene *pThis, int Index){
                               ;
  if (!pThis->m_pceCollision)
   return ((void*)0);
- CIndexedSet__ConstructFromRawData(&isCollision,
+ /* get base ptr to regions */ CIndexedSet__ConstructFromRawData(&isCollision,
              CCacheEntry__GetData(pThis->m_pceCollision),
              0) ;
  pbRegions = CIndexedSet__GetAddress((&isCollision), (&isCollision)->m_pData, (2)) ;

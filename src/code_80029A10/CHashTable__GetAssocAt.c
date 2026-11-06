@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -26,12 +25,12 @@ typedef struct CAssoc_t
 } CAssoc;
 extern CAssoc* CHashTable__GetAssocAt(CHashTable *pThis, void*, unsigned long*);
 CAssoc* CHashTable__GetAssocAt(CHashTable *pThis, void* key, unsigned long *pnHash);
-CAssoc* CHashTable__GetAssocAt(CHashTable *pThis, void* key, unsigned long *pnHash){
+CAssoc* CHashTable__GetAssocAt(CHashTable *pThis, void* key, unsigned long *pnHash)/* find association (or return NULL) */ {
  CAssoc *pAssoc;
  *pnHash = (((unsigned long)(void*)(unsigned long)(void*)key) >> 4) % pThis->m_nHashTableSize;
  if (pThis->m_pHashTable == ((void*)0))
   return ((void*)0);
- for (pAssoc = pThis->m_pHashTable[*pnHash]; pAssoc != ((void*)0); pAssoc = pAssoc->pNext)
+ /* see if it exists */ for (pAssoc = pThis->m_pHashTable[*pnHash]; pAssoc != ((void*)0); pAssoc = pAssoc->pNext)
  {
   if (pAssoc->key == key)
    return pAssoc;

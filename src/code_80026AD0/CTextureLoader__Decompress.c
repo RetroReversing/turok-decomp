@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -103,7 +103,7 @@ void CTextureLoader__Decompress(CTextureLoader *pThis, CCacheEntry **ppceTarget)
   return;
  if ((((unsigned long)(((pThis->m_pceTextureSet)->m_rpAddress))) >> 30))
  {
-  CIndexedSet__ConstructFromRawData(&isTextureSet,
+  /* swap red and blue colors */ CIndexedSet__ConstructFromRawData(&isTextureSet,
               CCacheEntry__GetData(pThis->m_pceTextureSet),
               0);
   pFormat = (CROMTextureFormat*) CIndexedSet__GetAddress((&isTextureSet), (&isTextureSet)->m_pData, (0));

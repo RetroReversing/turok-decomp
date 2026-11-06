@@ -1,5 +1,4 @@
-#include "decompdecomp_sync_7e2364878b7051c9db2e.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_9b3a1bc5821f7ede40f6.h"
 #line 3682 "reference.c"
 void CScene__DrawSky(CScene *pThis, Gfx **ppDLP)
 {
@@ -213,7 +212,7 @@ void CScene__DrawSky(CScene *pThis, Gfx **ppDLP)
 	//D_800144C8(&vDelta, &GetApp()->m_vTCorners[0], &GetApp()->m_vTCorners[1]);
 	//clipDist = CVector3__Magnitude(&vDelta);
 	
-	for (l=0; l<SKY_LEVELS; l++)
+	/* CVector3__Subtract(&vDelta, &GetApp()->m_vTCorners[0], &GetApp()->m_vTCorners[1]); */ for (l=0; l<SKY_LEVELS; l++)
 	{
 		// copy corners to vC
 		for (v=0; v<5; v++)
@@ -259,7 +258,7 @@ void CScene__DrawSky(CScene *pThis, Gfx **ppDLP)
 				vC[v].y = height;
 			}
 */
-		}
+		/* if (t > 1) { divisor = vC[v].y - vC[0].y; if (divisor == 0) t = 1; else t = (height - vC[0].y)/divisor; } if (t >= 0) { vC[v].x = BlendFLOAT(t, vC[0].x, vC[v].x); vC[v].z = BlendFLOAT(t, vC[0].z, vC[v].z); vC[v].y = height; } */ }
 
 
 		for (side=0; side<4; side++)
@@ -367,7 +366,7 @@ void CScene__DrawSky(CScene *pThis, Gfx **ppDLP)
 						else
 							pVert->v.cn[3] = (BYTE) (TOP_OPAC*maxOpac);
 */
-					}
+					/* //pVert->v.cn[3] = maxOpac[v]; CVector3__Subtract(&vDelta, &vv[v], &vv[0]); divisor = CVector3__Magnitude(&vDelta); //divisor = vv[v].y - vv[0].y; //if (divisor == 0) // maxOpac = 0; //else //maxOpac = max(0, min(1, 1 - fabs(height - vv[0].y)/divisor)); maxOpac = max(0, min(1, 1 - divisor/clipDist)); if (l) pVert->v.cn[3] = (BYTE) (BOTTOM_OPAC*maxOpac); else pVert->v.cn[3] = (BYTE) (TOP_OPAC*maxOpac); */ }
 					else
 					{
 						pVert->v.cn[0] = nearColor[0];
@@ -406,4 +405,3 @@ void CScene__DrawSky(CScene *pThis, Gfx **ppDLP)
 		}
 	}
 }
-

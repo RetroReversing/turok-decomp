@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1714,7 +1714,7 @@ void CGameSimpleInstance__Draw(CGameSimpleInstance *pThis, Gfx **ppDLP,
  unsigned long geometrySize;
  void *pbNodes;
  int nObjType;
- if ( (pThis->ah.ih.m_pEA->m_wTypeFlags3 & (1<<11))
+ /* static DWORD morphFrame = (DWORD) -1; */ /* static float morphDist = 0; */ /* float dist; */ /* Draw in "pickup key" cinema? */ if ( (pThis->ah.ih.m_pEA->m_wTypeFlags3 & (1<<11))
     && ((&D_80106000)->m_Camera.m_Mode == CAMERA_CINEMA_TUROK_PICKUP_KEY_MODE) )
   return ;
  if ((((&D_800F9E30)->m_MaxX > (&pThis->m_Bounds)->m_vMin.x) && ((&D_800F9E30)->m_MinX < (&pThis->m_Bounds)->m_vMax.x) && ((&D_800F9E30)->m_MaxZ > (&pThis->m_Bounds)->m_vMin.z) && ((&D_800F9E30)->m_MinZ < (&pThis->m_Bounds)->m_vMax.z)))
@@ -1726,7 +1726,7 @@ void CGameSimpleInstance__Draw(CGameSimpleInstance *pThis, Gfx **ppDLP,
    if (CViewVolume__IsOverlappingBounds(&D_800F9D90, &pThis->m_Bounds))
    {
     CGameSimpleInstance__CalculateOrientationMatrix(pThis);
-    pThis->m_pceObjectIndex = 0;
+    /* make sure object index is current */ pThis->m_pceObjectIndex = 0;
     D_8002D1F8(pCache,
              0, 0, 0,
              &pThis->m_pceObjectIndex,
@@ -1758,7 +1758,7 @@ void CGameSimpleInstance__Draw(CGameSimpleInstance *pThis, Gfx **ppDLP,
       nObjType = CInstanceHdr__TypeFlag(&pThis->ah.ih);
       if (AI_IsWarp(nObjType) || AI_IsMorph(nObjType))
       {
-       CGeometry__MorphInc(&pThis->m_Geometry, 0, pThis->m_MorphInc);
+       /* dist = fabs(pThis->ah.ih.m_vPos.x - GetApp()->m_vTCorners[0].x) + fabs(pThis->ah.ih.m_vPos.z - GetApp()->m_vTCorners[0].z); // only morph for closest object // there is only one copy of the model per object type if ((frame_number != morphFrame) || (dist < morphDist)) { morphFrame = frame_number; morphDist = dist; CGeometry__Morph(&pThis->m_Geometry, 0, pThis->m_cFrame); } */ CGeometry__MorphInc(&pThis->m_Geometry, 0, pThis->m_MorphInc);
        CGeometry__DrawPart(&pThis->m_Geometry, ppDLP, pCache, 0, D_800B6AF4, 0, 0, pThis->ah.ih.m_pEA->m_nTexture);
       }
       else

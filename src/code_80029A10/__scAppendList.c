@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -117,7 +117,7 @@ typedef struct {
 extern sa_u64 dram_stack[];
 extern void __scAppendList(OSSched *s, OSScTask *t);
 void __scAppendList(OSSched *D_800F95E0, OSScTask *t);
-void __scAppendList(OSSched *D_800F95E0, OSScTask *t){
+/* place task on either the audio or graphics queue */ void __scAppendList(OSSched *D_800F95E0, OSScTask *t){
  long type = t->list.t.type;
                                                    ;
  if (type == 2)

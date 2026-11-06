@@ -1,13 +1,13 @@
-#include "source_CParticle__Advance.h"
+#include "decompdecomp_sync_311496eccb8b1b436b8c.h"
 
 extern u32 D_801195EC;
 #line 1 "reference.c"
 static __inline float ParticleMagnitude(CParticle *p){char scratch[4];return CVector3__Magnitude(&p->ah.m_vVelocity);}
-void CParticle__Advance(CParticle *pThis)
+/* process impact collision here */ void CParticle__Advance(CParticle *pThis)
 {
 	//CMtxF			mfRot;
 	
-	float			newSize;
+	/* CMtxF mfRot; */ /* CVector3 vDirection, vRotDir; */ float			newSize;
 
 	if (pThis->m_cFrame < 0)
 		return;
@@ -29,7 +29,7 @@ void CParticle__Advance(CParticle *pThis)
 		if (pThis->m_Size < 0)
 		{
 			CParticle__EndLife(pThis);
-			CParticleSystem__DeallocateParticle(&GetApp()->m_Scene.m_ParticleSystem, pThis);
+			sub_8002864C(&GetApp()->m_Scene.m_ParticleSystem, pThis);
 			return;
 		}
 	}

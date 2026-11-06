@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -395,7 +395,7 @@ void __scHandleRetrace(OSSched *sc){
  CFrameData *pFrameData;
  char buffer[50];
   sc->frameCount++;
- while (osRecvMesg(&sc->cmdQ, (OSMesg*) &rspTask, 0) != -1)
+ /* read the task command queue and schedule tasks */ while (osRecvMesg(&sc->cmdQ, (OSMesg*) &rspTask, 0) != -1)
   __scAppendList(sc, rspTask);
  D_800F9D50++;
                                              ;
@@ -432,7 +432,7 @@ void __scHandleRetrace(OSSched *sc){
   {
    sc->gfxListHead->state &= ~(0x0010 | 0x0020);
    sc->curRSPTask = sc->gfxListHead;
-   sc->gfxListHead = sc->gfxListHead->next;
+   /* remove from queue */ sc->gfxListHead = sc->gfxListHead->next;
    if (!sc->gfxListHead)
     sc->gfxListTail = 0;
    __scHandleRSP(sc);
@@ -445,7 +445,7 @@ void __scHandleRetrace(OSSched *sc){
  }
  if (sc->doAudio && sc->curRSPTask)
  {
-  __scYield(sc);
+  /* Preempt the running gfx task. Note: if the RSP */ /* component of the graphics task has finished, but the */ /* RDP component is still running, we can start an audio */ /* task which will freeze the RDP (and save the RDP cmd */ /* FIFO) while the audio RSP code is running. */ __scYield(sc);
  }
  else
  {
@@ -453,6 +453,6 @@ void __scHandleRetrace(OSSched *sc){
   if (__scSchedule (sc, &sp, &dp, state) != state)
    __scExec(sc, sp, dp);
  }
- for (client=sc->clientList; client!=0; client=client->next)
+ /* notify audio and graphics threads to start building the command */ /* lists for the next frame (client threads may choose not to */ /* build the list in overrun case) */ for (client=sc->clientList; client!=0; client=client->next)
   osSendMesg(client->msgQ, (OSMesg) &sc->retraceMsg, 0);
 }

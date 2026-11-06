@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -155,28 +155,28 @@ extern void __scMain(void *arg);
 void osCreateScheduler(OSSched *D_800F95E0, void *stack, OSPri priority,
                        sa_u8 mode, sa_u8 numFields);
 extern void __scMain(void *arg);
-void osCreateScheduler(OSSched *D_800F95E0, void *stack, OSPri priority,
+void osCreateScheduler(OSSched *sc, void *stack, OSPri priority,
                        sa_u8 mode, sa_u8 numFields){
-    D_800F95E0->curRSPTask = 0;
-    D_800F95E0->curRDPTask = 0;
-    D_800F95E0->clientList = 0;
-    D_800F95E0->frameCount = 0;
-    D_800F95E0->audioListHead = 0;
-    D_800F95E0->gfxListHead = 0;
-    D_800F95E0->audioListTail = 0;
-    D_800F95E0->gfxListTail = 0;
-  D_800F95E0->doAudio = 0;
-    D_800F95E0->retraceMsg.type = 1;
-    D_800F95E0->prenmiMsg.type = 4;
-    osCreateMesgQueue(&D_800F95E0->interruptQ, D_800F95E0->intBuf, 8);
-    osCreateMesgQueue(&D_800F95E0->cmdQ, D_800F95E0->cmdMsgBuf, 8);
+    sc->curRSPTask = 0;
+    sc->curRDPTask = 0;
+    sc->clientList = 0;
+    sc->frameCount = 0;
+    sc->audioListHead = 0;
+    sc->gfxListHead = 0;
+    sc->audioListTail = 0;
+    sc->gfxListTail = 0;
+  sc->doAudio = 0;
+    sc->retraceMsg.type = 1;
+    sc->prenmiMsg.type = 4;
+    osCreateMesgQueue(&sc->interruptQ, sc->intBuf, 8);
+    osCreateMesgQueue(&sc->cmdQ, sc->cmdMsgBuf, 8);
     osCreateViManager(254);
     osViSetMode(&func_800EE4F0[mode]);
     osViBlack(1);
-    osSetEventMesg(4, &D_800F95E0->interruptQ, (OSMesg)667);
-    osSetEventMesg(9, &D_800F95E0->interruptQ, (OSMesg)668);
-    osSetEventMesg(14, &D_800F95E0->interruptQ, (OSMesg)669);
-    osViSetEvent(&D_800F95E0->interruptQ, (OSMesg)666, numFields);
-    osCreateThread(&D_800F95E0->thread, 4, __scMain, (void *)D_800F95E0, stack, priority);
-    osStartThread(&D_800F95E0->thread);
+    osSetEventMesg(4, &sc->interruptQ, (OSMesg)667);
+    osSetEventMesg(9, &sc->interruptQ, (OSMesg)668);
+    osSetEventMesg(14, &sc->interruptQ, (OSMesg)669);
+    osViSetEvent(&sc->interruptQ, (OSMesg)666, numFields);
+    osCreateThread(&sc->thread, 4, __scMain, (void *)sc, stack, priority);
+    osStartThread(&sc->thread);
 }

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 int c_retrace=0; int dp_busy=0; int dpCount=0; typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -93,11 +93,11 @@ extern void *D_800F9D84;
 extern void *D_800F9D88;
 extern OSScTask *__scTaskReady(OSScTask *t);
 OSScTask *__scTaskReady(OSScTask *t);
-OSScTask *__scTaskReady(OSScTask *t){
+/* don't run graphics task that will draw on current frame buffer */ OSScTask *__scTaskReady(OSScTask *t){
  static int count = 0;
  if (t)
  {
-  if ( ((t->framebuffer != D_800F9D84) && (t->framebuffer != D_800F9D88))
+  /* if ( ((t->framebuffer != osViGetCurrentFramebuffer()) && (t->framebuffer != osViGetNextFramebuffer())) */ if ( ((t->framebuffer != D_800F9D84) && (t->framebuffer != D_800F9D88))
     || (count++ == 20) )
   {
    count = 0;

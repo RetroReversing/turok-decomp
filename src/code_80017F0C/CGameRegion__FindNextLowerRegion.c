@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1648,7 +1648,7 @@ extern CGameRegion* CGameRegion__FindNextLowerRegion(CGameRegion *pThis, CVector
 float CGameRegion__GetGroundHeight(CGameRegion *pThis, float X, float Z);
 int D_8001E21C(CGameRegion *pThis, float X, float Z);
 CGameRegion* CGameRegion__FindNextLowerRegion(CGameRegion *pThis, CVector3 vPos);
-CGameRegion* CGameRegion__FindNextLowerRegion(CGameRegion *pCurrentRegion, CVector3 vPos){
+CGameRegion* CGameRegion__FindNextLowerRegion(CGameRegion *pThis, CVector3 vPos){
  /* Find the closest other region whose ground lies below this position. */
  CGameRegion *pDesired;
  float distance, closestDistance,
@@ -1685,7 +1685,7 @@ CGameRegion* CGameRegion__FindNextLowerRegion(CGameRegion *pCurrentRegion, CVect
    for (i=0; i<pBlock->m_nRegions; i++)
    {
     pRegion = &regions[cRegion];
-    if (D_8001E21C(pRegion, vPos.x, vPos.z) && (pRegion != pCurrentRegion))
+    if (D_8001E21C(pRegion, vPos.x, vPos.z) && (pRegion != pThis))
     {
      groundHeight = CGameRegion__GetGroundHeight(pRegion, vPos.x, vPos.z);
      if (groundHeight < vPos.y)

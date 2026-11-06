@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F1580;
 typedef unsigned char sa_u8;
@@ -871,7 +871,7 @@ void CGameSimpleInstance__DrawShadow(CGameSimpleInstance *pThis, Gfx **ppDLP){
  vTranslate.z = pThis->ah.ih.m_vPos.z;
  vTranslate.y = groundHeight;
  D_80013DC8(&vTranslate, (1400*(1024.0/100.0)));
- CQuatern__ToMatrix(&qShadow, mfRotate);
+ /* Optimized matrix version */ CQuatern__ToMatrix(&qShadow, mfRotate);
  D_800130DC(mfRotate, radius, 1, radius);
  D_8001315C(mfRotate, vTranslate.x, vTranslate.y, vTranslate.z);
  CMtxF__ToMtxFast((mfRotate), &(((pThis)->m_mShadow[D_800B6AF4])));

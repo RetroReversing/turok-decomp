@@ -1,5 +1,4 @@
 #include "decompdecomp_sync_8d698fdff8b312cb3f4a.h"
-#line 1 "func.c"
 
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -143,27 +142,27 @@ u8 *osScGetCmdQ(u8 *sc) { return sc+0x78; }
 u8 *osScGetInterruptQ(u8 *sc) {
  return sc+0x40;
 }
-void __scMain(u8 *arg0) {
+void __scMain(u8 *arg) {
     s32 event;
     u8 *node;
     for (;;) {
-        osRecvMesg(arg0 + 0x40, &event, 1);
+        osRecvMesg(arg + 0x40, &event, 1);
         switch (event) {
         case 0x29A:
-            __scHandleRetrace(arg0);
+            __scHandleRetrace(arg);
             break;
         case 0x29B:
-            __scHandleRSP(arg0);
+            __scHandleRSP(arg);
             break;
         case 0x29C:
-            __scHandleRDP(arg0);
+            __scHandleRDP(arg);
             break;
         case 0x29D:
-            for (node = *(u8 **)(arg0 + 0x260); node != NULL; node = *(u8 **)node)
-                osSendMesg(*(void **)(node + 4), arg0 + 0x20, 0);
+            for (node = *(u8 **)(arg + 0x260); node != NULL; node = *(u8 **)node)
+                osSendMesg(*(void **)(node + 4), arg + 0x20, 0);
             break;
         case 6:
-            __scNewCmd(arg0);
+            __scNewCmd(arg);
             break;
         }
     }

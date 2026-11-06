@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -828,13 +828,18 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo ;
 CVector3 CGameRegion__GetGroundNormal(CGameRegion *pThis);
 int CGameObjectInstance__IsFacingCliff(CGameObjectInstance *pThis);
-int CGameObjectInstance__IsFacingCliff(CGameObjectInstance *pThis){
- CVector3 vNormal;
- float sinTheta, cosTheta,
-     dot;
- sinTheta = __sinf(pThis->m_RotY);
- cosTheta = __cosf(pThis->m_RotY);
- vNormal = CGameRegion__GetGroundNormal(pThis->ah.ih.m_pCurrentRegion);
- dot = vNormal.x*(-sinTheta) + vNormal.z*(-cosTheta);
- return (dot < 0.0);
+int CGameObjectInstance__IsFacingCliff(CGameObjectInstance *pThis)
+{
+	CVector3		vNormal;
+	float			sinTheta, cosTheta,
+					dot;
+	
+	sinTheta = __sinf(pThis->m_RotY);
+	cosTheta = __cosf(pThis->m_RotY);
+
+	vNormal = CGameRegion__GetGroundNormal(pThis->ah.ih.m_pCurrentRegion);
+	
+	dot = vNormal.x*(-sinTheta) + vNormal.z*(-cosTheta);
+	
+	return (dot < 0.0);
 }

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -127,21 +127,21 @@ void __scAppendList(OSSched *D_800F95E0, OSScTask *t);
 void __scExec(OSSched *D_800F95E0, OSScTask *sp, OSScTask *dp);
 extern void __scYield(OSSched *D_800F95E0);
 sa_s32 __scSchedule(OSSched *D_800F95E0, OSScTask **sp, OSScTask **dp, sa_s32 availRCP);
-void __scNewCmd(OSSched *D_800F95E0){
+void __scNewCmd(OSSched *sc){
  OSScTask *rspTask = 0;
  OSScTask *sp = 0;
  OSScTask *dp = 0;
  sa_u32 state;
- while (osRecvMesg(&D_800F95E0->cmdQ, (OSMesg*) &rspTask, 0) != -1)
-  __scAppendList(D_800F95E0, rspTask);
- if (D_800F95E0->doAudio && D_800F95E0->curRSPTask)
+ while (osRecvMesg(&sc->cmdQ, (OSMesg*) &rspTask, 0) != -1)
+  __scAppendList(sc, rspTask);
+ if (sc->doAudio && sc->curRSPTask)
  {
-  __scYield(D_800F95E0);
+  __scYield(sc);
  }
  else
  {
-  state = ((D_800F95E0->curRSPTask == 0) << 1) | (D_800F95E0->curRDPTask == 0);
-  if (__scSchedule (D_800F95E0, &sp, &dp, state) != state)
-   __scExec(D_800F95E0, sp, dp);
+  state = ((sc->curRSPTask == 0) << 1) | (sc->curRDPTask == 0);
+  if (__scSchedule (sc, &sp, &dp, state) != state)
+   __scExec(sc, sp, dp);
  }
 }

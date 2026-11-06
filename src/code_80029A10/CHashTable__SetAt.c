@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -42,8 +41,8 @@ void CHashTable__SetAt(CHashTable *pThis, void* key, void* newValue){
   pAssoc = D_8002DEF0(pThis);
   pAssoc->nHashValue = nHash;
   pAssoc->key = key;
-  pAssoc->pNext = pThis->m_pHashTable[nHash];
+  /* 'pAssoc->value' is a constructed object, nothing more */ /* put into hash table */ pAssoc->pNext = pThis->m_pHashTable[nHash];
   pThis->m_pHashTable[nHash] = pAssoc;
  }
- pAssoc->value = newValue;
+ /* set new value */ pAssoc->value = newValue;
 }

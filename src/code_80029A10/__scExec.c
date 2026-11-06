@@ -1,13 +1,12 @@
-#include "decompdecomp_sync_666415dbcd661950a43e.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_ca98358e229ecb49eeba.h"
 #line 657 "reference.c"
 void __scExec(OSSched *sc, OSScTask *sp, OSScTask *dp)
 {
 	int rv;
 
-                 
-                               
-      
+#ifdef SC_LOGGING
+	osLogEvent(l, 511, 2, sp, dp);
+#endif
 
 	ASSERT(sc->curRSPTask == 0);
 
@@ -51,10 +50,10 @@ void __scExec(OSSched *sc, OSScTask *sp, OSScTask *dp)
 	{
 		ASSERT(dp->list.t.output_buff);
 
-                 
-                                                   
-                                          
-      
+#ifdef SC_LOGGING
+		osLogEvent(l, 523, 3, dp, dp->list.t.output_buff,
+					  (u32)*dp->list.t.output_buff_size);
+#endif
 		rv = osDpSetNextBuffer(dp->list.t.output_buff,
 									  *dp->list.t.output_buff_size);
 
@@ -66,4 +65,3 @@ void __scExec(OSSched *sc, OSScTask *sp, OSScTask *dp)
 		sc->curRDPTask = dp;
 	}
 }
-

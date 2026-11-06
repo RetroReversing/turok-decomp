@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -25,17 +24,17 @@ extern M2C_UNK CScene__CollisionReceived;
 extern M2C_UNK CScene__DecompressCollision;
 extern M2C_UNK CScene__LevelInfoReceived;
 
-void CScene__LevelIndexReceived(u8 *arg0, M2C_UNK arg1) {
+void CScene__LevelIndexReceived(u8 *pThis, M2C_UNK ppceTarget) {
     M2C_UNK sp50[5];
     s32 sp40;
     s32 sp3C;
     s32 sp38;
 
-    CIndexedSet__ConstructFromRawData(sp50 + 3, CCacheEntry__GetData(M2C_FIELD(arg0, s32 *, 0x6B10)), 0);
-    CCartCache__RequestBlock(arg0, arg0, &CScene__DecompressCollision, &CScene__CollisionReceived, arg0 + 0x6AF8, func_8002DBF8(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 1, &sp3C), sp3C, &D_800F1B40);
-    M2C_FIELD(arg0, s32 *, 0x6ADC) = func_8002DBF8(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 3, arg0 + 0x6B44);
-    M2C_FIELD(arg0, s32 *, 0x6ACC) = CIndexedSet__GetROMAddress(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 4);
-    CCartCache__RequestBlock(arg0, arg0, NULL, &CScene__LevelInfoReceived, arg0 + 0x6B2C, func_8002DBF8(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 0, &sp40), sp40, &D_800F1B4C);
-    CTextureLoader__ConstructFromAddressSize(arg0 + 0x175BC, func_8002DBF8(sp50 + 3, M2C_FIELD(arg0, s32 *, 0x6AC8), 5, &sp38), sp38);
-    M2C_FIELD(arg0, s32 *, 0x175C8) = 1;
+    CIndexedSet__ConstructFromRawData(sp50 + 3, CCacheEntry__GetData(M2C_FIELD(pThis, s32 *, 0x6B10)), 0);
+    CCartCache__RequestBlock(pThis, pThis, &CScene__DecompressCollision, &CScene__CollisionReceived, pThis + 0x6AF8, func_8002DBF8(sp50 + 3, M2C_FIELD(pThis, s32 *, 0x6AC8), 1, &sp3C), sp3C, &D_800F1B40);
+    M2C_FIELD(pThis, s32 *, 0x6ADC) = func_8002DBF8(sp50 + 3, M2C_FIELD(pThis, s32 *, 0x6AC8), 3, pThis + 0x6B44);
+    M2C_FIELD(pThis, s32 *, 0x6ACC) = CIndexedSet__GetROMAddress(sp50 + 3, M2C_FIELD(pThis, s32 *, 0x6AC8), 4);
+    CCartCache__RequestBlock(pThis, pThis, NULL, &CScene__LevelInfoReceived, pThis + 0x6B2C, func_8002DBF8(sp50 + 3, M2C_FIELD(pThis, s32 *, 0x6AC8), 0, &sp40), sp40, &D_800F1B4C);
+    CTextureLoader__ConstructFromAddressSize(pThis + 0x175BC, func_8002DBF8(sp50 + 3, M2C_FIELD(pThis, s32 *, 0x6AC8), 5, &sp38), sp38);
+    M2C_FIELD(pThis, s32 *, 0x175C8) = 1;
 }

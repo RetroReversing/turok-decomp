@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1619,52 +1619,52 @@ extern CSwooshInfo D_800BA628 ;
 extern CSwooshInfo D_800BA8C4 ;
 extern CSwooshInfo D_800BA8E0 ;
 void CParticle__CheckForStartingSwoosh(CParticle *pThis);
-void CParticle__CheckForStartingSwoosh(CParticle *pParticle){
+void CParticle__CheckForStartingSwoosh(CParticle *pThis){
  /* Start the swoosh trails assigned to this particle type. */
- switch (pParticle->ah.ih.m_nObjType)
+ switch (pThis->ah.ih.m_nObjType)
  {
   case 194:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B99A0) ;
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B99BC) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B99A0) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B99BC) ;
    break ;
   case 310:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9C58) ;
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9C74) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B9C58) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B9C74) ;
    break ;
   case 334:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9FE4) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B9FE4) ;
    break ;
   case 346:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA21C) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA21C) ;
    break ;
   case 336:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA2F8) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA2F8) ;
    break ;
   case 339:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA58C) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA58C) ;
    break ;
   case 345:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA4B0) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA4B0) ;
    break ;
    case 372:
-    CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA140) ;
+    CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA140) ;
     break ;
   case 361:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA3D4) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA3D4) ;
    break ;
   case 139:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9D90) ;
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9DAC) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B9D90) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B9DAC) ;
    break ;
    case 5:
-    CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800B9F08) ;
+    CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800B9F08) ;
     break ;
   case 116:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA628) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA628) ;
    break ;
   case 20:
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA8C4) ;
-   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pParticle, &D_800BA8E0) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA8C4) ;
+   CFxSystem__AddParticleSwoosh(&(&D_80106000)->m_FxSystem, pThis, &D_800BA8E0) ;
    break ;
  }
 }

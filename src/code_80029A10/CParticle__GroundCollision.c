@@ -1,6 +1,7 @@
-#include "decompdecomp_sync_78ecab305608965e0f04.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_2524f0b2abd418a13e2b.h"
 #line 11427 "reference.c"
+// particle ground collision
+//
 void CParticle__GroundCollision(CParticle *pThis)
 {
 	// declare variables
@@ -36,4 +37,3 @@ void CParticle__GroundCollision(CParticle *pThis)
 	if (pThis->m_CI.GroundBehavior == INTERSECT_BEHAVIOR_STICK)
 		CParticle__Delete(pThis);
 }
-
