@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* Draws the fading message box and its OK option. Source: loadsave.c CMessageBox__Draw. */
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
@@ -51,11 +51,11 @@ void CMessageBox__Draw(void *pMessageBox, M2C_UNK ppDLP) {
         }
         break;
     }
-    COnScreen__InitBoxDraw(ppDLP);
+    /* prepare to draw boxes */ COnScreen__InitBoxDraw(ppDLP);
     COnScreen__DrawBox(ppDLP, 0, 0, 0x140, 0xF0, 0, 0, 0, (u32) (M2C_FIELD(pMessageBox, f32 *, 0) * 120.0f));
     COnScreen__DrawHilightBox(ppDLP, 0x3C, 0x46, 0x104, 0x7A, 2, 1, 0x1E, 0x1E, 0x1E, (u32) (M2C_FIELD(pMessageBox, f32 *, 0) * 220.0f));
     COnScreen__DrawHilightBox(ppDLP, 0x3C, 0x7B, 0x104, 0xAA, 2, 1, 0x1E, 0x1E, 0x1E, (u32) (M2C_FIELD(pMessageBox, f32 *, 0) * 220.0f));
-    CPause__InitPolygon(ppDLP);
+    /* draw current selection box */ CPause__InitPolygon(ppDLP);
     func_800859F8(ppDLP, 0x42B80000, 0x430A0000, 0x43080000, 18.0f, M2C_FIELD(pMessageBox, f32 *, 0));
     func_800806B4(ppDLP);
     COnScreen__DrawText(ppDLP, M2C_FIELD(pMessageBox, s32 *, 0x10), 0xA0, 0x4E, (s32) (M2C_FIELD(pMessageBox, f32 *, 0) * 255.0f), 1, 1);

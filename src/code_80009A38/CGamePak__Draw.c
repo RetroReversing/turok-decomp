@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F0CA8; extern const double D_800F0CA0; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1636,7 +1636,7 @@ void CGamePak__Draw(CGamePak *pThis, Gfx **ppDLP){
  int i, y ;
  float intensity ;
  char buffer[32] ;
- switch (pThis->m_Mode)
+ /* update fade status */ switch (pThis->m_Mode)
  {
   case GAMEPAK_FADEUP:
    pThis->m_Alpha += D_800F0CA0 * D_800B6B00 ;
@@ -1661,13 +1661,13 @@ void CGamePak__Draw(CGamePak *pThis, Gfx **ppDLP){
         ((320/2) - ((228)/2))+(228), ((240/2) - ((24*8)/2))+(24*8),
         1, 0,
         50,30,30, 150 * pThis->m_Alpha) ;
- COnScreen__InitFontDraw(ppDLP) ;
+ /* draw heading */ COnScreen__InitFontDraw(ppDLP) ;
  D_8008092C(1.0, 1.0) ;
  COnScreen__PrepareSmallFont(ppDLP) ;
  (&D_800F9F10)->m_OnScreen.m_ShadowXOff = -4 ;
  (&D_800F9F10)->m_OnScreen.m_ShadowYOff = 4 ;
  D_800814AC(ppDLP, "    note names        pages", ((320/2) - ((228)/2)), ((240/2) - ((24*8)/2))+8, (int)(255 * pThis->m_Alpha), 0, 1) ;
- y = 0 ;
+ /* draw note names */ y = 0 ;
  for (i=0; i<16; i++)
  {
   intensity = 192+(63 * __cosf((float)pThis->m_Timer/8)) ;

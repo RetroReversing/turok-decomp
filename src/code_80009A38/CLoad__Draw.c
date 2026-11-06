@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F0BF0; extern const double D_800F0BE8; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1619,8 +1619,8 @@ extern void CLoad__DrawMemory(CLoad *pThis, Gfx **ppDLP) ;
 void CLoad__Draw(CLoad *pThis, Gfx **ppDLP);
 void CLoad__DrawMemory(CLoad *pThis, Gfx **ppDLP);
 void CMessageBox__Draw(CMessageBox *pThis, Gfx **ppDLP);
-void CLoad__Draw(CLoad *pThis, Gfx **ppDLP){
- switch (pThis->m_Mode)
+/* Draw load screen information */ void CLoad__Draw(CLoad *pThis, Gfx **ppDLP){
+ /* update fade status */ switch (pThis->m_Mode)
  {
   case LOAD_FADEUP:
    pThis->m_Alpha += D_800F0BE8 * D_800B6B00 ;
@@ -1641,7 +1641,7 @@ void CLoad__Draw(CLoad *pThis, Gfx **ppDLP){
    }
    break ;
  }
- COnScreen__InitBoxDraw(ppDLP) ;
+ /* prepare to draw boxes */ COnScreen__InitBoxDraw(ppDLP) ;
  if (pThis->m_LoadType == LOAD_MEMORYCARD)
  {
   CLoad__DrawMemory(pThis, ppDLP) ;

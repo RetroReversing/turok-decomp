@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1604,7 +1603,7 @@ extern CEngineApp D_800F9F10;
 struct CCollisionInfo2_t;
 extern CEngineApp D_800F9F10;
 float CEngineApp__GetGroundHeightWherePlayerIs(CEngineApp *pThis);
-float CEngineApp__GetGroundHeightWherePlayerIs(CEngineApp *pThis){
+/* get ground height where player is standing */ float CEngineApp__GetGroundHeightWherePlayerIs(CEngineApp *pThis){
  CGameObjectInstance *pPlayer;
  CGameRegion *pRegion;
  pPlayer = (((&D_800F9F10))->m_Scene.m_pPlayer);

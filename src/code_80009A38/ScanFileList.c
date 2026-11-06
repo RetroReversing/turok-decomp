@@ -1,9 +1,9 @@
-#include "source_ScanFileList.h"
+#include "decompdecomp_sync_a8e5c7d0e209c2738eeb.h"
 
 extern char D_800B86FC[];
 extern void *memcpy(void*,const void*,s32);
 #line 1 "reference.c"
-int ScanFileList(BOOL showall)
+/* read only the turok files (the first 16!) */ /* to find the lowest available turok file, uses a word */ /* and sets bit 0 for A, 1 for B etc, then finds the */ /* lowest unused bit. */ int ScanFileList(BOOL showall)
 {
 	int	ret, i, c ;
 	BOOL	Turok ;

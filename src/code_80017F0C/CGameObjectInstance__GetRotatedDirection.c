@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -829,12 +829,16 @@ typedef struct CHeadTrackInfo_t
 } CHeadTrackInfo ;
 CQuatern CGameObjectInstance__GetAimRotation(CGameObjectInstance *pThis);
 CVector3 CGameObjectInstance__GetRotatedDirection(CGameObjectInstance *pThis, CVector3 vDirection);
-CVector3 CGameObjectInstance__GetRotatedDirection(CGameObjectInstance *pThis, CVector3 vDirection){
- CQuatern qAim;
- CMtxF mfRot;
- CVector3 vRotatedDirection;
- qAim = CGameObjectInstance__GetAimRotation(pThis);
- CQuatern__ToMatrix(&qAim, mfRot);
- CMtxF__VectorMult(mfRot, &vDirection, &vRotatedDirection);
- return vRotatedDirection;
+CVector3 CGameObjectInstance__GetRotatedDirection(CGameObjectInstance *pThis, CVector3 vDirection)
+{
+	CQuatern		qAim;
+	CMtxF			mfRot;
+	CVector3		vRotatedDirection;
+
+	qAim = CGameObjectInstance__GetAimRotation(pThis);
+	CQuatern__ToMatrix(&qAim, mfRot);
+
+	CMtxF__VectorMult(mfRot, &vDirection, &vRotatedDirection);
+
+	return vRotatedDirection;
 }

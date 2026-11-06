@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -19,14 +18,14 @@ M2C_UNK CEngineApp__DrawFade(s32);                         /* extern */
 M2C_UNK func_8000B28C(s32);                         /* extern */
 M2C_UNK CScene__Draw(s32, s32);                    /* extern */
 
-void CEngineApp__DrawLEGALSCREEN(s32 arg0) {
+/***************************************************************************** * * Function: CEngineApp__DrawLEGALSCREEN() * ****************************************************************************** * * Description: Draw code for LEGALSCREEN mode * * Inputs: *pThis - Ptr to engine * Outputs: None * *****************************************************************************/ void CEngineApp__DrawLEGALSCREEN(s32 pThis) {
     s32 sp1C;
     s32 temp_a1;
 
     CEngineApp__SetupDraw();
-    temp_a1 = arg0 + 0x1F810;
+    temp_a1 = pThis + 0x1F810;
     sp1C = temp_a1;
-    CScene__Draw(arg0 + 0x4B8, temp_a1);
+    CScene__Draw(pThis + 0x4B8, temp_a1);
     func_8000B28C(sp1C);
-    CEngineApp__DrawFade(arg0);
+    CEngineApp__DrawFade(pThis);
 }

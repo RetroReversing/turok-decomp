@@ -1,6 +1,17 @@
-#include "common_local_source_3683.h"
-
+#include "decompdecomp_sync_29fd0287186d85879000.h"
 #line 1 "reference.c"
+/*****************************************************************************
+*
+*	Function:		CEngineApp__DrawTITLE()
+*
+******************************************************************************
+*
+*	Description:	Draw code for TITLE mode
+*
+*	Inputs:			*pThis	-	Ptr to engine
+*	Outputs:			None
+*
+*****************************************************************************/
 void CEngineApp__DrawTITLE(CEngineApp *pThis)
 {
 	pThis->m_TitleAlpha += .1 * D_800B6B00 ;

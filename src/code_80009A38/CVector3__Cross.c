@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct CVector3_t
 {
@@ -6,8 +6,9 @@ typedef struct CVector3_t
 } CVector3;
 extern void CVector3__Cross(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
 void CVector3__Cross(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
-void CVector3__Cross(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight){
- pvThis->x = pvLeft->y*pvRight->z - pvLeft->z*pvRight->y;
- pvThis->y = pvLeft->z*pvRight->x - pvLeft->x*pvRight->z;
- pvThis->z = pvLeft->x*pvRight->y - pvLeft->y*pvRight->x;
+void CVector3__Cross(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight)
+{
+	pvThis->x = pvLeft->y*pvRight->z - pvLeft->z*pvRight->y;
+	pvThis->y = pvLeft->z*pvRight->x - pvLeft->x*pvRight->z;
+	pvThis->z = pvLeft->x*pvRight->y - pvLeft->y*pvRight->x;
 }

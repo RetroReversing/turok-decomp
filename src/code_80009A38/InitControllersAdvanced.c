@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -94,7 +94,7 @@ extern CControlState D_801199D0;
 extern OSMesgQueue D_80119A70;
 extern OSMesg D_80119A88;
 int InitControllersAdvanced ( void );
-int InitControllersAdvanced ( void ){
+/* Routine for initializing the controllers. After initialized, set the * controller interrupt to be posted to the gfxFrameMsgQ, used by the * gameproc in tengine.c. */ /* initializes controller data returns the lowest numbered controller connected to the system */ int InitControllersAdvanced ( void ){
  sa_u16 i, cnt;
  sa_u16 controller ;
  osCreateMesgQueue(&D_80119A70, &D_80119A88, 1);

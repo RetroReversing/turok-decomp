@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -24,17 +24,17 @@ extern M2C_UNK D_800FA3C8;
 extern M2C_UNK CGameObjectInstance__AnimsHeaderReceived;
 extern M2C_UNK CGameObjectInstance__ObjectInfoReceived;
 
-void CGameObjectInstance__ObjectIndexReceived(u8 *arg0, M2C_UNK arg1) {
+void CGameObjectInstance__ObjectIndexReceived(u8 *pThis, M2C_UNK ppceTarget) {
     s32 temp_v0_2;
     u32 temp_v0;
     s32 stack[1];
 
-    CIndexedSet__ConstructFromRawData(&stack[1], CCacheEntry__GetData(M2C_FIELD(arg0, s32 *, 0x108)), 0);
-    temp_v0 = func_8002DBF8(&stack[1], M2C_FIELD(arg0, s32 *, 0xFC), 0, &stack[0]);
-    M2C_FIELD(arg0, s32 *, 0x100) = temp_v0;
-    M2C_FIELD(arg0, u16 *, 0x118) = (u16) stack[0];
-    CCartCache__RequestBlock(&D_800FA3C8, arg0, 0, &CGameObjectInstance__ObjectInfoReceived, arg0 + 0x10C, temp_v0, M2C_FIELD(arg0, u16 *, 0x118), &D_800F0E04);
-    temp_v0_2 = CIndexedSet__GetROMAddress(&stack[1], M2C_FIELD(arg0, s32 *, 0xFC), 2);
-    M2C_FIELD(arg0, s32 *, 0x104) = temp_v0_2;
-    CCartCache__RequestBlock(&D_800FA3C8, arg0, 0, &CGameObjectInstance__AnimsHeaderReceived, arg0 + 0x110, temp_v0_2, 4, &D_800F0E10);
+    CIndexedSet__ConstructFromRawData(&stack[1], CCacheEntry__GetData(M2C_FIELD(pThis, s32 *, 0x108)), 0);
+    temp_v0 = func_8002DBF8(&stack[1], M2C_FIELD(pThis, s32 *, 0xFC), 0, &stack[0]);
+    M2C_FIELD(pThis, s32 *, 0x100) = temp_v0;
+    M2C_FIELD(pThis, u16 *, 0x118) = (u16) stack[0];
+    CCartCache__RequestBlock(&D_800FA3C8, pThis, 0, &CGameObjectInstance__ObjectInfoReceived, pThis + 0x10C, temp_v0, M2C_FIELD(pThis, u16 *, 0x118), &D_800F0E04);
+    temp_v0_2 = CIndexedSet__GetROMAddress(&stack[1], M2C_FIELD(pThis, s32 *, 0xFC), 2);
+    M2C_FIELD(pThis, s32 *, 0x104) = temp_v0_2;
+    CCartCache__RequestBlock(&D_800FA3C8, pThis, 0, &CGameObjectInstance__AnimsHeaderReceived, pThis + 0x110, temp_v0_2, 4, &D_800F0E10);
 }

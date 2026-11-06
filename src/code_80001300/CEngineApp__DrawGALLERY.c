@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1627,15 +1626,15 @@ extern char D_800B6AB0[1] ;
 extern char D_800B6ABC[1] ;
 extern void CEngineApp__DrawGALLERY(CEngineApp *pThis);
 void CEngineApp__DrawGALLERY(CEngineApp *pThis);
-void CEngineApp__DrawGALLERY(CEngineApp *pThis){
+/* Function: CEngineApp__DrawGALLERY() * ****************************************************************************** * * Description: Draw code for GALLERY mode * * Inputs: *pThis - Ptr to engine * Outputs: None */ void CEngineApp__DrawGALLERY(CEngineApp *pThis){
  unsigned char Alpha;
- if (pThis->m_PortraitAlpha)
+ /* draw name of character on screen */ if (pThis->m_PortraitAlpha)
  {
   Alpha = (unsigned char) (pThis->m_PortraitAlpha*255);
   COnScreen__InitFontDraw(&pThis->m_pDLP) ;
   D_8008092C(1.0, 1.2) ;
   D_800808F8(&pThis->m_pDLP, 200, 200, 138, 86, 71,47) ;
-  switch(pThis->m_PortraitName)
+  /* default colors (from onscrn.cpp) */ switch(pThis->m_PortraitName)
   {
    case 0: D_800814AC(&pThis->m_pDLP, D_800B699C, 17, 18, Alpha, 0, 1); break;
    case 1: D_800814AC(&pThis->m_pDLP, D_800B69AC, 17, 18, Alpha, 0, 1); break;

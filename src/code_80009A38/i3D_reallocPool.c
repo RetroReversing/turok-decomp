@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct s_Memory {
  struct s_Memory *prev ;
@@ -26,13 +26,13 @@ void *i3D_reallocPool (t_MemoryPool *pool, void *address, int size){
  int i ;
  int oldsize ;
  int count ;
- if (size < 0)
+ /* --- Illegal allocation size ? */ if (size < 0)
   return ((void*)0) ;
  oldsize = D_80011BD8 (pool, address) ;
  if (oldsize)
  {
   newaddr = i3D_mallocPool (pool, size) ;
-  if (newaddr != address)
+  /* printf ("old addr = %p\n", address) ; */ /* printf ("new addr = %p\n", newaddr) ; */ /* printf ("newsize = %d (%d)\n", size, oldsize) ; */ if (newaddr != address)
   {
    source = (unsigned long*) address ;
    dest = (unsigned long*) newaddr ;

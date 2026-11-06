@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1633,7 +1632,7 @@ struct CCollisionInfo2_t;
 extern CEngineApp D_800F9F10;
 float CEngineApp__GetPlayerWaterDepth(CEngineApp *pThis);
 int D_800027BC(CEngineApp *pThis);
-float CEngineApp__GetPlayerWaterDepth(CEngineApp *pThis){
+/* get height player is submerged by (0 to depth of water) */ float CEngineApp__GetPlayerWaterDepth(CEngineApp *pThis){
  CGameObjectInstance *pPlayer;
  CGameRegion *pRegion;
  CROMRegionSet *pRegionSet;

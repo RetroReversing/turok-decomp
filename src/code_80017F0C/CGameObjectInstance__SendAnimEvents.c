@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -876,7 +876,7 @@ void CGameObjectInstance__SendAnimEvents(CGameObjectInstance *pThis,
   {
                                             ;
                                                      ;
-   switch (pThis->m_nTypeFlag)
+   /* multiply offset position by orientation matrix */ /* to find position in world coordinates */ switch (pThis->m_nTypeFlag)
    {
     case 2001:
      D_80090FA4(pThis, &pEvent->m_vOffset, &vWorld);

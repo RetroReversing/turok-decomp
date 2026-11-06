@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -830,20 +830,25 @@ typedef struct CHeadTrackInfo_t
 CVector3 CGameRegion__GetGroundNormal(CGameRegion *pThis);
 float CGameRegion__GetGroundYAngle(CGameRegion *pThis);
 int CGameRegion__IsCliff(CGameRegion *pThis);
-float CGameRegion__GetGroundYAngle(CGameRegion *pThis){
- CVector3 vNormal;
- float mag, theta;
- if (!CGameRegion__IsCliff(pThis))
-  return 0;
- vNormal = CGameRegion__GetGroundNormal(pThis);
- mag = sqrtf(vNormal.x*vNormal.x + vNormal.z*vNormal.z);
- if (mag == 0)
- {
-  return 0;
- }
- else
- {
-  theta = acos(vNormal.z/mag);
-  return (vNormal.x > 0) ? theta : -theta;
- }
+float CGameRegion__GetGroundYAngle(CGameRegion *pThis)
+{
+	CVector3		vNormal;
+	float			mag, theta;
+
+	if (!CGameRegion__IsCliff(pThis))
+		return 0;
+
+	vNormal = CGameRegion__GetGroundNormal(pThis);
+
+	mag = sqrtf(vNormal.x*vNormal.x + vNormal.z*vNormal.z);
+	if (mag == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		theta = acos(vNormal.z/mag);
+
+		return (vNormal.x > 0) ? theta : -theta;
+	}
 }

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -861,10 +861,10 @@ void CGameObjectInstance__MoveToEndOfAbsoluteAnim(CGameObjectInstance *pThis, CG
  vDelta.x = vCurrent.x - vStart.x;
  vDelta.y = 0;
  vDelta.z = vCurrent.y - vStart.y;
- CQuatern__ToMatrix(&pThis->m_qRot, mfRotProd);
+ /* use optimized matrix functions */ CQuatern__ToMatrix(&pThis->m_qRot, mfRotProd);
  CMtxF__PreMultRotateY(mfRotProd, pThis->m_RotY);
  CMtxF__VectorMult(mfRotProd, &vDelta, &vRotDelta);
- vDesired.x = pThis->ah.ih.m_vPos.x + vRotDelta.x*pThis->m_vScale.x;
+ /* make sure there is still no Y change */ vDesired.x = pThis->ah.ih.m_vPos.x + vRotDelta.x*pThis->m_vScale.x;
  vDesired.y = pThis->ah.ih.m_vPos.y;
  vDesired.z = pThis->ah.ih.m_vPos.z + vRotDelta.z*pThis->m_vScale.z;
  CInstanceHdr__GetNearPositionAndRegion(&pThis->ah.ih, vDesired, &pThis->ah.ih.m_vPos, &pThis->ah.ih.m_pCurrentRegion,

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F0C38; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1626,10 +1626,10 @@ extern float D_800B6B00;
 extern CEngineApp D_80106004;
 struct CCollisionInfo2_t;
 void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP);
-void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP){
+/* Draw requestor information */ void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP){
  /* Update the requestor fade and draw its dialog, selection bar, and text. */
  int i ;
- switch (pThis->m_Mode)
+ /* update fade status */ switch (pThis->m_Mode)
  {
   case REQUESTOR_FADEUP:
    pThis->m_Alpha += D_800F0C38 * D_800B6B00 ;
@@ -1650,7 +1650,7 @@ void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP){
    }
    break ;
  }
- COnScreen__InitBoxDraw(ppDLP) ;
+ /* prepare to draw boxes */ COnScreen__InitBoxDraw(ppDLP) ;
  COnScreen__DrawBox(ppDLP,
         0, 0, 320, 240,
         0,0,0, 120*pThis->m_Alpha) ;
@@ -1664,10 +1664,10 @@ void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP){
         ((320/2) - ((200)/2))+(200), ((240/2) - ((100)/2))+(100),
         2, 1,
         30,30,30, 220*pThis->m_Alpha) ;
- CPause__InitPolygon(ppDLP) ;
+ /* draw current selection box */ CPause__InitPolygon(ppDLP) ;
  CPause__DrawBar(ppDLP, ((320/2) - ((200)/2))+32, (((240/2) - ((100)/2)) + 48)+6+(pThis->m_Selection*20),
       (200)-64, 18, pThis->m_Alpha) ;
- COnScreen__InitFontDraw(ppDLP);
+ /* REQUESTOR_X+32, REQUESTORMENU_Y+6 + (pThis->m_Selection*REQUESTORMENU_SPACING), */ /* REQUESTOR_X+REQUESTOR_WIDTH-32, REQUESTORMENU_Y+6 + (pThis->m_Selection*REQUESTORMENU_SPACING)+18, */ /* 70,40,127, 255 *pThis->m_Alpha) ; */ /* prepare to draw textures */ COnScreen__InitFontDraw(ppDLP);
  D_800814AC(ppDLP,
          pThis->Line1,
          320/2, ((240/2) - ((100)/2))+4,
@@ -1676,7 +1676,7 @@ void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP){
          pThis->Line2,
          320/2, ((240/2) - ((100)/2))+4+16,
          255*pThis->m_Alpha, 1, 1) ;
- for (i=0; i<REQUESTOR_END_SELECTION; i++)
+ /* draw each option */ for (i=0; i<REQUESTOR_END_SELECTION; i++)
  {
   D_800814AC(ppDLP,
          (char *)pThis->Selections[i],

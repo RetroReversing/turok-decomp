@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -944,7 +944,7 @@ typedef struct s_File
 extern t_File D_80119AC8[] ;
 extern int D_800113A8 (int showall) ;
 extern int DeleteCurrent(int index) ;
-extern int SaveNew(void) ;
+extern int func_800119F4(void) ;
 extern int func_800118EC(int index) ;
 typedef struct
 {
@@ -2042,7 +2042,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
       (&D_800F9F10)->m_bMessageBox = 1 ;
      }
      break ;
-    case 1:
+    /* save over */ case 1:
      if (ReturnValue == REQUESTOR_YES)
      {
       ret = func_800118EC(pThis->m_ASelection-1) ;
@@ -2123,7 +2123,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
     if ( (pThis->m_ASelection == 0)
      || (D_80119AC8[pThis->m_ASelection-1].pages == 0))
     {
-     ret = SaveNew() ;
+     ret = func_800119F4() ;
      func_8000CE50(ret) ;
      D_800113A8(pThis->m_ShowAll);
      ReturnValue = -1 ;
@@ -2136,7 +2136,7 @@ signed long CSave__UpdateMemory(CSave *pThis){
      (&D_800F9F10)->m_Requestor.m_Selection = REQUESTOR_NO ;
      D_80119974 = 1 ;
      ReturnValue = -1 ;
-    }
+    /* ret = SaveCurrent(pThis->m_ASelection-1) ; */ }
     break ;
    case SAVEMEMORY_DELETE:
     if ( (pThis->m_ASelection == 0)

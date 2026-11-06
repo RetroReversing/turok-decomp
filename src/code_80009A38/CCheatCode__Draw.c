@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1643,10 +1643,10 @@ extern void CCheatCode__DrawString(Gfx **ppDLP, int y, int opacity) ;
 void CCheatCode__Draw(CCheatCode *pThis, Gfx **ppDLP);
 void CCheatCode__DrawString(Gfx **ppDLP, int y, int opacity);
 /* Fade and draw the cheat-code selection panel, entry string, and any message box. */
-void CCheatCode__Draw(CCheatCode *pThis, Gfx **ppDLP){
+/* Draw screen information */ void CCheatCode__Draw(CCheatCode *pThis, Gfx **ppDLP){
  int i, y ;
  int x, w ;
- switch (pThis->m_Mode)
+ /* update fade status */ switch (pThis->m_Mode)
  {
   case CHEATCODE_FADEUP:
    pThis->m_Alpha += .2 * D_800B6B00 ;
@@ -1667,7 +1667,7 @@ void CCheatCode__Draw(CCheatCode *pThis, Gfx **ppDLP){
    }
    break ;
  }
- COnScreen__InitBoxDraw(ppDLP) ;
+ /* prepare to draw boxes */ COnScreen__InitBoxDraw(ppDLP) ;
  COnScreen__DrawHilightBox(ppDLP,
         ((320/2) - ((240)/2)), ((240/2) - ((190)/2)),
         ((320/2) - ((240)/2))+(240), ((240/2) - ((190)/2))+(190),
@@ -1698,7 +1698,7 @@ void CCheatCode__Draw(CCheatCode *pThis, Gfx **ppDLP){
          D_800B8128,
          320/2, 30,
          (int)(255 * pThis->m_Alpha), 1, 1) ;
- CCheatCode__DrawString(ppDLP, 30+20, (int)(255 * pThis->m_Alpha)) ;
+ /* write the current password */ CCheatCode__DrawString(ppDLP, 30+20, (int)(255 * pThis->m_Alpha)) ;
  COnScreen__InitFontDraw(ppDLP) ;
  y = (((240/2) - ((190)/2)) + 64-6) ;
  for (i=0; i<CHEATCODE_END_SELECTION; i++)

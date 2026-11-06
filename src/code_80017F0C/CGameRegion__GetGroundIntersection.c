@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -838,7 +838,7 @@ int CGameRegion__GetGroundIntersection(CGameRegion *pThis, CVector3 *pvStart, CV
  else
   vCorner.x = vCorner.y = vCorner.z = 0;
  normalDotMovementDelta = ((&vNormal)->x*(&vDelta)->x + (&vNormal)->y*(&vDelta)->y + (&vNormal)->z*(&vDelta)->z);
- if (normalDotMovementDelta >= 0)
+ /* if (normalDotMovementDelta == 0) */ if (normalDotMovementDelta >= 0)
  {
   *Out = 1;
   return 0;

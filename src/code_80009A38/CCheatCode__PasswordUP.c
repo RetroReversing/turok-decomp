@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 enum CheatCodeSelections
 {
@@ -29,16 +29,22 @@ typedef struct s_CheatCodeEntry
 } t_CheatCodeEntry ;
 extern t_CheatCodeEntry D_800B8210[];
 void CCheatCode__PasswordUP(CCheatCode *pThis);
-void CCheatCode__PasswordUP(CCheatCode *pThis){
- D_800EC0C0 = 0 ;
- pThis->m_Selection-- ;
- if (pThis->m_Selection < 0)
-  pThis->m_Selection = CHEATCODE_END_SELECTION-1 ;
- if (D_800B8210[pThis->m_Selection].items != 0)
- {
-  if (pThis->m_SubSelection >= D_800B8210[pThis->m_Selection].items)
-   pThis->m_SubSelection = D_800B8210[pThis->m_Selection].items -1;
- }
- else
-   pThis->m_SubSelection = 0 ;
+//------------------------------------------------------------------------
+// Update selection
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+void CCheatCode__PasswordUP(CCheatCode *pThis)
+{
+	D_800EC0C0 = 0 ;
+	pThis->m_Selection-- ;
+	if (pThis->m_Selection < 0)
+		pThis->m_Selection = CHEATCODE_END_SELECTION-1 ;
+
+	if (D_800B8210[pThis->m_Selection].items != 0)
+	{
+		if (pThis->m_SubSelection >= D_800B8210[pThis->m_Selection].items)
+			pThis->m_SubSelection = D_800B8210[pThis->m_Selection].items -1;
+	}
+	else
+ 		pThis->m_SubSelection = 0 ;
 }

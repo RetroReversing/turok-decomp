@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1618,7 +1618,7 @@ extern CEngineApp D_800F9F10;
 extern OSContPad D_801199C8 ;
 extern CControlState D_801199D0;
 void ProcessPlayerController(void);
-void ProcessPlayerController(void){
+/* Acts upon player controller */ void ProcessPlayerController(void){
  /* Convert controller buttons and calibrated stick motion into player control states. */
  sa_u16 butprev, cnt, mask;
  sa_s8 sx, sy, lsx, lsy;
@@ -1655,7 +1655,7 @@ void ProcessPlayerController(void){
  lsx = D_801199D0.SStickX;
  lsy = D_801199D0.SStickY;
                                 ;
- dx = ((float) (sx - lsx) ) / D_801199D0.Smooth;
+ /* smooth should never be below 1 */ dx = ((float) (sx - lsx) ) / D_801199D0.Smooth;
  dy = ((float) (sy - lsy) ) / D_801199D0.Smooth;
  D_801199D0.SStickX += dx;
  D_801199D0.SStickY += dy;
@@ -1676,6 +1676,6 @@ void ProcessPlayerController(void){
     D_801199D0.BTimer [ cnt ] = 0;
   }
   D_801199D0.BTimer [ cnt ] ++;
-  mask = mask << 1;
+  /* check next button */ mask = mask << 1;
  }
 }

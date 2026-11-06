@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1625,7 +1624,7 @@ extern int nDisplayLists,
 void CEngineApp__PrepareFrame(CEngineApp *pThis, int nMinimumFields);
 void CEngineApp__PrepareFrame(CEngineApp *pThis, int nMinimumFields){
  /* Updates the camera, predicts frame time and queues the next graphics task (tengine.c). */
- CCamera__Update(&pThis->m_Camera) ;
+ /* hey Rob, these are here to stop the fog being black on the */ /* title page, and to setup the camera position correctly for */ /* CEngineApp__SetCameraToTurok(pThis); */ CCamera__Update(&pThis->m_Camera) ;
  D_8011992C = ((nMinimumFields) > (((D_800F9D54 + D_800F9D58 + D_800F9D5C + D_800F9D60 + 2) - ((D_800F9D54) > (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))))) ? (D_800F9D54) : (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60)))))))/3) ? (nMinimumFields) : (((D_800F9D54 + D_800F9D58 + D_800F9D5C + D_800F9D60 + 2) - ((D_800F9D54) > (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))))) ? (D_800F9D54) : (((D_800F9D58) > (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60))) ? (D_800F9D58) : (((D_800F9D5C) > (D_800F9D60) ? (D_800F9D5C) : (D_800F9D60)))))))/3));
  D_800B6B00 = (((D_8011992C)*15)/D_800F9E4C);
  D_80119924 = CEngineApp__CreateGraphicsTask(pThis);

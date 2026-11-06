@@ -1,4 +1,4 @@
-#include "source_func_800036B0.h"
+#include "decompdecomp_sync_e400c83c1fa062cfb50d.h"
 
 extern char D_800EF7BC[];
 extern char D_800EF7C8[];
@@ -17,7 +17,7 @@ void CEngineApp__DrawGAME(CEngineApp *pThis)
 //	COnScreen__AddGameTextWithId(buffer1, 32) ;
 //	COnScreen__AddGameTextWithId(buffer2, 33) ;
 
-	CEngineApp__SetupDraw(pThis) ;
+	/* DWORD dls, dle; */ CEngineApp__SetupDraw(pThis) ;
 
 	CScene__Draw(&pThis->m_Scene, &pThis->m_pDLP);
 

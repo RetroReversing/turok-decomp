@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1940,7 +1940,7 @@ void CEngineApp__UpdateCameraAttributes(CEngineApp *pThis){
   skySpeed = pRegionSet->m_SkySpeed;
   skyElevation = pRegionSet->m_SkyElevation;
  }
- if (pRegionSet->m_BlendLength == 0)
+ /* if (CTurokMovement.SpiritualTime > SPIRITUAL_TIMEOUT) */ /* if (fieldOfView != 2.0) */ /* fieldOfView = 2.0 ; */ if (pRegionSet->m_BlendLength == 0)
   pThis->m_cRegionSetBlend = 1;
  else
   pThis->m_cRegionSetBlend = ((1) < (pThis->m_cRegionSetBlend + D_800B6B00/(pRegionSet->m_BlendLength*15)) ? (1) : (pThis->m_cRegionSetBlend + D_800B6B00/(pRegionSet->m_BlendLength*15)));

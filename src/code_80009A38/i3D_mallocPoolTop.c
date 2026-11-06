@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct s_Memory {
  struct s_Memory *prev ;
@@ -19,17 +19,17 @@ void *i3D_mallocPoolTop (t_MemoryPool *pool, int size){
  t_Memory *pointer ;
  t_Memory *free ;
  int total_size ;
- if (size < 0)
+ /* --- Illegal allocation size ? */ if (size < 0)
   return ((void*)0) ;
- size = (size + 8 - 1) & ~(8 - 1) ;
- pointer = pool->free_tail ;
+ /* --- Align size to 4 bytes */ size = (size + 8 - 1) & ~(8 - 1) ;
+ /* --- Find free allocation slot */ pointer = pool->free_tail ;
  total_size = size + sizeof (t_Memory) ;
  while (pointer)
  {
   if (pointer->size >= total_size)
   {
-   pointer->size -= total_size ;
-    free = (t_Memory *)((int)pointer->addr + pointer->size) ;
+   /* --- Modify free entry */ pointer->size -= total_size ;
+    /* --- Setup new used entry */ free = (t_Memory *)((int)pointer->addr + pointer->size) ;
    free->prev = ((void*)0) ;
    free->next = pool->used_head ;
    free->addr = (t_Memory *)((int)free + sizeof (t_Memory)) ;

@@ -1,6 +1,6 @@
-#include "common_local_source_3699.h"
-
+#include "decompdecomp_sync_b7cfe33f14de987d527c.h"
 #line 1 "reference.c"
+// decide what to do after death, GAME OVER, or continue with more lives...
 void CEngineApp__PlayerLostLife(CEngineApp *pThis)
 {
 	if (!pThis->m_bGameOver)

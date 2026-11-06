@@ -1,8 +1,8 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const float D_800F0CB4; extern float acos(float x);
 float acos(float x);
-float acos(float x){
+/* 4K lookup table */ float acos(float x){
  float absX,
    xVal, xP1Val,
    fraction, blendVal;
@@ -523,7 +523,7 @@ float acos(float x){
     0x3D,0x9C,0xE1,0xDE,0x3D,0x80,0x15,0x5B,
     0x3D,0x35,0x1F,0x5F,0x00,0x00,0x00,0x00
    };
- if (x < 0)
+ /* ASSERT((x >= -1) && (x <= 1)); */ /* if (x < 0) return ANGLE_PI - ((float*)act)[(int) (-x*1023)]; else return ((float*)act)[(int) (x*1023)]; */ if (x < 0)
  {
   absX = x * -1023;
   negative = 1;

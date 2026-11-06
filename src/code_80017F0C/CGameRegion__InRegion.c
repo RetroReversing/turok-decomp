@@ -1,6 +1,6 @@
 #include "decompdecomp_sync_49b4450943d27902b3e3.h"
-#line 1 "func.c"
 #line 11 "reference.c"
+// does no floor or ceiling testing
 BOOL CGameRegion__InRegion(CGameRegion *pThis, float X, float Z)
 {
 	int			e;
@@ -28,4 +28,3 @@ BOOL CGameRegion__InRegion(CGameRegion *pThis, float X, float Z)
 
 	return TRUE;
 }
-

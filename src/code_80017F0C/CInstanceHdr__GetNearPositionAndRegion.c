@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -844,7 +844,7 @@ void CInstanceHdr__GetNearPositionAndRegion(CInstanceHdr *pThis,
  int prevGround, prevInstance;
                  ;
                     ;
- ih = *pThis;
+ /* save pThis data */ ih = *pThis;
  prevGround = D_801368A0.GroundBehavior;
  D_801368A0.GroundBehavior = GroundBehavior;
  prevInstance = D_801368A0.InstanceBehavior;
@@ -853,11 +853,11 @@ void CInstanceHdr__GetNearPositionAndRegion(CInstanceHdr *pThis,
                                                                               ;
  D_8009A4D8((CAnimInstanceHdr*) pThis, vDesiredPos, &D_801368A0);
  pThis->m_vPos.y = vDesiredPos.y;
- vPos.x = pThis->m_vPos.x;
+ /* tempory variables allow pvOutPos and ppOutRegion to be same as pThis */ vPos.x = pThis->m_vPos.x;
  vPos.y = vDesiredPos.y;
  vPos.z = pThis->m_vPos.z;
  pRegion = pThis->m_pCurrentRegion;
- *pThis = ih;
+ /* restore pThis data */ *pThis = ih;
  *pvOutPos = vPos;
  *ppOutRegion = pRegion;
  D_801368A0.GroundBehavior = prevGround;

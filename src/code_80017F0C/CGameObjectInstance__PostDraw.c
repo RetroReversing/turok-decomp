@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1643,7 +1643,7 @@ void CGameObjectInstance__PostDraw(CGameObjectInstance *pThis, Gfx **ppDLP){
  {
   { { Gfx *_g = (Gfx *)(((*ppDLP)++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x00)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x02)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) ((((1)+1)*32 + 0x80000000)); }; { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = (((unsigned int) (((unsigned int)((3)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((((1)-1)*2+0x86)) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)((sizeof(Light))) & ((0x01 << (16)) - 1)) << (0)))); _g->words.w1 = (unsigned int)(&D_800BEC40.l[0]); }; { Gfx *_g = (Gfx *)((*ppDLP)++); _g->words.w0 = (((unsigned int) (((unsigned int)((3)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((((2)-1)*2+0x86)) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)((sizeof(Light))) & ((0x01 << (16)) - 1)) << (0)))); _g->words.w1 = (unsigned int)(&D_800BEC40.a); }; };
  }
- if ((pThis->m_pBoss) && (pThis->m_pBoss->m_pPostDrawFunction))
+ /* Boss function? */ if ((pThis->m_pBoss) && (pThis->m_pBoss->m_pPostDrawFunction))
   pThis->m_pBoss->m_pPostDrawFunction(pThis, pThis->m_pBoss, ppDLP) ;
  D_800B9878 = 0;
 }

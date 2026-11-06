@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -95,18 +95,25 @@ extern t_File D_80119AC8[16] ;
 void StartSerialQ(void);
 void EndSerialQ(void);
 int DeleteCurrent(int index);
-int DeleteCurrent(int index){
- int ret ;
- StartSerialQ() ;
- ret = osPfsFileState(&D_80119A08, D_80119AC8[index].index, &D_80119A90) ;
- if (ret == 0)
- {
-  osPfsDeleteFile(&D_80119A08,
-        D_80119A90.company_code,
-        D_80119A90.game_code,
-        D_80119A90.game_name,
-        D_80119A90.ext_name) ;
- }
- EndSerialQ() ;
- return ret ;
+// delete the file at the specified index into FILEDIRECTORY
+int DeleteCurrent(int index)
+{
+	int	ret ;
+
+	StartSerialQ() ;
+
+	ret = osPfsFileState(&D_80119A08, D_80119AC8[index].index, &D_80119A90) ;
+
+	if (ret == 0)
+	{
+		osPfsDeleteFile(&D_80119A08,
+							 D_80119A90.company_code,
+							 D_80119A90.game_code,
+							 D_80119A90.game_name,
+							 D_80119A90.ext_name) ;
+	}
+//	rmonPrintf("delete ret:%d\n", ret) ;
+
+	EndSerialQ() ;
+	return ret ;
 }

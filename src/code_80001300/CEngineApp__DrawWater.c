@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -15,8 +14,8 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK CEngineApp__RenderTint();                      /* extern */
 
-void CEngineApp__DrawWater(u8 *arg0) {
-    if (M2C_FIELD(arg0, s32 *, 0x1F8BC) != 0) {
-        CEngineApp__RenderTint(arg0, arg0 + 0x1F8CC);
+void CEngineApp__DrawWater(u8 *pThis) {
+    if (M2C_FIELD(pThis, s32 *, 0x1F8BC) != 0) {
+        CEngineApp__RenderTint(pThis, pThis + 0x1F8CC);
     }
 }

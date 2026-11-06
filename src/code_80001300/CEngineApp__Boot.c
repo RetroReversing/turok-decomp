@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -21,7 +20,7 @@ extern M2C_UNK D_800F90D0;
 extern M2C_UNK D_8013C660;
 extern M2C_UNK idle;
 
-void CEngineApp__Boot(s32 arg0) {
+void CEngineApp__Boot(s32 pThis) {
     func_8009D620();
     osCreateThread(&D_800F90D0, 1, &idle, 0, &D_8013C660, 0xA);
     osStartThread(&D_800F90D0);

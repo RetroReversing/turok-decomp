@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -834,13 +834,13 @@ float CGameRegion__GetGroundHeight(CGameRegion *pThis, float X, float Z){
  vNormal = CGameRegion__GetGroundNormal(pThis);
    if (vNormal.y == 0)
    {
-      return (pThis->m_pCorners[0]->m_vCorner.y
+      /* degenerate region */ /* return average height */ return (pThis->m_pCorners[0]->m_vCorner.y
       + pThis->m_pCorners[1]->m_vCorner.y
       + pThis->m_pCorners[2]->m_vCorner.y)/3;
    }
    else
    {
-  vPoint = pThis->m_pCorners[0]->m_vCorner;
+  /* use corner 0 for point on plane */ vPoint = pThis->m_pCorners[0]->m_vCorner;
       return ((vPoint.z - Z)*vNormal.z + (vPoint.x - X)*vNormal.x + vPoint.y*vNormal.y)/vNormal.y;
    }
 }

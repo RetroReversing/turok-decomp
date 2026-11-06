@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F1510;
 typedef unsigned char sa_u8;
@@ -1838,7 +1838,7 @@ CQuatern CInstanceHdr__GetAimAtTarget(CInstanceHdr *pThis, CVector3 vPos)
     ;
     return qFinal;
   }
-  vPlayerPos = pPlayer->ah.ih.m_vPos;
+  /* find aiming rotation */ vPlayerPos = pPlayer->ah.ih.m_vPos;
   vPlayerPos.y += D_800F1510;
   CVector3__Subtract(&vDelta, &vPlayerPos, &vPos);
   CVector3__Normalize(&vDelta);

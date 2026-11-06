@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1620,7 +1620,7 @@ extern CEngineApp D_80106004;
 struct CCollisionInfo2_t;
 extern int D_800B81F0 ;
 void CCheatCode__Construct(CCheatCode *pThis);
-void CCheatCode__Construct(CCheatCode *pThis){
+/* Construct structure */ void CCheatCode__Construct(CCheatCode *pThis){
  pThis->m_Selection = 0 ;
  if (pThis->m_Mode == CHEATCODE_NULL)
   pThis->m_Alpha = 0 ;

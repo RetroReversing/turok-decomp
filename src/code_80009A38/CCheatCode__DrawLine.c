@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -253,16 +253,16 @@ extern char D_800B81D0[32];
 extern int D_800B81F0;
 extern char D_800B8200[16];
 void CCheatCode__DrawLine(Gfx **ppDLP, int y, int opacity, int chars, int offset);
-void CCheatCode__DrawLine(Gfx **ppDLP, int y, int opacity, int chars, int offset){
+/* draw a line of the password */ void CCheatCode__DrawLine(Gfx **ppDLP, int y, int opacity, int chars, int offset){
  int x, i ;
  char string[2] ;
- string[1] = '\0' ;
+ /* printing 1 char at a time, so make a null terminator */ string[1] = '\0' ;
  x = 320 /2 ;
  x -= (chars *12) /2 ;
  for (i=0; i<chars; i++)
  {
   string[0] = D_800B8200[D_800B81D0[i+offset]] ;
-  if ((i+offset) == D_800B81F0-1)
+  /* if in load mode, flash current letter */ if ((i+offset) == D_800B81F0-1)
   {
    if ((D_800B6AF0&7)<4)
    {

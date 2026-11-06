@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -20,12 +20,12 @@ s32 osPfsFileState(M2C_UNK *, s32, M2C_UNK *);       /* extern */
 extern M2C_UNK D_80119A08;
 extern M2C_UNK D_80119A90;
 
-s32 GetFileState(s32 arg0) {
+/***************************************************************************** * * Function: GetFileState() * ****************************************************************************** * * Description: Setup the global FileState struc * * Note: Temporarily re-routes the SI message to a new Q * * Inputs: file number * Outputs: error_numb (0 if ok) * *****************************************************************************/ s32 GetFileState(s32 file) {
     s32 temp_v0;
     s32 sp1C;
 
     StartSerialQ();
-    temp_v0 = osPfsFileState(&D_80119A08, arg0, &D_80119A90);
+    temp_v0 = osPfsFileState(&D_80119A08, file, &D_80119A90);
     sp1C = temp_v0;
     EndSerialQ();
     return temp_v0;

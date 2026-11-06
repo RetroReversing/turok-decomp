@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1604,14 +1603,17 @@ extern void CEngineApp__DrawColorFlash(CEngineApp *pThis);
 extern float D_800B6B00 ;
 void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]);
 void CEngineApp__DrawColorFlash(CEngineApp *pThis);
-void CEngineApp__DrawColorFlash(CEngineApp *pThis){
- if (pThis->m_Alpha > pThis->m_AlphaDec)
-  pThis->m_Alpha -= (sa_u8) (pThis->m_AlphaDec * D_800B6B00);
- else
-  pThis->m_Alpha = 0;
- if (pThis->m_Alpha)
- {
-  pThis->m_FlashColor[3] = pThis->m_Alpha;
-  CEngineApp__DrawTint(pThis, pThis->m_FlashColor);
- }
+void CEngineApp__DrawColorFlash(CEngineApp *pThis)
+{
+	if (pThis->m_Alpha > pThis->m_AlphaDec)
+		pThis->m_Alpha -= (sa_u8) (pThis->m_AlphaDec * D_800B6B00);
+	else
+		pThis->m_Alpha = 0;
+
+	if (pThis->m_Alpha)
+	{
+		pThis->m_FlashColor[3] = pThis->m_Alpha;
+
+		CEngineApp__DrawTint(pThis, pThis->m_FlashColor);
+	}
 }

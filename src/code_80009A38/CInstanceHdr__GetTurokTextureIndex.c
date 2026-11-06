@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -17,8 +17,8 @@ typedef s32 M2C_UNK32;
 extern s16 D_80112C20;
 extern s32 D_80128DDC;
 
-s32 CInstanceHdr__GetTurokTextureIndex(s32 arg0, s32 arg1) {
-    if ((arg1 == 0x15) && (D_80112C20 == 0x17)) {
+s32 CInstanceHdr__GetTurokTextureIndex(s32 pThis, s32 nNode) {
+    if ((nNode == 0x15) && (D_80112C20 == 0x17)) {
         if (D_80128DDC >= 0) {
             return D_80128DDC;
         }

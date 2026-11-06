@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned short sa_u16;
 extern sa_u16 D_800B8190[32];
@@ -6,7 +6,7 @@ extern char D_800B81D0[32];
 extern int D_800B81F0;
 extern void CCheatCode__ConvertDataToString(void) ;
 void CCheatCode__ConvertDataToString(void);
-void CCheatCode__ConvertDataToString(void){
+/* Convert the data to a printable string */ void CCheatCode__ConvertDataToString(void){
  sa_u16 dcount = 0;
  sa_u16 scount = 0;
  sa_u16 byte ;
@@ -15,7 +15,7 @@ void CCheatCode__ConvertDataToString(void){
  while (working)
  {
   byte = D_800B8190[dcount] ;
-  switch (nibble)
+  /* convert to nibble */ switch (nibble)
   {
    case 0:
     byte >>= 12 ;
@@ -29,13 +29,13 @@ void CCheatCode__ConvertDataToString(void){
   }
   byte &= 0x0f ;
   D_800B81D0[scount] = byte ;
-  nibble++ ;
+  /* move along in nibbles, move along data if nibble 0 */ nibble++ ;
   if (nibble >3)
   {
    nibble = 0 ;
    dcount++ ;
   }
-  scount++ ;
+  /* advance string position and check for end */ scount++ ;
   if (scount >= D_800B81F0)
    working = 0 ;
  }

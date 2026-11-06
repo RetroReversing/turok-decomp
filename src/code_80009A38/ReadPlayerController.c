@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -17,7 +17,7 @@ extern int CAttractDemo__StartOfRecordingDemo(void) ;
 extern OSContPad D_80119990[4];
 extern OSContPad D_801199C8 ;
 void ReadPlayerController(void);
-void ReadPlayerController(void){
+/* Reads hardware controller values into player controller */ void ReadPlayerController(void){
  if (D_800F9E40 < 0)
  {
   D_801199C8.button = 0 ;
@@ -27,7 +27,7 @@ void ReadPlayerController(void){
   return;
  }
  D_801199C8 = D_80119990[D_800F9E40] ;
- if (CAttractDemo__StartOfRecordingDemo())
+ /* Stop misc presses during very start of demo */ if (CAttractDemo__StartOfRecordingDemo())
  {
   D_801199C8.button = 0 ;
   D_801199C8.stick_x = 0 ;

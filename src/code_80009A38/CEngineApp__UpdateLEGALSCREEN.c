@@ -1,7 +1,6 @@
-#include "decompdecomp_sync_054b35ed234ce903c9f5.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_c98db26a45e3ca6d9904.h"
 #line 4384 "reference.c"
-void CEngineApp__UpdateLEGALSCREEN(CEngineApp *pThis)
+/* Function: CEngineApp__UpdateLEGALSCREEN() * ****************************************************************************** * * Description: Update LEGALSCREEN mode stuff * * Inputs: *pThis - Ptr to engine * Outputs: None */ void CEngineApp__UpdateLEGALSCREEN(CEngineApp *pThis)
 {
 	// request latest controller information
 	if (validcontrollers && !cntrlReadInProg)
@@ -50,4 +49,3 @@ void CEngineApp__UpdateLEGALSCREEN(CEngineApp *pThis)
 
 	CLegalScreen__Update();
 }
-

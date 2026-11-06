@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1643,7 +1643,7 @@ extern sa_u32 D_800B86DC;
 void StartSerialQ(void);
 void EndSerialQ(void);
 int LoadCurrent(int index);
-int LoadCurrent(int index){
+/* load the file at the specified index into FILEDIRECTORY */ int LoadCurrent(int index){
  int ret ;
  sa_s32 size ;
  sa_u8 *data ;
@@ -1658,7 +1658,7 @@ int LoadCurrent(int index){
  {
   if ((D_80119A90.company_code == D_800B86D8) && (D_80119A90.game_code == D_800B86DC) && (D_80119A90.file_size == size))
   {
-   ret = osPfsReadWriteFile(&D_80119A08,
+   /* osWritebackDCache(data, FileState.file_size); */ ret = osPfsReadWriteFile(&D_80119A08,
          D_80119AC8[index].index,
          0,
          0,
@@ -1669,6 +1669,6 @@ int LoadCurrent(int index){
   else
    ret = -1 ;
  }
- EndSerialQ() ;
+ /* rmonPrintf("load ret:%d\n", ret) ; */ EndSerialQ() ;
  return ret ;
 }

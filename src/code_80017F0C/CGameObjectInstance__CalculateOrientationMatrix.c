@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F12E8; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1881,113 +1881,118 @@ void D_80018AC8(CBoundsRect *object, int nPts, CVector3 V[]);
 void CGameObjectInstance__CalculateOrientationMatrix(CGameObjectInstance *object, int followView, CVector3 worldCorners[8], CMtxF orientationMatrix);
 int CInstanceHdr__IsDevice(CInstanceHdr *object);
 /* Builds an object's orientation and transforms its model bounds into world space. */
-void CGameObjectInstance__CalculateOrientationMatrix(CGameObjectInstance *object, int followView, CVector3 worldCorners[8], CMtxF orientationMatrix){
- CIndexedSet objectInfo;
- CROMBounds *romBounds;
- CMtxF boundsMatrix ;
- CMtxF tempMatrix1, tempMatrix2;
- CQuatern yawRotation,
-     tempRotation1, tempRotation2;
- CVector3 weaponOffset,
-     localCorners[8];
- int cornerIndex;
- float meltFraction, meltFractionSquared, verticalScale, horizontalScale;
- verticalScale = horizontalScale = 1;
- if (!followView)
- {
-  if (AI_CanWeKillIt(object) && AI_DoesItMelt(object))
-  {
-   object->m_cMelt += D_800B6B00;
-   meltFraction = object->m_cMelt/(4.0*15);
-   meltFractionSquared = meltFraction*meltFraction;
-   horizontalScale = 1 + 0.5*meltFractionSquared;
-   verticalScale = 1 - meltFractionSquared;
-   if (meltFraction >= 1)
-    ((object)->m_dwFlags |= (1 << 21));
-  }
- }
- if (followView)
- {
-  CTMove__GetWeaponOffset(&D_80128C20, &weaponOffset);
-  weaponOffset.z -= D_800F12E8;
-  CMtxF__CopyPreMultScale(boundsMatrix, (&D_800F9F10)->m_mfViewOrient, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z);
-  CMtxF__CopyPreMult3DSToU64(orientationMatrix, boundsMatrix) ;
-  D_80013190(orientationMatrix, weaponOffset.x, weaponOffset.y, weaponOffset.z);
- }
- else
- {
-  if (object->m_pCalculateOrientation)
-   tempRotation2 = object->m_pCalculateOrientation(object) ;
-  else
-  {
-   D_80119CB0 = __sinf((object->m_RotY)/2); (&yawRotation)->x = (0)*D_80119CB0; (&yawRotation)->y = (1)*D_80119CB0; (&yawRotation)->z = (0)*D_80119CB0; (&yawRotation)->t = __cosf((object->m_RotY)/2);;
-   CQuatern__Mult(&tempRotation1, &object->m_qRot, &yawRotation);
-   CQuatern__Mult(&tempRotation2, &tempRotation1, &object->m_qGround);
-  }
-  if ((&D_800F9F10)->m_Mode == MODE_GALLERY)
-  {
-   CQuatern__ToMatrix(&tempRotation2, boundsMatrix) ;
-   D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z) ;
-   D_8001315C(boundsMatrix, 0, -object->ah.ih.m_pEA->m_CollisionHeight/2, 0) ;
-   CQuatern__ToMatrix(&(&D_800F9F10)->m_qPortraitOrientation, tempMatrix1) ;
-   CMtxF__Copy(tempMatrix2, boundsMatrix) ;
-   CMtxF__PostMult4x4(boundsMatrix, tempMatrix2, tempMatrix1);
-   D_80013DC8(&object->ah.ih.m_vPos, (1400*(1024.0/100.0)));
-   D_8001315C(boundsMatrix, object->ah.ih.m_vPos.x, object->ah.ih.m_vPos.y, object->ah.ih.m_vPos.z) ;
-   CMtxF__CopyPreMult3DSToU64(orientationMatrix, boundsMatrix) ;
-  }
-  else
-  {
-   CQuatern__ToMatrix(&tempRotation2, boundsMatrix) ;
-   if ( ((&D_800F9F10)->m_Mode != MODE_GAME)
-     || ((((&D_800F9F10))->m_Scene.m_pPlayer) == object)
-     || (CInstanceHdr__IsDevice(&object->ah.ih)) )
-   {
-    D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z) ;
-   }
-   else
-   {
-           if ((&D_800F9F10)->m_dwCheatFlags & (1<<8))
-     D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x*0.40, verticalScale*object->m_vScale.y*0.40, horizontalScale*object->m_vScale.z*0.40) ;
+/* DON'T CALL BEFORE m_pceObjectInfo HAS BEEN RECEIVED */ void CGameObjectInstance__CalculateOrientationMatrix(CGameObjectInstance *object, int followView, CVector3 worldCorners[8], CMtxF orientationMatrix)
+{
+    CIndexedSet objectInfo;
+    CROMBounds *romBounds;
+    CMtxF boundsMatrix ;
+    CMtxF galleryRotationMatrix, objectMatrixCopy;
+    CQuatern yawRotation,
+    localYawRotation, worldRotation;
+    CVector3 weaponOffset,
+    localCorners[8];
+    int cornerIndex;
+    float meltFraction, meltFractionSquared, verticalScale, horizontalScale;
+    verticalScale = horizontalScale = 1;
+    if (!followView)
+    {
+        if (AI_CanWeKillIt(object) && AI_DoesItMelt(object))
+        {
+            object->m_cMelt += D_800B6B00;
+            meltFraction = object->m_cMelt/MELT_LENGTH;
+            meltFractionSquared = meltFraction*meltFraction;
+            horizontalScale = 1 + 0.5*meltFractionSquared;
+            verticalScale = 1 - meltFractionSquared;
+            if (meltFraction >= 1)
+            ((object)->m_dwFlags |= ANIM_INSTANCE_GONE);
+        }
+    }
+    if (followView)
+    {
+        CTMove__GetWeaponOffset(&D_80128C20, &weaponOffset);
+        weaponOffset.z -= D_800F12E8;
+        CMtxF__CopyPreMultScale(boundsMatrix, (&D_800F9F10)->m_mfViewOrient, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z);
+        CMtxF__CopyPreMult3DSToU64(orientationMatrix, boundsMatrix) ;
+        D_80013190(orientationMatrix, weaponOffset.x, weaponOffset.y, weaponOffset.z);
+    }
     else
-     D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z) ;
-   }
-   D_80013DC8(&object->ah.ih.m_vPos, (1400*(1024.0/100.0)));
-   D_8001315C(boundsMatrix, object->ah.ih.m_vPos.x, object->ah.ih.m_vPos.y, object->ah.ih.m_vPos.z) ;
-   CMtxF__CopyPreMult3DSToU64(orientationMatrix, boundsMatrix) ;
-  }
- }
- CMtxF__ToMtxFast((orientationMatrix), &(((object)->m_mOrientation[D_800B6AF4])));
- CIndexedSet__ConstructFromRawData(&objectInfo,
-             CCacheEntry__GetData(object->m_pceObjectInfo),
-             0);
- romBounds = (CROMBounds*) CIndexedSet__GetAddress((&objectInfo), (&objectInfo)->m_pData, (0));
-   localCorners[0].x = romBounds->m_vMin.x;
- localCorners[0].y = romBounds->m_vMin.y;
- localCorners[0].z = romBounds->m_vMin.z;
-   localCorners[1].x = romBounds->m_vMax.x;
- localCorners[1].y = romBounds->m_vMin.y;
- localCorners[1].z = romBounds->m_vMin.z;
- localCorners[2].x = romBounds->m_vMax.x;
- localCorners[2].y = romBounds->m_vMin.y;
- localCorners[2].z = romBounds->m_vMax.z;
-   localCorners[3].x = romBounds->m_vMin.x;
- localCorners[3].y = romBounds->m_vMin.y;
- localCorners[3].z = romBounds->m_vMax.z;
-   localCorners[4].x = romBounds->m_vMin.x;
- localCorners[4].y = romBounds->m_vMax.y;
- localCorners[4].z = romBounds->m_vMin.z;
- localCorners[5].x = romBounds->m_vMax.x;
- localCorners[5].y = romBounds->m_vMax.y;
- localCorners[5].z = romBounds->m_vMin.z;
-   localCorners[6].x = romBounds->m_vMax.x;
- localCorners[6].y = romBounds->m_vMax.y;
- localCorners[6].z = romBounds->m_vMax.z;
- localCorners[7].x = romBounds->m_vMin.x;
- localCorners[7].y = romBounds->m_vMax.y;
- localCorners[7].z = romBounds->m_vMax.z;
- for (cornerIndex=0; cornerIndex<8; cornerIndex++)
-  CMtxF__VectorMult(boundsMatrix, &localCorners[cornerIndex], &worldCorners[cornerIndex]);
- D_80018AC8(&object->m_BoundsRect, 8, worldCorners);
-                                     ;
+    {
+        if (object->m_pCalculateOrientation)
+        worldRotation = object->m_pCalculateOrientation(object) ;
+        else
+        {
+            D_80119CB0 = __sinf((object->m_RotY)/2);
+            (&yawRotation)->x = (0)*D_80119CB0;
+            (&yawRotation)->y = (1)*D_80119CB0;
+            (&yawRotation)->z = (0)*D_80119CB0;
+            (&yawRotation)->t = __cosf((object->m_RotY)/2);
+            CQuatern__Mult(&localYawRotation, &object->m_qRot, &yawRotation);
+            CQuatern__Mult(&worldRotation, &localYawRotation, &object->m_qGround);
+        }
+        if ((&D_800F9F10)->m_Mode == MODE_GALLERY)
+        {
+            CQuatern__ToMatrix(&worldRotation, boundsMatrix) ;
+            D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z) ;
+            D_8001315C(boundsMatrix, 0, -object->ah.ih.m_pEA->m_CollisionHeight/2, 0) ;
+            CQuatern__ToMatrix(&(&D_800F9F10)->m_qPortraitOrientation, galleryRotationMatrix) ;
+            CMtxF__Copy(objectMatrixCopy, boundsMatrix) ;
+            CMtxF__PostMult4x4(boundsMatrix, objectMatrixCopy, galleryRotationMatrix);
+            D_80013DC8(&object->ah.ih.m_vPos, (1400*(1024.0/100.0)));
+            D_8001315C(boundsMatrix, object->ah.ih.m_vPos.x, object->ah.ih.m_vPos.y, object->ah.ih.m_vPos.z) ;
+            CMtxF__CopyPreMult3DSToU64(orientationMatrix, boundsMatrix) ;
+        }
+        else
+        {
+            CQuatern__ToMatrix(&worldRotation, boundsMatrix) ;
+            if ( ((&D_800F9F10)->m_Mode != MODE_GAME)
+            || ((((&D_800F9F10))->m_Scene.m_pPlayer) == object)
+            || (CInstanceHdr__IsDevice(&object->ah.ih)) )
+            {
+                D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z) ;
+            }
+            else
+            {
+                if ((&D_800F9F10)->m_dwCheatFlags & CHEATFLAG_TINYENEMYMODE)
+                D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x*0.40, verticalScale*object->m_vScale.y*0.40, horizontalScale*object->m_vScale.z*0.40) ;
+                else
+                D_800130DC(boundsMatrix, horizontalScale*object->m_vScale.x, verticalScale*object->m_vScale.y, horizontalScale*object->m_vScale.z) ;
+            }
+            D_80013DC8(&object->ah.ih.m_vPos, (1400*(1024.0/100.0)));
+            D_8001315C(boundsMatrix, object->ah.ih.m_vPos.x, object->ah.ih.m_vPos.y, object->ah.ih.m_vPos.z) ;
+            CMtxF__CopyPreMult3DSToU64(orientationMatrix, boundsMatrix) ;
+        }
+    }
+    CMtxF__ToMtxFast((orientationMatrix), &(((object)->m_mOrientation[D_800B6AF4])));
+    CIndexedSet__ConstructFromRawData(&objectInfo,
+    CCacheEntry__GetData(object->m_pceObjectInfo),
+    0);
+    romBounds = (CROMBounds*) CIndexedSet__GetAddress((&objectInfo), (&objectInfo)->m_pData, (0));
+    localCorners[0].x = romBounds->m_vMin.x;
+    localCorners[0].y = romBounds->m_vMin.y;
+    localCorners[0].z = romBounds->m_vMin.z;
+    localCorners[1].x = romBounds->m_vMax.x;
+    localCorners[1].y = romBounds->m_vMin.y;
+    localCorners[1].z = romBounds->m_vMin.z;
+    localCorners[2].x = romBounds->m_vMax.x;
+    localCorners[2].y = romBounds->m_vMin.y;
+    localCorners[2].z = romBounds->m_vMax.z;
+    localCorners[3].x = romBounds->m_vMin.x;
+    localCorners[3].y = romBounds->m_vMin.y;
+    localCorners[3].z = romBounds->m_vMax.z;
+    localCorners[4].x = romBounds->m_vMin.x;
+    localCorners[4].y = romBounds->m_vMax.y;
+    localCorners[4].z = romBounds->m_vMin.z;
+    localCorners[5].x = romBounds->m_vMax.x;
+    localCorners[5].y = romBounds->m_vMax.y;
+    localCorners[5].z = romBounds->m_vMin.z;
+    localCorners[6].x = romBounds->m_vMax.x;
+    localCorners[6].y = romBounds->m_vMax.y;
+    localCorners[6].z = romBounds->m_vMax.z;
+    localCorners[7].x = romBounds->m_vMin.x;
+    localCorners[7].y = romBounds->m_vMax.y;
+    localCorners[7].z = romBounds->m_vMax.z;
+    for (cornerIndex=0; cornerIndex<8; cornerIndex++)
+    CMtxF__VectorMult(boundsMatrix, &localCorners[cornerIndex], &worldCorners[cornerIndex]);
+    D_80018AC8(&object->m_BoundsRect, 8, worldCorners);
 }
+

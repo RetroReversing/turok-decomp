@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -18,8 +17,8 @@ M2C_UNK CEngineApp__SetupDraw();                            /* extern */
 M2C_UNK CEngineApp__DrawFade(s32);                         /* extern */
 M2C_UNK CGamePak__Draw(s32, s32);                    /* extern */
 
-void CEngineApp__DrawGAMEPAK(s32 arg0) {
+/***************************************************************************** * * Function: CEngineApp__DrawGAMEPAK() * ****************************************************************************** * * Description: Draw code for GAMEPAK manager mode * * Inputs: *pThis - Ptr to engine * Outputs: None * *****************************************************************************/ void CEngineApp__DrawGAMEPAK(s32 pThis) {
     CEngineApp__SetupDraw();
-    CGamePak__Draw(arg0 + 0x1F6C0, arg0 + 0x1F810);
-    CEngineApp__DrawFade(arg0);
+    CGamePak__Draw(pThis + 0x1F6C0, pThis + 0x1F810);
+    CEngineApp__DrawFade(pThis);
 }

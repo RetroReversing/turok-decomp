@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1630,7 +1629,7 @@ void CEngineApp__Construct(CEngineApp *pThis);
 void CEngineApp__SetupShadowVtxs();
 typedef struct { unsigned int first, second; } SignatureWords;
 SignatureWords D_800EF7A0 = {0x5475726f, 0x6b524243};
-void CEngineApp__Construct(CEngineApp *pThis){
+/* DO NOT PUT ANYTHING IN HERE THAT NEEDS TO BE RESET EACH GAME!!!!!!!!!!!!! */ void CEngineApp__Construct(CEngineApp *pThis){
  CMtxF rotationMatrix, coordinateScaleMatrix;
  /* Detect a first launch and initialize the engine's persistent startup state. */
  unsigned char *storedSignaturePtr, *expectedSignaturePtr;

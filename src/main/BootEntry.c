@@ -1,6 +1,14 @@
-#include "common_local_source_3645.h"
-
+#include "decompdecomp_sync_4c05986fe6fff38d7305.h"
 #line 76 "reference.c"
+//
+// Note: The RNC File header is as follows:
+//
+// Bytes:			Use:
+// 0..3				Header "RNC" + compression type #2
+// 4..7				Uncompressed length (big-endian)
+// 8..11			Compressed length (big-endian)
+// 12..End			Compression data
+//
 void BootEntry(void)
 {
 	u32 TransferLength,Dest;

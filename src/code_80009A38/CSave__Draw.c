@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F0C30; extern const double D_800F0C28; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1616,8 +1616,8 @@ void CSave__Draw(CSave *pThis, Gfx **ppDLP);
 void CSave__DrawMemory(CSave *pThis, Gfx **ppDLP);
 void CRequestor__Draw(CRequestor *pThis, Gfx **ppDLP);
 void CMessageBox__Draw(CMessageBox *pThis, Gfx **ppDLP);
-void CSave__Draw(CSave *pThis, Gfx **ppDLP){
- switch (pThis->m_Mode)
+/* Draw save screen information */ void CSave__Draw(CSave *pThis, Gfx **ppDLP){
+ /* update fade status */ switch (pThis->m_Mode)
  {
   case SAVE_FADEUP:
    pThis->m_Alpha += D_800F0C28 * D_800B6B00 ;
@@ -1639,7 +1639,7 @@ void CSave__Draw(CSave *pThis, Gfx **ppDLP){
    break ;
  }
  COnScreen__InitBoxDraw(ppDLP) ;
-  CSave__DrawMemory(pThis, ppDLP) ;
+  /* if (pThis->m_SaveType == SAVE_MEMORYCARD) */ /* COnScreen__DrawBox(ppDLP, */ /* SCREEN_WD, SCREEN_HT, */ /* 0,0,0, 100*pThis->m_Alpha) ; */ CSave__DrawMemory(pThis, ppDLP) ;
  if ((&D_80106004)->m_bRequestor)
   CRequestor__Draw(&(&D_80106000)->m_Requestor, ppDLP) ;
  if ((&D_80106004)->m_bMessageBox)

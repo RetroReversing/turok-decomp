@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 struct CAssoc_t;
 struct CHashPlex_t;
@@ -75,7 +75,9 @@ typedef struct CGameGridBounds_t
 } CGameGridBounds;
 extern void CGameGridBounds__TakeFromROMGridBounds(CGameGridBounds *pThis, CROMGridBounds *pSource);
 void CGameGridBounds__TakeFromROMGridBounds(CGameGridBounds *pThis, CROMGridBounds *pSource);
-void CGameGridBounds__TakeFromROMGridBounds(CGameGridBounds *pThis, CROMGridBounds *pSource){
- pThis->m_BoundsRect = pSource->m_BoundsRect;
- pThis->m_pceGridSection = ((void*)0);
+void CGameGridBounds__TakeFromROMGridBounds(CGameGridBounds *pThis, CROMGridBounds *pSource)
+{
+	pThis->m_BoundsRect = pSource->m_BoundsRect;
+
+	pThis->m_pceGridSection = NULL;
 }

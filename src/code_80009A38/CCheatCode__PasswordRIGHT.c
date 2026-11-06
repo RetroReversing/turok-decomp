@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct CCheatCode_t
 {
@@ -19,12 +19,13 @@ typedef struct s_CheatCodeEntry
 extern t_CheatCodeEntry D_800B8210[];
 void CCheatCode__PasswordDOWN(CCheatCode *pThis);
 void CCheatCode__PasswordRIGHT(CCheatCode *pThis);
-void CCheatCode__PasswordRIGHT(CCheatCode *pThis){
- D_800EC0C0 = 0 ;
- pThis->m_SubSelection++ ;
- if (pThis->m_SubSelection >= D_800B8210[pThis->m_Selection].items)
- {
-  pThis->m_SubSelection = 0 ;
-    CCheatCode__PasswordDOWN(pThis) ;
- }
+void CCheatCode__PasswordRIGHT(CCheatCode *pThis)
+{
+	D_800EC0C0 = 0 ;
+	pThis->m_SubSelection++ ;
+	if (pThis->m_SubSelection >=  D_800B8210[pThis->m_Selection].items)
+	{
+		pThis->m_SubSelection = 0 ;
+  		CCheatCode__PasswordDOWN(pThis) ;
+	}
 }

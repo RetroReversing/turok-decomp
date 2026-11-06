@@ -1,7 +1,6 @@
-#include "decompdecomp_sync_a8088232f873039b7a50.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_8259b88657ce15479773.h"
 #line 2630 "reference.c"
-BOOL CEngineApp__MenuDown(CEngineApp *pThis)
+/* menu control down ? */ BOOL CEngineApp__MenuDown(CEngineApp *pThis)
 {
 	float	res;
 
@@ -42,4 +41,3 @@ BOOL CEngineApp__MenuDown(CEngineApp *pThis)
 		}
 	}
 }
-

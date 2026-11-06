@@ -1,6 +1,9 @@
-#include "common_local_source_3886.h"
+#include "decompdecomp_sync_0394ae4400d685eb7d2c.h"
 
 #line 114 "reference.c"
+/////////////////////////////////////////////////////////////////////////////
+//	CMtxF__Clamp - limit matrix value so that they can be converted to int's
+/////////////////////////////////////////////////////////////////////////////
 void CMtxF__Clamp(CMtxF mfThis)
 {
 	int 		r, c ;

@@ -394,3 +394,7 @@ routines remain verified assembly, as explicitly requested; they are not C match
 
 See [the final seven report](FINAL_OPEN_FUNCTIONS.md) for the compiler-context
 finding, scope and cartridge verification. The previous 775-score draft is historical.
+
+## 6 November 2026 — source-assisted readability checkpoint
+
+Restored original-source names, comments and source structure in 158 selected C functions. Each function passed the byte judge with its actual compiler context; compiler profiles and target bytes were retained. `RandomFloat` requires its judged `.rodata` placement at `0x800F0D08` when linking the restored expression. The complete build reproduced the original cartridge byte for byte, with 2,364 of 2,406 entries selected in C. This remains a source-assisted partial decompilation; a matching cartridge also contains preserved raw data and assembly.

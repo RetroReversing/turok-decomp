@@ -1,5 +1,5 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern void CBoundsRect__AddEncloseVectors(s32,void*); extern s32 CCacheEntry__GetData(s32); extern void CIndexedSet__ConstructFromRawData(void*,s32,s32); extern void CCartCache__RequestBlock(void*,void*,s32,void*,void*,s32,s32,void*); extern s32 CIndexedSet__GetROMAddress(s32,s32,u16); extern void CGameRegion__GetGroundNormal(void*); extern void CVector3__Normalize(void*); extern void CGameObjectInstance__AnimsIndexReceived(); extern void CGameObjectInstance__ObjectIndexReceived();
 extern s32 D_800B972C; extern f32 D_80119D90[3]; extern f32 D_80119D94,D_80119D98; extern s32 D_800F0E24,D_800FA3C8,D_800F0DF4;
-void CGameObjectInstance__AnimsHeaderReceived(void *a,s32 unused){struct {s32 *data; s32 flags;} p; s32 raw=CCacheEntry__GetData(*(s32*)((char*)a+0x110)); CIndexedSet__ConstructFromRawData(&p,raw,0); *(s16*)((char*)a+0x11c)=*p.data; CCartCache__RequestBlock(&D_800FA3C8,a,0,CGameObjectInstance__AnimsIndexReceived,(char*)a+0x114,*(s32*)((char*)a+0x104),((*(s16*)((char*)a+0x11c)*4+15)&-8),&D_800F0E24);}
+void CGameObjectInstance__AnimsHeaderReceived(void *pThis,s32 ppceTarget){struct {s32 *data; s32 flags;} p; s32 raw=CCacheEntry__GetData(*(s32*)((char*)pThis+0x110)); CIndexedSet__ConstructFromRawData(&p,raw,0); *(s16*)((char*)pThis+0x11c)=*p.data; CCartCache__RequestBlock(&D_800FA3C8,pThis,0,CGameObjectInstance__AnimsIndexReceived,(char*)pThis+0x114,*(s32*)((char*)pThis+0x104),((*(s16*)((char*)pThis+0x11c)*4+15)&-8),&D_800F0E24);}

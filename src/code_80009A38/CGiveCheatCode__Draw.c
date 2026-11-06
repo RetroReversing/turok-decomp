@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1634,12 +1634,12 @@ typedef struct s_cheatcode
 extern void *D_800B8264[16];
 extern t_cheatcode D_800B8484[35] ;
 void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP);
-void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP){
+/* Draw screen information */ void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP){
  /* Fade and draw the awarded cheat codes, enabling each listed cheat. */
  int *code ;
  int count ;
  int c, x, y ;
- switch (pThis->m_Mode)
+ /* update fade status */ switch (pThis->m_Mode)
  {
   case CHEATCODE_FADEUP:
    pThis->m_Alpha += .2 * D_800B6B00 ;
@@ -1660,7 +1660,7 @@ void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP){
    }
    break ;
  }
- COnScreen__InitBoxDraw(ppDLP) ;
+ /* prepare to draw boxes */ COnScreen__InitBoxDraw(ppDLP) ;
  COnScreen__DrawHilightBox(ppDLP,
         ((320/2) - ((240)/2)), ((240/2) - ((190)/2)),
         ((320/2) - ((240)/2))+(240), ((240/2) - ((190)/2))+(190),
@@ -1688,7 +1688,7 @@ void CGiveCheatCode__Draw(CGiveCheatCode *pThis, Gfx **ppDLP){
    code++ ;
   }
   y = 240/2 ;
-  y -= (count * (18*2))/2 ;
+  /* (CHEATCODE_Y + CHEATCODE_HEIGHT) / 2; */ y -= (count * (18*2))/2 ;
   code = pThis->m_Codes ;
   while (*code != -1)
   {

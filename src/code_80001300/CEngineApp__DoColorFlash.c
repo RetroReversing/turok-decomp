@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1600,10 +1599,12 @@ extern void CEngineApp__DoColorFlash(CEngineApp *pThis, sa_u8 Flash, sa_u8 Flash
 extern sa_u64 dram_stack[];
 struct CCollisionInfo2_t;
 void CEngineApp__DoColorFlash(CEngineApp *pThis, sa_u8 Alpha, sa_u8 AlphaDec, int r, int g, int b);
-void CEngineApp__DoColorFlash(CEngineApp *pThis, sa_u8 Alpha, sa_u8 AlphaDec, int r, int g, int b){
- pThis->m_Alpha = Alpha ;
- pThis->m_AlphaDec = AlphaDec;
- pThis->m_FlashColor[0] = r ;
- pThis->m_FlashColor[1] = g ;
- pThis->m_FlashColor[2] = b ;
+void CEngineApp__DoColorFlash(CEngineApp *pThis, u8 Alpha, u8 AlphaDec, int r, int g, int b)
+{
+	pThis->m_Alpha		= Alpha ;
+	pThis->m_AlphaDec = AlphaDec;
+
+	pThis->m_FlashColor[0] = r ;
+	pThis->m_FlashColor[1] = g ;
+	pThis->m_FlashColor[2] = b ;
 }

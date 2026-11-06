@@ -1,11 +1,10 @@
-#include "decompdecomp_sync_6cbc72cad54ce98e4008.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_dc3a7f515c1403ae091b.h"
 #line 2837 "reference.c"
 void CLoad__ExtractData(void)
 {
 //	float				VolChange;
 	CPersistantData	*persist ;
-	persist = (CPersistantData *)CScene__GetPersistantDataStruct((CScene*)D_800FA3C8) ;
+	persist = (CPersistantData *)CScene__GetPersistantDataStruct(&GetApp()->m_Scene) ;
 
 	//rmonPrintf("ptr:%08x\n", persist) ;
 	//rmonPrintf("data:%08x\n", persistant_data) ;
@@ -85,7 +84,7 @@ void CLoad__ExtractData(void)
 
 	GetApp()->m_Difficulty							= persist->Difficulty ;
 
-	D_8010201C->m_AI.m_Health = persist->Health ;
+	CEngineApp__GetPlayer(GetApp())->m_AI.m_Health = persist->Health ;
 	CTurokMovement.MaxHealth = persist->MaxHealth ;
 	
 	CTurokMovement.Tokens							= persist->Tokens ;
@@ -103,4 +102,3 @@ void CLoad__ExtractData(void)
 
 	GetApp()->m_BossFlags			 				= persist->BossFlags ;
 }
-

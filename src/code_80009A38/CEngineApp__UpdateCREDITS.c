@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -27,7 +26,7 @@ extern s32 D_800F9E44;
 extern s32 D_80119908;
 extern s32 D_8011990C;
 
-void CEngineApp__UpdateCREDITS(void *arg0) {
+/***************************************************************************** * * Function: CEngineApp__UpdateCREDITS() * ****************************************************************************** * * Description: Update CREDITS mode stuff * * Inputs: *pThis - Ptr to engine * Outputs: None * *****************************************************************************/ void CEngineApp__UpdateCREDITS(void *pThis) {
     if ((D_800B86D0 != 0) && (D_80119908 == 0)) {
         D_80119908 = 1;
         osContStartReadData(&D_800F9C20);
@@ -35,10 +34,10 @@ void CEngineApp__UpdateCREDITS(void *arg0) {
     if (D_8011990C != 0) {
         ReadControllerAdvanced();
     }
-    CEngineApp__UpdateCameraAttributes(arg0);
-    CEngineApp__PrepareFrame(arg0, 4);
+    CEngineApp__UpdateCameraAttributes(pThis);
+    CEngineApp__PrepareFrame(pThis, 4);
     func_8000B96C();
-    if ((M2C_FIELD(arg0, s32 *, 0x1F888) != 0) && (CTControl__IsStart(D_800F9E44) != 0.0f)) {
-        CEngineApp__SetupFadeTo(arg0, 0);
+    if ((M2C_FIELD(pThis, s32 *, 0x1F888) != 0) && (CTControl__IsStart(D_800F9E44) != 0.0f)) {
+        CEngineApp__SetupFadeTo(pThis, 0);
     }
 }

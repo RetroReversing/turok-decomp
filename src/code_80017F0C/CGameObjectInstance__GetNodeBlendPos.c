@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -860,7 +860,7 @@ CVector3 CGameObjectInstance__GetNodeBlendPos(CGameObjectInstance *pThis, CGameA
  vDelta.x = vBlend.x;
  vDelta.y = 0;
  vDelta.z = vBlend.y;
- CQuatern__ToMatrix(&pThis->m_qRot, mfRotProd);
+ /* use optimized matrix functions */ CQuatern__ToMatrix(&pThis->m_qRot, mfRotProd);
  CMtxF__PreMultRotateY(mfRotProd, pThis->m_RotY);
  CMtxF__VectorMult(mfRotProd, &vDelta, &vRotDelta);
                                ;

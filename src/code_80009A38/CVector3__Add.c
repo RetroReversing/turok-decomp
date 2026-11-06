@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef struct CVector3_t
 {
@@ -6,8 +6,9 @@ typedef struct CVector3_t
 } CVector3;
 extern void CVector3__Add(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
 void CVector3__Add(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight);
-void CVector3__Add(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight){
- pvThis->x = pvLeft->x + pvRight->x;
- pvThis->y = pvLeft->y + pvRight->y;
- pvThis->z = pvLeft->z + pvRight->z;
+void CVector3__Add(CVector3 *pvThis, CVector3 *pvLeft, CVector3 *pvRight)
+{
+	pvThis->x = pvLeft->x + pvRight->x;
+	pvThis->y = pvLeft->y + pvRight->y;
+	pvThis->z = pvLeft->z + pvRight->z;
 }

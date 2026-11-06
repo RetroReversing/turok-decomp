@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1649,7 +1648,7 @@ int CEngineApp__GetPlayerWaterStatus(CEngineApp *pThis){
  vEyepos = ((pThis)->m_vTCorners[0]);
  if (vEyepos.y <= pRegionSet->m_WaterElevation)
  {
-  if (pRegionSet->m_dwFlags & (1 << 29))
+  /* player is below water surface level */ if (pRegionSet->m_dwFlags & (1 << 29))
    waterFlag = 3;
   else
    waterFlag = 1;

@@ -1,6 +1,6 @@
-#include "common_local_source_3712.h"
-
+#include "decompdecomp_sync_92287263a3038aed8c5d.h"
 #line 1 "reference.c"
+// set camera's position based on turok's position
 void CEngineApp__SetCameraToTurok(CEngineApp *pThis)
 {
 	CGameObjectInstance	*pPlayer;

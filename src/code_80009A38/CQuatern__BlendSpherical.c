@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern float __sinf(float angle);
 struct CQuatern_t;
@@ -16,7 +16,7 @@ void CQuatern__BlendSpherical(CQuatern *pqThis, float u, CQuatern *pqA, CQuatern
      theta, sinTheta, invSinTheta,
      vA, vB;
  /* Blend between quaternions along the shorter spherical arc (graphu64.c). */
- qBN = *pqB;
+ /* try both directions */ qBN = *pqB;
  (&qBN)->x = -((&qBN)->x); (&qBN)->y = -((&qBN)->y); (&qBN)->z = -((&qBN)->z); (&qBN)->t = -((&qBN)->t);;
  dot = ((pqA)->x*(pqB)->x + (pqA)->y*(pqB)->y + (pqA)->z*(pqB)->z + (pqA)->t*(pqB)->t);
  dotN = ((pqA)->x*(&qBN)->x + (pqA)->y*(&qBN)->y + (pqA)->z*(&qBN)->z + (pqA)->t*(&qBN)->t);

@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -14,8 +14,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-void CVector3__Subtract(void *arg0, void *arg1, void *arg2) {
-    M2C_FIELD(arg0, f32 *, 0) = (f32) (M2C_FIELD(arg1, f32 *, 0) - M2C_FIELD(arg2, f32 *, 0));
-    M2C_FIELD(arg0, f32 *, 4) = (f32) (M2C_FIELD(arg1, f32 *, 4) - M2C_FIELD(arg2, f32 *, 4));
-    M2C_FIELD(arg0, f32 *, 8) = (f32) (M2C_FIELD(arg1, f32 *, 8) - M2C_FIELD(arg2, f32 *, 8));
+void CVector3__Subtract(void *pvThis, void *pvLeft, void *pvRight) {
+    M2C_FIELD(pvThis, f32 *, 0) = (f32) (M2C_FIELD(pvLeft, f32 *, 0) - M2C_FIELD(pvRight, f32 *, 0));
+    M2C_FIELD(pvThis, f32 *, 4) = (f32) (M2C_FIELD(pvLeft, f32 *, 4) - M2C_FIELD(pvRight, f32 *, 4));
+    M2C_FIELD(pvThis, f32 *, 8) = (f32) (M2C_FIELD(pvLeft, f32 *, 8) - M2C_FIELD(pvRight, f32 *, 8));
 }

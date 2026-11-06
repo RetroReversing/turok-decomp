@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1853,7 +1853,7 @@ CCollisionInfo2* CGameObjectInstance__GetCollisionInfo(CGameObjectInstance *pThi
  CCollisionInfo2 *pCI;
  int climber, flyer;
  int waterState;
- if ( (CCamera__InCinemaMode(&(&D_80106000)->m_Camera))
+ /* Special cinema mode checks for the player */ if ( (CCamera__InCinemaMode(&(&D_80106000)->m_Camera))
    && (pThis == (((&D_800F9F10))->m_Scene.m_pPlayer)) )
  {
   pCI = &D_80135C20 ;
@@ -1902,7 +1902,7 @@ CCollisionInfo2* CGameObjectInstance__GetCollisionInfo(CGameObjectInstance *pThi
    }
    else
    {
-    if (AI_DoesItFloat(pThis))
+    /* ai is dead - does it sink or float ? */ if (AI_DoesItFloat(pThis))
      pCI = &D_80136420;
     else
      pCI = &D_801363A0;

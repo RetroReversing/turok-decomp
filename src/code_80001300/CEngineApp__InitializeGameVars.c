@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1606,7 +1605,7 @@ extern sa_u32 D_8014F660 ;
 extern int D_800BA910 ;
 extern void CEngineApp__InitializeGameVars(CEngineApp *pThis) ;
 void CEngineApp__InitializeGameVars(CEngineApp *pThis);
-void CEngineApp__InitializeGameVars(CEngineApp *pThis){
+/* put all game initialization stuff in here, NOT CENGINEAPP__CONSTRUCT */ /* anything that should be reset each time a new game is started */ void CEngineApp__InitializeGameVars(CEngineApp *pThis){
  /* Reset per-game state and screen defaults when starting a new game. */
  if ( (D_8014F660 == 0x4341524c)
    || (D_8014F660 == 0x4341524d) )

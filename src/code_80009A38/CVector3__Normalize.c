@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -16,21 +16,21 @@ typedef s32 M2C_UNK32;
 
 f32 sqrtf(f32, f32);                        /* extern */
 
-void CVector3__Normalize(void *arg0) {
+void CVector3__Normalize(void *pvThis) {
     f32 temp_fa1;
     f32 temp_fv0;
     f32 temp_fv0_2;
     f32 temp_fv1;
     f32 temp_fv1_2;
 
-    temp_fv0 = M2C_FIELD(arg0, f32 *, 0);
-    temp_fv1 = M2C_FIELD(arg0, f32 *, 4);
-    temp_fa1 = M2C_FIELD(arg0, f32 *, 8);
+    temp_fv0 = M2C_FIELD(pvThis, f32 *, 0);
+    temp_fv1 = M2C_FIELD(pvThis, f32 *, 4);
+    temp_fa1 = M2C_FIELD(pvThis, f32 *, 8);
     temp_fv0_2 = sqrtf((temp_fv0 * temp_fv0) + (temp_fv1 * temp_fv1) + (temp_fa1 * temp_fa1), temp_fa1);
     if (temp_fv0_2 != 0.0f) {
         temp_fv1_2 = 1.0f / temp_fv0_2;
-        M2C_FIELD(arg0, f32 *, 0) = (f32) (M2C_FIELD(arg0, f32 *, 0) * temp_fv1_2);
-        M2C_FIELD(arg0, f32 *, 4) = (f32) (M2C_FIELD(arg0, f32 *, 4) * temp_fv1_2);
-        M2C_FIELD(arg0, f32 *, 8) = (f32) (M2C_FIELD(arg0, f32 *, 8) * temp_fv1_2);
+        M2C_FIELD(pvThis, f32 *, 0) = (f32) (M2C_FIELD(pvThis, f32 *, 0) * temp_fv1_2);
+        M2C_FIELD(pvThis, f32 *, 4) = (f32) (M2C_FIELD(pvThis, f32 *, 4) * temp_fv1_2);
+        M2C_FIELD(pvThis, f32 *, 8) = (f32) (M2C_FIELD(pvThis, f32 *, 8) * temp_fv1_2);
     }
 }

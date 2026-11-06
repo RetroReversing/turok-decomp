@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -22,7 +22,7 @@ extern M2C_UNK D_80119980;
 extern M2C_UNK D_80119A70;
 extern M2C_UNK D_80119A88;
 
-void StartSerialQ(void) {
+/* Function: StartSerialQ() & EndSerialQ() */ void StartSerialQ(void) {
     osCreateMesgQueue(&D_80119A70, &D_80119A88, 1);
     osSetEventMesg(5, &D_80119A70, 1);
     osContInit(&D_80119A70, &D_800B86D0, &D_80119980);

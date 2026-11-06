@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern const double D_800F0D18; typedef struct CVector3_t
 {
@@ -12,7 +12,7 @@ void CVector3__Blend(CVector3 *pvThis, float u, CVector3 *pvLeft, CVector3 *pvRi
 void CVector3__Normalize(CVector3 *pvThis);
 CVector3 CVector3__RandomizeDirectionZ(CVector3 *pvThis, float uRandom);
 int D_800137A0();
-CVector3 CVector3__RandomizeDirectionZ(CVector3 *pvThis, float uRandom){
+/* uRandom should range from 0 to 1 (1 is completely random) */ /* output is not normalized (fine for direction) */ CVector3 CVector3__RandomizeDirectionZ(CVector3 *pvThis, float uRandom){
  CVector3 vRandom, vOut;
  vRandom.x = pvThis->x;
  vRandom.y = pvThis->y;

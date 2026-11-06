@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -19,7 +19,7 @@ extern s32 D_800B6AF8;
 extern u32 D_80119CB8;
 
 s32 SoundRandomSwapWord(void) {
-    if (CAttractDemo__Active() != 0) {
+    /* Fudge tastic to get attract mode to work properly!! */ if (CAttractDemo__Active() != 0) {
         D_80119CB8 = (D_800B6AF8 * 0xA84A5B53) + 0x58348C2D;
     } else {
         D_80119CB8 = (D_80119CB8 * 0xA84A5B53) + 0x58348C2D;

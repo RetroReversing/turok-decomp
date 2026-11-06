@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1603,8 +1602,8 @@ extern sa_u64 dram_stack[];
 struct CCollisionInfo2_t;
 void D_80003F0C(CEngineApp *pThis, unsigned char Color[4]);
 void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]);
-void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]){
- if ((CCamera__InCinemaMode(&pThis->m_Camera)) || (CCamera__InLetterBoxMode(&pThis->m_Camera)))
+/* Checks camera mode before rendering tint */ void CEngineApp__DrawTint(CEngineApp *pThis, unsigned char Color[4]){
+ /* If in cinematic/letterbox mode - don't draw tint! */ if ((CCamera__InCinemaMode(&pThis->m_Camera)) || (CCamera__InLetterBoxMode(&pThis->m_Camera)))
   return ;
  D_80003F0C(pThis, Color) ;
 }

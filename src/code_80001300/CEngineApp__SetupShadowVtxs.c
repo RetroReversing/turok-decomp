@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef struct {
  short ob[3];
  unsigned short flag;
@@ -22,44 +21,49 @@ extern Vtx D_800F9ED0[4];
 extern void CEngineApp__SetupShadowVtxs();
 extern Vtx D_800F9ED0[4];
 void CEngineApp__SetupShadowVtxs();
-void CEngineApp__SetupShadowVtxs(){
- int v;
- Vtx *pV;
- for (v=0; v<4; v++)
- {
-  pV = &D_800F9ED0[v];
-  switch (v)
-  {
-   case 0:
-    pV->v.ob[0] = -1;
-    pV->v.ob[2] = 1;
-    pV->v.tc[0] = 0;
-    pV->v.tc[1] = 0;
-    break;
-   case 1:
-    pV->v.ob[0] = 1;
-    pV->v.ob[2] = 1;
-    pV->v.tc[0] = 32*(1 << 5);
-    pV->v.tc[1] = 0;
-    break;
-   case 2:
-    pV->v.ob[0] = 1;
-    pV->v.ob[2] = -1;
-    pV->v.tc[0] = 32*(1 << 5);
-    pV->v.tc[1] = 32*(1 << 5);
-    break;
-   case 3:
-    pV->v.ob[0] = -1;
-    pV->v.ob[2] = -1;
-    pV->v.tc[0] = 0;
-    pV->v.tc[1] = 32*(1 << 5);
-    break;
-  }
-  pV->v.ob[1] = 0;
-  pV->v.flag = 0;
-  pV->v.cn[0] = 255;
-  pV->v.cn[1] = 255;
-  pV->v.cn[2] = 255;
-  pV->v.cn[3] = 255;
- }
+void CEngineApp__SetupShadowVtxs()
+{
+	int	v;
+	Vtx	*pV;
+
+	for (v=0; v<4; v++)
+	{
+		pV = &D_800F9ED0[v];
+
+		switch (v)
+		{
+			case 0:
+				pV->v.ob[0] = -1;
+				pV->v.ob[2] = 1;
+				pV->v.tc[0] = 0;
+				pV->v.tc[1] = 0;
+				break;
+			case 1:
+				pV->v.ob[0] = 1;
+				pV->v.ob[2] = 1;
+				pV->v.tc[0] = 32*(1 << 5);
+				pV->v.tc[1] = 0;
+				break;
+			case 2:
+				pV->v.ob[0] = 1;
+				pV->v.ob[2] = -1;
+				pV->v.tc[0] = 32*(1 << 5);
+				pV->v.tc[1] = 32*(1 << 5);
+				break;
+			case 3:
+				pV->v.ob[0] = -1;
+				pV->v.ob[2] = -1;
+				pV->v.tc[0] = 0;
+				pV->v.tc[1] = 32*(1 << 5);
+				break;
+		}
+		pV->v.ob[1] = 0;
+
+		pV->v.flag = 0;
+
+		pV->v.cn[0] = 255;
+		pV->v.cn[1] = 255;
+		pV->v.cn[2] = 255;
+		pV->v.cn[3] = 255;
+	}
 }

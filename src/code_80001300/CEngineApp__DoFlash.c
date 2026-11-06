@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -2468,17 +2467,17 @@ void CEngineApp__DoFlash(CEngineApp *pThis, sa_u8 Flash, sa_u8 FlashDec){
  pPlayer = ((pThis)->m_Scene.m_pPlayer);
  if (pPlayer)
  {
-  vPos = pPlayer->ah.ih.m_vPos;
+  /* vPos = CAnimInstanceHdr__GetPosWithGround(&pPlayer->ah); */ vPos = pPlayer->ah.ih.m_vPos;
   if (pPlayer->m_AI.m_Health <= 0)
   {
-   if ( (waterFlag == 1)
+   /* dying underwater or above water */ if ( (waterFlag == 1)
      && (!D_80128C20.InAntiGrav) )
    {
-    Sound = SOUND_HUMAN_EFFORTINJURY_GRUNT_3;
+    /* dying underwater */ Sound = SOUND_HUMAN_EFFORTINJURY_GRUNT_3;
    }
    else
    {
-    Sound = SOUND_GENERIC_18;
+    /* dying above water */ Sound = SOUND_GENERIC_18;
    }
    CScene__DoSoundEffect(&pThis->m_Scene,
             Sound, 1,

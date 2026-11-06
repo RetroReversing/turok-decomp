@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef long Mtx_t[4][4];
 typedef union {
@@ -8,7 +8,7 @@ typedef union {
 typedef float CMtxF[4][4];
 extern void CMtxF__ToMtxFast(CMtxF mfThis, Mtx *m) ;
 void CMtxF__ToMtxFast(CMtxF mfThis, Mtx *m);
-void CMtxF__ToMtxFast(CMtxF mfThis, Mtx *m){
+/* This function is an unrolled version of "guMtxF2L((mfThis), &(mFixed))" */ void CMtxF__ToMtxFast(CMtxF mfThis, Mtx *m){
  /* Convert a float matrix to the N64 split integer and fraction fixed-point layout. */
  signed long fixedFirst,fixedSecond ;
  signed long *integerWords,*fractionWords ;

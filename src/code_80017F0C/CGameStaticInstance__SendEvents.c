@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern char D_800F0D98[]; extern char D_800F0DAC[]; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -887,7 +887,7 @@ void CGameStaticInstance__SendEvents(CGameStaticInstance *pThis, CCartCache *pCa
  CMtxF mfOrient;
  CVector3 vWorld;
                                                      ;
- pThis->m_pceObjectIndex = 0;
+ /* make sure that entry is current */ pThis->m_pceObjectIndex = 0;
  D_8002D1F8(pCache,
           0, 0, 0,
           &pThis->m_pceObjectIndex,
@@ -901,7 +901,7 @@ void CGameStaticInstance__SendEvents(CGameStaticInstance *pThis, CCartCache *pCa
     rpStaticEvents = D_8002DBF8(&isObjectIndex,
                      pThis->m_rpObjectIndexAddress,
                      3, &staticEventsSize);
-  pThis->m_pceStaticEvents = 0;
+  /* make sure that entry is current */ pThis->m_pceStaticEvents = 0;
   D_8002D1F8(pCache,
            0, 0, 0,
            &pThis->m_pceStaticEvents,
@@ -926,7 +926,7 @@ void CGameStaticInstance__SendEvents(CGameStaticInstance *pThis, CCartCache *pCa
       first = 0;
       D_8009DF48((mfOrient), &(pThis->m_mOrientation));
      }
-     CMtxF__VectorMult(mfOrient, &pEvent->m_vOffset, &vWorld);
+     /* multiply offset position by orientation matrix */ /* to find position in world coordinates */ CMtxF__VectorMult(mfOrient, &pEvent->m_vOffset, &vWorld);
      D_80070DA8(&pThis->ih, &pThis->ih,
              pEvent->m_nEvent, 0xffffffff,
              vWorld, pEvent->m_Value);

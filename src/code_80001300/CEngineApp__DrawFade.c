@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 extern const double D_800EF8B0; extern const double D_800EF8A8; extern const float D_800EF8A0; extern const float D_800EF89C; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1615,7 +1614,7 @@ void CEngineApp__DrawFade(CEngineApp *pThis){
  float FadeDownSpeed, FadeUpSpeed ;
  if (pThis->m_FadeStatus != FADE_NULL)
  {
-  if ((pThis->m_FadeFast) || (pThis->m_CinemaFlags))
+  /* Use quicker fade speed if a cinematic happening/about to happen */ if ((pThis->m_FadeFast) || (pThis->m_CinemaFlags))
   {
    FadeUpSpeed = 0.5 ;
    FadeDownSpeed = 0.5 ;
@@ -1651,7 +1650,7 @@ void CEngineApp__DrawFade(CEngineApp *pThis){
   fadecolor[0] = 0 ;
   fadecolor[1] = 0 ;
   fadecolor[2] = 0 ;
-  fadecolor[3] = 255-(int)(255*pThis->m_FadeAlpha) ;
+  /* Set alpha */ fadecolor[3] = 255-(int)(255*pThis->m_FadeAlpha) ;
   D_80003F0C(pThis, fadecolor) ;
  }
 }

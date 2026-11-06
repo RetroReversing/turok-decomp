@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -250,7 +250,7 @@ extern int D_800B81F0;
 extern void CCheatCode__DrawString(Gfx **ppDLP, int y, int opacity) ;
 void CCheatCode__DrawLine(Gfx **ppDLP, int y, int opacity, int chars, int offset);
 void CCheatCode__DrawString(Gfx **ppDLP, int y, int opacity);
-void CCheatCode__DrawString(Gfx **ppDLP, int y, int opacity){
+/* draw current cheatcode, character at a time */ void CCheatCode__DrawString(Gfx **ppDLP, int y, int opacity){
  int count ;
  int offset = 0;
  D_8008092C(1.0, 1.0) ;

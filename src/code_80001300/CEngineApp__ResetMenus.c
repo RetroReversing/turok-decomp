@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1662,30 +1661,32 @@ typedef struct CEngineApp_t
 extern sa_u64 dram_stack[];
 struct CCollisionInfo2_t;
 void CEngineApp__ResetMenus(CEngineApp *pThis);
-void CEngineApp__ResetMenus(CEngineApp *pThis){
- pThis->m_bPause = 0 ;
- pThis->m_bOptions = 0 ;
- pThis->m_bKeys = 0 ;
- pThis->m_bLoad = 0 ;
- pThis->m_bSave = 0 ;
- pThis->m_bRequestor = 0 ;
- pThis->m_bMessageBox = 0 ;
- pThis->m_bCheatCode = 0 ;
- pThis->m_bGiveCheatCode = 0 ;
- pThis->m_bCheat = 0 ;
- pThis->m_bGInst = 0 ;
- pThis->m_Pause.m_Mode = PAUSE_NULL ;
- pThis->m_Options.m_Mode = OPTIONS_NULL ;
- pThis->m_Keys.m_Mode = KEYS_NULL ;
- pThis->m_Load.m_Mode = LOAD_NULL ;
- pThis->m_Save.m_Mode = SAVE_NULL ;
- pThis->m_Requestor.m_Mode = REQUESTOR_NULL ;
- pThis->m_Requestor.b_Active = 0 ;
- pThis->m_CheatCode.m_Mode = CHEATCODE_NULL ;
- pThis->m_GiveCheatCode.m_Mode = CHEATCODE_NULL ;
- pThis->m_GiveCheatCode.b_Active = 0 ;
- pThis->m_Cheat.m_Mode = CHEAT_NULL ;
- pThis->m_Cheat.b_Active = 0 ;
- pThis->m_GInst.m_Mode = GINST_NULL ;
- pThis->m_GInst.b_Active = 0 ;
+void CEngineApp__ResetMenus(CEngineApp *pThis)
+{
+	pThis->m_bPause = FALSE ;
+	pThis->m_bOptions = FALSE ;
+	pThis->m_bKeys = FALSE ;
+	pThis->m_bLoad = FALSE ;
+	pThis->m_bSave = FALSE ;
+	pThis->m_bRequestor = FALSE ;
+	pThis->m_bMessageBox = FALSE ;
+	pThis->m_bCheatCode = FALSE ;
+	pThis->m_bGiveCheatCode = FALSE ;
+	pThis->m_bCheat = FALSE ;
+	pThis->m_bGInst = FALSE ;
+
+	pThis->m_Pause.m_Mode = PAUSE_NULL ;
+	pThis->m_Options.m_Mode = OPTIONS_NULL ;
+	pThis->m_Keys.m_Mode = KEYS_NULL ;
+	pThis->m_Load.m_Mode = LOAD_NULL ;
+	pThis->m_Save.m_Mode = SAVE_NULL ;
+	pThis->m_Requestor.m_Mode = REQUESTOR_NULL ;
+	pThis->m_Requestor.b_Active = FALSE ;
+	pThis->m_CheatCode.m_Mode = CHEATCODE_NULL ;
+	pThis->m_GiveCheatCode.m_Mode = CHEATCODE_NULL ;
+	pThis->m_GiveCheatCode.b_Active = FALSE ;
+	pThis->m_Cheat.m_Mode = CHEAT_NULL ;
+	pThis->m_Cheat.b_Active = FALSE ;
+	pThis->m_GInst.m_Mode = GINST_NULL ;
+	pThis->m_GInst.b_Active = FALSE ;
 }

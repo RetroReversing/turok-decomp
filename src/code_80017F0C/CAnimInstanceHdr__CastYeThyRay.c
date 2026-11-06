@@ -1,5 +1,4 @@
-#include "decompdecomp_sync_8d698fdff8b312cb3f4a.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef int BOOL;typedef struct {float x,y,z;} CVector3;
 typedef struct {u8 pad[0x20];float m_CollisionHeight;} CEnemyAttributes;
 typedef struct {u8 m_Type,m_bActiveFlags;u16 m_nObjType;CVector3 m_vPos;float m_CollisionHeightOffset;void*m_pCurrentRegion;CEnemyAttributes*m_pEA;} CInstanceHdr;
@@ -18,6 +17,7 @@ int CAnimInstanceHdr__Collision3(CAnimInstanceHdr*,CVector3,void*);
 
 
 
+// use for vision
 BOOL CAnimInstanceHdr__CastYeThyRay(CAnimInstanceHdr *pThis, CInstanceHdr *pTarget)
 {
 	CAnimInstanceHdr	ah;
@@ -39,4 +39,3 @@ BOOL CAnimInstanceHdr__CastYeThyRay(CAnimInstanceHdr *pThis, CInstanceHdr *pTarg
 	
 	return !collisions;
 }
-

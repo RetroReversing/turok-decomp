@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -1607,7 +1607,7 @@ extern unsigned long D_800B6AFC ;
 void CEngineApp__SetupSegments(CEngineApp *pThis);
 void CEngineApp__InitDisplayLists(CEngineApp *pThis);
 void CEngineApp__InitDisplayLists(CEngineApp *pThis){
- pThis->m_pDLP = ((pThis)->m_pCurrentFrameData)->m_pDisplayList;
+ /* pointers to build the display list */ pThis->m_pDLP = ((pThis)->m_pCurrentFrameData)->m_pDisplayList;
  CEngineApp__SetupSegments(pThis);
  { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((6)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x00)) & ((0x01 << (8)) - 1)) << (16))) | ((unsigned int) (((unsigned int)((0)) & ((0x01 << (16)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((D_800BEC58)); };
  if (D_800B6AFC == 1)

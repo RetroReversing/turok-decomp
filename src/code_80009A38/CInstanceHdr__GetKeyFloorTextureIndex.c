@@ -1,6 +1,9 @@
-#include "common_local_source_3888.h"
+#include "decompdecomp_sync_eace19877bc4be4225aa.h"
 
 #line 9552 "reference.c"
+/////////////////////////////////////////////////////////////////////////////
+// Key floor texture index
+/////////////////////////////////////////////////////////////////////////////
 int CInstanceHdr__GetKeyFloorTextureIndex(CInstanceHdr *pThis, int nNode)
 {
 	int nKey, nTexture, id;

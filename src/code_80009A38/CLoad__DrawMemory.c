@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -354,7 +354,7 @@ void CLoad__DrawMemory(CLoad *pThis, Gfx **ppDLP){
           (20 +120)+8, 64 +8+(y*8),
           (int)(255 * pThis->m_Alpha), 0, 0) ;
   y++ ;
- }
+ /* if (i>(pThis->m_FirstVisible+pThis->m_MaxVisible)-1) */ }
  COnScreen__InitFontDraw(ppDLP) ;
  for (i=0; i<LOADMEMORY_END_SELECTION; i++)
  {

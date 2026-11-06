@@ -1,5 +1,4 @@
-#include "common_local_source_3919.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_aa0e9bb9fab56b5af619.h"
 extern unsigned char D_8011A0CC[];
 #line 1 "reference.c"
 void CGameObjectInstance__PreDraw(CGameObjectInstance *pThis, Gfx **ppDLP)
@@ -167,7 +166,7 @@ void CGameObjectInstance__PreDraw(CGameObjectInstance *pThis, Gfx **ppDLP)
 
 			}
 		}
-*/		switch (CGameObjectInstance__TypeFlag(pThis))
+*/		/* if ( (GetApp()->m_Mode == MODE_GAME) && (GetApp()->m_dwCheatFlags & CHEATFLAG_MODIFYENEMY) ) { if (pThis == CTurokMovement.pModifyEnemy) { fx_mode = FXMODE_TOCOLOR; fx_color[0] = 255 ; fx_color[1] = 0 ; fx_color[2] = 255 ; fx_color[3] = (frame_number%64 <32) ? frame_number%64 : 64-(frame_number%64) ; fx_color[3] *= 3 ; } } */ switch (CGameObjectInstance__TypeFlag(pThis))
 		{
 			case AI_OBJECT_DEVICE_PORTAL:
 				D_800B9878 = FXMODE_TOTRANSPARENT;
@@ -201,4 +200,3 @@ void CGameObjectInstance__PreDraw(CGameObjectInstance *pThis, Gfx **ppDLP)
 	//fx_color[2] = 0;	// env b
 	//fx_color[3] = 128;	// env a		0: transparent, 255: opaque
 }
-

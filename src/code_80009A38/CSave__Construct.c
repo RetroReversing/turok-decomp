@@ -1,7 +1,6 @@
-#include "decompdecomp_sync_ae870b7ff2c3a415f79d.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_16d81168cd4e845ee80a.h"
 #line 1290 "reference.c"
-void CSave__Construct(CSave *pThis)
+/* Construct SAVE structure */ void CSave__Construct(CSave *pThis)
 {
 	int	ret ;
 
@@ -58,4 +57,3 @@ void CSave__Construct(CSave *pThis)
 	}
 	SaveRequestMode = NULL ;
 }
-

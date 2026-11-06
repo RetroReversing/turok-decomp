@@ -1,6 +1,17 @@
-#include "common_local_source_3729.h"
-
+#include "decompdecomp_sync_2bc957b0a68759be96b6.h"
 #line 1 "reference.c"
+/*****************************************************************************
+*
+*	Function:		CEngineApp__UpdateTITLE()
+*
+******************************************************************************
+*
+*	Description:	Update TITLE mode stuff
+*
+*	Inputs:			*pThis	-	Ptr to engine
+*	Outputs:			None
+*
+*****************************************************************************/
 void CEngineApp__UpdateTITLE(CEngineApp *pThis)
 {
 	// Needs this for correct record/playback of attract demo!!

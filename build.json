@@ -5568,7 +5568,6 @@
    "asm": "asm/nonmatchings/code_80001300/CEngineApp__Construct.s",
    "c": "src/code_80001300/CEngineApp__Construct.c",
    "own": {
-    ".data": 2148464544,
     ".bss": 2148636928
    }
   },
@@ -7285,7 +7284,9 @@
    "rom": 8471872,
    "asm": "asm/nonmatchings/code_80009A38/RandomFloat.s",
    "c": "src/code_80009A38/RandomFloat.c",
-   "own": {}
+   "own": {
+    ".rodata": 2148470024
+   }
   },
   {
    "name": "SoundRandomSwapWord",

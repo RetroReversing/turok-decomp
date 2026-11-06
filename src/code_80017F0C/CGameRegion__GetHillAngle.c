@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
@@ -843,7 +843,7 @@ float CGameRegion__GetHillAngle(CGameRegion *pThis,
   return 0;
  currentGroundHeight = CGameRegion__GetGroundHeight(pThis, StartX, StartZ);
  desiredGroundHeight = CGameRegion__GetGroundHeight(pThis, EndX, EndZ);
- dx = EndX - StartX;
+ /* going up hill */ dx = EndX - StartX;
  dy = desiredGroundHeight - currentGroundHeight;
  dz = EndZ - StartZ;
  groundMagSq = dx*dx + dz*dz;

@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1602,7 +1601,7 @@ extern sa_u64 dram_stack[];
 struct CCollisionInfo2_t;
 void CEngineApp__RenderTint(CEngineApp *pThis, unsigned char Color[4]);
 void CEngineApp__RenderTint(CEngineApp *pThis, unsigned char Color[4]){
- if (!Color[3])
+ /* Any tint there? */ if (!Color[3])
   return;
  { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = ((unsigned int) (((unsigned int)(0xe7) & ((0x01 << (8)) - 1)) << (24))); _g->words.w1 = 0; };
  { Gfx *_g = (Gfx *)(pThis->m_pDLP++); _g->words.w0 = (((unsigned int) (((unsigned int)((-65 -5)) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)(20) & ((0x01 << (8)) - 1)) << (8))) | ((unsigned int) (((unsigned int)(2) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int)((0 << 20)); };

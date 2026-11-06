@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -14,8 +14,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-void CVector3__MultScaler(void *arg0, void *arg1, f32 arg2) {
-    M2C_FIELD(arg0, f32 *, 0) = (f32) (M2C_FIELD(arg1, f32 *, 0) * arg2);
-    M2C_FIELD(arg0, f32 *, 4) = (f32) (M2C_FIELD(arg1, f32 *, 4) * arg2);
-    M2C_FIELD(arg0, f32 *, 8) = (f32) (M2C_FIELD(arg1, f32 *, 8) * arg2);
+void CVector3__MultScaler(void *pvThis, void *pvIn, f32 Scaler) {
+    M2C_FIELD(pvThis, f32 *, 0) = (f32) (M2C_FIELD(pvIn, f32 *, 0) * Scaler);
+    M2C_FIELD(pvThis, f32 *, 4) = (f32) (M2C_FIELD(pvIn, f32 *, 4) * Scaler);
+    M2C_FIELD(pvThis, f32 *, 8) = (f32) (M2C_FIELD(pvIn, f32 *, 8) * Scaler);
 }

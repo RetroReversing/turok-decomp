@@ -1,23 +1,30 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 extern float __sinf(float angle);
 extern float __cosf(float angle);
 typedef float CMtxF[4][4];
 extern void CMtxF__PostMultRotateZ(CMtxF mfThis, float RotZ) ;
 void CMtxF__PostMultRotateZ(CMtxF mfThis, float RotZ);
-void CMtxF__PostMultRotateZ(CMtxF mfThis, float RotZ){
- float SinRotZ = __sinf(RotZ), CosRotZ = __cosf(RotZ) ;
- float a ;
- a = mfThis[0][0] ;
- mfThis[0][0] = (a * CosRotZ) + (mfThis[0][1] * -SinRotZ) ;
- mfThis[0][1] = (a * SinRotZ) + (mfThis[0][1] * CosRotZ) ;
- a = mfThis[1][0] ;
- mfThis[1][0] = (a * CosRotZ) + (mfThis[1][1] * -SinRotZ) ;
- mfThis[1][1] = (a * SinRotZ) + (mfThis[1][1] * CosRotZ) ;
- a = mfThis[2][0] ;
- mfThis[2][0] = (a * CosRotZ) + (mfThis[2][1] * -SinRotZ) ;
- mfThis[2][1] = (a * SinRotZ) + (mfThis[2][1] * CosRotZ) ;
- a = mfThis[3][0] ;
- mfThis[3][0] = (a * CosRotZ) + (mfThis[3][1] * -SinRotZ) ;
- mfThis[3][1] = (a * SinRotZ) + (mfThis[3][1] * CosRotZ) ;
+void CMtxF__PostMultRotateZ(CMtxF mfThis, float RotZ)
+{
+	float	SinRotZ = __sinf(RotZ), CosRotZ = __cosf(RotZ) ;
+	float	a ;
+
+	a = mfThis[0][0] ;
+	mfThis[0][0] = (a * CosRotZ) + (mfThis[0][1] * -SinRotZ) ;
+	mfThis[0][1] = (a * SinRotZ) + (mfThis[0][1] * CosRotZ) ;
+
+	a = mfThis[1][0] ;
+	mfThis[1][0] = (a * CosRotZ) + (mfThis[1][1] * -SinRotZ) ;
+	mfThis[1][1] = (a * SinRotZ) + (mfThis[1][1] * CosRotZ) ;
+
+	a = mfThis[2][0] ;
+	mfThis[2][0] = (a * CosRotZ) + (mfThis[2][1] * -SinRotZ) ;
+	mfThis[2][1] = (a * SinRotZ) + (mfThis[2][1] * CosRotZ) ;
+
+	a = mfThis[3][0] ;
+	mfThis[3][0] = (a * CosRotZ) + (mfThis[3][1] * -SinRotZ) ;
+	mfThis[3][1] = (a * SinRotZ) + (mfThis[3][1] * CosRotZ) ;
+
+	// Total Adds 8, Total Multiplies 16 (Assumes column 4 = {0,0,0,1})
 }

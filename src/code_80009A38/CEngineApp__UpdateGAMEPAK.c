@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -23,7 +22,7 @@ extern M2C_UNK D_800F9C20;
 extern s32 D_80119908;
 extern s32 D_8011990C;
 
-void CEngineApp__UpdateGAMEPAK(u8 *arg0) {
+/***************************************************************************** * * Function: CEngineApp__UpdateGAMEPAK() * ****************************************************************************** * * Description: Update GAMEPAK mode stuff * * Inputs: *pThis - Ptr to engine * Outputs: None * *****************************************************************************/ void CEngineApp__UpdateGAMEPAK(u8 *pThis) {
     if ((D_800B86D0 != 0) && (D_80119908 == 0)) {
         D_80119908 = 1;
         osContStartReadData(&D_800F9C20);
@@ -31,9 +30,9 @@ void CEngineApp__UpdateGAMEPAK(u8 *arg0) {
     if (D_8011990C != 0) {
         ReadControllerAdvanced();
     }
-    CEngineApp__PrepareFrame(arg0, 1);
-    if (CGamePak__Update(arg0 + 0x1F6C0) != -1) {
-        M2C_FIELD(arg0, s32 *, 0x1F8B4) = 0;
-        CEngineApp__SetupFadeTo(arg0, 0);
+    CEngineApp__PrepareFrame(pThis, 1);
+    if (CGamePak__Update(pThis + 0x1F6C0) != -1) {
+        M2C_FIELD(pThis, s32 *, 0x1F8B4) = 0;
+        CEngineApp__SetupFadeTo(pThis, 0);
     }
 }

@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -16,16 +15,16 @@ typedef s32 M2C_UNK32;
 
 extern s32 D_80119924;
 
-void CEngineApp__UpdateFrameData(s32 arg0, s32 arg1) {
-    if ((arg0 + 0x150) == arg1) {
-        D_80119924 = arg0;
+void CEngineApp__UpdateFrameData(s32 pThis, s32 pMsg) {
+    if ((pThis + 0x150) == pMsg) {
+        D_80119924 = pThis;
         return;
     }
-    if ((arg0 + 0x2E0) == arg1) {
-        D_80119924 = arg0 + 0x190;
+    if ((pThis + 0x2E0) == pMsg) {
+        D_80119924 = pThis + 0x190;
         return;
     }
-    if ((arg0 + 0x470) == arg1) {
-        D_80119924 = arg0 + 0x320;
+    if ((pThis + 0x470) == pMsg) {
+        D_80119924 = pThis + 0x320;
     }
 }

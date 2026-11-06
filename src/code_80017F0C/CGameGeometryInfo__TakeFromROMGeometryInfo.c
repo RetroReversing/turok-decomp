@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -14,7 +14,7 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-void CGameGeometryInfo__TakeFromROMGeometryInfo(void *arg0, M2C_UNK arg1) {
-    M2C_FIELD(arg0, s32 *, 0) = -1;
-    M2C_FIELD(arg0, f32 *, 4) = 0.0f;
+void CGameGeometryInfo__TakeFromROMGeometryInfo(void *pThis, M2C_UNK pSource) {
+    M2C_FIELD(pThis, s32 *, 0) = -1;
+    M2C_FIELD(pThis, f32 *, 4) = 0.0f;
 }

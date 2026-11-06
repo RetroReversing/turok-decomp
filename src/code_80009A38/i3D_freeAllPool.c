@@ -1,4 +1,4 @@
-#include "common.h"
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
@@ -16,14 +16,14 @@ typedef s32 M2C_UNK32;
 
 M2C_UNK i3D_freePool(void *, s32);                 /* extern */
 
-s32 i3D_freeAllPool(void *arg0) {
+s32 i3D_freeAllPool(void *pool) {
     void *var_s0;
 
-    var_s0 = M2C_FIELD(arg0, void **, 0x10);
+    var_s0 = M2C_FIELD(pool, void **, 0x10);
     if (var_s0 != NULL) {
         do {
-            i3D_freePool(arg0, M2C_FIELD(var_s0, s32 *, 8));
-            var_s0 = M2C_FIELD(arg0, void **, 0x10);
+            i3D_freePool(pool, M2C_FIELD(var_s0, s32 *, 8));
+            var_s0 = M2C_FIELD(pool, void **, 0x10);
         } while (var_s0 != NULL);
     }
     return 1;

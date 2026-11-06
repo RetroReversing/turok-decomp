@@ -1,21 +1,29 @@
 #include "common.h"
+#define TRUE	1
+#define FALSE	0
 
-/* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
-#ifndef M2C_DEFINES
-#define M2C_DEFINES
-typedef s32 M2C_UNK;
-typedef s8 M2C_UNK8;
-typedef s16 M2C_UNK16;
-typedef s32 M2C_UNK32;
-#define M2C_FIELD(expr, type_ptr, offset) (*(type_ptr)((s8 *)(expr) + (offset)))
-#define M2C_BITWISE(type, expr) ((type)(expr))
-#define M2C_ERROR(desc) (0)
-#define M2C_CARRY 0
-#define M2C_OVERFLOW(a) (0)
-#endif
+#define BOOL	int
+#define BYTE	unsigned char
+#define DWORD	unsigned long
+#define WORD	unsigned short
+#define INT32  signed long
+#define UINT32 unsigned long
+#define UINT	unsigned long
 
-void CEngineApp__GetFogColor(void *arg0, s8 *arg1, s8 *arg2, s8 *arg3) {
-    *arg1 = M2C_FIELD(arg0, u8 *, 0x1F8CC) & 0xF8;
-    *arg2 = M2C_FIELD(arg0, u8 *, 0x1F8CD) & 0xF8;
-    *arg3 = M2C_FIELD(arg0, u8 *, 0x1F8CE) & 0xF8;
+#define FLOAT	float
+#define UINT16 unsigned short
+#define INT16	signed short
+#define INT8	signed char
+#define UINT8	unsigned char
+
+
+
+/* Partial retail layout: m_FogColor is independently located by the three original byte loads. */
+typedef struct { unsigned char _unknown_00000[0x1F8CC]; BYTE m_FogColor[3]; } CEngineApp;
+void CEngineApp__GetFogColor(CEngineApp *pThis, BYTE *pR, BYTE *pG, BYTE *pB)
+{
+	// mask off bottom 3 bits so background and fog will be the same color
+	*pR = pThis->m_FogColor[0] & 0xf8;
+	*pG = pThis->m_FogColor[1] & 0xf8;
+	*pB = pThis->m_FogColor[2] & 0xf8;
 }

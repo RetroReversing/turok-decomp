@@ -1,6 +1,18 @@
-#include "common_local_source_3743.h"
+#include "decompdecomp_sync_8b895950b59f062b3ea6.h"
 
 #line 1 "reference.c"
+/*****************************************************************************
+*
+*	Function:		CCredits__Draw()
+*
+******************************************************************************
+*
+*	Description:	Draw the credits
+*
+*	Inputs:			GFX	**ppDLP
+*	Outputs:			none
+*
+*****************************************************************************/
 void CCredits__Draw(Gfx **ppDLP)
 {
 	int	y ;
