@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -885,14 +884,14 @@ void CGameObjectInstance__DecompressAnim(CGameObjectInstance *pThis, CCacheEntry
                                                                  ;
  if (!D_8002D6BC(pThis->m_asCurrent.m_pceAnim, 1))
   return;
- allocSize = 0;
+ /* calculate allocation size */ allocSize = 0;
  CIndexedSet__ConstructFromRawData(&isAnim,
              CCacheEntry__GetData(pThis->m_asCurrent.m_pceAnim),
              0);
  allocSize += ( ( ((1*sizeof(unsigned long)) + ((7)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
  pbYRots = D_8002DC3C((&isAnim), (&isAnim)->m_pData, (0), (&yRotsSize));
  allocSize += yRotsSize;
- CUnindexedSet__ConstructFromRawData(&usYRots, pbYRots, 0);
+ /* use usYRots to get number of frames */ CUnindexedSet__ConstructFromRawData(&usYRots, pbYRots, 0);
  nFrames = ( (unsigned long) (((unsigned long*) (&usYRots)->m_pData)[1]) );
  pbNodeAnimIndices = D_8002DC3C((&isAnim), (&isAnim)->m_pData, (1), (&nodeAnimIndicesSize));
  allocSize += nodeAnimIndicesSize;
@@ -910,7 +909,7 @@ void CGameObjectInstance__DecompressAnim(CGameObjectInstance *pThis, CCacheEntry
  allocSize += transitionTableSize;
  pbEvents = D_8002DC3C((&isAnim), (&isAnim)->m_pData, (6), (&eventsSize));
  allocSize += eventsSize;
- scratchAreaSize = nFrames*4*sizeof(short);
+ /* allocate scratch area in animation block if global scratch area is too small */ scratchAreaSize = nFrames*4*sizeof(short);
  if (scratchAreaSize <= D_800B6B40)
   pScratchArea = D_800B6B3C;
  else
@@ -925,17 +924,17 @@ void CGameObjectInstance__DecompressAnim(CGameObjectInstance *pThis, CCacheEntry
   offset = ( ( ((1*sizeof(unsigned long)) + ((7)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (0));
   ((unsigned long*) ((&isNewAnim)->m_pData))[1 + (((unsigned long*) (&isNewAnim)->m_pData)[0])] = ((unsigned long) (offset));
-  pbNewYRots = pBytes + offset;
+  /* usNewYRots */ pbNewYRots = pBytes + offset;
   memcpy(pbNewYRots, pbYRots, yRotsSize);
   offset += yRotsSize;
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (1));
   ((unsigned long*) ((&isNewAnim)->m_pData))[1 + (((unsigned long*) (&isNewAnim)->m_pData)[0])] = ((unsigned long) (offset));
-  pbNewNodeAnimIndices = pBytes + offset;
+  /* usNewNodeAnimIndices */ pbNewNodeAnimIndices = pBytes + offset;
   memcpy(pbNewNodeAnimIndices, pbNodeAnimIndices, nodeAnimIndicesSize);
   offset += nodeAnimIndicesSize;
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (2));
   ((unsigned long*) ((&isNewAnim)->m_pData))[1 + (((unsigned long*) (&isNewAnim)->m_pData)[0])] = ((unsigned long) (offset));
-  pbNewInitialOrients = pBytes + offset;
+  /* usNewInitialOrients */ pbNewInitialOrients = pBytes + offset;
   memcpy(pbNewInitialOrients, pbInitialOrients, initialOrientsSize);
   offset += initialOrientsSize;
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (3));
@@ -1001,7 +1000,7 @@ void CGameObjectInstance__DecompressAnim(CGameObjectInstance *pThis, CCacheEntry
    for (cFrame=0; cFrame<nFrames; cFrame++)
    {
     pRotFrame = &rotFrames[cFrame];
-    pRotFrame->x = rawBuffers[0][cFrame];
+    /* pRotFrame->m_qRot.x = INT162FLOAT(rawBuffers[0][cFrame], 1); */ /* pRotFrame->m_qRot.y = INT162FLOAT(rawBuffers[1][cFrame], 1); */ /* pRotFrame->m_qRot.z = INT162FLOAT(rawBuffers[2][cFrame], 1); */ /* pRotFrame->m_qRot.t = INT162FLOAT(rawBuffers[3][cFrame], 1); */ /* CQuatern__Normalize(&pRotFrame->m_qRot); */ pRotFrame->x = rawBuffers[0][cFrame];
     pRotFrame->y = rawBuffers[1][cFrame];
     pRotFrame->z = rawBuffers[2][cFrame];
     pRotFrame->t = rawBuffers[3][cFrame];
@@ -1012,12 +1011,12 @@ void CGameObjectInstance__DecompressAnim(CGameObjectInstance *pThis, CCacheEntry
   offset += rotationSetsOffset;
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (5));
   ((unsigned long*) ((&isNewAnim)->m_pData))[1 + (((unsigned long*) (&isNewAnim)->m_pData)[0])] = ((unsigned long) (offset));
-  pbNewTransitionTable = pBytes + offset;
+  /* isNewTransitionTable */ pbNewTransitionTable = pBytes + offset;
   memcpy(pbNewTransitionTable, pbTransitionTable, transitionTableSize);
   offset += transitionTableSize;
   ((unsigned long*) ((&isNewAnim)->m_pData))[0] = ((unsigned long) (6));
   ((unsigned long*) ((&isNewAnim)->m_pData))[1 + (((unsigned long*) (&isNewAnim)->m_pData)[0])] = ((unsigned long) (offset));
-  CUnindexedSet__ConstructFromRawData(&usEvents, pbEvents, 0);
+  /* usNewEvents */ CUnindexedSet__ConstructFromRawData(&usEvents, pbEvents, 0);
   pbNewEvents = pBytes + offset;
   CUnindexedSet__DeinterleaveCopy(&usEvents, pbNewEvents, 0);
   offset += eventsSize;

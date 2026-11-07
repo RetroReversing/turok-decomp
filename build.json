@@ -10384,9 +10384,8 @@
    "rom": 8604124,
    "asm": "asm/nonmatchings/code_8002F784/CScene__LevelInfoReceived.s",
    "c": "src/code_8002F784/CScene__LevelInfoReceived.c",
-   "own": {
-    ".rodata": 2148474192
-   }
+   "own": {},
+   "entry_only": true
   },
   {
    "name": "CScene__LevelIndexReceived",

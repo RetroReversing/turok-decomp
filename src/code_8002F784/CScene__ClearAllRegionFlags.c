@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 /* machine draft (m2c) for ido-5.3 -O2 -mips2 -G 0 -non_shared -Xcpluscomm -Wab,-r4300_mul, tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -19,7 +18,7 @@ s32 func_8002DC3C(s32 *, s32, M2C_UNK, s32 *);      /* extern */
 M2C_UNK CIndexedSet__ConstructFromRawData(s32 *, M2C_UNK *, M2C_UNK);   /* extern */
 extern M2C_UNK D_8014F688;
 
-void CScene__ClearAllRegionFlags(s32 arg0) {
+void CScene__ClearAllRegionFlags(s32 pThis) {
     s32 sp20[2];
     s32 sp18;
 

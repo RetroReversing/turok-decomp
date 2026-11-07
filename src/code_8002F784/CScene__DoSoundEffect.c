@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1591,7 +1590,7 @@ int CScene__DoSoundEffect(CScene *pThis,
  {
   return -1;
  }
- CIndexedSet__ConstructFromRawData(&isSoundEffects,
+ /* This function can be called by the audio thread. Since the audio thread */ /* can preempt the game thread, using CCacheEntry__GetData() could corrupt */ /* CCartCache if both threads modify it at the same time. To avoid this, */ /* I'm using CCacheEntry__GetDataPtr() instead of CCacheEntry__GetData(). */ /* This version does not modify CCartCache. */ CIndexedSet__ConstructFromRawData(&isSoundEffects,
              ((pThis->m_pceSoundEffects)->m_pData),
              0);
  pbTypes = CIndexedSet__GetAddress((&isSoundEffects), (&isSoundEffects)->m_pData, (0));

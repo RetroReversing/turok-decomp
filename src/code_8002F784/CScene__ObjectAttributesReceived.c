@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
 typedef s32 M2C_UNK;
@@ -17,6 +16,6 @@ M2C_UNK CCartCache__RequestBlock(); /* extern */
 extern M2C_UNK D_800F1ACC;
 extern M2C_UNK CScene__ObjectsHeaderReceived;
 
-void CScene__ObjectAttributesReceived(u8 *arg0, M2C_UNK arg1) {
-    CCartCache__RequestBlock(arg0, arg0, 0, &CScene__ObjectsHeaderReceived, arg0 + 0x6AF0, M2C_FIELD(arg0, s32 *, 0x6ABC), 4, &D_800F1ACC);
+void CScene__ObjectAttributesReceived(u8 *pThis, M2C_UNK ppceTarget) {
+    CCartCache__RequestBlock(pThis, pThis, 0, &CScene__ObjectsHeaderReceived, pThis + 0x6AF0, M2C_FIELD(pThis, s32 *, 0x6ABC), 4, &D_800F1ACC);
 }

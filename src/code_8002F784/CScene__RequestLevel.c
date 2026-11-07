@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 extern char D_800F1B34[]; typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -987,9 +986,9 @@ void D_80033F64(CScene *pThis, CCacheEntry **ppceTarget);
 void CScene__RequestLevel(CScene *pThis, int nLevel){
  CIndexedSet isLevels;
                                 ;
- pThis->m_pceInstances = 0;
+ /* invalidate pointers */ pThis->m_pceInstances = 0;
  pThis->m_pceLevelIndex = 0;
- pThis->m_pceGridBounds = 0;
+ /* pThis->m_pceGridPickupCounts = NULL; */ pThis->m_pceGridBounds = 0;
  pThis->m_pceGridSectionsIndex = 0;
  pThis->m_pceCollision = 0;
  pThis->m_nInstances = pThis->m_nActiveAnimInstances = 0;
@@ -999,7 +998,7 @@ void CScene__RequestLevel(CScene *pThis, int nLevel){
              0);
                                               ;
  nLevel %= (((unsigned long*) (&isLevels)->m_pData)[0]);
-   pThis->m_rpLevelAddress = D_8002DC24(&isLevels,
+   /* find address of level */ pThis->m_rpLevelAddress = D_8002DC24(&isLevels,
                       pThis->m_rpLevelsAddress,
                       nLevel);
  D_8002D1F8(&pThis->m_Cache,

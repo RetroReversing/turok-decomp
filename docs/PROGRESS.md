@@ -404,3 +404,5 @@ A second source-assisted batch restored original details in 98 more functions. E
 ## 7 November 2026 — original-source readability
 
 A further 20 scene and related functions were polished with original parameter names, comments and layouts. Every function passed the individual byte judge with its app compiler context. A full build reproduced the original cartridge byte for byte with 2,364 of 2,406 entries selected in C. This is source-assisted work and does not imply whole-game source completeness.
+
+A second group of 15 functions passed individual byte checks. The audio global `AW` was translated to the repository symbol `D_80129520` after confirming both resolve to the same address. The whole cartridge was rebuilt and verified byte for byte, reusing unchanged objects from the preceding verified full build. All 35 accepted sources from this session were also checked against the app’s saved project.

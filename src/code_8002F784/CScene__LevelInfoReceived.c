@@ -1,5 +1,4 @@
-#include "decompdecomp_sync_f4ab0817642897c72c8b.h"
-#line 1 "func.c"
+#include "decompdecomp_sync_b529ab3481a025b426a1.h"
 #line 1137 "reference.c"
 void CScene__LevelInfoReceived(CScene *pThis, CCacheEntry **ppceTarget)
 {
@@ -63,7 +62,6 @@ void CScene__LevelInfoReceived(CScene *pThis, CCacheEntry **ppceTarget)
 									 pThis, (pfnCACHENOTIFY) CScene__DecompressGridBounds, (pfnCACHENOTIFY) CScene__GridBoundsReceived,
 									 &pThis->m_pceGridBounds,
 									 pThis->m_rpGridBoundsAddress, pThis->m_GridBoundsSize,
-									 D_800F1B58);
+									 "Grid Bounds");
 
 }
-

@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -110,7 +109,7 @@ int CGameAnimateState__GetTransitionAnim(CGameAnimateState *pThis){
  if (1)
    {
                           ;
-  CIndexedSet__ConstructFromRawData(&isAnim,
+  /* attatch isAnim */ CIndexedSet__ConstructFromRawData(&isAnim,
               CCacheEntry__GetData(pThis->m_pceAnim),
               0);
   pbTransitionTable = CIndexedSet__GetAddress((&isAnim), (&isAnim)->m_pData, (5));
@@ -131,11 +130,11 @@ int CGameAnimateState__GetTransitionAnim(CGameAnimateState *pThis){
   }
       if (pEntry)
       {
-   if ((pEntry->m_nWaitForFrame == ((unsigned long) -1))
+   /* found matching entry, wait for frame */ if ((pEntry->m_nWaitForFrame == ((unsigned long) -1))
      || ((pThis->m_cFrame >= pEntry->m_nWaitForFrame)
         && (pThis->m_cFrame < (pEntry->m_nWaitForFrame + D_800B6B00))) )
          {
-            deliveredAnim = pEntry->m_nDeliveredAnim;
+            /* do transition */ deliveredAnim = pEntry->m_nDeliveredAnim;
          }
    else
    {
@@ -150,7 +149,7 @@ int CGameAnimateState__GetTransitionAnim(CGameAnimateState *pThis){
    }
    else
    {
-    deliveredAnim = pThis->m_nDesiredAnim;
+    /* matching entry not found, do transition immediately */ deliveredAnim = pThis->m_nDesiredAnim;
                                       ;
    }
   }

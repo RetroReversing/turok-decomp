@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 struct CAssoc_t;
 struct CHashPlex_t;
 typedef struct CHashTable_t
@@ -92,11 +91,11 @@ int CGameAnimateState__GetNextFrame(CGameAnimateState *pThis){
  void *pbTransitionTable;
  CROMTransition *pTransition;
  int cNextFrame;
- cNextFrame = ((int) pThis->m_cFrame) + 1;
+ /* increment frame counter */ cNextFrame = ((int) pThis->m_cFrame) + 1;
  if (cNextFrame >= pThis->m_nFrames)
  {
                           ;
-  CIndexedSet__ConstructFromRawData(&isAnim,
+  /* attatch isAnim */ CIndexedSet__ConstructFromRawData(&isAnim,
               CCacheEntry__GetData(pThis->m_pceAnim),
               0);
   pbTransitionTable = CIndexedSet__GetAddress((&isAnim), (&isAnim)->m_pData, (5));

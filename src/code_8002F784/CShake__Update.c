@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 extern const double D_800F1DA0;
 extern float __sinf(float angle);
 extern float DecelerateFLOAT(float Var, float Decel);
@@ -27,7 +26,7 @@ float CShake__Update(CShake *pThis)
   if (pThis->m_Amp > 0)
   {
     Shake = __sinf(pThis->m_Angle * D_800F1DA0) * pThis->m_Amp;
-    pThis->m_Angle += ((pThis->m_Amp * 2) * 3) * D_800B6B00;
+    /* Make speed proportional to amplitude */ pThis->m_Angle += ((pThis->m_Amp * 2) * 3) * D_800B6B00;
     *(&pThis->m_Amp) = DecelerateFLOAT(*(&pThis->m_Amp), 2 * 3);
   }
   return Shake;
