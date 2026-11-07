@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1638,7 +1637,7 @@ void CScene__LoadObjectModelType(CScene *pThis, CGameObjectInstance *pInstance,
                                                           ;
    pInstance->ah.ih.m_nObjType = nObject;
    pInstance->m_nTypeFlag = nObjectType;
-   CIndexedSet__ConstructFromRawData(&isObjectsIndex,
+   /* pInstance->m_asCurrent.m_pceAnim = NULL; */ CIndexedSet__ConstructFromRawData(&isObjectsIndex,
                CCacheEntry__GetData(pThis->m_pceObjectsIndex),
                0);
    D_8001E890(pInstance,

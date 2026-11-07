@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1024,7 +1023,7 @@ void CScene__DecompressGridBounds(CScene *pThis, CCacheEntry **ppceTarget){
                                                       ;
  if (!D_8002D6BC(*ppceTarget, 1))
   return;
- CIndexedSet__ConstructFromRawData(&isGridBounds,
+ /* attatch collection to old data */ CIndexedSet__ConstructFromRawData(&isGridBounds,
              CCacheEntry__GetData(pThis->m_pceGridBounds),
              0);
  pbMinXs = D_8002DC3C((&isGridBounds), (&isGridBounds)->m_pData, (0), (&minXSize));
@@ -1071,7 +1070,7 @@ void CScene__DecompressGridBounds(CScene *pThis, CCacheEntry **ppceTarget){
                                                  sizeof(CGameGridBounds),
                                                  nBounds,
                                                  0);
-  romGridBounds = (CROMGridBounds*) ( (void*) ( ((unsigned char*)((&usBounds)->m_pData)) + (2*sizeof(unsigned long)) ) );
+  /* don't auto delete data */ romGridBounds = (CROMGridBounds*) ( (void*) ( ((unsigned char*)((&usBounds)->m_pData)) + (2*sizeof(unsigned long)) ) );
   gameGridBounds = (CGameGridBounds*) ( (void*) ( ((unsigned char*)((&usNewBounds)->m_pData)) + (2*sizeof(unsigned long)) ) );
   for (cBound=0; cBound<nBounds; cBound++)
    CGameGridBounds__TakeFromROMGridBounds(&gameGridBounds[cBound], &romGridBounds[cBound]);

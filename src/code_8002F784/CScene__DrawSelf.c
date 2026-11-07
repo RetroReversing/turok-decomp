@@ -1,5 +1,4 @@
-#include "common_local_source_4151.h"
-
+#include "decompdecomp_sync_1c8705bcbb107143d8ad.h"
 #line 2 "reference.c"
 void CScene__DrawSelf(CScene *pThis, Gfx **ppDLP, CUnindexedSet *pusInstances)
 {
@@ -37,7 +36,7 @@ void CScene__DrawSelf(CScene *pThis, Gfx **ppDLP, CUnindexedSet *pusInstances)
 //	}
 
 
-	ASSERT(pThis->m_pceTextureSetsIndex);
+	/* #else // !USE_FOG */ ASSERT(pThis->m_pceTextureSetsIndex);
 
 	// Only clear z buffer if not in cinema mode
 	if (CCamera__InCinemaMode(&GetApp()->m_Camera))

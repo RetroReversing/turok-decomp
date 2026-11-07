@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1621,7 +1620,7 @@ extern CEngineApp D_800F9F10;
 extern CEnemyAttributes D_801271F0;
 void CDynamicSimple__Advance(CDynamicSimple *instance);
 /* Moves a dynamic simple instance, updates collision-driven spin and effects, then refreshes bounds. */
-void CDynamicSimple__Advance(CDynamicSimple *instance){
+void CDynamicSimple__Advance(CDynamicSimple *pThis){
  CCollisionInfo2 *collision;
  CQuatern particleRotation;
  CMtxF rotationMatrix ;
@@ -1631,62 +1630,62 @@ void CDynamicSimple__Advance(CDynamicSimple *instance){
  int objectType ;
  float rotationScale ;
  collision = &D_80136520;
- if (instance->m_SparkleTime > 0)
+ if (pThis->m_SparkleTime > 0)
  {
-  instance->m_SparkleTime -= D_800B6B00 ;
-  sparklePos = instance->s.ah.ih.m_vPos ;
-  AI_DoParticle(&instance->s.ah.ih, 344, sparklePos);
+  pThis->m_SparkleTime -= D_800B6B00 ;
+  sparklePos = pThis->s.ah.ih.m_vPos ;
+  AI_DoParticle(&pThis->s.ah.ih, 344, sparklePos);
  }
- if (instance->s.ah.ih.m_pEA != &D_801271F0)
+ if (pThis->s.ah.ih.m_pEA != &D_801271F0)
  {
-  (&instance->s.ah.m_vVelocity)->x = 0 ; (&instance->s.ah.m_vVelocity)->y = 0 ; (&instance->s.ah.m_vVelocity)->z = 0 ; ;
+  (&pThis->s.ah.m_vVelocity)->x = 0 ; (&pThis->s.ah.m_vVelocity)->y = 0 ; (&pThis->s.ah.m_vVelocity)->z = 0 ; ;
  }
- D_8009A4D8(&instance->s.ah, instance->s.ah.ih.m_vPos, collision);
- if (CInstanceHdr__TypeFlag(&instance->s.ah.ih) == 443)
+ D_8009A4D8(&pThis->s.ah, pThis->s.ah.ih.m_vPos, collision);
+ if (CInstanceHdr__TypeFlag(&pThis->s.ah.ih) == 443)
  {
-  instance->s.ah.ih.m_vPos.y = (1.0*(1024.0/100.0)) +
-   CGameRegion__GetGroundHeight(instance->s.ah.ih.m_pCurrentRegion,
-             instance->s.ah.ih.m_vPos.x,
-             instance->s.ah.ih.m_vPos.z) ;
+  pThis->s.ah.ih.m_vPos.y = (1.0*(1024.0/100.0)) +
+   CGameRegion__GetGroundHeight(pThis->s.ah.ih.m_pCurrentRegion,
+             pThis->s.ah.ih.m_vPos.x,
+             pThis->s.ah.ih.m_vPos.z) ;
  }
- if (AI_IsBouncy(CInstanceHdr__TypeFlag(&instance->s.ah.ih)))
+ if (AI_IsBouncy(CInstanceHdr__TypeFlag(&pThis->s.ah.ih)))
  {
-  objectType = CInstanceHdr__TypeFlag(&instance->s.ah.ih) ;
+  objectType = CInstanceHdr__TypeFlag(&pThis->s.ah.ih) ;
   switch (objectType)
   {
    case 704:
    case 701:
-    if (((&instance->s.ah.m_vVelocity)->x*(&instance->s.ah.m_vVelocity)->x + (&instance->s.ah.m_vVelocity)->y*(&instance->s.ah.m_vVelocity)->y + (&instance->s.ah.m_vVelocity)->z*(&instance->s.ah.m_vVelocity)->z) > 100)
+    if (((&pThis->s.ah.m_vVelocity)->x*(&pThis->s.ah.m_vVelocity)->x + (&pThis->s.ah.m_vVelocity)->y*(&pThis->s.ah.m_vVelocity)->y + (&pThis->s.ah.m_vVelocity)->z*(&pThis->s.ah.m_vVelocity)->z) > 100)
     {
-     D_800153B4(rotationMatrix, instance->s.m_RotAngle, instance->s.vRotAxis.x, instance->s.vRotAxis.y, instance->s.vRotAxis.z);
-     CMtxF__VectorMult(rotationMatrix, &instance->s.ah.m_vVelocity, &particleVelocity) ;
+     D_800153B4(rotationMatrix, pThis->s.m_RotAngle, pThis->s.vRotAxis.x, pThis->s.vRotAxis.y, pThis->s.vRotAxis.z);
+     CMtxF__VectorMult(rotationMatrix, &pThis->s.ah.m_vVelocity, &particleVelocity) ;
      CVector3__MultScaler(&particleVelocity, &particleVelocity, .5);
      { (&particleRotation)->x = (&particleRotation)->y = (&particleRotation)->z = 0; (&particleRotation)->t = 1; };
      D_80028970(&(&D_800F9F10)->m_Scene.m_ParticleSystem,
-                &instance->s.ah.ih,
+                &pThis->s.ah.ih,
                   57,
                 particleVelocity,
                 particleRotation,
-                instance->s.ah.ih.m_vPos,
-                instance->s.ah.ih.m_pCurrentRegion,
+                pThis->s.ah.ih.m_vPos,
+                pThis->s.ah.ih.m_pCurrentRegion,
                 -1, 1);
     }
     break ;
    case 708:
    case 705:
-    if (((&instance->s.ah.m_vVelocity)->x*(&instance->s.ah.m_vVelocity)->x + (&instance->s.ah.m_vVelocity)->y*(&instance->s.ah.m_vVelocity)->y + (&instance->s.ah.m_vVelocity)->z*(&instance->s.ah.m_vVelocity)->z) > 100)
+    if (((&pThis->s.ah.m_vVelocity)->x*(&pThis->s.ah.m_vVelocity)->x + (&pThis->s.ah.m_vVelocity)->y*(&pThis->s.ah.m_vVelocity)->y + (&pThis->s.ah.m_vVelocity)->z*(&pThis->s.ah.m_vVelocity)->z) > 100)
     {
-     D_800153B4(rotationMatrix, instance->s.m_RotAngle, instance->s.vRotAxis.x, instance->s.vRotAxis.y, instance->s.vRotAxis.z);
-     CMtxF__VectorMult(rotationMatrix, &instance->s.ah.m_vVelocity, &particleVelocity) ;
+     D_800153B4(rotationMatrix, pThis->s.m_RotAngle, pThis->s.vRotAxis.x, pThis->s.vRotAxis.y, pThis->s.vRotAxis.z);
+     CMtxF__VectorMult(rotationMatrix, &pThis->s.ah.m_vVelocity, &particleVelocity) ;
      CVector3__MultScaler(&particleVelocity, &particleVelocity, .5);
      { (&particleRotation)->x = (&particleRotation)->y = (&particleRotation)->z = 0; (&particleRotation)->t = 1; };
      D_80028970(&(&D_800F9F10)->m_Scene.m_ParticleSystem,
-                &instance->s.ah.ih,
+                &pThis->s.ah.ih,
                 52,
                 particleVelocity,
                 particleRotation,
-                instance->s.ah.ih.m_vPos,
-                instance->s.ah.ih.m_pCurrentRegion,
+                pThis->s.ah.ih.m_vPos,
+                pThis->s.ah.ih.m_pCurrentRegion,
                 -1, 1);
     }
     break ;
@@ -1702,38 +1701,38 @@ void CDynamicSimple__Advance(CDynamicSimple *instance){
    surfaceNormal = CGameRegion__GetGroundUnitNormal(collision->pWallCollisionRegion) ;
    hasSurface = 1 ;
   }
-  else if (D_8001BA24(&instance->s.ah.ih))
+  else if (D_8001BA24(&pThis->s.ah.ih))
   {
-   surfaceNormal = CGameRegion__GetGroundUnitNormal(instance->s.ah.ih.m_pCurrentRegion) ;
+   surfaceNormal = CGameRegion__GetGroundUnitNormal(pThis->s.ah.ih.m_pCurrentRegion) ;
    hasSurface = 1 ;
   }
   if (hasSurface)
   {
-   if (instance->s.ah.m_vVelocity.y > (20*(1024.0/100.0)))
-    D_8005EED0((CInstanceHdr *)instance, 623, 1, 0);
-   else if (instance->s.ah.m_vVelocity.y > (10*(1024.0/100.0)))
-    D_8005EED0((CInstanceHdr *)instance, 624, 1, 0);
-   else if (instance->s.ah.m_vVelocity.y > 1)
-    D_8005EED0((CInstanceHdr *)instance, 625, 1, 0);
+   if (pThis->s.ah.m_vVelocity.y > (20*(1024.0/100.0)))
+    D_8005EED0((CInstanceHdr *)pThis, 623, 1, 0);
+   else if (pThis->s.ah.m_vVelocity.y > (10*(1024.0/100.0)))
+    D_8005EED0((CInstanceHdr *)pThis, 624, 1, 0);
+   else if (pThis->s.ah.m_vVelocity.y > 1)
+    D_8005EED0((CInstanceHdr *)pThis, 625, 1, 0);
    rotationScale = 40 *15;
    if ((objectType == 701) ||
      (objectType == 704) ||
      (objectType == 705) ||
      (objectType == 708))
      rotationScale = 100 *15;
-   velocityDirection = instance->s.ah.m_vVelocity ;
+   velocityDirection = pThis->s.ah.m_vVelocity ;
    CVector3__Normalize(&velocityDirection) ;
    CVector3__Cross(&rotationAxis, &surfaceNormal, &velocityDirection) ;
    CVector3__Normalize(&rotationAxis) ;
-   instance->s.m_AngleVel = (sqrtf(((&instance->s.ah.m_vVelocity)->x*(&instance->s.ah.m_vVelocity)->x + (&instance->s.ah.m_vVelocity)->y*(&instance->s.ah.m_vVelocity)->y + (&instance->s.ah.m_vVelocity)->z*(&instance->s.ah.m_vVelocity)->z)) / rotationScale) ;
-   instance->s.vRotAxis = rotationAxis ;
+   pThis->s.m_AngleVel = (sqrtf(((&pThis->s.ah.m_vVelocity)->x*(&pThis->s.ah.m_vVelocity)->x + (&pThis->s.ah.m_vVelocity)->y*(&pThis->s.ah.m_vVelocity)->y + (&pThis->s.ah.m_vVelocity)->z*(&pThis->s.ah.m_vVelocity)->z)) / rotationScale) ;
+   pThis->s.vRotAxis = rotationAxis ;
   }
-  instance->s.m_RotAngle += instance->s.m_AngleVel * D_800B6B00 ;
+  pThis->s.m_RotAngle += pThis->s.m_AngleVel * D_800B6B00 ;
  }
- instance->s.m_Bounds.m_vMin.x = instance->s.ah.ih.m_vPos.x - (400*(1024.0/100.0));
- instance->s.m_Bounds.m_vMin.y = instance->s.ah.ih.m_vPos.y - (400*(1024.0/100.0));
- instance->s.m_Bounds.m_vMin.z = instance->s.ah.ih.m_vPos.z - (400*(1024.0/100.0));
- instance->s.m_Bounds.m_vMax.x = instance->s.ah.ih.m_vPos.x + (400*(1024.0/100.0));
- instance->s.m_Bounds.m_vMax.y = instance->s.ah.ih.m_vPos.y + (400*(1024.0/100.0));
- instance->s.m_Bounds.m_vMax.z = instance->s.ah.ih.m_vPos.z + (400*(1024.0/100.0));
+ pThis->s.m_Bounds.m_vMin.x = pThis->s.ah.ih.m_vPos.x - (400*(1024.0/100.0));
+ pThis->s.m_Bounds.m_vMin.y = pThis->s.ah.ih.m_vPos.y - (400*(1024.0/100.0));
+ pThis->s.m_Bounds.m_vMin.z = pThis->s.ah.ih.m_vPos.z - (400*(1024.0/100.0));
+ pThis->s.m_Bounds.m_vMax.x = pThis->s.ah.ih.m_vPos.x + (400*(1024.0/100.0));
+ pThis->s.m_Bounds.m_vMax.y = pThis->s.ah.ih.m_vPos.y + (400*(1024.0/100.0));
+ pThis->s.m_Bounds.m_vMax.z = pThis->s.ah.ih.m_vPos.z + (400*(1024.0/100.0));
 }

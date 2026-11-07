@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -860,7 +859,7 @@ void CSimplePool__DeallocateSimpleInstance(CSimplePool *pThis, CDynamicSimple *p
   pThis->m_pActiveHead = pDyn->m_pNext;
  if (pThis->m_pActiveTail == pDyn)
   pThis->m_pActiveTail = pDyn->m_pLast;
- pDyn->m_pNext = pThis->m_pFreeHead;
+ /* add to free list */ pDyn->m_pNext = pThis->m_pFreeHead;
  pDyn->m_pLast= ((void*)0) ;
  pThis->m_pFreeHead = pDyn;
 }

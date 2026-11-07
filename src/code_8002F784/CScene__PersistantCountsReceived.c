@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1097,9 +1096,9 @@ void CScene__PersistantCountsReceived(CScene *pThis, CCacheEntry **ppceTarget){
  levelsOffset = ( ( ((1*sizeof(unsigned long)) + ((nLevels)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
  ((unsigned long*) ((&isLevels)->m_pData))[0] = ((unsigned long) (0));
  ((unsigned long*) ((&isLevels)->m_pData))[1 + (((unsigned long*) (&isLevels)->m_pData)[0])] = ((unsigned long) (levelsOffset));
- for (cLevel=0; cLevel<nLevels; cLevel++)
+ /* rmonPrintf("nLevels:%d\n", nLevels); */ for (cLevel=0; cLevel<nLevels; cLevel++)
  {
-  pbLevel = pBytes + offset + levelsOffset;
+  /* rmonPrintf("%d nPickups:%d, nAnims:%d\n", cLevel, pickupCounts[cLevel], animCounts[cLevel]); */ pbLevel = pBytes + offset + levelsOffset;
   CIndexedSet__ConstructFromRawData(&isLevel, pbLevel, 0);
   levelOffset = ( ( ((1*sizeof(unsigned long)) + ((2)+1)*sizeof(unsigned long)) + ((8) - 1) ) & ~((unsigned long) (8) - 1) );
   ((unsigned long*) ((&isLevel)->m_pData))[0] = ((unsigned long) (0));

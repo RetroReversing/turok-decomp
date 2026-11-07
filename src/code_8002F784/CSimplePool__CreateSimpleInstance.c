@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -1643,7 +1642,7 @@ CDynamicSimple* CSimplePool__CreateSimpleInstance(CSimplePool *pThis, int nType,
  rpObjectAddress = D_8002DC24(&isObjectsIndex,
                 pThis->m_rpObjectsAddress,
                 nObjType);
- switch (nType)
+ /* set ptr to attributes (longhunter and mantis create key pickups) */ switch (nType)
  {
   case 443:
    pDyn->s.ah.ih.m_pEA = &D_80127240;

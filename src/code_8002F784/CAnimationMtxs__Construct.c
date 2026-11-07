@@ -1,6 +1,18 @@
-#include "common_local_source_4211.h"
-
+#include "decompdecomp_sync_59c3106050809ab47135.h"
 #line 1 "reference.c"
+/*****************************************************************************
+*
+*	Function:		CAnimationMtxs__Construct()
+*
+******************************************************************************
+*
+*	Description:	Initailizes vars ready for allocation
+*
+*	Inputs:			None
+*
+*	Outputs:			None
+*
+*****************************************************************************/
 void CAnimationMtxs__Construct(void)
 {
 	int	i ;

@@ -1,5 +1,4 @@
-#include "common.h"
-
+#include "decompdecomp_sync_3a6c5450f0e703b552aa.h"
 typedef unsigned char sa_u8;
 typedef unsigned short sa_u16;
 typedef unsigned long sa_u32;
@@ -983,7 +982,7 @@ void CScene__DrawInstances(CScene *pThis, Gfx **ppDLP, CUnindexedSet *pusInstanc
    nInstances = ( (unsigned long) (((unsigned long*) (pusInstances)->m_pData)[1]) );
    instances = (CGameObjectInstance*) ( (void*) ( ((unsigned char*)((pusInstances)->m_pData)) + (2*sizeof(unsigned long)) ) );
  { { Gfx *_g = (Gfx *)(((*ppDLP)++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x04)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x04)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) (0x00000005); }; { Gfx *_g = (Gfx *)(((*ppDLP)++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x0c)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x04)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) (0x00000005); }; { Gfx *_g = (Gfx *)(((*ppDLP)++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x14)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x04)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) (0x0000fffb); }; { Gfx *_g = (Gfx *)(((*ppDLP)++)); _g->words.w0 = (((unsigned int) (((unsigned int)(((-65 -3))) & ((0x01 << (8)) - 1)) << (24))) | ((unsigned int) (((unsigned int)((0x1c)) & ((0x01 << (16)) - 1)) << (8))) | ((unsigned int) (((unsigned int)((0x04)) & ((0x01 << (8)) - 1)) << (0)))); _g->words.w1 = (unsigned int) (0x0000fffb); }; };
-   for (cInstance=1; cInstance<nInstances; cInstance++)
+   /* repeated in CGameObjectInstance__DrawShadow() */ /* skip self */ for (cInstance=1; cInstance<nInstances; cInstance++)
  {
   pInst = &instances[cInstance];
   if (pInst->m_pceObjectInfo)

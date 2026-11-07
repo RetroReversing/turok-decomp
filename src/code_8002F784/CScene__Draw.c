@@ -1,5 +1,4 @@
-#include "common_local_source_4157.h"
-
+#include "decompdecomp_sync_76b1f60bc6cda65221b3.h"
 static __inline void PreDrawSelf(CScene *pThis, CUnindexedSet *pusInstances, Gfx **ppDLP)
 {
 	int 						nInstances;
